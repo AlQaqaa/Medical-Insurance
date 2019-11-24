@@ -28,7 +28,9 @@
         <div class="container-fluid">
             <div class="top-navbar">
                 <nav class="navbar navbar-light" style="background-color: #f0f0f0; border-bottom: 1px solid #d8d8d8;">
-                    <span class="navbar-brand mb-0 h1"><asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" /> التأمين الطبي</span>
+                    <span class="navbar-brand mb-0 h1">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" />
+                        التأمين الطبي</span>
                 </nav>
             </div>
 
@@ -55,29 +57,62 @@
                                 <asp:HyperLink ID="HyperLink1" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Home/Default.aspx"><i class="fas fa-home"></i> الرئيسية</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="HyperLink2" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#users" data-toggle="collapse" data-target="#users" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-users"></i> المشتركين</asp:HyperLink>
-                                <ul class="nav collapse sub-menu" id="users">
+                                <asp:HyperLink ID="HyperLink2" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#companies" data-toggle="collapse" data-target="#companies" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-city"></i> الشركات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="companies">
                                     <li>
-                                        <asp:HyperLink ID="hl_addNewCompany" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/INC_PATIANT.aspx"><i class="fas fa-user-plus"></i>&nbsp;إضافة مشترك جديد</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_addNewCompany" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/addNewCompany.aspx"><i class="fas fa-folder-plus"></i>&nbsp;إضافة شركة جديدة</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="hl_usersList" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المشتركين</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_companiesList" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/Default.aspx"><i class="fas fa-landmark"></i>&nbsp;قائمة الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_stop_company" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/STOP_COMPANY.aspx"><i class="fas fa-pause-circle"></i>&nbsp;الشركات الموقوفة</asp:HyperLink></li>
                                 </ul>
-                            </li>                           
-                            <li class="nav-item">
-                                <asp:HyperLink ID="hl_clinics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> إضافة عيادة</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_services" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink8" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المشتركين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_cs_info" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-hospital-symbol"></i> تفاصيل العيادات</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink9" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Home/Default.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="clearfix"></div>
                 <div class="col-sm-9">
-                    <div class="page-content">
+                    <div class="page-content mt-1">
+                        <asp:Panel ID="Panel1" runat="server">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#companyNavbar" aria-controls="companyNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+
+                                        <div class="collapse navbar-collapse" id="companyNavbar">
+                                            <ul class="navbar-nav mr-auto">
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i>&nbsp;منتفعي الشركة 
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/INC_PATIANT.aspx"><i class="fas fa-user-plus"></i>&nbsp;إضافة مشترك جديد</asp:HyperLink>
+                                                        <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المشتركين</asp:HyperLink>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <asp:HyperLink ID="HyperLink5" CssClass="nav-link" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> إضافة عيادة</asp:HyperLink>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <asp:HyperLink ID="HyperLink6" CssClass="nav-link" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <asp:HyperLink ID="HyperLink7" CssClass="nav-link" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-hospital-symbol"></i> تفاصيل العيادات</asp:HyperLink>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- /row -->
+                        </asp:Panel>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>

@@ -95,40 +95,94 @@ Partial Public Class companies
     Protected WithEvents hl_addNewCompany As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''hl_usersList control.
+    '''hl_companiesList control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hl_usersList As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hl_companiesList As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''hl_clinics control.
+    '''hl_stop_company control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hl_clinics As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hl_stop_company As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''hl_services control.
+    '''HyperLink8 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hl_services As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents HyperLink8 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''hl_cs_info control.
+    '''HyperLink9 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hl_cs_info As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents HyperLink9 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''HyperLink3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink3 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''hl_company_users_list control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_company_users_list As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink5 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink7 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''ContentPlaceHolder1 control.

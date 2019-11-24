@@ -1,0 +1,202 @@
+﻿<%@ Page Title="معلومات المشترك" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="patientInfo.aspx.vb" Inherits="Medical_Insurance.patientInfo" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="info-page">
+                <div class="row mt-1">
+                    <div class="col-sm-12">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="../Default.aspx">الرئيسية</a></li>
+                                <li class="breadcrumb-item"><a href="../Companies/Default.aspx">الشركات</a></li>
+                                <li class="breadcrumb-item"><a href="../Companies/companyInfo.aspx">
+                                    <asp:Label ID="lbl_com_name" runat="server" Text=""></asp:Label></a></li>
+                                <li class="breadcrumb-item active" aria-current="page">
+                                    <asp:Label ID="lbl_name_page" runat="server" Text=""></asp:Label></li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row mt-1">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card text-dark bg-light  h-100">
+                            <div class="card-body bg-light ">
+                                <div class="rotate">
+                                    <i class="fa fa-id-card fa-4x"></i>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <div class="text-center">
+                                            <asp:Image ID="img_pat_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="100%" Height="140px" ImageUrl="~/Style/images/ID card 460 x 307 p.png" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <ul class="list-unstyled mb-0">
+                                            <li class="text-center">
+                                                <asp:Label ID="lbl_name_eng" runat="server" Text="AlQaqaa Benghuzi"></asp:Label></li>
+                                            <li class="mt-1"><b>الاسم: </b>
+                                                <asp:Label ID="lbl_pat_name" runat="server" Text="القعقاع بن غزي"></asp:Label></li>
+                                            <li class="mt-1"><b>تاريخ الميلاد: </b>
+                                                <asp:Label ID="lbl_birthdate" runat="server" Text="1990-04-17"></asp:Label></li>
+                                            <li class="mt-1"><b>الرقم الوطني: </b>
+                                                <asp:Label ID="lbl_nat_num" runat="server" Text="123459638574"></asp:Label></li>
+                                            <li class="mt-1"><b>رقم الهاتف: </b>
+                                                <asp:Label ID="lbl_phone" runat="server" Text="0926444115"></asp:Label></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- row -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="card text-dark bg-light  h-100">
+                            <div class="card-body bg-light ">
+                                <div class="rotate">
+                                    <i class="fa fa-info-circle fa-4x"></i>
+                                </div>
+                                <ul class="list-unstyled mb-0">
+                                    <li><b>الشركة: </b>
+                                        <asp:Label ID="lbl_company_name" runat="server" Text="شركة البريقة"></asp:Label></li>
+                                    <li class="mt-1"><b>رقم البطاقة: </b>
+                                        <asp:Label ID="lbl_card_no" runat="server" Text="652398"></asp:Label></li>
+                                    <li class="mt-1"><b>تاريخ صلاحية البطاقة: </b>
+                                        <asp:Label ID="lbl_exp_dt" runat="server" Text="2020-04-17"></asp:Label></li>
+                                    <li class="mt-1"><b>الرقم الوظيفي: </b>
+                                        <asp:Label ID="lbl_bage_no" runat="server" Text="35484"></asp:Label></li>
+                                    <li class="mt-1"><b>صلة القرابة: </b>
+                                        <asp:Label ID="lbl_const" runat="server" Text="الابن"></asp:Label></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2 text-center align-self-center">
+
+                        <asp:Label ID="lbl_icon_sts" runat="server" Text="<i class='fa fa-user fa-3x'></i>"></asp:Label><br />
+                        <asp:Label ID="lbl_sts" runat="server" Text=""></asp:Label><br />
+                        <br />
+                        <asp:Button ID="btn_change_sts" runat="server" CssClass="btn btn-outline-danger btn-block" Text="إيقاف" />
+                        <asp:HyperLink ID="hl_edit" CssClass="btn btn-outline-primary btn-block" role="button" runat="server" NavigateUrl="~/Companies/EDITPATIANT.aspx">تعديل البيانات</asp:HyperLink>
+                    </div>
+                </div>
+                <!-- row -->
+                <div class="row mt-3">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header bg-danger text-white">
+                                الخدمات المحظورة عن هذا المشترك
+                                <button type="button" class="btn btn-dark btn-sm float-right" data-toggle="modal" data-target="#ban_service">حظر خدمة</button>
+                            </div>
+                            <div class="card-body">
+                                <asp:GridView ID="GridView1" class="table table-striped" runat="server" GridLines="None" AutoGenerateColumns="False">
+                                    <Columns>
+                                        <asp:BoundField DataField="SER_ID" HeaderText="ر.خ">
+                                            <ControlStyle CssClass="hide-colum" />
+                                            <FooterStyle CssClass="hide-colum" />
+                                            <HeaderStyle CssClass="hide-colum" />
+                                            <ItemStyle CssClass="hide-colum" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="SERV_CODE" HeaderText="رمز الخدمة"></asp:BoundField>
+                                        <asp:BoundField DataField="SERVICE_NAME" HeaderText="اسم الخدمة"></asp:BoundField>
+                                        <asp:BoundField DataField="NOTES" HeaderText="ملاحظات"></asp:BoundField>
+                                        <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btn_block_stop" runat="server"
+                                            CommandName="stop_block"
+                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                            ToolTip="إيقاف الحظر"
+                                            ControlStyle-CssClass="btn btn-link text-success btn-new"
+                                            OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذه الخدمة؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                                <asp:Label ID="Label1" runat="server" CssClass="text-center" Text=""></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header">أفراد العائلة</div>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">1</th>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">2</th>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">3</th>
+                                            <td>Larry</td>
+                                            <td>the Bird</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </ContentTemplate>
+    </asp:UpdatePanel>
+    <!-- Ban Services Modal -->
+    <div class="modal fade" id="ban_service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">حظر خدمة عن مستخدم</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="service" class="col-sm-2 col-form-label">الخدمة</label>
+                        <div class="col-sm-10">
+                            <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="SERV_NAMEARB" DataValueField="SERV_ID" Width="100%"></asp:DropDownList>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [SERV_ID], [SERV_NAMEARB] FROM [MAIN_SERVIES] WHERE DEL = 0"></asp:SqlDataSource>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="service" class="col-sm-2 col-form-label">ملاحظات</label>
+                        <div class="col-sm-10">
+                            <asp:TextBox ID="txt_notes" class="form-control" runat="server" rows="3" TextMode="MultiLine"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btn_ban_service" class="btn btn-outline-success" runat="server" Text="حفظ" />
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</asp:Content>

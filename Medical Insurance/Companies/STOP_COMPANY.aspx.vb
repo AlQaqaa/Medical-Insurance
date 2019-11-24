@@ -1,0 +1,73 @@
+﻿Imports System.Data.SqlClient
+Public Class STOP_COMPANY
+    Inherits System.Web.UI.Page
+    Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If IsPostBack = False Then
+            getCompanyData()
+
+        End If
+    End Sub
+
+    Private Sub getCompanyData()
+        Dim sel_com As New SqlCommand("select *,(case when (select c_name_arb from [IBNSINAMAIN].[dbo].[INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level ) is null then  '-' else (select c_name_arb from [IBNSINAMAIN].[dbo].[INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level) end)as MAIN_COMPANY from INC_COMPANY_DATA WHERE C_STATE = 1", insurance_SQLcon)
+        Dim dt_result As New DataTable
+        dt_result.Rows.Clear()
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+
+        If dt_result.Rows.Count > 0 Then
+            dt_GridView.DataSource = dt_result
+            dt_GridView.DataBind()
+            
+        End If
+    End Sub
+
+    Private Sub dt_GridView_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles dt_GridView.RowCommand
+
+        '################ When User Press On Company Name ################
+        If (e.CommandName = "com_name") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = dt_GridView.Rows(index)
+            Session.Item("company_id") = (row.Cells(0).Text)
+            Response.Redirect("companyInfo.aspx")
+        End If
+
+        '################ When User Press On Edit Button ################
+        If (e.CommandName = "edit_com") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = dt_GridView.Rows(index)
+            Session.Item("company_id") = (row.Cells(0).Text)
+            Response.Redirect("EDITCOMPANY.aspx")
+        End If
+
+        '################ When User Press On Avtive Button ################
+        If (e.CommandName = "active_com") Then
+            ' Retrieve the row index stored in the CommandArgument property.
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+
+            ' Retrieve the row that contains the button 
+            ' from the Rows collection.
+            Dim row As GridViewRow = dt_GridView.Rows(index)
+
+            Try
+                Dim stopCompany As New SqlCommand
+                stopCompany.Connection = insurance_SQLcon
+                stopCompany.CommandText = "INC_startCompany"
+                stopCompany.CommandType = CommandType.StoredProcedure
+                stopCompany.Parameters.AddWithValue("@comID", (row.Cells(0).Text))
+                insurance_SQLcon.Open()
+                stopCompany.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.set('notifier','position', 'top-right'); alertify.success('تم تفعيل الشركة بنجاح');", True)
+                getCompanyData()
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+
+        End If
+    End Sub
+
+End Class

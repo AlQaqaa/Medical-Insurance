@@ -1,0 +1,98 @@
+﻿Imports System.Data.SqlClient
+Public Class EDITCOMPANY
+    Inherits System.Web.UI.Page
+    Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        Dim s1 As String = " (SELECT top 1 (DATE_START) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_STARt"
+        Dim s2 As String = " (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END"
+        Dim s3 As String = " (SELECT top 1 (MAX_VAL) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_VAL"
+        Dim s4 As String = " (SELECT top 1 (MAX_CARD) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_CARD"
+        Dim s5 As String = " (SELECT top 1 (PATIAINT_PER) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS PATIAINT_PER"
+        Dim s6 As String = " (SELECT top 1 (PYMENT_TYPE) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS PYMENT_TYPE"
+
+
+        Dim ins_com1 As New SqlCommand("SELECT C_NAME_ARB, C_NAME_ENG, " & s1 & ", " & s2 & ", " & s3 & ", " & s4 & ", " & s5 & ", " & s6 & "  FROM INC_COMPANY_DATA WHERE C_ID = @C_id", insurance_SQLcon)
+
+
+        ins_com1.Parameters.AddWithValue("@C_id", Val(Session("company_id")))
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+
+        Dim rd1 As SqlDataReader = ins_com1.ExecuteReader
+
+        If rd1.Read Then
+            If IsDBNull(rd1!DATE_START) Then
+
+                txt_start_dt.Text = ""
+            Else
+                txt_start_dt.Text = rd1!DATE_START
+            End If
+            If IsDBNull(rd1!DATE_END) Then
+
+                txt_end_dt.Text = ""
+            Else
+                txt_end_dt.Text = rd1!DATE_END
+            End If
+            txt_company_name_ar.Text = rd1!C_NAME_ARB
+            txt_company_name_en.Text = rd1!C_NAME_ENG
+            If IsDBNull(rd1!MAX_VAL) Then
+                txt_max_company_value.Text = ""
+            Else
+                txt_max_company_value.Text = rd1!MAX_VAL
+            End If
+
+            'txt_max_card_value.Text = rd1!MAX_CARD
+            ddl_PATIAINT_PER.SelectedValue = rd1!PATIAINT_PER
+            ddl_payment_type.SelectedValue = rd1!PYMENT_TYPE
+            'txt_max_card_value.Text = rd1!PATIAINT_P
+
+        End If
+
+
+    End Sub
+
+
+    Sub clrTxt()
+        txt_company_name_ar.Text = ""
+        txt_company_name_en.Text = ""
+        txt_end_dt.Text = ""
+        txt_max_card_value.Text = ""
+        txt_max_company_value.Text = ""
+        txt_start_dt.Text = ""
+
+    End Sub
+
+    Protected Sub btn_edit_Click(sender As Object, e As EventArgs) Handles btn_save.Click
+
+        Try
+            Dim insToCompany As New SqlCommand
+            insToCompany.Connection = insurance_SQLcon
+            insToCompany.CommandText = "INC_EDITCompany"
+            insToCompany.CommandType = CommandType.StoredProcedure
+            insToCompany.Parameters.AddWithValue("@cId", Val(Request.QueryString("comID")))
+            insToCompany.Parameters.AddWithValue("@cNameAr", txt_company_name_ar.Text)
+            insToCompany.Parameters.AddWithValue("@cNameEn", txt_company_name_en.Text)
+            insToCompany.Parameters.AddWithValue("@cState", ddl_STATE.SelectedValue)
+            insToCompany.Parameters.AddWithValue("@startDt", txt_start_dt.Text)
+            insToCompany.Parameters.AddWithValue("@endDt", txt_end_dt.Text)
+            insToCompany.Parameters.AddWithValue("@maxVal", txt_max_company_value.Text)
+            insToCompany.Parameters.AddWithValue("@maxCard", txt_max_card_value.Text)
+            insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
+            insToCompany.Parameters.AddWithValue("@contractType", 1) ' 1 = New Contract
+            insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
+            insToCompany.Parameters.AddWithValue("@userId", 1)
+            insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+
+            insToCompany.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+            clrTxt()
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية تعديل البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+End Class

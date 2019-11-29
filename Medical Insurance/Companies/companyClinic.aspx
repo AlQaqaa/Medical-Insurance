@@ -51,7 +51,9 @@
                                     <asp:TextBox ID="txt_person_per" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال نسبة المشترك" ControlToValidate="txt_person_per" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
                                     <br />
-                                    <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
+                                    <label>عدد الجلسات</label><span data-toggle="tooltip" data-placement="top" title="عدد الجلسات يحدد لعيادة العلاج الطبيعي فقط، غير ذلك يمكنك تركه فارغ"> <i class="fas fa-info-circle"></i></span>
+                                    <asp:TextBox ID="txt_session_count" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox>
+                                    <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block mt-4" Text="حفظ" ValidationGroup="save_data" />
                                 </div>
                             </div>
 

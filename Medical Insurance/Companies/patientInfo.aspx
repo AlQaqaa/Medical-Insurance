@@ -92,7 +92,7 @@
                         <div class="card bg-light mb-3">
                             <div class="card-header bg-danger text-white">
                                 الخدمات المحظورة عن هذا المشترك
-                                <button type="button" class="btn btn-dark btn-sm float-right" data-toggle="modal" data-target="#ban_service">حظر خدمة</button>
+                                <button type="button" class="btn btn-dark btn-sm" data-toggle="modal" data-target="#ban_service">حظر خدمة</button>
                             </div>
                             <div class="card-body">
                                 <asp:GridView ID="GridView1" class="table table-striped" runat="server" GridLines="None" AutoGenerateColumns="False">
@@ -105,7 +105,6 @@
                                         </asp:BoundField>
                                         <asp:BoundField DataField="SERV_CODE" HeaderText="رمز الخدمة"></asp:BoundField>
                                         <asp:BoundField DataField="SERVICE_NAME" HeaderText="اسم الخدمة"></asp:BoundField>
-                                        <asp:BoundField DataField="NOTES" HeaderText="ملاحظات"></asp:BoundField>
                                         <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btn_block_stop" runat="server"
@@ -183,12 +182,6 @@
                         <div class="col-sm-10">
                             <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="SERV_NAMEARB" DataValueField="SERV_ID" Width="100%"></asp:DropDownList>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [SERV_ID], [SERV_NAMEARB] FROM [MAIN_SERVIES] WHERE DEL = 0"></asp:SqlDataSource>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="service" class="col-sm-2 col-form-label">ملاحظات</label>
-                        <div class="col-sm-10">
-                            <asp:TextBox ID="txt_notes" class="form-control" runat="server" rows="3" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                 </div>

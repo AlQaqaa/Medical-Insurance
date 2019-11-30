@@ -85,11 +85,9 @@ Public Class patientInfo
 
     Private Sub btn_ban_service_Click(sender As Object, e As EventArgs) Handles btn_ban_service.Click
         Try
-            Dim ins_com As New SqlCommand("INSERT INTO INC_BLOCK_SERVICES (OBJECT_ID, SER_ID, BLOCK_TP, NOTES, USER_ID, USER_IP) VALUES (@OBJECT_ID, @SER_ID, @BLOCK_TP, @NOTES, @USER_ID, @USER_IP)", insurance_SQLcon)
-            ins_com.Parameters.Add("@OBJECT_ID", SqlDbType.Int).Value = Val(Session("patiant_id"))
+            Dim ins_com As New SqlCommand("INSERT INTO INC_BLOCK_SERVICES (PINC_ID, SER_ID, USER_ID, USER_IP) VALUES (@PINC_ID, @SER_ID, @USER_ID, @USER_IP)", insurance_SQLcon)
+            ins_com.Parameters.Add("@PINC_ID", SqlDbType.Int).Value = Val(Session("patiant_id"))
             ins_com.Parameters.Add("@SER_ID", SqlDbType.Int).Value = ddl_services.SelectedValue
-            ins_com.Parameters.Add("@BLOCK_TP", SqlDbType.Int).Value = 1 ' Block Service
-            ins_com.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = txt_notes.Text
             ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = 1
             ins_com.Parameters.Add("@USER_IP", SqlDbType.NVarChar).Value = GetIPAddress()
             insurance_SQLcon.Close()
@@ -104,7 +102,7 @@ Public Class patientInfo
     End Sub
 
     Sub getBlockServices()
-        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT SERV_NAMEARB FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SERV_CODE FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND BLOCK_TP = 1", insurance_SQLcon)
+        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT SERV_NAMEARB FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SERV_CODE FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE FROM INC_BLOCK_SERVICES WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -128,7 +126,7 @@ Public Class patientInfo
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE PINC_ID = " & Val(Session("patiant_id")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 1", insurance_SQLcon)
+            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE PINC_ID = " & Val(Session("patiant_id")) & " AND SER_ID = " & (row.Cells(0).Text), insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()

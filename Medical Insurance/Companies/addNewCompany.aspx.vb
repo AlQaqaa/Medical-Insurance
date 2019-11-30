@@ -1,5 +1,6 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Globalization
+Imports System.IO
 
 Public Class addNewCompany
     Inherits System.Web.UI.Page
@@ -46,6 +47,27 @@ Public Class addNewCompany
             insToCompany.Connection = insurance_SQLcon
             insToCompany.CommandText = "INC_addNewCompany"
             insToCompany.CommandType = CommandType.StoredProcedure
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            Dim fpath As String
+            If FileUpload1.PostedFile.FileName = Nothing Then
+                insToCompany.Parameters.AddWithValue("@pic_link", "images/ImageCompany/UnknownUser.png")
+            Else
+                fpath = Server.MapPath("images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
+                Dim FEx As String
+                FEx = IO.Path.GetExtension(fpath)
+                If FEx <> ".jpg" And FEx <> ".jpeg" And FEx <> ".png" Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.[GetType](), "alertMessage", "alert('صيغة الملف غير صحيحة')", True)
+                    Exit Sub
+                End If
+                Dim FileName As String = Path.GetFileName(FileUpload1.PostedFile.FileName)
+                Dim Extension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
+                Dim FolderPath As String = ConfigurationManager.AppSettings("FolderPath")
+                Dim FilePath As String = Server.MapPath("images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
+                FileUpload1.SaveAs(FilePath)
+                insToCompany.Parameters.AddWithValue("@emp_pic", "images/ImageCompany/ " & FileUpload1.PostedFile.FileName)
+            End If
+
+            '''''''''''''''''''''''''''''''''''''''''
             insToCompany.Parameters.AddWithValue("@cNameAr", txt_company_name_ar.Text)
             insToCompany.Parameters.AddWithValue("@cNameEn", txt_company_name_en.Text)
             insToCompany.Parameters.AddWithValue("@cState", True)
@@ -69,4 +91,5 @@ Public Class addNewCompany
         End Try
     End Sub
 
+   
 End Class

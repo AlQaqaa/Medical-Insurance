@@ -3,7 +3,18 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+     <style>
+        .UserPic{
+            border-radius:50%;
+            border-style:solid;
+        }
+    </style>
 </asp:Content>
+
+
+
+
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="card mt-1">
@@ -20,8 +31,8 @@
                 <div class="form-group col-xs-12 col-sm-6">
                     <asp:Panel ID="main_company_panel" runat="server" Visible="False">
                         <label for="ddl_companies">الشركة الأم</label>
-                        <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="MAIN_COM_NAME_AR" DataValueField="MAIN_COM_ID"></asp:DropDownList>
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [MAIN_COM_ID], [MAIN_COM_NAME_AR] FROM [MAIN_COMPANIES]"></asp:SqlDataSource>
+                        <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id"></asp:DropDownList>
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:IBNSINAMAINConnectionString %>' SelectCommand="SELECT * FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                     </asp:Panel>
                 </div>
             </div>
@@ -102,7 +113,10 @@
                                 <asp:ListItem Value="0">تأمين</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                    </div>
+                   
+                         </div>
+                    <asp:FileUpload ID="FileUpload1" runat="server" />
+
                     <hr />
                     <div class="form-row justify-content-end">
                         <div class="form-group col-xs-6 col-sm-3">

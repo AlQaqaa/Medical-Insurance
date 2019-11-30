@@ -6,11 +6,6 @@ Public Class companyClinic
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
-
-            If Session("company_id") = Nothing Then
-                Response.Redirect("Default.aspx")
-            End If
-
             ViewState("company_no") = Val(Session("company_id"))
 
             If ViewState("company_no") = 0 Then
@@ -89,7 +84,7 @@ Public Class companyClinic
         End If
     End Sub
 
-    Protected Sub LeftClick(ByVal sender As Object, ByVal e As EventArgs)
+    Protected Sub LeftClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnLeft.Click
         'List will hold items to be removed.
         Dim removedItems As List(Of ListItem) = New List(Of ListItem)
 
@@ -108,7 +103,7 @@ Public Class companyClinic
         Next
     End Sub
 
-    Protected Sub RightClick(ByVal sender As Object, ByVal e As EventArgs)
+    Protected Sub RightClick(ByVal sender As Object, ByVal e As EventArgs) Handles btnRight.Click
         'List will hold items to be removed.
         Dim removedItems As List(Of ListItem) = New List(Of ListItem)
 
@@ -145,7 +140,6 @@ Public Class companyClinic
                 insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
                 insClinic.Parameters.AddWithValue("@maxClinicValue", CDec(txt_max_val.Text))
                 insClinic.Parameters.AddWithValue("@clinicPersonPer", Val(txt_person_per.Text))
-                insClinic.Parameters.AddWithValue("@sessionCount", Val(txt_session_count.Text))
                 insClinic.Parameters.AddWithValue("@group_no", 0)
                 insClinic.Parameters.AddWithValue("@userId", 1)
                 insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
@@ -183,7 +177,6 @@ Public Class companyClinic
                     insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
                     insClinic.Parameters.AddWithValue("@maxClinicValue", CDec(txt_max_val.Text))
                     insClinic.Parameters.AddWithValue("@clinicPersonPer", Val(txt_person_per.Text))
-                    insClinic.Parameters.AddWithValue("@sessionCount", Val(txt_session_count.Text))
                     insClinic.Parameters.AddWithValue("@group_no", group_no)
                     insClinic.Parameters.AddWithValue("@userId", 1)
                     insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="LISTPATIANT.aspx.vb" Inherits="Medical_Insurance.LISTPATIANT" %>
+﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Home/main.Master" CodeBehind="LISTPATIANT.aspx.vb" Inherits="Medical_Insurance.LISTPATIANT" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -66,16 +66,10 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:Panel ID="Panel1" runat="server">
-         <h1 class="display-4 d-none d-sm-block">
-            <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h1>
-        <p class="lead d-none d-sm-block">
-            <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
-        </p>
-    </asp:Panel>
+
     <div class="card mt-1 ">
-        <div class="card-header bg-success text-light">
-            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label></div>
+        <div class="card-header bg-success text-light">قائمة المشتركين<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        </div>
         <div class="card-body">
 
             

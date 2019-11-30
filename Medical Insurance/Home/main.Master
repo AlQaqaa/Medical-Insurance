@@ -71,7 +71,7 @@
                                 <asp:HyperLink ID="HyperLink3" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المشتركين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="HyperLink4" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Home/Default.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink4" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/SERVICES_PRICES.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
                             </li>
                         </ul>
                     </div>

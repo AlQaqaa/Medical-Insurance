@@ -61,7 +61,7 @@
                 <div class="form-group col-xs-12 col-sm-4">
                     <label for="ddl_payment_type">طريقة الدفع</label>
                     <asp:DropDownList ID="ddl_payment_type" CssClass="chosen-select drop-down-list form-control" runat="server">
-                        <asp:ListItem Value="0"></asp:ListItem>
+                        <asp:ListItem></asp:ListItem>
                         <asp:ListItem Value="1">خاص</asp:ListItem>
                         <asp:ListItem Value="2">تأمين</asp:ListItem>
                         <asp:ListItem Value="3">فوترة</asp:ListItem>
@@ -92,7 +92,7 @@
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="ddl_payment_type">طريقة دفع نسبة المريض</label>
                     <asp:DropDownList ID="ddl_PATIAINT_PER" CssClass="chosen-select drop-down-list form-control" runat="server">
-                        <asp:ListItem Value="0"></asp:ListItem>
+                        <asp:ListItem></asp:ListItem>
                         <asp:ListItem Value="1">خاص</asp:ListItem>
                         <asp:ListItem Value="2">تأمين</asp:ListItem>
                         <asp:ListItem Value="3">فوترة</asp:ListItem>
@@ -101,8 +101,8 @@
                 <div class="form-group col-xs-12 col-sm-2">
                     <label for="P_STATE">حالة الشركة</label>
                     <asp:DropDownList ID="ddl_STATE" CssClass="form-control" runat="server" TabIndex="9">
-                        <asp:ListItem Value="1">مفعل</asp:ListItem>
-                        <asp:ListItem Value="0">موقوف</asp:ListItem>
+                        <asp:ListItem Value="0">مفعل</asp:ListItem>
+                        <asp:ListItem Value="1">موقوف</asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>

@@ -96,9 +96,11 @@
     <Content Include="Companies\INC_PATIANT.aspx" />
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
+    <Content Include="Companies\SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Home\Default.aspx" />
+    <Content Include="Images\ImageCompany\UnknownUser.png" />
     <Content Include="Style\images\home.png" />
     <Content Include="Style\images\ID card 460 x 307 p.png" />
     <Content Include="Style\plugins\alertify\alertify.rtl.css" />
@@ -211,6 +213,13 @@
       <DependentUpon>patientInfo.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Companies\SERVICES_PRICES.aspx.designer.vb">
+      <DependentUpon>SERVICES_PRICES.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Companies\SERVICES_PRICES.aspx.vb">
+      <DependentUpon>SERVICES_PRICES.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Companies\STOP_COMPANY.aspx.designer.vb">
       <DependentUpon>STOP_COMPANY.aspx</DependentUpon>
     </Compile>
@@ -293,7 +302,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Images\ImagePatiant\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

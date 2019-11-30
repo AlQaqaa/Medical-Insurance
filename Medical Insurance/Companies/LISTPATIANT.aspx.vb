@@ -9,7 +9,7 @@ Public Class LISTPATIANT
 
         If IsPostBack = False Then
 
-            Dim company_no As Integer = Val(Session("company_id"))
+            Dim company_no As Integer = Val(Request.QueryString("cID"))
 
             If company_no <> 0 Then
                 'جلب منتفعين شركة معينة
@@ -23,7 +23,7 @@ Public Class LISTPATIANT
                 GridView1.DataBind()
 
                 ' جلب بيانات الشركة
-                Dim get_comp As New SqlCommand("SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
+                Dim get_comp As New SqlCommand("SELECT C_NAME_ARB,C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
                 Dim dt_comp As New DataTable
                 dt_comp.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -32,8 +32,10 @@ Public Class LISTPATIANT
                 insurance_SQLcon.Close()
                 If dt_comp.Rows.Count > 0 Then
                     Dim dr_company = dt_comp.Rows(0)
-                    Page.Title = "منتفعين شركة " & dr_company!C_NAME_ARB
-                    Label1.Text = "   منتفعين شركة   " & dr_company!C_NAME_ARB
+                    Page.Title = "منتفعي شركة " & dr_company!C_NAME_ARB
+                    Label1.Text = "منتفعي شركة " & dr_company!C_NAME_ARB
+                    lbl_company_name.Text = dr_company!C_NAME_ARB
+                    lbl_en_name.Text = dr_company!C_NAME_ENG
                 End If
             Else
                 ' جلب جميع المنتفعين
@@ -46,6 +48,12 @@ Public Class LISTPATIANT
                 GridView1.DataSource = dt_result
                 GridView1.DataBind()
                 Page.Title = "جميع المنتفعين"
+                Label1.Text = "جميع المنتفعين"
+
+                Dim pnl As Panel = DirectCast(Master.FindControl("panel1"), Panel)
+                pnl.Visible = False
+                Panel1.Visible = False
+
             End If
 
         End If

@@ -11,10 +11,6 @@
     </style>
 </asp:Content>
 
-
-
-
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="card mt-1">
@@ -116,7 +112,6 @@
                    
                          </div>
                     <asp:FileUpload ID="FileUpload1" runat="server" />
-
                     <hr />
                     <div class="form-row justify-content-end">
                         <div class="form-group col-xs-6 col-sm-3">

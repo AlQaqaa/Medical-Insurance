@@ -101,6 +101,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Home\Default.aspx" />
     <Content Include="Images\ImageCompany\UnknownUser.png" />
+    <Content Include="Images\ImagePatiant\card.png" />
     <Content Include="Style\images\home.png" />
     <Content Include="Style\images\ID card 460 x 307 p.png" />
     <Content Include="Style\plugins\alertify\alertify.rtl.css" />
@@ -302,9 +303,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images\ImagePatiant\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

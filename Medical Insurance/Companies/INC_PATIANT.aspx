@@ -54,8 +54,7 @@
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="NAL_ID">الجنسية</label>
                                 <asp:DropDownList ID="ddl_NAL_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NAT_NAME" DataValueField="NAT_ID"></asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [NAT_ID], [NAT_NAME] FROM [MAIN_NATIONALITY] WHERE DEL=0">
-                                </asp:SqlDataSource>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [NAT_ID], [NAT_NAME] FROM [MAIN_NATIONALITY] WHERE DEL=0"></asp:SqlDataSource>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="GENDER">الجنس</label>
@@ -116,7 +115,12 @@
                                 <asp:TextBox ID="txt_NOTES" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
-
+                        <div class="form-row">
+                            <div class="form-group col-xs-12 col-sm-3">
+                                <label for="FileUpload1">صورة البطاقة</label>
+                                <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+                            </div>
+                        </div>
                         <hr />
                         <div class="form-row">
                             <div class="form-group col-sm-3">
@@ -126,6 +130,9 @@
                     </div>
                 </div>
             </ContentTemplate>
+            <Triggers>
+                <asp:PostBackTrigger ControlID="btn_save" />
+            </Triggers>
         </asp:UpdatePanel>
     </div>
 

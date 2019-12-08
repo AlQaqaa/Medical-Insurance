@@ -7,21 +7,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="info-page">
-                <div class="row mt-1">
-                    <div class="col-sm-12">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="../Default.aspx">الرئيسية</a></li>
-                                <li class="breadcrumb-item"><a href="../Companies/Default.aspx">الشركات</a></li>
-                                <li class="breadcrumb-item"><a href="../Companies/companyInfo.aspx">
-                                    <asp:Label ID="lbl_com_name" runat="server" Text=""></asp:Label></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">
-                                    <asp:Label ID="lbl_name_page" runat="server" Text=""></asp:Label></li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-                <!-- row -->
+                
                 <div class="row mt-1">
                     <div class="col-xs-12 col-sm-6">
                         <div class="card text-dark bg-light  h-100">
@@ -32,7 +18,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="text-center">
-                                            <asp:Image ID="img_pat_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="100%" Height="140px" ImageUrl="~/Style/images/ID card 460 x 307 p.png" />
+                                            <asp:Image ID="img_pat_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="100%" Height="140px" />
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">

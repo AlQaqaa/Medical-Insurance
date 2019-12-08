@@ -3,10 +3,10 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <style>
-        .UserPic{
-            border-radius:50%;
-            border-style:solid;
+    <style>
+        .UserPic {
+            border-radius: 50%;
+            border-style: solid;
         }
     </style>
 </asp:Content>
@@ -109,9 +109,14 @@
                                 <asp:ListItem Value="0">تأمين</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                   
-                         </div>
-                    <asp:FileUpload ID="FileUpload1" runat="server" />
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <label for="FileUpload1">نموذج الشركة</label>
+                            <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+                        </div>
+                    </div>
+                    
                     <hr />
                     <div class="form-row justify-content-end">
                         <div class="form-group col-xs-6 col-sm-3">
@@ -119,6 +124,9 @@
                         </div>
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btn_save" />
+                </Triggers>
             </asp:UpdatePanel>
         </div>
     </div>

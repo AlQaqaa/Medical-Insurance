@@ -50,9 +50,9 @@ Public Class addNewCompany
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
             Dim fpath As String
             If FileUpload1.PostedFile.FileName = Nothing Then
-                insToCompany.Parameters.AddWithValue("@pic_link", "images/ImageCompany/UnknownUser.png")
+                insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/UnknownUser.png")
             Else
-                fpath = Server.MapPath("images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
+                fpath = Server.MapPath("../images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
                 Dim FEx As String
                 FEx = IO.Path.GetExtension(fpath)
                 If FEx <> ".jpg" And FEx <> ".jpeg" And FEx <> ".png" Then
@@ -62,9 +62,9 @@ Public Class addNewCompany
                 Dim FileName As String = Path.GetFileName(FileUpload1.PostedFile.FileName)
                 Dim Extension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
                 Dim FolderPath As String = ConfigurationManager.AppSettings("FolderPath")
-                Dim FilePath As String = Server.MapPath("images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
+                Dim FilePath As String = Server.MapPath("../images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
                 FileUpload1.SaveAs(FilePath)
-                insToCompany.Parameters.AddWithValue("@emp_pic", "images/ImageCompany/ " & FileUpload1.PostedFile.FileName)
+                insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/ " & FileUpload1.PostedFile.FileName)
             End If
 
             '''''''''''''''''''''''''''''''''''''''''

@@ -31,16 +31,15 @@ Public Class patientInfo
             Dim dr_pat = dt_result.Rows(0)
             lbl_name_eng.Text = dr_pat!NAME_ENG
             lbl_pat_name.Text = dr_pat!NAME_ARB
-            lbl_name_page.Text = dr_pat!NAME_ARB
             lbl_birthdate.Text = dr_pat!BIRTHDATE
             lbl_nat_num.Text = dr_pat!NAT_NUMBER
             lbl_phone.Text = dr_pat!PHONE_NO
             lbl_company_name.Text = dr_pat!COMPANY_NAME
-            lbl_com_name.Text = dr_pat!COMPANY_NAME
             lbl_card_no.Text = dr_pat!CARD_NO
             lbl_exp_dt.Text = dr_pat!EXP_DATE
             lbl_bage_no.Text = dr_pat!BAGE_NO
             lbl_const.Text = dr_pat!CONST_ID
+            img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
             If dr_pat!P_STATE = 0 Then
                 lbl_icon_sts.CssClass = "text-success"

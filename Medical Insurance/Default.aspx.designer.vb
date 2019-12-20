@@ -11,16 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class _Default
-
-    '''<summary>
-    '''form1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
+Partial Public Class _Default1
 
     '''<summary>
     '''ScriptManager1 control.
@@ -32,56 +23,11 @@ Partial Public Class _Default
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''img_login control.
+    '''dt_GridView control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents img_login As Global.System.Web.UI.WebControls.Image
-
-    '''<summary>
-    '''txt_user_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_user_name As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''txt_password control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_password As Global.System.Web.UI.WebControls.TextBox
-
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''btn_login control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_login As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents dt_GridView As Global.System.Web.UI.WebControls.GridView
 End Class

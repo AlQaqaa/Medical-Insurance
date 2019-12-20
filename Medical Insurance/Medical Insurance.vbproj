@@ -96,10 +96,9 @@
     <Content Include="Companies\INC_PATIANT.aspx" />
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
-    <Content Include="Companies\SERVICES_PRICES.aspx" />
+    <Content Include="SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Home\Default.aspx" />
     <Content Include="Images\ImageCompany\UnknownUser.png" />
     <Content Include="Images\ImagePatiant\card.png" />
     <Content Include="Style\images\home.png" />
@@ -214,10 +213,10 @@
       <DependentUpon>patientInfo.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Companies\SERVICES_PRICES.aspx.designer.vb">
+    <Compile Include="SERVICES_PRICES.aspx.designer.vb">
       <DependentUpon>SERVICES_PRICES.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Companies\SERVICES_PRICES.aspx.vb">
+    <Compile Include="SERVICES_PRICES.aspx.vb">
       <DependentUpon>SERVICES_PRICES.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -235,17 +234,10 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Home\Default.aspx.designer.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Home\Default.aspx.vb">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
-    <Compile Include="Home\main.Master.designer.vb">
+    <Compile Include="main.Master.designer.vb">
       <DependentUpon>main.Master</DependentUpon>
     </Compile>
-    <Compile Include="Home\main.Master.vb">
+    <Compile Include="main.Master.vb">
       <DependentUpon>main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -279,7 +271,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Home\main.Master" />
+    <Content Include="main.Master" />
     <Content Include="Companies\companies.Master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

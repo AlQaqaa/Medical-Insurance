@@ -8,7 +8,7 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="card mt-1">
-        <div class="card-header bg-info text-white">تمديد وتجديد  شركة</div>
+        <div class="card-header bg-info text-white">تمديد / تجديد عقد شركة</div>
         <div class="card-body">
             <div class="form-row">
 

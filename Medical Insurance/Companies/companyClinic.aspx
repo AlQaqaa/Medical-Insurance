@@ -4,21 +4,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="row mt-1">
-            <div class="col-sm-12">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="../Default.aspx">الرئيسية</a></li>
-                        <li class="breadcrumb-item"><a href="../Companies/Default.aspx">الشركات</a></li>
-                        <li class="breadcrumb-item"><a href="../Companies/companyInfo.aspx"><asp:Label ID="lbl_com_name" runat="server" Text=""></asp:Label></a></li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            <asp:Label ID="lbl_name_page" runat="server" Text="">إضافة عيادة</asp:Label></li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
-    <h4 class="company_name">
-        <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h4>
+    
+        <h1 class="display-4 d-none d-sm-block">
+            <asp:Label ID="lbl_com_name" runat="server" Text=""></asp:Label></h1>
+        <p class="lead d-none d-sm-block">
+            <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
+        </p>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
@@ -32,7 +23,7 @@
                                     <label>العيادات الغير مغطاة</label>
                                     <span data-toggle="tooltip" data-placement="top" title="لاختيار أكثر من عيادة اضغط على CTRL من لوحة المفاتيح وحدد العيادات التي تريد"><i class="fas fa-info-circle"></i></span>
                                     <asp:ListBox ID="source_list" runat="server" SelectionMode="Multiple" Width="100%" Height="350px"></asp:ListBox>
-                                    
+
                                 </div>
                                 <div class="form-group col-sm-2 align-self-center text-center">
                                     <asp:Button ID="btnLeft" Text="<<" runat="server" CssClass="btn btn-danger btn-sm" OnClick="LeftClick" />

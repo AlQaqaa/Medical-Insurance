@@ -66,7 +66,7 @@
                         <div class="rotate">
                             <i class="fa fa-users fa-4x"></i>
                         </div>
-                        <h6 class="text-uppercase">عدد المشتركين</h6>
+                        <h6 class="text-uppercase">عدد المنتفعين</h6>
                         <h1 class="display-4">
                             <asp:Label ID="lbl_pats_count" runat="server" Text="Label"></asp:Label></h1>
                     </div>
@@ -120,7 +120,7 @@
                                 </asp:BoundField>
                                 <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
                                 <asp:BoundField HeaderText="صقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
-                                <asp:BoundField HeaderText="نسبة المشترك" DataField="PER_T"></asp:BoundField>
+                                <asp:BoundField HeaderText="نسبة المنتفع" DataField="PER_T"></asp:BoundField>
                                 <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
@@ -189,8 +189,8 @@
                     <div class="form-group row">
                         <label for="service" class="col-sm-2 col-form-label">الطبيب</label>
                         <div class="col-sm-10">
-                            <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NAME_AR" DataValueField="MED_ID" Width="100%"></asp:DropDownList>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [MED_ID], [NAME_AR] FROM [MAIN_MEDICALstaff] WHERE DEL = 0"></asp:SqlDataSource>
+                            <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="MedicalStaff_AR_Name" DataValueField="MedicalStaff_ID" Width="100%"></asp:DropDownList>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [MedicalStaff_ID], [MedicalStaff_AR_Name] FROM [Main_MedicalStaff] WHERE MedicalStaff_State = 0"></asp:SqlDataSource>
                         </div>
                     </div>
                     <div class="form-group row">

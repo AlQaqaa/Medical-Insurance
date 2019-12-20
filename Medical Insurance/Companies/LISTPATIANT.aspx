@@ -39,7 +39,7 @@
                 "language": {
                     "lengthMenu": "عرض _MENU_ سجل",
                     "zeroRecords": "لا توجد بيانات متاحة.",
-                    "info": "الإجمالي: _TOTAL_ سجل",
+                    "info": "الإجمالي: _TOTAL_ منتفع",
                     "infoEmpty": "لا توجد بيانات متاحة.",
                     "infoFiltered": "(تمت تصفيتها من اصل _MAX_ سجل)",
                     "emptyTable": "لا توجد بيانات متاحة.",
@@ -89,8 +89,8 @@
                     </asp:BoundField>
                     <asp:BoundField HeaderText="ر.ش" DataField="C_ID"></asp:BoundField>
                     <asp:BoundField HeaderText="رقم البطاقة" DataField="CARD_NO"></asp:BoundField>
-                    <asp:ButtonField DataTextField="NAME_ARB" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المشترك للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالعربي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
-                    <asp:ButtonField DataTextField="NAME_ENG" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المشترك للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالإنجليزي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
+                    <asp:ButtonField DataTextField="NAME_ARB" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالعربي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
+                    <asp:ButtonField DataTextField="NAME_ENG" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالإنجليزي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
                     <asp:BoundField HeaderText="تاريخ الميلاد" DataField="BIRTHDATE"></asp:BoundField>
                     <asp:BoundField HeaderText="الرقم الوظيفي" DataField="BAGE_NO"></asp:BoundField>
                     <asp:BoundField HeaderText="الرقم الوطني" DataField="NAT_NUMBER"></asp:BoundField>

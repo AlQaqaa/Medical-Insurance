@@ -1,4 +1,4 @@
-﻿<%@ Page Title="إضافة شركة جديدة" Language="vb" AutoEventWireup="false" MasterPageFile="~/Home/main.Master" CodeBehind="addNewCompany.aspx.vb" Inherits="Medical_Insurance.addNewCompany" %>
+﻿<%@ Page Title="إضافة شركة جديدة" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="addNewCompany.aspx.vb" Inherits="Medical_Insurance.addNewCompany" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 

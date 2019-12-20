@@ -1,7 +1,15 @@
-﻿<%@ Page Title="الشركات الموقوفة" Language="vb" AutoEventWireup="false" MasterPageFile="~/Home/main.Master" CodeBehind="STOP_COMPANY.aspx.vb" Inherits="Medical_Insurance.STOP_COMPANY" %>
+﻿<%@ Page Title="الشركات الموقوفة" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="STOP_COMPANY.aspx.vb" Inherits="Medical_Insurance.STOP_COMPANY" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../Style/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="../Style/CSS/MyStyle.css" rel="stylesheet" />
+    <link href="../Style/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="../Style/CSS/animate.css" rel="stylesheet" />
+    <link href="../Style/CSS/all.min.css" rel="stylesheet" />
+    <link href="../Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
+
      <script src="../Style/JS/jquery-3.4.1.min.js"></script>
     <script src="../Style/plugins/dataTables/jquery.dataTables.min.js"></script>
     <script src="../Style/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
@@ -42,7 +50,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="card mt-1 ">
-        <div class="card-header bg-success text-light" style="font-size: x-large; font-weight: bold; color: #FF0000">الشركات الموقوفة</div>
+        <div class="card-header bg-success text-light">الشركات الموقوفة</div>
         <div class="card-body">
             
             <asp:GridView ID="dt_GridView" class="table table-striped table-bordered com-tbl" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
@@ -71,6 +79,11 @@
             </asp:GridView>
         </div>
     </div>
-
+    <script src="../Style/JS/bootstrap.min.js"></script>
+    <script src="../Style/plugins/select2/select2.min.js"></script>
+    <script src="../Style/JS/MyJs.js"></script>
+    <script src="../Style/JS/Restrictions.js"></script>
+    <script src="../Style/JS/all.min.js"></script>
+    <script src="../Style/plugins/alertify/alertify.min.js"></script>
 </asp:Content>
 

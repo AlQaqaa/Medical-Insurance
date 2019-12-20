@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="companies.Master" CodeBehind="EDITCOMPANY.aspx.vb" Inherits="Medical_Insurance.EDITCOMPANY" %>
+﻿<%@ Page Title="تعديل بيانات شركة" Language="vb" AutoEventWireup="false" MasterPageFile="companies.Master" CodeBehind="EDITCOMPANY.aspx.vb" Inherits="Medical_Insurance.EDITCOMPANY" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

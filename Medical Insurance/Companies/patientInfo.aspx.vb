@@ -5,17 +5,17 @@ Public Class patientInfo
     Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If IsPostBack = False Then
-            Dim pat_no As Integer = Val(Session("patiant_id"))
+        'If IsPostBack = False Then
+        Dim pat_no As Integer = Val(Session("patiant_id"))
 
-            If pat_no = 0 Then
-                Response.Redirect("LISTPATIANT.aspx")
-            End If
-
-            getPatInfo()
-            getBlockServices()
-
+        If pat_no = 0 Then
+            Response.Redirect("LISTPATIANT.aspx")
         End If
+
+        getPatInfo()
+        getBlockServices()
+        getConstList()
+        'End If
 
     End Sub
 
@@ -38,6 +38,7 @@ Public Class patientInfo
             lbl_card_no.Text = dr_pat!CARD_NO
             lbl_exp_dt.Text = dr_pat!EXP_DATE
             lbl_bage_no.Text = dr_pat!BAGE_NO
+            ViewState("bage_no") = dr_pat!BAGE_NO
             lbl_const.Text = dr_pat!CONST_ID
             img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
@@ -95,7 +96,7 @@ Public Class patientInfo
             insurance_SQLcon.Open()
             ins_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
-
+            getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -103,7 +104,7 @@ Public Class patientInfo
     End Sub
 
     Sub getBlockServices()
-        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT SERV_NAMEARB FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SERV_CODE FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND BLOCK_TP = 1", insurance_SQLcon)
+        Dim get_com As New SqlCommand("SELECT SubService_ID, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SERV_CODE FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND BLOCK_TP = 1", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -135,6 +136,40 @@ Public Class patientInfo
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
+        End If
+    End Sub
+
+    Private Sub getConstList()
+        Try
+            Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = " & ViewState("bage_no") & " AND PINC_ID <> " & Val(Session("patiant_id")), insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+            If dt_result.Rows.Count > 0 Then
+                GridView2.DataSource = dt_result
+                GridView2.DataBind()
+            Else
+                dt_result.Rows.Clear()
+                GridView2.DataSource = dt_result
+                GridView2.DataBind()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub GridView2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView2.RowCommand
+        '################ When User Press On Patiant Name ################
+        If (e.CommandName = "pat_name") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView2.Rows(index)
+            Session.Clear()
+            Session.Item("patiant_id") = (row.Cells(0).Text)
+            Session.Item("company_id") = (row.Cells(1).Text)
+            Response.Redirect("patientInfo.aspx")
         End If
     End Sub
 End Class

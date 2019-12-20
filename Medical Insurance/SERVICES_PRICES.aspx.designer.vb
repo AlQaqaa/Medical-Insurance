@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class SERVICES_PRICES
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,16 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
+    '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    
     '''<summary>
     '''ddl_clinics control.
     '''</summary>
@@ -30,7 +39,7 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_clinics As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>
@@ -39,7 +48,25 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
-
+    
+    '''<summary>
+    '''ddl_services control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_services As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''SqlDataSource4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SqlDataSource4 As Global.System.Web.UI.WebControls.SqlDataSource
+    
     '''<summary>
     '''txt_start_dt control.
     '''</summary>
@@ -48,7 +75,7 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_start_dt As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''ImageButton1 control.
     '''</summary>
@@ -57,7 +84,7 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
-
+    
     '''<summary>
     '''CalendarExtender3 control.
     '''</summary>
@@ -66,7 +93,7 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CalendarExtender3 As Global.AjaxControlToolkit.CalendarExtender
-
+    
     '''<summary>
     '''MaskedEditExtender3 control.
     '''</summary>
@@ -75,7 +102,7 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MaskedEditExtender3 As Global.AjaxControlToolkit.MaskedEditExtender
-
+    
     '''<summary>
     '''GridView1 control.
     '''</summary>
@@ -84,25 +111,7 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''SqlDataSource2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SqlDataSource2 As Global.System.Web.UI.WebControls.SqlDataSource
-
-    '''<summary>
-    '''SqlDataSource3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SqlDataSource3 As Global.System.Web.UI.WebControls.SqlDataSource
-
+    
     '''<summary>
     '''btn_save control.
     '''</summary>

@@ -202,7 +202,7 @@
                         <label for="service" class="col-sm-2 col-form-label">الطبيب</label>
                         <div class="col-sm-10">
                             <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NAME_AR" DataValueField="MED_ID" Width="100%"></asp:DropDownList>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [MED_ID], [NAME_AR] FROM [MAIN_MEDICALstaff] WHERE DEL = 0"></asp:SqlDataSource>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [MedicalStaff_ID], [MedicalStaff_AR_Name] FROM [Main_MedicalStaff] WHERE MedicalStaff_State = 0"></asp:SqlDataSource>
                         </div>
                     </div>
                     <div class="form-group row">

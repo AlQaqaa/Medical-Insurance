@@ -17,7 +17,7 @@ Public Class companyClinic
                 Response.Redirect("Default.aspx")
             End If
 
-            Dim sel_com As New SqlCommand("SELECT C_id, (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS CONTRACT_NO, C_NAME_ARB FROM INC_COMPANY_DATA WHERE C_id = " & ViewState("company_no"), insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT C_id, (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & ViewState("company_no"), insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -26,7 +26,7 @@ Public Class companyClinic
             insurance_SQLcon.Close()
             If dt_result.Rows.Count > 0 Then
                 Dim dr_company = dt_result.Rows(0)
-                lbl_company_name.Text = dr_company!C_NAME_ARB
+                lbl_en_name.Text = dr_company!C_NAME_ENG
                 lbl_com_name.Text = dr_company!C_NAME_ARB
                 ViewState("contract_no") = dr_company!CONTRACT_NO
             End If
@@ -39,7 +39,7 @@ Public Class companyClinic
 
     Sub fillListClinic()
         source_list.Items.Clear()
-        Dim sel_com As New SqlCommand("SELECT CLINIC_ID, CLINICNAME_AR FROM MAIN_CLINIC", insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT Clinic_ID, Clinic_AR_Name FROM Main_Clinic", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -48,13 +48,13 @@ Public Class companyClinic
         insurance_SQLcon.Close()
 
         source_list.DataSource = dt_result
-        source_list.DataValueField = "CLINIC_ID"
-        source_list.DataTextField = "CLINICNAME_AR"
+        source_list.DataValueField = "Clinic_ID"
+        source_list.DataTextField = "Clinic_AR_Name"
         source_list.DataBind()
     End Sub
 
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT CLINIC_ID, (SELECT CLINICNAME_AR FROM MAIN_CLINIC WHERE MAIN_CLINIC.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()

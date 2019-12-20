@@ -4,8 +4,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <h4 class="company_name">
-        <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h4>
+    <h1 class="display-4 d-none d-sm-block">
+        <asp:Label ID="lbl_com_name" runat="server" Text=""></asp:Label></h1>
+    <p class="lead d-none d-sm-block">
+        <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
+    </p>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
@@ -22,7 +25,7 @@
                             <hr />
                             <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                 <Columns>
-                                    <asp:BoundField DataField="SERV_ID" HeaderText="رقم الخدمة">
+                                    <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
                                         <ControlStyle CssClass="hide-colum" />
                                         <FooterStyle CssClass="hide-colum" />
                                         <HeaderStyle CssClass="hide-colum" />
@@ -33,8 +36,8 @@
                                             <asp:CheckBox ID="CheckBox1" runat="server" Checked="True" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField HeaderText="رمز الخدمة" DataField="serv_code"></asp:BoundField>
-                                    <asp:BoundField HeaderText="اسم الخدمة" DataField="SERV_NAMEARB"></asp:BoundField>
+                                    <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
+                                    <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
                                     <asp:TemplateField HeaderText="نسبة الفرد">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txt_person_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>

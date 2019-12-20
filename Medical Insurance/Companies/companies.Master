@@ -54,7 +54,7 @@
                         </div>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <asp:HyperLink ID="HyperLink1" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Home/Default.aspx"><i class="fas fa-home"></i> الرئيسية</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink1" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Default.aspx"><i class="fas fa-home"></i> الرئيسية</asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="HyperLink2" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#companies" data-toggle="collapse" data-target="#companies" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-city"></i> الشركات</asp:HyperLink>
@@ -62,16 +62,16 @@
                                     <li>
                                         <asp:HyperLink ID="hl_addNewCompany" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/addNewCompany.aspx"><i class="fas fa-folder-plus"></i>&nbsp;إضافة شركة جديدة</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="hl_companiesList" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/Default.aspx"><i class="fas fa-landmark"></i>&nbsp;قائمة الشركات</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_companiesList" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Default.aspx"><i class="fas fa-landmark"></i>&nbsp;قائمة الشركات</asp:HyperLink></li>
                                     <li>
                                         <asp:HyperLink ID="hl_stop_company" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/STOP_COMPANY.aspx"><i class="fas fa-pause-circle"></i>&nbsp;الشركات الموقوفة</asp:HyperLink></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="HyperLink8" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المشتركين</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink8" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="HyperLink9" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Home/Default.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="HyperLink9" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="../SERVICES_PRICES.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
                             </li>
                         </ul>
                     </div>
@@ -93,8 +93,8 @@
                                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i>&nbsp;منتفعي الشركة 
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/INC_PATIANT.aspx"><i class="fas fa-user-plus"></i>&nbsp;إضافة مشترك جديد</asp:HyperLink>
-                                                        <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المشتركين</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/INC_PATIANT.aspx"><i class="fas fa-user-plus"></i>&nbsp;إضافة منتفع جديد</asp:HyperLink>
+                                                        <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المنتفعين</asp:HyperLink>
                                                     </div>
                                                 </li>
                                                 <li class="nav-item">

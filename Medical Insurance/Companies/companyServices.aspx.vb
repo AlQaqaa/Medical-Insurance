@@ -10,11 +10,12 @@ Public Class companyServices
 
             If company_no = 0 Then
                 Response.Redirect("Default.aspx", False)
+                Exit Sub
             End If
 
             ViewState("company_no") = company_no
 
-            Dim sel_com As New SqlCommand("SELECT (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID) AS CONTRACT_NO, C_NAME_ARB FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -23,7 +24,8 @@ Public Class companyServices
             insurance_SQLcon.Close()
             If dt_result.Rows.Count > 0 Then
                 Dim dr_company = dt_result.Rows(0)
-                lbl_company_name.Text = dr_company!C_NAME_ARB
+                lbl_com_name.Text = dr_company!C_NAME_ARB
+                lbl_en_name.Text = dr_company!C_NAME_ENG
                 ViewState("contract_no") = dr_company!CONTRACT_NO
             End If
 
@@ -33,7 +35,7 @@ Public Class companyServices
     End Sub
 
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT CLINIC_ID, (SELECT CLINICNAME_AR FROM MAIN_CLINIC WHERE MAIN_CLINIC.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -51,14 +53,14 @@ Public Class companyServices
 
     Sub getServices()
 
-        Dim PERSON_PER As String = "ISNULL((SELECT PERSON_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = MAIN_SERVIES.SERV_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PERSON_PER,"
-        Dim FAMILY_PER As String = "ISNULL((SELECT FAMILY_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = MAIN_SERVIES.SERV_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS FAMILY_PER,"
-        Dim PARENT_PER As String = "ISNULL((SELECT PARENT_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = MAIN_SERVIES.SERV_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PARENT_PER,"
-        Dim MAX_PERSON_VAL As String = "ISNULL((SELECT MAX_PERSON_VAL FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = MAIN_SERVIES.SERV_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_PERSON_VAL,"
-        Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = MAIN_SERVIES.SERV_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
-        Dim SER_STATE As String = "ISNULL((SELECT SER_STATE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = MAIN_SERVIES.SERV_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
+        Dim PERSON_PER As String = "ISNULL((SELECT PERSON_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PERSON_PER,"
+        Dim FAMILY_PER As String = "ISNULL((SELECT FAMILY_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS FAMILY_PER,"
+        Dim PARENT_PER As String = "ISNULL((SELECT PARENT_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PARENT_PER,"
+        Dim MAX_PERSON_VAL As String = "ISNULL((SELECT MAX_PERSON_VAL FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_PERSON_VAL,"
+        Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
+        Dim SER_STATE As String = "ISNULL((SELECT SER_STATE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
 
-        Dim sel_data As New SqlCommand("select SERV_ID, SERV_CODE, SERV_NAMEARB, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from MAIN_SERVIES WHERE CLINIC_ID = " & ddl_clinics.SelectedValue, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE SubService_Clinic = " & ddl_clinics.SelectedValue, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()
@@ -134,7 +136,6 @@ Public Class companyServices
             insClinic.CommandText = ""
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
-            '  End If
         Next
     End Sub
 End Class

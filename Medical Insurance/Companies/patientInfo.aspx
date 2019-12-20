@@ -7,7 +7,7 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="info-page">
-                
+
                 <div class="row mt-1">
                     <div class="col-xs-12 col-sm-6">
                         <div class="card text-dark bg-light  h-100">
@@ -93,15 +93,15 @@
                                         <asp:BoundField DataField="SERVICE_NAME" HeaderText="اسم الخدمة"></asp:BoundField>
                                         <asp:BoundField DataField="NOTES" HeaderText="ملاحظات"></asp:BoundField>
                                         <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btn_block_stop" runat="server"
-                                            CommandName="stop_block"
-                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                            ToolTip="إيقاف الحظر"
-                                            ControlStyle-CssClass="btn btn-link text-success btn-new"
-                                            OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذه الخدمة؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btn_block_stop" runat="server"
+                                                    CommandName="stop_block"
+                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                    ToolTip="إيقاف الحظر"
+                                                    ControlStyle-CssClass="btn btn-link text-success btn-new"
+                                                    OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذه الخدمة؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                                 <asp:Label ID="Label1" runat="server" CssClass="text-center" Text=""></asp:Label>
@@ -113,36 +113,28 @@
                         <div class="card bg-light mb-3">
                             <div class="card-header">أفراد العائلة</div>
                             <div class="card-body">
-                                <table class="table table-striped">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <asp:GridView ID="GridView2" class="table table-striped" runat="server" GridLines="None" AutoGenerateColumns="False">
+                                    <Columns>
+                                        <asp:BoundField DataField="PINC_ID" HeaderText="ر.م">
+                                            <ControlStyle CssClass="hide-colum" />
+                                            <FooterStyle CssClass="hide-colum" />
+                                            <HeaderStyle CssClass="hide-colum" />
+                                            <ItemStyle CssClass="hide-colum" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="C_ID" HeaderText="ر.ش">
+                                            <ControlStyle CssClass="hide-colum" />
+                                            <FooterStyle CssClass="hide-colum" />
+                                            <HeaderStyle CssClass="hide-colum" />
+                                            <ItemStyle CssClass="hide-colum" />
+                                        </asp:BoundField>
+                                        <asp:ButtonField DataTextField="NAME_ARB" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المشترك للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالعربي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name">
+                                            <ControlStyle ForeColor="Black"></ControlStyle>
+
+                                            <ItemStyle ForeColor="Black"></ItemStyle>
+                                        </asp:ButtonField>
+                                        <asp:BoundField DataField="CONST_NAME" HeaderText="صلة القرابة"></asp:BoundField>
+                                    </Columns>
+                                </asp:GridView>
                             </div>
                         </div>
                     </div>
@@ -168,13 +160,13 @@
                         <label for="service" class="col-sm-2 col-form-label">الخدمة</label>
                         <div class="col-sm-10">
                             <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="SERV_NAMEARB" DataValueField="SERV_ID" Width="100%"></asp:DropDownList>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [SERV_ID], [SERV_NAMEARB] FROM [MAIN_SERVIES] WHERE DEL = 0"></asp:SqlDataSource>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [SubService_ID], [SubService_AR_Name] FROM [Main_SubServices] WHERE SubService_State = 0"></asp:SqlDataSource>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="service" class="col-sm-2 col-form-label">ملاحظات</label>
                         <div class="col-sm-10">
-                            <asp:TextBox ID="txt_notes" class="form-control" runat="server" rows="3" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txt_notes" class="form-control" runat="server" Rows="3" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                 </div>

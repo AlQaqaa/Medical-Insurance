@@ -1,7 +1,5 @@
 ﻿Module mainModule
 
-
-
     ' Get Client IP Address 
     Public Function GetIPAddress() As String
         Dim context As System.Web.HttpContext = System.Web.HttpContext.Current

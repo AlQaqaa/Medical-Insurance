@@ -34,8 +34,8 @@
                                     <asp:ListBox ID="dist_list" runat="server" SelectionMode="Multiple" Width="100%" Height="350px"></asp:ListBox>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-4">
-                                    <label>الصقف العام</label>
-                                    <asp:TextBox ID="txt_max_val" CssClass="form-control" runat="server" AutoCompleteType="Disabled"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال الصقف" ControlToValidate="txt_max_val" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <label>السقف العام</label>
+                                    <asp:TextBox ID="txt_max_val" CssClass="form-control" runat="server" AutoCompleteType="Disabled"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال السقف" ControlToValidate="txt_max_val" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>
                                     <br />
                                     <br />
                                     <label>نسبة المشترك</label>

@@ -119,7 +119,7 @@
                                     <ItemStyle CssClass="hide-colum" />
                                 </asp:BoundField>
                                 <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
-                                <asp:BoundField HeaderText="صقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
+                                <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
                                 <asp:BoundField HeaderText="نسبة المنتفع" DataField="PER_T"></asp:BoundField>
                                 <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
                                 <asp:TemplateField>

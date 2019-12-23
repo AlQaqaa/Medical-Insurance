@@ -3,15 +3,15 @@
 Module checkModule
     Dim SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
 
-    Dim dt_result As New DataTable
-
-    Public Function checkPatient(ByVal p_id As Integer, ByVal c_id As Integer, ByVal doc_id As Integer, ByVal ser_id As Integer, ByVal ser_price As Decimal) As DataTable
+    Public Function checkPatient(ByVal p_id As Integer, ByVal c_id As Integer, ByVal doc_id As Integer, ByVal ser_id As Integer, ByVal ser_price As Decimal) As Array
 
         Dim patient_sts As Boolean = False ' حالة المنتفع
         Dim company_sts As Boolean = False ' حالة الشركة
         Dim max_company_val As Decimal = 0 ' سقف الشركة
         Dim max_company_card As Decimal = 0 ' سقف البطاقة العام
         Dim per_company_pat As Integer = 0 ' النسبة العامة التي يدفعها المشترك
+        Dim payment_type As Integer = 0 ' طريقة الدفع
+        Dim contract_no As Integer = 0 ' رقم العقد
 
         If p_id <> 0 Then
             '############# التحقق من حالة المنتفع وصلاحية البطاقة ##############
@@ -46,6 +46,8 @@ Module checkModule
                 max_company_val = dr_res!MAX_VAL
                 max_company_card = dr_res!MAX_CARD
                 per_company_pat = dr_res!PATIAINT_PER
+                payment_type = dr_res!PYMENT_TYPE
+                contract_no = dr_res!CONTRACT_NO
             Else
                 company_sts = False
             End If

@@ -112,13 +112,13 @@
                     <div class="card-body">
                         <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                             <Columns>
-                                <asp:BoundField HeaderText="رقم العيادة" DataField="CLINIC_ID">
+                                <asp:BoundField HeaderText="رقم العيادة" DataField="Clinic_ID">
                                     <ControlStyle CssClass="hide-colum" />
                                     <FooterStyle CssClass="hide-colum" />
                                     <HeaderStyle CssClass="hide-colum" />
                                     <ItemStyle CssClass="hide-colum" />
                                 </asp:BoundField>
-                                <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
+                                <asp:BoundField HeaderText="اسم العيادة" DataField="Clinic_AR_Name"></asp:BoundField>
                                 <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
                                 <asp:BoundField HeaderText="نسبة المنتفع" DataField="PER_T"></asp:BoundField>
                                 <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
@@ -152,7 +152,7 @@
                                             <HeaderStyle CssClass="hide-colum" />
                                             <ItemStyle CssClass="hide-colum" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="DOCTOR_NAME" HeaderText="اسم الطبيب"></asp:BoundField>
+                                        <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
                                         <asp:BoundField DataField="NOTES" HeaderText="ملاحظات"></asp:BoundField>
                                         <asp:TemplateField>
                                     <ItemTemplate>

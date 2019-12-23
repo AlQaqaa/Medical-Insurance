@@ -11,7 +11,7 @@ Public Class STOP_COMPANY
     End Sub
 
     Private Sub getCompanyData()
-        Dim sel_com As New SqlCommand("select *,(case when (select c_name_arb from [IBNSINAMAIN].[dbo].[INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level ) is null then  '-' else (select c_name_arb from [IBNSINAMAIN].[dbo].[INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level) end)as MAIN_COMPANY from INC_COMPANY_DATA WHERE C_STATE = 1", insurance_SQLcon)
+        Dim sel_com As New SqlCommand("select *,(case when (select c_name_arb from [INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level ) is null then  '-' else (select c_name_arb from [INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level) end)as MAIN_COMPANY from INC_COMPANY_DATA WHERE C_STATE = 1", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Open()

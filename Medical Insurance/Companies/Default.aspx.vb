@@ -50,7 +50,7 @@ Public Class _Default3
     End Sub
 
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT MAX_VALUE FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS MAX_VALUE, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT PER_T FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT PER_T FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS PER_T, (CASE WHEN GROUP_NO = 0 THEN '-' ELSE 'مشتركة' END) AS GROUP_CLINIC FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS Clinic_AR_Name, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT MAX_VALUE FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS MAX_VALUE, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT PER_T FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT PER_T FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS PER_T, (CASE WHEN GROUP_NO = 0 THEN '-' ELSE 'مشتركة' END) AS GROUP_CLINIC FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -100,7 +100,7 @@ Public Class _Default3
             insurance_SQLcon.Open()
             ins_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
-
+            getBlockDoctors()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -108,7 +108,7 @@ Public Class _Default3
     End Sub
 
     Sub getBlockDoctors()
-        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("company_no")) & " AND BLOCK_TP = 2", insurance_SQLcon)
+        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT MedicalStaff_AR_Name  FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_BLOCK_SERVICES.SER_ID) AS MedicalStaff_AR_Name, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("company_no")) & " AND BLOCK_TP = 2", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()

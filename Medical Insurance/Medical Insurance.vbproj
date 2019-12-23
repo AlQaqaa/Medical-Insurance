@@ -101,8 +101,8 @@
     <Content Include="Default.aspx" />
     <Content Include="Images\ImageCompany\UnknownUser.png" />
     <Content Include="Images\ImagePatiant\card.png" />
+    <Content Include="Style\images\avatar.jpg" />
     <Content Include="Style\images\home.png" />
-    <Content Include="Style\images\ID card 460 x 307 p.png" />
     <Content Include="Style\plugins\alertify\alertify.rtl.css" />
     <Content Include="Style\CSS\all.min.css" />
     <Content Include="Style\CSS\animate.css" />
@@ -112,7 +112,6 @@
     <Content Include="Style\CSS\MyStyle.css" />
     <Content Include="Style\plugins\select2\select2.min.css" />
     <Content Include="Style\images\Calendar.png" />
-    <Content Include="Style\images\login.png" />
     <Content Include="Style\plugins\alertify\alertify.min.js" />
     <Content Include="Style\JS\all.min.js" />
     <Content Include="Style\JS\bootstrap.min.js" />

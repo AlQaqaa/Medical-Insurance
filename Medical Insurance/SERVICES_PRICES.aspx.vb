@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Globalization
+
 Public Class SERVICES_PRICES
     Inherits System.Web.UI.Page
 
@@ -9,38 +11,49 @@ Public Class SERVICES_PRICES
     End Sub
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-        For Each dd As GridViewRow In GridView1.Rows
-             Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
-            Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
-            Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+        Dim last_update_dt As String
+        Try
+            last_update_dt = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+        Catch ex As Exception
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى إدخال التاريخ'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        End Try
 
-            'If ch.Checked = True Then
-            Dim insClinic As New SqlCommand
-            insClinic.Connection = insurance_SQLcon
-            insClinic.CommandText = "INC_addServicesPrice"
-            insClinic.CommandType = CommandType.StoredProcedure
-            insClinic.Parameters.AddWithValue("@service_id", dd.Cells(0).Text)
-            insClinic.Parameters.AddWithValue("@private_prc", CDec(txt_private_prc.Text))
-            insClinic.Parameters.AddWithValue("@inc_prc", CDec(txt_inc_prc.Text))
-            insClinic.Parameters.AddWithValue("@inv_prc", CDec(txt_invoice_prc.Text))
-            insClinic.Parameters.AddWithValue("@user_id", 1)
-            insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
-            insClinic.Parameters.AddWithValue("@last_update", txt_start_dt.Text)
-            insurance_SQLcon.Open()
-            insClinic.ExecuteNonQuery()
-            insurance_SQLcon.Close()
-            insClinic.CommandText = ""
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        Try
+            For Each dd As GridViewRow In GridView1.Rows
+                Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
+                Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
+                Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
 
-        Next
+                'If ch.Checked = True Then
+                Dim insClinic As New SqlCommand
+                insClinic.Connection = insurance_SQLcon
+                insClinic.CommandText = "INC_addServicesPrice"
+                insClinic.CommandType = CommandType.StoredProcedure
+                insClinic.Parameters.AddWithValue("@service_id", dd.Cells(0).Text)
+                insClinic.Parameters.AddWithValue("@private_prc", CDec(txt_private_prc.Text))
+                insClinic.Parameters.AddWithValue("@inc_prc", CDec(txt_inc_prc.Text))
+                insClinic.Parameters.AddWithValue("@inv_prc", CDec(txt_invoice_prc.Text))
+                insClinic.Parameters.AddWithValue("@user_id", 1)
+                insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
+                insClinic.Parameters.AddWithValue("@last_update", last_update_dt)
+                insurance_SQLcon.Open()
+                insClinic.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+                insClinic.CommandText = ""
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+
+            Next
+        Catch ex As Exception
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        End Try
     End Sub
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
         Try
 
-            Dim CASH_PRS As String = "ISNULL((SELECT CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID), 0) AS CASH_PRS,"
-            Dim INS_PRS As String = "ISNULL((SELECT INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID), 0) AS INS_PRS,"
-            Dim INVO_PRS As String = "ISNULL((SELECT INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID), 0) AS INVO_PRS "
+            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID order by n DESC), 0) AS CASH_PRS,"
+            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID order by n DESC), 0) AS INS_PRS,"
+            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID order by n DESC), 0) AS INVO_PRS "
             Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, " & CASH_PRS & INS_PRS & INVO_PRS & " FROM Main_SubServices WHERE SubService_Service_ID = " & ddl_services.SelectedValue, insurance_SQLcon)
             Dim dt_res As New DataTable
             dt_res.Rows.Clear()
@@ -69,7 +82,7 @@ Public Class SERVICES_PRICES
                 GridView1.DataBind()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         End Try
     End Sub
 End Class

@@ -96,6 +96,7 @@
     <Content Include="Companies\INC_PATIANT.aspx" />
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
+    <Content Include="createProfilePrices.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />
     <Content Include="Default.aspx" />
@@ -210,6 +211,13 @@
     </Compile>
     <Compile Include="Companies\patientInfo.aspx.vb">
       <DependentUpon>patientInfo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="createProfilePrices.aspx.designer.vb">
+      <DependentUpon>createProfilePrices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="createProfilePrices.aspx.vb">
+      <DependentUpon>createProfilePrices.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Modules\checkModule.vb" />

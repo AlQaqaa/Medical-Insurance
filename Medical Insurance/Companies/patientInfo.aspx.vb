@@ -20,7 +20,7 @@ Public Class patientInfo
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_ID, (SELECT NAT_NAME FROM MAIN_NATIONALITY WHERE MAIN_NATIONALITY.NAT_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT CT_NAME FROM MAIN_CITY WHERE MAIN_CITY.CT_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -104,7 +104,7 @@ Public Class patientInfo
     End Sub
 
     Sub getBlockServices()
-        Dim get_com As New SqlCommand("SELECT SubService_ID, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SERV_CODE FROM MAIN_SERVIES WHERE MAIN_SERVIES.SERV_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND BLOCK_TP = 1", insurance_SQLcon)
+        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND BLOCK_TP = 1", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -115,6 +115,7 @@ Public Class patientInfo
         If dt_result.Rows.Count > 0 Then
             GridView1.DataSource = dt_result
             GridView1.DataBind()
+            Label1.Text = ""
         Else
             dt_result.Rows.Clear()
             GridView1.DataBind()
@@ -128,7 +129,7 @@ Public Class patientInfo
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE PINC_ID = " & Val(Session("patiant_id")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 1", insurance_SQLcon)
+            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 1", insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()

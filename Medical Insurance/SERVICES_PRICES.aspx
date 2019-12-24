@@ -6,11 +6,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-    <div class="card mt-1 ">
+    <div class="card mt-1">
         <div class="card-header bg-success text-light">إدخال أسعار الخدمات</div>
         <div class="card-body">
+            <div class="row justify-content-center mb-2">
+                <div class="col-sm-12 col-md-6">
+                    <div class="form-group row">
+                        <label for="inputName" class="col-sm-3 col-form-label">اسم الملف</label>
+                        <div class="col-sm-9">
+                            <asp:TextBox ID="txt_profile_name" CssClass="form-control" runat="server" ReadOnly="True"></asp:TextBox>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            <div class="form-row">
+            <div class="form-row justify-content-center mb-2">
                 <div class="form-group col-xs-12 col-sm-4">
                     <label for="ddl_clinics">العيادة</label>
                     <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Clinic_AR_Name" DataValueField="CLINIC_ID">
@@ -28,19 +38,7 @@
                         </SelectParameters>
                     </asp:SqlDataSource>
                 </div>
-                <div class="form-group col-xs-12 col-sm-4">
-                    <label for="txt_start_dt">تاريخ اعتماد الاسعار</label>
-                    <div class="input-group">
-                        <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
-                            </div>
-                        </div>
-                    </div>
-                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
-                </div>
+                
             </div>
 
             <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
@@ -73,7 +71,7 @@
             <hr />
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
-                    <div class="form-row">
+                    <div class="form-row justify-content-end">
                         <div class="form-group col-sm-3">
                             <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
                         </div>

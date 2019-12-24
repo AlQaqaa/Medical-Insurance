@@ -158,6 +158,24 @@ Partial Public Class addNewContract
     Protected WithEvents ddl_STATE As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''ddl_profiles_prices control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_profiles_prices As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''SqlDataSource2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents SqlDataSource2 As Global.System.Web.UI.WebControls.SqlDataSource
+
+    '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>

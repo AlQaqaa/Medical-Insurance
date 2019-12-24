@@ -53,6 +53,7 @@ Public Class addNewContract
                 insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
                 insToCompany.Parameters.AddWithValue("@contractType", ddl_contractType.SelectedValue) ' 3تمدبد2.. تجدبد
                 insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
+                insToCompany.Parameters.AddWithValue("@profile_price_id", ddl_profiles_prices.SelectedValue)
                 insToCompany.Parameters.AddWithValue("@userId", 1)
                 insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
                 insurance_SQLcon.Close()

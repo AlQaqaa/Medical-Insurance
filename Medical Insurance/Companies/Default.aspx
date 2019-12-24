@@ -105,39 +105,41 @@
         </div>
         <!--/row-->
         <hr />
-        <div class="row mt-3">
-            <div class="col-xs-12 col-sm-6">
-                <div class="card bg-light mb-3">
-                    <div class="card-header bg-success text-white">العيادات المغطاة</div>
-                    <div class="card-body">
-                        <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
-                            <Columns>
-                                <asp:BoundField HeaderText="رقم العيادة" DataField="Clinic_ID">
-                                    <ControlStyle CssClass="hide-colum" />
-                                    <FooterStyle CssClass="hide-colum" />
-                                    <HeaderStyle CssClass="hide-colum" />
-                                    <ItemStyle CssClass="hide-colum" />
-                                </asp:BoundField>
-                                <asp:BoundField HeaderText="اسم العيادة" DataField="Clinic_AR_Name"></asp:BoundField>
-                                <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
-                                <asp:BoundField HeaderText="نسبة المنتفع" DataField="PER_T"></asp:BoundField>
-                                <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btn_clinic_stop" runat="server"
-                                            CommandName="stop_clinic"
-                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                            ToolTip="إيقاف العيادة"
-                                            ControlStyle-CssClass="btn btn-link text-danger btn-new"
-                                            OnClientClick="return confirm('هل أنت متأكد من إيقاف هذه العيادة')"><i class='fas fa-ban'></i></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <div class="row mt-3">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header bg-success text-white">العيادات المغطاة</div>
+                            <div class="card-body">
+                                <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                    <Columns>
+                                        <asp:BoundField HeaderText="رقم العيادة" DataField="Clinic_ID">
+                                            <ControlStyle CssClass="hide-colum" />
+                                            <FooterStyle CssClass="hide-colum" />
+                                            <HeaderStyle CssClass="hide-colum" />
+                                            <ItemStyle CssClass="hide-colum" />
+                                        </asp:BoundField>
+                                        <asp:BoundField HeaderText="اسم العيادة" DataField="Clinic_AR_Name"></asp:BoundField>
+                                        <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
+                                        <asp:BoundField HeaderText="نسبة المنتفع" DataField="PER_T"></asp:BoundField>
+                                        <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btn_clinic_stop" runat="server"
+                                                    CommandName="stop_clinic"
+                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                    ToolTip="إيقاف العيادة"
+                                                    ControlStyle-CssClass="btn btn-link text-danger btn-new"
+                                                    OnClientClick="return confirm('هل أنت متأكد من إيقاف هذه العيادة')"><i class='fas fa-ban'></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-6">
+                    <div class="col-xs-12 col-sm-6">
                         <div class="card bg-light mb-3">
                             <div class="card-header bg-danger text-white">
                                 الأطباء المحظورين عن هذه الشركة
@@ -155,15 +157,15 @@
                                         <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
                                         <asp:BoundField DataField="NOTES" HeaderText="ملاحظات"></asp:BoundField>
                                         <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="btn_block_stop" runat="server"
-                                            CommandName="stop_block"
-                                            CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                            ToolTip="إيقاف الحظر"
-                                            ControlStyle-CssClass="btn btn-link text-success btn-new"
-                                            OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذا الطبيب؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:LinkButton ID="btn_block_stop" runat="server"
+                                                    CommandName="stop_block_doctor"
+                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                    ToolTip="إيقاف الحظر"
+                                                    ControlStyle-CssClass="btn btn-link text-success btn-new"
+                                                    OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذا الطبيب؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
                                 <asp:Label ID="Label1" runat="server" CssClass="text-center" Text=""></asp:Label>
@@ -171,8 +173,10 @@
                         </div>
                     </div>
 
-        </div>
-        <!--/row-->
+                </div>
+                <!--/row-->
+            </ContentTemplate>
+        </asp:UpdatePanel>
     </div>
 
     <!-- Ban Doctor Modal -->
@@ -196,7 +200,7 @@
                     <div class="form-group row">
                         <label for="service" class="col-sm-2 col-form-label">ملاحظات</label>
                         <div class="col-sm-10">
-                            <asp:TextBox ID="txt_notes" class="form-control" runat="server" rows="3" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox ID="txt_notes" class="form-control" runat="server" Rows="3" TextMode="MultiLine"></asp:TextBox>
                         </div>
                     </div>
                 </div>

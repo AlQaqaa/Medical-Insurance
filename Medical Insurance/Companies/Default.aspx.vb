@@ -12,7 +12,7 @@ Public Class _Default3
                 Response.Redirect("../Default.aspx")
             End If
 
-            Dim sel_com As New SqlCommand("SELECT (SELECT TOP 1 (CONVERT(VARCHAR, DATE_START, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_START, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_END, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END, (SELECT TOP 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG, C_STATE, (CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY FROM INC_COMPANY_DATA WHERE C_ID = " & ViewState("company_no"), insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT (SELECT TOP 1 (CONVERT(VARCHAR, DATE_START, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_START, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_END, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END, (SELECT TOP 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY CONTRACT_NO DESC) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG, C_STATE, (CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY FROM INC_COMPANY_DATA WHERE C_ID = " & ViewState("company_no"), insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -90,7 +90,7 @@ Public Class _Default3
     Private Sub btn_ban_doctor_Click(sender As Object, e As EventArgs) Handles btn_ban_doctor.Click
         Try
             Dim ins_com As New SqlCommand("INSERT INTO INC_BLOCK_SERVICES (OBJECT_ID, SER_ID, BLOCK_TP, NOTES, USER_ID, USER_IP) VALUES (@OBJECT_ID, @SER_ID, @BLOCK_TP, @NOTES, @USER_ID, @USER_IP)", insurance_SQLcon)
-            ins_com.Parameters.Add("@OBJECT_ID", SqlDbType.Int).Value = Val(Session("company_no"))
+            ins_com.Parameters.Add("@OBJECT_ID", SqlDbType.Int).Value = Val(Session("company_id"))
             ins_com.Parameters.Add("@SER_ID", SqlDbType.Int).Value = ddl_services.SelectedValue
             ins_com.Parameters.Add("@BLOCK_TP", SqlDbType.Int).Value = 2 ' Block Doctor
             ins_com.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = txt_notes.Text
@@ -101,14 +101,14 @@ Public Class _Default3
             ins_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
             getBlockDoctors()
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حظر الطبيب عن هذه الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
 
     Sub getBlockDoctors()
-        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT MedicalStaff_AR_Name  FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_BLOCK_SERVICES.SER_ID) AS MedicalStaff_AR_Name, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("company_no")) & " AND BLOCK_TP = 2", insurance_SQLcon)
+        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT MedicalStaff_AR_Name  FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_BLOCK_SERVICES.SER_ID) AS MedicalStaff_AR_Name, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("company_id")) & " AND BLOCK_TP = 2", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -128,17 +128,17 @@ Public Class _Default3
 
     Private Sub GridView2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView2.RowCommand
         '################ When User Press On Stop Block ################
-        If (e.CommandName = "stop_block") Then
+        If (e.CommandName = "stop_block_doctor") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-            Dim row As GridViewRow = GridView1.Rows(index)
+            Dim row As GridViewRow = GridView2.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE PINC_ID = " & Val(Session("company_no")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 2", insurance_SQLcon)
+            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("company_id")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 2", insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
             getBlockDoctors()
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية فك حظر الطبيب عن هذه الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
         End If
     End Sub

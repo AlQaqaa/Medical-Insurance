@@ -41,7 +41,7 @@
                             <div class="row">
                                 <div class="col-xs-6 col-sm-4">
                                     <div class="text-center">
-                                        <asp:Image ID="img_user_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="64px" Height="64px" />
+                                        <asp:Image ID="img_user_img" CssClass="img-fluid img-thumbnail rounded " runat="server" ImageUrl="~/Style/images/avatar.jpg" Width="64px" Height="64px" />
                                     </div>
                                 </div>
                                 <div class="col-xs-6 col-sm-8">

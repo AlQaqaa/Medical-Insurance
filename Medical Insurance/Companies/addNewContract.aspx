@@ -29,8 +29,8 @@
                             </div>
                         </div>
                     </div>
-                    <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_start_dt" id="CalendarExtender3" format="dd/MM/yyyy" popupbuttonid="ImageButton1" popupposition="TopLeft"></ajaxtoolkit:calendarextender>
-                    <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_start_dt_MaskedEditExtender" targetcontrolid="txt_start_dt" id="MaskedEditExtender3" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
+                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                 </div>
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="txt_end_dt">تاريخ نهاية التعاقد</label>
@@ -42,8 +42,8 @@
                             </div>
                         </div>
                     </div>
-                    <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_end_dt" id="CalendarExtender1" format="dd/MM/yyyy" popupbuttonid="ImageButton2" popupposition="TopLeft"></ajaxtoolkit:calendarextender>
-                    <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_end_dt_MaskedEditExtender" targetcontrolid="txt_end_dt" id="MaskedEditExtender1" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
+                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_end_dt" ID="CalendarExtender1" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender1" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                 </div>
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="ddl_payment_type">طريقة الدفع</label>
@@ -92,11 +92,17 @@
                 </div>
                 <div class="form-group col-xs-12 col-sm-2">
                     <label for="P_STATE">حالة الشركة</label>
-                    <asp:DropDownList ID="ddl_STATE" CssClass="form-control" runat="server" TabIndex="9">
-
+                    <asp:DropDownList ID="ddl_STATE" CssClass="chosen-select drop-down-list form-control" runat="server" TabIndex="9">
                         <asp:ListItem Value="1">مفعل</asp:ListItem>
                         <asp:ListItem Value="0">موقوف</asp:ListItem>
                     </asp:DropDownList>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-xs-12 col-sm-3">
+                    <label for="ddl_profiles_prices">ملف الأسعار</label>
+                    <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
                 </div>
             </div>
             <hr />

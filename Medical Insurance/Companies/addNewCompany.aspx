@@ -116,6 +116,11 @@
                                 <asp:ListItem Value="0">تأمين</asp:ListItem>
                             </asp:DropDownList>
                         </div>
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <label for="ddl_profiles_prices">ملف الأسعار</label>
+                            <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
+                        </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-sm-3">
@@ -137,7 +142,7 @@
             </asp:UpdatePanel>
         </div>
     </div>
-
+    <script src="../Style/JS/jquery-3.4.1.min.js"></script>
     <script src="../Style/JS/bootstrap.min.js"></script>
     <script src="../Style/plugins/select2/select2.min.js"></script>
     <script src="../Style/JS/MyJs.js"></script>

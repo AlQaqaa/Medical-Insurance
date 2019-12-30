@@ -9,20 +9,25 @@
     <p class="lead d-none d-sm-block">
         <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
     </p>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card mt-1">
-                        <div class="card-header bg-info text-white">العيادات والخدمات</div>
-                        <div class="card-body">
-                            <div class="form-row">
-                                <div class="form-group col-xs-12 col-sm-4">
-                                    <label for="ddl_clinics">العيادة</label>
-                                    <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
-                                </div>
-                            </div>
-                            <hr />
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card mt-1">
+                <div class="card-header bg-info text-white">العيادات والخدمات</div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="form-group col-xs-12 col-sm-4">
+                            <label for="ddl_clinics">العيادة</label>
+                            <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-4">
+                            <label for="txt_clinics_max">سقف العيادة</label>
+                            <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                        </div>
+                    </div>
+                    <hr />
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
                             <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                 <Columns>
                                     <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
@@ -71,10 +76,11 @@
                                     <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </div>
+    </div>
+
 </asp:Content>

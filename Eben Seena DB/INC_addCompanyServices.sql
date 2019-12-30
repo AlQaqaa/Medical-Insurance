@@ -1,12 +1,13 @@
-USE [IBNSINAMAIN]
+USE [DB_A41508_ibn]
 GO
 
-/****** Object:  StoredProcedure [dbo].[INC_addCompanyServices]    Script Date: 12/17/2019 6:24:20 PM ******/
+/****** Object:  StoredProcedure [dbo].[INC_addCompanyServices]    Script Date: 12/25/2019 5:38:45 PM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
+
 
 CREATE PROCEDURE [dbo].[INC_addCompanyServices]
 (
@@ -17,8 +18,8 @@ CREATE PROCEDURE [dbo].[INC_addCompanyServices]
 @serPersonPer int,
 @serFamilyPer int,
 @serParentPer int,
-@serPersonMax money,
-@serFamilyMax money,
+@serPersonMax decimal(18, 3),
+@serFamilyMax decimal(18, 3),
 @serState bit,
 @serPaymentType int,
 @userId int,
@@ -29,7 +30,7 @@ BEGIN TRY
 	BEGIN TRANSACTION
 
 	declare @add_new int
-	SET @add_new = (SELECT ISNULL(C_ID,0) AS C_ID FROM INC_SERVICES_RESTRICTIONS WHERE C_ID = @cID AND CONTRACT_NO = @contractNo AND SER_ID = @serviceId)
+	SET @add_new = (SELECT ISNULL(COUNT(C_ID),0) AS C_ID FROM INC_SERVICES_RESTRICTIONS WHERE C_ID = @cID AND CONTRACT_NO = @contractNo AND SER_ID = @serviceId)
 
 	if @add_new = 0 
 		begin

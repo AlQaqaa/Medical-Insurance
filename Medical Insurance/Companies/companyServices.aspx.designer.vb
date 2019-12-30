@@ -41,15 +41,6 @@ Partial Public Class companyServices
     Protected WithEvents lbl_en_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''UpdatePanel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
-    '''<summary>
     '''ddl_clinics control.
     '''</summary>
     '''<remarks>
@@ -57,6 +48,24 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_clinics As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''txt_clinics_max control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_clinics_max As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
     '''GridView1 control.

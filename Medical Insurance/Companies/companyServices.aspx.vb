@@ -15,7 +15,7 @@ Public Class companyServices
 
             ViewState("company_no") = company_no
 
-            Dim sel_com As New SqlCommand("SELECT (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -35,7 +35,7 @@ Public Class companyServices
     End Sub
 
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT 0 AS CLINIC_ID, '' AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS UNION SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -58,7 +58,7 @@ Public Class companyServices
         Dim PARENT_PER As String = "ISNULL((SELECT PARENT_PER FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PARENT_PER,"
         Dim MAX_PERSON_VAL As String = "ISNULL((SELECT MAX_PERSON_VAL FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_PERSON_VAL,"
         Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
-        Dim SER_STATE As String = "ISNULL((SELECT SER_STATE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
+        Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.SER_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE"
 
         Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE SubService_Clinic = " & ddl_clinics.SelectedValue, insurance_SQLcon)
         Dim dt_res As New DataTable
@@ -81,10 +81,12 @@ Public Class companyServices
                 Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
                 Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
 
-                If dt_res.Rows(i)("SER_STATE") <> 0 Then
+                If IsDBNull(dt_res.Rows(i)("SER_STATE")) Then
                     ch.Checked = True
-                Else
+                ElseIf dt_res.Rows(i)("SER_STATE") = 1 Then
                     ch.Checked = False
+                Else
+                    ch.Checked = True
                 End If
                 txt_person_per.Text = dt_res.Rows(i)("PERSON_PER")
                 txt_family_per.Text = dt_res.Rows(i)("FAMILY_PER")
@@ -101,6 +103,7 @@ Public Class companyServices
 
     Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
         getServices()
+        txt_clinics_max.Text = getMaxClinicValue(ddl_clinics.SelectedValue, ViewState("company_no"), ViewState("contract_no"))
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
@@ -112,30 +115,50 @@ Public Class companyServices
             Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
             Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
 
-            'If ch.Checked = True Then
-            Dim insClinic As New SqlCommand
-            insClinic.Connection = insurance_SQLcon
-            insClinic.CommandText = "INC_addCompanyServices"
-            insClinic.CommandType = CommandType.StoredProcedure
-            insClinic.Parameters.AddWithValue("@cID", ViewState("company_no"))
-            insClinic.Parameters.AddWithValue("@clinicID", ddl_clinics.SelectedValue)
-            insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
-            insClinic.Parameters.AddWithValue("@serviceId", dd.Cells(0).Text)
-            insClinic.Parameters.AddWithValue("@serPersonPer", Val(txt_person_per.Text))
-            insClinic.Parameters.AddWithValue("@serFamilyPer", Val(txt_family_per.Text))
-            insClinic.Parameters.AddWithValue("@serParentPer", Val(txt_parent_per.Text))
-            insClinic.Parameters.AddWithValue("@serPersonMax", CDec(txt_person_max.Text))
-            insClinic.Parameters.AddWithValue("@serFamilyMax", CDec(txt_family_max.Text))
-            insClinic.Parameters.AddWithValue("@serState", ch.Checked)
-            insClinic.Parameters.AddWithValue("@serPaymentType", 1)
-            insClinic.Parameters.AddWithValue("@userId", 1)
-            insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
-            insurance_SQLcon.Open()
-            insClinic.ExecuteNonQuery()
-            insurance_SQLcon.Close()
-            insClinic.CommandText = ""
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Dim ser_sts As Boolean = False
 
+            If ch.Checked = True Then
+                ser_sts = False
+                If Val(txt_person_per.Text) = 0 And Val(txt_family_per.Text) = 0 And Val(txt_parent_per.Text) = 0 And CDec(txt_person_max.Text) = 0 And CDec(txt_family_max.Text) = 0 Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! تأكد من إدخال البيانات بشكل صحيح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                    Exit Sub
+                End If
+
+                If CDec(txt_person_max.Text) > CDec(txt_family_max.Text) Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! سقف الفرد يجب أن يكون أقل من سقف العائلة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                    Exit Sub
+                End If
+
+                Dim insClinic As New SqlCommand
+                insClinic.Connection = insurance_SQLcon
+                insClinic.CommandText = "INC_addCompanyServices"
+                insClinic.CommandType = CommandType.StoredProcedure
+                insClinic.Parameters.AddWithValue("@cID", ViewState("company_no"))
+                insClinic.Parameters.AddWithValue("@clinicID", ddl_clinics.SelectedValue)
+                insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
+                insClinic.Parameters.AddWithValue("@serviceId", dd.Cells(0).Text)
+                insClinic.Parameters.AddWithValue("@serPersonPer", Val(txt_person_per.Text))
+                insClinic.Parameters.AddWithValue("@serFamilyPer", Val(txt_family_per.Text))
+                insClinic.Parameters.AddWithValue("@serParentPer", Val(txt_parent_per.Text))
+                insClinic.Parameters.AddWithValue("@serPersonMax", CDec(txt_person_max.Text))
+                insClinic.Parameters.AddWithValue("@serFamilyMax", CDec(txt_family_max.Text))
+                insClinic.Parameters.AddWithValue("@serState", ser_sts)
+                insClinic.Parameters.AddWithValue("@serPaymentType", 1)
+                insClinic.Parameters.AddWithValue("@userId", 1)
+                insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
+                insurance_SQLcon.Open()
+                insClinic.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+                insClinic.CommandText = ""
+
+            Else
+                ser_sts = True
+                Dim stop_ser As New SqlCommand("UPDATE INC_SERVICES_RESTRICTIONS SET SER_STATE = 1 WHERE SER_ID = " & dd.Cells(0).Text & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+                insurance_SQLcon.Open()
+                stop_ser.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+            End If
         Next
+        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
     End Sub
 End Class

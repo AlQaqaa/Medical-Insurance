@@ -53,8 +53,15 @@ Module checkModule
             End If
         End If
 
+    End Function
 
-
+    ' جلب قيمة سقف العيادة
+    Public Function getMaxClinicValue(ByVal clinic_id As Integer, ByVal company_no As Integer, ByVal contract_no As Integer) As Decimal
+        Dim sel_com As New SqlCommand("SELECT (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT MAX_VALUE FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS WHERE CLINIC_ID = " & clinic_id & " AND C_ID = " & company_no & " AND CONTRACT_NO = " & contract_no, SQLcon)
+        SQLcon.Close()
+        SQLcon.Open()
+        Return sel_com.ExecuteScalar
+        SQLcon.Close()
     End Function
 
 End Module

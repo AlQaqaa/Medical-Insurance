@@ -106,6 +106,10 @@ Public Class createProfilePrices
                     ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('لا يمكن تعطيل ملف الأسعار هذا'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
                     Exit Sub
                 Else
+                    If (row.Cells(1).Text) = True Then
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! لا يمكن تعطيل ملف أسعار أساسي'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                        Exit Sub
+                    End If
                     Dim edit_com As New SqlCommand("UPDATE INC_PRICES_PROFILES SET profile_sts = 1 WHERE is_default = 0 AND profile_Id = " & (row.Cells(0).Text), insurance_SQLcon)
                     insurance_SQLcon.Close()
                     insurance_SQLcon.Open()
@@ -130,6 +134,30 @@ Public Class createProfilePrices
             Response.Redirect("SERVICES_PRICES.aspx", False)
             Exit Sub
         End If
+
+        If (e.CommandName = "set_default") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+
+            Try
+                Dim setDefaultProfilePrice As New SqlCommand
+                setDefaultProfilePrice.Connection = insurance_SQLcon
+                setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
+                setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
+                setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
+                insurance_SQLcon.Open()
+                setDefaultProfilePrice.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم تحديد ملف الأسعار كأساسي بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                getActiveProfile()
+                getStopProfile()
+
+            Catch ex As Exception
+                MsgBox(ex.Message)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            End Try
+
+        End If
     End Sub
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
@@ -141,6 +169,7 @@ Public Class createProfilePrices
                 e.Row.Cells(4).Visible = True
             Else
                 e.Row.Cells(4).Visible = False
+                e.Row.ForeColor = Drawing.Color.Green
             End If
         End If
     End Sub

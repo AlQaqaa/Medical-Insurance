@@ -48,8 +48,9 @@ Public Class addNewContract
                 insToCompany.Parameters.AddWithValue("@cid", Val(Session("company_id")))
                 insToCompany.Parameters.AddWithValue("@startDt", start_dt)
                 insToCompany.Parameters.AddWithValue("@endDt", end_dt)
-                insToCompany.Parameters.AddWithValue("@maxVal", txt_max_company_value.Text)
-                insToCompany.Parameters.AddWithValue("@maxCard", txt_max_card_value.Text)
+                insToCompany.Parameters.AddWithValue("@maxVal", CDec(txt_max_company_value.Text))
+                insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
+                insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))
                 insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
                 insToCompany.Parameters.AddWithValue("@contractType", ddl_contractType.SelectedValue) ' 3تمدبد2.. تجدبد
                 insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)

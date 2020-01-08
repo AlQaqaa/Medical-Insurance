@@ -54,7 +54,7 @@
 
                     </asp:DropDownList>
                 </div>
-                <div class="form-group col-xs-12 col-sm-2">
+                <div class="form-group col-xs-12 col-sm-3">
                     <label for="ddl_payment_type">طريقة التعقد</label>
                     <asp:DropDownList ID="ddl_contractType" CssClass="form-control " runat="server">
                         <asp:ListItem Value="2">تمديد</asp:ListItem>
@@ -74,9 +74,18 @@
                     </div>
                 </div>
                 <div class="form-group col-xs-12 col-sm-3">
-                    <label for="txt_max_card_value">السقف العام للبطاقة</label>
+                    <label for="txt_max_card_value">السقف العام للعائلة</label>
                     <div class="input-group">
                         <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server"></asp:TextBox>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">د.ل</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-xs-12 col-sm-3">
+                    <label for="txt_max_person">السقف العام للفرد</label>
+                    <div class="input-group">
+                        <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server"></asp:TextBox>
                         <div class="input-group-prepend">
                             <div class="input-group-text">د.ل</div>
                         </div>
@@ -90,13 +99,6 @@
                         <asp:ListItem Value="3">فوترة</asp:ListItem>
                     </asp:DropDownList>
                 </div>
-                <div class="form-group col-xs-12 col-sm-2">
-                    <label for="P_STATE">حالة الشركة</label>
-                    <asp:DropDownList ID="ddl_STATE" CssClass="chosen-select drop-down-list form-control" runat="server" TabIndex="9">
-                        <asp:ListItem Value="1">مفعل</asp:ListItem>
-                        <asp:ListItem Value="0">موقوف</asp:ListItem>
-                    </asp:DropDownList>
-                </div>
             </div>
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-3">
@@ -104,6 +106,7 @@
                     <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
                     <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
                 </div>
+                
             </div>
             <hr />
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">

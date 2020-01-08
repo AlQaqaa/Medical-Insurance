@@ -185,6 +185,15 @@ Partial Public Class addNewCompany
     Protected WithEvents ddl_payment_type As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
+    '''ddl_PATIAINT_PER control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_PATIAINT_PER As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''txt_max_company_value control.
     '''</summary>
     '''<remarks>
@@ -203,13 +212,13 @@ Partial Public Class addNewCompany
     Protected WithEvents txt_max_card_value As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''ddl_PATIAINT_PER control.
+    '''txt_max_person control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddl_PATIAINT_PER As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents txt_max_person As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''ddl_profiles_prices control.

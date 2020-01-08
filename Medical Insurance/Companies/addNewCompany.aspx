@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-xs-12 col-sm-4">
+                        <div class="form-group col-xs-12 col-sm-3">
                             <label for="txt_start_dt">تاريخ بداية التعاقد</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
@@ -67,7 +67,7 @@
                             <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
                             <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-4">
+                        <div class="form-group col-xs-12 col-sm-3>
                             <label for="txt_end_dt">تاريخ نهاية التعاقد</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
@@ -80,12 +80,19 @@
                             <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_end_dt" ID="CalendarExtender1" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
                             <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender1" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-4">
+                        <div class="form-group col-xs-12 col-sm-3">
                             <label for="ddl_payment_type">طريقة الدفع</label>
                             <asp:DropDownList ID="ddl_payment_type" CssClass="chosen-select drop-down-list form-control" runat="server">
                                 <asp:ListItem Value="1">خاص</asp:ListItem>
                                 <asp:ListItem Value="2">تأمين</asp:ListItem>
                                 <asp:ListItem Value="3">فوترة</asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <label for="ddl_payment_type">طريقة دفع نسبة المريض</label>
+                            <asp:DropDownList ID="ddl_PATIAINT_PER" CssClass="chosen-select drop-down-list form-control" runat="server">
+                                <asp:ListItem Value="1">خاص</asp:ListItem>
+                                <asp:ListItem Value="0">تأمين</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>
@@ -101,7 +108,7 @@
                             </div>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
-                            <label for="txt_max_card_value">السقف العام للبطاقة</label>
+                            <label for="txt_max_card_value">السقف العام للعائلة</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server"></asp:TextBox>
                                 <div class="input-group-prepend">
@@ -110,11 +117,13 @@
                             </div>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
-                            <label for="ddl_payment_type">طريقة دفع نسبة المريض</label>
-                            <asp:DropDownList ID="ddl_PATIAINT_PER" CssClass="chosen-select drop-down-list form-control" runat="server">
-                                <asp:ListItem Value="1">خاص</asp:ListItem>
-                                <asp:ListItem Value="0">تأمين</asp:ListItem>
-                            </asp:DropDownList>
+                            <label for="txt_max_person">السقف العام للفرد</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">د.ل</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
                             <label for="ddl_profiles_prices">ملف الأسعار</label>

@@ -30,6 +30,7 @@ Public Class companyServices
             End If
 
             getClinicAvailable()
+            getServicesAvailable()
 
         End If
     End Sub
@@ -119,10 +120,10 @@ Public Class companyServices
 
             If ch.Checked = True Then
                 ser_sts = False
-                If Val(txt_person_per.Text) = 0 And Val(txt_family_per.Text) = 0 And Val(txt_parent_per.Text) = 0 And CDec(txt_person_max.Text) = 0 And CDec(txt_family_max.Text) = 0 Then
-                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! تأكد من إدخال البيانات بشكل صحيح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-                    Exit Sub
-                End If
+                'If Val(txt_person_per.Text) = 0 And Val(txt_family_per.Text) = 0 And Val(txt_parent_per.Text) = 0 And CDec(txt_person_max.Text) = 0 And CDec(txt_family_max.Text) = 0 Then
+                '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! تأكد من إدخال البيانات بشكل صحيح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                '    Exit Sub
+                'End If
 
                 If CDec(txt_person_max.Text) > CDec(txt_family_max.Text) Then
                     ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! سقف الفرد يجب أن يكون أقل من سقف العائلة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
@@ -160,5 +161,38 @@ Public Class companyServices
             End If
         Next
         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+
+        getServicesAvailable()
+
+    End Sub
+
+    Sub getServicesAvailable()
+        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_SERVICES_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_SERVICES_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no") & " GROUP BY Clinic_ID", insurance_SQLcon)
+        Dim dt_result As New DataTable
+        dt_result.Rows.Clear()
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+
+        If dt_result.Rows.Count > 0 Then
+            Dim resultString As String = ""
+            Dim isFirstResult = True
+
+            For i = 0 To dt_result.Rows.Count - 1
+                Dim dr = dt_result.Rows(i)
+
+                If Not isFirstResult Then
+                    resultString &= String.Format(" <a href='#'><span class='badge badge-pill badge-info p-2'>{0}</span></a>", dr!CLINIC_NAME)
+                Else
+                    isFirstResult = False
+                    resultString &= String.Format("<a href='#'><span class='badge badge-pill badge-info p-2'>{0}</span></a>", dr!CLINIC_NAME)
+                End If
+            Next
+
+            Literal1.Text = resultString
+        Else
+            Literal1.Text = "لا يوجد خدمات مغطاة"
+        End If
     End Sub
 End Class

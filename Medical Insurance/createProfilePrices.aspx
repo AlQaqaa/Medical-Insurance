@@ -86,7 +86,7 @@
                                                 CommandName="edit_price"
                                                 CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
                                                 ToolTip="تعديل قائمة الأسعار"
-                                                ControlStyle-CssClass="btn btn-primary btn-sm btn-small">تعديل الأسعار</asp:LinkButton>
+                                                ControlStyle-CssClass="btn btn-primary btn-sm btn-small">تعديل</asp:LinkButton>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField>

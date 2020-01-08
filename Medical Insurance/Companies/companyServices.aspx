@@ -24,6 +24,10 @@
                             <label for="txt_clinics_max">سقف العيادة</label>
                             <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                         </div>
+                        <div class="form-group col-xs-12 col-sm-4">
+                            <h6>العيادات المغطاة</h6>
+                            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                        </div>
                     </div>
                     <hr />
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">

@@ -1,7 +1,7 @@
 USE [DB_A41508_ibn]
 GO
 
-/****** Object:  StoredProcedure [dbo].[INC_addNewCompany]    Script Date: 12/24/2019 6:56:17 PM ******/
+/****** Object:  StoredProcedure [dbo].[INC_addNewCompany]    Script Date: 1/7/2020 5:02:23 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -19,6 +19,7 @@ CREATE PROCEDURE [dbo].[INC_addNewCompany]
 @endDt date,
 @maxVal decimal(18, 3),
 @maxCard decimal(18, 3),
+@maxPerson decimal(18, 3),
 @paymentType int,
 @contractType int,
 @patiaintPer bit,
@@ -40,7 +41,7 @@ BEGIN TRY
 		SELECT @con_no = MAX(CONTRACT_NO) FROM [dbo].INC_COMPANY_DETIAL
 		SET @con_no = @con_no + 1
 
-		INSERT INTO [dbo].INC_COMPANY_DETIAL (C_ID,DATE_START,DATE_END,MAX_VAL,MAX_CARD,PYMENT_TYPE,CONTRCT_TYPE,PATIAINT_PER,CONTRACT_NO,PROFILE_PRICE_ID,USER_ID,USER_IP) VALUES (@companyID,@startDt,@endDt,@maxVal,@maxCard,@paymentType,@contractType,@patiaintPer,@con_no,@profile_price_id,@userId,@userIp)
+		INSERT INTO [dbo].INC_COMPANY_DETIAL (C_ID,DATE_START,DATE_END,MAX_VAL,MAX_CARD,MAX_PERSON,PYMENT_TYPE,CONTRCT_TYPE,PATIAINT_PER,CONTRACT_NO,PROFILE_PRICE_ID,USER_ID,USER_IP) VALUES (@companyID,@startDt,@endDt,@maxVal,@maxCard,@maxPerson,@paymentType,@contractType,@patiaintPer,@con_no,@profile_price_id,@userId,@userIp)
 	COMMIT TRANSACTION
 END TRY
 

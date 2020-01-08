@@ -59,6 +59,15 @@ Partial Public Class companyServices
     Protected WithEvents txt_clinics_max As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''Literal1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Literal1 As Global.System.Web.UI.WebControls.Literal
+
+    '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>

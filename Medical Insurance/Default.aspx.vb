@@ -7,8 +7,9 @@ Public Class _Default1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
             getCompanyData()
-
+            Session.Remove("profile_no")
         End If
+
     End Sub
 
     Private Sub getCompanyData()

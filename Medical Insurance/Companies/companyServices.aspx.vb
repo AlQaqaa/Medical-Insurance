@@ -13,6 +13,8 @@ Public Class companyServices
                 Exit Sub
             End If
 
+            Panel1.Visible = False
+
             ViewState("company_no") = company_no
 
             Dim sel_com As New SqlCommand("SELECT (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END, (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
@@ -70,12 +72,13 @@ Public Class companyServices
         insurance_SQLcon.Close()
 
         If dt_res.Rows.Count > 0 Then
+            Panel1.Visible = True
             GridView1.DataSource = dt_res
             GridView1.DataBind()
             For i = 0 To dt_res.Rows.Count - 1
                 Dim dd As GridViewRow = GridView1.Rows(i)
 
-                Dim ch As CheckBox = dd.FindControl("CheckBox1")
+                Dim ch As CheckBox = dd.FindControl("CheckBox2")
                 Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
                 Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
@@ -96,6 +99,7 @@ Public Class companyServices
                 txt_family_max.Text = dt_res.Rows(i)("MAX_FAMILY_VAL")
             Next
         Else
+            Panel1.Visible = False
             dt_res.Rows.Clear()
             GridView1.DataSource = dt_res
             GridView1.DataBind()
@@ -109,7 +113,7 @@ Public Class companyServices
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         For Each dd As GridViewRow In GridView1.Rows
-            Dim ch As CheckBox = dd.FindControl("CheckBox1")
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
             Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
             Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
             Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
@@ -194,5 +198,39 @@ Public Class companyServices
         Else
             Literal1.Text = "لا يوجد خدمات مغطاة"
         End If
+    End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+
+            If CheckBox1.Checked = True Then
+                ch.Checked = True
+            Else
+                ch.Checked = False
+
+            End If
+        Next
+    End Sub
+
+    Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+            Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
+            Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
+            Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
+            Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
+            Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
+
+            If ch.Checked = True Then
+                txt_person_per.Text = Val(txt_person_per_all.Text)
+                txt_family_per.Text = Val(txt_family_per_all.Text)
+                txt_parent_per.Text = Val(txt_parent_per_all.Text)
+                txt_person_max.Text = Val(txt_person_max_all.Text)
+                txt_family_max.Text = Val(txt_family_max_all.Text)
+            
+            End If
+            
+        Next
     End Sub
 End Class

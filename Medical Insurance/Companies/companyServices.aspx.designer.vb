@@ -77,6 +77,78 @@ Partial Public Class companyServices
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''CheckBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
+
+    '''<summary>
+    '''txt_person_per_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_person_per_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_family_per_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_family_per_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_parent_per_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_parent_per_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_person_max_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_person_max_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_family_max_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_family_max_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''btn_apply control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_apply As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
     '''GridView1 control.
     '''</summary>
     '''<remarks>

@@ -16,7 +16,11 @@ Module checkModule
     Dim company_no As Integer = 0 ' رقم الشركة
     Dim profile_no As Integer = 0 ' رقم ملف الأسعار
 
-    Public Function checkPatient(ByVal p_id As Integer, ByVal c_id As Integer, ByVal doc_id As Integer, ByVal ser_id As Integer, ByVal ser_price As Decimal) As Array
+    Public Function checkPatient(ByVal p_id As Integer, ByVal c_id As Integer, ByVal doc_id As Integer, ByVal ser_id As Integer) As Array
+        ' p_id رقم المريض
+        ' c_id رقم الشركة
+        ' doc_id رقم الطبيب
+        ' ser_id رقم الخدمة
 
         If p_id <> 0 Then
             '############# التحقق من حالة المنتفع وصلاحية البطاقة ##############
@@ -71,6 +75,16 @@ Module checkModule
             If getPatientProcesses(company_no, contract_dt_end, Date.Now.Date) > getSubServicePrice(ser_id, profile_no, payment_type) Then
                 patient_sts = False
             End If
+
+        Else
+            ' جلب سعر الخدمة في حال كان المريض لا يتبع للتأمين
+            Dim get_porf As New SqlCommand("SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1", SQLcon)
+            SQLcon.Close()
+            SQLcon.Open()
+            Dim prof_id As Integer = get_porf.ExecuteScalar
+            SQLcon.Close()
+            Dim service_price As Decimal = getSubServicePrice(ser_id, prof_id, 1)
+            '/ جلب سعر الخدمة في حال كان المريض لا يتبع للتأمين
 
         End If
 

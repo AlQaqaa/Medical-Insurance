@@ -139,7 +139,7 @@ Module checkModule
 
     ' إحضار شروط الخدمة
     Public Function getServicesRestrictions(ByVal ser_id As Integer, ByVal com_id As Integer, ByVal contract_num As Integer) As DataTable
-        Dim sel_com As New SqlCommand("SELECT PERSON_PER, FAMILY_PER, PARENT_PER, MAX_PERSON_VAL, MAX_FAMILY_VAL, SER_STATE, PAYMENT_TYPE FROM INC_SERVICES_RESTRICTIONS WHERE C_ID = " & com_id & " AND SER_ID = " & ser_id & " AND CONTRACT_NO = " & contract_num, SQLcon)
+        Dim sel_com As New SqlCommand("SELECT PERSON_PER, FAMILY_PER, PARENT_PER, MAX_PERSON_VAL, MAX_FAMILY_VAL, SER_STATE, PAYMENT_TYPE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE C_ID = " & com_id & " AND SubService_ID = " & ser_id & " AND CONTRACT_NO = " & contract_num, SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         SQLcon.Close()

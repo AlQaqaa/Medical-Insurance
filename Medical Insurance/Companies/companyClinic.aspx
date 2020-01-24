@@ -36,10 +36,10 @@
                                 <div class="form-group col-xs-12 col-sm-4">
                                     <label>السقف العام</label>
                                     <asp:TextBox ID="txt_max_val" CssClass="form-control" runat="server" AutoCompleteType="Disabled"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال السقف" ControlToValidate="txt_max_val" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <br />
+                                    <%--<br />
                                     <br />
                                     <label>نسبة المشترك</label>
-                                    <asp:TextBox ID="txt_person_per" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال نسبة المشترك" ControlToValidate="txt_person_per" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:TextBox ID="txt_person_per" CssClass="form-control" runat="server" TextMode="Number"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال نسبة المشترك" ControlToValidate="txt_person_per" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>--%>
                                     <br />
                                     <br />
                                     <label>عدد الجلسات</label><span data-toggle="tooltip" data-placement="top" title="عدد الجلسات يحدد لعيادة العلاج الطبيعي فقط، غير ذلك يمكنك تركه فارغ"> <i class="fas fa-info-circle"></i></span>

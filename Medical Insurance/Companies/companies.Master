@@ -97,14 +97,16 @@
                                                         <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المنتفعين</asp:HyperLink>
                                                     </div>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <asp:HyperLink ID="HyperLink5" CssClass="nav-link" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> إضافة عيادة</asp:HyperLink>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <asp:HyperLink ID="HyperLink6" CssClass="nav-link" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <asp:HyperLink ID="HyperLink7" CssClass="nav-link" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-hospital-symbol"></i> تفاصيل العيادات</asp:HyperLink>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="manafe" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-stethoscope"></i>&nbsp;المنافع
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="manafe">
+                                                        <asp:HyperLink ID="HyperLink5" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> العيادات</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink4" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-h-square"></i> الأقسام</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink6" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companySubServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink7" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companySubServices.aspx"><i class="fas fa-object-group"></i> الخدمات المجمعة</asp:HyperLink>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>

@@ -78,7 +78,7 @@ Public Class companyInfo
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            Dim edit_sts As New SqlCommand("UPDATE INC_SERVICES_RESTRICTIONS SET SER_STATE=1 WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+            Dim edit_sts As New SqlCommand("UPDATE INC_SUB_SERVICES_RESTRICTIONS SET SER_STATE=1 WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             edit_sts.ExecuteNonQuery()

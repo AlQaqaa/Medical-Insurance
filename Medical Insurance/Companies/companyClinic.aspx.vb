@@ -144,7 +144,7 @@ Public Class companyClinic
                 insClinic.Parameters.AddWithValue("@clinicID", dist_list.Items.Item(0).Value)
                 insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
                 insClinic.Parameters.AddWithValue("@maxClinicValue", CDec(txt_max_val.Text))
-                insClinic.Parameters.AddWithValue("@clinicPersonPer", Val(txt_person_per.Text))
+                insClinic.Parameters.AddWithValue("@clinicPersonPer", 0)
                 insClinic.Parameters.AddWithValue("@sessionCount", Val(txt_session_count.Text))
                 insClinic.Parameters.AddWithValue("@group_no", 0)
                 insClinic.Parameters.AddWithValue("@userId", 1)
@@ -164,7 +164,7 @@ Public Class companyClinic
                 insGroup.CommandText = "INC_newClinicGroup"
                 insGroup.CommandType = CommandType.StoredProcedure
                 insGroup.Parameters.AddWithValue("@maxVal", CDec(txt_max_val.Text))
-                insGroup.Parameters.AddWithValue("@personPer", Val(txt_person_per.Text))
+                insGroup.Parameters.AddWithValue("@personPer", 0)
                 insGroup.Parameters.AddWithValue("@groupNo", SqlDbType.Int).Direction = ParameterDirection.Output
                 insurance_SQLcon.Open()
                 insGroup.ExecuteNonQuery()
@@ -182,7 +182,7 @@ Public Class companyClinic
                     insClinic.Parameters.AddWithValue("@clinicID", it_val)
                     insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
                     insClinic.Parameters.AddWithValue("@maxClinicValue", CDec(txt_max_val.Text))
-                    insClinic.Parameters.AddWithValue("@clinicPersonPer", Val(txt_person_per.Text))
+                    insClinic.Parameters.AddWithValue("@clinicPersonPer", 0)
                     insClinic.Parameters.AddWithValue("@sessionCount", Val(txt_session_count.Text))
                     insClinic.Parameters.AddWithValue("@group_no", group_no)
                     insClinic.Parameters.AddWithValue("@userId", 1)
@@ -205,7 +205,7 @@ Public Class companyClinic
 
     Sub clrTxt()
         txt_max_val.Text = ""
-        txt_person_per.Text = ""
+        ' txt_person_per.Text = ""
         dist_list.Items.Clear()
 
     End Sub

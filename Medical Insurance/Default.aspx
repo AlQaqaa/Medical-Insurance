@@ -14,6 +14,7 @@
                 "scrollX": true,
                 "responsive": true,
                 "pageLength": 25,
+                "processing": true,
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "language": {
                     "lengthMenu": "عرض _MENU_ سجل",

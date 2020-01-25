@@ -17,19 +17,43 @@
                 <div class="card-body">
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-sm-4">
-                            <label for="ddl_clinics">العيادة</label>
-                            <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                            <label for="ddl_clinics">طريقة العرض</label>
+                            <asp:DropDownList ID="ddl_show_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
+                                <asp:ListItem Value="1">العيادات</asp:ListItem>
+                                <asp:ListItem Value="2">الخدمات المجمعة</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-4">
-                            <label for="txt_clinics_max">القسم</label>
-                            <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
-                        </div>
-                        <div class="form-group col-xs-12 col-sm-4">
-                            <label for="txt_clinics_max">سقف العيادة</label>
-                            <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
-                        </div>
-
                     </div>
+                    <!-- form-row -->
+                    <asp:Panel ID="clinic_Panel" runat="server">
+                        <div class="form-row">
+                            <div class="form-group col-xs-12 col-sm-4">
+                                <label for="ddl_clinics">العيادة</label>
+                                <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-4">
+                                <label for="txt_clinics_max">القسم</label>
+                                <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-4">
+                                <label for="txt_clinics_max">سقف العيادة</label>
+                                <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                            </div>
+
+                        </div>
+                    </asp:Panel>
+                    <asp:Panel ID="groups_Panel" runat="server" Visible="False">
+                        <div class="form-row">
+                            <div class="form-group col-xs-12 col-sm-4">
+                                <label for="ddl_clinics">المجموعة</label>
+                                <asp:DropDownList ID="ddl_gourp" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-4">
+                                <label for="txt_clinics_max">الخدمات</label>
+                                <asp:DropDownList ID="ddl_services_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                            </div>
+                        </div>
+                    </asp:Panel>
                     <div class="form-row">
                         <div class="form-group col-xs-12">
                             <h6>العيادات المغطاة</h6>

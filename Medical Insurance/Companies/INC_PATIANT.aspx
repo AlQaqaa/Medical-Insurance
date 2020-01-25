@@ -65,8 +65,15 @@
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="ddl_CONST_ID">صلة القربة</label>
-                                <asp:DropDownList ID="CONST_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="CON_NAME" DataValueField="CON_ID"></asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT * FROM [MAIN_CONST] WHERE ([DEL] = 0)"></asp:SqlDataSource>
+                                <asp:DropDownList ID="CONST_ID" CssClass="chosen-select drop-down-list form-control" runat="server">
+                                    <asp:ListItem Value="0">المشترك</asp:ListItem>
+                                    <asp:ListItem Value="1">الأب</asp:ListItem>
+                                    <asp:ListItem Value="2">الأم</asp:ListItem>
+                                    <asp:ListItem Value="3">الزوج/ة</asp:ListItem>
+                                    <asp:ListItem Value="4">الابن</asp:ListItem>
+                                    <asp:ListItem Value="5">الابنة</asp:ListItem>
+                                </asp:DropDownList>
+                                
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="CITY_ID">المدينة</label>

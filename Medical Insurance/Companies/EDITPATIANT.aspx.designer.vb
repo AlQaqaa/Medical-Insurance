@@ -167,15 +167,6 @@ Partial Public Class WebForm1
     Protected WithEvents ddl_CONST_ID As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''SqlDataSource2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents SqlDataSource2 As Global.System.Web.UI.WebControls.SqlDataSource
-
-    '''<summary>
     '''ddl_CITY_ID control.
     '''</summary>
     '''<remarks>

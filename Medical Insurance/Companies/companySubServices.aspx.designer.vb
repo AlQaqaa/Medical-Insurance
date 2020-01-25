@@ -41,6 +41,24 @@ Partial Public Class companySubServices
     Protected WithEvents lbl_en_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''ddl_show_type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_show_type As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''clinic_Panel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents clinic_Panel As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''ddl_clinics control.
     '''</summary>
     '''<remarks>
@@ -66,6 +84,33 @@ Partial Public Class companySubServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_clinics_max As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''groups_Panel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents groups_Panel As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
+    '''ddl_gourp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_gourp As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''ddl_services_group control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_services_group As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''Literal1 control.

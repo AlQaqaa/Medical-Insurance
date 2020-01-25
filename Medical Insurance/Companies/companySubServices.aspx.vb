@@ -270,4 +270,14 @@ Public Class companySubServices
             getSubServices(2)
         End If
     End Sub
+
+    Private Sub ddl_show_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_show_type.SelectedIndexChanged
+        If ddl_show_type.SelectedValue = 1 Then
+            clinic_Panel.Visible = True
+            groups_Panel.Visible = False
+        Else
+            clinic_Panel.Visible = False
+            groups_Panel.Visible = True
+        End If
+    End Sub
 End Class

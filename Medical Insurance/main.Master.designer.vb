@@ -113,22 +113,40 @@ Partial Public Class main
     Protected WithEvents hl_stop_company As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink3 control.
+    '''hl_listPatiant control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink3 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hl_listPatiant As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink4 control.
+    '''hl_services_prices control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink4 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hl_services_prices As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''hl_notifications control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_notifications As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''lbl_notification control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_notification As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ContentPlaceHolder1 control.

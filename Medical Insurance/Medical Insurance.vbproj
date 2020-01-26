@@ -98,6 +98,7 @@
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
     <Content Include="createProfilePrices.aspx" />
+    <Content Include="notificationCenter.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />
     <Content Include="Default.aspx" />
@@ -229,6 +230,13 @@
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Modules\checkModule.vb" />
+    <Compile Include="notificationCenter.aspx.designer.vb">
+      <DependentUpon>notificationCenter.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="notificationCenter.aspx.vb">
+      <DependentUpon>notificationCenter.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="SERVICES_PRICES.aspx.designer.vb">
       <DependentUpon>SERVICES_PRICES.aspx</DependentUpon>
     </Compile>

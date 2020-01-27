@@ -48,24 +48,24 @@ Public Class addNewCompany
             insToCompany.CommandText = "INC_addNewCompany"
             insToCompany.CommandType = CommandType.StoredProcedure
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            Dim fpath As String
-            If FileUpload1.PostedFile.FileName = Nothing Then
-                insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/UnknownUser.png")
-            Else
-                fpath = Server.MapPath("../images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
-                Dim FEx As String
-                FEx = IO.Path.GetExtension(fpath)
-                If FEx <> ".jpg" And FEx <> ".jpeg" And FEx <> ".png" Then
-                    ScriptManager.RegisterClientScriptBlock(Me, Me.[GetType](), "alertMessage", "alert('صيغة الملف غير صحيحة')", True)
-                    Exit Sub
-                End If
-                Dim FileName As String = Path.GetFileName(FileUpload1.PostedFile.FileName)
-                Dim Extension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
-                Dim FolderPath As String = ConfigurationManager.AppSettings("FolderPath")
-                Dim FilePath As String = Server.MapPath("../images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
-                FileUpload1.SaveAs(FilePath)
-                insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/ " & FileUpload1.PostedFile.FileName)
-            End If
+            'Dim fpath As String
+            'If FileUpload1.PostedFile.FileName = Nothing Then
+            '    insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/UnknownUser.png")
+            'Else
+            '    fpath = Server.MapPath("../images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
+            '    Dim FEx As String
+            '    FEx = IO.Path.GetExtension(fpath)
+            '    If FEx <> ".jpg" And FEx <> ".jpeg" And FEx <> ".png" Then
+            '        ScriptManager.RegisterClientScriptBlock(Me, Me.[GetType](), "alertMessage", "alert('صيغة الملف غير صحيحة')", True)
+            '        Exit Sub
+            '    End If
+            '    Dim FileName As String = Path.GetFileName(FileUpload1.PostedFile.FileName)
+            '    Dim Extension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
+            '    Dim FolderPath As String = ConfigurationManager.AppSettings("FolderPath")
+            '    Dim FilePath As String = Server.MapPath("../images/ImageCompany/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
+            '    FileUpload1.SaveAs(FilePath)
+            '    insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/ " & FileUpload1.PostedFile.FileName)
+            'End If
 
             '''''''''''''''''''''''''''''''''''''''''
             insToCompany.Parameters.AddWithValue("@cNameAr", txt_company_name_ar.Text)
@@ -80,6 +80,7 @@ Public Class addNewCompany
             insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
             insToCompany.Parameters.AddWithValue("@contractType", 1) ' 1 = New Contract
             insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
+            insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/UnknownUser.png")
             insToCompany.Parameters.AddWithValue("@profile_price_id", ddl_profiles_prices.SelectedValue)
             insToCompany.Parameters.AddWithValue("@userId", 1)
             insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())

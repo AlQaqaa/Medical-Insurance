@@ -67,8 +67,8 @@
                             <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
                             <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-3>
-                            <label for="txt_end_dt">تاريخ نهاية التعاقد</label>
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <label for="txt_start_dt">تاريخ بداية التعاقد</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
                                 <div class="input-group-prepend">
@@ -77,8 +77,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_end_dt" ID="CalendarExtender1" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                            <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender1" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                            <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_end_dt" ID="CalendarExtender2" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                            <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender2" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
                             <label for="ddl_payment_type">طريقة الدفع</label>
@@ -131,12 +131,12 @@
                             <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
                         </div>
                     </div>
-                    <div class="form-row">
+                    <%--<div class="form-row">
                         <div class="form-group col-xs-12 col-sm-3">
-                            <label for="FileUpload1">نموذج الشركة</label>
+                            <label for="FileUpload1">شعار الشركة</label>
                             <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
                         </div>
-                    </div>
+                    </div>--%>
                     
                     <hr />
                     <div class="form-row justify-content-end">
@@ -145,9 +145,7 @@
                         </div>
                     </div>
                 </ContentTemplate>
-                <Triggers>
-                    <asp:PostBackTrigger ControlID="btn_save" />
-                </Triggers>
+               
             </asp:UpdatePanel>
         </div>
     </div>

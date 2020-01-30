@@ -64,7 +64,7 @@ Public Class INC_PATIANT
         ins_PAT.Parameters.AddWithValue("@BIRTHDATE", dob)
         ins_PAT.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
         ins_PAT.Parameters.AddWithValue("@C_ID", Val(Session("company_id")))
-        ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.Text)
+        ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.SelectedValue)
         ins_PAT.Parameters.AddWithValue("@NAL_ID", ddl_NAL_ID.SelectedValue)
         ins_PAT.Parameters.AddWithValue("@PHONE_NO", Val(txt_PHONE_NO.Text))
         ins_PAT.Parameters.AddWithValue("@CONST_ID", CONST_ID.SelectedValue)

@@ -31,10 +31,10 @@ Public Class WebForm1
                 txt_NAME_ENG.Text = dr!name_eng
                 txt_BIRTHDATE.Text = dr!birthdate
                 txt_BAGE_NO.Text = dr!bage_no
-                ddl_GENDER.Text = dr!gender
+                ddl_GENDER.SelectedValue = dr!gender
                 ddl_NAL_ID.SelectedValue = dr!NAL_ID
                 txt_PHONE_NO.Text = dr!phone_no
-                'ddl_CONST_ID.SelectedValue = dr!CONST_ID
+                ddl_CONST_ID.SelectedValue = dr!CONST_ID
                 txt_exp_date.Text = dr!exp_date
                 txt_NOTES.Text = dr!notes
                 txt_NAT_NUMBER.Text = dr!NAT_NUMBER
@@ -75,7 +75,7 @@ Public Class WebForm1
             ins_PAT.Parameters.AddWithValue("@BIRTHDATE", dob)
             ins_PAT.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
             ins_PAT.Parameters.AddWithValue("@C_ID", Val(Session("company_id")))
-            ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.Text)
+            ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@NAL_ID", ddl_NAL_ID.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@PHONE_NO", txt_PHONE_NO.Text)
             ins_PAT.Parameters.AddWithValue("@CONST_ID", ddl_CONST_ID.SelectedValue)

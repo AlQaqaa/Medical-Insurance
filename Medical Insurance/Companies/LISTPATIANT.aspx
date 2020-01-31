@@ -67,11 +67,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server">
-         <h1 class="display-4 d-none d-sm-block">
-            <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h1>
-        <p class="lead d-none d-sm-block">
-            <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
-        </p>
+
     </asp:Panel>
     <div class="card mt-1 ">
         <div class="card-header bg-success text-light">

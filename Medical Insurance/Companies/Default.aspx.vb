@@ -21,8 +21,6 @@ Public Class _Default3
             insurance_SQLcon.Close()
             If dt_result.Rows.Count > 0 Then
                 Dim dr_company = dt_result.Rows(0)
-                lbl_company_name.Text = dr_company!C_NAME_ARB
-                lbl_en_name.Text = dr_company!C_NAME_ENG
                 lbl_start_dt.Text = dr_company!DATE_START
                 lbl_end_dt.Text = dr_company!DATE_END
                 If dr_company!C_STATE = 0 Then

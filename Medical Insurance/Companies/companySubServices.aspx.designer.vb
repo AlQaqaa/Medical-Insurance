@@ -23,24 +23,6 @@ Partial Public Class companySubServices
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''lbl_com_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_com_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_en_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_en_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''ddl_show_type control.
     '''</summary>
     '''<remarks>

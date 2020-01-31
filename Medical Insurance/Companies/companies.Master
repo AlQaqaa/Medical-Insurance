@@ -74,7 +74,8 @@
                                 <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="../SERVICES_PRICES.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i> مركز الإشعارات <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
+                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i>مركز الإشعارات
+                                    <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                         </ul>
                     </div>
@@ -108,7 +109,7 @@
                                                         <asp:HyperLink ID="HyperLink5" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> العيادات</asp:HyperLink>
                                                         <asp:HyperLink ID="HyperLink4" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-h-square"></i> الأقسام</asp:HyperLink>
                                                         <asp:HyperLink ID="HyperLink6" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companySubServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
-                                                        <asp:HyperLink ID="HyperLink7" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companySubServices.aspx"><i class="fas fa-object-group"></i> الخدمات المجمعة</asp:HyperLink>
+
                                                     </div>
                                                 </li>
                                             </ul>
@@ -118,6 +119,18 @@
                             </div>
                             <!-- /row -->
                         </asp:Panel>
+                        <div class="row mt-1 mr-0 ml-0">
+                            <div class="col-sm-12 col-md-9 d-none d-sm-block">
+                                <h1>
+                                    <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h1>
+                                <p class="lead d-none d-sm-block">
+                                    <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
+                                </p>
+                            </div>
+                            <div class="col-sm-12 col-md-3 text-right d-none d-sm-block">
+                                <asp:Image ID="img_company_logo" runat="server" CssClass="img-thumbnail" ImageUrl="~/Images/ImageCompany/company-logo.jpg" Width="120px" />
+                            </div>
+                        </div>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>
@@ -125,9 +138,9 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row mr-0 ml-0">
             <div class="col-sm-12">
-                <div class="footer text-center fixed-bottom">
+                <div class="footer text-center">
                     <a href='http://www.injaztech-ly.com' style="color: #ffd800;">شركة إنجاز | Enjaz Co</a>
                 </div>
             </div>

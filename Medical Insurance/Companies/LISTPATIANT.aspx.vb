@@ -34,8 +34,6 @@ Public Class LISTPATIANT
                     Dim dr_company = dt_comp.Rows(0)
                     Page.Title = "منتفعي شركة " & dr_company!C_NAME_ARB
                     Label1.Text = "منتفعي شركة " & dr_company!C_NAME_ARB
-                    lbl_company_name.Text = dr_company!C_NAME_ARB
-                    lbl_en_name.Text = dr_company!C_NAME_ENG
                 End If
             Else
                 ' جلب جميع المنتفعين

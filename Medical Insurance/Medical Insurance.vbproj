@@ -98,6 +98,7 @@
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
     <Content Include="createProfilePrices.aspx" />
+    <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />

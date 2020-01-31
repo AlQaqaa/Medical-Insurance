@@ -7,8 +7,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="bene">
-        <h4 class="company_name">
-            <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h4>
         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
             <ContentTemplate>
                 <div class="card mt-1">

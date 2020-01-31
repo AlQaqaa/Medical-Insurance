@@ -27,7 +27,6 @@ Public Class INC_PATIANT
             insurance_SQLcon.Close()
             If dt_result.Rows.Count > 0 Then
                 Dim dr_company = dt_result.Rows(0)
-                lbl_company_name.Text = "إضافة منتفعين " & dr_company!C_NAME_ARB
                 Session("lb") = dr_company!C_NAME_ARB
                 Session("lb1") = company_no
             End If

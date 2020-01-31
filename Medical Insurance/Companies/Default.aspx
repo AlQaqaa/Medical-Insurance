@@ -54,11 +54,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="info-page">
-        <h1 class="display-4 d-none d-sm-block">
-            <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h1>
-        <p class="lead d-none d-sm-block">
-            <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
-        </p>
+        
         <div class="row mb-3">
             <div class="col-xl-3 col-sm-6 py-2">
                 <div class="card bg-success text-white h-100">

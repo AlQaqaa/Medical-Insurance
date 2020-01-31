@@ -23,24 +23,6 @@ Partial Public Class LISTPATIANT
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
-    '''lbl_company_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_company_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
-    '''lbl_en_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_en_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''Label1 control.
     '''</summary>
     '''<remarks>

@@ -23,15 +23,6 @@ Partial Public Class WebForm1
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''lbl_company_name control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_company_name As Global.System.Web.UI.WebControls.Label
-
-    '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
     '''<remarks>

@@ -4,13 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    
-        <h1 class="display-4 d-none d-sm-block">
-            <asp:Label ID="lbl_com_name" runat="server" Text=""></asp:Label></h1>
-        <p class="lead d-none d-sm-block">
-            <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
-        </p>
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">

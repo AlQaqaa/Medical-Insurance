@@ -203,13 +203,31 @@ Partial Public Class companies
     Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
-    '''HyperLink7 control.
+    '''lbl_company_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents HyperLink7 As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents lbl_company_name As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_en_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_en_name As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''img_company_logo control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents img_company_logo As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
     '''ContentPlaceHolder1 control.

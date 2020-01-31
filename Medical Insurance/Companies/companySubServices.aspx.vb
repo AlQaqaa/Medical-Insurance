@@ -26,8 +26,6 @@ Public Class companySubServices
             insurance_SQLcon.Close()
             If dt_result.Rows.Count > 0 Then
                 Dim dr_company = dt_result.Rows(0)
-                lbl_com_name.Text = dr_company!C_NAME_ARB
-                lbl_en_name.Text = dr_company!C_NAME_ENG
                 ViewState("contract_no") = dr_company!CONTRACT_NO
             End If
 

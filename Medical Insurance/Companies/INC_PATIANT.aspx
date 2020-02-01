@@ -67,9 +67,13 @@
                                     <asp:ListItem Value="0">المشترك</asp:ListItem>
                                     <asp:ListItem Value="1">الأب</asp:ListItem>
                                     <asp:ListItem Value="2">الأم</asp:ListItem>
-                                    <asp:ListItem Value="3">الزوج/ة</asp:ListItem>
+                                    <asp:ListItem Value="3">الزوجة</asp:ListItem>
                                     <asp:ListItem Value="4">الابن</asp:ListItem>
                                     <asp:ListItem Value="5">الابنة</asp:ListItem>
+                                    <asp:ListItem Value="6">الأخ</asp:ListItem>
+                                    <asp:ListItem Value="7">الأخت</asp:ListItem>
+                                    <asp:ListItem Value="8">الزوج</asp:ListItem>
+                                    <asp:ListItem Value="9">زوجة الأب</asp:ListItem>
                                 </asp:DropDownList>
                                 
                             </div>

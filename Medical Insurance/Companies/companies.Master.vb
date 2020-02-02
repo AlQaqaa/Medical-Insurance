@@ -6,7 +6,12 @@ Public Class companies
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Dim company_no As Integer = Val(Session("company_id"))
 
+        If company_no = 0 Then
+            Response.Redirect("Default.aspx", False)
+            Exit Sub
+        End If
         If IsPostBack = False Then
             hl_company_users_list.NavigateUrl = "~/Companies/LISTPATIANT.aspx?cID=" & Session("company_id")
 

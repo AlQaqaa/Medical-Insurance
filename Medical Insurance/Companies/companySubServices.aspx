@@ -40,7 +40,8 @@
                         <div class="form-row">
                             <div class="form-group col-xs-12 col-sm-4">
                                 <label for="ddl_clinics">المجموعة</label>
-                                <asp:DropDownList ID="ddl_gourp" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                <asp:DropDownList ID="ddl_gourp" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="GROUP_ARNAME" DataValueField="GROUP_ID"></asp:DropDownList>
+                                <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS GROUP_ID, 'الكل' AS GROUP_ARNAME FROM Main_GroupSubService UNION SELECT GROUP_ID, GROUP_ARNAME FROM [Main_GroupSubService] WHERE GROUP_STATE = 0"></asp:SqlDataSource>
                             </div>
                             <div class="form-group col-xs-12 col-sm-4">
                                 <label for="txt_clinics_max">الخدمات</label>
@@ -100,6 +101,7 @@
                                     </asp:TemplateField>
                                     <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
                                     <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
+                                    <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
                                     <asp:TemplateField HeaderText="نسبة الفرد">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txt_person_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>

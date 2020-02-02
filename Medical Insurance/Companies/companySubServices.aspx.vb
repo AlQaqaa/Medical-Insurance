@@ -69,7 +69,7 @@ Public Class companySubServices
         Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
         Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE"
 
-        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE " & search_by, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE " & search_by, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()
@@ -276,6 +276,88 @@ Public Class companySubServices
         Else
             clinic_Panel.Visible = False
             groups_Panel.Visible = True
+
+        End If
+    End Sub
+
+    Private Sub ddl_gourp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_gourp.SelectedIndexChanged
+        Try
+            Dim sel_com As New SqlCommand("SELECT 0 AS SubGroup_ID, 'الكل' AS SubGroup_ARname FROM Main_SubGroup UNION SELECT SubGroup_ID, SubGroup_ARname FROM Main_SubGroup WHERE SubGroup_State = 0 AND MainGroup_ID = " & ddl_gourp.SelectedValue, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+                ddl_services_group.DataSource = dt_result
+                ddl_services_group.DataValueField = "SubGroup_ID"
+                ddl_services_group.DataTextField = "SubGroup_ARname"
+                ddl_services_group.DataBind()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub ddl_services_group_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services_group.SelectedIndexChanged
+
+        Dim search_by As String
+
+        If ddl_services_group.SelectedValue = 0 Then
+            search_by = "SubService_Group in (SELECT SubGroup_ID FROM Main_SubGroup WHERE MainGroup_ID = " & ddl_gourp.SelectedValue & ")"
+        Else
+            search_by = "SubService_Group = " & ddl_services_group.SelectedValue
+        End If
+
+        Dim PERSON_PER As String = "ISNULL((SELECT PERSON_PER FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PERSON_PER,"
+        Dim FAMILY_PER As String = "ISNULL((SELECT FAMILY_PER FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS FAMILY_PER,"
+        Dim PARENT_PER As String = "ISNULL((SELECT PARENT_PER FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PARENT_PER,"
+        Dim MAX_PERSON_VAL As String = "ISNULL((SELECT MAX_PERSON_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_PERSON_VAL,"
+        Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
+        Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE"
+
+        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE " & search_by, insurance_SQLcon)
+        Dim dt_res As New DataTable
+        dt_res.Rows.Clear()
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_res.Load(sel_data.ExecuteReader)
+        insurance_SQLcon.Close()
+
+        If dt_res.Rows.Count > 0 Then
+            Panel1.Visible = True
+            GridView1.DataSource = dt_res
+            GridView1.DataBind()
+            For i = 0 To dt_res.Rows.Count - 1
+                Dim dd As GridViewRow = GridView1.Rows(i)
+
+                Dim ch As CheckBox = dd.FindControl("CheckBox2")
+                Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
+                Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
+                Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
+                Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
+                Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
+
+                If IsDBNull(dt_res.Rows(i)("SER_STATE")) Then
+                    ch.Checked = True
+                ElseIf dt_res.Rows(i)("SER_STATE") = 1 Then
+                    ch.Checked = False
+                Else
+                    ch.Checked = True
+                End If
+                txt_person_per.Text = dt_res.Rows(i)("PERSON_PER")
+                txt_family_per.Text = dt_res.Rows(i)("FAMILY_PER")
+                txt_parent_per.Text = dt_res.Rows(i)("PARENT_PER")
+                txt_person_max.Text = dt_res.Rows(i)("MAX_PERSON_VAL")
+                txt_family_max.Text = dt_res.Rows(i)("MAX_FAMILY_VAL")
+            Next
+        Else
+            Panel1.Visible = False
+            dt_res.Rows.Clear()
+            GridView1.DataSource = dt_res
+            GridView1.DataBind()
         End If
     End Sub
 End Class

@@ -13,7 +13,7 @@ Public Class LISTPATIANT
 
             If company_no <> 0 Then
                 'جلب منتفعين شركة معينة
-                Dim sel_com As New SqlCommand("SELECT PINC_ID, CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, C_ID, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, NAT_NUMBER, (CASE WHEN (P_STATE) = 0 THEN 'مفعل' ELSE 'موقوف' END) AS P_STATE, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_ID FROM INC_PATIANT WHERE C_ID = " & company_no, insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT PINC_ID, CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, C_ID, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, NAT_NUMBER, (CASE WHEN (P_STATE) = 0 THEN 'مفعل' ELSE 'موقوف' END) AS P_STATE, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID FROM INC_PATIANT WHERE C_ID = " & company_no, insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Open()
@@ -37,7 +37,7 @@ Public Class LISTPATIANT
                 End If
             Else
                 ' جلب جميع المنتفعين
-                Dim sel_com As New SqlCommand("SELECT PINC_ID, CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, C_ID, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, NAT_NUMBER, (CASE WHEN (P_STATE) = 0 THEN 'مفعل' ELSE 'موقوف' END) AS P_STATE, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_ID FROM INC_PATIANT", insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT PINC_ID, CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, C_ID, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, NAT_NUMBER, (CASE WHEN (P_STATE) = 0 THEN 'مفعل' ELSE 'موقوف' END) AS P_STATE, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID FROM INC_PATIANT", insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Open()

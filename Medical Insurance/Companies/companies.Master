@@ -119,7 +119,8 @@
                             </div>
                             <!-- /row -->
                         </asp:Panel>
-                        <div class="row mt-1 mr-0 ml-0">
+                        <asp:Panel ID="Panel_company_info" runat="server">
+                            <div class="row mt-1 mr-0 ml-0">
                             <div class="col-sm-12 col-md-9 d-none d-sm-block">
                                 <h1>
                                     <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h1>
@@ -131,6 +132,7 @@
                                 <asp:Image ID="img_company_logo" runat="server" CssClass="img-thumbnail" ImageUrl="~/Images/ImageCompany/company-logo.jpg" Width="120px" />
                             </div>
                         </div>
+                        </asp:Panel>
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
                     </div>

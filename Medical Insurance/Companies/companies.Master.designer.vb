@@ -203,6 +203,15 @@ Partial Public Class companies
     Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''Panel_company_info control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel_company_info As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''lbl_company_name control.
     '''</summary>
     '''<remarks>

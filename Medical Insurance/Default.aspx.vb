@@ -50,7 +50,7 @@ Public Class _Default1
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = dt_GridView.Rows(index)
             Session.Item("company_id") = (row.Cells(0).Text)
-            Response.Redirect("Companies/Default.aspx")
+            Response.Redirect("Companies/Default.aspx", True)
         End If
 
         '################ When User Press On Edit Button ################
@@ -58,7 +58,7 @@ Public Class _Default1
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = dt_GridView.Rows(index)
             Session.Item("company_id") = (row.Cells(0).Text)
-            Response.Redirect("Companies/EDITCOMPANY.aspx")
+            Response.Redirect("Companies/EDITCOMPANY.aspx", True)
         End If
 
 
@@ -67,7 +67,7 @@ Public Class _Default1
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = dt_GridView.Rows(index)
             Session.Item("company_id") = (row.Cells(0).Text)
-            Response.Redirect("Companies/INC_PATIANT.aspx")
+            Response.Redirect("Companies/INC_PATIANT.aspx", True)
         End If
 
         '################ When User Press On Add New Contract ################
@@ -75,7 +75,7 @@ Public Class _Default1
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = dt_GridView.Rows(index)
             Session.Item("company_id") = (row.Cells(0).Text)
-            Response.Redirect("Companies/addNewContract.aspx")
+            Response.Redirect("Companies/addNewContract.aspx", True)
         End If
 
         '################ When User Press On Stop Button ################

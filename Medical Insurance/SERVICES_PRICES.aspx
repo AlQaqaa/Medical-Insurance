@@ -57,7 +57,7 @@
                     <div class="form-group col-xs-12 col-sm-4">
                         <label for="ddl_clinics">المجموعة</label>
                         <asp:DropDownList ID="ddl_gourp" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="GROUP_ARNAME" DataValueField="GROUP_ID"></asp:DropDownList>
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [Group_ID], 'الكل' AS [Group_ARname] FROM Main_GroupSubService UNION SELECT [Group_ID], [Group_ARname] FROM [Main_GroupSubService] WHERE [Group_State] = 0"></asp:SqlDataSource>
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [Group_ID], 'يرجى اختيار مجموعة' AS [Group_ARname] FROM Main_GroupSubService UNION SELECT [Group_ID], [Group_ARname] FROM [Main_GroupSubService] WHERE [Group_State] = 0"></asp:SqlDataSource>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4">
                         <label for="txt_clinics_max">الخدمات</label>
@@ -76,15 +76,12 @@
                         <asp:TextBox ID="txt_inc_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر التأمين"></asp:TextBox>
                     </div>
                     <div class="form-group col-xs-12 col-sm-2">
-                        <asp:TextBox ID="txt_invoice_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر الفوترة"></asp:TextBox>
+                        <asp:TextBox ID="txt_invoice_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر المستأجر"></asp:TextBox>
                     </div>
-
                     <div class="form-group col-xs-12 col-sm-1">
-                        <asp:UpdatePanel ID="UpdatePanel2" runat="server">
-                            <ContentTemplate>
-                                <asp:Button ID="btn_apply" CssClass="btn btn-success btn-block" runat="server" Text="تطبيق" />
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
+                        <asp:Button ID="btn_apply" CssClass="btn btn-success btn-block" runat="server" Text="تطبيق" />
+                    </div>
+                    <div class="form-group col-xs-12 col-sm-2">
                     </div>
                 </div>
                 <!-- row -->

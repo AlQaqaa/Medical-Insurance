@@ -244,9 +244,9 @@ Public Class SERVICES_PRICES
             Dim txt_invoice_price As TextBox = dd.FindControl("txt_invoice_price")
 
             If ch.Checked = True Then
-                txt_private_price.Text = Val(txt_private_all.Text)
-                txt_inc_price.Text = Val(txt_inc_price_all.Text)
-                txt_invoice_price.Text = Val(txt_invoice_price_all.Text)
+                txt_private_price.Text = CDec(txt_private_all.Text)
+                txt_inc_price.Text = CDec(txt_inc_price_all.Text)
+                txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
 
             End If
 

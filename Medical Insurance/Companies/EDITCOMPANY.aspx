@@ -64,8 +64,6 @@
                                 <asp:ListItem Value="0" Text=""></asp:ListItem>
                                 <asp:ListItem Value="1">خاص</asp:ListItem>
                                 <asp:ListItem Value="2">تأمين</asp:ListItem>
-                                <asp:ListItem Value="3">فوترة</asp:ListItem>
-
                             </asp:DropDownList>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
@@ -86,9 +84,18 @@
                             </div>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
-                            <label for="txt_max_card_value">السقف العام للبطاقة</label>
+                            <label for="txt_max_card_value">السقف العام للعائلة</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">د.ل</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <label for="txt_max_person">السقف العام للفرد</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server"></asp:TextBox>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">د.ل</div>
                                 </div>
@@ -100,16 +107,9 @@
                                 <asp:ListItem Value="0" Text=""></asp:ListItem>
                                 <asp:ListItem Value="1">خاص</asp:ListItem>
                                 <asp:ListItem Value="2">تأمين</asp:ListItem>
-                                <asp:ListItem Value="3">فوترة</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-2">
-                            <label for="P_STATE">حالة الشركة</label>
-                            <asp:DropDownList ID="ddl_STATE" CssClass="form-control" runat="server" TabIndex="9">
-                                <asp:ListItem Value="1">مفعل</asp:ListItem>
-                                <asp:ListItem Value="0">موقوف</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
+                        
                     </div>
                     <hr />
                     <div class="form-row justify-content-end">

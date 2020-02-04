@@ -55,8 +55,8 @@
                         <div class="form-row">
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="NAL_ID">الجنسية</label>
-                                <asp:DropDownList ID="ddl_NAL_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="NAT_NAME" DataValueField="NAT_ID"></asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT * FROM [MAIN_NATIONALITY] WHERE ([DEL] =0)"></asp:SqlDataSource>
+                                <asp:DropDownList ID="ddl_NAL_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="Nationality_AR_Name" DataValueField="Nationality_ID"></asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT * FROM [Main_Nationality] WHERE ([Nationality_State] =0)"></asp:SqlDataSource>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="GENDER">الجنس</label>
@@ -82,8 +82,8 @@
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="CITY_ID">المدينة</label>
-                                <asp:DropDownList ID="ddl_CITY_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="CT_NAME" DataValueField="CT_ID"></asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT * FROM [MAIN_CITY] WHERE ([DEL] =0)"></asp:SqlDataSource>
+                                <asp:DropDownList ID="ddl_CITY_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="City_AR_Name" DataValueField="City_ID"></asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT * FROM [Main_City] WHERE ([City_State] =0)"></asp:SqlDataSource>
                             </div>
                         </div>
                         <div class="form-row">

@@ -1,26 +1,30 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Web.UI.WebControls
 Public Class patientInfo
     Inherits System.Web.UI.Page
 
     Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        'If IsPostBack = False Then
-        Dim pat_no As Integer = Val(Session("patiant_id"))
+        If IsPostBack = False Then
+            Dim pat_no As Integer = Val(Session("patiant_id"))
 
-        If pat_no = 0 Then
-            Response.Redirect("LISTPATIANT.aspx")
+            If pat_no = 0 Then
+                Response.Redirect("LISTPATIANT.aspx")
+            End If
+
+            Dim company_name_panel As Panel = DirectCast(Master.FindControl("Panel_company_info"), Panel)
+
+            getPatInfo()
+            getBlockServices()
+            getConstList()
+            getProcessesData()
         End If
-
-        getPatInfo()
-        getBlockServices()
-        getConstList()
-        'End If
 
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, isnull(IMAGE_CARD, '/') AS IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -142,21 +146,24 @@ Public Class patientInfo
 
     Private Sub getConstList()
         Try
-            Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (SELECT CON_NAME FROM MAIN_CONST WHERE MAIN_CONST.CON_ID = INC_PATIANT.CONST_ID) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = " & ViewState("bage_no") & " AND PINC_ID <> " & Val(Session("patiant_id")), insurance_SQLcon)
-            Dim dt_result As New DataTable
-            dt_result.Rows.Clear()
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-            If dt_result.Rows.Count > 0 Then
-                GridView2.DataSource = dt_result
-                GridView2.DataBind()
-            Else
+            If ViewState("bage_no") <> 0 Then
+                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND PINC_ID <> " & Val(Session("patiant_id")), insurance_SQLcon)
+                Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
-                GridView2.DataSource = dt_result
-                GridView2.DataBind()
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_result.Load(sel_com.ExecuteReader)
+                insurance_SQLcon.Close()
+                If dt_result.Rows.Count > 0 Then
+                    GridView2.DataSource = dt_result
+                    GridView2.DataBind()
+                Else
+                    dt_result.Rows.Clear()
+                    GridView2.DataSource = dt_result
+                    GridView2.DataBind()
+                End If
             End If
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -172,5 +179,32 @@ Public Class patientInfo
             Session.Item("company_id") = (row.Cells(1).Text)
             Response.Redirect("patientInfo.aspx")
         End If
+    End Sub
+
+    Private Sub getProcessesData()
+
+        Try
+            Dim sql_str As String = "SELECT top(10) Processes_Reservation_Code, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, MedicalStaff_AR_Name FROM INC_CompanyProcesses WHERE SUBSTRING([Processes_Reservation_Code],9 , 6) = " & Session("patiant_id") & ""
+
+            Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+                GridView3.DataSource = dt_result
+                GridView3.DataBind()
+            Else
+                dt_result.Rows.Clear()
+                GridView3.DataSource = dt_result
+                GridView3.DataBind()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
     End Sub
 End Class

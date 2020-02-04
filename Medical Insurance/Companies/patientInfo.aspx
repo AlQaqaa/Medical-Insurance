@@ -1,4 +1,4 @@
-﻿<%@ Page Title="معلومات المشترك" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="patientInfo.aspx.vb" Inherits="Medical_Insurance.patientInfo" %>
+﻿<%@ Page Title="معلومات المشترك" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="patientInfo.aspx.vb" Inherits="Medical_Insurance.patientInfo" Culture="ar-LY" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -139,10 +139,31 @@
                         </div>
                     </div>
                 </div>
+                <!-- /row -->
+                <div class="row mt-2">
+                    <div class="col-sm-12">
+                        <div class="card bg-light mb-3">
+                            <div class="card-header bg-success text-white">آخر الخدمات المقدمة لهذا المنتفع</div>
+                            <div class="card-body">
+                                <asp:GridView ID="GridView3" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                    <Columns>
+                                        <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Cilinc" HeaderText="العيادة"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_SubServices" HeaderText="الخدمة"></asp:BoundField>
+                                        <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Price" HeaderText="سعر الخدمة" DataFormatString="{0:C3}"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Paid" HeaderText="قيمة المنتفع" DataFormatString="{0:C3}"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Residual" HeaderText="قيمة الشركة" DataFormatString="{0:C3}"></asp:BoundField>
+                                    </Columns>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /col -->
+                </div>
+                <!-- /row -->
             </div>
-
-
-
         </ContentTemplate>
     </asp:UpdatePanel>
     <!-- Ban Services Modal -->

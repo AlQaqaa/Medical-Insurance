@@ -25,6 +25,8 @@ Public Class companies
                 End If
 
             Else
+                Session.RemoveAll()
+                Session.Clear()
                 Panel_company_info.Visible = False
             End If
 

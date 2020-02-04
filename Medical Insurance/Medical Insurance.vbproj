@@ -89,6 +89,7 @@
     <Content Include="Companies\addNewContract.aspx" />
     <Content Include="Companies\companyClinic.aspx" />
     <Content Include="Companies\companyInfo.aspx" />
+    <Content Include="Companies\companyProcesses.aspx" />
     <Content Include="Companies\companyServices.aspx" />
     <Content Include="Companies\companySubServices.aspx" />
     <Content Include="Companies\Default.aspx" />
@@ -166,6 +167,13 @@
     </Compile>
     <Compile Include="Companies\companyInfo.aspx.vb">
       <DependentUpon>companyInfo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Companies\companyProcesses.aspx.designer.vb">
+      <DependentUpon>companyProcesses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Companies\companyProcesses.aspx.vb">
+      <DependentUpon>companyProcesses.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Companies\companyServices.aspx.designer.vb">

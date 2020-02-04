@@ -203,6 +203,15 @@ Partial Public Class companies
     Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''hl_company_processes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_company_processes As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''Panel_company_info control.
     '''</summary>
     '''<remarks>

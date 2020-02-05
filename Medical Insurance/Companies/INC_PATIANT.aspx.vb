@@ -73,24 +73,7 @@ Public Class INC_PATIANT
         ins_PAT.Parameters.AddWithValue("@NAT_NUMBER", Val(txt_NAT_NUMBER.Text))
         ins_PAT.Parameters.AddWithValue("@KID_NO", Val(txt_KID_NO.Text))
         ins_PAT.Parameters.AddWithValue("@CITY_ID", ddl_CITY_ID.SelectedValue)
-        Dim fpath As String
-        If FileUpload1.PostedFile.FileName = Nothing Then
-            ins_PAT.Parameters.AddWithValue("@IMAGE_CARD", "images/ImagePatiant/card.png")
-        Else
-            fpath = Server.MapPath("../images/ImagePatiant/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
-            Dim FEx As String
-            FEx = IO.Path.GetExtension(fpath)
-            If FEx <> ".jpg" And FEx <> ".jpeg" And FEx <> ".png" Then
-                ScriptManager.RegisterClientScriptBlock(Me, Me.[GetType](), "alertMessage", "alert('صيغة الملف غير صحيحة')", True)
-                Exit Sub
-            End If
-            Dim FileName As String = Path.GetFileName(FileUpload1.PostedFile.FileName)
-            Dim Extension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
-            Dim FolderPath As String = ConfigurationManager.AppSettings("FolderPath")
-            Dim FilePath As String = Server.MapPath("../images/ImagePatiant/") & "\" & IO.Path.GetFileName(FileUpload1.PostedFile.FileName)
-            FileUpload1.SaveAs(FilePath)
-            ins_PAT.Parameters.AddWithValue("@IMAGE_CARD", "images/ImagePatiant/ " & FileUpload1.PostedFile.FileName)
-        End If
+        ins_PAT.Parameters.AddWithValue("@IMAGE_CARD", "images/ImagePatiant/card.png")
         ins_PAT.Parameters.AddWithValue("@userId", 1)
         ins_PAT.Parameters.AddWithValue("@userIp", GetIPAddress())
 

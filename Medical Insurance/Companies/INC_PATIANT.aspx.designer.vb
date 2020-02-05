@@ -239,15 +239,6 @@ Partial Public Class INC_PATIANT
     Protected WithEvents txt_NOTES As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''FileUpload1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
-
-    '''<summary>
     '''btn_save control.
     '''</summary>
     '''<remarks>

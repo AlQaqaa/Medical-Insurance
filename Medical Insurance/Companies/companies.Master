@@ -74,7 +74,7 @@
                                 <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="../SERVICES_PRICES.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i>مركز الإشعارات
+                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i>&nbsp;مركز الإشعارات
                                     <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                         </ul>

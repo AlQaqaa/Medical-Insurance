@@ -56,7 +56,7 @@
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-sm-4">
                             <label for="ddl_clinics">الفترة</label>
-                            <asp:DropDownList ID="ddl_time" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
+                            <asp:DropDownList ID="ddl_time" CssClass="form-control" runat="server" AutoPostBack="True">
                                 <asp:ListItem Value="1">آخر 30 يوم</asp:ListItem>
                                 <asp:ListItem Value="2">آخر 7 أيام</asp:ListItem>
                                 <asp:ListItem Value="3">هذا الشهر</asp:ListItem>

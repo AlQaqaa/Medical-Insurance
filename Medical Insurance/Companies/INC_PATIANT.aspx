@@ -124,12 +124,7 @@
                                 <asp:TextBox ID="txt_NOTES" CssClass="form-control" runat="server"></asp:TextBox>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="form-group col-xs-12 col-sm-3">
-                                <label for="FileUpload1">صورة البطاقة</label>
-                                <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
-                            </div>
-                        </div>
+                        
                         <hr />
                         <div class="form-row">
                             <div class="form-group col-sm-3">
@@ -139,9 +134,6 @@
                     </div>
                 </div>
             </ContentTemplate>
-            <Triggers>
-                <asp:PostBackTrigger ControlID="btn_save" />
-            </Triggers>
         </asp:UpdatePanel>
     </div>
 

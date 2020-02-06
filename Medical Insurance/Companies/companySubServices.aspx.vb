@@ -161,12 +161,23 @@ Public Class companySubServices
                     Exit Sub
                 End If
 
+                Dim clinic_no As Integer = 0
+                If ddl_show_type.SelectedValue = 1 Then
+                    clinic_no = ddl_clinics.SelectedValue
+                Else
+                    Dim sel_com As New SqlCommand("SELECT SubService_Clinic FROM Main_SubServices WHERE SubService_ID = " & dd.Cells(0).Text, insurance_SQLcon)
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    clinic_no = sel_com.ExecuteScalar
+                    insurance_SQLcon.Close()
+                End If
+
                 Dim insClinic As New SqlCommand
                 insClinic.Connection = insurance_SQLcon
                 insClinic.CommandText = "INC_addCompanySubServices"
                 insClinic.CommandType = CommandType.StoredProcedure
                 insClinic.Parameters.AddWithValue("@cID", ViewState("company_no"))
-                insClinic.Parameters.AddWithValue("@clinicID", ddl_clinics.SelectedValue)
+                insClinic.Parameters.AddWithValue("@clinicID", clinic_no)
                 insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
                 insClinic.Parameters.AddWithValue("@subServiceId", dd.Cells(0).Text)
                 insClinic.Parameters.AddWithValue("@serPersonPer", Val(txt_person_per.Text))

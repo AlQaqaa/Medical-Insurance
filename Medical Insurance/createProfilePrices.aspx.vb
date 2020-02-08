@@ -158,6 +158,12 @@ Public Class createProfilePrices
             End Try
 
         End If
+
+        If (e.CommandName = "show_profile") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+            Response.Redirect("servicesPricesShow.aspx?pID=" & (row.Cells(0).Text))
+        End If
     End Sub
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound

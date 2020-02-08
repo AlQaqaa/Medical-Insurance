@@ -57,7 +57,7 @@
                             
                             <asp:GridView ID="GridView1" class="table table-striped table-sm" runat="server" GridLines="None" AutoGenerateColumns="False">
                                 <Columns>
-                                    <asp:BoundField DataField="PROFILE_ID" HeaderText="ر.خ">
+                                    <asp:BoundField DataField="PROFILE_ID" HeaderText="ر.م">
                                         <ControlStyle CssClass="hide-colum" />
                                         <FooterStyle CssClass="hide-colum" />
                                         <HeaderStyle CssClass="hide-colum" />
@@ -69,7 +69,7 @@
                                         <HeaderStyle CssClass="hide-colum" />
                                         <ItemStyle CssClass="hide-colum" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="PROFILE_NAME" HeaderText="اسم الملف"></asp:BoundField>
+                                    <asp:ButtonField DataTextField="PROFILE_NAME" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم الملف لمشاهدة الأسعار وطباعتها'> اسم الملف <i class='fas fa-info-circle'></i></span>" CommandName="show_profile"></asp:ButtonField>
                                     <asp:BoundField DataField="PROFILE_DT" HeaderText="تاريخ إنشاء الملف"></asp:BoundField>
                                     <asp:TemplateField>
                                         <ItemTemplate>

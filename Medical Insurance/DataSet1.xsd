@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="insurance_CS" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="insurance_CS (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.insurance_CS.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="INC_servicesPricesTableAdapter" GeneratorDataComponentClassName="INC_servicesPricesTableAdapter" Name="INC_servicesPrices" UserDataComponentName="INC_servicesPricesTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectName="DB_A41508_ibn.dbo.INC_servicesPrices" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT SER_ID, ISNULL(CASH_PRS, 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SER_ID" DataSetColumn="SER_ID" />
+              <Mapping SourceColumn="SERVICE_PRICE" DataSetColumn="SERVICE_PRICE" />
+              <Mapping SourceColumn="SubService_Code" DataSetColumn="SubService_Code" />
+              <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
+              <Mapping SourceColumn="SubService_EN_Name" DataSetColumn="SubService_EN_Name" />
+              <Mapping SourceColumn="CLINIC_NAME" DataSetColumn="CLINIC_NAME" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="INC_servicesPrices" msprop:Generator_TableClassName="INC_servicesPricesDataTable" msprop:Generator_TableVarName="tableINC_servicesPrices" msprop:Generator_TablePropName="INC_servicesPrices" msprop:Generator_RowDeletingName="INC_servicesPricesRowDeleting" msprop:Generator_RowChangingName="INC_servicesPricesRowChanging" msprop:Generator_RowEvHandlerName="INC_servicesPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_servicesPricesRowDeleted" msprop:Generator_UserTableName="INC_servicesPrices" msprop:Generator_RowChangedName="INC_servicesPricesRowChanged" msprop:Generator_RowEvArgName="INC_servicesPricesRowChangeEvent" msprop:Generator_RowClassName="INC_servicesPricesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SER_ID" msprop:Generator_ColumnVarNameInTable="columnSER_ID" msprop:Generator_ColumnPropNameInRow="SER_ID" msprop:Generator_ColumnPropNameInTable="SER_IDColumn" msprop:Generator_UserColumnName="SER_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="SERVICE_PRICE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSERVICE_PRICE" msprop:Generator_ColumnPropNameInRow="SERVICE_PRICE" msprop:Generator_ColumnPropNameInTable="SERVICE_PRICEColumn" msprop:Generator_UserColumnName="SERVICE_PRICE" type="xs:decimal" minOccurs="0" />
+              <xs:element name="SubService_Code" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubService_Code" msprop:Generator_ColumnPropNameInRow="SubService_Code" msprop:Generator_ColumnPropNameInTable="SubService_CodeColumn" msprop:Generator_UserColumnName="SubService_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubService_AR_Name" msprop:Generator_ColumnPropNameInRow="SubService_AR_Name" msprop:Generator_ColumnPropNameInTable="SubService_AR_NameColumn" msprop:Generator_UserColumnName="SubService_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_EN_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubService_EN_Name" msprop:Generator_ColumnPropNameInRow="SubService_EN_Name" msprop:Generator_ColumnPropNameInTable="SubService_EN_NameColumn" msprop:Generator_UserColumnName="SubService_EN_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CLINIC_NAME" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCLINIC_NAME" msprop:Generator_ColumnPropNameInRow="CLINIC_NAME" msprop:Generator_ColumnPropNameInTable="CLINIC_NAMEColumn" msprop:Generator_UserColumnName="CLINIC_NAME" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

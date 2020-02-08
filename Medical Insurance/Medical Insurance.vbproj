@@ -44,6 +44,18 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Users\HP\Documents\ASP.NET AJAX Control Toolkit\Bin\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -101,6 +113,7 @@
     <Content Include="createProfilePrices.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="notificationCenter.aspx" />
+    <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />
     <Content Include="Default.aspx" />
@@ -239,12 +252,24 @@
       <DependentUpon>createProfilePrices.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Modules\checkModule.vb" />
     <Compile Include="notificationCenter.aspx.designer.vb">
       <DependentUpon>notificationCenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="notificationCenter.aspx.vb">
       <DependentUpon>notificationCenter.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="servicesPricesShow.aspx.designer.vb">
+      <DependentUpon>servicesPricesShow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="servicesPricesShow.aspx.vb">
+      <DependentUpon>servicesPricesShow.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="SERVICES_PRICES.aspx.designer.vb">
@@ -304,10 +329,22 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\servicesPrices.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.Master" />
     <Content Include="Companies\companies.Master" />
+    <Content Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -324,6 +361,7 @@
     <Content Include="Style\Fonts\Cairo-Light.ttf" />
     <Content Include="Style\Fonts\Cairo-Regular.ttf" />
     <Content Include="Style\Fonts\Cairo-SemiBold.ttf" />
+    <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -331,7 +369,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

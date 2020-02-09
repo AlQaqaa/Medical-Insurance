@@ -2,6 +2,7 @@
 Imports System.IO
 Imports Microsoft.Reporting.WebForms
 Imports System.Globalization
+Imports CrystalDecisions.Shared
 
 Public Class servicesPricesShow
     Inherits System.Web.UI.Page
@@ -10,6 +11,7 @@ Public Class servicesPricesShow
 
     Dim dt_result As New DataTable
     Dim main_ds As New DataSet1
+
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
@@ -74,62 +76,94 @@ Public Class servicesPricesShow
         End Try
     End Sub
 
+    Private Function getDataReport() As DataSet1
+        Dim ser_price As String
+
+        If ddl_price.SelectedValue = 1 Then
+            ser_price = "INS_PRS"
+        Else
+            ser_price = "CASH_PRS"
+        End If
+
+        Dim sql_str As String = "SELECT SER_ID, ISNULL(" & ser_price & ", 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices WHERE PROFILE_PRICE_ID = " & ViewState("profile_no")
+
+        Using main_ds
+            Dim cmd As New SqlCommand(sql_str)
+            Using sda As New SqlDataAdapter()
+                cmd.Connection = insurance_SQLcon
+                sda.SelectCommand = cmd
+                sda.Fill(main_ds, "INC_servicesPrices")
+                sda.Fill(dt_result)
+                Return main_ds
+            End Using
+        End Using
+    End Function
+
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
 
         Try
 
-            Dim ser_price As String
+            Dim CrReport As New servicesPrices()
+            Dim CrExportOptions As ExportOptions
+            Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions()
+            Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions()
+            CrReport.SetDataSource(getDataReport())
 
-            If ddl_price.SelectedValue = 1 Then
-                ser_price = "INS_PRS"
-            Else
-                ser_price = "CASH_PRS"
-            End If
-
-            Dim sql_str As String = "SELECT SER_ID, ISNULL(" & ser_price & ", 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices WHERE PROFILE_PRICE_ID = " & ViewState("profile_no")
-
-            Using main_ds
-                Dim cmd As New SqlCommand(sql_str)
-                Using sda As New SqlDataAdapter()
-                    cmd.Connection = insurance_SQLcon
-                    sda.SelectCommand = cmd
-                    sda.Fill(main_ds, "INC_servicesPrices")
-                    sda.Fill(dt_result)
-                    GridView1.DataSource = dt_result
-                    GridView1.DataBind()
-                End Using
-            End Using
-
-
-            Dim viewer As ReportViewer = New ReportViewer()
-
-            Dim datasource As New ReportDataSource("serPricesReportDS", main_ds.Tables("INC_servicesPrices"))
-            viewer.LocalReport.DataSources.Clear()
-            viewer.ProcessingMode = ProcessingMode.Local
-            viewer.LocalReport.ReportPath = Server.MapPath("Reports/servicesPrices.rdlc")
-            viewer.LocalReport.DataSources.Add(datasource)
-
-            Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-            Dim r As String = "~/Reports/servicesPrices.rdlc"
-            Page.Controls.Add(rv)
-            Dim warnings As Warning() = Nothing
-            Dim streamids As String() = Nothing
-            Dim mimeType As String = Nothing
-            Dim encoding As String = Nothing
-            Dim extension As String = Nothing
-            Dim bytes As Byte()
             Dim FolderLocation As String
             FolderLocation = Server.MapPath("~/Reports")
-            Dim filepath As String = FolderLocation & "\servicesPrices.pdf"
-            If Directory.Exists(filepath) Then
-                File.Delete(filepath)
-            End If
-            bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
-                encoding, extension, streamids, warnings)
-            Dim fs As New FileStream(FolderLocation & "\servicesPrices.pdf", FileMode.Create)
-            fs.Write(bytes, 0, bytes.Length)
-            fs.Close()
+            Dim filepath As String = FolderLocation & "/servicesPrices.pdf"
+            CrDiskFileDestinationOptions.DiskFileName = filepath
+
+            CrExportOptions = CrReport.ExportOptions
+
+            With CrExportOptions
+
+                'Set the destination to a disk file
+                .ExportDestinationType = ExportDestinationType.DiskFile
+
+                'Set the format to PDF
+                .ExportFormatType = ExportFormatType.PortableDocFormat
+
+                'Set the destination options to DiskFileDestinationOptions object
+                .DestinationOptions = CrDiskFileDestinationOptions
+                .FormatOptions = CrFormatTypeOptions
+            End With
+
+
+
+            CrReport.Export()
             Response.Redirect("~/Reports/servicesPrices.pdf", False)
+
+
+            'Dim viewer As ReportViewer = New ReportViewer()
+
+            'Dim datasource As New ReportDataSource("serPricesReportDS", main_ds.Tables("INC_servicesPrices"))
+            'viewer.LocalReport.DataSources.Clear()
+            'viewer.ProcessingMode = ProcessingMode.Local
+            'viewer.LocalReport.ReportPath = Server.MapPath("Reports/servicesPrices.rdlc")
+            'viewer.LocalReport.DataSources.Add(datasource)
+
+            'Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+            'Dim r As String = "~/Reports/servicesPrices.rdlc"
+            'Page.Controls.Add(rv)
+            'Dim warnings As Warning() = Nothing
+            'Dim streamids As String() = Nothing
+            'Dim mimeType As String = Nothing
+            'Dim encoding As String = Nothing
+            'Dim extension As String = Nothing
+            'Dim bytes As Byte()
+            'Dim FolderLocation As String
+            'FolderLocation = Server.MapPath("~/Reports")
+            'Dim filepath As String = FolderLocation & "\servicesPrices.pdf"
+            'If Directory.Exists(filepath) Then
+            '    File.Delete(filepath)
+            'End If
+            'bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
+            '    encoding, extension, streamids, warnings)
+            'Dim fs As New FileStream(FolderLocation & "\servicesPrices.pdf", FileMode.Create)
+            'fs.Write(bytes, 0, bytes.Length)
+            'fs.Close()
+            'Response.Redirect("~/Reports/servicesPrices.pdf", False)
 
         Catch ex As Exception
             MsgBox(ex.Message)

@@ -19,7 +19,7 @@ Public Class servicesPricesShow
             ViewState("profile_no") = Val(Request.QueryString("pID"))
 
             If ViewState("profile_no") = 0 Then
-                Response.Redirect("createProfilePrices.aspx", True)
+                Response.Redirect("createProfilePrices.aspx", False)
             End If
 
         End If
@@ -35,7 +35,6 @@ Public Class servicesPricesShow
         'Else
         '    clinic_Panel.Visible = False
         '    groups_Panel.Visible = True
-
         'End If
     End Sub
 
@@ -50,7 +49,15 @@ Public Class servicesPricesShow
                 ser_price = "CASH_PRS"
             End If
 
-            Dim sql_str As String = "SELECT SER_ID, ISNULL(" & ser_price & ", 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices WHERE PROFILE_PRICE_ID = " & ViewState("profile_no")
+            Dim sql_str As String = ""
+
+            If ddl_show_type.SelectedValue = 1 Then
+                sql_str = "SELECT SER_ID, ISNULL(" & ser_price & ", 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices WHERE PROFILE_PRICE_ID = " & ViewState("profile_no")
+            Else
+                sql_str = "SELECT SUBGROUP_ID as SER_ID, (select [Group_ARname] from [dbo].[Main_GroupSubService] where Main_GroupSubService.Group_ID = MAIN_SUBGROUP.MainGroup_ID) as CLINIC_NAME, SUBGROUP_ARNAME as SubService_AR_Name, isnull(SubGroup_ENname, '') as SubService_EN_Name, '-' as SubService_Code, ISNULL((SELECT " & ser_price & " FROM [DBO].[INC_SERVICES_PRICES] WHERE INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & " and INC_SERVICES_PRICES.[SER_ID] = (SELECT TOP (1) [SUBSERVICE_ID] FROM [DBO].[MAIN_SUBSERVICES] WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)), 0) AS SERVICE_PRICE FROM [DBO].[MAIN_SUBGROUP]"
+            End If
+
+
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_res As New DataTable
@@ -85,7 +92,13 @@ Public Class servicesPricesShow
             ser_price = "CASH_PRS"
         End If
 
-        Dim sql_str As String = "SELECT SER_ID, ISNULL(" & ser_price & ", 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices WHERE PROFILE_PRICE_ID = " & ViewState("profile_no")
+        Dim sql_str As String = ""
+
+        If ddl_show_type.SelectedValue = 1 Then
+            sql_str = "SELECT SER_ID, ISNULL(" & ser_price & ", 0) AS SERVICE_PRICE, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_servicesPrices.SubService_Clinic) AS CLINIC_NAME FROM INC_servicesPrices WHERE PROFILE_PRICE_ID = " & ViewState("profile_no")
+        Else
+            sql_str = "SELECT SUBGROUP_ID as SER_ID, (select [Group_ARname] from [dbo].[Main_GroupSubService] where Main_GroupSubService.Group_ID = MAIN_SUBGROUP.MainGroup_ID) as CLINIC_NAME, SUBGROUP_ARNAME as SubService_AR_Name, isnull(SubGroup_ENname, '') as SubService_EN_Name, '-' as SubService_Code, ISNULL((SELECT " & ser_price & " FROM [DBO].[INC_SERVICES_PRICES] WHERE INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & " and INC_SERVICES_PRICES.[SER_ID] = (SELECT TOP (1) [SUBSERVICE_ID] FROM [DBO].[MAIN_SUBSERVICES] WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)), 0) AS SERVICE_PRICE FROM [DBO].[MAIN_SUBGROUP]"
+        End If
 
         Using main_ds
             Dim cmd As New SqlCommand(sql_str)

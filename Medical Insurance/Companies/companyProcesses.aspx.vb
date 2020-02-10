@@ -27,7 +27,7 @@ Public Class companyProcesses
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, MedicalStaff_AR_Name, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)) AS PATIENT_NAME FROM INC_CompanyProcesses WHERE SUBSTRING([Processes_Reservation_Code],7 , 2) = " & Session("company_id") & ""
+            Dim sql_str As String = "SELECT Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, MedicalStaff_AR_Name, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)) AS PATIENT_NAME FROM INC_CompanyProcesses WHERE SUBSTRING([Processes_Reservation_Code],7 , 2) = " & Session("company_id") & " AND Processes_State = 2"
 
             Select Case ddl_time.SelectedValue
                 Case 1
@@ -39,7 +39,7 @@ Public Class companyProcesses
                 Case 4
                     sql_str = sql_str & " AND YEAR(Processes_Date) = " & Date.Now.Year
                 Case 5
-                    sql_str = sql_str & " AND [Processes_Date]>= " & txt_start_dt.Text & " and [Processes_Date] <= " & txt_end_dt.Text
+                    sql_str = sql_str & " AND CONVERT(VARCHAR, Processes_Date, 103) between '" & txt_start_dt.Text & "' AND '" & txt_end_dt.Text & "'"
             End Select
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
@@ -78,9 +78,7 @@ Public Class companyProcesses
     End Sub
 
     Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
-        If ddl_time.SelectedValue = 5 Then
-            getData()
-        End If
+        getData()
     End Sub
 
     Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand

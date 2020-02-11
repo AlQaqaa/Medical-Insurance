@@ -46,6 +46,7 @@
 
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
+                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                     <div class="row justify-content-center mt-3">
                         <div class="col-sm-3">
                             <asp:Button ID="btn_show" runat="server" Text="عرض" CssClass="btn btn-info btn-block" />

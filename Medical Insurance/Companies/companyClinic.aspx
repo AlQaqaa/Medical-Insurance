@@ -1,6 +1,46 @@
 ﻿<%@ Page Title="العيادات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="companyClinic.aspx.vb" Inherits="Medical_Insurance.companyClinic" Culture="ar-LY" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script src="../Style/JS/jquery-3.4.1.min.js"></script>
+    <script src="../Style/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../Style/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('table.com-tbl').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                "scrollX": true,
+                "responsive": true,
+                "pageLength": 10,
+                "processing": true,
+                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "language": {
+                    "lengthMenu": "عرض _MENU_ سجل",
+                    "zeroRecords": "لا توجد بيانات متاحة.",
+                    "info": "الإجمالي: _TOTAL_ شركة",
+                    "infoEmpty": "لا توجد بيانات متاحة.",
+                    "infoFiltered": "(تمت تصفيتها من اصل _MAX_ سجل)",
+                    "emptyTable": "لا توجد بيانات متاحة.",
+                    "loadingRecords": "جاري التحميل...",
+                    "processing": "جاري المعالجة...",
+                    "search": "البحث: ",
+                    "zeroRecords": "لا توجد بيانات مطابقة!",
+                    "paginate": {
+                        "first": "البداية",
+                        "last": "النهاية",
+                        "next": "التالي",
+                        "previous": "السابق"
+                    },
+                    "aria": {
+                        "sortAscending": ": تفعيل ليتم الترتيب التصاعدي",
+                        "sortDescending": ": تفعيل ليتم الترتيب التنازلي"
+                    }
+                }
+            });
+        });
+    </script>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -46,7 +86,7 @@
                                 <div class="col-sm-12">
                                     <h3>العيادات المغطاة</h3>
                                     <%--<asp:Literal ID="Literal1" runat="server"></asp:Literal>--%>
-                                    <asp:GridView ID="GridView1" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                    <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None" AllowPaging="True">
                                         <Columns>
                                             <asp:BoundField HeaderText="رقم العيادة" DataField="Clinic_ID">
                                                 <ControlStyle CssClass="hide-colum" />

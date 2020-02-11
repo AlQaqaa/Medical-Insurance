@@ -68,10 +68,10 @@ Public Class companyServices
                 Dim dr = dt_result.Rows(i)
 
                 If Not isFirstResult Then
-                    resultString &= String.Format(" <a href='#'><span class='badge badge-pill badge-info p-2'>{0}</span></a>", dr!CLINIC_NAME)
+                    resultString &= String.Format(" <a href='#'><span class='badge badge-pill badge-info p-2 mt-2'>{0}</span></a>", dr!CLINIC_NAME)
                 Else
                     isFirstResult = False
-                    resultString &= String.Format("<a href='#'><span class='badge badge-pill badge-info p-2'>{0}</span></a>", dr!CLINIC_NAME)
+                    resultString &= String.Format("<a href='#'><span class='badge badge-pill badge-info p-2 mt-2'>{0}</span></a>", dr!CLINIC_NAME)
                 End If
             Next
 

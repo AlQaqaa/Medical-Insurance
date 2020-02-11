@@ -84,8 +84,8 @@ Public Class servicesPricesShow
                 GridView1.DataBind()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Label1.Text = ex.Message
+            
         End Try
     End Sub
 

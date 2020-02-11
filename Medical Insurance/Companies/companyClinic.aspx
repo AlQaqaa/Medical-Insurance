@@ -1,4 +1,4 @@
-﻿<%@ Page Title="العيادات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="companyClinic.aspx.vb" Inherits="Medical_Insurance.companyClinic" %>
+﻿<%@ Page Title="العيادات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="companyClinic.aspx.vb" Inherits="Medical_Insurance.companyClinic" Culture="ar-LY" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -42,10 +42,33 @@
                             </div>
 
                             <hr />
-                            <div class="form-row">
-                                <div class="form-group col-xs-12">
+                            <div class="row">
+                                <div class="col-sm-12">
                                     <h3>العيادات المغطاة</h3>
-                                    <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                                    <%--<asp:Literal ID="Literal1" runat="server"></asp:Literal>--%>
+                                    <asp:GridView ID="GridView1" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                        <Columns>
+                                            <asp:BoundField HeaderText="رقم العيادة" DataField="Clinic_ID">
+                                                <ControlStyle CssClass="hide-colum" />
+                                                <FooterStyle CssClass="hide-colum" />
+                                                <HeaderStyle CssClass="hide-colum" />
+                                                <ItemStyle CssClass="hide-colum" />
+                                            </asp:BoundField>
+                                            <asp:BoundField HeaderText="اسم العيادة" DataField="Clinic_AR_Name"></asp:BoundField>
+                                            <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE" DataFormatString="{0:C3}"></asp:BoundField>
+                                            <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
+                                            <asp:TemplateField>
+                                                <ItemTemplate>
+                                                    <asp:LinkButton ID="btn_clinic_stop" runat="server"
+                                                        CommandName="stop_clinic"
+                                                        CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                        ToolTip="إيقاف العيادة"
+                                                        ControlStyle-CssClass="btn btn-link text-danger btn-new"
+                                                        OnClientClick="return confirm('هل أنت متأكد من إيقاف هذه العيادة')"><i class='fas fa-ban'></i></asp:LinkButton>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
                                 </div>
                             </div>
                         </div>

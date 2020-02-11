@@ -1,48 +1,9 @@
-﻿<%@ Page Title="معلومات عن الشركة" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="Default.aspx.vb" Inherits="Medical_Insurance._Default3" %>
+﻿<%@ Page Title="معلومات عن الشركة" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="Default.aspx.vb" Inherits="Medical_Insurance._Default3" Culture="ar-LY" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="../Style/JS/jquery-3.4.1.min.js"></script>
-    <script src="../Style/plugins/dataTables/jquery.dataTables.min.js"></script>
-    <script src="../Style/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            $('table.com-tbl').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
-                'columnDefs': [
-                  {
-                      "targets": "_all",
-                      "className": "text-center"
-                  }],
-                "scrollX": true,
-                "language": {
-                    "lengthMenu": "عرض _MENU_ سجل",
-                    "zeroRecords": "لا توجد بيانات متاحة.",
-                    "info": "الإجمالي: _TOTAL_ سجل",
-                    "infoEmpty": "لا توجد بيانات متاحة.",
-                    "infoFiltered": "(تمت تصفيتها من اصل _MAX_ سجل)",
-                    "emptyTable": "لا توجد بيانات متاحة.",
-                    "loadingRecords": "جاري التحميل...",
-                    "processing": "جاري المعالجة...",
-                    "search": "البحث: ",
-                    "zeroRecords": "لا توجد بيانات مطابقة!",
-                    "paginate": {
-                        "first": "البداية",
-                        "last": "النهاية",
-                        "next": "التالي",
-                        "previous": "السابق"
-                    },
-                    "aria": {
-                        "sortAscending": ": تفعيل ليتم الترتيب التصاعدي",
-                        "sortDescending": ": تفعيل ليتم الترتيب التنازلي"
-                    }
-                }
-
-            });
-
-        });
-    </script>
 
     <style>
         .form-control {
@@ -54,7 +15,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <div class="info-page">
-        
+
         <div class="row mb-3">
             <div class="col-xl-3 col-sm-6 py-2">
                 <div class="card bg-success text-white h-100">
@@ -108,7 +69,7 @@
                         <div class="card bg-light mb-3">
                             <div class="card-header bg-success text-white">العيادات المغطاة</div>
                             <div class="card-body">
-                                <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                <asp:GridView ID="GridView1" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                     <Columns>
                                         <asp:BoundField HeaderText="رقم العيادة" DataField="Clinic_ID">
                                             <ControlStyle CssClass="hide-colum" />
@@ -117,14 +78,13 @@
                                             <ItemStyle CssClass="hide-colum" />
                                         </asp:BoundField>
                                         <asp:BoundField HeaderText="اسم العيادة" DataField="Clinic_AR_Name"></asp:BoundField>
-                                        <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE"></asp:BoundField>
-                                        <asp:BoundField HeaderText="نسبة المنتفع" DataField="PER_T"></asp:BoundField>
+                                        <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE" DataFormatString="{0:C3}"></asp:BoundField>
                                         <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btn_clinic_stop" runat="server"
                                                     CommandName="stop_clinic"
-                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                    CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                                     ToolTip="إيقاف العيادة"
                                                     ControlStyle-CssClass="btn btn-link text-danger btn-new"
                                                     OnClientClick="return confirm('هل أنت متأكد من إيقاف هذه العيادة')"><i class='fas fa-ban'></i></asp:LinkButton>
@@ -156,7 +116,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btn_block_stop" runat="server"
                                                     CommandName="stop_block_doctor"
-                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                    CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                                     ToolTip="إيقاف الحظر"
                                                     ControlStyle-CssClass="btn btn-link text-success btn-new"
                                                     OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذا الطبيب؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>

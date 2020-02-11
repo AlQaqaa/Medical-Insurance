@@ -64,7 +64,7 @@ Public Class _Default3
 
     Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
         '################ When User Press On Stop Clinic ################
-        If (e.CommandName = "stop_block") Then
+        If (e.CommandName = "stop_clinic") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
@@ -79,6 +79,8 @@ Public Class _Default3
             insurance_SQLcon.Open()
             edit_sts.ExecuteNonQuery()
             insurance_SQLcon.Close()
+
+            getClinicAvailable()
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
@@ -117,6 +119,7 @@ Public Class _Default3
         If dt_result.Rows.Count > 0 Then
             GridView2.DataSource = dt_result
             GridView2.DataBind()
+            Label1.Text = ""
         Else
             dt_result.Rows.Clear()
             GridView2.DataBind()
@@ -140,4 +143,6 @@ Public Class _Default3
 
         End If
     End Sub
+
+
 End Class

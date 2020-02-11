@@ -51,8 +51,44 @@ Public Class companyClinic
         source_list.DataBind()
     End Sub
 
+    'Sub getClinicAvailable()
+    '    Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+    '    Dim dt_result As New DataTable
+    '    dt_result.Rows.Clear()
+    '    insurance_SQLcon.Close()
+    '    insurance_SQLcon.Open()
+    '    dt_result.Load(sel_com.ExecuteReader)
+    '    insurance_SQLcon.Close()
+
+    '    If dt_result.Rows.Count > 0 Then
+    '        Dim resultString As String = ""
+    '        Dim isFirstResult = True
+
+    '        For i = 0 To dt_result.Rows.Count - 1
+    '            Dim dr = dt_result.Rows(i)
+
+    '            ' Delete Available Clinics From Clinics ListBox
+    '            Dim liItem As ListItem = source_list.Items.FindByValue(dr!Clinic_ID)
+    '            If (liItem IsNot Nothing) Then
+    '                source_list.Items.Remove(liItem)
+    '            End If
+
+    '            If Not isFirstResult Then
+    '                resultString &= String.Format(" <span class='badge badge-pill badge-info p-2'>{0}</span>", dr!CLINIC_NAME)
+    '            Else
+    '                isFirstResult = False
+    '                resultString &= String.Format("<span class='badge badge-pill badge-info p-2'>{0}</span>", dr!CLINIC_NAME)
+    '            End If
+    '        Next
+
+    '        Literal1.Text = resultString
+    '    Else
+    '        Literal1.Text = "لا يوجد عيادة مغطاة"
+    '    End If
+    'End Sub
+
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS Clinic_AR_Name, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT MAX_VALUE FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS MAX_VALUE, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT PER_T FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT PER_T FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS PER_T, (CASE WHEN GROUP_NO = 0 THEN '-' ELSE 'مشتركة' END) AS GROUP_CLINIC FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -61,29 +97,8 @@ Public Class companyClinic
         insurance_SQLcon.Close()
 
         If dt_result.Rows.Count > 0 Then
-            Dim resultString As String = ""
-            Dim isFirstResult = True
-            
-            For i = 0 To dt_result.Rows.Count - 1
-                Dim dr = dt_result.Rows(i)
-
-                ' Delete Available Clinics From Clinics ListBox
-                Dim liItem As ListItem = source_list.Items.FindByValue(dr!Clinic_ID)
-                If (liItem IsNot Nothing) Then
-                    source_list.Items.Remove(liItem)
-                End If
-
-                If Not isFirstResult Then
-                    resultString &= String.Format(" <span class='badge badge-pill badge-info p-2'>{0}</span>", dr!CLINIC_NAME)
-                Else
-                    isFirstResult = False
-                    resultString &= String.Format("<span class='badge badge-pill badge-info p-2'>{0}</span>", dr!CLINIC_NAME)
-                End If
-            Next
-
-            Literal1.Text = resultString
-        Else
-            Literal1.Text = "لا يوجد عيادة مغطاة"
+            GridView1.DataSource = dt_result
+            GridView1.DataBind()
         End If
     End Sub
 
@@ -206,5 +221,30 @@ Public Class companyClinic
         ' txt_person_per.Text = ""
         dist_list.Items.Clear()
 
+    End Sub
+
+    Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        '################ When User Press On Stop Clinic ################
+        If (e.CommandName = "stop_clinic") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+
+            Dim del_com As New SqlCommand("DELETE FROM INC_CLINICAL_RESTRICTIONS WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            del_com.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            Dim edit_sts As New SqlCommand("UPDATE INC_SUB_SERVICES_RESTRICTIONS SET SER_STATE=1 WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            edit_sts.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            getClinicAvailable()
+
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+
+        End If
     End Sub
 End Class

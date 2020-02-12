@@ -86,53 +86,67 @@
                                 </div>
                                 <!-- row -->
                             </asp:Panel>
-                            <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
-                                <Columns>
-                                    <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
-                                        <ControlStyle CssClass="hide-colum" />
-                                        <FooterStyle CssClass="hide-colum" />
-                                        <HeaderStyle CssClass="hide-colum" />
-                                        <ItemStyle CssClass="hide-colum" />
-                                    </asp:BoundField>
-                                    <asp:TemplateField HeaderText="مغطاة؟">
-                                        <ItemTemplate>
-                                            <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
-                                    <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
-                                    <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
-                                    <asp:TemplateField HeaderText="نسبة الفرد">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txt_person_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="نسبة العائلة">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txt_family_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="نسبة الوالدين">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txt_parent_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="سقف الفرد">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txt_person_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="سقف العائلة">
-                                        <ItemTemplate>
-                                            <asp:TextBox ID="txt_family_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-                                </Columns>
-                            </asp:GridView>
                             <hr />
                             <div class="form-row justify-content-end">
+                                <div class="col-sm-2">
+                                    <div class="form-group">
+                                        <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
+                                            <ProgressTemplate>
+                                                <img src="Style/images/loading.gif" width="50px" />
+                                            </ProgressTemplate>
+                                        </asp:UpdateProgress>
+                                    </div>
+                                </div>
                                 <div class="form-group col-xs-6 col-sm-3">
                                     <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                        <Columns>
+                                            <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
+                                                <ControlStyle CssClass="hide-colum" />
+                                                <FooterStyle CssClass="hide-colum" />
+                                                <HeaderStyle CssClass="hide-colum" />
+                                                <ItemStyle CssClass="hide-colum" />
+                                            </asp:BoundField>
+                                            <asp:TemplateField HeaderText="مغطاة؟">
+                                                <ItemTemplate>
+                                                    <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
+                                            <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
+                                            <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
+                                            <asp:TemplateField HeaderText="نسبة الفرد">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txt_person_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="نسبة العائلة">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txt_family_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="نسبة الوالدين">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txt_parent_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="سقف الفرد">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txt_person_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:TemplateField HeaderText="سقف العائلة">
+                                                <ItemTemplate>
+                                                    <asp:TextBox ID="txt_family_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
                                 </div>
                             </div>
                         </ContentTemplate>

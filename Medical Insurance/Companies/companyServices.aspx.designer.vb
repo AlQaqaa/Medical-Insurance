@@ -41,6 +41,15 @@ Partial Public Class companyServices
     Protected WithEvents txt_clinics_max As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+
+    '''<summary>
     '''Literal1 control.
     '''</summary>
     '''<remarks>
@@ -50,13 +59,13 @@ Partial Public Class companyServices
     Protected WithEvents Literal1 As Global.System.Web.UI.WebControls.Literal
 
     '''<summary>
-    '''UpdatePanel1 control.
+    '''btn_save control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Panel1 control.
@@ -102,13 +111,4 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''btn_save control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
 End Class

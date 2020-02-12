@@ -36,14 +36,14 @@
                         <label for="ddl_clinics">العيادة</label>
                         <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Clinic_AR_Name" DataValueField="CLINIC_ID">
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT * FROM [MAIN_CLINIC]"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT 0 AS clinic_id, 'يرجى اختيار عيادة' AS Clinic_AR_Name FROM [MAIN_CLINIC] UNION SELECT clinic_id, Clinic_AR_Name FROM [MAIN_CLINIC]"></asp:SqlDataSource>
                     </div>
                     <div class="form-group col-xs-12 col-sm-4">
                         <label for="ddl_clinics">الخدمة</label>
                         <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource4" DataTextField="Service_AR_Name" DataValueField="Service_ID">
                         </asp:DropDownList>
 
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS Service_ID, '' AS Service_AR_Name FROM Main_Services UNION SELECT [Service_ID], [Service_AR_Name] FROM [Main_Services] WHERE ([Service_Clinic] = @CLINIC_ID)">
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource4" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS Service_ID, 'الكل' AS Service_AR_Name FROM Main_Services UNION SELECT [Service_ID], [Service_AR_Name] FROM [Main_Services] WHERE ([Service_Clinic] = @CLINIC_ID)">
                             <SelectParameters>
                                 <asp:ControlParameter ControlID="ddl_clinics" PropertyName="SelectedValue" Name="CLINIC_ID" Type="Int32"></asp:ControlParameter>
                             </SelectParameters>
@@ -87,46 +87,6 @@
                 <!-- row -->
 
             </asp:Panel>
-
-
-            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
-                <Columns>
-                    <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
-                        <ControlStyle CssClass="hide-colum" />
-                        <FooterStyle CssClass="hide-colum" />
-                        <HeaderStyle CssClass="hide-colum" />
-                        <ItemStyle CssClass="hide-colum" />
-                    </asp:BoundField>
-                    <asp:TemplateField HeaderText="مغطاة؟">
-                        <ItemTemplate>
-                            <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:BoundField DataField="SubService_Code" HeaderText="كود الخدمة" SortExpression="SubService_Code" />
-                    <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة بالعربي" SortExpression="SubService_AR_Name" />
-                    <asp:BoundField DataField="SubService_EN_Name" HeaderText="اسم الخدمة بالانجليزي" SortExpression="SubService_EN_Name" />
-                    <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
-                    <asp:TemplateField HeaderText="سعر الخاص" SortExpression="22">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txt_private_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
-                        </ItemTemplate>
-                        <ItemStyle Width="100px" />
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="سعر التأمين" SortExpression="22">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txt_inc_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
-                        </ItemTemplate>
-                        <ItemStyle Width="100px" />
-                    </asp:TemplateField>
-
-                    <asp:TemplateField HeaderText="سعر فوترة">
-                        <ItemTemplate>
-                            <asp:TextBox ID="txt_invoice_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
-                        </ItemTemplate>
-                        <ItemStyle Width="100px" />
-                    </asp:TemplateField>
-                </Columns>
-            </asp:GridView>
             <hr />
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
@@ -135,7 +95,7 @@
                             <div class="form-group">
                                 <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
                                     <ProgressTemplate>
-                                        <img src="Style/images/loading.gif" width="70px" />
+                                        <img src="Style/images/loading.gif" width="50px" />
                                     </ProgressTemplate>
                                 </asp:UpdateProgress>
                             </div>
@@ -144,8 +104,52 @@
                             <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
                         </div>
                     </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
+                                <Columns>
+                                    <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
+                                        <ControlStyle CssClass="hide-colum" />
+                                        <FooterStyle CssClass="hide-colum" />
+                                        <HeaderStyle CssClass="hide-colum" />
+                                        <ItemStyle CssClass="hide-colum" />
+                                    </asp:BoundField>
+                                    <asp:TemplateField HeaderText="تحديد">
+                                        <ItemTemplate>
+                                            <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="SubService_Code" HeaderText="كود الخدمة" SortExpression="SubService_Code" />
+                                    <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة بالعربي" SortExpression="SubService_AR_Name" />
+                                    <asp:BoundField DataField="SubService_EN_Name" HeaderText="اسم الخدمة بالانجليزي" SortExpression="SubService_EN_Name" />
+                                    <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
+                                    <asp:TemplateField HeaderText="سعر الخاص" SortExpression="22">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txt_private_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="سعر التأمين" SortExpression="22">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txt_inc_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="سعر فوترة">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txt_invoice_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
+
         </div>
     </div>
 

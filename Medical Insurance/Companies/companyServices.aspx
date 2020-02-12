@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="الأقسام" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="companyServices.aspx.vb" Inherits="Medical_Insurance.companyServices" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -18,15 +19,22 @@
                             <label for="txt_clinics_max">سقف العيادة</label>
                             <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-4">
-                            <h6>العيادات المغطاة</h6>
-                            <asp:Literal ID="Literal1" runat="server"></asp:Literal>
-                        </div>
                     </div>
-                    <hr />
-
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
+                            <div class="form-row">
+                                <div class="form-group col-xs-12">
+                                    <h6>العيادات المغطاة</h6>
+                                    <asp:Literal ID="Literal1" runat="server"></asp:Literal>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="form-row justify-content-end">
+                                <div class="form-group col-xs-6 col-sm-3">
+                                    <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
+                                </div>
+                            </div>
+                            <hr />
                             <asp:Panel ID="Panel1" runat="server">
                                 <div class="form-row">
                                     <div class="form-group col-xs-12 col-sm-1">
@@ -63,12 +71,7 @@
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
-                            <hr />
-                            <div class="form-row justify-content-end">
-                                <div class="form-group col-xs-6 col-sm-3">
-                                    <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
-                                </div>
-                            </div>
+                            
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>

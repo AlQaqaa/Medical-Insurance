@@ -8,6 +8,7 @@ Public Class SERVICES_PRICES
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
+
             If Val(Session("profile_no")) = 0 Then
                 Response.Redirect("createProfilePrices.aspx", False)
             Else
@@ -23,6 +24,7 @@ Public Class SERVICES_PRICES
                     txt_profile_name.Text = dr_name!PROFILE_NAME
                 End If
             End If
+
         End If
     End Sub
 
@@ -62,44 +64,7 @@ Public Class SERVICES_PRICES
     End Sub
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
-        Try
-
-
-            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS CASH_PRS,"
-            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INS_PRS,"
-            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS "
-
-            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & " FROM Main_SubServices WHERE SubService_Service_ID = " & ddl_services.SelectedValue, insurance_SQLcon)
-            Dim dt_res As New DataTable
-            dt_res.Rows.Clear()
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_res.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-
-            If dt_res.Rows.Count > 0 Then
-                GridView1.DataSource = dt_res
-                GridView1.DataBind()
-                For i = 0 To dt_res.Rows.Count - 1
-                    Dim dd As GridViewRow = GridView1.Rows(i)
-
-                    Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
-                    Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
-                    Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
-
-                    txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
-                    txt_inc_prc.Text = dt_res.Rows(i)("INS_PRS")
-                    txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
-                Next
-            Else
-                dt_res.Rows.Clear()
-                GridView1.DataSource = dt_res
-                GridView1.DataBind()
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-        End Try
+        getSubServices()
     End Sub
 
     Private Sub ddl_show_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_show_type.SelectedIndexChanged
@@ -115,6 +80,9 @@ Public Class SERVICES_PRICES
 
     Private Sub ddl_gourp_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_gourp.SelectedIndexChanged
         Try
+            GridView1.DataSource = Nothing
+            GridView1.DataBind()
+
             Dim sel_com As New SqlCommand("SELECT 0 AS SubGroup_ID, 'الكل' AS SubGroup_ARname FROM Main_SubGroup UNION SELECT SubGroup_ID, SubGroup_ARname FROM Main_SubGroup WHERE SubGroup_State = 0 AND MainGroup_ID = " & ddl_gourp.SelectedValue, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
@@ -177,6 +145,9 @@ Public Class SERVICES_PRICES
 
     Private Sub ddl_services_group_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services_group.SelectedIndexChanged
         Try
+
+            GridView1.DataSource = Nothing
+            GridView1.DataBind()
 
             Dim search_by As String
 
@@ -253,4 +224,58 @@ Public Class SERVICES_PRICES
         Next
     End Sub
 
+    Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
+         getSubServices()
+    End Sub
+
+    Sub getSubServices()
+        Try
+            GridView1.DataSource = Nothing
+            GridView1.DataBind()
+
+            Dim search_by As String
+
+            If ddl_services.SelectedValue = 0 Then
+                search_by = "SubService_Clinic = " & ddl_clinics.SelectedValue
+            Else
+                search_by = "SubService_Service_ID = " & ddl_services.SelectedItem.Value
+            End If
+
+
+            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS CASH_PRS,"
+            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INS_PRS,"
+            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS "
+
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & " FROM Main_SubServices WHERE " & search_by, insurance_SQLcon)
+            Dim dt_res As New DataTable
+            dt_res.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_res.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_res.Rows.Count > 0 Then
+                GridView1.DataSource = dt_res
+                GridView1.DataBind()
+                For i = 0 To dt_res.Rows.Count - 1
+                    Dim dd As GridViewRow = GridView1.Rows(i)
+
+                    Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
+                    Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
+                    Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+
+                    txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
+                    txt_inc_prc.Text = dt_res.Rows(i)("INS_PRS")
+                    txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+                Next
+            Else
+                dt_res.Rows.Clear()
+                GridView1.DataSource = dt_res
+                GridView1.DataBind()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        End Try
+    End Sub
 End Class

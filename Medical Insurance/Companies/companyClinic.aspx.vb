@@ -99,6 +99,17 @@ Public Class companyClinic
         If dt_result.Rows.Count > 0 Then
             GridView1.DataSource = dt_result
             GridView1.DataBind()
+
+            For i = 0 To dt_result.Rows.Count - 1
+                Dim dr = dt_result.Rows(i)
+
+                ' Delete Available Clinics From Clinics ListBox
+                Dim liItem As ListItem = source_list.Items.FindByValue(dr!Clinic_ID)
+                If (liItem IsNot Nothing) Then
+                    source_list.Items.Remove(liItem)
+                End If
+
+            Next
         End If
     End Sub
 

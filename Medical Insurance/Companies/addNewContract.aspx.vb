@@ -57,6 +57,7 @@ Public Class addNewContract
                 insToCompany.Parameters.AddWithValue("@profile_price_id", ddl_profiles_prices.SelectedValue)
                 insToCompany.Parameters.AddWithValue("@userId", 1)
                 insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
+                insToCompany.Parameters.AddWithValue("@max_one_processes", CDec(txt_max_one_processes.Text))
                 insurance_SQLcon.Close()
                 insurance_SQLcon.Open()
                 insToCompany.ExecuteNonQuery()

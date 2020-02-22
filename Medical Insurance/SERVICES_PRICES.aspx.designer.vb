@@ -158,6 +158,15 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents txt_invoice_price_all As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
+    '''txt_cost_price_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_cost_price_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
     '''btn_apply control.
     '''</summary>
     '''<remarks>

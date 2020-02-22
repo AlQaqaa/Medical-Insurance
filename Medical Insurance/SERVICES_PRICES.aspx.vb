@@ -36,6 +36,7 @@ Public Class SERVICES_PRICES
                 Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                 Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
                 Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
                 If ch.Checked = True Then
                     Dim insClinic As New SqlCommand
@@ -49,6 +50,7 @@ Public Class SERVICES_PRICES
                     insClinic.Parameters.AddWithValue("@user_id", 1)
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
+                    insClinic.Parameters.AddWithValue("@cost_prc", CDec(txt_cost_price.Text))
                     insurance_SQLcon.Open()
                     insClinic.ExecuteNonQuery()
                     insurance_SQLcon.Close()
@@ -107,9 +109,10 @@ Public Class SERVICES_PRICES
 
                 Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS CASH_PRS,"
                 Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INS_PRS,"
-                Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS "
+                Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS, "
+                Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS COST_PRICE "
 
-                Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & " FROM Main_SubServices WHERE SubService_Group in (SELECT SubGroup_ID FROM Main_SubGroup WHERE MainGroup_ID = " & ddl_gourp.SelectedItem.Value & ")", insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & COST_PRS & " FROM Main_SubServices WHERE SubService_Group in (SELECT SubGroup_ID FROM Main_SubGroup WHERE MainGroup_ID = " & ddl_gourp.SelectedItem.Value & ")", insurance_SQLcon)
                 Dim dt_res As New DataTable
                 dt_res.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -126,10 +129,12 @@ Public Class SERVICES_PRICES
                         Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                         Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
                         Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                        Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
                         txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
                         txt_inc_prc.Text = dt_res.Rows(i)("INS_PRS")
                         txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+                        txt_cost_price.Text = dt_res.Rows(i)("COST_PRICE")
                     Next
                 Else
                     dt_res.Rows.Clear()
@@ -159,9 +164,10 @@ Public Class SERVICES_PRICES
 
             Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS CASH_PRS,"
             Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INS_PRS,"
-            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS "
+            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS,"
+            Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS COST_PRICE "
 
-            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & " FROM Main_SubServices WHERE " & search_by, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & COST_PRS & " FROM Main_SubServices WHERE " & search_by, insurance_SQLcon)
             Dim dt_res As New DataTable
             dt_res.Rows.Clear()
             insurance_SQLcon.Close()
@@ -178,10 +184,12 @@ Public Class SERVICES_PRICES
                     Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                     Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
                     Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                    Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
                     txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
                     txt_inc_prc.Text = dt_res.Rows(i)("INS_PRS")
                     txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+                    txt_cost_price.Text = dt_res.Rows(i)("COST_PRICE")
                 Next
             Else
                 dt_res.Rows.Clear()
@@ -213,11 +221,13 @@ Public Class SERVICES_PRICES
             Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
             Dim txt_inc_price As TextBox = dd.FindControl("txt_inc_price")
             Dim txt_invoice_price As TextBox = dd.FindControl("txt_invoice_price")
+            Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
             If ch.Checked = True Then
                 txt_private_price.Text = CDec(txt_private_all.Text)
                 txt_inc_price.Text = CDec(txt_inc_price_all.Text)
                 txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
+                txt_cost_price.Text = CDec(txt_cost_price_all.Text)
 
             End If
 
@@ -244,9 +254,10 @@ Public Class SERVICES_PRICES
 
             Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS CASH_PRS,"
             Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INS_PRS,"
-            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS "
+            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INVO_PRS,"
+            Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS COST_PRICE "
 
-            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & " FROM Main_SubServices WHERE " & search_by, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & COST_PRS & " FROM Main_SubServices WHERE " & search_by, insurance_SQLcon)
             Dim dt_res As New DataTable
             dt_res.Rows.Clear()
             insurance_SQLcon.Close()
@@ -263,10 +274,12 @@ Public Class SERVICES_PRICES
                     Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                     Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
                     Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                    Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
                     txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
                     txt_inc_prc.Text = dt_res.Rows(i)("INS_PRS")
                     txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+                    txt_cost_price.Text = dt_res.Rows(i)("COST_PRICE")
                 Next
             Else
                 dt_res.Rows.Clear()

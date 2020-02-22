@@ -65,7 +65,7 @@
                     </div>
                 </div>
 
-                <div class="form-row justify-content-end">
+                <div class="form-row justify-content-center">
                     <div class="form-group col-xs-12 col-sm-1">
                         <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Checked="True" />
                     </div>
@@ -78,11 +78,13 @@
                     <div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_invoice_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر المستأجر"></asp:TextBox>
                     </div>
+                    <div class="form-group col-xs-12 col-sm-2">
+                         <asp:TextBox ID="txt_cost_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر التكلفة"></asp:TextBox>
+                    </div>
                     <div class="form-group col-xs-12 col-sm-1">
                         <asp:Button ID="btn_apply" CssClass="btn btn-success btn-block" runat="server" Text="تطبيق" />
                     </div>
-                    <div class="form-group col-xs-12 col-sm-2">
-                    </div>
+                    
                 </div>
                 <!-- row -->
 
@@ -136,10 +138,15 @@
                                         </ItemTemplate>
                                         <ItemStyle Width="100px" />
                                     </asp:TemplateField>
-
                                     <asp:TemplateField HeaderText="سعر فوترة">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txt_invoice_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="سعر التكلفة">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txt_cost_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle Width="100px" />
                                     </asp:TemplateField>

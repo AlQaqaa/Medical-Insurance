@@ -131,13 +131,19 @@
                             <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
                         </div>
                     </div>
-                    <%--<div class="form-row">
+                    <!-- /row -->
+                    <div class="form-row">
                         <div class="form-group col-xs-12 col-sm-3">
-                            <label for="FileUpload1">شعار الشركة</label>
-                            <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+                            <label for="txt_max_company_value">سقف المعاينة الواحدة</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txt_max_one_processes" CssClass="form-control" Text="0" runat="server"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">د.ل</div>
+                                </div>
+                            </div>
                         </div>
-                    </div>--%>
-                    
+                    </div>
+                    <!-- /row -->
                     <hr />
                     <div class="form-row justify-content-end">
                         <div class="form-group col-xs-6 col-sm-3">

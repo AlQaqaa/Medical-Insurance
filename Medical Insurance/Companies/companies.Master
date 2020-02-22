@@ -172,8 +172,8 @@
                         <asp:FileUpload ID="FileUpload1" runat="server" />
                     </div>
                     <div class="modal-footer">
+                        <asp:Button ID="btn_change_img" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
-                        <asp:Button ID="Button1" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
                     </div>
                 </div>
             </div>

@@ -116,6 +116,7 @@
     <Content Include="Companies\patientInfo.aspx" />
     <Content Include="createProfilePrices.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
+    <Content Include="Motalbat\Default.aspx" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
@@ -262,6 +263,20 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Modules\checkModule.vb" />
+    <Compile Include="Motalbat\Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Motalbat\Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Motalbat\motalbat.Master.designer.vb">
+      <DependentUpon>motalbat.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Motalbat\motalbat.Master.vb">
+      <DependentUpon>motalbat.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="notificationCenter.aspx.designer.vb">
       <DependentUpon>notificationCenter.aspx</DependentUpon>
     </Compile>
@@ -358,6 +373,7 @@
     <Content Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="Motalbat\motalbat.Master" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

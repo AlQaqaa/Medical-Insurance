@@ -79,6 +79,9 @@
                                     <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label>
                                 </asp:HyperLink>
                             </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-receipt"></i> المطالبات</asp:HyperLink>
+                            </li>
                         </ul>
                     </div>
                 </div>

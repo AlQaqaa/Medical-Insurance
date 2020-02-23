@@ -149,6 +149,15 @@ Partial Public Class companies
     Protected WithEvents lbl_notification As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''hl_motalbat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_motalbat As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''Panel1 control.
     '''</summary>
     '''<remarks>

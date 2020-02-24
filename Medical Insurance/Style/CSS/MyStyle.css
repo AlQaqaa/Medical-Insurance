@@ -271,3 +271,10 @@ ul.sub-menu li {
     border: 1px solid #000 !important;
     font-size: 12px !important;
 }
+
+ajax__calendar_months {
+    visibility: visible;
+    position: absolute;
+    left: 0px;
+    top: -179px;
+}

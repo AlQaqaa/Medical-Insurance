@@ -117,6 +117,7 @@
     <Content Include="createProfilePrices.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="Motalbat\Default.aspx" />
+    <Content Include="Motalbat\newInvoice.aspx" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
@@ -276,6 +277,13 @@
     <Compile Include="Motalbat\motalbat.Master.vb">
       <DependentUpon>motalbat.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Motalbat\newInvoice.aspx.designer.vb">
+      <DependentUpon>newInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Motalbat\newInvoice.aspx.vb">
+      <DependentUpon>newInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="notificationCenter.aspx.designer.vb">
       <DependentUpon>notificationCenter.aspx</DependentUpon>

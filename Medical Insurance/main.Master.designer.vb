@@ -149,6 +149,24 @@ Partial Public Class main
     Protected WithEvents lbl_notification As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
+    '''hl_invoices_motalbat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_invoices_motalbat As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink4 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''hl_motalbat control.
     '''</summary>
     '''<remarks>
@@ -156,6 +174,15 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_motalbat As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''ContentPlaceHolder1 control.

@@ -23,13 +23,13 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
 
     '''<summary>
-    '''txt_profile_name control.
+    '''lbl_profile_name control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_profile_name As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbl_profile_name As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ddl_show_type control.
@@ -41,13 +41,13 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents ddl_show_type As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''clinic_Panel control.
+    '''Label1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents clinic_Panel As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
     '''ddl_clinics control.
@@ -68,6 +68,15 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''ddl_services control.
     '''</summary>
     '''<remarks>
@@ -86,22 +95,22 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents SqlDataSource4 As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
-    '''groups_Panel control.
+    '''lbl_groub control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents groups_Panel As Global.System.Web.UI.WebControls.Panel
+    Protected WithEvents lbl_groub As Global.System.Web.UI.WebControls.Label
 
     '''<summary>
-    '''ddl_gourp control.
+    '''ddl_group control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddl_gourp As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddl_group As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
     '''SqlDataSource2 control.
@@ -113,6 +122,15 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents SqlDataSource2 As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
+    '''lbl_services_group control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_services_group As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
     '''ddl_services_group control.
     '''</summary>
     '''<remarks>
@@ -120,6 +138,33 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_services_group As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''UpdateProgress2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdateProgress2 As Global.System.Web.UI.UpdateProgress
+
+    '''<summary>
+    '''btn_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
 
     '''<summary>
     '''CheckBox1 control.
@@ -165,6 +210,15 @@ Partial Public Class SERVICES_PRICES
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_cost_price_all As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''txt_add_per control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_add_per As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
     '''btn_apply control.

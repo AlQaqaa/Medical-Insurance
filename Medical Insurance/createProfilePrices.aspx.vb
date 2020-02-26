@@ -9,6 +9,8 @@ Public Class createProfilePrices
         If IsPostBack = False Then
             getActiveProfile()
             getStopProfile()
+
+            Session.Remove("profile_no")
         End If
     End Sub
 

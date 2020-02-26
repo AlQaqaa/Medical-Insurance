@@ -128,6 +128,7 @@
     <Content Include="Style\images\avatar.jpg" />
     <Content Include="Style\images\home.png" />
     <Content Include="Style\images\loading.gif" />
+    <Content Include="Style\JS\pdfobject.min.js" />
     <Content Include="Style\plugins\alertify\alertify.rtl.css" />
     <Content Include="Style\CSS\all.min.css" />
     <Content Include="Style\CSS\animate.css" />

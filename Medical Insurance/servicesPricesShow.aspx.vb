@@ -3,6 +3,9 @@ Imports System.IO
 Imports Microsoft.Reporting.WebForms
 Imports System.Globalization
 Imports CrystalDecisions.Shared
+Imports System.Data
+Imports System.Configuration
+Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class servicesPricesShow
     Inherits System.Web.UI.Page
@@ -62,8 +65,6 @@ Public Class servicesPricesShow
             Else
                 sql_str = "SELECT distinct SUBGROUP_ID as SER_ID, (select distinct [Group_ARname] from [dbo].[Main_GroupSubService] where Main_GroupSubService.Group_ID = MAIN_SUBGROUP.MainGroup_ID) as CLINIC_NAME, SUBGROUP_ARNAME as SubService_AR_Name, isnull(SubGroup_ENname, '') as SubService_EN_Name, '-' as SubService_Code, ISNULL((SELECT " & ser_price & " FROM [DBO].[INC_SERVICES_PRICES] WHERE INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & " and INC_SERVICES_PRICES.[SER_ID] = (SELECT TOP (1) [SUBSERVICE_ID] FROM [DBO].[MAIN_SUBSERVICES] WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)), 0) AS SERVICE_PRICE FROM [DBO].[MAIN_SUBGROUP]"
             End If
-
-
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_res As New DataTable
@@ -148,41 +149,8 @@ Public Class servicesPricesShow
                 .FormatOptions = CrFormatTypeOptions
             End With
 
-
-
             CrReport.Export()
             Response.Redirect("~/Reports/servicesPrices.pdf", False)
-
-
-            'Dim viewer As ReportViewer = New ReportViewer()
-
-            'Dim datasource As New ReportDataSource("serPricesReportDS", main_ds.Tables("INC_servicesPrices"))
-            'viewer.LocalReport.DataSources.Clear()
-            'viewer.ProcessingMode = ProcessingMode.Local
-            'viewer.LocalReport.ReportPath = Server.MapPath("Reports/servicesPrices.rdlc")
-            'viewer.LocalReport.DataSources.Add(datasource)
-
-            'Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-            'Dim r As String = "~/Reports/servicesPrices.rdlc"
-            'Page.Controls.Add(rv)
-            'Dim warnings As Warning() = Nothing
-            'Dim streamids As String() = Nothing
-            'Dim mimeType As String = Nothing
-            'Dim encoding As String = Nothing
-            'Dim extension As String = Nothing
-            'Dim bytes As Byte()
-            'Dim FolderLocation As String
-            'FolderLocation = Server.MapPath("~/Reports")
-            'Dim filepath As String = FolderLocation & "\servicesPrices.pdf"
-            'If Directory.Exists(filepath) Then
-            '    File.Delete(filepath)
-            'End If
-            'bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
-            '    encoding, extension, streamids, warnings)
-            'Dim fs As New FileStream(FolderLocation & "\servicesPrices.pdf", FileMode.Create)
-            'fs.Write(bytes, 0, bytes.Length)
-            'fs.Close()
-            'Response.Redirect("~/Reports/servicesPrices.pdf", False)
 
         Catch ex As Exception
             MsgBox(ex.Message)

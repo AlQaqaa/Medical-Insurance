@@ -56,6 +56,7 @@ Public Class newInvoice
             invoice_id = sqlComm.Parameters("@inv_id").Value.ToString()
             sqlComm.CommandText = ""
             insurance_SQLcon.Close()
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

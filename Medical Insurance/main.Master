@@ -77,7 +77,7 @@
                                 <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i> مركز الإشعارات <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_invoices_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#motalbat" data-toggle="collapse" data-target="#companies" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-receipt"></i> الفواتير والمطالبات</asp:HyperLink>
+                                <asp:HyperLink ID="hl_invoices_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#motalbat" data-toggle="collapse" data-target="#motalbat" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-receipt"></i> الفواتير والمطالبات</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="motalbat">
                                     <li>
                                         <asp:HyperLink ID="HyperLink4" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/addNewCompany.aspx"><i class="fas fa-folder-plus"></i>&nbsp;إضافة شركة جديدة</asp:HyperLink></li>

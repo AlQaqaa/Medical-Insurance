@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class main
-
+    
     '''<summary>
     '''head control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents head As Global.System.Web.UI.WebControls.ContentPlaceHolder
-
+    
     '''<summary>
     '''form1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents form1 As Global.System.Web.UI.HtmlControls.HtmlForm
-
+    
     '''<summary>
     '''Image1 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
-
+    
     '''<summary>
     '''img_user_img control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents img_user_img As Global.System.Web.UI.WebControls.Image
-
+    
     '''<summary>
     '''lbl_user_name control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_user_name As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_date_now control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_date_now As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''HyperLink1 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HyperLink1 As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''HyperLink2 control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HyperLink2 As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_addNewCompany control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_addNewCompany As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_companiesList control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_companiesList As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_stop_company control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_stop_company As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_listPatiant control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_listPatiant As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_services_prices control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_services_prices As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_notifications control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_notifications As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''lbl_notification control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_notification As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''hl_invoices_motalbat control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_invoices_motalbat As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''HyperLink4 control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HyperLink4 As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''hl_motalbat control.
     '''</summary>
@@ -174,16 +174,7 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_motalbat As Global.System.Web.UI.WebControls.HyperLink
-
-    '''<summary>
-    '''HyperLink6 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''ContentPlaceHolder1 control.
     '''</summary>

@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Globalization
+
 Public Class _Default1
     Inherits System.Web.UI.Page
 
@@ -13,7 +15,7 @@ Public Class _Default1
     End Sub
 
     Private Sub getCompanyData()
-        Dim sel_com As New SqlCommand("select *,(case when (select c_name_arb from [INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level ) is null then  '-' else (select c_name_arb from [INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level) end)as MAIN_COMPANY from INC_COMPANY_DATA WHERE C_STATE = 0", insurance_SQLcon)
+        Dim sel_com As New SqlCommand("select *,(case when (select c_name_arb from [INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level ) is null then  '-' else (select c_name_arb from [INC_COMPANY_DATA] as x where x.c_id=[INC_COMPANY_DATA].c_level) end)as MAIN_COMPANY, (select top (1) contract_no from INC_COMPANY_DETIAL where INC_COMPANY_DETIAL.c_id = INC_COMPANY_DATA.c_id order by n desc) as contract_no from INC_COMPANY_DATA WHERE C_STATE = 0", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Open()
@@ -101,8 +103,24 @@ Public Class _Default1
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
-
         End If
+
+        '################ When User Press On End Company Contract ################
+        If (e.CommandName = "end_contract") Then
+
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = dt_GridView.Rows(index)
+            Session.Item("company_id") = (row.Cells(0).Text)
+            Dim end_contract As New SqlCommand("UPDATE INC_COMPANY_DETIAL SET DATE_END=@DATE_END AND STOP_DATE=@DATE_END WHERE C_ID = " & (row.Cells(0).Text) & " AND CONTRACT_NO = " & (row.Cells(1).Text), insurance_SQLcon)
+            end_contract.Parameters.AddWithValue("@DATE_END", Date.Now.Date)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            end_contract.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم إنهاء عقد الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        End If
+
     End Sub
 
 End Class

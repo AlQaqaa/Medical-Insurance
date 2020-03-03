@@ -79,6 +79,12 @@
                         <HeaderStyle CssClass="hide-colum" />
                         <ItemStyle CssClass="hide-colum" />
                     </asp:BoundField>
+                    <asp:BoundField DataField="contract_no" HeaderText="رقم العقد">
+                        <ControlStyle CssClass="hide-colum" />
+                        <FooterStyle CssClass="hide-colum" />
+                        <HeaderStyle CssClass="hide-colum" />
+                        <ItemStyle CssClass="hide-colum" />
+                    </asp:BoundField>
                     <asp:ButtonField DataTextField="C_NAME_ARB" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم الشركة للوصول إلى الإعدادات الخاصة بها ومعرفة تفاصيل أكثر عنها'>الاسم بالعربي <i class='fas fa-info-circle'></i></span>" CommandName="com_name"></asp:ButtonField>
                     <asp:ButtonField DataTextField="C_NAME_ENG" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم الشركة للوصول إلى الإعدادات الخاصة بها ومعرفة تفاصيل أكثر عنها'>الاسم بالإنجليزي <i class='fas fa-info-circle'></i></span>" CommandName="com_name"></asp:ButtonField>
 
@@ -109,6 +115,12 @@
                                 ToolTip="إيقاف الشركة"
                                 ControlStyle-CssClass="btn btn-link text-danger btn-new"
                                 OnClientClick="return confirm('هل أنت متأكد من إيقاف هذه الشركة')"><i class='fas fa-ban'></i></asp:LinkButton>
+                            <asp:LinkButton ID="btn_end_contract" runat="server"
+                                CommandName="end_contract"
+                                CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                ToolTip="إنهاء عقد الشركة"
+                                ControlStyle-CssClass="btn btn-link text-secondary btn-new"
+                                OnClientClick="return confirm('هل أنت متأكد من إنهاء عقد هذه الشركة')"><i class='fas fa-stop-circle'></i></asp:LinkButton>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

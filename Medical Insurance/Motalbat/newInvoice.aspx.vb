@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Globalization
 
 Public Class newInvoice
     Inherits System.Web.UI.Page
@@ -58,6 +59,10 @@ Public Class newInvoice
 
 
         Try
+
+            Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+            Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
             Dim result As Integer = 0
 
             Dim invoice_id As String
@@ -66,6 +71,8 @@ Public Class newInvoice
             sqlComm.CommandText = "INC_addNewInvoice"
             sqlComm.CommandType = CommandType.StoredProcedure
             sqlComm.Parameters.AddWithValue("@c_id", ddl_companies.SelectedValue)
+            sqlComm.Parameters.AddWithValue("@from_dt", start_dt)
+            sqlComm.Parameters.AddWithValue("@to_dt", end_dt)
             sqlComm.Parameters.AddWithValue("@user_id", 1)
             sqlComm.Parameters.AddWithValue("@user_ip", GetIPAddress())
             sqlComm.Parameters.AddWithValue("@inv_id", SqlDbType.Int).Direction = ParameterDirection.Output
@@ -80,8 +87,8 @@ Public Class newInvoice
                     Dim ch As CheckBox = dd.FindControl("CheckBox2")
 
                     If ch.Checked = True Then
-                        Dim ins_motalba As New SqlCommand("INSERT INTO INC_MOTALBAT (INCOICE_NO,Processes_ID,MOTALABA_STS,USER_ID,USER_IP) VALUES (@INCOICE_NO,@Processes_ID,@MOTALABA_STS,@USER_ID,@USER_IP)", insurance_SQLcon)
-                        ins_motalba.Parameters.AddWithValue("@INCOICE_NO", invoice_id)
+                        Dim ins_motalba As New SqlCommand("INSERT INTO INC_MOTALBAT (INVOICE_NO,Processes_ID,MOTALABA_STS,USER_ID,USER_IP) VALUES (@INVOICE_NO,@Processes_ID,@MOTALABA_STS,@USER_ID,@USER_IP)", insurance_SQLcon)
+                        ins_motalba.Parameters.AddWithValue("@INVOICE_NO", invoice_id)
                         ins_motalba.Parameters.AddWithValue("@Processes_ID", dd.Cells(1).Text)
                         ins_motalba.Parameters.AddWithValue("@MOTALABA_STS", 1)
                         ins_motalba.Parameters.AddWithValue("@USER_ID", 1)
@@ -92,7 +99,8 @@ Public Class newInvoice
                         insurance_SQLcon.Close()
                     End If
                 Next
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+
+                Response.Redirect("invoiceContent.aspx?invID=" & invoice_id, False)
             End If
 
         Catch ex As Exception

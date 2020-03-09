@@ -8,14 +8,15 @@ Public Class invoiceContent
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        ViewState("invoice_no") = Val(Request.QueryString("invID"))
+        Page.Title = "محتويات الفاتورة رقم " & ViewState("invoice_no")
+
         If IsPostBack = False Then
 
-            ViewState("invoice_no") = Val(Request.QueryString("invID"))
-
             If ViewState("invoice_no") <> 0 Then
-                Page.Title = "محتويات الفاتورة رقم " & ViewState("invoice_no")
+
                 txt_invoice_no.Text = ViewState("invoice_no")
-                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -25,7 +26,7 @@ Public Class invoiceContent
 
                 If dt_result.Rows.Count > 0 Then
                     Dim dr_inv = dt_result.Rows(0)
-                    txt_company_name.Text = dr_inv!C_ID
+                    txt_company_name.Text = dr_inv!COMPANY_NAME
                     ViewState("company_no") = dr_inv!C_ID
                     txt_start_dt.Text = dr_inv!DATE_FROM
                     txt_end_dt.Text = dr_inv!DATE_TO
@@ -64,4 +65,19 @@ Public Class invoiceContent
         End Try
     End Sub
 
+    Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        Try
+            If (e.CommandName = "printProcess") Then
+                Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+                Dim row As GridViewRow = GridView1.Rows(index)
+                Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(2).Text)
+                Response.Write("<script type='text/javascript'>")
+                Response.Write("window.open('" & p_link & "','_blank');")
+                Response.Write("</script>")
+                'Response.Redirect("printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text), False)
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

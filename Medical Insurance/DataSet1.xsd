@@ -28,6 +28,32 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="INC_IvoicesProcessesPatientTableAdapter" GeneratorDataComponentClassName="INC_IvoicesProcessesPatientTableAdapter" Name="INC_IvoicesProcessesPatient" UserDataComponentName="INC_IvoicesProcessesPatientTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectName="IbnSina_DataBase.dbo.INC_IvoicesProcesses" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Processes_ID, Processes_Date, Processes_Residual, INVOICE_NO, (SELECT CARD_NO FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID) AS CARD_NO, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID) AS NAME_ARB, (SELECT BAGE_NO FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID) AS BAGE_NO, (SELECT BIRTHDATE FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID) AS BIRTHDATE, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc) AS Clinic_AR_Name, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices) AS SubService_AR_Name, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = (SELECT Processes_Doctor_ID FROM HAG_Processes_Doctor WHERE HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID)), '') AS MedicalStaff_AR_Name FROM INC_IvoicesProcesses</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Processes_ID" DataSetColumn="Processes_ID" />
+              <Mapping SourceColumn="Processes_Residual" DataSetColumn="Processes_Residual" />
+              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
+              <Mapping SourceColumn="CARD_NO" DataSetColumn="CARD_NO" />
+              <Mapping SourceColumn="NAME_ARB" DataSetColumn="NAME_ARB" />
+              <Mapping SourceColumn="BAGE_NO" DataSetColumn="BAGE_NO" />
+              <Mapping SourceColumn="BIRTHDATE" DataSetColumn="BIRTHDATE" />
+              <Mapping SourceColumn="Clinic_AR_Name" DataSetColumn="Clinic_AR_Name" />
+              <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
+              <Mapping SourceColumn="MedicalStaff_AR_Name" DataSetColumn="MedicalStaff_AR_Name" />
+              <Mapping SourceColumn="Processes_Date" DataSetColumn="Processes_Date" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -72,7 +98,64 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="INC_IvoicesProcessesPatient" msprop:Generator_TableClassName="INC_IvoicesProcessesPatientDataTable" msprop:Generator_TableVarName="tableINC_IvoicesProcessesPatient" msprop:Generator_RowChangedName="INC_IvoicesProcessesPatientRowChanged" msprop:Generator_TablePropName="INC_IvoicesProcessesPatient" msprop:Generator_RowDeletingName="INC_IvoicesProcessesPatientRowDeleting" msprop:Generator_RowChangingName="INC_IvoicesProcessesPatientRowChanging" msprop:Generator_RowEvHandlerName="INC_IvoicesProcessesPatientRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_IvoicesProcessesPatientRowDeleted" msprop:Generator_RowClassName="INC_IvoicesProcessesPatientRow" msprop:Generator_UserTableName="INC_IvoicesProcessesPatient" msprop:Generator_RowEvArgName="INC_IvoicesProcessesPatientRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Processes_ID" msprop:Generator_ColumnVarNameInTable="columnProcesses_ID" msprop:Generator_ColumnPropNameInRow="Processes_ID" msprop:Generator_ColumnPropNameInTable="Processes_IDColumn" msprop:Generator_UserColumnName="Processes_ID" type="xs:long" />
+              <xs:element name="Processes_Residual" msprop:Generator_ColumnVarNameInTable="columnProcesses_Residual" msprop:Generator_ColumnPropNameInRow="Processes_Residual" msprop:Generator_ColumnPropNameInTable="Processes_ResidualColumn" msprop:Generator_UserColumnName="Processes_Residual" type="xs:double" />
+              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" type="xs:int" minOccurs="0" />
+              <xs:element name="CARD_NO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCARD_NO" msprop:Generator_ColumnPropNameInRow="CARD_NO" msprop:Generator_ColumnPropNameInTable="CARD_NOColumn" msprop:Generator_UserColumnName="CARD_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME_ARB" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnNAME_ARB" msprop:Generator_ColumnPropNameInRow="NAME_ARB" msprop:Generator_ColumnPropNameInTable="NAME_ARBColumn" msprop:Generator_UserColumnName="NAME_ARB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BAGE_NO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBAGE_NO" msprop:Generator_ColumnPropNameInRow="BAGE_NO" msprop:Generator_ColumnPropNameInTable="BAGE_NOColumn" msprop:Generator_UserColumnName="BAGE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BIRTHDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_UserColumnName="BIRTHDATE" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Clinic_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnClinic_AR_Name" msprop:Generator_ColumnPropNameInRow="Clinic_AR_Name" msprop:Generator_ColumnPropNameInTable="Clinic_AR_NameColumn" msprop:Generator_UserColumnName="Clinic_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubService_AR_Name" msprop:Generator_ColumnPropNameInRow="SubService_AR_Name" msprop:Generator_ColumnPropNameInTable="SubService_AR_NameColumn" msprop:Generator_UserColumnName="SubService_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MedicalStaff_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMedicalStaff_AR_Name" msprop:Generator_ColumnPropNameInRow="MedicalStaff_AR_Name" msprop:Generator_ColumnPropNameInTable="MedicalStaff_AR_NameColumn" msprop:Generator_UserColumnName="MedicalStaff_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Processes_Date" msprop:Generator_ColumnVarNameInTable="columnProcesses_Date" msprop:Generator_ColumnPropNameInRow="Processes_Date" msprop:Generator_ColumnPropNameInTable="Processes_DateColumn" msprop:Generator_UserColumnName="Processes_Date" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:INC_IvoicesProcessesPatient" />
+      <xs:field xpath="mstns:Processes_ID" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

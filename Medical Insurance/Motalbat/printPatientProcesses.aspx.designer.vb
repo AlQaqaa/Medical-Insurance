@@ -11,7 +11,7 @@ Option Strict On
 Option Explicit On
 
 
-Partial Public Class invoiceContent
+Partial Public Class printPatientProcesses
 
     '''<summary>
     '''ScriptManager1 control.
@@ -21,6 +21,15 @@ Partial Public Class invoiceContent
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
+
+    '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
 
     '''<summary>
     '''txt_company_name control.
@@ -59,20 +68,11 @@ Partial Public Class invoiceContent
     Protected WithEvents txt_end_dt As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''btn_print control.
+    '''ltEmbed control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_print As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
-    '''GridView1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    Protected WithEvents ltEmbed As Global.System.Web.UI.WebControls.Literal
 End Class

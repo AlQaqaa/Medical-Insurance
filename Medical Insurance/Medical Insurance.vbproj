@@ -120,6 +120,7 @@
     <Content Include="Motalbat\invoiceContent.aspx" />
     <Content Include="Motalbat\invoicesList.aspx" />
     <Content Include="Motalbat\newInvoice.aspx" />
+    <Content Include="Motalbat\printPatientProcesses.aspx" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
@@ -302,6 +303,13 @@
       <DependentUpon>newInvoice.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Motalbat\printPatientProcesses.aspx.designer.vb">
+      <DependentUpon>printPatientProcesses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Motalbat\printPatientProcesses.aspx.vb">
+      <DependentUpon>printPatientProcesses.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="notificationCenter.aspx.designer.vb">
       <DependentUpon>notificationCenter.aspx</DependentUpon>
     </Compile>
@@ -379,6 +387,7 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="Reports\patientMotalbaDetailes.rdlc" />
     <EmbeddedResource Include="Reports\servicesPrices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPrices.vb</LastGenOutput>

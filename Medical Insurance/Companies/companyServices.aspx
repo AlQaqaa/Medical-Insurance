@@ -22,13 +22,13 @@
                     </div>
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>
-                            <div class="form-row">
+                            <%--<div class="form-row">
                                 <div class="form-group col-xs-12">
                                     <h6>العيادات المغطاة</h6>
                                     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                                 </div>
                             </div>
-                            <hr />
+                            <hr />--%>
                             <div class="form-row justify-content-end">
                                 <div class="form-group col-xs-6 col-sm-3">
                                     <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
@@ -38,7 +38,7 @@
                             <asp:Panel ID="Panel1" runat="server">
                                 <div class="form-row">
                                     <div class="form-group col-xs-12 col-sm-1">
-                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Checked="True" />
+                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True"  />
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <asp:TextBox ID="txt_max_value_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سقف الخدمة"></asp:TextBox>
@@ -60,7 +60,7 @@
                                     </asp:BoundField>
                                     <asp:TemplateField HeaderText="مغطاة؟">
                                         <ItemTemplate>
-                                            <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
+                                            <asp:CheckBox ID="CheckBox2" runat="server" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField HeaderText="اسم الخدمة" DataField="Service_AR_Name"></asp:BoundField>

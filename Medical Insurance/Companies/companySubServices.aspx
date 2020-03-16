@@ -49,13 +49,13 @@
                             </div>
                         </div>
                     </asp:Panel>
-                    <div class="form-row">
+                    <%--<div class="form-row">
                         <div class="form-group col-xs-12">
                             <h6>العيادات المغطاة</h6>
                             <asp:Literal ID="Literal1" runat="server"></asp:Literal>
                         </div>
                     </div>
-                    <hr />
+                    <hr />--%>
 
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                         <ContentTemplate>

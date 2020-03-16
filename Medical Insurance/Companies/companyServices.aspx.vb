@@ -76,9 +76,9 @@ Public Class companyServices
                 End If
             Next
 
-            Literal1.Text = resultString
+            'Literal1.Text = resultString
         Else
-            Literal1.Text = "لا يوجد خدمات مغطاة"
+            ' Literal1.Text = "لا يوجد خدمات مغطاة"
         End If
     End Sub
 
@@ -86,7 +86,7 @@ Public Class companyServices
     Sub getServices()
 
         Dim MAX_VALUE As String = "ISNULL((SELECT MAX_VALUE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_VALUE,"
-        Dim SER_STATE As String = "ISNULL((SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
+        Dim SER_STATE As String = "ISNULL((SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 1) AS SER_STATE"
         
 
         Dim sel_data As New SqlCommand("select Service_ID, Service_AR_Name, " & MAX_VALUE & SER_STATE & " from Main_Services WHERE Service_Clinic = " & ddl_clinics.SelectedValue, insurance_SQLcon)
@@ -109,7 +109,7 @@ Public Class companyServices
 
                 If IsDBNull(dt_res.Rows(i)("SER_STATE")) Then
                     ch.Checked = True
-                ElseIf dt_res.Rows(i)("SER_STATE") = 1 Then
+                ElseIf dt_res.Rows(i)("SER_STATE") = True Then
                     ch.Checked = False
                 Else
                     ch.Checked = True

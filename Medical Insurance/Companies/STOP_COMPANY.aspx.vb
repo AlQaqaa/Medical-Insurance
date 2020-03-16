@@ -63,11 +63,13 @@ Public Class STOP_COMPANY
                 insurance_SQLcon.Close()
                 ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.set('notifier','position', 'top-right'); alertify.success('تم تفعيل الشركة بنجاح');", True)
                 getCompanyData()
+                dt_GridView.DataBind()
             Catch ex As Exception
                 MsgBox(ex.Message)
             End Try
 
         End If
+
     End Sub
 
 End Class

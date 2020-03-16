@@ -232,9 +232,9 @@ Public Class companySubServices
                 End If
             Next
 
-            Literal1.Text = resultString
+            'Literal1.Text = resultString
         Else
-            Literal1.Text = "لا يوجد خدمات مغطاة"
+            ' Literal1.Text = "لا يوجد خدمات مغطاة"
         End If
     End Sub
 
@@ -261,11 +261,22 @@ Public Class companySubServices
             Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
 
             If ch.Checked = True Then
-                txt_person_per.Text = Val(txt_person_per_all.Text)
-                txt_family_per.Text = Val(txt_family_per_all.Text)
-                txt_parent_per.Text = Val(txt_parent_per_all.Text)
-                txt_person_max.Text = CDec(txt_person_max_all.Text)
-                txt_family_max.Text = CDec(txt_family_max_all.Text)
+                If txt_person_per_all.Text <> "" Then
+                    txt_person_per.Text = Val(txt_person_per_all.Text)
+                End If
+                If txt_family_per_all.Text <> "" Then
+                    txt_family_per.Text = Val(txt_family_per_all.Text)
+                End If
+                If txt_parent_per_all.Text <> "" Then
+                    txt_parent_per.Text = Val(txt_parent_per_all.Text)
+                End If
+                If txt_person_max_all.Text <> "" Then
+                    txt_person_max.Text = CDec(txt_person_max_all.Text)
+                End If
+                If txt_family_max_all.Text <> "" Then
+                    txt_family_max.Text = CDec(txt_family_max_all.Text)
+                End If
+
 
             End If
 
@@ -353,7 +364,7 @@ Public Class companySubServices
 
                 If IsDBNull(dt_res.Rows(i)("SER_STATE")) Then
                     ch.Checked = True
-                ElseIf dt_res.Rows(i)("SER_STATE") = 1 Then
+                ElseIf dt_res.Rows(i)("SER_STATE") = True Then
                     ch.Checked = False
                 Else
                     ch.Checked = True

@@ -234,6 +234,15 @@ Public Class companyClinic
 
     End Sub
 
+    Private Sub GridView1_PageIndexChanged(sender As Object, e As EventArgs) Handles GridView1.PageIndexChanged
+
+    End Sub
+
+    Private Sub GridView1_PageIndexChanging(sender As Object, e As GridViewPageEventArgs) Handles GridView1.PageIndexChanging
+        GridView1.PageIndex = e.NewPageIndex
+        getClinicAvailable()
+    End Sub
+
     Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
         '################ When User Press On Stop Clinic ################
         If (e.CommandName = "stop_clinic") Then

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class _Default3
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''lbl_pats_count control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_pats_count As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lbl_company_sts control.
     '''</summary>
@@ -39,16 +39,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_company_sts As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lbl_main_company control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_main_company As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lbl_start_dt control.
     '''</summary>
@@ -57,7 +48,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_start_dt As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lbl_end_dt control.
     '''</summary>
@@ -66,7 +57,34 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_end_dt As Global.System.Web.UI.WebControls.Label
-    
+
+    '''<summary>
+    '''lbl_payment_type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_payment_type As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_prices_profile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_prices_profile As Global.System.Web.UI.WebControls.Label
+
+    '''<summary>
+    '''lbl_main_company control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_main_company As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -75,7 +93,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''GridView1 control.
     '''</summary>
@@ -84,7 +102,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''GridView2 control.
     '''</summary>
@@ -93,7 +111,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView2 As Global.System.Web.UI.WebControls.GridView
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -102,7 +120,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ddl_services control.
     '''</summary>
@@ -111,7 +129,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_services As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>
@@ -120,7 +138,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''txt_notes control.
     '''</summary>
@@ -129,7 +147,7 @@ Partial Public Class _Default3
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_notes As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btn_ban_doctor control.
     '''</summary>

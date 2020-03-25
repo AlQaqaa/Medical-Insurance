@@ -1,5 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Web.UI.WebControls
+Imports System.Globalization
+
 Public Class patientInfo
     Inherits System.Web.UI.Page
 
@@ -25,14 +27,14 @@ Public Class patientInfo
 
     Sub getPatInfo()
         Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, isnull(IMAGE_CARD, '/') AS IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
-        Dim dt_result As New DataTable
-        dt_result.Rows.Clear()
+        Dim dt_pat As New DataTable
+        dt_pat.Rows.Clear()
         insurance_SQLcon.Close()
         insurance_SQLcon.Open()
-        dt_result.Load(get_pet.ExecuteReader)
+        dt_pat.Load(get_pet.ExecuteReader)
         insurance_SQLcon.Close()
-        If dt_result.Rows.Count > 0 Then
-            Dim dr_pat = dt_result.Rows(0)
+        If dt_pat.Rows.Count > 0 Then
+            Dim dr_pat = dt_pat.Rows(0)
             lbl_name_eng.Text = dr_pat!NAME_ENG
             lbl_pat_name.Text = dr_pat!NAME_ARB
             lbl_birthdate.Text = dr_pat!BIRTHDATE
@@ -206,5 +208,21 @@ Public Class patientInfo
             MsgBox(ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub btn_renew_card_Click(sender As Object, e As EventArgs) Handles btn_renew_card.Click
+        Try
+            Dim exp As String = DateTime.ParseExact(txt_exp_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
+            Dim renew_card As New SqlCommand("UPDATE INC_PATIANT SET EXP_DATE=@EXP_DATE WHERE PINC_ID=" & Session("patiant_id"), insurance_SQLcon)
+            renew_card.Parameters.AddWithValue("@EXP_DATE", exp)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            renew_card.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+            getPatInfo()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

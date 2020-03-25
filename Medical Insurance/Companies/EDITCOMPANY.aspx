@@ -66,10 +66,13 @@
                                 <asp:ListItem Value="2">تأمين</asp:ListItem>
                             </asp:DropDownList>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-3">
-                            <label for="ddl_profiles_prices">ملف الأسعار</label>
-                            <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
+                       <div class="form-group col-xs-12 col-sm-3">
+                            <label for="ddl_payment_type">طريقة دفع نسبة المريض</label>
+                            <asp:DropDownList ID="ddl_PATIAINT_PER" CssClass="chosen-select drop-down-list form-control" runat="server">
+                                <asp:ListItem Value="0" Text=""></asp:ListItem>
+                                <asp:ListItem Value="1">خاص</asp:ListItem>
+                                <asp:ListItem Value="2">تأمين</asp:ListItem>
+                            </asp:DropDownList>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -101,14 +104,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-3">
-                            <label for="ddl_payment_type">طريقة دفع نسبة المريض</label>
-                            <asp:DropDownList ID="ddl_PATIAINT_PER" CssClass="chosen-select drop-down-list form-control" runat="server">
-                                <asp:ListItem Value="0" Text=""></asp:ListItem>
-                                <asp:ListItem Value="1">خاص</asp:ListItem>
-                                <asp:ListItem Value="2">تأمين</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
+                        
                         
                     </div>
                     <hr />

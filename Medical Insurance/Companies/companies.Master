@@ -128,9 +128,11 @@
                                                     <div class="dropdown-menu" aria-labelledby="manafe">
                                                         <asp:HyperLink ID="HyperLink7" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/EDITCOMPANY.aspx"><i class="fas fa-edit"></i> تعديل بيانات الشركة</asp:HyperLink>
                                                         <button type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#staticBackdrop">
-                                                            <i class="fas fa-flag"></i>تغيير شعار الشركة
+                                                            <i class="fas fa-flag"></i>&nbsp;تغيير شعار الشركة
                                                         </button>
-
+                                                        <button type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#price_profile">
+                                                            <i class="fas fa-dollar-sign"></i>&nbsp;تغيير ملف الأسعار
+                                                        </button>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -161,7 +163,7 @@
             </div>
         </div>
 
-        <!-- Modal -->
+        <!-- Modal change company logo -->
         <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -176,6 +178,33 @@
                     </div>
                     <div class="modal-footer">
                         <asp:Button ID="btn_change_img" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal change company prices profile -->
+        <div class="modal fade" id="price_profile" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="price_profileLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="price_profileLabel">تغيير ملف أسعار الشركة</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-xs-12">
+                                <label for="ddl_profiles_prices">يرجى اختيار ملف الأسعار</label><br />
+                                <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
+                                <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btn_change_profile" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
                         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
                     </div>
                 </div>

@@ -72,7 +72,7 @@ Public Class EDITCOMPANY
             txt_max_person.Text = rd1!MAX_PERSON
             ddl_PATIAINT_PER.SelectedValue = rd1!PATIAINT_PER
             ddl_payment_type.SelectedValue = rd1!PYMENT_TYPE
-            ddl_profiles_prices.SelectedValue = rd1!PROFILE_PRICE_ID
+
 
         End If
         insurance_SQLcon.Close()
@@ -94,7 +94,6 @@ Public Class EDITCOMPANY
             insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
             insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))
             insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
-            insToCompany.Parameters.AddWithValue("@profile_price_id", ddl_profiles_prices.SelectedValue)
             insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
             insToCompany.Parameters.AddWithValue("@userId", 1)
             insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())

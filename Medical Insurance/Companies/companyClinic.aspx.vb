@@ -249,17 +249,17 @@ Public Class companyClinic
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_CLINICAL_RESTRICTIONS WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
-            insurance_SQLcon.Close()
+            Dim stopClinic As New SqlCommand
+            stopClinic.Connection = insurance_SQLcon
+            stopClinic.CommandText = "INC_stopCompanyClinic"
+            stopClinic.CommandType = CommandType.StoredProcedure
+            stopClinic.Parameters.AddWithValue("@clinic_no", (row.Cells(0).Text))
+            stopClinic.Parameters.AddWithValue("@company_no", ViewState("company_no"))
+            stopClinic.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
             insurance_SQLcon.Open()
-            del_com.ExecuteNonQuery()
+            stopClinic.ExecuteNonQuery()
             insurance_SQLcon.Close()
-
-            Dim edit_sts As New SqlCommand("UPDATE INC_SUB_SERVICES_RESTRICTIONS SET SER_STATE=1 WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            edit_sts.ExecuteNonQuery()
-            insurance_SQLcon.Close()
+            stopClinic.CommandText = ""
 
             getClinicAvailable()
 

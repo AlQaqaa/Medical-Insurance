@@ -163,10 +163,17 @@ Public Class companyServices
 
             Else
                 ser_sts = True
-                Dim stop_ser As New SqlCommand("UPDATE INC_SERVICES_RESTRICTIONS SET SERVICE_STS = 1 WHERE Service_ID = " & dd.Cells(0).Text & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+                Dim stopService As New SqlCommand
+                stopService.Connection = insurance_SQLcon
+                stopService.CommandText = "INC_stopCompanyService"
+                stopService.CommandType = CommandType.StoredProcedure
+                stopService.Parameters.AddWithValue("@service_no", dd.Cells(0).Text)
+                stopService.Parameters.AddWithValue("@company_no", ViewState("company_no"))
+                stopService.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
                 insurance_SQLcon.Open()
-                stop_ser.ExecuteNonQuery()
+                stopService.ExecuteNonQuery()
                 insurance_SQLcon.Close()
+                stopService.CommandText = ""
             End If
         Next
         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
@@ -194,7 +201,10 @@ Public Class companyServices
             Dim txt_max_val As TextBox = dd.FindControl("txt_max_val")
 
             If ch.Checked = True Then
-                txt_max_val.Text = CDec(txt_max_value_all.Text)
+                If txt_max_value_all.Text <> "" Then
+                    txt_max_val.Text = CDec(txt_max_value_all.Text)
+                End If
+
 
             End If
 

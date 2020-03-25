@@ -140,15 +140,6 @@ Partial Public Class SERVICES_PRICES
     Protected WithEvents ddl_services_group As Global.System.Web.UI.WebControls.DropDownList
 
     '''<summary>
-    '''UpdateProgress2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdateProgress2 As Global.System.Web.UI.UpdateProgress
-
-    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>

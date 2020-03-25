@@ -17,18 +17,20 @@ Public Class companies
         hl_company_users_list.NavigateUrl = "~/Companies/LISTPATIANT.aspx?cID=" & Session("company_id")
 
         If Session("company_id") IsNot Nothing Then
-            Dim sel_com As New SqlCommand("SELECT Bic_Link, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_START, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_START, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_END, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END, (SELECT TOP 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY CONTRACT_NO DESC) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG, C_STATE, (CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY FROM INC_COMPANY_DATA WHERE C_ID = " & Session("company_id"), insurance_SQLcon)
-            Dim dt_result As New DataTable
-            dt_result.Rows.Clear()
+            Dim com_info As New SqlCommand("SELECT Bic_Link, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_START, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_START, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_END, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END, (SELECT TOP 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY CONTRACT_NO DESC) AS CONTRACT_NO, (SELECT TOP 1 (PROFILE_PRICE_ID) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY n DESC) AS PROFILE_PRICE_ID, C_NAME_ARB, C_NAME_ENG, C_STATE, (CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY FROM INC_COMPANY_DATA WHERE C_ID = " & Session("company_id"), insurance_SQLcon)
+            Dim dt_com_info As New DataTable
+            dt_com_info.Rows.Clear()
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
+            dt_com_info.Load(com_info.ExecuteReader)
             insurance_SQLcon.Close()
-            If dt_result.Rows.Count > 0 Then
-                Dim dr_company = dt_result.Rows(0)
+            If dt_com_info.Rows.Count > 0 Then
+                Dim dr_company = dt_com_info.Rows(0)
                 lbl_company_name.Text = dr_company!C_NAME_ARB
                 lbl_en_name.Text = dr_company!C_NAME_ENG
                 img_company_logo.ImageUrl = "../" & dr_company!Bic_Link
+                ViewState("contract_no") = dr_company!CONTRACT_NO
+                ViewState("profile_id") = dr_company!PROFILE_PRICE_ID
             End If
 
         Else
@@ -66,6 +68,29 @@ Public Class companies
             End If
 
             '''''''''''''''''''''''''''''''''''''''''
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btn_change_profile_Click(sender As Object, e As EventArgs) Handles btn_change_profile.Click
+        Try
+            Dim changePricesProfile As New SqlCommand
+            changePricesProfile.Connection = insurance_SQLcon
+            changePricesProfile.CommandText = "INC_editCompanyPricesProfile"
+            changePricesProfile.CommandType = CommandType.StoredProcedure
+            changePricesProfile.Parameters.AddWithValue("@c_id", Val(Session("company_id")))
+            changePricesProfile.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
+            changePricesProfile.Parameters.AddWithValue("@profile_id", ddl_profiles_prices.SelectedValue)
+            changePricesProfile.Parameters.AddWithValue("@user_id", 1)
+            changePricesProfile.Parameters.AddWithValue("@user_ip", GetIPAddress())
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+
+            changePricesProfile.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية تعديل البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

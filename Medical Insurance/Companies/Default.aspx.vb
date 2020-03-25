@@ -12,39 +12,52 @@ Public Class _Default3
                 Response.Redirect("../Default.aspx")
             End If
 
-            Dim sel_com As New SqlCommand("SELECT (SELECT TOP 1 (CONVERT(VARCHAR, DATE_START, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_START, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_END, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END, (SELECT TOP 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY CONTRACT_NO DESC) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG, C_STATE, (CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY FROM INC_COMPANY_DATA WHERE C_ID = " & ViewState("company_no"), insurance_SQLcon)
-            Dim dt_result As New DataTable
-            dt_result.Rows.Clear()
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-            If dt_result.Rows.Count > 0 Then
-                Dim dr_company = dt_result.Rows(0)
-                lbl_start_dt.Text = dr_company!DATE_START
-                lbl_end_dt.Text = dr_company!DATE_END
-                If dr_company!C_STATE = 0 Then
-                    lbl_company_sts.Text = "نشط"
-                    lbl_company_sts.CssClass = "badge badge-success"
-                Else
-                    lbl_company_sts.Text = "موقوف"
-                    lbl_company_sts.CssClass = "badge badge-danger"
-                End If
-                lbl_main_company.Text = dr_company!MAIN_COMPANY
-                ViewState("contract_no") = dr_company!CONTRACT_NO
-            End If
-
-            ' جلب عدد المستخدمين
-            Dim pats_count As New SqlCommand("SELECT COUNT(*) FROM INC_PATIANT WHERE C_ID = " & ViewState("company_no"), insurance_SQLcon)
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            lbl_pats_count.Text = pats_count.ExecuteScalar
-            insurance_SQLcon.Close()
-
-            getClinicAvailable()
-            getBlockDoctors()
-
         End If
+
+        Dim sel_com As New SqlCommand("SELECT (SELECT TOP 1 (CONVERT(VARCHAR, DATE_START, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_START, (SELECT TOP 1 (CONVERT(VARCHAR, DATE_END, 111)) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END, (SELECT TOP 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY CONTRACT_NO DESC) AS CONTRACT_NO, C_NAME_ARB, C_NAME_ENG, C_STATE, (CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY, (SELECT TOP 1 PYMENT_TYPE FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS PYMENT_TYPE, (SELECT profile_name FROM INC_PRICES_PROFILES WHERE profile_Id = (SELECT TOP 1 PROFILE_PRICE_ID FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC)) AS PROFILE_PRICE_NAME FROM INC_COMPANY_DATA WHERE C_ID = " & ViewState("company_no"), insurance_SQLcon)
+        Dim dt_result As New DataTable
+        dt_result.Rows.Clear()
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+        If dt_result.Rows.Count > 0 Then
+            Dim dr_company = dt_result.Rows(0)
+            lbl_start_dt.Text = dr_company!DATE_START
+            lbl_end_dt.Text = dr_company!DATE_END
+            If dr_company!C_STATE = 0 Then
+                lbl_company_sts.Text = "نشط"
+                lbl_company_sts.CssClass = "badge badge-success"
+            Else
+                lbl_company_sts.Text = "موقوف"
+                lbl_company_sts.CssClass = "badge badge-danger"
+            End If
+            lbl_main_company.Text = dr_company!MAIN_COMPANY
+            ViewState("contract_no") = dr_company!CONTRACT_NO
+            If dr_company!PYMENT_TYPE = 1 Then
+                lbl_payment_type.Text = "خاص"
+            ElseIf dr_company!PYMENT_TYPE = 2 Then
+                lbl_payment_type.Text = "تأمين"
+            Else
+                lbl_payment_type.Text = "فوترة"
+            End If
+            If IsDBNull(dr_company!PROFILE_PRICE_NAME) Then
+                lbl_prices_profile.Text = "لم يحدد"
+            Else
+                lbl_prices_profile.Text = dr_company!PROFILE_PRICE_NAME
+            End If
+        End If
+
+        ' جلب عدد المستخدمين
+        Dim pats_count As New SqlCommand("SELECT COUNT(*) FROM INC_PATIANT WHERE C_ID = " & ViewState("company_no"), insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        lbl_pats_count.Text = pats_count.ExecuteScalar
+        insurance_SQLcon.Close()
+
+        getClinicAvailable()
+        getBlockDoctors()
+
     End Sub
 
     Sub getClinicAvailable()
@@ -68,17 +81,17 @@ Public Class _Default3
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_CLINICAL_RESTRICTIONS WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
-            insurance_SQLcon.Close()
+            Dim stopClinic As New SqlCommand
+            stopClinic.Connection = insurance_SQLcon
+            stopClinic.CommandText = "INC_stopCompanyClinic"
+            stopClinic.CommandType = CommandType.StoredProcedure
+            stopClinic.Parameters.AddWithValue("@clinic_no", (row.Cells(0).Text))
+            stopClinic.Parameters.AddWithValue("@company_no", ViewState("company_no"))
+            stopClinic.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
             insurance_SQLcon.Open()
-            del_com.ExecuteNonQuery()
+            stopClinic.ExecuteNonQuery()
             insurance_SQLcon.Close()
-
-            Dim edit_sts As New SqlCommand("UPDATE INC_SUB_SERVICES_RESTRICTIONS SET SER_STATE=1 WHERE CLINIC_ID = " & (row.Cells(0).Text) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            edit_sts.ExecuteNonQuery()
-            insurance_SQLcon.Close()
+            stopClinic.CommandText = ""
 
             getClinicAvailable()
 

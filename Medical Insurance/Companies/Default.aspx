@@ -74,8 +74,7 @@
                         <ul class="list-unstyled mb-0">
                             <li>حالة الشركة: 
                                 <asp:Label ID="lbl_company_sts" runat="server" Text=""></asp:Label></li>
-                            <li class="mt-1">الشركة الأم: 
-                                <asp:Label ID="lbl_main_company" runat="server" Text="شركة الثقة"></asp:Label></li>
+                            
                             <li class="mt-1">بداية العقد: 
                                 <asp:Label ID="lbl_start_dt" runat="server" Text="2018/10/10"></asp:Label></li>
                             <li class="mt-1">نهاية العقد: 
@@ -85,13 +84,19 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 py-2">
-                <div class="card text-white bg-warning h-100">
+                <div class="card text-white bg-secondary h-100">
                     <div class="card-body">
                         <div class="rotate">
-                            <i class="fa fa-info-circle fa-4x"></i>
+                            <i class="fa fa-money-check-alt fa-4x"></i>
                         </div>
-                        <h6 class="text-uppercase">معلومات</h6>
-                        <h1 class="display-4">36</h1>
+                        <ul class="list-unstyled mb-0">
+                            <li>طريقة الدفع: 
+                                <asp:Label ID="lbl_payment_type" runat="server" Text=""></asp:Label></li>
+                            <li class="mt-1">ملف الأسعار: 
+                                <asp:Label ID="lbl_prices_profile" runat="server" Text="شركة الثقة"></asp:Label></li>
+                            <li class="mt-1">الشركة الأم: 
+                                <asp:Label ID="lbl_main_company" runat="server" Text="شركة الثقة"></asp:Label></li>
+                        </ul>
                     </div>
                 </div>
             </div>

@@ -53,17 +53,9 @@
             <!-- form-row -->
 
             <div class="form-row justify-content-end">
-                <div class="col-sm-2">
-                    <div class="form-group">
-                        <asp:UpdateProgress ID="UpdateProgress2" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
-                            <ProgressTemplate>
-                                <img src="Style/images/loading.gif" width="50px" />
-                            </ProgressTemplate>
-                        </asp:UpdateProgress>
-                    </div>
-                </div>
+                
                 <div class="form-group col-xs-6 col-sm-2">
-                    <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" ValidationGroup="save_data" />
+                    <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" ValidationGroup="save_data"  />
                 </div>
             </div>
 
@@ -108,7 +100,7 @@
                             </div>
                         </div>
                         <div class="form-group col-xs-6 col-sm-2">
-                            <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" Visible="false" />
+                            <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" Visible="false" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                         </div>
                     </div>
                     <hr />
@@ -161,6 +153,9 @@
                         </div>
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btn_save" EventName="Click" />
+                </Triggers>
             </asp:UpdatePanel>
 
         </div>

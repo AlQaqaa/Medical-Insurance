@@ -25,8 +25,9 @@
                     null,
                     null,
                     null,
-                    { "searchable": false },
-                    null
+                    null,
+                    { "searchable": false }
+                    
                 ],
                 'columnDefs': [
                   {
@@ -92,7 +93,15 @@
                                 <HeaderStyle CssClass="hide-colum" />
                                 <ItemStyle CssClass="hide-colum" />
                             </asp:BoundField>
-                            <asp:BoundField HeaderText="ر.ش" DataField="C_ID"></asp:BoundField>
+                            <asp:BoundField HeaderText="رقم الشركة" DataField="C_ID">
+                                <ControlStyle CssClass="hide-colum" />
+                                <FooterStyle CssClass="hide-colum" />
+                                <HeaderStyle CssClass="hide-colum" />
+                                <ItemStyle CssClass="hide-colum" />
+                            </asp:BoundField>
+                            <asp:BoundField DataField="P_STATE" HeaderText="حالة المنتفع">
+                                <ItemStyle BackColor="#33CC33" ForeColor="White"></ItemStyle>
+                            </asp:BoundField>
                             <asp:BoundField HeaderText="رقم البطاقة" DataField="CARD_NO"></asp:BoundField>
                             <asp:ButtonField DataTextField="NAME_ARB" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالعربي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
                             <asp:ButtonField DataTextField="NAME_ENG" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالإنجليزي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
@@ -102,9 +111,7 @@
                             <asp:BoundField HeaderText="رقم الهاتف" DataField="PHONE_NO"></asp:BoundField>
                             <asp:BoundField HeaderText="تاريخ صلاحية البطاقة" DataField="EXP_DATE"></asp:BoundField>
                             <asp:BoundField HeaderText="صلة القرابة" DataField="CONST_ID"></asp:BoundField>
-                            <asp:BoundField DataField="P_STATE" HeaderText="حالة المنتفع">
-                                <ItemStyle BackColor="#33CC33" ForeColor="White"></ItemStyle>
-                            </asp:BoundField>
+                            
                         </Columns>
                     </asp:GridView>
                 </div>

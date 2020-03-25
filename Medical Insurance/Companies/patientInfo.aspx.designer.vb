@@ -41,6 +41,15 @@ Partial Public Class patientInfo
     Protected WithEvents img_pat_img As Global.System.Web.UI.WebControls.Image
 
     '''<summary>
+    '''Panel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
+
+    '''<summary>
     '''lbl_name_eng control.
     '''</summary>
     '''<remarks>
@@ -237,4 +246,49 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_ban_service As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''txt_exp_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_exp_date As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''ImageButton2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
+
+    '''<summary>
+    '''CalendarExtender1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
+
+    '''<summary>
+    '''MaskedEditExtender1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MaskedEditExtender1 As Global.AjaxControlToolkit.MaskedEditExtender
+
+    '''<summary>
+    '''btn_renew_card control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_renew_card As Global.System.Web.UI.WebControls.Button
 End Class

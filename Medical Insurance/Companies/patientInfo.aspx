@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="معلومات المشترك" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="patientInfo.aspx.vb" Inherits="Medical_Insurance.patientInfo" Culture="ar-LY" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,7 +13,7 @@
                 <div class="row mt-1">
                     <div class="col-xs-12 col-sm-6">
                         <div class="card text-dark bg-light  h-100">
-                            <div class="card-body bg-light ">
+                            <div class="card-body bg-light pb-2">
                                 <div class="rotate">
                                     <i class="fa fa-id-card fa-4x"></i>
                                 </div>
@@ -19,6 +21,11 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="text-center">
                                             <asp:Image ID="img_pat_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="100%" Height="140px" />
+                                            <asp:Panel ID="Panel1" runat="server">
+                                                <button type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#renew_card">
+                                                    تجديد صلاحية البطاقة
+                                                </button>
+                                            </asp:Panel>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
@@ -193,6 +200,36 @@
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btn_ban_service" class="btn btn-outline-success" runat="server" Text="حفظ" />
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal renew card -->
+    <div class="modal fade" id="renew_card" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="renew_cardLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="renew_cardLabel">تجديد بطاقة المنتفع</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label for="txt_EXP_DATE">تاريخ صلاحية البطاقة</label>
+                    <div class="input-group">
+                        <asp:TextBox ID="txt_exp_date" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_exp_date);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
+                            </div>
+                        </div>
+                    </div>
+                    <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_exp_date" id="CalendarExtender1" format="dd/MM/yyyy" popupbuttonid="ImageButton2" popupposition="BottomLeft"></ajaxtoolkit:calendarextender>
+                    <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_exp_date_MaskedEditExtender" targetcontrolid="txt_exp_date" id="MaskedEditExtender1" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btn_renew_card" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>

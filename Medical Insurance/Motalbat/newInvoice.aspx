@@ -17,10 +17,18 @@
                             <div class="card-header">إنشاء فاتورة جديدة</div>
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-xs-12 col-sm-6">
+                                    <div class="form-group col-xs-12 col-sm-4">
                                         <label for="ddl_companies">الشركة</label>
                                         <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id"></asp:DropDownList>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-2">
+                                        <label for="ddl_companies">نوع الفاتورة</label>
+                                        <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server">
+                                            <asp:ListItem Value="0">الكل</asp:ListItem>
+                                            <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
+                                            <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <label for="txt_start_dt">الفترة من</label>
@@ -55,18 +63,23 @@
                                         <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_create" runat="server" CssClass="btn btn-outline-dark btn-block" Text="إنشاء" />
+                                        <asp:Button ID="btn_create" runat="server" CssClass="btn btn-outline-dark btn-block" Text="إنشاء" Enabled="false" />
                                     </div>
                                 </div>
                                 <!-- /form-row -->
                                 <hr />
+                                <div class="form-row">
+                                    <div class="form-group col-xs-6 col-sm-3">
+                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Visible="false"/>
+                                    </div>
+                                </div><!-- /form-row -->
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
                                             <Columns>
                                                 <asp:TemplateField HeaderText="تحديد">
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
+                                                        <asp:CheckBox ID="CheckBox2" runat="server" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField HeaderText="رقم العملية" DataField="Processes_ID">

@@ -50,6 +50,15 @@ Partial Public Class newInvoice
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
 
     '''<summary>
+    '''ddl_invoice_type control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_invoice_type As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
     '''txt_start_dt control.
     '''</summary>
     '''<remarks>
@@ -138,6 +147,15 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_create As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''CheckBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
 
     '''<summary>
     '''GridView1 control.

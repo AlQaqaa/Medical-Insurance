@@ -147,11 +147,13 @@
                     <hr />
                     <div class="form-row justify-content-end">
                         <div class="form-group col-xs-6 col-sm-3">
-                            <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
+                            <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                         </div>
                     </div>
                 </ContentTemplate>
-               
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btn_save" EventName="Click" />
+                </Triggers>
             </asp:UpdatePanel>
         </div>
     </div>

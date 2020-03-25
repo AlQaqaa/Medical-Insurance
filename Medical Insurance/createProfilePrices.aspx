@@ -40,7 +40,7 @@
                             <hr />
                             <div class="row justify-content-end">
                                 <div class="col-sm-12 col-md-3">
-                                    <asp:Button ID="btn_next" CssClass="btn btn-outline-success btn-block" runat="server" Text="التالي" ValidationGroup="next_btn" />
+                                    <asp:Button ID="btn_next" CssClass="btn btn-outline-success btn-block" runat="server" Text="التالي" ValidationGroup="next_btn" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                                 </div>
                             </div>
                             <!-- row -->
@@ -48,13 +48,14 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- /row -->
+            </div>
+            <!-- /row -->
             <div class="row mt-1">
                 <div class="col-sm-12 col-md-6">
                     <div class="card">
-                        <div class="card-header bg-success text-light">ملفات الأسعار المتاحة <span data-toggle='tooltip' data-placement='top' title='لا يمكن تعطيل ملف أسعار مرتبط بشركة ما أو كان الملف هو ملف الأسعار الأساسي'> <i class='fas fa-info-circle'></i></span></div>
+                        <div class="card-header bg-success text-light">ملفات الأسعار المتاحة <span data-toggle='tooltip' data-placement='top' title='لا يمكن تعطيل ملف أسعار مرتبط بشركة ما أو كان الملف هو ملف الأسعار الأساسي'><i class='fas fa-info-circle'></i></span></div>
                         <div class="card-body">
-                            
+
                             <asp:GridView ID="GridView1" class="table table-striped table-sm" runat="server" GridLines="None" AutoGenerateColumns="False">
                                 <Columns>
                                     <asp:BoundField DataField="PROFILE_ID" HeaderText="ر.م">
@@ -108,7 +109,7 @@
                     <div class="card">
                         <div class="card-header bg-danger text-light">ملفات الأسعار الموقوفة</div>
                         <div class="card-body">
-                            
+
                             <asp:GridView ID="GridView2" class="table table-striped table-sm" runat="server" GridLines="None" AutoGenerateColumns="False">
                                 <Columns>
                                     <asp:BoundField DataField="PROFILE_ID" HeaderText="ر.خ">
@@ -134,7 +135,11 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- row -->
+            </div>
+            <!-- row -->
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btn_next" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

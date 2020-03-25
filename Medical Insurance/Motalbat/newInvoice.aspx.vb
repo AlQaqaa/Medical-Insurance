@@ -26,10 +26,14 @@ Public Class newInvoice
             If dt_result.Rows.Count > 0 Then
                 GridView1.DataSource = dt_result
                 GridView1.DataBind()
+                CheckBox1.Visible = True
+                btn_create.Enabled = True
             Else
                 dt_result.Rows.Clear()
                 GridView1.DataSource = dt_result
                 GridView1.DataBind()
+                CheckBox1.Visible = False
+                btn_create.Enabled = False
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -107,4 +111,18 @@ Public Class newInvoice
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+
+            If CheckBox1.Checked = True Then
+                ch.Checked = True
+            Else
+                ch.Checked = False
+
+            End If
+        Next
+    End Sub
+
 End Class

@@ -63,7 +63,7 @@
                                         <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_create" runat="server" CssClass="btn btn-outline-dark btn-block" Text="إنشاء" Enabled="false" />
+                                        <asp:Button ID="btn_create" runat="server" CssClass="btn btn-outline-dark btn-block" Text="إنشاء" Enabled="false" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                                     </div>
                                 </div>
                                 <!-- /form-row -->
@@ -118,5 +118,8 @@
                 <!-- /row -->
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btn_create" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>

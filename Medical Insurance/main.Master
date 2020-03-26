@@ -82,7 +82,7 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink4" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Motalbat/newInvoice.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;فاتورة جديدة</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="hl_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-receipt"></i> المطالبات</asp:HyperLink>
+                                        <asp:HyperLink ID="hl_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/invoicesList.aspx"><i class="fas fa-receipt"></i> المطالبات</asp:HyperLink></li>
                                 </ul>
                             </li>
                         </ul>

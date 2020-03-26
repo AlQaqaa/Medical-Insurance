@@ -77,6 +77,7 @@ Public Class newInvoice
             sqlComm.Parameters.AddWithValue("@c_id", ddl_companies.SelectedValue)
             sqlComm.Parameters.AddWithValue("@from_dt", start_dt)
             sqlComm.Parameters.AddWithValue("@to_dt", end_dt)
+            sqlComm.Parameters.AddWithValue("@invoiceType", ddl_invoice_type.SelectedValue)
             sqlComm.Parameters.AddWithValue("@user_id", 1)
             sqlComm.Parameters.AddWithValue("@user_ip", GetIPAddress())
             sqlComm.Parameters.AddWithValue("@inv_id", SqlDbType.Int).Direction = ParameterDirection.Output

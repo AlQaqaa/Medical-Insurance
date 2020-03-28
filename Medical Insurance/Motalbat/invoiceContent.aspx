@@ -74,7 +74,7 @@
                                                 <asp:Button ID="btn_print" runat="server"
                                                     CommandName="printProcess"
                                                     CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                                    Text="طباعة"
+                                                    Text="طباعة المرفق"
                                                     ToolTip="طباعة حركة المنتفع"
                                                     ControlStyle-CssClass="btn btn-primary btn-small" />
 

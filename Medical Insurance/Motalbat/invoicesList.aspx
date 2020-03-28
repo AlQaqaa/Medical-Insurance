@@ -19,6 +19,8 @@
                                 <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                             </div>
                             <div class="form-group col-xs-6 col-sm-3">
+                                <label for="ddl_companies"> </label>
+                                <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" Visible="False" />
                             </div>
                         </div>
                         <!-- /form-row -->
@@ -34,6 +36,11 @@
                                             <HeaderStyle CssClass="hide-colum" />
                                             <ItemStyle CssClass="hide-colum" />
                                         </asp:BoundField>
+                                        <asp:TemplateField HeaderText="تحديد">
+                                            <ItemTemplate>
+                                                <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="ر.ت">
                                             <ItemTemplate>
                                                 <span>
@@ -52,7 +59,7 @@
                                                 <asp:Button ID="btn_print" runat="server"
                                                     CommandName="printInvoice"
                                                     CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                                    Text="طباعة"
+                                                    Text="طباعة الفاتورة"
                                                     ToolTip="طباعة الفاتورة"
                                                     ControlStyle-CssClass="btn btn-primary btn-small" />
 

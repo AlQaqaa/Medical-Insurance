@@ -125,4 +125,68 @@ Public Class invoicesList
             End Try
         End If
     End Sub
+
+    Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
+
+        Dim ch_counter As Integer = 0
+
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+            
+            If ch.Checked = True Then
+                main_ds.Tables("invoicesList").Rows.Add(dd.Cells(0).Text, dd.Cells(4).Text, dd.Cells(6).Text, dd.Cells(7).Text, CDec(dd.Cells(8).Text))
+                ch_counter = ch_counter + 1
+            End If
+        Next
+
+        If ch_counter = 0 Then
+            lbl_msg.Visible = True
+            lbl_msg.Text = "خطأ! لم يتم اختيار فاتورة، يرجى تحديد فاتورة أو أكثر"
+            lbl_msg.ForeColor = Drawing.Color.Red
+            Exit Sub
+        Else
+            lbl_msg.Visible = False
+        End If
+
+        Dim viewer As ReportViewer = New ReportViewer()
+
+        Dim datasource As New ReportDataSource("invListDS", main_ds.Tables("invoicesList"))
+        viewer.LocalReport.DataSources.Clear()
+        viewer.ProcessingMode = ProcessingMode.Local
+        viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/invoicesList.rdlc")
+        viewer.LocalReport.DataSources.Add(datasource)
+
+        'Dim rp1 As ReportParameter
+        'Dim rp2 As ReportParameter
+        'Dim rp3 As ReportParameter
+
+        'rp1 = New ReportParameter("from_dt", (row.Cells(6).Text).ToString)
+        'rp2 = New ReportParameter("to_dt", (row.Cells(7).Text).ToString)
+        'rp3 = New ReportParameter("INVOICE_NO", (row.Cells(0).Text).ToString)
+
+        'viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3})
+
+        Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+        Dim r As String = "~/Reports/invoicesList.rdlc"
+        ' Page.Controls.Add(rv)
+
+        Dim warnings As Warning() = Nothing
+        Dim streamids As String() = Nothing
+        Dim mimeType As String = Nothing
+        Dim encoding As String = Nothing
+        Dim extension As String = Nothing
+        Dim bytes As Byte()
+        Dim FolderLocation As String
+        FolderLocation = Server.MapPath("~/Reports")
+        Dim filepath As String = FolderLocation & "/invoicesList.pdf"
+        If Directory.Exists(filepath) Then
+            File.Delete(filepath)
+        End If
+        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
+            encoding, extension, streamids, warnings)
+        Dim fs As New FileStream(FolderLocation & "/invoicesList.pdf", FileMode.Create)
+        fs.Write(bytes, 0, bytes.Length)
+        fs.Close()
+        Response.Redirect("~/Reports/invoicesList.pdf", False)
+    End Sub
 End Class

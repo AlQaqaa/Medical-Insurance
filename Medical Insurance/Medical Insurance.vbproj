@@ -388,6 +388,7 @@
     </EmbeddedResource>
     <Content Include="Reports\patientMotalbaDetailes.rdlc" />
     <Content Include="Reports\invoiceContent.rdlc" />
+    <Content Include="Reports\invoicesList.rdlc" />
     <EmbeddedResource Include="Reports\servicesPrices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPrices.vb</LastGenOutput>

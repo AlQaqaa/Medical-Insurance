@@ -24,6 +24,12 @@
                             </div>
                         </div>
                         <!-- /form-row -->
+                        <div class="form-row justify-content-center">
+                            <div class="form-group col-xs-12 col-sm-6">
+                                <asp:Label ID="lbl_msg" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                        <!-- /form-row -->
                         <br />
                         <div class="row">
                             <div class="col-sm-12">

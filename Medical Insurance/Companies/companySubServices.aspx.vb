@@ -69,7 +69,7 @@ Public Class companySubServices
         Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
         Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE"
 
-        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE " & search_by, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE (SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_SubServices.SubService_Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") = 0 AND " & search_by, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()
@@ -117,7 +117,7 @@ Public Class companySubServices
         Dim SER_STATE As String = "ISNULL((SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
 
 
-        Dim sel_data As New SqlCommand("select 0 as Service_ID, 'الكل' as Service_AR_Name union select Service_ID, (select Service_AR_Name from Main_Services WHERE Main_Services.Service_ID = INC_SERVICES_RESTRICTIONS.Service_ID) as Service_AR_Name from INC_SERVICES_RESTRICTIONS where CLINIC_ID = " & ddl_clinics.SelectedValue, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select 0 as Service_ID, 'الكل' as Service_AR_Name union select Service_ID, (select Service_AR_Name from Main_Services WHERE Main_Services.Service_ID = INC_SERVICES_RESTRICTIONS.Service_ID) as Service_AR_Name from INC_SERVICES_RESTRICTIONS where SERVICE_STS = 0 AND CONTRACT_NO = " & ViewState("contract_no") & " AND CLINIC_ID = " & ddl_clinics.SelectedValue, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()

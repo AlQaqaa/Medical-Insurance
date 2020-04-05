@@ -41,7 +41,7 @@
                                         <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True"  />
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-3">
-                                        <asp:TextBox ID="txt_max_value_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سقف الخدمة"></asp:TextBox>
+                                        <asp:TextBox ID="txt_max_value_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEU(event)" placeholder="سقف الخدمة"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-1">
 
@@ -66,7 +66,7 @@
                                     <asp:BoundField HeaderText="اسم الخدمة" DataField="Service_AR_Name"></asp:BoundField>
                                     <asp:TemplateField HeaderText="السقف">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txt_max_val" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                                            <asp:TextBox ID="txt_max_val" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                 </Columns>

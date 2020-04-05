@@ -67,7 +67,7 @@
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="txt_max_company_value">السقف العام للشركة</label>
                     <div class="input-group">
-                        <asp:TextBox ID="txt_max_company_value" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txt_max_company_value" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                         <div class="input-group-prepend">
                             <div class="input-group-text">د.ل</div>
                         </div>
@@ -76,7 +76,7 @@
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="txt_max_card_value">السقف العام للعائلة</label>
                     <div class="input-group">
-                        <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                         <div class="input-group-prepend">
                             <div class="input-group-text">د.ل</div>
                         </div>
@@ -85,7 +85,7 @@
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="txt_max_person">السقف العام للفرد</label>
                     <div class="input-group">
-                        <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                         <div class="input-group-prepend">
                             <div class="input-group-text">د.ل</div>
                         </div>
@@ -109,7 +109,7 @@
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="txt_max_company_value">سقف المعاينة الواحدة</label>
                     <div class="input-group">
-                        <asp:TextBox ID="txt_max_one_processes" CssClass="form-control" Text="0" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txt_max_one_processes" CssClass="form-control" Text="0" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                         <div class="input-group-prepend">
                             <div class="input-group-text">د.ل</div>
                         </div>

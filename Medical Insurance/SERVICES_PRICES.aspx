@@ -65,7 +65,7 @@
                         <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Checked="True" />
                     </div>
                     <div class="form-group col-xs-12 col-sm-2">
-                        <asp:TextBox ID="txt_private_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر الخاص" Enabled="false"></asp:TextBox>
+                        <asp:TextBox ID="txt_private_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEUIN(event)" placeholder="سعر الخاص" Enabled="false"></asp:TextBox>
                     </div>
                     <div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_inc_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر التأمين" Enabled="false"></asp:TextBox>

@@ -22,12 +22,12 @@
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-sm-6">
                             <label for="txt_company_name_ar">اسم الشركة بالعربية</label>
-                            <asp:TextBox ID="txt_company_name_ar" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_company_name_ar" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyAR(event)"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال اسم الشركة" ControlToValidate="txt_company_name_ar" ForeColor="Red" ValidationGroup="save_data"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group col-xs-12 col-sm-6">
                             <label for="txt_company_name_en">اسم الشركة بالإنجليزية</label>
-                            <asp:TextBox ID="txt_company_name_en" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_company_name_en" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEN(event)"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال اسم الشركة" ControlToValidate="txt_company_name_en" ForeColor="Red" ValidationGroup="save_data"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                         <div class="form-group col-xs-12 col-sm-3">
                             <label for="txt_max_company_value">السقف العام للشركة</label>
                             <div class="input-group">
-                                <asp:TextBox ID="txt_max_company_value" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_max_company_value" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">د.ل</div>
                                 </div>
@@ -89,7 +89,7 @@
                         <div class="form-group col-xs-12 col-sm-3">
                             <label for="txt_max_card_value">السقف العام للعائلة</label>
                             <div class="input-group">
-                                <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_max_card_value" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">د.ل</div>
                                 </div>
@@ -98,7 +98,7 @@
                         <div class="form-group col-xs-12 col-sm-3">
                             <label for="txt_max_person">السقف العام للفرد</label>
                             <div class="input-group">
-                                <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_max_person" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">د.ل</div>
                                 </div>

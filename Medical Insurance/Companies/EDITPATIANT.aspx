@@ -14,10 +14,12 @@
                             <div class="form-group col-xs-12 col-sm-4">
                                 <label for="txt_CARD_NO">رقم البطاقة</label>
                                 <asp:TextBox ID="txt_CARD_NO" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_CARD_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="BAGE_NO">الرقم الوظيفي</label>
                                 <asp:TextBox ID="txt_BAGE_NO" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_BAGE_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="BAGE_NO">الشركة</label>
@@ -29,11 +31,13 @@
                         <div class="form-row">
                             <div class="form-group col-sm-4">
                                 <label for="txt_NAME_ARB">اسم المشترك بالعربي</label>
-                                <asp:TextBox ID="txt_NAME_ARB" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_NAME_ARB" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyAR(event)"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_NAME_ARB" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="txt_NAME_ENG">اسم المشترك بالإنجليزية</label>
-                                <asp:TextBox ID="txt_NAME_ENG" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_NAME_ENG" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEN(event)"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_NAME_ENG" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
 
                             </div>
 
@@ -89,7 +93,8 @@
                         <div class="form-row">
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="PHONE_NO">رقم الهاتف</label>
-                                <asp:TextBox ID="txt_PHONE_NO" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_PHONE_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_PHONE_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="txt_EXP_DATE">تاريخ صلاحية البطاقة</label>
@@ -106,11 +111,13 @@
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="txt_NAT_NUMBER">الرقم الوطني</label>
-                                <asp:TextBox ID="txt_NAT_NUMBER" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_NAT_NUMBER" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_NAT_NUMBER" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="txt_KID_NO">رقم القيد</label>
-                                <asp:TextBox ID="txt_KID_NO" CssClass="form-control" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txt_KID_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_KID_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-row">
@@ -123,7 +130,7 @@
                         <hr />
                         <div class="form-row">
                             <div class="form-group col-sm-3">
-                                <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="تعديل" ValidationGroup="save_data" />
+                                <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="تعديل" ValidationGroup="save" />
                             </div>
                         </div>
                     </div>

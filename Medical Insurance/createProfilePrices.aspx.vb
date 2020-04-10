@@ -37,6 +37,7 @@ Public Class createProfilePrices
             insNewProfile.ExecuteNonQuery()
             Session.Item("profile_no") = insNewProfile.Parameters("@p_id").Value.ToString()
             insurance_SQLcon.Close()
+
             Response.Redirect("SERVICES_PRICES.aspx", False)
             Exit Sub
         Catch ex As Exception
@@ -146,7 +147,8 @@ Public Class createProfilePrices
                 setDefaultProfilePrice.Connection = insurance_SQLcon
                 setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
                 setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
-                setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
+                setDefaultProfilePrice.Parameters.AddWithValue("@user_id", 1)
+                setDefaultProfilePrice.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()
                 setDefaultProfilePrice.ExecuteNonQuery()
                 insurance_SQLcon.Close()

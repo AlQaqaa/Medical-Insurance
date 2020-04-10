@@ -95,6 +95,8 @@ Public Class _Default1
                 stopCompany.CommandText = "INC_stopCompany"
                 stopCompany.CommandType = CommandType.StoredProcedure
                 stopCompany.Parameters.AddWithValue("@comID", (row.Cells(0).Text))
+                stopCompany.Parameters.AddWithValue("@user_id", 1)
+                stopCompany.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()
                 stopCompany.ExecuteNonQuery()
                 insurance_SQLcon.Close()
@@ -118,6 +120,7 @@ Public Class _Default1
             end_contract.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
+            add_action(1, 2, 2, "إنهاء عقد الشركة رقم: " & (row.Cells(0).Text), 1, GetIPAddress())
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم إنهاء عقد الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         End If
 

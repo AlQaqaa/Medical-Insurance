@@ -36,9 +36,10 @@ Public Class EDITCOMPANY
         Dim s6 As String = " (SELECT top 1 (PYMENT_TYPE) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS PYMENT_TYPE"
         Dim s7 As String = " (SELECT top 1 (PROFILE_PRICE_ID) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS PROFILE_PRICE_ID"
         Dim s8 As String = " (SELECT top 1 (MAX_PERSON) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_PERSON"
+        Dim s9 As String = " (SELECT top 1 (CONTRACT_NO) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS CONTRACT_NO"
 
 
-        Dim ins_com1 As New SqlCommand("SELECT C_NAME_ARB, C_NAME_ENG, " & s1 & ", " & s2 & ", " & s3 & ", " & s4 & ", " & s5 & ", " & s6 & ", " & s7 & ", " & s8 & "  FROM INC_COMPANY_DATA WHERE C_ID = @C_id", insurance_SQLcon)
+        Dim ins_com1 As New SqlCommand("SELECT C_NAME_ARB, C_NAME_ENG, " & s1 & ", " & s2 & ", " & s3 & ", " & s4 & ", " & s5 & ", " & s6 & ", " & s7 & ", " & s8 & ", " & s9 & "  FROM INC_COMPANY_DATA WHERE C_ID = @C_id", insurance_SQLcon)
 
 
         ins_com1.Parameters.AddWithValue("@C_id", Val(Session("company_id")))
@@ -72,7 +73,7 @@ Public Class EDITCOMPANY
             txt_max_person.Text = rd1!MAX_PERSON
             ddl_PATIAINT_PER.SelectedValue = rd1!PATIAINT_PER
             ddl_payment_type.SelectedValue = rd1!PYMENT_TYPE
-
+            ViewState("contract_no") = rd1!CONTRACT_NO
 
         End If
         insurance_SQLcon.Close()
@@ -86,6 +87,7 @@ Public Class EDITCOMPANY
             insToCompany.CommandText = "INC_editCompany"
             insToCompany.CommandType = CommandType.StoredProcedure
             insToCompany.Parameters.AddWithValue("@cId", Val(Session("company_id")))
+            insToCompany.Parameters.AddWithValue("@contractNo", Val(ViewState("contract_no")))
             insToCompany.Parameters.AddWithValue("@cNameAr", txt_company_name_ar.Text)
             insToCompany.Parameters.AddWithValue("@cNameEn", txt_company_name_en.Text)
             insToCompany.Parameters.AddWithValue("@startDt", txt_start_dt.Text)

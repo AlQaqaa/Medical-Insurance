@@ -58,6 +58,8 @@ Public Class STOP_COMPANY
                 stopCompany.CommandText = "INC_startCompany"
                 stopCompany.CommandType = CommandType.StoredProcedure
                 stopCompany.Parameters.AddWithValue("@comID", (row.Cells(0).Text))
+                stopCompany.Parameters.AddWithValue("@user_id", 1)
+                stopCompany.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()
                 stopCompany.ExecuteNonQuery()
                 insurance_SQLcon.Close()

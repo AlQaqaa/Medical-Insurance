@@ -81,6 +81,12 @@ Public Class patientInfo
             edit_sts.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
+            If new_sts = 1 Then
+                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+            Else
+                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+            End If
+
             getPatInfo()
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)

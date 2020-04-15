@@ -98,6 +98,12 @@ Public Class _Default3
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
         End If
+
+        If (e.CommandName = "clinic_name") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+            Response.Redirect("editClinic.aspx?clinicId=" & (row.Cells(0).Text), True)
+        End If
     End Sub
 
     Private Sub btn_ban_doctor_Click(sender As Object, e As EventArgs) Handles btn_ban_doctor.Click

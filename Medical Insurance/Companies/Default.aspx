@@ -118,7 +118,7 @@
                                             <HeaderStyle CssClass="hide-colum" />
                                             <ItemStyle CssClass="hide-colum" />
                                         </asp:BoundField>
-                                        <asp:BoundField HeaderText="اسم العيادة" DataField="Clinic_AR_Name"></asp:BoundField>
+                                        <asp:ButtonField DataTextField="Clinic_AR_Name" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم العيادة للوصول إلى الإعدادات الخاصة بها ومعرفة تفاصيل أكثر عنها'>اسم العيادة <i class='fas fa-info-circle'></i></span>" CommandName="clinic_name"></asp:ButtonField>
                                         <asp:BoundField HeaderText="سقف العيادة" DataField="MAX_VALUE" DataFormatString="{0:C3}"></asp:BoundField>
                                         <asp:BoundField HeaderText="" DataField="GROUP_CLINIC"></asp:BoundField>
                                         <asp:TemplateField>

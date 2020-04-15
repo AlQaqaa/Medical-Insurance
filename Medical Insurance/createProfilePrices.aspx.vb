@@ -147,6 +147,7 @@ Public Class createProfilePrices
                 setDefaultProfilePrice.Connection = insurance_SQLcon
                 setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
                 setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
+                setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
                 setDefaultProfilePrice.Parameters.AddWithValue("@user_id", 1)
                 setDefaultProfilePrice.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()

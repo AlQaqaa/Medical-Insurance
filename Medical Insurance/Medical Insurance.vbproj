@@ -117,7 +117,7 @@
     <Content Include="Companies\companyServices.aspx" />
     <Content Include="Companies\companySubServices.aspx" />
     <Content Include="Companies\Default.aspx" />
-    <Content Include="Companies\editClinc.aspx" />
+    <Content Include="Companies\editClinic.aspx" />
     <Content Include="Companies\EDITCOMPANY.aspx" />
     <Content Include="Companies\EDITPATIANT.aspx" />
     <Content Include="Companies\INC_PATIANT.aspx" />
@@ -229,11 +229,11 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Companies\editClinc.aspx.designer.vb">
-      <DependentUpon>editClinc.aspx</DependentUpon>
+    <Compile Include="Companies\editClinic.aspx.designer.vb">
+      <DependentUpon>editClinic.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Companies\editClinc.aspx.vb">
-      <DependentUpon>editClinc.aspx</DependentUpon>
+    <Compile Include="Companies\editClinic.aspx.vb">
+      <DependentUpon>editClinic.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Companies\EDITCOMPANY.aspx.designer.vb">

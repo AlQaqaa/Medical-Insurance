@@ -156,10 +156,18 @@ Public Class SERVICES_PRICES
                 Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
                 If ch.Checked = True Then
-                    txt_private_price.Text = CDec(txt_private_all.Text)
-                    txt_inc_price.Text = CDec(txt_inc_price_all.Text)
-                    txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
-                    txt_cost_price.Text = CDec(txt_cost_price_all.Text)
+                    If txt_private_all.Text <> "" Then
+                        txt_private_price.Text = CDec(txt_private_all.Text)
+                    End If
+                    If txt_inc_price_all.Text <> "" Then
+                        txt_inc_price.Text = CDec(txt_inc_price_all.Text)
+                    End If
+                    If txt_invoice_price_all.Text <> "" Then
+                        txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
+                    End If
+                    If txt_cost_price_all.Text <> "" Then
+                        txt_cost_price.Text = CDec(txt_cost_price_all.Text)
+                    End If
 
                 End If
 
@@ -188,7 +196,7 @@ Public Class SERVICES_PRICES
             If ddl_group.SelectedValue <> 0 Then
                 sql_str = sql_str & " AND SubService_Group in (SELECT SubGroup_ID FROM Main_SubGroup WHERE MainGroup_ID = " & ddl_group.SelectedItem.Value & ")"
                 If ddl_services_group.SelectedValue <> 0 Then
-                    sql_str = sql_str = " AND SubService_Group = " & ddl_services_group.SelectedItem.Value
+                    sql_str = sql_str & " AND SubService_Group = " & ddl_services_group.SelectedItem.Value
                 End If
             End If
 

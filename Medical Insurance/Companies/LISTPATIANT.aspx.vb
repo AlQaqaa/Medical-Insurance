@@ -64,7 +64,7 @@ Public Class LISTPATIANT
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
         If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim cell As TableCell = e.Row.Cells(1)
+            Dim cell As TableCell = e.Row.Cells(2)
             Dim pet_state As String = cell.Text
 
             If pet_state = "موقوف" Then

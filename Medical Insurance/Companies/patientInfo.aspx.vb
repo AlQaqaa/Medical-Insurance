@@ -48,6 +48,11 @@ Public Class patientInfo
             lbl_const.Text = dr_pat!CONST_ID
             img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
+            If dr_pat!EXP_DATE > Date.Now.Date Then
+                Panel1.Visible = False
+            Else
+                Panel1.Visible = True
+            End If
             If dr_pat!P_STATE = 0 Then
                 lbl_icon_sts.CssClass = "text-success"
                 lbl_sts.Text = "مفعل"
@@ -108,6 +113,9 @@ Public Class patientInfo
             insurance_SQLcon.Open()
             ins_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
+
+            add_action(1, 2, 2, "حظر الخدمة رقم: " & ddl_services.SelectedValue & " عن المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception
@@ -146,6 +154,9 @@ Public Class patientInfo
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
+
+            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
@@ -226,6 +237,9 @@ Public Class patientInfo
             insurance_SQLcon.Open()
             renew_card.ExecuteNonQuery()
             insurance_SQLcon.Close()
+
+            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+
             getPatInfo()
         Catch ex As Exception
             MsgBox(ex.Message)

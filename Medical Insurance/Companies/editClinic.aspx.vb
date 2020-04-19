@@ -65,6 +65,7 @@ Public Class editClinc
                 dt_result.Load(sel_clinic_group.ExecuteReader)
                 insurance_SQLcon.Close()
                 If dt_result.Rows.Count > 0 Then
+                    ViewState("group_count") = dt_result.Rows.Count
                     Dim resultString As String = ""
                     Dim isFirstResult = True
                     For i = 0 To dt_result.Rows.Count - 1
@@ -81,6 +82,7 @@ Public Class editClinc
                     Literal1.Text = ""
                 End If
             Else
+                Literal1.Text = ""
                 lbl_info.Text = ""
             End If
         End If
@@ -124,15 +126,28 @@ Public Class editClinc
 
     Private Sub btn_separat_Click(sender As Object, e As EventArgs) Handles btn_separat.Click
         Try
-            Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET MAX_VALUE=@MAX_VALUE, GROUP_NO=0 WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
-            update_clinic.Parameters.AddWithValue("@MAX_VALUE", CDec(txt_max_val.Text))
-            update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))
-            update_clinic.Parameters.AddWithValue("@CLINIC_ID", Val(txt_clinic_id.Text))
-            update_clinic.Parameters.AddWithValue("@CONTRACT_NO", ViewState("contract_no"))
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            update_clinic.ExecuteNonQuery()
-            insurance_SQLcon.Close()
+            Dim sql_str As String = ""
+            If ViewState("group_count") > 2 Then
+                Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET MAX_VALUE=@MAX_VALUE, GROUP_NO=0 WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
+                update_clinic.Parameters.AddWithValue("@MAX_VALUE", CDec(txt_max_val.Text))
+                update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))
+                update_clinic.Parameters.AddWithValue("@CLINIC_ID", Val(txt_clinic_id.Text))
+                update_clinic.Parameters.AddWithValue("@CONTRACT_NO", ViewState("contract_no"))
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                update_clinic.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+            ElseIf ViewState("group_count") = 2 Then
+                Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET MAX_VALUE=@MAX_VALUE, GROUP_NO=0 WHERE C_ID=@C_ID AND GROUP_NO=@GROUP_NO AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
+                update_clinic.Parameters.AddWithValue("@MAX_VALUE", CDec(txt_max_val.Text))
+                update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))
+                update_clinic.Parameters.AddWithValue("@GROUP_NO", Val(ViewState("group_no")))
+                update_clinic.Parameters.AddWithValue("@CONTRACT_NO", ViewState("contract_no"))
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                update_clinic.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+            End If
 
             add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " وفصلها عن المجموعة رقم: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
 

@@ -21,7 +21,7 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="text-center">
                                             <asp:Image ID="img_pat_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="100%" Height="140px" />
-                                            <asp:Panel ID="Panel1" runat="server">
+                                            <asp:Panel ID="Panel1" runat="server" style="margin-top:4px">
                                                 <button type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#renew_card">
                                                     تجديد صلاحية البطاقة
                                                 </button>

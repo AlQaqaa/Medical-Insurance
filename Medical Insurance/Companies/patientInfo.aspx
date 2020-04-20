@@ -21,11 +21,14 @@
                                     <div class="col-xs-12 col-sm-6">
                                         <div class="text-center">
                                             <asp:Image ID="img_pat_img" CssClass="img-fluid img-thumbnail rounded " runat="server" Width="100%" Height="140px" />
-                                            <asp:Panel ID="Panel1" runat="server" style="margin-top:4px">
+                                            <asp:Panel ID="Panel1" runat="server" Style="margin-top: 4px">
                                                 <button type="button" class="btn btn-primary btn-small" data-toggle="modal" data-target="#renew_card">
                                                     تجديد صلاحية البطاقة
                                                 </button>
                                             </asp:Panel>
+                                            <button type="button" class="btn btn-primary btn-small mt-2" data-toggle="modal" data-target="#upload_card">
+                                                رفع بطاقة
+                                            </button>
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-6">
@@ -155,7 +158,7 @@
                                 <asp:GridView ID="GridView3" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                     <Columns>
                                         <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Date" HeaderText="التاريخ"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Cilinc" HeaderText="العيادة"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_SubServices" HeaderText="الخدمة"></asp:BoundField>
                                         <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
@@ -225,11 +228,32 @@
                             </div>
                         </div>
                     </div>
-                    <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_exp_date" id="CalendarExtender1" format="dd/MM/yyyy" popupbuttonid="ImageButton2" popupposition="BottomLeft"></ajaxtoolkit:calendarextender>
-                    <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_exp_date_MaskedEditExtender" targetcontrolid="txt_exp_date" id="MaskedEditExtender1" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
+                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_exp_date" ID="CalendarExtender1" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="BottomLeft"></ajaxToolkit:CalendarExtender>
+                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_exp_date_MaskedEditExtender" TargetControlID="txt_exp_date" ID="MaskedEditExtender1" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                 </div>
                 <div class="modal-footer">
                     <asp:Button ID="btn_renew_card" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Upload card Image -->
+    <div class="modal fade" id="upload_card" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="renew_cardLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="upload_cardLabel">رفع صورة بطاقة المنتفع</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:FileUpload ID="FileUpload1" CssClass="form-control" runat="server" />
+                </div>
+                <div class="modal-footer">
+                    <asp:Button ID="btn_upload_card" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
                 </div>
             </div>

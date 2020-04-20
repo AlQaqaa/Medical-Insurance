@@ -186,7 +186,7 @@ Public Class companySubServices
                 insClinic.Parameters.AddWithValue("@serPersonMax", CDec(txt_person_max.Text))
                 insClinic.Parameters.AddWithValue("@serFamilyMax", CDec(txt_family_max.Text))
                 insClinic.Parameters.AddWithValue("@serState", ser_sts)
-                insClinic.Parameters.AddWithValue("@serPaymentType", 1)
+                insClinic.Parameters.AddWithValue("@serPaymentType", 0)
                 insClinic.Parameters.AddWithValue("@userId", 1)
                 insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
                 insurance_SQLcon.Open()

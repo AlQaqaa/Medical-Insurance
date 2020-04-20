@@ -153,6 +153,16 @@ Public Class companyClinic
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
+        If Val(txt_session_count.Text) <> 0 And CDec(txt_max_val.Text) <> 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! لا يمكن إدخال السقف وعدد الجلسات لنفس العيادة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Exit Sub
+        End If
+
+        If Val(txt_session_count.Text) <> 0 And dist_list.Items.Count > 1 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! لا يمكن مشاركة عدد الجلسات لأكثر من عيادة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Exit Sub
+        End If
+
         If dist_list.Items.Count = 0 Then
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يجب اختيار عيادة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
             Exit Sub
@@ -229,7 +239,7 @@ Public Class companyClinic
 
     Sub clrTxt()
         txt_max_val.Text = ""
-        ' txt_person_per.Text = ""
+        txt_session_count.Text = ""
         dist_list.Items.Clear()
 
     End Sub

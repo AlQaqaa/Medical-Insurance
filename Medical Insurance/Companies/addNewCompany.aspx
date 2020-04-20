@@ -85,14 +85,13 @@
                             <asp:DropDownList ID="ddl_payment_type" CssClass="chosen-select drop-down-list form-control" runat="server">
                                 <asp:ListItem Value="1">خاص</asp:ListItem>
                                 <asp:ListItem Value="2">تأمين</asp:ListItem>
-                                <asp:ListItem Value="3">فوترة</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
                             <label for="ddl_payment_type">طريقة دفع نسبة المريض</label>
                             <asp:DropDownList ID="ddl_PATIAINT_PER" CssClass="chosen-select drop-down-list form-control" runat="server">
                                 <asp:ListItem Value="1">خاص</asp:ListItem>
-                                <asp:ListItem Value="0">تأمين</asp:ListItem>
+                                <asp:ListItem Value="2">تأمين</asp:ListItem>
                             </asp:DropDownList>
                         </div>
                     </div>

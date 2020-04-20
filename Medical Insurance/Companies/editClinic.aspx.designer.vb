@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class editClinc
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -30,7 +30,16 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
+    
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
     '''<summary>
     '''txt_clinic_id control.
     '''</summary>
@@ -39,7 +48,16 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_clinic_id As Global.System.Web.UI.WebControls.TextBox
-
+    
+    '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+    
     '''<summary>
     '''txt_clini_name control.
     '''</summary>
@@ -48,7 +66,16 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_clini_name As Global.System.Web.UI.WebControls.TextBox
-
+    
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
     '''<summary>
     '''txt_max_val control.
     '''</summary>
@@ -57,7 +84,7 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_max_val As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
@@ -66,7 +93,16 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
+    
+    '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    
     '''<summary>
     '''btn_save control.
     '''</summary>
@@ -75,7 +111,7 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''lbl_info control.
     '''</summary>
@@ -84,7 +120,7 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_info As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''btn_separat control.
     '''</summary>
@@ -93,7 +129,7 @@ Partial Public Class editClinc
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_separat As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''Literal1 control.
     '''</summary>

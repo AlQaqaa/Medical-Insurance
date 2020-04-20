@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class patientInfo
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
+    
     '''<summary>
     '''img_pat_img control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents img_pat_img As Global.System.Web.UI.WebControls.Image
-
+    
     '''<summary>
     '''Panel1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-
+    
     '''<summary>
     '''lbl_name_eng control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_name_eng As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_pat_name control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_pat_name As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_birthdate control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_birthdate As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_nat_num control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_nat_num As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_phone control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_phone As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_company_name control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_company_name As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_card_no control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_card_no As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_exp_dt control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_exp_dt As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_bage_no control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_bage_no As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_const control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_const As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_icon_sts control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_icon_sts As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''lbl_sts control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lbl_sts As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''btn_change_sts control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_change_sts As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''hl_edit control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_edit As Global.System.Web.UI.WebControls.HyperLink
-
+    
     '''<summary>
     '''GridView1 control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
+    
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''GridView2 control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView2 As Global.System.Web.UI.WebControls.GridView
-
+    
     '''<summary>
     '''GridView3 control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView3 As Global.System.Web.UI.WebControls.GridView
-
+    
     '''<summary>
     '''ddl_services control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_services As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>
@@ -228,7 +228,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
-
+    
     '''<summary>
     '''txt_notes control.
     '''</summary>
@@ -237,7 +237,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_notes As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''btn_ban_service control.
     '''</summary>
@@ -246,7 +246,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_ban_service As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''txt_exp_date control.
     '''</summary>
@@ -255,7 +255,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_exp_date As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''ImageButton2 control.
     '''</summary>
@@ -264,7 +264,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
-
+    
     '''<summary>
     '''CalendarExtender1 control.
     '''</summary>
@@ -273,7 +273,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
-
+    
     '''<summary>
     '''MaskedEditExtender1 control.
     '''</summary>
@@ -282,7 +282,7 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents MaskedEditExtender1 As Global.AjaxControlToolkit.MaskedEditExtender
-
+    
     '''<summary>
     '''btn_renew_card control.
     '''</summary>
@@ -291,4 +291,22 @@ Partial Public Class patientInfo
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_renew_card As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''FileUpload1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents FileUpload1 As Global.System.Web.UI.WebControls.FileUpload
+    
+    '''<summary>
+    '''btn_upload_card control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_upload_card As Global.System.Web.UI.WebControls.Button
 End Class

@@ -62,7 +62,7 @@
                             <asp:Panel ID="Panel1" runat="server">
                                 <div class="form-row">
                                     <div class="form-group col-xs-12 col-sm-1">
-                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Checked="True" />
+                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" />
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-2">
                                         <asp:TextBox ID="txt_person_per_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEU(event)" placeholder="نسبة الفرد"></asp:TextBox>

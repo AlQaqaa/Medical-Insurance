@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Web.UI.WebControls
 Imports System.Globalization
+Imports System.IO
 
 Public Class patientInfo
     Inherits System.Web.UI.Page
@@ -17,16 +18,17 @@ Public Class patientInfo
 
             Dim company_name_panel As Panel = DirectCast(Master.FindControl("Panel_company_info"), Panel)
 
-            getPatInfo()
+
             getBlockServices()
             getConstList()
             getProcessesData()
         End If
+        getPatInfo()
 
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, isnull(IMAGE_CARD, '/') AS IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
         Dim dt_pat As New DataTable
         dt_pat.Rows.Clear()
         insurance_SQLcon.Close()
@@ -241,6 +243,41 @@ Public Class patientInfo
             add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
 
             getPatInfo()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btn_upload_card_Click(sender As Object, e As EventArgs) Handles btn_upload_card.Click
+        Try
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            If FileUpload1.PostedFile.FileName <> Nothing Then
+                Dim newFilename As String = Val(Session("patiant_id"))
+                Dim fileExtension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
+                Dim updatedFilename As String = newFilename + fileExtension
+                Dim fpath As String = Server.MapPath("../images/ImagePatiant") & "/" & updatedFilename
+                Dim dbpath As String = "images/ImagePatiant" & "/" & updatedFilename
+                Dim FEx As String
+                FEx = IO.Path.GetExtension(fpath)
+                If FEx <> ".jpg" And FEx <> ".JPG" And FEx <> ".png" And FEx <> ".PNG" And FEx <> ".bmp" And FEx <> ".jpeg" Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.[GetType](), "alertMessage", "alertify.error('خطأ! صيغة الصورة غير صحيحة '); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                    Exit Sub
+                End If
+                If System.IO.File.Exists(fpath) Then
+                    System.IO.File.Delete(Server.MapPath("../images/ImagePatiant" & "/" & updatedFilename))
+                End If
+                FileUpload1.PostedFile.SaveAs(fpath)
+
+                Dim edit_img As New SqlCommand("UPDATE INC_PATIANT SET IMAGE_CARD = @IMAGE_CARD WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+                edit_img.Parameters.AddWithValue("@IMAGE_CARD", dbpath)
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                edit_img.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+                Page_Load(sender, e)
+            End If
+
+            '''''''''''''''''''''''''''''''''''''''''
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

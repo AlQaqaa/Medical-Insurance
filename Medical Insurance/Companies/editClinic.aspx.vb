@@ -39,7 +39,7 @@ Public Class editClinc
 
     Sub getClinicData()
 
-        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS Clinic_AR_Name, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT MAX_VALUE FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS MAX_VALUE, GROUP_NO FROM INC_CLINICAL_RESTRICTIONS WHERE Clinic_ID = " & Val(Request.QueryString("clinicId")) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT Clinic_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS Clinic_AR_Name, (CASE WHEN (GROUP_NO) <> 0 THEN (SELECT MAX_VALUE FROM INC_CLINIC_GROUP WHERE INC_CLINIC_GROUP.GROUP_NO = INC_CLINICAL_RESTRICTIONS.GROUP_NO) ELSE (SELECT MAX_VALUE FROM INC_CLINICAL_RESTRICTIONS AS M_X WHERE M_X.CLINIC_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID AND M_X.C_ID = INC_CLINICAL_RESTRICTIONS.C_ID) END) AS MAX_VALUE, GROUP_NO, SESSION_COUNT FROM INC_CLINICAL_RESTRICTIONS WHERE Clinic_ID = " & Val(Request.QueryString("clinicId")) & " AND C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_clinic As New DataTable
         dt_clinic.Rows.Clear()
         insurance_SQLcon.Close()
@@ -51,7 +51,14 @@ Public Class editClinc
             txt_clinic_id.Text = dr_clinic!Clinic_ID
             txt_clini_name.Text = dr_clinic!Clinic_AR_Name
             Page.Title = dr_clinic!Clinic_AR_Name
-            txt_max_val.Text = CDec(dr_clinic!MAX_VALUE)
+            If dr_clinic!SESSION_COUNT = 0 Then
+                txt_max_val.Text = CDec(dr_clinic!MAX_VALUE)
+                Label1.Text = "السقف العام"
+            Else
+                txt_max_val.Text = Val(dr_clinic!SESSION_COUNT)
+                Label1.Text = "عدد الجلسات"
+            End If
+            ViewState("SESSION_COUNT") = dr_clinic!SESSION_COUNT
             ViewState("group_no") = dr_clinic!GROUP_NO
             If dr_clinic!GROUP_NO <> 0 Then
                 lbl_info.Text = "هذه العيادة مشتركة في السقف العام مع العيادات التالية"
@@ -90,17 +97,33 @@ Public Class editClinc
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         If ViewState("group_no") = 0 Then
-            Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET MAX_VALUE = @MAX_VALUE WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
-            update_clinic.Parameters.AddWithValue("@MAX_VALUE", CDec(txt_max_val.Text))
-            update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))
-            update_clinic.Parameters.AddWithValue("@CLINIC_ID", Val(txt_clinic_id.Text))
-            update_clinic.Parameters.AddWithValue("@CONTRACT_NO", ViewState("contract_no"))
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            update_clinic.ExecuteNonQuery()
-            insurance_SQLcon.Close()
+            If ViewState("SESSION_COUNT") = 0 Then
+                Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET MAX_VALUE = @MAX_VALUE WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
+                update_clinic.Parameters.AddWithValue("@MAX_VALUE", CDec(txt_max_val.Text))
+                update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))
+                update_clinic.Parameters.AddWithValue("@CLINIC_ID", Val(txt_clinic_id.Text))
+                update_clinic.Parameters.AddWithValue("@CONTRACT_NO", ViewState("contract_no"))
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                update_clinic.ExecuteNonQuery()
+                insurance_SQLcon.Close()
 
-            add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
+                add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
+            Else
+                ' في حالة كانت العيادة علاج طبيعي يتم تعديل عدد الجلسات وليس السقف
+                Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET SESSION_COUNT = @SESSION_COUNT WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
+                update_clinic.Parameters.AddWithValue("@SESSION_COUNT", Val(txt_max_val.Text))
+                update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))
+                update_clinic.Parameters.AddWithValue("@CLINIC_ID", Val(txt_clinic_id.Text))
+                update_clinic.Parameters.AddWithValue("@CONTRACT_NO", ViewState("contract_no"))
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                update_clinic.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+
+                add_action(1, 3, 2, "تعديل عدد الجلسات للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
+            End If
+
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية تعديل البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 

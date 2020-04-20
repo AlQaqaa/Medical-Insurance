@@ -71,10 +71,10 @@ Public Class SERVICES_PRICES
             lbl_groub.Enabled = False
             ddl_services_group.Enabled = False
             lbl_services_group.Enabled = False
-            txt_private_all.Enabled = False
-            txt_inc_price_all.Enabled = False
-            txt_invoice_price_all.Enabled = False
-            txt_cost_price_all.Enabled = False
+            'txt_private_all.Enabled = False
+            'txt_inc_price_all.Enabled = False
+            'txt_invoice_price_all.Enabled = False
+            'txt_cost_price_all.Enabled = False
             txt_add_per.Enabled = True
         Else
             ddl_group.Enabled = True
@@ -82,10 +82,10 @@ Public Class SERVICES_PRICES
             ddl_services_group.Enabled = True
             lbl_services_group.Enabled = True
             ddl_services_group.Enabled = True
-            txt_private_all.Enabled = True
-            txt_inc_price_all.Enabled = True
-            txt_invoice_price_all.Enabled = True
-            txt_cost_price_all.Enabled = True
+            'txt_private_all.Enabled = True
+            'txt_inc_price_all.Enabled = True
+            'txt_invoice_price_all.Enabled = True
+            'txt_cost_price_all.Enabled = True
             txt_add_per.Enabled = False
         End If
     End Sub

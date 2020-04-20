@@ -10,8 +10,9 @@ Public Class createProfilePrices
             getActiveProfile()
             getStopProfile()
 
-            Session.Remove("profile_no")
         End If
+
+        Session.Remove("profile_no")
     End Sub
 
     Private Sub btn_next_Click(sender As Object, e As EventArgs) Handles btn_next.Click
@@ -37,6 +38,8 @@ Public Class createProfilePrices
             insNewProfile.ExecuteNonQuery()
             Session.Item("profile_no") = insNewProfile.Parameters("@p_id").Value.ToString()
             insurance_SQLcon.Close()
+
+            txt_profile_name.Text = ""
 
             Response.Redirect("SERVICES_PRICES.aspx", False)
             Exit Sub

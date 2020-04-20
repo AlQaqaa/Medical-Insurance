@@ -13,19 +13,20 @@
                         <div class="card-body">
                             <div class="form-row">
                                 <div class="form-group col-xs-12 col-sm-1">
-                                    <label>ر.ع</label>
+                                    <asp:Label ID="Label2" runat="server" Text="ر.ع"></asp:Label>
                                     <asp:TextBox ID="txt_clinic_id" CssClass="form-control" runat="server" AutoCompleteType="Disabled" Enabled="false"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-4">
-                                    <label>اسم العيادة</label>
+                                    <asp:Label ID="Label3" runat="server" Text="اسم العيادة"></asp:Label>
                                     <asp:TextBox ID="txt_clini_name" CssClass="form-control" runat="server" AutoCompleteType="Disabled" Enabled="false"></asp:TextBox>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-4">
-                                    <label>السقف العام</label>
+                                    <asp:Label ID="Label1" runat="server" Text="السقف العام"></asp:Label>
+
                                     <asp:TextBox ID="txt_max_val" CssClass="form-control" runat="server" AutoCompleteType="Disabled" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال السقف" ControlToValidate="txt_max_val" ValidationGroup="save_data" ForeColor="Red"></asp:RequiredFieldValidator>
                                 </div>
                                 <div class="form-group col-xs-12 col-sm-2">
-                                    <label></label>
+                                    <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
                                     <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block mt-2" Text="حفظ" ValidationGroup="save_data" />
                                 </div>
                             </div>

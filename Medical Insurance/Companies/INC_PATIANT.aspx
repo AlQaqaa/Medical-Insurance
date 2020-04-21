@@ -112,12 +112,12 @@
                             <div class="form-group col-sm-3">
                                 <label for="txt_NAT_NUMBER">الرقم الوطني</label>
                                 <asp:TextBox ID="txt_NAT_NUMBER" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_NAT_NUMBER" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                               
                             </div>
                             <div class="form-group col-sm-3">
                                 <label for="txt_KID_NO">رقم القيد</label>
                                 <asp:TextBox ID="txt_KID_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_KID_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                                
                             </div>
                         </div>
                         <div class="form-row">

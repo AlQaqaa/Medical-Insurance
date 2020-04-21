@@ -18,7 +18,7 @@ Public Class invoicesList
     End Sub
 
     Sub getData()
-        Dim sel_com As New SqlCommand("SELECT INVOICE_NO, CONVERT(VARCHAR, INCOICE_CREATE_DT, 23) AS INCOICE_CREATE_DT,(SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO,(select SUM(Processes_Residual) from INC_IvoicesProcesses where INC_IvoicesProcesses.INVOICE_NO in (INC_INVOICES.INVOICE_NO)) as total_val FROM INC_INVOICES WHERE C_ID = " & ddl_companies.SelectedValue, insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT INVOICE_NO, CONVERT(VARCHAR, INCOICE_CREATE_DT, 23) AS INCOICE_CREATE_DT,(SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO,(select SUM(Processes_Residual) from INC_IvoicesProcesses where INC_IvoicesProcesses.INVOICE_NO in (INC_INVOICES.INVOICE_NO)) as total_val FROM INC_INVOICES WHERE C_ID = " & ddl_companies.SelectedValue & " AND INVOICE_TYPE = " & ddl_invoice_type.SelectedValue, insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -129,6 +129,7 @@ Public Class invoicesList
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
 
         Dim ch_counter As Integer = 0
+        Dim total_val As Decimal = 0
 
         For Each dd As GridViewRow In GridView1.Rows
             Dim ch As CheckBox = dd.FindControl("CheckBox2")
@@ -136,6 +137,7 @@ Public Class invoicesList
             If ch.Checked = True Then
                 main_ds.Tables("invoicesList").Rows.Add(dd.Cells(0).Text, dd.Cells(4).Text, dd.Cells(6).Text, dd.Cells(7).Text, CDec(dd.Cells(8).Text))
                 ch_counter = ch_counter + 1
+                total_val = total_val + CDec(dd.Cells(8).Text)
             End If
         Next
 
@@ -148,6 +150,18 @@ Public Class invoicesList
             lbl_msg.Visible = False
         End If
 
+        Dim motalba_type As String = ""
+
+        If ddl_invoice_type.SelectedValue = 1 Then
+            motalba_type = "قائمة فواتير الخدمات الطبية"
+        ElseIf ddl_invoice_type.SelectedValue = 2 Then
+            motalba_type = "قائمة فواتير العمليات والإيواء"
+        ElseIf ddl_invoice_type.SelectedValue = 0 Then
+            motalba_type = "قائمة فواتير الخدمات الطبية والعمليات والإيواء"
+        End If
+
+        Dim value_word As String = GetNumberToWord(total_val)
+
         Dim viewer As ReportViewer = New ReportViewer()
 
         Dim datasource As New ReportDataSource("invListDS", main_ds.Tables("invoicesList"))
@@ -156,15 +170,17 @@ Public Class invoicesList
         viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/invoicesList.rdlc")
         viewer.LocalReport.DataSources.Add(datasource)
 
-        'Dim rp1 As ReportParameter
-        'Dim rp2 As ReportParameter
-        'Dim rp3 As ReportParameter
+        Dim rp1 As ReportParameter
+        Dim rp2 As ReportParameter
+        Dim rp3 As ReportParameter
+        Dim rp4 As ReportParameter
 
-        'rp1 = New ReportParameter("from_dt", (row.Cells(6).Text).ToString)
-        'rp2 = New ReportParameter("to_dt", (row.Cells(7).Text).ToString)
-        'rp3 = New ReportParameter("INVOICE_NO", (row.Cells(0).Text).ToString)
+        rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
+        rp2 = New ReportParameter("value_text", value_word)
+        rp3 = New ReportParameter("motalba_type", motalba_type.ToString)
+        rp4 = New ReportParameter("mang_name", txt_mang_name.Text)
 
-        'viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/invoicesList.rdlc"
@@ -188,5 +204,11 @@ Public Class invoicesList
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
         Response.Redirect("~/Reports/invoicesList.pdf", False)
+    End Sub
+
+    Private Sub ddl_invoice_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_invoice_type.SelectedIndexChanged
+        If ddl_companies.SelectedValue <> 0 Then
+            getData()
+        End If
     End Sub
 End Class

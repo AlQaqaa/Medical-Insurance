@@ -53,6 +53,24 @@ Public Class STOP_COMPANY
             Dim row As GridViewRow = dt_GridView.Rows(index)
 
             Try
+                Dim c_level As Integer = 0
+                Dim sel_com As New SqlCommand("SELECT C_LEVEL FROM INC_COMPANY_DATA WHERE C_ID = " & (row.Cells(0).Text), insurance_SQLcon)
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                c_level = sel_com.ExecuteScalar
+                insurance_SQLcon.Close()
+
+                If c_level <> 0 Then
+                    Dim check_main_com As New SqlCommand("SELECT C_STATE FROM INC_COMPANY_DATA WHERE C_ID = " & c_level, insurance_SQLcon)
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    If sel_com.ExecuteScalar = 1 Then
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('خطأ! لا يمكن تفعيل هذه الشركة، الشركة الأم موقوفة حالياً');", True)
+                        Exit Sub
+                    End If
+                    insurance_SQLcon.Close()
+                End If
+
                 Dim stopCompany As New SqlCommand
                 stopCompany.Connection = insurance_SQLcon
                 stopCompany.CommandText = "INC_startCompany"

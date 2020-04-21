@@ -136,7 +136,7 @@
                                         </ItemTemplate>
                                         <ItemStyle Width="100px" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="سعر فوترة">
+                                    <asp:TemplateField HeaderText="سعر المستأجر">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txt_invoice_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
                                         </ItemTemplate>

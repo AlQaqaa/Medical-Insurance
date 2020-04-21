@@ -3,6 +3,11 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+     <script src="../Style/JS/jquery-3.4.1.min.js"></script>
+    <script src="../Style/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../Style/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+
 </asp:Content>
 
 

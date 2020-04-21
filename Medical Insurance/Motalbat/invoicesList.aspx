@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="قائمة الفواتير" Language="vb" AutoEventWireup="false" MasterPageFile="~/Motalbat/motalbat.Master" CodeBehind="invoicesList.aspx.vb" Inherits="Medical_Insurance.invoicesList" Culture="ar-LY" %>
 
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -13,14 +15,27 @@
                     <div class="card-header">قائمة الفواتير</div>
                     <div class="card-body">
                         <div class="form-row">
-                            <div class="form-group col-xs-12 col-sm-6">
+                            <div class="form-group col-xs-12 col-sm-4">
                                 <label for="ddl_companies">الشركة</label>
                                 <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" AutoPostBack="True"></asp:DropDownList>
                                 <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                             </div>
+                            <div class="form-group col-xs-12 col-sm-2">
+                                <label for="ddl_companies">نوع الفاتورة</label>
+                                <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
+                                    <asp:ListItem Value="0">الكل</asp:ListItem>
+                                    <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
+                                    <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="form-group col-xs-12 col-sm-3">
+                                <label for="txt_mang_name">رئيس مجلس الإدارة</label>
+                               <asp:TextBox ID="txt_mang_name" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_mang_name" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                            </div>
                             <div class="form-group col-xs-6 col-sm-3">
-                                <label for="ddl_companies"> </label>
-                                <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" Visible="False" />
+                                <label for="ddl_companies"></label>
+                                <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" ValidationGroup="save" Visible="False" />
                             </div>
                         </div>
                         <!-- /form-row -->
@@ -65,8 +80,8 @@
                                                 <asp:Button ID="btn_print" runat="server"
                                                     CommandName="printInvoice"
                                                     CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
-                                                    Text="طباعة الفاتورة"
-                                                    ToolTip="طباعة الفاتورة"
+                                                    Text="طباعة تفاصيل الفاتورة"
+                                                    ToolTip="طباعة تفاصيل الفاتورة"
                                                     ControlStyle-CssClass="btn btn-primary btn-small" />
 
                                             </ItemTemplate>
@@ -84,4 +99,5 @@
         </div>
         <!-- /row -->
     </div>
+
 </asp:Content>

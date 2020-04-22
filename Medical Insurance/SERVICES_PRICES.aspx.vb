@@ -25,7 +25,10 @@ Public Class SERVICES_PRICES
                 End If
             End If
 
-
+            ddl_group.Enabled = False
+            lbl_groub.Enabled = False
+            ddl_services_group.Enabled = False
+            lbl_services_group.Enabled = False
         End If
     End Sub
 
@@ -67,26 +70,25 @@ Public Class SERVICES_PRICES
 
     Private Sub ddl_show_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_show_type.SelectedIndexChanged
         If ddl_show_type.SelectedValue = 1 Then
+            ddl_clinics.Enabled = True
+            ddl_services.Enabled = True
             ddl_group.Enabled = False
-            lbl_groub.Enabled = False
             ddl_services_group.Enabled = False
-            lbl_services_group.Enabled = False
+
             'txt_private_all.Enabled = False
             'txt_inc_price_all.Enabled = False
             'txt_invoice_price_all.Enabled = False
             'txt_cost_price_all.Enabled = False
-            txt_add_per.Enabled = True
         Else
+
+            ddl_clinics.Enabled = False
+            ddl_services.Enabled = False
             ddl_group.Enabled = True
-            lbl_groub.Enabled = True
-            ddl_services_group.Enabled = True
-            lbl_services_group.Enabled = True
             ddl_services_group.Enabled = True
             'txt_private_all.Enabled = True
             'txt_inc_price_all.Enabled = True
             'txt_invoice_price_all.Enabled = True
             'txt_cost_price_all.Enabled = True
-            txt_add_per.Enabled = False
         End If
     End Sub
 
@@ -134,45 +136,35 @@ Public Class SERVICES_PRICES
     End Sub
 
     Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
-        If ddl_show_type.SelectedValue = 1 Then
-            For Each dd As GridViewRow In GridView1.Rows
-                Dim ch As CheckBox = dd.FindControl("CheckBox2")
-                Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
-                Dim txt_inc_price As TextBox = dd.FindControl("txt_inc_price")
-                
-                If ch.Checked = True Then
-                    Dim add_val As Decimal = CDec(txt_private_price.Text) + (CDec(txt_private_price.Text) * Val(txt_add_per.Text) / 100)
+
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+            Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
+            Dim txt_inc_price As TextBox = dd.FindControl("txt_inc_price")
+            Dim txt_invoice_price As TextBox = dd.FindControl("txt_invoice_price")
+            Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
+
+            If ch.Checked = True Then
+                If txt_private_all.Text <> "" Then
+                    txt_private_price.Text = CDec(txt_private_all.Text)
+                End If
+                If txt_inc_price_all.Text <> "" And txt_add_per.Text = "" Then
+                    txt_inc_price.Text = CDec(txt_inc_price_all.Text)
+                End If
+                If txt_invoice_price_all.Text <> "" Then
+                    txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
+                End If
+                If txt_cost_price_all.Text <> "" Then
+                    txt_cost_price.Text = CDec(txt_cost_price_all.Text)
+                End If
+                If txt_add_per.Text <> "" And txt_invoice_price_all.Text = "" And txt_private_all.Text <> "" Then
+                    Dim add_val As Decimal = CDec(txt_private_price.Text) + (CDec(txt_private_price.Text) * CDec(txt_add_per.Text) / 100)
                     txt_inc_price.Text = CDec(add_val)
-
                 End If
+            End If
 
-            Next
-        Else
-            For Each dd As GridViewRow In GridView1.Rows
-                Dim ch As CheckBox = dd.FindControl("CheckBox2")
-                Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
-                Dim txt_inc_price As TextBox = dd.FindControl("txt_inc_price")
-                Dim txt_invoice_price As TextBox = dd.FindControl("txt_invoice_price")
-                Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
+        Next
 
-                If ch.Checked = True Then
-                    If txt_private_all.Text <> "" Then
-                        txt_private_price.Text = CDec(txt_private_all.Text)
-                    End If
-                    If txt_inc_price_all.Text <> "" Then
-                        txt_inc_price.Text = CDec(txt_inc_price_all.Text)
-                    End If
-                    If txt_invoice_price_all.Text <> "" Then
-                        txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
-                    End If
-                    If txt_cost_price_all.Text <> "" Then
-                        txt_cost_price.Text = CDec(txt_cost_price_all.Text)
-                    End If
-
-                End If
-
-            Next
-        End If
     End Sub
 
     Sub getSubServices()
@@ -245,7 +237,7 @@ Public Class SERVICES_PRICES
 
         getSubServices()
 
-       
+
     End Sub
 
 End Class

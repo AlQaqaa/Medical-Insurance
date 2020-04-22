@@ -42,12 +42,12 @@
                 </div>
                 <div class="form-group col-xs-6 col-sm-3">
                     <asp:Label ID="lbl_groub" runat="server" Text="المجموعة" Enabled="false"></asp:Label>
-                    <asp:DropDownList ID="ddl_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="GROUP_ARNAME" DataValueField="GROUP_ID" Enabled="false"></asp:DropDownList>
+                    <asp:DropDownList ID="ddl_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="GROUP_ARNAME" DataValueField="GROUP_ID"></asp:DropDownList>
                     <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [Group_ID], 'يرجى اختيار مجموعة' AS [Group_ARname] FROM Main_GroupSubService UNION SELECT [Group_ID], [Group_ARname] FROM [Main_GroupSubService] WHERE [Group_State] = 0"></asp:SqlDataSource>
                 </div>
                 <div class="form-group col-xs-6 col-sm-3">
                     <asp:Label ID="lbl_services_group" runat="server" Text="الخدمات" Enabled="false"></asp:Label>
-                    <asp:DropDownList ID="ddl_services_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" Enabled="false"></asp:DropDownList>
+                    <asp:DropDownList ID="ddl_services_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                 </div>
             </div>
             <!-- form-row -->

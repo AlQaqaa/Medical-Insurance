@@ -144,6 +144,7 @@
     <Content Include="Motalbat\invoicesList.aspx" />
     <Content Include="Motalbat\newInvoice.aspx" />
     <Content Include="Motalbat\printPatientProcesses.aspx" />
+    <Content Include="newApproval.aspx" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
@@ -355,6 +356,13 @@
     </Compile>
     <Compile Include="Motalbat\printPatientProcesses.aspx.vb">
       <DependentUpon>printPatientProcesses.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="newApproval.aspx.designer.vb">
+      <DependentUpon>newApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="newApproval.aspx.vb">
+      <DependentUpon>newApproval.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="notificationCenter.aspx.designer.vb">

@@ -247,4 +247,5 @@ Public Class SERVICES_PRICES
 
        
     End Sub
+
 End Class

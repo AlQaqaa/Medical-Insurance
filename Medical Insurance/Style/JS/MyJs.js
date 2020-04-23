@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('.drop-down-list').select2();
+    $('.chosen-select').select2();
 });
 
 

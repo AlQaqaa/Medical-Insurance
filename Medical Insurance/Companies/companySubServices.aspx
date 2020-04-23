@@ -1,6 +1,15 @@
 ﻿<%@ Page Title="الخدمات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="companySubServices.aspx.vb" Inherits="Medical_Insurance.companySubServices" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .panel{
+            height: 530px;
+            max-height: 530px;
+        }
+        .scrollable {
+            overflow-y: auto;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -104,7 +113,8 @@
                             <hr />
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                    <div class="panel scrollable">
+                                        <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                         <Columns>
                                             <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
                                                 <ControlStyle CssClass="hide-colum" />
@@ -147,6 +157,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+                                    </div>
                                 </div>
                             </div>
                         </ContentTemplate>

@@ -25,44 +25,40 @@
                 </div>
             </div>
             <!-- form-row -->
-            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                <ContentTemplate>
-                    <asp:Panel ID="Panel1" runat="server" Visible="False">
-                        <div class="form-row">
+            <asp:Panel ID="Panel1" runat="server" Visible="False">
+                <div class="form-row">
+                    <div class="col-xs-12 col-sm-6">
+                        <asp:ListBox ID="source_list" runat="server" SelectionMode="Multiple" Width="100%" Height="180px" AutoPostBack="True"></asp:ListBox>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="row">
                             <div class="col-xs-12 col-sm-6">
-                                <asp:ListBox ID="source_list" runat="server" SelectionMode="Multiple" Width="100%" Height="180px" AutoPostBack="True"></asp:ListBox>
+                                <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                             </div>
                             <div class="col-xs-12 col-sm-6">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-6">
-                                        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-xs-12 col-sm-6">
-                                        <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
-                                    </div>
-                                </div>
-                                <div class="row mt-4">
-                                    <div class="col-xs-12 col-sm-6">
-                                        <asp:Label ID="Label5" runat="server" Text=""></asp:Label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-6">
-                                        <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
-                                    </div>
-                                </div>
+                                <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
                             </div>
                         </div>
-                        <!-- form-row -->
-                    </asp:Panel>
-                </ContentTemplate>
-            </asp:UpdatePanel>
+                        <div class="row mt-4">
+                            <div class="col-xs-12 col-sm-6">
+                                <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-xs-12 col-sm-6">
+                                <asp:Label ID="Label5" runat="server" Text=""></asp:Label>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- form-row -->
+            </asp:Panel>
             <hr />
             <asp:Panel ID="Panel2" runat="server" Visible="false">
                 <div class="form-row">
@@ -98,6 +94,55 @@
                     </div>
                     <div class="col-xs-6 col-sm-2">
                         <asp:Button ID="btn_chose" runat="server" CssClass="btn btn-outline-info btn-block mt-sm-4 mt-md-4" Text="أضف" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
+                    </div>
+                </div>
+                <!-- form-row -->
+                <div class="form-row">
+                    <div class="col-xs-12 col-sm-12">
+                        <asp:GridView ID="GridView1" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                            <Columns>
+                                <asp:TemplateField HeaderText="ر.ت">
+                                    <ItemTemplate>
+                                        <span>
+                                            <%#Container.DataItemIndex + 1%>
+                                        </span>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="رقم الخدمة" DataField="SubService_ID">
+                                    <ControlStyle CssClass="hide-colum" />
+                                    <FooterStyle CssClass="hide-colum" />
+                                    <HeaderStyle CssClass="hide-colum" />
+                                    <ItemStyle CssClass="hide-colum" />
+                                </asp:BoundField>
+                                <asp:BoundField DataField="SubService_Code" HeaderText="كود العملية"></asp:BoundField>
+                                <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم العملية"></asp:BoundField>
+                                <asp:BoundField DataField="SubService_Price" HeaderText="سعر العملية"></asp:BoundField>
+                                <asp:BoundField DataField="IEC_Type" HeaderText="النوع"></asp:BoundField>
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="btn_delete" runat="server"
+                                            CommandName="delete_ser"
+                                            CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                            ToolTip="إزالة"
+                                            ControlStyle-CssClass="btn btn-danger btn-small"
+                                            OnClientClick="return confirm('هل أنت متأكد من إزالة هذه الخدمة')">إزالة</asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                            </Columns>
+                        </asp:GridView>
+                    </div>
+                </div>
+                <!-- form-row -->
+                <div class="form-row">
+                    <div class="col-xs-12 col-sm-3">
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block mt-sm-4 mt-md-4" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
+                            </ContentTemplate>
+                            <Triggers>
+                                <asp:AsyncPostBackTrigger ControlID="btn_print" EventName="Click" />
+                            </Triggers>
+                        </asp:UpdatePanel>
                     </div>
                 </div>
             </asp:Panel>

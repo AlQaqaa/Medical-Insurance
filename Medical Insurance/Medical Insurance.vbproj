@@ -139,6 +139,7 @@
     <Content Include="Companies\patientInfo.aspx" />
     <Content Include="createProfilePrices.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
+    <Content Include="listApproval.aspx" />
     <Content Include="Motalbat\Default.aspx" />
     <Content Include="Motalbat\invoiceContent.aspx" />
     <Content Include="Motalbat\invoicesList.aspx" />
@@ -312,6 +313,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="listApproval.aspx.designer.vb">
+      <DependentUpon>listApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listApproval.aspx.vb">
+      <DependentUpon>listApproval.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Modules\actionHistoryMDL.vb" />
     <Compile Include="Modules\checkModule.vb" />
     <Compile Include="Modules\CurrencyInfo.vb" />
@@ -444,6 +452,7 @@
     <Content Include="Reports\patientMotalbaDetailes.rdlc" />
     <Content Include="Reports\invoiceContent.rdlc" />
     <Content Include="Reports\invoicesList.rdlc" />
+    <Content Include="Reports\confirmApproval.rdlc" />
     <EmbeddedResource Include="Reports\servicesPrices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPrices.vb</LastGenOutput>

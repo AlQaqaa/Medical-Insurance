@@ -1,11 +1,5 @@
 ﻿Imports System.Data.SqlClient
-Imports System.IO
-Imports Microsoft.Reporting.WebForms
-Imports System.Globalization
 Imports CrystalDecisions.Shared
-Imports System.Data
-Imports System.Configuration
-Imports CrystalDecisions.CrystalReports.Engine
 
 Public Class servicesPricesShow
     Inherits System.Web.UI.Page

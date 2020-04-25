@@ -12,7 +12,7 @@ Public Class createProfilePrices
 
         End If
 
-        Session.Remove("profile_no")
+        Session("profile_no") = 0
     End Sub
 
     Private Sub btn_next_Click(sender As Object, e As EventArgs) Handles btn_next.Click

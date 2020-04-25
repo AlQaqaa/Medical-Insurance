@@ -203,6 +203,24 @@ Partial Public Class main
     Protected WithEvents hl_list_confirm As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_Statistics control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_Statistics As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''ContentPlaceHolder1 control.
     '''</summary>
     '''<remarks>

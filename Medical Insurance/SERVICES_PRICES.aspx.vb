@@ -70,8 +70,6 @@ Public Class SERVICES_PRICES
 
     Private Sub ddl_show_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_show_type.SelectedIndexChanged
         If ddl_show_type.SelectedValue = 1 Then
-            ddl_clinics.Enabled = True
-            ddl_services.Enabled = True
             ddl_group.Enabled = False
             ddl_services_group.Enabled = False
 
@@ -81,8 +79,6 @@ Public Class SERVICES_PRICES
             'txt_cost_price_all.Enabled = False
         Else
 
-            ddl_clinics.Enabled = False
-            ddl_services.Enabled = False
             ddl_group.Enabled = True
             ddl_services_group.Enabled = True
             'txt_private_all.Enabled = True
@@ -90,6 +86,9 @@ Public Class SERVICES_PRICES
             'txt_invoice_price_all.Enabled = True
             'txt_cost_price_all.Enabled = True
         End If
+
+        GridView1.DataSource = Nothing
+        GridView1.DataBind()
     End Sub
 
     Private Sub ddl_group_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_group.SelectedIndexChanged
@@ -119,7 +118,8 @@ Public Class SERVICES_PRICES
     End Sub
 
     Private Sub ddl_services_group_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services_group.SelectedIndexChanged
-
+        GridView1.DataSource = Nothing
+        GridView1.DataBind()
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
@@ -240,4 +240,13 @@ Public Class SERVICES_PRICES
 
     End Sub
 
+    Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
+        GridView1.DataSource = Nothing
+        GridView1.DataBind()
+    End Sub
+
+    Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
+        GridView1.DataSource = Nothing
+        GridView1.DataBind()
+    End Sub
 End Class

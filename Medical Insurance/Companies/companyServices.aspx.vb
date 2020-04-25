@@ -36,7 +36,7 @@ Public Class companyServices
     End Sub
 
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT 0 AS CLINIC_ID, '' AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS UNION SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT 0 AS CLINIC_ID, 'جميع العيادات' AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS UNION SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -127,56 +127,99 @@ Public Class companyServices
     Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
         getServices()
         txt_clinics_max.Text = getMaxClinicValue(ddl_clinics.SelectedValue, ViewState("company_no"), ViewState("contract_no"))
+
+        If ddl_clinics.SelectedValue = 0 Then
+            Panel1.Visible = False
+            Panel2.Visible = True
+        Else
+            Panel1.Visible = True
+            Panel2.Visible = False
+        End If
     End Sub
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-        For Each dd As GridViewRow In GridView1.Rows
-            Dim ch As CheckBox = dd.FindControl("CheckBox2")
-            Dim txt_max_val As TextBox = dd.FindControl("txt_max_val")
 
-            Dim ser_sts As Boolean = False
-
-            If ch.Checked = True Then
-                ser_sts = False
-                'If Val(txt_person_per.Text) = 0 And Val(txt_family_per.Text) = 0 And Val(txt_parent_per.Text) = 0 And CDec(txt_person_max.Text) = 0 And CDec(txt_family_max.Text) = 0 Then
-                '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! تأكد من إدخال البيانات بشكل صحيح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-                '    Exit Sub
-                'End If
-
-                Dim insClinic As New SqlCommand
-                insClinic.Connection = insurance_SQLcon
-                insClinic.CommandText = "INC_addCompanyServices"
-                insClinic.CommandType = CommandType.StoredProcedure
-                insClinic.Parameters.AddWithValue("@cID", ViewState("company_no"))
-                insClinic.Parameters.AddWithValue("@clinicID", ddl_clinics.SelectedValue)
-                insClinic.Parameters.AddWithValue("@serviceId", dd.Cells(0).Text)
-                insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
-                insClinic.Parameters.AddWithValue("@maxServiceValue", CDec(txt_max_val.Text))
-                insClinic.Parameters.AddWithValue("@serviceSts", ser_sts)
-                insClinic.Parameters.AddWithValue("@userId", 1)
-                insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
-                insurance_SQLcon.Close()
-                insurance_SQLcon.Open()
-                insClinic.ExecuteNonQuery()
-                insurance_SQLcon.Close()
-                insClinic.CommandText = ""
-
-            Else
-                ser_sts = True
-                Dim stopService As New SqlCommand
-                stopService.Connection = insurance_SQLcon
-                stopService.CommandText = "INC_stopCompanyService"
-                stopService.CommandType = CommandType.StoredProcedure
-                stopService.Parameters.AddWithValue("@service_no", dd.Cells(0).Text)
-                stopService.Parameters.AddWithValue("@company_no", ViewState("company_no"))
-                stopService.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
-                insurance_SQLcon.Open()
-                stopService.ExecuteNonQuery()
-                insurance_SQLcon.Close()
-                stopService.CommandText = ""
-                add_action(1, 2, 2, "إيقاف القسم رقم: " & (dd.Cells(0).Text) & " عن الشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
+        If ddl_clinics.SelectedValue = 0 Then
+            Dim sel_com As New SqlCommand("select Service_ID, Service_Clinic FROM Main_Services WHERE Service_Clinic IN (SELECT CLINIC_ID FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no") & ")", insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+            If dt_result.Rows.Count > 0 Then
+                For i = 0 To dt_result.Rows.Count - 1
+                    Dim dr_res = dt_result.Rows(i)
+                    Dim insClinic As New SqlCommand
+                    insClinic.Connection = insurance_SQLcon
+                    insClinic.CommandText = "INC_addCompanyServices"
+                    insClinic.CommandType = CommandType.StoredProcedure
+                    insClinic.Parameters.AddWithValue("@cID", ViewState("company_no"))
+                    insClinic.Parameters.AddWithValue("@clinicID", dr_res!Service_Clinic)
+                    insClinic.Parameters.AddWithValue("@serviceId", dr_res!Service_ID)
+                    insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
+                    insClinic.Parameters.AddWithValue("@maxServiceValue", 0)
+                    insClinic.Parameters.AddWithValue("@serviceSts", 0)
+                    insClinic.Parameters.AddWithValue("@userId", 1)
+                    insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    insClinic.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+                    insClinic.CommandText = ""
+                Next
             End If
-        Next
+        Else
+            For Each dd As GridViewRow In GridView1.Rows
+                Dim ch As CheckBox = dd.FindControl("CheckBox2")
+                Dim txt_max_val As TextBox = dd.FindControl("txt_max_val")
+
+                Dim ser_sts As Boolean = False
+
+                If ch.Checked = True Then
+                    ser_sts = False
+                    'If Val(txt_person_per.Text) = 0 And Val(txt_family_per.Text) = 0 And Val(txt_parent_per.Text) = 0 And CDec(txt_person_max.Text) = 0 And CDec(txt_family_max.Text) = 0 Then
+                    '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! تأكد من إدخال البيانات بشكل صحيح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                    '    Exit Sub
+                    'End If
+
+                    Dim insClinic As New SqlCommand
+                    insClinic.Connection = insurance_SQLcon
+                    insClinic.CommandText = "INC_addCompanyServices"
+                    insClinic.CommandType = CommandType.StoredProcedure
+                    insClinic.Parameters.AddWithValue("@cID", ViewState("company_no"))
+                    insClinic.Parameters.AddWithValue("@clinicID", ddl_clinics.SelectedValue)
+                    insClinic.Parameters.AddWithValue("@serviceId", dd.Cells(0).Text)
+                    insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
+                    insClinic.Parameters.AddWithValue("@maxServiceValue", CDec(txt_max_val.Text))
+                    insClinic.Parameters.AddWithValue("@serviceSts", ser_sts)
+                    insClinic.Parameters.AddWithValue("@userId", 1)
+                    insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    insClinic.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+                    insClinic.CommandText = ""
+
+                Else
+                    ser_sts = True
+                    Dim stopService As New SqlCommand
+                    stopService.Connection = insurance_SQLcon
+                    stopService.CommandText = "INC_stopCompanyService"
+                    stopService.CommandType = CommandType.StoredProcedure
+                    stopService.Parameters.AddWithValue("@service_no", dd.Cells(0).Text)
+                    stopService.Parameters.AddWithValue("@company_no", ViewState("company_no"))
+                    stopService.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
+                    insurance_SQLcon.Open()
+                    stopService.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+                    stopService.CommandText = ""
+                    add_action(1, 2, 2, "إيقاف القسم رقم: " & (dd.Cells(0).Text) & " عن الشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
+                End If
+            Next
+        End If
+
+
         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
         getServicesAvailable()

@@ -2,10 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .panel{
+        .panel {
             height: 530px;
             max-height: 530px;
         }
+
         .scrollable {
             overflow-y: auto;
         }
@@ -43,6 +44,15 @@
                                 <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                             </div>
 
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xs-6 col-sm-12">
+                                <asp:Panel ID="Panel2" runat="server">
+                                    <div class="alert alert-warning" role="alert">
+                                        عند اختيار جميع العيادات سيتم تغطية كافة الأقسام للعيادات المغطاة بأسقف مفتوحة
+                                    </div>
+                                </asp:Panel>
+                            </div>
                         </div>
                     </asp:Panel>
                     <asp:Panel ID="groups_Panel" runat="server" Visible="False">
@@ -107,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-xs-6 col-sm-3">
-                                    <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" />
+                                    <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" OnClientClick="return confirm('هل أنت متأكد من هذا الإجراء؟')" />
                                 </div>
                             </div>
                             <hr />
@@ -115,48 +125,48 @@
                                 <div class="col-sm-12">
                                     <div class="panel scrollable">
                                         <asp:GridView ID="GridView1" runat="server" class="table table-striped table-bordered" Width="100%" AutoGenerateColumns="False" GridLines="None">
-                                        <Columns>
-                                            <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
-                                                <ControlStyle CssClass="hide-colum" />
-                                                <FooterStyle CssClass="hide-colum" />
-                                                <HeaderStyle CssClass="hide-colum" />
-                                                <ItemStyle CssClass="hide-colum" />
-                                            </asp:BoundField>
-                                            <asp:TemplateField HeaderText="مغطاة؟">
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
-                                            <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
-                                            <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
-                                            <asp:TemplateField HeaderText="نسبة الفرد">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txt_person_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="نسبة العائلة">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txt_family_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="نسبة الوالدين">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txt_parent_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="سقف الفرد">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txt_person_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="سقف العائلة">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txt_family_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                        </Columns>
-                                    </asp:GridView>
+                                            <Columns>
+                                                <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
+                                                    <ControlStyle CssClass="hide-colum" />
+                                                    <FooterStyle CssClass="hide-colum" />
+                                                    <HeaderStyle CssClass="hide-colum" />
+                                                    <ItemStyle CssClass="hide-colum" />
+                                                </asp:BoundField>
+                                                <asp:TemplateField HeaderText="مغطاة؟">
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
+                                                <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
+                                                <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
+                                                <asp:TemplateField HeaderText="نسبة الفرد">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txt_person_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="نسبة العائلة">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txt_family_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="نسبة الوالدين">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txt_parent_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="سقف الفرد">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txt_person_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="سقف العائلة">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txt_family_max" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                        </asp:GridView>
                                     </div>
                                 </div>
                             </div>

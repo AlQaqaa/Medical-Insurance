@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class companyServices
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''ddl_clinics control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_clinics As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''txt_clinics_max control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_clinics_max As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -48,7 +48,16 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
+    
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
+    
     '''<summary>
     '''btn_save control.
     '''</summary>
@@ -57,7 +66,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_save As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''Panel1 control.
     '''</summary>
@@ -66,7 +75,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-
+    
     '''<summary>
     '''CheckBox1 control.
     '''</summary>
@@ -75,7 +84,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
-
+    
     '''<summary>
     '''txt_max_value_all control.
     '''</summary>
@@ -84,7 +93,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_max_value_all As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''btn_apply control.
     '''</summary>
@@ -93,7 +102,7 @@ Partial Public Class companyServices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_apply As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''GridView1 control.
     '''</summary>

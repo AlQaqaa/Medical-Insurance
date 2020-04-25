@@ -273,7 +273,9 @@ Public Class companyClinic
 
             add_action(1, 2, 2, "إيقاف العيادة رقم: " & (row.Cells(0).Text) & " عن الشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), 1, GetIPAddress())
 
+            fillListClinic()
             getClinicAvailable()
+
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 

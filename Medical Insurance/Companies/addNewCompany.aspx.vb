@@ -68,6 +68,9 @@ Public Class addNewCompany
             insToCompany.ExecuteNonQuery()
             insurance_SQLcon.Close()
             clrTxt()
+
+            add_action(1, 1, 1, "إضافة شركة جديدة: " & txt_company_name_ar.Text, 1, GetIPAddress())
+
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception
             MsgBox(ex.Message)

@@ -56,8 +56,9 @@ Public Class LISTPATIANT
         If (e.CommandName = "pat_name") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
-            Session.Item("patiant_id") = (row.Cells(0).Text)
-            Session.Item("company_id") = (row.Cells(1).Text)
+            Session.Item("patiant_id") = (row.Cells(0).Text) ' 13471
+            Session.Item("company_id") = (row.Cells(1).Text) '56 
+
             Response.Redirect("patientInfo.aspx")
         End If
     End Sub
@@ -84,6 +85,7 @@ Public Class LISTPATIANT
             insurance_SQLcon.Close()
             GridView1.DataSource = dt_result
             GridView1.DataBind()
+            sel_com = Nothing
 
             ' جلب بيانات الشركة
             Dim get_comp As New SqlCommand("SELECT C_NAME_ARB,C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & ddl_companies.SelectedValue, insurance_SQLcon)
@@ -99,7 +101,7 @@ Public Class LISTPATIANT
                 Label1.Text = "منتفعي شركة " & dr_company!C_NAME_ARB
             End If
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
     End Sub
 End Class

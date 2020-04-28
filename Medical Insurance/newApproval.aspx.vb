@@ -87,7 +87,7 @@ Public Class newApproval
             Label5.Text = "رقم البطاقة: " & dr_result!CARD_NO
             Label6.Text = "الرقم الوظيفي: " & dr_result!BAGE_NO
         End If
-        bindGridview()
+        'bindGridview()
     End Sub
 
     Private Sub ddl_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_type.SelectedIndexChanged
@@ -97,31 +97,20 @@ Public Class newApproval
             ddl_services.Enabled = True
             ddl_sub_service.Enabled = True
             btn_chose.Enabled = True
+            Panel3.Visible = False
         ElseIf ddl_type.SelectedValue = 2 Then
             btn_chose.Enabled = True
             ddl_clinics.Enabled = False
             ddl_services.Enabled = False
-            ddl_sub_service.Enabled = True
+            ddl_sub_service.Enabled = False
+            Panel3.Visible = True
 
-            Dim sel_com As New SqlCommand("SELECT Ewa_Add_id, Ewa_Add_name FROM Ewa_Additionals WHERE Ewa_Add_Type = 1", insurance_SQLcon)
-            Dim dt_result As New DataTable
-            dt_result.Rows.Clear()
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-
-            If dt_result.Rows.Count > 0 Then
-                ddl_sub_service.DataSource = dt_result
-                ddl_sub_service.DataValueField = "Ewa_Add_id"
-                ddl_sub_service.DataTextField = "Ewa_Add_name"
-                ddl_sub_service.DataBind()
-            End If
         Else
             ddl_clinics.Enabled = False
             ddl_services.Enabled = False
             ddl_sub_service.Enabled = False
             btn_chose.Enabled = False
+
         End If
 
     End Sub
@@ -175,7 +164,7 @@ Public Class newApproval
             End If
 
             If ddl_type.SelectedValue = 1 Then
-                Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_Service_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & ") AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
+                Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & ") AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
                 Dim dt_service_info As New DataTable
                 dt_service_info.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -205,35 +194,24 @@ Public Class newApproval
                     bindGridview()
                 End If
             ElseIf ddl_type.SelectedValue = 2 Then
-                Dim sel_service As New SqlCommand("SELECT Ewa_Add_id, SubService_Code, Ewa_Add_name, Ewa_Add_Price AS SubService_Price FROM Ewa_Additionals WHERE Ewa_Add_id = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
-                Dim dt_service_info As New DataTable
-                dt_service_info.Rows.Clear()
-                insurance_SQLcon.Close()
-                insurance_SQLcon.Open()
-                dt_service_info.Load(sel_service.ExecuteReader)
-                insurance_SQLcon.Close()
-                If dt_service_info.Rows.Count > 0 Then
-                    Dim dr_ser_info = dt_service_info.Rows(0)
+                'Dim insToConfirm As New SqlCommand
+                'insToConfirm.Connection = insurance_SQLcon
+                'insToConfirm.CommandText = "INC_EWA_addNewConfirm"
+                'insToConfirm.CommandType = CommandType.StoredProcedure
+                'insToConfirm.Parameters.AddWithValue("@service_id", ddl_sub_service.SelectedValue)
+                'insToConfirm.Parameters.AddWithValue("@patient_id", source_list.SelectedValue)
+                'insToConfirm.Parameters.AddWithValue("@service_price", dr_ser_info!SubService_Price)
+                'insToConfirm.Parameters.AddWithValue("@iec_state", 0)
+                'insToConfirm.Parameters.AddWithValue("@ewa_no", 0)
+                'insToConfirm.Parameters.AddWithValue("@ins_date", Date.Now.Date)
+                'insToConfirm.Parameters.AddWithValue("@req_no", 0)
+                'insToConfirm.Parameters.AddWithValue("@iec_type", ddl_type.SelectedValue)
+                'insToConfirm.Parameters.AddWithValue("@userId", 1)
+                'insurance_SQLcon.Open()
+                'insToConfirm.ExecuteNonQuery()
+                'insurance_SQLcon.Close()
 
-                    Dim insToConfirm As New SqlCommand
-                    insToConfirm.Connection = insurance_SQLcon
-                    insToConfirm.CommandText = "INC_EWA_addNewConfirm"
-                    insToConfirm.CommandType = CommandType.StoredProcedure
-                    insToConfirm.Parameters.AddWithValue("@service_id", ddl_sub_service.SelectedValue)
-                    insToConfirm.Parameters.AddWithValue("@patient_id", source_list.SelectedValue)
-                    insToConfirm.Parameters.AddWithValue("@service_price", dr_ser_info!SubService_Price)
-                    insToConfirm.Parameters.AddWithValue("@iec_state", 0)
-                    insToConfirm.Parameters.AddWithValue("@ewa_no", 0)
-                    insToConfirm.Parameters.AddWithValue("@ins_date", Date.Now.Date)
-                    insToConfirm.Parameters.AddWithValue("@req_no", 0)
-                    insToConfirm.Parameters.AddWithValue("@iec_type", ddl_type.SelectedValue)
-                    insToConfirm.Parameters.AddWithValue("@userId", 1)
-                    insurance_SQLcon.Open()
-                    insToConfirm.ExecuteNonQuery()
-                    insurance_SQLcon.Close()
-
-                    bindGridview()
-                End If
+                bindGridview()
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

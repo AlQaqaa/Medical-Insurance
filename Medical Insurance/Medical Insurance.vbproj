@@ -139,6 +139,7 @@
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
     <Content Include="createProfilePrices.aspx" />
+    <Content Include="dorctorsForms.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="listApproval.aspx" />
     <Content Include="Motalbat\Default.aspx" />
@@ -320,6 +321,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dorctorsForms.aspx.designer.vb">
+      <DependentUpon>dorctorsForms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="dorctorsForms.aspx.vb">
+      <DependentUpon>dorctorsForms.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="listApproval.aspx.designer.vb">
       <DependentUpon>listApproval.aspx</DependentUpon>

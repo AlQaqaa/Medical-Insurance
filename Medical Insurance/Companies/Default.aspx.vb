@@ -141,6 +141,7 @@ Public Class _Default3
             Label1.Text = ""
         Else
             dt_result.Rows.Clear()
+            GridView2.DataSource = dt_result
             GridView2.DataBind()
             Label1.Text = "لا يوجد أطباء محظورين عن هذه الشركة"
         End If
@@ -158,6 +159,7 @@ Public Class _Default3
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
             getBlockDoctors()
+
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية فك حظر الطبيب عن هذه الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
 
         End If

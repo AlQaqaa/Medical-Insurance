@@ -239,6 +239,33 @@ Partial Public Class newApproval
     Protected WithEvents btn_chose As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''Panel3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
+    '''txt_add_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_add_name As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''txt_add_price control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_add_price As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''GridView1 control.
     '''</summary>
     '''<remarks>

@@ -78,7 +78,7 @@
                     <asp:Panel ID="main_company_panel" runat="server" Visible="False">
                         <label for="ddl_companies">الشركة</label>
                         <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" AutoPostBack="True"></asp:DropDownList>
-                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
+                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb + (case when (C_Level <> 0) then (select ' - ' + C_Name_Arb from [INC_COMPANY_DATA] as tbl1 where tbl1.C_ID = tbl2.C_Level) else '' end) as C_Name_Arb FROM [INC_COMPANY_DATA] as tbl2 WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                     </asp:Panel>
                 </div>
             </div>

@@ -97,6 +97,17 @@
                     </div>
                 </div>
                 <!-- form-row -->
+                <asp:Panel ID="Panel3" runat="server" Visible="False">
+                    <div class="form-row mb-2">
+                        <div class="col-xs-6 col-sm-6">
+                            <asp:TextBox ID="txt_add_name" runat="server" AutoCompleteType="Disabled" CssClass="form-control" placeholder="اسم الإضافة"></asp:TextBox>
+                        </div>
+                        <div class="col-xs-6 col-sm-4">
+                            <asp:TextBox ID="txt_add_price" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEUIN(event)" placeholder="سعر الإضافة"></asp:TextBox>
+                        </div>
+                    </div>
+                    <!-- form-row -->
+                </asp:Panel>
                 <div class="form-row">
                     <div class="col-xs-12 col-sm-12">
                         <asp:GridView ID="GridView1" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">

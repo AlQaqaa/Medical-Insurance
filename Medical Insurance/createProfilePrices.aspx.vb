@@ -41,6 +41,8 @@ Public Class createProfilePrices
 
             txt_profile_name.Text = ""
 
+            add_action(1, 1, 3, "إنشاء ملف أسعار جديد باسم: " & txt_profile_name.Text & " رقم الملف: " & Session("profile_no"), 1, GetIPAddress())
+
             Response.Redirect("SERVICES_PRICES.aspx", False)
             Exit Sub
         Catch ex As Exception

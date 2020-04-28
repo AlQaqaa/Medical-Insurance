@@ -9,8 +9,9 @@ Public Class patientInfo
     Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        If IsPostBack = False Then
-            Dim pat_no As Integer = Val(Session("patiant_id"))
+
+
+        Dim pat_no As Integer = Val(Session("patiant_id"))
 
             If pat_no = 0 Then
                 Response.Redirect("LISTPATIANT.aspx")
@@ -18,12 +19,12 @@ Public Class patientInfo
 
             Dim company_name_panel As Panel = DirectCast(Master.FindControl("Panel_company_info"), Panel)
 
-
+            getPatInfo()
             getBlockServices()
             getConstList()
             getProcessesData()
-        End If
-        getPatInfo()
+
+
 
     End Sub
 
@@ -168,7 +169,7 @@ Public Class patientInfo
     Private Sub getConstList()
         Try
             If ViewState("bage_no") <> 0 Then
-                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND PINC_ID <> " & Val(Session("patiant_id")), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND PINC_ID <> " & Val(Session("patiant_id") & " ORDER BY CONST_ID ACS"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()

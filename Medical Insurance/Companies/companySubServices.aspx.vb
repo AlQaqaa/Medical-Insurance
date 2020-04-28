@@ -95,9 +95,9 @@ Public Class companySubServices
                 Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
 
                 If IsDBNull(dt_res.Rows(i)("SER_STATE")) Then
-                    ch.Checked = True
-                ElseIf dt_res.Rows(i)("SER_STATE") = 1 Then
                     ch.Checked = False
+                ElseIf dt_res.Rows(i)("SER_STATE") = 1 Then
+                    ch.Checked = True
                 Else
                     ch.Checked = True
                 End If

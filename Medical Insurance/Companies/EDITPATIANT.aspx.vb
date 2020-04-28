@@ -16,7 +16,7 @@ Public Class WebForm1
                 Response.Redirect("LISTPATIANT.aspx")
             End If
 
-            Dim sel_com As New SqlCommand("SELECT PINC_ID,CARD_NO,NAME_ARB,NAME_ENG,CONVERT(VARCHAR, BIRTHDATE, 103) AS BIRTHDATE,BAGE_NO,C_ID,GENDER,NAL_ID,PHONE_NO,CONST_ID,CONVERT(VARCHAR, EXP_DATE, 103) AS EXP_DATE,ISNULL(NOTES, '') AS NOTES,P_STATE,ISNULL(NAT_NUMBER, 0) AS NAT_NUMBER,ISNULL(KID_NO, 0) AS KID_NO,CITY_ID FROM INC_PATIANT WHERE PINC_ID = " & ViewState("patiant_id"), insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT PINC_ID, C_ID,CARD_NO,NAME_ARB,NAME_ENG,CONVERT(VARCHAR, BIRTHDATE, 103) AS BIRTHDATE,BAGE_NO,C_ID,GENDER,NAL_ID,PHONE_NO,CONST_ID,CONVERT(VARCHAR, EXP_DATE, 103) AS EXP_DATE,ISNULL(NOTES, '') AS NOTES,P_STATE,ISNULL(NAT_NUMBER, 0) AS NAT_NUMBER,ISNULL(KID_NO, 0) AS KID_NO,CITY_ID FROM INC_PATIANT WHERE PINC_ID = " & ViewState("patiant_id"), insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -40,6 +40,7 @@ Public Class WebForm1
                 txt_NAT_NUMBER.Text = dr!NAT_NUMBER
                 txt_KID_NO.Text = dr!KID_NO
                 ddl_CITY_ID.SelectedValue = dr!CITY_ID
+                ddl_company.SelectedValue = dr!C_ID
             End If
 
         End If

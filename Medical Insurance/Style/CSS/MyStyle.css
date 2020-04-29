@@ -278,3 +278,29 @@ ajax__calendar_months {
     left: 0px;
     top: -179px;
 }
+
+
+/* ================================================================= */
+
+/* Start statistics page */
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.border-right-primary {
+    border-right: .25rem solid #4e73df !important;
+}
+
+.border-right-success {
+    border-right: .25rem solid #1cc88a !important;
+}
+
+.border-right-info {
+    border-right: .25rem solid #36b9cc !important;
+}
+
+.border-right-warning {
+    border-right: .25rem solid #f6c23e !important;
+}

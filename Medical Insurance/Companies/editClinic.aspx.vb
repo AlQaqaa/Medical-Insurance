@@ -78,10 +78,10 @@ Public Class editClinc
                     For i = 0 To dt_result.Rows.Count - 1
                         Dim dr = dt_result.Rows(i)
                         If Not isFirstResult Then
-                            resultString &= String.Format(" <a href='editClinic.aspx?clinicId=" & dr!Clinic_ID & "'><span class='badge badge-pill badge-info p-2'>{0}</span></a>", dr!Clinic_AR_Name)
+                            resultString &= String.Format(" <a href='editClinic.aspx?clinicId=" & dr!Clinic_ID & "'><span class='badge badge-pill badge-info p-2 mb-2'>{0}</span></a>", dr!Clinic_AR_Name)
                         Else
                             isFirstResult = False
-                            resultString &= String.Format("<a href='editClinic.aspx?clinicId=" & dr!Clinic_ID & "'><span class='badge badge-pill badge-info p-2'>{0}</span></a>", dr!Clinic_AR_Name)
+                            resultString &= String.Format("<a href='editClinic.aspx?clinicId=" & dr!Clinic_ID & "'><span class='badge badge-pill badge-info p-2 mb-2'>{0}</span></a>", dr!Clinic_AR_Name)
                         End If
                     Next
                     Literal1.Text = resultString

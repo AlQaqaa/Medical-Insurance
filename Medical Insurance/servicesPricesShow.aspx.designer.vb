@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class servicesPricesShow
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''ddl_show_type control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_show_type As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''ddl_price control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_price As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
+    
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''btn_show control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_show As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''btn_print control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_print As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''GridView1 control.
     '''</summary>
@@ -84,13 +84,4 @@ Partial Public Class servicesPricesShow
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
-    '''<summary>
-    '''CrystalReportViewer1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CrystalReportViewer1 As Global.CrystalDecisions.Web.CrystalReportViewer
 End Class

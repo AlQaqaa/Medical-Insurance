@@ -16,7 +16,9 @@
                 },
                 "fixedColumns": true,
                 "columns": [
-                    null,
+                    { "searchable": false },
+                    { "searchable": false },
+                    { "searchable": false },
                     null,
                     null,
                     { "searchable": false },
@@ -24,11 +26,9 @@
                     null,
                     null,
                     null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
+                    { "searchable": false },
+                    { "searchable": false },
+                    { "searchable": false }
 
                 ],
                 'columnDefs': [

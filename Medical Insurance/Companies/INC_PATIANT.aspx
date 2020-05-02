@@ -41,12 +41,14 @@
                                 <label for="txt_start_dt">تاريخ الميلاد</label>
                                 <div class="input-group">
                                     <asp:TextBox ID="txt_BIRTHDATE" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_BIRTHDATE);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
+                                    
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
                                         </div>
                                     </div>
                                 </div>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_BIRTHDATE" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                                 <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_BIRTHDATE" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
                                 <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_BIRTHDATE_MaskedEditExtender" TargetControlID="txt_BIRTHDATE" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                             </div>
@@ -100,12 +102,14 @@
                                 <label for="txt_exp_date">تاريخ صلاحية البطاقة</label>
                                 <div class="input-group">
                                     <asp:TextBox ID="txt_exp_date" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_exp_date);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
+                                    
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
                                         </div>
                                     </div>
                                 </div>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_exp_date" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                                 <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_exp_date" ID="CalendarExtender1" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
                                 <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_exp_date_MaskedEditExtender" TargetControlID="txt_exp_date" ID="MaskedEditExtender1" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                             </div>

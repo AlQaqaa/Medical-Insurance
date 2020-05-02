@@ -2,11 +2,52 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script src="../Style/JS/jquery-3.4.1.min.js"></script>
+    <script src="../Style/plugins/dataTables/jquery.dataTables.min.js"></script>
+    <script src="../Style/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('table.com-tbl').prepend($("<thead></thead>").append($(this).find("tr:first"))).DataTable({
+                "scrollX": true,
+                "responsive": true,
+                "paging": false,
+                "ordering": false,
+                "info": false,
+                "processing": true,
+                "language": {
+                    "lengthMenu": "عرض _MENU_ سجل",
+                    "zeroRecords": "لا توجد بيانات متاحة.",
+                    "info": "الإجمالي: _TOTAL_ خدمة",
+                    "infoEmpty": "لا توجد بيانات متاحة.",
+                    "infoFiltered": "(تمت تصفيتها من اصل _MAX_ سجل)",
+                    "emptyTable": "لا توجد بيانات متاحة.",
+                    "loadingRecords": "جاري التحميل...",
+                    "processing": "جاري المعالجة...",
+                    "search": "البحث: ",
+                    "zeroRecords": "لا توجد بيانات مطابقة!",
+                    "paginate": {
+                        "first": "البداية",
+                        "last": "النهاية",
+                        "next": "التالي",
+                        "previous": "السابق"
+                    },
+                    "aria": {
+                        "sortAscending": ": تفعيل ليتم الترتيب التصاعدي",
+                        "sortDescending": ": تفعيل ليتم الترتيب التنازلي"
+                    }
+                }
+            });
+        });
+    </script>
+
     <style>
-        .panel{
+        .panel {
             height: 530px;
             max-height: 530px;
         }
+
         .scrollable {
             overflow-y: auto;
         }
@@ -112,12 +153,17 @@
                             <asp:Button ID="btn_save" runat="server" CssClass="btn btn-outline-success btn-block" Text="حفظ" ValidationGroup="save_data" Visible="false" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                         </div>
                     </div>
+                    </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btn_save" EventName="Click" />
+                </Triggers>
+            </asp:UpdatePanel>
                     <hr />
 
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="panel scrollable">
-                                <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
+                                <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm com-tbl" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
                                     <Columns>
                                         <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
                                             <ControlStyle CssClass="hide-colum" />
@@ -163,11 +209,7 @@
                             </div>
                         </div>
                     </div>
-                </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btn_save" EventName="Click" />
-                </Triggers>
-            </asp:UpdatePanel>
+                
 
         </div>
     </div>

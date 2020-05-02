@@ -29,6 +29,7 @@ Public Class SERVICES_PRICES
             lbl_groub.Enabled = False
             ddl_services_group.Enabled = False
             lbl_services_group.Enabled = False
+
         End If
     End Sub
 
@@ -192,7 +193,7 @@ Public Class SERVICES_PRICES
                 End If
             End If
 
-            sql_str = sql_str & " ORDER BY SubService_Code"
+            sql_str = sql_str & " ORDER BY SubService_AR_Name"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_res As New DataTable

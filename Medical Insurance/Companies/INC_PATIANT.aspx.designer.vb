@@ -122,6 +122,15 @@ Partial Public Class INC_PATIANT
     Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
+    '''RequiredFieldValidator5 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
     '''CalendarExtender3 control.
     '''</summary>
     '''<remarks>
@@ -219,6 +228,15 @@ Partial Public Class INC_PATIANT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''RequiredFieldValidator6 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
     '''CalendarExtender1 control.

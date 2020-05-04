@@ -185,22 +185,40 @@ Partial Public Class statistics
     Protected WithEvents MaskedEditExtender3 As Global.AjaxControlToolkit.MaskedEditExtender
     
     '''<summary>
-    '''txt_patient_value control.
+    '''txt_end_dt control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_patient_value As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents txt_end_dt As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txt_company_value control.
+    '''ImageButton2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_company_value As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''CalendarExtender2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CalendarExtender2 As Global.AjaxControlToolkit.CalendarExtender
+    
+    '''<summary>
+    '''MaskedEditExtender2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MaskedEditExtender2 As Global.AjaxControlToolkit.MaskedEditExtender
     
     '''<summary>
     '''ddl_payment_type control.
@@ -212,13 +230,13 @@ Partial Public Class statistics
     Protected WithEvents ddl_payment_type As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''txt_age control.
+    '''ddl_invoice_type control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents txt_age As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents ddl_invoice_type As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''ddl_relation control.
@@ -284,13 +302,31 @@ Partial Public Class statistics
     Protected WithEvents txt_invoce_no As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''ddl_invoice_type control.
+    '''ddl_search_field control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ddl_invoice_type As Global.System.Web.UI.WebControls.DropDownList
+    Protected WithEvents ddl_search_field As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''ddl_operation control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ddl_operation As Global.System.Web.UI.WebControls.DropDownList
+    
+    '''<summary>
+    '''txt_search_val control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search_val As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''btn_search control.

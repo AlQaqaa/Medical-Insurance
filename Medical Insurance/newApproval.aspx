@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="إنشاء طلب موافقة جديد" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="newApproval.aspx.vb" Inherits="Medical_Insurance.newApproval" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -38,7 +40,7 @@
                             <div class="col-xs-12 col-sm-6">
                                 <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
                             </div>
-                        </div>
+                        </div><!-- form-row -->
                         <div class="row mt-4">
                             <div class="col-xs-12 col-sm-6">
                                 <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
@@ -46,7 +48,7 @@
                             <div class="col-xs-12 col-sm-6">
                                 <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
                             </div>
-                        </div>
+                        </div><!-- form-row -->
                         <div class="row mt-4">
                             <div class="col-xs-12 col-sm-6">
                                 <asp:Label ID="Label5" runat="server" Text=""></asp:Label>
@@ -54,7 +56,30 @@
                             <div class="col-xs-12 col-sm-6">
                                 <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
                             </div>
+                        </div><!-- form-row -->
+                        <div class="row mt-4">
+                            <div class="col-xs-12 col-sm-12">
+                                <asp:Label ID="lbl_confirm_msg" runat="server" Text=""></asp:Label>
+                            </div>
+                        </div><!-- form-row -->
+                    </div>
+                </div>
+                <!-- form-row -->
+                <div class="form-row mt-2">
+                    <div class="form-group col-xs-12 col-sm-3">
+                        <div class="input-group">
+                            <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="تاريخ انتهاء الموافقة" TabIndex="6" Enabled="False"></asp:TextBox>
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" Enabled="False" />
+                                </div>
+                            </div>
                         </div>
+                        <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_end_dt" id="CalendarExtender3" format="dd/MM/yyyy" popupbuttonid="ImageButton1" popupposition="TopLeft"></ajaxtoolkit:calendarextender>
+                        <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_end_dt_MaskedEditExtender" targetcontrolid="txt_end_dt" id="MaskedEditExtender3" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
+                    </div>
+                    <div class="col-xs-6 col-sm-2">
+                        <asp:Button ID="btn_chose" runat="server" CssClass="btn btn-outline-primary btn-block" Text="يرجى اختيار منتفع" Enabled="false" />
                     </div>
                 </div>
                 <!-- form-row -->
@@ -93,7 +118,7 @@
 
                     </div>
                     <div class="col-xs-6 col-sm-2">
-                        <asp:Button ID="btn_chose" runat="server" CssClass="btn btn-outline-info btn-block mt-sm-4 mt-md-4" Text="أضف" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
+                        <asp:Button ID="btn_add" runat="server" CssClass="btn btn-outline-info btn-block mt-sm-4 mt-md-4" Text="أضف" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                     </div>
                 </div>
                 <!-- form-row -->
@@ -119,7 +144,13 @@
                                         </span>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="رقم الخدمة" DataField="SubService_ID">
+                                <asp:BoundField HeaderText="تسلسلي" DataField="CD_ID">
+                                    <ControlStyle CssClass="hide-colum" />
+                                    <FooterStyle CssClass="hide-colum" />
+                                    <HeaderStyle CssClass="hide-colum" />
+                                    <ItemStyle CssClass="hide-colum" />
+                                </asp:BoundField>
+                                <asp:BoundField HeaderText="رقم الخدمة" DataField="SUB_SERVICE_ID">
                                     <ControlStyle CssClass="hide-colum" />
                                     <FooterStyle CssClass="hide-colum" />
                                     <HeaderStyle CssClass="hide-colum" />
@@ -127,8 +158,8 @@
                                 </asp:BoundField>
                                 <asp:BoundField DataField="SubService_Code" HeaderText="كود العملية"></asp:BoundField>
                                 <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم العملية"></asp:BoundField>
-                                <asp:BoundField DataField="SubService_Price" HeaderText="سعر العملية"></asp:BoundField>
-                                <asp:BoundField DataField="IEC_Type" HeaderText="النوع"></asp:BoundField>
+                                <asp:BoundField DataField="SERVICE_PRICE" HeaderText="سعر العملية"></asp:BoundField>
+                                <asp:BoundField DataField="REQUEST_TYPE" HeaderText="النوع"></asp:BoundField>
                                 <asp:TemplateField>
                                     <ItemTemplate>
                                         <asp:LinkButton ID="btn_delete" runat="server"
@@ -144,7 +175,7 @@
                     </div>
                 </div>
                 <!-- form-row -->
-                <div class="form-row">
+                <div class="form-row justify-content-end">
                     <div class="col-xs-12 col-sm-3">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>

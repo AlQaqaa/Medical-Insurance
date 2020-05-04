@@ -15,10 +15,8 @@ Public Class statistics
         If CheckBox1.Checked = True Then
             txt_invoce_no.Enabled = True
             txt_invoce_no.Focus()
-            ddl_invoice_type.Enabled = True
         Else
             txt_invoce_no.Enabled = False
-            ddl_invoice_type.Enabled = False
         End If
     End Sub
 

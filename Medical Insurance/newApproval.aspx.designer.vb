@@ -131,6 +131,60 @@ Partial Public Class newApproval
     Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''lbl_confirm_msg control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_confirm_msg As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''txt_end_dt control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_end_dt As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''ImageButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
+    
+    '''<summary>
+    '''CalendarExtender3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CalendarExtender3 As Global.AjaxControlToolkit.CalendarExtender
+    
+    '''<summary>
+    '''MaskedEditExtender3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MaskedEditExtender3 As Global.AjaxControlToolkit.MaskedEditExtender
+    
+    '''<summary>
+    '''btn_chose control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_chose As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Panel2 control.
     '''</summary>
     '''<remarks>
@@ -230,13 +284,13 @@ Partial Public Class newApproval
     Protected WithEvents ddl_sub_service As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''btn_chose control.
+    '''btn_add control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btn_chose As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btn_add As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Panel3 control.

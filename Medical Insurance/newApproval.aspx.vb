@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports Microsoft.Reporting.WebForms
 Imports System.IO
+Imports System.Globalization
 
 Public Class newApproval
     Inherits System.Web.UI.Page
@@ -41,7 +42,7 @@ Public Class newApproval
 
             If dt_result.Rows.Count > 0 Then
                 Panel1.Visible = True
-                Panel2.Visible = True
+
                 source_list.DataSource = dt_result
                 source_list.DataValueField = "PINC_ID"
                 source_list.DataTextField = "NAME_ARB"
@@ -65,6 +66,7 @@ Public Class newApproval
     Private Sub source_list_SelectedIndexChanged(sender As Object, e As EventArgs) Handles source_list.SelectedIndexChanged
         'Label1.Text = source_list.SelectedValue
 
+        ' جلب بيانات المنتفع الذي تم اختياره
         Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, NAME_ENG, CARD_NO, BAGE_NO, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, P_STATE FROM INC_PATIANT WHERE PINC_ID =" & source_list.SelectedValue, insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
@@ -74,7 +76,10 @@ Public Class newApproval
         insurance_SQLcon.Close()
         If dt_result.Rows.Count > 0 Then
             Dim dr_result = dt_result.Rows(0)
-
+            btn_chose.Enabled = True
+            btn_chose.Text = "اختار"
+            txt_end_dt.Enabled = True
+            ImageButton1.Enabled = True
             If dr_result!P_STATE = 0 Then
                 Label2.Text = "الحالة: مفعل"
                 Label2.CssClass = "text-success"
@@ -86,7 +91,28 @@ Public Class newApproval
             Label4.Text = "الصلة بالمشترك: " & dr_result!CONST_ID
             Label5.Text = "رقم البطاقة: " & dr_result!CARD_NO
             Label6.Text = "الرقم الوظيفي: " & dr_result!BAGE_NO
+        Else
+            btn_chose.Enabled = False
+            btn_chose.Text = "يرجى اختيار منتفع"
+            txt_end_dt.Enabled = False
+            ImageButton1.Enabled = False
         End If
+
+
+        ' التحقق ما إذا ما كان هناك طلب موافقة معلق لهذا المنتفع أم لا
+        Dim sel_con As New SqlCommand("SELECT * FROM INC_CONFIRM WHERE PINC_ID = " & source_list.SelectedValue & " AND REQUEST_STS = 0 AND CONFRIM_END_DATE > '" & Date.Now.Date & "'", insurance_SQLcon)
+        Dim dt_confirm As New DataTable
+        dt_confirm.Rows.Clear()
+        insurance_SQLcon.Open()
+        dt_confirm.Load(sel_con.ExecuteReader)
+        insurance_SQLcon.Close()
+
+        If dt_confirm.Rows.Count > 0 Then
+            lbl_confirm_msg.Text = "<div class='alert alert-warning' role='alert'>هذا المنتفع لديه عدد " & dt_confirm.Rows.Count & " طلب موافقة مسبقاً لم يتم الموافقة عليه بعد</div>"
+        Else
+            lbl_confirm_msg.Text = ""
+        End If
+
         'bindGridview()
     End Sub
 
@@ -138,90 +164,36 @@ Public Class newApproval
 
     Private Sub btn_chose_Click(sender As Object, e As EventArgs) Handles btn_chose.Click
 
-        If ddl_sub_service.SelectedValue = 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى اختيار خدمة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-            Exit Sub
-        End If
-
-        If source_list.SelectedValue = 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يرجى اختيار منتفع'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-            Exit Sub
-        End If
+        Panel2.Visible = True
+        Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
 
         Try
-            Dim services_dt As New DataTable
-            Dim dr As DataRow = Nothing
-            services_dt.Columns.Add("SubService_ID", GetType(Integer))
-            services_dt.Columns.Add("SubService_Code", GetType(String))
-            services_dt.Columns.Add("SubService_AR_Name", GetType(String))
-            services_dt.Columns.Add("SubService_Price", GetType(Decimal))
-
-            Dim pay_type As String = ""
-            If ViewState("payment_type") = 1 Then
-                pay_type = "CASH_PRS"
-            Else
-                pay_type = "INS_PRS"
-            End If
-
-            If ddl_type.SelectedValue = 1 Then
-                Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & ") AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
-                Dim dt_service_info As New DataTable
-                dt_service_info.Rows.Clear()
-                insurance_SQLcon.Close()
-                insurance_SQLcon.Open()
-                dt_service_info.Load(sel_service.ExecuteReader)
-                insurance_SQLcon.Close()
-                If dt_service_info.Rows.Count > 0 Then
-                    Dim dr_ser_info = dt_service_info.Rows(0)
-
-                    Dim insToConfirm As New SqlCommand
-                    insToConfirm.Connection = insurance_SQLcon
-                    insToConfirm.CommandText = "INC_EWA_addNewConfirm"
-                    insToConfirm.CommandType = CommandType.StoredProcedure
-                    insToConfirm.Parameters.AddWithValue("@service_id", ddl_sub_service.SelectedValue)
-                    insToConfirm.Parameters.AddWithValue("@patient_id", source_list.SelectedValue)
-                    insToConfirm.Parameters.AddWithValue("@service_price", dr_ser_info!SubService_Price)
-                    insToConfirm.Parameters.AddWithValue("@iec_state", 0)
-                    insToConfirm.Parameters.AddWithValue("@ewa_no", 0)
-                    insToConfirm.Parameters.AddWithValue("@ins_date", Date.Now.Date)
-                    insToConfirm.Parameters.AddWithValue("@req_no", 0)
-                    insToConfirm.Parameters.AddWithValue("@iec_type", ddl_type.SelectedValue)
-                    insToConfirm.Parameters.AddWithValue("@userId", 1)
-                    insurance_SQLcon.Open()
-                    insToConfirm.ExecuteNonQuery()
-                    insurance_SQLcon.Close()
-
-                    bindGridview()
-                End If
-            ElseIf ddl_type.SelectedValue = 2 Then
-                'Dim insToConfirm As New SqlCommand
-                'insToConfirm.Connection = insurance_SQLcon
-                'insToConfirm.CommandText = "INC_EWA_addNewConfirm"
-                'insToConfirm.CommandType = CommandType.StoredProcedure
-                'insToConfirm.Parameters.AddWithValue("@service_id", ddl_sub_service.SelectedValue)
-                'insToConfirm.Parameters.AddWithValue("@patient_id", source_list.SelectedValue)
-                'insToConfirm.Parameters.AddWithValue("@service_price", dr_ser_info!SubService_Price)
-                'insToConfirm.Parameters.AddWithValue("@iec_state", 0)
-                'insToConfirm.Parameters.AddWithValue("@ewa_no", 0)
-                'insToConfirm.Parameters.AddWithValue("@ins_date", Date.Now.Date)
-                'insToConfirm.Parameters.AddWithValue("@req_no", 0)
-                'insToConfirm.Parameters.AddWithValue("@iec_type", ddl_type.SelectedValue)
-                'insToConfirm.Parameters.AddWithValue("@userId", 1)
-                'insurance_SQLcon.Open()
-                'insToConfirm.ExecuteNonQuery()
-                'insurance_SQLcon.Close()
-
-                bindGridview()
-            End If
+            Dim insToConfirm As New SqlCommand
+            insToConfirm.Connection = insurance_SQLcon
+            insToConfirm.CommandText = "INC_addNewConfirm"
+            insToConfirm.CommandType = CommandType.StoredProcedure
+            insToConfirm.Parameters.AddWithValue("@pateint_id", source_list.SelectedValue)
+            insToConfirm.Parameters.AddWithValue("@end_date", end_dt)
+            insToConfirm.Parameters.AddWithValue("@approved_value", 0)
+            insToConfirm.Parameters.AddWithValue("@req_unit", 1)
+            insToConfirm.Parameters.AddWithValue("@user_id", 1)
+            insToConfirm.Parameters.AddWithValue("@user_ip", GetIPAddress())
+            insToConfirm.Parameters.AddWithValue("@confirm_id", SqlDbType.Int).Direction = ParameterDirection.Output
+            insurance_SQLcon.Open()
+            insToConfirm.ExecuteNonQuery()
+            ViewState("approv_no") = insToConfirm.Parameters("@confirm_id").Value.ToString()
+            insToConfirm.CommandText = ""
+            insurance_SQLcon.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
     End Sub
 
     Sub bindGridview()
         Try
-            If source_list.SelectedValue <> 0 Then
-                Dim sel_com As New SqlCommand("SELECT IEC_SID AS SubService_ID, IEC_Price AS SubService_Price, (CASE WHEN (IEC_Type = 1) THEN 'خدمة/عملية' ELSE 'إضافة على عملية' END) AS IEC_Type, (CASE WHEN (IEC_Type = 1) THEN (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_EWA_Confirm.IEC_SID) ELSE '/' END) AS SubService_Code, (CASE WHEN (IEC_Type = 1) THEN (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_EWA_Confirm.IEC_SID) ELSE (SELECT Ewa_Add_name FROM Ewa_Additionals WHERE Ewa_Additionals.Ewa_Add_id = INC_EWA_Confirm.IEC_SID) END) AS SubService_AR_Name FROM INC_EWA_Confirm WHERE IEC_PID = " & source_list.SelectedValue & " AND IEC_State = 0 AND IEC_RNo = 0", insurance_SQLcon)
+            If ViewState("approv_no") <> 0 And ViewState("approv_no") <> Nothing Then
+                Dim sel_com As New SqlCommand("SELECT CD_ID, SUB_SERVICE_ID, SERVICE_PRICE, (CASE WHEN (REQUEST_TYPE = 1) THEN 'خدمة/عملية' ELSE 'إضافة على عملية' END) AS REQUEST_TYPE, (CASE WHEN (REQUEST_TYPE = 1) THEN (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = TBL1.SUB_SERVICE_ID) ELSE '/' END) AS SubService_Code, (CASE WHEN (REQUEST_TYPE = 1) THEN (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = TBL1.SUB_SERVICE_ID) ELSE (SELECT ADD_NAME FROM INC_CONFIRM_DETAILS AS TBL2 WHERE TBL2.CD_ID = TBL1.CD_ID) END) AS SubService_AR_Name FROM INC_CONFIRM_DETAILS AS TBL1 WHERE CONFIRM_ID = " & ViewState("approv_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Open()
@@ -246,7 +218,7 @@ Public Class newApproval
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_EWA_Confirm WHERE IEC_State = 0 AND IEC_RNo = 0 AND IEC_SID = " & (row.Cells(1).Text) & " AND IEC_PID = " & source_list.SelectedValue, insurance_SQLcon)
+            Dim del_com As New SqlCommand("DELETE FROM INC_CONFIRM_DETAILS WHERE EWA_NO = 0 AND CD_ID = " & (row.Cells(1).Text), insurance_SQLcon)
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
@@ -268,7 +240,7 @@ Public Class newApproval
             End If
 
             Using main_ds
-                Dim sel_com As New SqlCommand("SELECT IEC_SID AS SubService_ID, IEC_Price AS SubService_Price, (CASE WHEN (IEC_Type = 1) THEN 'خدمة/عملية' ELSE 'إضافة على عملية' END) AS IEC_Type, (CASE WHEN (IEC_Type = 1) THEN (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_EWA_Confirm.IEC_SID) ELSE '/' END) AS SubService_Code, (CASE WHEN (IEC_Type = 1) THEN (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_EWA_Confirm.IEC_SID) ELSE (SELECT Ewa_Add_name FROM Ewa_Additionals WHERE Ewa_Additionals.Ewa_Add_id = INC_EWA_Confirm.IEC_SID) END) AS SubService_AR_Name FROM INC_EWA_Confirm WHERE IEC_PID = " & source_list.SelectedValue & " AND IEC_State = 0 AND IEC_RNo = 0")
+                Dim sel_com As New SqlCommand("SELECT CD_ID, SUB_SERVICE_ID, SERVICE_PRICE, (CASE WHEN (REQUEST_TYPE = 1) THEN 'خدمة/عملية' ELSE 'إضافة على عملية' END) AS REQUEST_TYPE, (CASE WHEN (REQUEST_TYPE = 1) THEN (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = TBL1.SUB_SERVICE_ID) ELSE '/' END) AS SubService_Code, (CASE WHEN (REQUEST_TYPE = 1) THEN (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = TBL1.SUB_SERVICE_ID) ELSE (SELECT ADD_NAME FROM INC_CONFIRM_DETAILS AS TBL2 WHERE TBL2.CD_ID = TBL1.CD_ID) END) AS SubService_AR_Name FROM INC_CONFIRM_DETAILS AS TBL1 WHERE CONFIRM_ID = " & ViewState("approv_no"))
                 Using sda As New SqlDataAdapter()
                     sel_com.Connection = insurance_SQLcon
                     sda.SelectCommand = sel_com
@@ -290,6 +262,7 @@ Public Class newApproval
             Dim rp4 As ReportParameter
             Dim rp5 As ReportParameter
             Dim rp6 As ReportParameter
+            Dim rp7 As ReportParameter
 
             rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
             rp2 = New ReportParameter("pat_name", Label3.Text)
@@ -297,8 +270,9 @@ Public Class newApproval
             rp4 = New ReportParameter("emp_no", Label6.Text)
             rp5 = New ReportParameter("moshtark_name", Label1.Text)
             rp6 = New ReportParameter("relation_m", Label4.Text)
+            rp7 = New ReportParameter("approv_no", ViewState("approv_no").ToString)
 
-            viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6})
+            viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
 
             Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
             Dim r As String = "~/Reports/confirmApproval.rdlc"
@@ -323,6 +297,81 @@ Public Class newApproval
             fs.Close()
             Response.Redirect("~/Reports/confirmApproval.pdf", False)
 
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+        If ddl_sub_service.SelectedValue = 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى اختيار خدمة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Exit Sub
+        End If
+
+        If source_list.SelectedValue = 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يرجى اختيار منتفع'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Exit Sub
+        End If
+
+        Try
+
+            Dim pay_type As String = ""
+            If ViewState("payment_type") = 1 Then
+                pay_type = "CASH_PRS"
+            Else
+                pay_type = "INS_PRS"
+            End If
+
+            If ddl_type.SelectedValue = 1 Then
+                Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & ViewState("profile_no") & ") AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
+                Dim dt_service_info As New DataTable
+                dt_service_info.Rows.Clear()
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_service_info.Load(sel_service.ExecuteReader)
+                insurance_SQLcon.Close()
+                If dt_service_info.Rows.Count > 0 Then
+                    Dim dr_ser_info = dt_service_info.Rows(0)
+
+                    Dim insToConfirm As New SqlCommand
+                    insToConfirm.Connection = insurance_SQLcon
+                    insToConfirm.CommandText = "INC_addNewConfirmDetails"
+                    insToConfirm.CommandType = CommandType.StoredProcedure
+                    insToConfirm.Parameters.AddWithValue("@subService_id", ddl_sub_service.SelectedValue)
+                    insToConfirm.Parameters.AddWithValue("@service_price", dr_ser_info!SubService_Price)
+                    insToConfirm.Parameters.AddWithValue("@add_name", "")
+                    insToConfirm.Parameters.AddWithValue("@confirm_id", ViewState("approv_no"))
+                    insToConfirm.Parameters.AddWithValue("@req_unit", 1)
+                    insToConfirm.Parameters.AddWithValue("@req_type", 1)
+                    insToConfirm.Parameters.AddWithValue("@user_id", 1)
+                    insToConfirm.Parameters.AddWithValue("@user_ip", GetIPAddress())
+                    insurance_SQLcon.Open()
+                    insToConfirm.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+
+                    bindGridview()
+                End If
+            ElseIf ddl_type.SelectedValue = 2 Then
+                Dim insToConfirm As New SqlCommand
+                insToConfirm.Connection = insurance_SQLcon
+                insToConfirm.CommandText = "INC_addNewConfirmDetails"
+                insToConfirm.CommandType = CommandType.StoredProcedure
+                insToConfirm.Parameters.AddWithValue("@subService_id", 999999)
+                insToConfirm.Parameters.AddWithValue("@service_price", CDec(txt_add_price.Text))
+                insToConfirm.Parameters.AddWithValue("@add_name", txt_add_name.Text)
+                insToConfirm.Parameters.AddWithValue("@confirm_id", ViewState("approv_no"))
+                insToConfirm.Parameters.AddWithValue("@req_unit", 1)
+                insToConfirm.Parameters.AddWithValue("@req_type", 2)
+                insToConfirm.Parameters.AddWithValue("@user_id", 1)
+                insToConfirm.Parameters.AddWithValue("@user_ip", GetIPAddress())
+                insurance_SQLcon.Open()
+                insToConfirm.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+
+                txt_add_name.Text = ""
+                txt_add_price.Text = ""
+                bindGridview()
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

@@ -7,7 +7,7 @@
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>746704b9-883f-4e38-a788-bd943c9dbd8a</rd:DataSourceID>
+      <rd:DataSourceID>186ff4d9-4a67-4f4b-8737-15b9007c3c71</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -17,16 +17,20 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="SubService_ID">
-          <DataField>SubService_ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="CD_ID">
+          <DataField>CD_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
-        <Field Name="SubService_Price">
-          <DataField>SubService_Price</DataField>
-          <rd:TypeName>System.Double</rd:TypeName>
+        <Field Name="SUB_SERVICE_ID">
+          <DataField>SUB_SERVICE_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
         </Field>
-        <Field Name="IEC_Type">
-          <DataField>IEC_Type</DataField>
+        <Field Name="SERVICE_PRICE">
+          <DataField>SERVICE_PRICE</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="REQUEST_TYPE">
+          <DataField>REQUEST_TYPE</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="SubService_Code">
@@ -37,18 +41,14 @@
           <DataField>SubService_AR_Name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="IEC_ID">
-          <DataField>IEC_ID</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
         <rd:SchemaPath>E:\Medical Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
-        <rd:TableName>INC_EWA_Confirm</rd:TableName>
+        <rd:TableName>INC_CONFIRM_DETAILS</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
-        <rd:TableAdapterName>INC_EWA_ConfirmTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterName>INC_CONFIRM_DETAILSTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -763,14 +763,14 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="SubService_Price">
+                        <Textbox Name="SERVICE_PRICE">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!SubService_Price.Value</Value>
+                                  <Value>=Fields!SERVICE_PRICE.Value</Value>
                                   <Style>
                                     <FontSize>14pt</FontSize>
                                   </Style>
@@ -781,7 +781,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>SubService_Price</rd:DefaultName>
+                          <rd:DefaultName>SERVICE_PRICE</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -797,14 +797,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="IEC_Type">
+                        <Textbox Name="REQUEST_TYPE">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!IEC_Type.Value</Value>
+                                  <Value>=Fields!REQUEST_TYPE.Value</Value>
                                   <Style>
                                     <FontSize>14pt</FontSize>
                                   </Style>
@@ -815,7 +815,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>IEC_Type</rd:DefaultName>
+                          <rd:DefaultName>REQUEST_TYPE</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -923,7 +923,7 @@
             <Top>11.16224cm</Top>
             <Left>0.43995cm</Left>
             <Height>1.49104cm</Height>
-            <Width>18.63576cm</Width>
+            <Width>18.63577cm</Width>
             <ZIndex>16</ZIndex>
             <Style>
               <Border>
@@ -967,17 +967,16 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="Textbox16">
+              <Textbox Name="Textbox1">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
                 <Paragraphs>
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Sum(Fields!SubService_Price.Value, "confirmDS")</Value>
+                        <Value>=Sum(Fields!SERVICE_PRICE.Value, "confirmDS")</Value>
                         <Style>
                           <FontSize>14pt</FontSize>
-                          <FontWeight>Normal</FontWeight>
                           <Format>#,0.000;(#,0.000)</Format>
                         </Style>
                       </TextRun>
@@ -987,11 +986,11 @@
                     </Style>
                   </Paragraph>
                 </Paragraphs>
-                <rd:DefaultName>Textbox11</rd:DefaultName>
+                <rd:DefaultName>Textbox1</rd:DefaultName>
                 <Top>0.14302cm</Top>
-                <Left>0.53902cm</Left>
+                <Left>1.48947cm</Left>
                 <Height>0.83812cm</Height>
-                <Width>4.48979cm</Width>
+                <Width>3.6099cm</Width>
                 <ZIndex>1</ZIndex>
                 <Style>
                   <Border>
@@ -1007,7 +1006,7 @@
             <KeepTogether>true</KeepTogether>
             <Top>13.4112cm</Top>
             <Left>5.87058cm</Left>
-            <Height>1.12417cm</Height>
+            <Height>1.15563cm</Height>
             <Width>9.15858cm</Width>
             <ZIndex>17</ZIndex>
             <Style>
@@ -1110,6 +1109,73 @@
             <Height>0.6cm</Height>
             <Width>1.39451cm</Width>
             <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox44">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>:تسلسلي</Value>
+                    <Style>
+                      <FontSize>11pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox43</rd:DefaultName>
+            <Top>4.44514cm</Top>
+            <Left>3.76898cm</Left>
+            <Height>0.6cm</Height>
+            <Width>1.39451cm</Width>
+            <ZIndex>21</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="approv_no">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!approv_no.Value</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>approv_no</rd:DefaultName>
+            <Top>4.44514cm</Top>
+            <Left>0.43995cm</Left>
+            <Height>0.6cm</Height>
+            <Width>3.32903cm</Width>
+            <ZIndex>22</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1551,6 +1617,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="approv_no">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1586,6 +1658,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>relation_m</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>approv_no</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

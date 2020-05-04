@@ -31,7 +31,7 @@ Partial Public Class DataSet1
     
     Private tableINC_IvoicesProcesses As INC_IvoicesProcessesDataTable
     
-    Private tableINC_EWA_Confirm As INC_EWA_ConfirmDataTable
+    Private tableINC_CONFIRM_DETAILS As INC_CONFIRM_DETAILSDataTable
     
     Private tableinvoicesList As invoicesListDataTable
     
@@ -73,8 +73,8 @@ Partial Public Class DataSet1
             If (Not (ds.Tables("INC_IvoicesProcesses")) Is Nothing) Then
                 MyBase.Tables.Add(New INC_IvoicesProcessesDataTable(ds.Tables("INC_IvoicesProcesses")))
             End If
-            If (Not (ds.Tables("INC_EWA_Confirm")) Is Nothing) Then
-                MyBase.Tables.Add(New INC_EWA_ConfirmDataTable(ds.Tables("INC_EWA_Confirm")))
+            If (Not (ds.Tables("INC_CONFIRM_DETAILS")) Is Nothing) Then
+                MyBase.Tables.Add(New INC_CONFIRM_DETAILSDataTable(ds.Tables("INC_CONFIRM_DETAILS")))
             End If
             If (Not (ds.Tables("invoicesList")) Is Nothing) Then
                 MyBase.Tables.Add(New invoicesListDataTable(ds.Tables("invoicesList")))
@@ -130,9 +130,9 @@ Partial Public Class DataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property INC_EWA_Confirm() As INC_EWA_ConfirmDataTable
+    Public ReadOnly Property INC_CONFIRM_DETAILS() As INC_CONFIRM_DETAILSDataTable
         Get
-            Return Me.tableINC_EWA_Confirm
+            Return Me.tableINC_CONFIRM_DETAILS
         End Get
     End Property
     
@@ -222,8 +222,8 @@ Partial Public Class DataSet1
             If (Not (ds.Tables("INC_IvoicesProcesses")) Is Nothing) Then
                 MyBase.Tables.Add(New INC_IvoicesProcessesDataTable(ds.Tables("INC_IvoicesProcesses")))
             End If
-            If (Not (ds.Tables("INC_EWA_Confirm")) Is Nothing) Then
-                MyBase.Tables.Add(New INC_EWA_ConfirmDataTable(ds.Tables("INC_EWA_Confirm")))
+            If (Not (ds.Tables("INC_CONFIRM_DETAILS")) Is Nothing) Then
+                MyBase.Tables.Add(New INC_CONFIRM_DETAILSDataTable(ds.Tables("INC_CONFIRM_DETAILS")))
             End If
             If (Not (ds.Tables("invoicesList")) Is Nothing) Then
                 MyBase.Tables.Add(New invoicesListDataTable(ds.Tables("invoicesList")))
@@ -278,10 +278,10 @@ Partial Public Class DataSet1
                 Me.tableINC_IvoicesProcesses.InitVars
             End If
         End If
-        Me.tableINC_EWA_Confirm = CType(MyBase.Tables("INC_EWA_Confirm"),INC_EWA_ConfirmDataTable)
+        Me.tableINC_CONFIRM_DETAILS = CType(MyBase.Tables("INC_CONFIRM_DETAILS"),INC_CONFIRM_DETAILSDataTable)
         If (initTable = true) Then
-            If (Not (Me.tableINC_EWA_Confirm) Is Nothing) Then
-                Me.tableINC_EWA_Confirm.InitVars
+            If (Not (Me.tableINC_CONFIRM_DETAILS) Is Nothing) Then
+                Me.tableINC_CONFIRM_DETAILS.InitVars
             End If
         End If
         Me.tableinvoicesList = CType(MyBase.Tables("invoicesList"),invoicesListDataTable)
@@ -306,8 +306,8 @@ Partial Public Class DataSet1
         MyBase.Tables.Add(Me.tableINC_IvoicesProcessesPatient)
         Me.tableINC_IvoicesProcesses = New INC_IvoicesProcessesDataTable()
         MyBase.Tables.Add(Me.tableINC_IvoicesProcesses)
-        Me.tableINC_EWA_Confirm = New INC_EWA_ConfirmDataTable()
-        MyBase.Tables.Add(Me.tableINC_EWA_Confirm)
+        Me.tableINC_CONFIRM_DETAILS = New INC_CONFIRM_DETAILSDataTable()
+        MyBase.Tables.Add(Me.tableINC_CONFIRM_DETAILS)
         Me.tableinvoicesList = New invoicesListDataTable()
         MyBase.Tables.Add(Me.tableinvoicesList)
     End Sub
@@ -332,7 +332,7 @@ Partial Public Class DataSet1
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Private Function ShouldSerializeINC_EWA_Confirm() As Boolean
+    Private Function ShouldSerializeINC_CONFIRM_DETAILS() As Boolean
         Return false
     End Function
     
@@ -410,7 +410,7 @@ Partial Public Class DataSet1
     Public Delegate Sub INC_IvoicesProcessesRowChangeEventHandler(ByVal sender As Object, ByVal e As INC_IvoicesProcessesRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Delegate Sub INC_EWA_ConfirmRowChangeEventHandler(ByVal sender As Object, ByVal e As INC_EWA_ConfirmRowChangeEvent)
+    Public Delegate Sub INC_CONFIRM_DETAILSRowChangeEventHandler(ByVal sender As Object, ByVal e As INC_CONFIRM_DETAILSRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub invoicesListRowChangeEventHandler(ByVal sender As Object, ByVal e As invoicesListRowChangeEvent)
@@ -1464,26 +1464,26 @@ Partial Public Class DataSet1
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class INC_EWA_ConfirmDataTable
-        Inherits Global.System.Data.TypedTableBase(Of INC_EWA_ConfirmRow)
+    Partial Public Class INC_CONFIRM_DETAILSDataTable
+        Inherits Global.System.Data.TypedTableBase(Of INC_CONFIRM_DETAILSRow)
         
-        Private columnSubService_ID As Global.System.Data.DataColumn
+        Private columnCD_ID As Global.System.Data.DataColumn
         
-        Private columnSubService_Price As Global.System.Data.DataColumn
+        Private columnSUB_SERVICE_ID As Global.System.Data.DataColumn
         
-        Private columnIEC_Type As Global.System.Data.DataColumn
+        Private columnSERVICE_PRICE As Global.System.Data.DataColumn
+        
+        Private columnREQUEST_TYPE As Global.System.Data.DataColumn
         
         Private columnSubService_Code As Global.System.Data.DataColumn
         
         Private columnSubService_AR_Name As Global.System.Data.DataColumn
         
-        Private columnIEC_ID As Global.System.Data.DataColumn
-        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "INC_EWA_Confirm"
+            Me.TableName = "INC_CONFIRM_DETAILS"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -1516,25 +1516,33 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SubService_IDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property CD_IDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnSubService_ID
+                Return Me.columnCD_ID
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property SubService_PriceColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property SUB_SERVICE_IDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnSubService_Price
+                Return Me.columnSUB_SERVICE_ID
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IEC_TypeColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property SERVICE_PRICEColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnIEC_Type
+                Return Me.columnSERVICE_PRICE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property REQUEST_TYPEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnREQUEST_TYPE
             End Get
         End Property
         
@@ -1555,14 +1563,6 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property IEC_IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIEC_ID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1573,50 +1573,50 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As INC_EWA_ConfirmRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As INC_CONFIRM_DETAILSRow
             Get
-                Return CType(Me.Rows(index),INC_EWA_ConfirmRow)
+                Return CType(Me.Rows(index),INC_CONFIRM_DETAILSRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event INC_EWA_ConfirmRowChanging As INC_EWA_ConfirmRowChangeEventHandler
+        Public Event INC_CONFIRM_DETAILSRowChanging As INC_CONFIRM_DETAILSRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event INC_EWA_ConfirmRowChanged As INC_EWA_ConfirmRowChangeEventHandler
+        Public Event INC_CONFIRM_DETAILSRowChanged As INC_CONFIRM_DETAILSRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event INC_EWA_ConfirmRowDeleting As INC_EWA_ConfirmRowChangeEventHandler
+        Public Event INC_CONFIRM_DETAILSRowDeleting As INC_CONFIRM_DETAILSRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Event INC_EWA_ConfirmRowDeleted As INC_EWA_ConfirmRowChangeEventHandler
+        Public Event INC_CONFIRM_DETAILSRowDeleted As INC_CONFIRM_DETAILSRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Sub AddINC_EWA_ConfirmRow(ByVal row As INC_EWA_ConfirmRow)
+        Public Overloads Sub AddINC_CONFIRM_DETAILSRow(ByVal row As INC_CONFIRM_DETAILSRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddINC_EWA_ConfirmRow(ByVal SubService_ID As Integer, ByVal SubService_Price As Double, ByVal IEC_Type As String, ByVal SubService_Code As String, ByVal SubService_AR_Name As String) As INC_EWA_ConfirmRow
-            Dim rowINC_EWA_ConfirmRow As INC_EWA_ConfirmRow = CType(Me.NewRow,INC_EWA_ConfirmRow)
-            Dim columnValuesArray() As Object = New Object() {SubService_ID, SubService_Price, IEC_Type, SubService_Code, SubService_AR_Name, Nothing}
-            rowINC_EWA_ConfirmRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowINC_EWA_ConfirmRow)
-            Return rowINC_EWA_ConfirmRow
+        Public Overloads Function AddINC_CONFIRM_DETAILSRow(ByVal SUB_SERVICE_ID As Long, ByVal SERVICE_PRICE As Decimal, ByVal REQUEST_TYPE As String, ByVal SubService_Code As String, ByVal SubService_AR_Name As String) As INC_CONFIRM_DETAILSRow
+            Dim rowINC_CONFIRM_DETAILSRow As INC_CONFIRM_DETAILSRow = CType(Me.NewRow,INC_CONFIRM_DETAILSRow)
+            Dim columnValuesArray() As Object = New Object() {Nothing, SUB_SERVICE_ID, SERVICE_PRICE, REQUEST_TYPE, SubService_Code, SubService_AR_Name}
+            rowINC_CONFIRM_DETAILSRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowINC_CONFIRM_DETAILSRow)
+            Return rowINC_CONFIRM_DETAILSRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByIEC_ID(ByVal IEC_ID As Long) As INC_EWA_ConfirmRow
-            Return CType(Me.Rows.Find(New Object() {IEC_ID}),INC_EWA_ConfirmRow)
+        Public Function FindByCD_ID(ByVal CD_ID As Long) As INC_CONFIRM_DETAILSRow
+            Return CType(Me.Rows.Find(New Object() {CD_ID}),INC_CONFIRM_DETAILSRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As INC_EWA_ConfirmDataTable = CType(MyBase.Clone,INC_EWA_ConfirmDataTable)
+            Dim cln As INC_CONFIRM_DETAILSDataTable = CType(MyBase.Clone,INC_CONFIRM_DETAILSDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -1624,74 +1624,74 @@ Partial Public Class DataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New INC_EWA_ConfirmDataTable()
+            Return New INC_CONFIRM_DETAILSDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnSubService_ID = MyBase.Columns("SubService_ID")
-            Me.columnSubService_Price = MyBase.Columns("SubService_Price")
-            Me.columnIEC_Type = MyBase.Columns("IEC_Type")
+            Me.columnCD_ID = MyBase.Columns("CD_ID")
+            Me.columnSUB_SERVICE_ID = MyBase.Columns("SUB_SERVICE_ID")
+            Me.columnSERVICE_PRICE = MyBase.Columns("SERVICE_PRICE")
+            Me.columnREQUEST_TYPE = MyBase.Columns("REQUEST_TYPE")
             Me.columnSubService_Code = MyBase.Columns("SubService_Code")
             Me.columnSubService_AR_Name = MyBase.Columns("SubService_AR_Name")
-            Me.columnIEC_ID = MyBase.Columns("IEC_ID")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnSubService_ID = New Global.System.Data.DataColumn("SubService_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSubService_ID)
-            Me.columnSubService_Price = New Global.System.Data.DataColumn("SubService_Price", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSubService_Price)
-            Me.columnIEC_Type = New Global.System.Data.DataColumn("IEC_Type", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIEC_Type)
+            Me.columnCD_ID = New Global.System.Data.DataColumn("CD_ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCD_ID)
+            Me.columnSUB_SERVICE_ID = New Global.System.Data.DataColumn("SUB_SERVICE_ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSUB_SERVICE_ID)
+            Me.columnSERVICE_PRICE = New Global.System.Data.DataColumn("SERVICE_PRICE", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSERVICE_PRICE)
+            Me.columnREQUEST_TYPE = New Global.System.Data.DataColumn("REQUEST_TYPE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnREQUEST_TYPE)
             Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSubService_Code)
             Me.columnSubService_AR_Name = New Global.System.Data.DataColumn("SubService_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSubService_AR_Name)
-            Me.columnIEC_ID = New Global.System.Data.DataColumn("IEC_ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIEC_ID)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnIEC_ID}, true))
-            Me.columnIEC_Type.ReadOnly = true
-            Me.columnIEC_Type.MaxLength = 15
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnCD_ID}, true))
+            Me.columnCD_ID.AutoIncrement = true
+            Me.columnCD_ID.AutoIncrementSeed = -1
+            Me.columnCD_ID.AutoIncrementStep = -1
+            Me.columnCD_ID.AllowDBNull = false
+            Me.columnCD_ID.ReadOnly = true
+            Me.columnCD_ID.Unique = true
+            Me.columnREQUEST_TYPE.ReadOnly = true
+            Me.columnREQUEST_TYPE.MaxLength = 15
             Me.columnSubService_Code.ReadOnly = true
             Me.columnSubService_Code.MaxLength = 50
             Me.columnSubService_AR_Name.ReadOnly = true
-            Me.columnSubService_AR_Name.MaxLength = 50
-            Me.columnIEC_ID.AutoIncrement = true
-            Me.columnIEC_ID.AutoIncrementSeed = -1
-            Me.columnIEC_ID.AutoIncrementStep = -1
-            Me.columnIEC_ID.AllowDBNull = false
-            Me.columnIEC_ID.ReadOnly = true
-            Me.columnIEC_ID.Unique = true
+            Me.columnSubService_AR_Name.MaxLength = 2147483647
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function NewINC_EWA_ConfirmRow() As INC_EWA_ConfirmRow
-            Return CType(Me.NewRow,INC_EWA_ConfirmRow)
+        Public Function NewINC_CONFIRM_DETAILSRow() As INC_CONFIRM_DETAILSRow
+            Return CType(Me.NewRow,INC_CONFIRM_DETAILSRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New INC_EWA_ConfirmRow(builder)
+            Return New INC_CONFIRM_DETAILSRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(INC_EWA_ConfirmRow)
+            Return GetType(INC_CONFIRM_DETAILSRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.INC_EWA_ConfirmRowChangedEvent) Is Nothing) Then
-                RaiseEvent INC_EWA_ConfirmRowChanged(Me, New INC_EWA_ConfirmRowChangeEvent(CType(e.Row,INC_EWA_ConfirmRow), e.Action))
+            If (Not (Me.INC_CONFIRM_DETAILSRowChangedEvent) Is Nothing) Then
+                RaiseEvent INC_CONFIRM_DETAILSRowChanged(Me, New INC_CONFIRM_DETAILSRowChangeEvent(CType(e.Row,INC_CONFIRM_DETAILSRow), e.Action))
             End If
         End Sub
         
@@ -1699,8 +1699,8 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.INC_EWA_ConfirmRowChangingEvent) Is Nothing) Then
-                RaiseEvent INC_EWA_ConfirmRowChanging(Me, New INC_EWA_ConfirmRowChangeEvent(CType(e.Row,INC_EWA_ConfirmRow), e.Action))
+            If (Not (Me.INC_CONFIRM_DETAILSRowChangingEvent) Is Nothing) Then
+                RaiseEvent INC_CONFIRM_DETAILSRowChanging(Me, New INC_CONFIRM_DETAILSRowChangeEvent(CType(e.Row,INC_CONFIRM_DETAILSRow), e.Action))
             End If
         End Sub
         
@@ -1708,8 +1708,8 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.INC_EWA_ConfirmRowDeletedEvent) Is Nothing) Then
-                RaiseEvent INC_EWA_ConfirmRowDeleted(Me, New INC_EWA_ConfirmRowChangeEvent(CType(e.Row,INC_EWA_ConfirmRow), e.Action))
+            If (Not (Me.INC_CONFIRM_DETAILSRowDeletedEvent) Is Nothing) Then
+                RaiseEvent INC_CONFIRM_DETAILSRowDeleted(Me, New INC_CONFIRM_DETAILSRowChangeEvent(CType(e.Row,INC_CONFIRM_DETAILSRow), e.Action))
             End If
         End Sub
         
@@ -1717,14 +1717,14 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.INC_EWA_ConfirmRowDeletingEvent) Is Nothing) Then
-                RaiseEvent INC_EWA_ConfirmRowDeleting(Me, New INC_EWA_ConfirmRowChangeEvent(CType(e.Row,INC_EWA_ConfirmRow), e.Action))
+            If (Not (Me.INC_CONFIRM_DETAILSRowDeletingEvent) Is Nothing) Then
+                RaiseEvent INC_CONFIRM_DETAILSRowDeleting(Me, New INC_CONFIRM_DETAILSRowChangeEvent(CType(e.Row,INC_CONFIRM_DETAILSRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub RemoveINC_EWA_ConfirmRow(ByVal row As INC_EWA_ConfirmRow)
+        Public Sub RemoveINC_CONFIRM_DETAILSRow(ByVal row As INC_CONFIRM_DETAILSRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -1751,7 +1751,7 @@ Partial Public Class DataSet1
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "INC_EWA_ConfirmDataTable"
+            attribute2.FixedValue = "INC_CONFIRM_DETAILSDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -2705,60 +2705,71 @@ Partial Public Class DataSet1
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class INC_EWA_ConfirmRow
+    Partial Public Class INC_CONFIRM_DETAILSRow
         Inherits Global.System.Data.DataRow
         
-        Private tableINC_EWA_Confirm As INC_EWA_ConfirmDataTable
+        Private tableINC_CONFIRM_DETAILS As INC_CONFIRM_DETAILSDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tableINC_EWA_Confirm = CType(Me.Table,INC_EWA_ConfirmDataTable)
+            Me.tableINC_CONFIRM_DETAILS = CType(Me.Table,INC_CONFIRM_DETAILSDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SubService_ID() As Integer
+        Public Property CD_ID() As Long
             Get
-                Try 
-                    Return CType(Me(Me.tableINC_EWA_Confirm.SubService_IDColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_ID' in table 'INC_EWA_Confirm' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tableINC_CONFIRM_DETAILS.CD_IDColumn),Long)
             End Get
             Set
-                Me(Me.tableINC_EWA_Confirm.SubService_IDColumn) = value
+                Me(Me.tableINC_CONFIRM_DETAILS.CD_IDColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property SubService_Price() As Double
+        Public Property SUB_SERVICE_ID() As Long
             Get
                 Try 
-                    Return CType(Me(Me.tableINC_EWA_Confirm.SubService_PriceColumn),Double)
+                    Return CType(Me(Me.tableINC_CONFIRM_DETAILS.SUB_SERVICE_IDColumn),Long)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Price' in table 'INC_EWA_Confirm' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SUB_SERVICE_ID' in table 'INC_CONFIRM_DETAILS' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableINC_EWA_Confirm.SubService_PriceColumn) = value
+                Me(Me.tableINC_CONFIRM_DETAILS.SUB_SERVICE_IDColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IEC_Type() As String
+        Public Property SERVICE_PRICE() As Decimal
             Get
                 Try 
-                    Return CType(Me(Me.tableINC_EWA_Confirm.IEC_TypeColumn),String)
+                    Return CType(Me(Me.tableINC_CONFIRM_DETAILS.SERVICE_PRICEColumn),Decimal)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'IEC_Type' in table 'INC_EWA_Confirm' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SERVICE_PRICE' in table 'INC_CONFIRM_DETAILS' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableINC_EWA_Confirm.IEC_TypeColumn) = value
+                Me(Me.tableINC_CONFIRM_DETAILS.SERVICE_PRICEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property REQUEST_TYPE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableINC_CONFIRM_DETAILS.REQUEST_TYPEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'REQUEST_TYPE' in table 'INC_CONFIRM_DETAILS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableINC_CONFIRM_DETAILS.REQUEST_TYPEColumn) = value
             End Set
         End Property
         
@@ -2767,13 +2778,13 @@ Partial Public Class DataSet1
         Public Property SubService_Code() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableINC_EWA_Confirm.SubService_CodeColumn),String)
+                    Return CType(Me(Me.tableINC_CONFIRM_DETAILS.SubService_CodeColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Code' in table 'INC_EWA_Confirm' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Code' in table 'INC_CONFIRM_DETAILS' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableINC_EWA_Confirm.SubService_CodeColumn) = value
+                Me(Me.tableINC_CONFIRM_DETAILS.SubService_CodeColumn) = value
             End Set
         End Property
         
@@ -2782,85 +2793,75 @@ Partial Public Class DataSet1
         Public Property SubService_AR_Name() As String
             Get
                 Try 
-                    Return CType(Me(Me.tableINC_EWA_Confirm.SubService_AR_NameColumn),String)
+                    Return CType(Me(Me.tableINC_CONFIRM_DETAILS.SubService_AR_NameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_AR_Name' in table 'INC_EWA_Confirm' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_AR_Name' in table 'INC_CONFIRM_DETAILS' is DBNul"& _ 
+                            "l.", e)
                 End Try
             End Get
             Set
-                Me(Me.tableINC_EWA_Confirm.SubService_AR_NameColumn) = value
+                Me(Me.tableINC_CONFIRM_DETAILS.SubService_AR_NameColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property IEC_ID() As Long
-            Get
-                Return CType(Me(Me.tableINC_EWA_Confirm.IEC_IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableINC_EWA_Confirm.IEC_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSubService_IDNull() As Boolean
-            Return Me.IsNull(Me.tableINC_EWA_Confirm.SubService_IDColumn)
+        Public Function IsSUB_SERVICE_IDNull() As Boolean
+            Return Me.IsNull(Me.tableINC_CONFIRM_DETAILS.SUB_SERVICE_IDColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSubService_IDNull()
-            Me(Me.tableINC_EWA_Confirm.SubService_IDColumn) = Global.System.Convert.DBNull
+        Public Sub SetSUB_SERVICE_IDNull()
+            Me(Me.tableINC_CONFIRM_DETAILS.SUB_SERVICE_IDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsSubService_PriceNull() As Boolean
-            Return Me.IsNull(Me.tableINC_EWA_Confirm.SubService_PriceColumn)
+        Public Function IsSERVICE_PRICENull() As Boolean
+            Return Me.IsNull(Me.tableINC_CONFIRM_DETAILS.SERVICE_PRICEColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetSubService_PriceNull()
-            Me(Me.tableINC_EWA_Confirm.SubService_PriceColumn) = Global.System.Convert.DBNull
+        Public Sub SetSERVICE_PRICENull()
+            Me(Me.tableINC_CONFIRM_DETAILS.SERVICE_PRICEColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsIEC_TypeNull() As Boolean
-            Return Me.IsNull(Me.tableINC_EWA_Confirm.IEC_TypeColumn)
+        Public Function IsREQUEST_TYPENull() As Boolean
+            Return Me.IsNull(Me.tableINC_CONFIRM_DETAILS.REQUEST_TYPEColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetIEC_TypeNull()
-            Me(Me.tableINC_EWA_Confirm.IEC_TypeColumn) = Global.System.Convert.DBNull
+        Public Sub SetREQUEST_TYPENull()
+            Me(Me.tableINC_CONFIRM_DETAILS.REQUEST_TYPEColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsSubService_CodeNull() As Boolean
-            Return Me.IsNull(Me.tableINC_EWA_Confirm.SubService_CodeColumn)
+            Return Me.IsNull(Me.tableINC_CONFIRM_DETAILS.SubService_CodeColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetSubService_CodeNull()
-            Me(Me.tableINC_EWA_Confirm.SubService_CodeColumn) = Global.System.Convert.DBNull
+            Me(Me.tableINC_CONFIRM_DETAILS.SubService_CodeColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsSubService_AR_NameNull() As Boolean
-            Return Me.IsNull(Me.tableINC_EWA_Confirm.SubService_AR_NameColumn)
+            Return Me.IsNull(Me.tableINC_CONFIRM_DETAILS.SubService_AR_NameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetSubService_AR_NameNull()
-            Me(Me.tableINC_EWA_Confirm.SubService_AR_NameColumn) = Global.System.Convert.DBNull
+            Me(Me.tableINC_CONFIRM_DETAILS.SubService_AR_NameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -3127,16 +3128,16 @@ Partial Public Class DataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-    Public Class INC_EWA_ConfirmRowChangeEvent
+    Public Class INC_CONFIRM_DETAILSRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As INC_EWA_ConfirmRow
+        Private eventRow As INC_CONFIRM_DETAILSRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub New(ByVal row As INC_EWA_ConfirmRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As INC_CONFIRM_DETAILSRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -3144,7 +3145,7 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property Row() As INC_EWA_ConfirmRow
+        Public ReadOnly Property Row() As INC_CONFIRM_DETAILSRow
             Get
                 Return Me.eventRow
             End Get
@@ -3765,7 +3766,7 @@ Namespace DataSet1TableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class INC_EWA_ConfirmTableAdapter
+    Partial Public Class INC_CONFIRM_DETAILSTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -3882,34 +3883,27 @@ Namespace DataSet1TableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "INC_EWA_Confirm"
-            tableMapping.ColumnMappings.Add("SubService_ID", "SubService_ID")
-            tableMapping.ColumnMappings.Add("SubService_Price", "SubService_Price")
-            tableMapping.ColumnMappings.Add("IEC_Type", "IEC_Type")
+            tableMapping.DataSetTable = "INC_CONFIRM_DETAILS"
+            tableMapping.ColumnMappings.Add("CD_ID", "CD_ID")
+            tableMapping.ColumnMappings.Add("SUB_SERVICE_ID", "SUB_SERVICE_ID")
+            tableMapping.ColumnMappings.Add("SERVICE_PRICE", "SERVICE_PRICE")
+            tableMapping.ColumnMappings.Add("REQUEST_TYPE", "REQUEST_TYPE")
             tableMapping.ColumnMappings.Add("SubService_Code", "SubService_Code")
             tableMapping.ColumnMappings.Add("SubService_AR_Name", "SubService_AR_Name")
-            tableMapping.ColumnMappings.Add("IEC_ID", "IEC_ID")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [INC_EWA_Confirm] WHERE (([IEC_ID] = @Original_IEC_ID))"
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [INC_CONFIRM_DETAILS] WHERE (([CD_ID] = @Original_CD_ID))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IEC_ID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IEC_ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [INC_EWA_Confirm] ([IEC_SID], [IEC_Price]) VALUES (@SubService_ID, @S"& _ 
-                "ubService_Price)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubService_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SubService_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubService_Price", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SubService_Price", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CD_ID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CD_ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [INC_EWA_Confirm] SET [IEC_SID] = @SubService_ID, [IEC_Price] = @SubServic"& _ 
-                "e_Price WHERE (([IEC_ID] = @Original_IEC_ID))"
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [INC_CONFIRM_DETAILS] SET [SUB_SERVICE_ID] = @SUB_SERVICE_ID, [SERVICE_PRI"& _ 
+                "CE] = @SERVICE_PRICE WHERE (([CD_ID] = @Original_CD_ID))"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubService_ID", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SubService_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SubService_Price", Global.System.Data.SqlDbType.Float, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SubService_Price", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_IEC_ID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "IEC_ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SUB_SERVICE_ID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "SUB_SERVICE_ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@SERVICE_PRICE", Global.System.Data.SqlDbType.[Decimal], 0, Global.System.Data.ParameterDirection.Input, 18, 3, "SERVICE_PRICE", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_CD_ID", Global.System.Data.SqlDbType.BigInt, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "CD_ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3925,14 +3919,14 @@ Namespace DataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT IEC_SID AS SubService_ID, IEC_Price AS SubService_Price, (CASE WHEN (IEC_T"& _ 
-                "ype = 1) THEN 'خدمة/عملية' ELSE 'إضافة على عملية' END) AS IEC_Type, (CASE WHEN ("& _ 
-                "IEC_Type = 1) THEN (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubS"& _ 
-                "ervices.SubService_ID = INC_EWA_Confirm.IEC_SID) ELSE '/' END) AS SubService_Cod"& _ 
-                "e, (CASE WHEN (IEC_Type = 1) THEN (SELECT SubService_AR_Name FROM Main_SubServic"& _ 
-                "es WHERE Main_SubServices.SubService_ID = INC_EWA_Confirm.IEC_SID) ELSE (SELECT "& _ 
-                "Ewa_Add_name FROM Ewa_Additionals WHERE Ewa_Additionals.Ewa_Add_id = INC_EWA_Con"& _ 
-                "firm.IEC_SID) END) AS SubService_AR_Name, IEC_ID FROM INC_EWA_Confirm"
+            Me._commandCollection(0).CommandText = "SELECT CD_ID, SUB_SERVICE_ID, SERVICE_PRICE, (CASE WHEN (REQUEST_TYPE = 1) THEN '"& _ 
+                "خدمة/عملية' ELSE 'إضافة على عملية' END) AS REQUEST_TYPE, (CASE WHEN (REQUEST_TYP"& _ 
+                "E = 1) THEN (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices"& _ 
+                ".SubService_ID = TBL1.SUB_SERVICE_ID) ELSE '/' END) AS SubService_Code, (CASE WH"& _ 
+                "EN (REQUEST_TYPE = 1) THEN (SELECT SubService_AR_Name FROM Main_SubServices WHER"& _ 
+                "E Main_SubServices.SubService_ID = TBL1.SUB_SERVICE_ID) ELSE (SELECT ADD_NAME FR"& _ 
+                "OM INC_CONFIRM_DETAILS AS TBL2 WHERE TBL2.CD_ID = TBL1.CD_ID) END) AS SubService"& _ 
+                "_AR_Name FROM INC_CONFIRM_DETAILS AS TBL1"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -3940,7 +3934,7 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet1.INC_EWA_ConfirmDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet1.INC_CONFIRM_DETAILSDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -3953,9 +3947,9 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DataSet1.INC_EWA_ConfirmDataTable
+        Public Overloads Overridable Function GetData() As DataSet1.INC_CONFIRM_DETAILSDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As DataSet1.INC_EWA_ConfirmDataTable = New DataSet1.INC_EWA_ConfirmDataTable()
+            Dim dataTable As DataSet1.INC_CONFIRM_DETAILSDataTable = New DataSet1.INC_CONFIRM_DETAILSDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -3963,7 +3957,7 @@ Namespace DataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As DataSet1.INC_EWA_ConfirmDataTable) As Integer
+        Public Overloads Overridable Function Update(ByVal dataTable As DataSet1.INC_CONFIRM_DETAILSDataTable) As Integer
             Return Me.Adapter.Update(dataTable)
         End Function
         
@@ -3971,7 +3965,7 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
         Public Overloads Overridable Function Update(ByVal dataSet As DataSet1) As Integer
-            Return Me.Adapter.Update(dataSet, "INC_EWA_Confirm")
+            Return Me.Adapter.Update(dataSet, "INC_CONFIRM_DETAILS")
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3992,8 +3986,8 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_IEC_ID As Long) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_IEC_ID,Long)
+        Public Overloads Overridable Function Delete(ByVal Original_CD_ID As Long) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_CD_ID,Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
             If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -4012,33 +4006,19 @@ Namespace DataSet1TableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal SubService_ID As Integer, ByVal SubService_Price As Double) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(SubService_ID,Integer)
-            Me.Adapter.InsertCommand.Parameters(1).Value = CType(SubService_Price,Double)
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update(ByVal SubService_ID As Integer, ByVal SubService_Price As Double, ByVal Original_IEC_ID As Long) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(SubService_ID,Integer)
-            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(SubService_Price,Double)
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Original_IEC_ID,Long)
+        Public Overloads Overridable Function Update(ByVal SUB_SERVICE_ID As Global.System.Nullable(Of Long), ByVal SERVICE_PRICE As Global.System.Nullable(Of Decimal), ByVal Original_CD_ID As Long) As Integer
+            If (SUB_SERVICE_ID.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(SUB_SERVICE_ID.Value,Long)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (SERVICE_PRICE.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(SERVICE_PRICE.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Original_CD_ID,Long)
             Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
             If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -4068,7 +4048,7 @@ Namespace DataSet1TableAdapters
         
         Private _updateOrder As UpdateOrderOption
         
-        Private _iNC_EWA_ConfirmTableAdapter As INC_EWA_ConfirmTableAdapter
+        Private _iNC_CONFIRM_DETAILSTableAdapter As INC_CONFIRM_DETAILSTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -4090,12 +4070,12 @@ Namespace DataSet1TableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property INC_EWA_ConfirmTableAdapter() As INC_EWA_ConfirmTableAdapter
+        Public Property INC_CONFIRM_DETAILSTableAdapter() As INC_CONFIRM_DETAILSTableAdapter
             Get
-                Return Me._iNC_EWA_ConfirmTableAdapter
+                Return Me._iNC_CONFIRM_DETAILSTableAdapter
             End Get
             Set
-                Me._iNC_EWA_ConfirmTableAdapter = value
+                Me._iNC_CONFIRM_DETAILSTableAdapter = value
             End Set
         End Property
         
@@ -4118,9 +4098,9 @@ Namespace DataSet1TableAdapters
                 If (Not (Me._connection) Is Nothing) Then
                     Return Me._connection
                 End If
-                If ((Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._iNC_EWA_ConfirmTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._iNC_EWA_ConfirmTableAdapter.Connection
+                If ((Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._iNC_CONFIRM_DETAILSTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._iNC_CONFIRM_DETAILSTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -4135,7 +4115,7 @@ Namespace DataSet1TableAdapters
         Public ReadOnly Property TableAdapterInstanceCount() As Integer
             Get
                 Dim count As Integer = 0
-                If (Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing) Then
+                If (Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -4149,12 +4129,12 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateUpdatedRows(ByVal dataSet As DataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow), ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.INC_EWA_Confirm.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.INC_CONFIRM_DETAILS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._iNC_EWA_ConfirmTableAdapter.Update(updatedRows))
+                    result = (result + Me._iNC_CONFIRM_DETAILSTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -4168,11 +4148,11 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateInsertedRows(ByVal dataSet As DataSet1, ByVal allAddedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.INC_EWA_Confirm.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.INC_CONFIRM_DETAILS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._iNC_EWA_ConfirmTableAdapter.Update(addedRows))
+                    result = (result + Me._iNC_CONFIRM_DETAILSTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -4186,11 +4166,11 @@ Namespace DataSet1TableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As DataSet1, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
-            If (Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.INC_EWA_Confirm.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.INC_CONFIRM_DETAILS.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._iNC_EWA_ConfirmTableAdapter.Update(deletedRows))
+                    result = (result + Me._iNC_CONFIRM_DETAILSTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -4235,8 +4215,8 @@ Namespace DataSet1TableAdapters
             If (dataSet.HasChanges = false) Then
                 Return 0
             End If
-            If ((Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._iNC_EWA_ConfirmTableAdapter.Connection) = false)) Then
+            If ((Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._iNC_CONFIRM_DETAILSTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s"& _ 
                         "tring.")
             End If
@@ -4272,13 +4252,13 @@ Namespace DataSet1TableAdapters
             Try 
                 '---- Prepare for update -----------
                 '
-                If (Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._iNC_EWA_ConfirmTableAdapter, Me._iNC_EWA_ConfirmTableAdapter.Connection)
-                    Me._iNC_EWA_ConfirmTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
-                    Me._iNC_EWA_ConfirmTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
-                    If Me._iNC_EWA_ConfirmTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._iNC_EWA_ConfirmTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._iNC_EWA_ConfirmTableAdapter.Adapter)
+                If (Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._iNC_CONFIRM_DETAILSTableAdapter, Me._iNC_CONFIRM_DETAILSTableAdapter.Connection)
+                    Me._iNC_CONFIRM_DETAILSTableAdapter.Connection = CType(workConnection,Global.System.Data.SqlClient.SqlConnection)
+                    Me._iNC_CONFIRM_DETAILSTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SqlClient.SqlTransaction)
+                    If Me._iNC_CONFIRM_DETAILSTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._iNC_CONFIRM_DETAILSTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._iNC_CONFIRM_DETAILSTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -4341,9 +4321,9 @@ Namespace DataSet1TableAdapters
                 If workConnOpened Then
                     workConnection.Close
                 End If
-                If (Not (Me._iNC_EWA_ConfirmTableAdapter) Is Nothing) Then
-                    Me._iNC_EWA_ConfirmTableAdapter.Connection = CType(revertConnections(Me._iNC_EWA_ConfirmTableAdapter),Global.System.Data.SqlClient.SqlConnection)
-                    Me._iNC_EWA_ConfirmTableAdapter.Transaction = Nothing
+                If (Not (Me._iNC_CONFIRM_DETAILSTableAdapter) Is Nothing) Then
+                    Me._iNC_CONFIRM_DETAILSTableAdapter.Connection = CType(revertConnections(Me._iNC_CONFIRM_DETAILSTableAdapter),Global.System.Data.SqlClient.SqlConnection)
+                    Me._iNC_CONFIRM_DETAILSTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

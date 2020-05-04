@@ -55,31 +55,18 @@
                         <div class="col-xs-12 col-sm-12">
                             <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                 <Columns>
-                                    <asp:BoundField DataField="IEC_ID" HeaderText="ر.ت">
-                                        <ControlStyle CssClass="hide-colum" />
-                                        <FooterStyle CssClass="hide-colum" />
-                                        <HeaderStyle CssClass="hide-colum" />
-                                        <ItemStyle CssClass="hide-colum" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="SubService_ID" HeaderText="ر.خ">
-                                        <ControlStyle CssClass="hide-colum" />
-                                        <FooterStyle CssClass="hide-colum" />
-                                        <HeaderStyle CssClass="hide-colum" />
-                                        <ItemStyle CssClass="hide-colum" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="IEC_PID" HeaderText="رقم المنتفع">
-                                        <ControlStyle CssClass="hide-colum" />
-                                        <FooterStyle CssClass="hide-colum" />
-                                        <HeaderStyle CssClass="hide-colum" />
-                                        <ItemStyle CssClass="hide-colum" />
-                                    </asp:BoundField>
-                                    <asp:BoundField DataField="P_NAME_ARB" HeaderText="اسم المنتفع"></asp:BoundField>
+                                    <asp:BoundField DataField="CONFIRM_ID" HeaderText="رقم الطلب"></asp:BoundField>
+                                    <asp:BoundField DataField="P_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
+                                    <asp:BoundField DataField="C_NAME" HeaderText="اسم الشركة"></asp:BoundField>
                                     <asp:BoundField DataField="CARD_NO" HeaderText="رقم البطاقة"></asp:BoundField>
                                     <asp:BoundField DataField="BAGE_NO" HeaderText="الرقم الوظيفي"></asp:BoundField>
-                                    <asp:BoundField DataField="SubService_Code" HeaderText="كود الخدمة"></asp:BoundField>
-                                    <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة"></asp:BoundField>
-                                    <asp:BoundField DataField="IEC_Type_char" HeaderText="النوع"></asp:BoundField>
-                                    <asp:BoundField DataField="SubService_Price" HeaderText="السعر"></asp:BoundField>
+                                    <asp:BoundField DataField="TOTAL_VALUE" HeaderText="الإجمالي"></asp:BoundField>
+                                    <asp:TemplateField HeaderText="قيمة الموافقة" SortExpression="22">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txt_confirm_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btn_approval" runat="server"
@@ -106,4 +93,60 @@
             </div>
         </div>
     </div>
+
+    <div class="row mb-2">
+        <div class="col-xs-12 col-sm-12">
+            <div class="card mt-1 ">
+                <div class="card-header bg-warning text-dark">خدمات قدمت وفي انتظار الموافقة</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12">
+                            <asp:GridView ID="GridView2" class="table table-striped table-bordered" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                <Columns>
+                                    <asp:BoundField DataField="CONFIRM_ID" HeaderText="رقم الطلب"></asp:BoundField>
+                                    <asp:BoundField DataField="P_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
+                                    <asp:BoundField DataField="C_NAME" HeaderText="اسم الشركة"></asp:BoundField>
+                                    <asp:BoundField DataField="CARD_NO" HeaderText="رقم البطاقة"></asp:BoundField>
+                                    <asp:BoundField DataField="BAGE_NO" HeaderText="الرقم الوظيفي"></asp:BoundField>
+                                    <asp:BoundField DataField="TOTAL_VALUE" HeaderText="الإجمالي"></asp:BoundField>
+                                    <asp:BoundField DataField="APPROVED_VALUE" HeaderText="القيمة المدفوعة"></asp:BoundField>
+                                    <asp:BoundField DataField="PENDING_VALUE" HeaderText="القيمةالمتبقية"></asp:BoundField>
+                                    <asp:TemplateField HeaderText="القيمة المتبقية" SortExpression="22">
+                                        <ItemTemplate>
+                                            <asp:TextBox ID="txt_confirm_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
+                                        </ItemTemplate>
+                                        <ItemStyle Width="100px" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btn_approval" runat="server"
+                                                CommandName="approval_req"
+                                                CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                ControlStyle-CssClass="btn btn-small btn-success text-white"
+                                                OnClientClick="return confirm('هل أنت متأكد من هذا الإجراء؟')">موافقة</asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField>
+                                        <ItemTemplate>
+                                            <asp:LinkButton ID="btn_reject" runat="server"
+                                                CommandName="reject_req"
+                                                CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                ControlStyle-CssClass="btn btn-small btn-danger text-white"
+                                                OnClientClick="return confirm('هل أنت متأكد من هذا الإجراء؟')">رفض</asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function Confirm() {
+            return confirm("قيمة الموافقة أقل من قيمة العملية، هل تود الإستمرار؟");
+        }
+    </script>
 </asp:Content>

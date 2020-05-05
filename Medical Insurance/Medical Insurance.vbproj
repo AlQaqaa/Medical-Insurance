@@ -123,6 +123,7 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="approvalDetails.aspx" />
     <Content Include="Companies\addNewCompany.aspx" />
     <Content Include="Companies\addNewContract.aspx" />
     <Content Include="Companies\companyClinic.aspx" />
@@ -198,6 +199,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="approvalDetails.aspx.designer.vb">
+      <DependentUpon>approvalDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="approvalDetails.aspx.vb">
+      <DependentUpon>approvalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Companies\addNewCompany.aspx.designer.vb">
       <DependentUpon>addNewCompany.aspx</DependentUpon>
     </Compile>

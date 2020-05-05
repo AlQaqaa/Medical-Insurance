@@ -55,7 +55,13 @@
                         <div class="col-xs-12 col-sm-12">
                             <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                 <Columns>
-                                    <asp:BoundField DataField="CONFIRM_ID" HeaderText="رقم الطلب"></asp:BoundField>
+                                    <asp:BoundField HeaderText="تسلسلي" DataField="CONFIRM_ID">
+                                        <ControlStyle CssClass="hide-colum" />
+                                        <FooterStyle CssClass="hide-colum" />
+                                        <HeaderStyle CssClass="hide-colum" />
+                                        <ItemStyle CssClass="hide-colum" />
+                                    </asp:BoundField>
+                                    <asp:ButtonField DataTextField="CONFIRM_ID" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على رقم الطلب للإطلاع على تفاصيل الطلب'>رقم الطلب <i class='fas fa-info-circle'></i></span>" CommandName="CONFIRM_DETAILS"></asp:ButtonField>
                                     <asp:BoundField DataField="P_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
                                     <asp:BoundField DataField="C_NAME" HeaderText="اسم الشركة"></asp:BoundField>
                                     <asp:BoundField DataField="CARD_NO" HeaderText="رقم البطاقة"></asp:BoundField>

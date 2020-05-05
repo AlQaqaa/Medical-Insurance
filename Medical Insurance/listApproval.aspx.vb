@@ -76,6 +76,13 @@ Public Class listApproval
     End Sub
 
     Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        If (e.CommandName = "CONFIRM_DETAILS") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+
+            Response.Redirect("approvalDetails.aspx?confID=" & Val(row.Cells(0).Text), False)
+        End If
+
         If (e.CommandName = "approval_req") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)

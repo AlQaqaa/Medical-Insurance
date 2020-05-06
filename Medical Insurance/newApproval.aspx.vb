@@ -157,7 +157,6 @@ Public Class newApproval
                 ddl_sub_service.DataTextField = "SubService_AR_Name"
                 ddl_sub_service.DataBind()
             End If
-        Else
 
         End If
     End Sub
@@ -375,5 +374,25 @@ Public Class newApproval
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
+        If ddl_type.SelectedValue = 1 Then
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_AR_Name FROM Main_SubServices WHERE SubService_Clinic = " & ddl_clinics.SelectedValue, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+                ddl_sub_service.DataSource = dt_result
+                ddl_sub_service.DataValueField = "SubService_ID"
+                ddl_sub_service.DataTextField = "SubService_AR_Name"
+                ddl_sub_service.DataBind()
+            End If
+
+        End If
     End Sub
 End Class

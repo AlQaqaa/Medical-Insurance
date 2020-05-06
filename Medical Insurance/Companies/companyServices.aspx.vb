@@ -36,7 +36,7 @@ Public Class companyServices
     End Sub
 
     Sub getClinicAvailable()
-        Dim sel_com As New SqlCommand("SELECT 0 AS CLINIC_ID, 'جميع العيادات' AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS UNION SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT 0 AS CLINIC_ID, 'يرجى اختيار عيادة' AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS UNION SELECT CLINIC_ID, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.Clinic_ID = INC_CLINICAL_RESTRICTIONS.CLINIC_ID) AS CLINIC_NAME FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no"), insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()

@@ -29,7 +29,7 @@ Public Class patientInfo
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
         Dim dt_pat As New DataTable
         dt_pat.Rows.Clear()
         insurance_SQLcon.Close()
@@ -48,6 +48,7 @@ Public Class patientInfo
             lbl_exp_dt.Text = dr_pat!EXP_DATE
             lbl_bage_no.Text = dr_pat!BAGE_NO
             ViewState("bage_no") = dr_pat!BAGE_NO
+            ViewState("company_no") = dr_pat!C_ID
             lbl_const.Text = dr_pat!CONST_ID
             img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
@@ -169,7 +170,7 @@ Public Class patientInfo
     Private Sub getConstList()
         Try
             If ViewState("bage_no") <> 0 Then
-                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND PINC_ID <> " & Val(Session("patiant_id") & " ORDER BY CONST_ID ACS"), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND PINC_ID <> " & Val(Session("patiant_id") & " AND C_ID = " & ViewState("company_no") & " ORDER BY CONST_ID ACS"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()

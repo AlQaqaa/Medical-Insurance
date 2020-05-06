@@ -142,6 +142,7 @@
     <Content Include="dorctorsForms.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="listApproval.aspx" />
+    <Content Include="listApprovedPendingRequests.aspx" />
     <Content Include="Motalbat\Default.aspx" />
     <Content Include="Motalbat\invoiceContent.aspx" />
     <Content Include="Motalbat\invoicesList.aspx" />
@@ -335,6 +336,13 @@
     </Compile>
     <Compile Include="listApproval.aspx.vb">
       <DependentUpon>listApproval.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="listApprovedPendingRequests.aspx.designer.vb">
+      <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listApprovedPendingRequests.aspx.vb">
+      <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Modules\actionHistoryMDL.vb" />

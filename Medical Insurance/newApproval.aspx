@@ -75,11 +75,12 @@
                                 </div>
                             </div>
                         </div>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_end_dt" ForeColor="Red" ValidationGroup="chose"></asp:RequiredFieldValidator>
                         <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_end_dt" id="CalendarExtender3" format="dd/MM/yyyy" popupbuttonid="ImageButton1" popupposition="TopLeft"></ajaxtoolkit:calendarextender>
                         <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_end_dt_MaskedEditExtender" targetcontrolid="txt_end_dt" id="MaskedEditExtender3" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
                     </div>
                     <div class="col-xs-6 col-sm-2">
-                        <asp:Button ID="btn_chose" runat="server" CssClass="btn btn-outline-primary btn-block" Text="يرجى اختيار منتفع" Enabled="false" />
+                        <asp:Button ID="btn_chose" runat="server" CssClass="btn btn-outline-primary btn-block" Text="يرجى اختيار منتفع" Enabled="false" ValidationGroup="chose" />
                     </div>
                 </div>
                 <!-- form-row -->

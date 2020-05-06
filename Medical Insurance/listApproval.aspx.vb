@@ -13,7 +13,7 @@ Public Class listApproval
     Sub getPendingRequests(ByVal com_no As Integer)
         Try
 
-            Dim sql_str As String = "SELECT CONFIRM_ID, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) AS P_NAME, (SELECT CARD_NO FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) AS CARD_NO, (SELECT BAGE_NO FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) AS BAGE_NO, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = ((SELECT C_ID FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID))) AS C_NAME, (SELECT SUM(SERVICE_PRICE) FROM INC_CONFIRM_DETAILS WHERE INC_CONFIRM_DETAILS.CONFIRM_ID = INC_CONFIRM.CONFIRM_ID GROUP BY CONFIRM_ID) AS TOTAL_VALUE, CONFRIM_END_DATE, PENDING_VALUE, (CASE WHEN (REQUEST_UNIT = 1) THEN 'قسم التأمين الصحي' ELSE 'الإيواء والعمليات' END) AS REQUEST_TYPE FROM INC_CONFIRM WHERE REQUEST_STS = 0"
+            Dim sql_str As String = "SELECT CONFIRM_ID, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) AS P_NAME, (SELECT CARD_NO FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) AS CARD_NO, (SELECT BAGE_NO FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) AS BAGE_NO, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = ((SELECT C_ID FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID))) AS C_NAME, (SELECT SUM(SERVICE_PRICE) FROM INC_CONFIRM_DETAILS WHERE INC_CONFIRM_DETAILS.CONFIRM_ID = INC_CONFIRM.CONFIRM_ID GROUP BY CONFIRM_ID) AS TOTAL_VALUE, CONFRIM_END_DATE, PENDING_VALUE, (CASE WHEN (REQUEST_UNIT = 1) THEN 'قسم التأمين الصحي' ELSE 'الإيواء والعمليات' END) AS REQUEST_TYPE FROM INC_CONFIRM WHERE REQUEST_STS = 0 AND CONFIRM_ID IN (SELECT CONFIRM_ID FROM INC_CONFIRM_DETAILS)"
 
             If com_no <> 0 Then
                 sql_str = sql_str & " AND (SELECT C_ID FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CONFIRM.PINC_ID) = " & com_no & " ORDER BY CONFIRM_ID DESC"
@@ -67,16 +67,16 @@ Public Class listApproval
                 Exit Sub
             End If
 
-            If CDec(totat_val.Text) < CDec(row.Cells(5).Text) Then
+            If CDec(totat_val.Text) < CDec(row.Cells(6).Text) Then
                 ScriptManager.RegisterStartupScript(Me, Page.GetType, "Script", "Confirm();", True)
             End If
 
-            If CDec(totat_val.Text) > CDec(row.Cells(5).Text) Then
+            If CDec(totat_val.Text) > CDec(row.Cells(6).Text) Then
                 ScriptManager.RegisterStartupScript(Me, Page.GetType, "Script", "alert('خطأ! قيمة الموافقة أكبر من قيمة العملية');", True)
                 Exit Sub
             End If
 
-            Dim update_sts As New SqlCommand("UPDATE INC_CONFIRM SET REQUEST_STS = 1, PENDING_VALUE = " & (CDec(row.Cells(5).Text) - CDec(totat_val.Text)) & ", APPROVED_VALUE = " & totat_val.Text & " WHERE REQUEST_STS = 0 AND EWA_NO = 0 AND CONFIRM_ID = " & (row.Cells(0).Text), insurance_SQLcon)
+            Dim update_sts As New SqlCommand("UPDATE INC_CONFIRM SET REQUEST_STS = 1, PENDING_VALUE = " & (CDec(row.Cells(6).Text) - CDec(totat_val.Text)) & ", APPROVED_VALUE = " & totat_val.Text & " WHERE REQUEST_STS = 0 AND EWA_NO = 0 AND CONFIRM_ID = " & (row.Cells(0).Text), insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             update_sts.ExecuteNonQuery()

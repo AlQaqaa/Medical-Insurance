@@ -18,12 +18,15 @@
                 <div class="form-group col-xs-12 col-sm-4">
                     <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id"></asp:DropDownList>
                     <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
+
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" InitialValue="0" runat="server" ErrorMessage="* مطلوب" ControlToValidate="ddl_companies" ValidationGroup="chose" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group col-xs-12 col-sm-4">
                     <asp:TextBox ID="txt_search_box" CssClass="form-control" placeholder="رقم البطاقة / الرقم الوظيفي / الاسم" runat="server"></asp:TextBox>
+                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_search_box" ValidationGroup="search" ForeColor="Red"></asp:RequiredFieldValidator>
                 </div>
                 <div class="form-group col-xs-6 col-sm-3">
-                    <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" />
+                    <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" ValidationGroup="search" />
                 </div>
             </div>
             <!-- form-row -->
@@ -75,6 +78,8 @@
                                 </div>
                             </div>
                         </div>
+                        <asp:Label ID="lbl_msg" runat="server" Text="" ForeColor="Red"></asp:Label>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_end_dt" ValidationGroup="chose" ForeColor="Red"></asp:RequiredFieldValidator>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_end_dt" ForeColor="Red" ValidationGroup="chose"></asp:RequiredFieldValidator>
                         <ajaxtoolkit:calendarextender runat="server" targetcontrolid="txt_end_dt" id="CalendarExtender3" format="dd/MM/yyyy" popupbuttonid="ImageButton1" popupposition="TopLeft"></ajaxtoolkit:calendarextender>
                         <ajaxtoolkit:maskededitextender runat="server" culturedateplaceholder="" culturetimeplaceholder="" culturedecimalplaceholder="" culturethousandsplaceholder="" culturedateformat="" culturecurrencysymbolplaceholder="" cultureampmplaceholder="" century="2000" behaviorid="txt_end_dt_MaskedEditExtender" targetcontrolid="txt_end_dt" id="MaskedEditExtender3" mask="99/99/9999" masktype="Date"></ajaxtoolkit:maskededitextender>
@@ -119,7 +124,7 @@
 
                     </div>
                     <div class="col-xs-6 col-sm-2">
-                        <asp:Button ID="btn_add" runat="server" CssClass="btn btn-outline-info btn-block mt-sm-4 mt-md-4" Text="أضف" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
+                        <asp:Button ID="btn_add" runat="server" CssClass="btn btn-outline-info btn-block mt-sm-4 mt-md-4" Text="أضف" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" ValidationGroup="add" />
                     </div>
                 </div>
                 <!-- form-row -->
@@ -127,9 +132,11 @@
                     <div class="form-row mb-2">
                         <div class="col-xs-6 col-sm-6">
                             <asp:TextBox ID="txt_add_name" runat="server" AutoCompleteType="Disabled" CssClass="form-control" placeholder="اسم الإضافة"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_add_name" ValidationGroup="add" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col-xs-6 col-sm-4">
                             <asp:TextBox ID="txt_add_price" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEUIN(event)" placeholder="سعر الإضافة"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_add_price" ValidationGroup="add" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <!-- form-row -->

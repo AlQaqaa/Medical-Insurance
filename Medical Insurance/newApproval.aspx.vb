@@ -15,6 +15,7 @@ Public Class newApproval
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+
         Try
             ' جلب بيانات دفع الشركة 
             Dim sel_company_info As New SqlCommand("SELECT TOP(1) PYMENT_TYPE, PROFILE_PRICE_ID FROM INC_COMPANY_DETIAL WHERE C_ID = " & ddl_companies.SelectedValue & " ORDER BY N DESC", insurance_SQLcon)
@@ -32,7 +33,7 @@ Public Class newApproval
             End If
 
             ' جلب بيانات المنتفعين بحسب رقم البطاقة أو الرقم الوظيفي أو الأسم
-            Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, NAME_ENG, CARD_NO, BAGE_NO, CONST_ID FROM INC_PATIANT WHERE C_ID =" & ddl_companies.SelectedValue & " AND NAME_ARB LIKE '%" & txt_search_box.Text & "%' OR CARD_NO LIKE '" & txt_search_box.Text & "' OR BAGE_NO LIKE '" & txt_search_box.Text & "'", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, NAME_ENG, CARD_NO, BAGE_NO, CONST_ID FROM INC_PATIANT WHERE C_ID =" & ddl_companies.SelectedValue & " AND '" & txt_search_box.Text & "' IN (NAME_ARB, BAGE_NO, CARD_NO) OR C_ID =" & ddl_companies.SelectedValue & " AND NAME_ARB LIKE '%" & txt_search_box.Text & "%'", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -67,7 +68,7 @@ Public Class newApproval
         'Label1.Text = source_list.SelectedValue
 
         ' جلب بيانات المنتفع الذي تم اختياره
-        Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, NAME_ENG, CARD_NO, BAGE_NO, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, P_STATE FROM INC_PATIANT WHERE PINC_ID =" & source_list.SelectedValue, insurance_SQLcon)
+        Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, NAME_ENG, CARD_NO, BAGE_NO, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, P_STATE FROM INC_PATIANT WHERE PINC_ID =" & source_list.SelectedValue & " AND C_ID = " & ddl_companies.SelectedValue, insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -100,7 +101,7 @@ Public Class newApproval
 
 
         ' التحقق ما إذا ما كان هناك طلب موافقة معلق لهذا المنتفع أم لا
-        Dim sel_con As New SqlCommand("SELECT * FROM INC_CONFIRM WHERE PINC_ID = " & source_list.SelectedValue & " AND REQUEST_STS = 0 AND CONFRIM_END_DATE > '" & Date.Now.Date & "'", insurance_SQLcon)
+        Dim sel_con As New SqlCommand("SELECT * FROM INC_CONFIRM WHERE PINC_ID = " & source_list.SelectedValue & " AND REQUEST_STS = 0 AND CONFRIM_END_DATE > '" & Date.Now.Date & "' AND CONFIRM_ID IN (SELECT CONFIRM_ID FROM INC_CONFIRM_DETAILS)", insurance_SQLcon)
         Dim dt_confirm As New DataTable
         dt_confirm.Rows.Clear()
         insurance_SQLcon.Open()
@@ -163,8 +164,17 @@ Public Class newApproval
 
     Private Sub btn_chose_Click(sender As Object, e As EventArgs) Handles btn_chose.Click
 
-        Panel2.Visible = True
+
         Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
+        If txt_end_dt.Text > Date.Now.Date.ToString("dd/MM/yyyy") Then
+            lbl_msg.Text = ""
+        Else
+            lbl_msg.Text = "تاريخ غير صحيح"
+            Exit Sub
+        End If
+
+        Panel2.Visible = True
 
         Try
             Dim insToConfirm As New SqlCommand

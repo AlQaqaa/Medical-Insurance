@@ -347,6 +347,15 @@ Partial Public Class statistics
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
+    '''lbl_services_count control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_services_count As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''GridView1 control.
     '''</summary>
     '''<remarks>
@@ -354,4 +363,13 @@ Partial Public Class statistics
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''Chart1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Chart1 As Global.System.Web.UI.DataVisualization.Charting.Chart
 End Class

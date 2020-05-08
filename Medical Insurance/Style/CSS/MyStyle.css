@@ -3,6 +3,11 @@
     src: url('../Fonts/Cairo-Regular.ttf') format('truetype');
 }
 
+.chart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
 /* Start Main Rules */
 
 .container-fluid {

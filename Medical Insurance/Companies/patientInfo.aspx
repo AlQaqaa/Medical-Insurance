@@ -3,6 +3,7 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -106,7 +107,7 @@
                                             <ItemTemplate>
                                                 <asp:LinkButton ID="btn_block_stop" runat="server"
                                                     CommandName="stop_block"
-                                                    CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
+                                                    CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                                     ToolTip="إيقاف الحظر"
                                                     ControlStyle-CssClass="btn btn-link text-success btn-new"
                                                     OnClientClick="return confirm('هل أنت متأكد من إيقاف الحظر عن هذه الخدمة؟')"><i class='fas fa-lock-open'></i></asp:LinkButton>
@@ -176,6 +177,59 @@
                     <!-- /col -->
                 </div>
                 <!-- /row -->
+
+                <div class="row mt-3">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card mb-3 border-info shadow">
+                            <div class="card-body">
+                                <div class="card-title text-primary"><strong>أكثر 10 خدمات استخداماً</strong></div>
+                               <asp:Chart ID="Chart1" runat="server" CssClass="chart" Width="600px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True">
+                                    <Series>
+                                        <asp:Series Name="Series1"></asp:Series>
+                                    </Series>
+                                    <ChartAreas>
+                                        <asp:ChartArea Name="ChartArea1"></asp:ChartArea>
+                                    </ChartAreas>
+                                </asp:Chart>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card mb-3 border-danger shadow">
+                            <div class="card-body">
+                                <div class="card-title text-danger"><strong>أكثر 10 أطباء زيارة</strong></div>
+                                <asp:Chart ID="Chart2" runat="server" CssClass="chart" Width="600px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True" BackGradientStyle="VerticalCenter">
+                                    <Series>
+                                        <asp:Series Name="Series1" Color="#009933" Font="Cairo-Regular" Label="عدد الزيارات" XAxisType="Secondary"></asp:Series>
+                                    </Series>
+                                    <ChartAreas>
+                                        <asp:ChartArea Name="ChartArea1" AlignmentStyle="AxesView"></asp:ChartArea>
+                                    </ChartAreas>
+                                </asp:Chart>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /row -->
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="card mb-3 border-success shadow">
+                            <div class="card-body">
+                                <div class="card-title text-success"><strong><asp:Label ID="lbl_total_expensess" runat="server" Text="Label"></asp:Label></strong></div>
+                                <asp:Chart ID="Chart3" runat="server" CssClass="chart" Width="600px" RightToLeft="Yes" BackGradientStyle="VerticalCenter" Palette="SeaGreen">
+                                    <Series>
+                                        <asp:Series Name="Series1" Color="#009933" Font="Cairo-Regular" Label="عدد الزيارات" XAxisType="Secondary" ChartType="Doughnut"></asp:Series>
+                                    </Series>
+                                    <ChartAreas>
+                                        <asp:ChartArea Name="ChartArea1" AlignmentStyle="AxesView"></asp:ChartArea>
+                                    </ChartAreas>
+                                </asp:Chart>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /row -->
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

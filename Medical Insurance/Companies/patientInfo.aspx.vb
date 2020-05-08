@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Web.UI.WebControls
-Imports System.Globalization
+Imports System.Web.UI.DataVisualization.Charting
 Imports System.IO
+Imports System.Globalization
 
 Public Class patientInfo
     Inherits System.Web.UI.Page
@@ -11,7 +11,8 @@ Public Class patientInfo
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
-        Dim pat_no As Integer = Val(Session("patiant_id"))
+        If IsPostBack = False Then
+            Dim pat_no As Integer = Val(Session("patiant_id"))
 
             If pat_no = 0 Then
                 Response.Redirect("LISTPATIANT.aspx")
@@ -23,13 +24,60 @@ Public Class patientInfo
             getBlockServices()
             getConstList()
             getProcessesData()
+            bindChartsSubServices()
+            bindChartsDoctros()
 
+
+            Dim contract_count As Integer = 0
+            Dim sel_com As New SqlCommand("SELECT COUNT(*) AS CONTRACT_COUNT FROM INC_COMPANY_DETIAL WHERE C_ID = " & Session("company_id"), insurance_SQLcon)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            contract_count = sel_com.ExecuteScalar
+            insurance_SQLcon.Close()
+
+            Dim total_expenses As Decimal = 0
+            If contract_count = 1 Then
+                total_expenses = getTotalPatientExpenses() + getOldExpenses()
+            Else
+                total_expenses = getTotalPatientExpenses()
+            End If
+
+            lbl_total_expensess.Text = "إجمالي المصروفات " & Format(total_expenses, "0,0.000") & " د.ل"
+            If getMaxValue() <> 0 Then
+                With Me.Chart3
+                    .Legends.Clear()
+                    .Series.Clear()
+                    .ChartAreas.Clear()
+                End With
+
+                Dim areas1 As ChartArea = Me.Chart3.ChartAreas.Add("Areas1")
+
+                With areas1
+                End With
+
+                Dim series1 As Series = Me.Chart3.Series.Add("Series1")
+
+                With series1
+                    .ChartArea = areas1.Name
+                    .ChartType = SeriesChartType.Doughnut
+                    .Points.AddXY("إجمالي المصروفات", total_expenses)
+                    .Points.AddXY("السقف العام", getMaxValue())
+                    .ToolTip = "#VALX" & vbLf & "الإجمالي: #VALY" & vbLf & "النسبة: #PERCENT"
+                    .Label = "#PERCENT"
+                    .LegendText = "#AXISLABEL"
+                End With
+
+                Dim legends1 As Legend = Me.Chart3.Legends.Add("Legends1")
+            End If
+
+
+        End If
 
 
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME, OLD_ID FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
         Dim dt_pat As New DataTable
         dt_pat.Rows.Clear()
         insurance_SQLcon.Close()
@@ -49,6 +97,7 @@ Public Class patientInfo
             lbl_bage_no.Text = dr_pat!BAGE_NO
             ViewState("bage_no") = dr_pat!BAGE_NO
             Session("company_id") = dr_pat!C_ID
+            ViewState("old_id") = dr_pat!OLD_ID
             lbl_const.Text = dr_pat!CONST_ID
             img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
@@ -285,4 +334,157 @@ Public Class patientInfo
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Sub bindChartsSubServices()
+        Try
+            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0 AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) = " & Val(Session("patiant_id")) & " GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
+
+            Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+
+                With Me.Chart1
+                    .Legends.Clear()
+                    .Series.Clear()
+                    .ChartAreas.Clear()
+                End With
+
+                Dim areas1 As ChartArea = Me.Chart1.ChartAreas.Add("Areas1")
+
+                With areas1
+                End With
+
+                Dim series1 As Series = Me.Chart1.Series.Add("Series1")
+
+                Dim x As String() = New String(dt_result.Rows.Count - 1) {}
+                Dim y As Integer() = New Integer(dt_result.Rows.Count - 1) {}
+
+                With series1
+                    .ChartArea = areas1.Name
+                    .ChartType = SeriesChartType.Pie
+                    .CustomProperties = "PieLineColor=Black, PieLabelStyle=Outside"
+                    For i = 0 To dt_result.Rows.Count - 1
+                        x(i) = dt_result.Rows(i)(0).ToString()
+                        y(i) = Convert.ToInt32(dt_result.Rows(i)(1))
+                        Dim dr = dt_result.Rows(i)
+                        .Points.AddXY(dr!SubService_AR_Name, dr!SubService_COUNT)
+                        .ToolTip = "#VALX" & vbLf & "الخدمات المقدمة: #VALY" & vbLf & "النسبة: #PERCENT"
+                    Next
+                    Chart1.Series(0).Points.DataBindXY(x, y)
+                    Chart1.Series(0).Label = "#PERCENT"
+                    Chart1.Series(0).LegendText = "#AXISLABEL"
+                End With
+
+
+                Dim legends1 As Legend = Me.Chart1.Legends.Add("Legends1")
+                legends1.IsTextAutoFit = True
+                legends1.LegendStyle = LegendStyle.Table
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Sub bindChartsDoctros()
+        Try
+            Dim sql_str As String = "SELECT TOP (10) (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id) AS MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0 AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) = " & Val(Session("patiant_id")) & " AND doctor_id <> 0 GROUP BY doctor_id ORDER BY COUNT(*) DESC"
+
+            Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+
+                With Me.Chart2
+                    .Legends.Clear()
+                    .Series.Clear()
+                    .ChartAreas.Clear()
+                End With
+
+                Dim areas1 As ChartArea = Me.Chart2.ChartAreas.Add("Areas1")
+
+                With areas1
+
+                End With
+
+                Dim series1 As Series = Me.Chart2.Series.Add("Series1")
+
+                Dim x As String() = New String(dt_result.Rows.Count - 1) {}
+                Dim y As Integer() = New Integer(dt_result.Rows.Count - 1) {}
+
+                With series1
+                    .ChartArea = areas1.Name
+                    '.ChartType = SeriesChartType.Pie
+                    .CustomProperties = "PieLineColor=Black, PieLabelStyle=Outside"
+                    For i = 0 To dt_result.Rows.Count - 1
+                        x(i) = dt_result.Rows(i)(0).ToString()
+                        y(i) = Convert.ToInt32(dt_result.Rows(i)(1))
+                        Dim dr = dt_result.Rows(i)
+                        .Points.AddXY(dr!MedicalStaff_AR_Name, dr!doctors_COUNT)
+                        .ToolTip = "#VALX" & vbLf & "الخدمات المقدمة: #VALY" & vbLf & "النسبة: #PERCENT"
+                        .LegendText = "عدد الزيارات"
+                    Next
+                    Chart2.Series(0).Points.DataBindXY(x, y)
+                    Chart2.Series(0).Label = "#PERCENT"
+                End With
+
+
+                Dim legends1 As Legend = Me.Chart2.Legends.Add("Legends1")
+                legends1.IsTextAutoFit = True
+                legends1.LegendStyle = LegendStyle.Table
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+
+    Function getTotalPatientExpenses() As Decimal
+        Dim total_val As Decimal = 0
+
+        Dim sel_com As New SqlCommand("select TOTAL_EXPENSES from INC_totalPatientExpenses(" & Session("patiant_id") & ",(select top(1) DATE_START from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc),(select top(1) DATE_END from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc))", insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        total_val = sel_com.ExecuteScalar
+        insurance_SQLcon.Close()
+
+        Return total_val
+    End Function
+
+    Function getOldExpenses() As Decimal
+        Dim total_val As Decimal = 0
+
+        Dim sel_com As New SqlCommand("SELECT ISNULL(BLNC_VALUE, 0) AS BLNC_VALUE FROM INC_OPEN_BALANCE WHERE OLD_ID =" & ViewState("old_id"), insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        total_val = sel_com.ExecuteScalar
+        insurance_SQLcon.Close()
+
+        Return total_val
+    End Function
+
+    Function getMaxValue() As Decimal
+        Dim max_val As Decimal = 0
+
+        Dim sel_com As New SqlCommand("select top(1) MAX_PERSON from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc", insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        max_val = sel_com.ExecuteScalar
+        insurance_SQLcon.Close()
+
+        Return max_val
+
+    End Function
 End Class

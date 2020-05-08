@@ -212,6 +212,42 @@ Partial Public Class patientInfo
     Protected WithEvents GridView3 As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
+    '''Chart1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Chart1 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
+    '''Chart2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Chart2 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
+    '''lbl_total_expensess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_total_expensess As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Chart3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Chart3 As Global.System.Web.UI.DataVisualization.Charting.Chart
+    
+    '''<summary>
     '''ddl_services control.
     '''</summary>
     '''<remarks>

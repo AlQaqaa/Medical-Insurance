@@ -306,7 +306,7 @@
                             </div>
                             <div class="card-body mt-2 pb-1 border-info">
 
-                                <asp:Chart ID="Chart1" runat="server" Width="800px" Height="400px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True">
+                                <asp:Chart ID="Chart1" runat="server" CssClass="chart" Width="1000px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True">
                                     <Series>
                                         <asp:Series Name="Series1"></asp:Series>
                                     </Series>

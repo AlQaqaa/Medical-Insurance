@@ -84,7 +84,7 @@ Public Class newInvoice
             sqlComm.Parameters.AddWithValue("@from_dt", start_dt)
             sqlComm.Parameters.AddWithValue("@to_dt", end_dt)
             sqlComm.Parameters.AddWithValue("@invoiceType", ddl_invoice_type.SelectedValue)
-            sqlComm.Parameters.AddWithValue("@user_id", 1)
+            sqlComm.Parameters.AddWithValue("@user_id", Session("User_Id"))
             sqlComm.Parameters.AddWithValue("@user_ip", GetIPAddress())
             sqlComm.Parameters.AddWithValue("@inv_id", SqlDbType.Int).Direction = ParameterDirection.Output
             insurance_SQLcon.Open()
@@ -102,7 +102,7 @@ Public Class newInvoice
                         ins_motalba.Parameters.AddWithValue("@INVOICE_NO", invoice_id)
                         ins_motalba.Parameters.AddWithValue("@Processes_ID", dd.Cells(1).Text)
                         ins_motalba.Parameters.AddWithValue("@MOTALABA_STS", 1)
-                        ins_motalba.Parameters.AddWithValue("@USER_ID", 1)
+                        ins_motalba.Parameters.AddWithValue("@USER_ID", Session("User_Id"))
                         ins_motalba.Parameters.AddWithValue("@USER_IP", GetIPAddress())
                         insurance_SQLcon.Close()
                         insurance_SQLcon.Open()

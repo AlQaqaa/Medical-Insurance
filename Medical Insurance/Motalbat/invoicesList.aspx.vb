@@ -109,16 +109,16 @@ Public Class invoicesList
                 Dim bytes As Byte()
                 Dim FolderLocation As String
                 FolderLocation = Server.MapPath("~/Reports")
-                Dim filepath As String = FolderLocation & "/invoiceContent.pdf"
+                Dim filepath As String = FolderLocation & "/invoiceContent" & Session("User_Id") & ".pdf"
                 If Directory.Exists(filepath) Then
                     File.Delete(filepath)
                 End If
                 bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
                     encoding, extension, streamids, warnings)
-                Dim fs As New FileStream(FolderLocation & "/invoiceContent.pdf", FileMode.Create)
+                Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("User_Id") & ".pdf", FileMode.Create)
                 fs.Write(bytes, 0, bytes.Length)
                 fs.Close()
-                Response.Redirect("~/Reports/invoiceContent.pdf", False)
+                Response.Redirect("~/Reports/invoiceContent" & Session("User_Id") & ".pdf", False)
 
             Catch ex As Exception
                 MsgBox(ex.Message)
@@ -194,16 +194,16 @@ Public Class invoicesList
         Dim bytes As Byte()
         Dim FolderLocation As String
         FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/invoicesList.pdf"
+        Dim filepath As String = FolderLocation & "/invoicesList" & Session("User_Id") & ".pdf"
         If Directory.Exists(filepath) Then
             File.Delete(filepath)
         End If
         bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
             encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/invoicesList.pdf", FileMode.Create)
+        Dim fs As New FileStream(FolderLocation & "/invoicesList" & Session("User_Id") & ".pdf", FileMode.Create)
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
-        Response.Redirect("~/Reports/invoicesList.pdf", False)
+        Response.Redirect("~/Reports/invoicesList" & Session("User_Id") & ".pdf", False)
     End Sub
 
     Private Sub ddl_invoice_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_invoice_type.SelectedIndexChanged

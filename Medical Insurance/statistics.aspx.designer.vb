@@ -23,6 +23,15 @@ Partial Public Class statistics
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
     
     '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
     '''ddl_companies control.
     '''</summary>
     '''<remarks>
@@ -284,6 +293,15 @@ Partial Public Class statistics
     Protected WithEvents SqlDataSource6 As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
+    '''CheckBox2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CheckBox2 As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
     '''CheckBox1 control.
     '''</summary>
     '''<remarks>
@@ -329,6 +347,15 @@ Partial Public Class statistics
     Protected WithEvents txt_search_val As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>
@@ -336,6 +363,24 @@ Partial Public Class statistics
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btn_export_excel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_export_excel As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btn_clear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_clear As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''Panel1 control.
@@ -347,6 +392,15 @@ Partial Public Class statistics
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
     
     '''<summary>
+    '''lbl_patient_count control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_patient_count As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''lbl_services_count control.
     '''</summary>
     '''<remarks>
@@ -356,6 +410,24 @@ Partial Public Class statistics
     Protected WithEvents lbl_services_count As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''lbl_total control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_total As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Panel2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
+    
+    '''<summary>
     '''GridView1 control.
     '''</summary>
     '''<remarks>
@@ -363,6 +435,15 @@ Partial Public Class statistics
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''lbl_header_chart control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_header_chart As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Chart1 control.

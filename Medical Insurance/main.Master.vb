@@ -9,6 +9,12 @@ Public Class main
         If IsPostBack = False Then
             lbl_date_now.Text = Date.Now.ToLongDateString
 
+            Session("User_Id") = 1
+
+            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 Then
+                Response.Redirect("10.10.1.10", False)
+            End If
+
         End If
         'calculateCompanyExpenses()
 

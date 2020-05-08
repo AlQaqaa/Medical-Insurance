@@ -144,16 +144,16 @@ Public Class approvalDetails
             Dim bytes As Byte()
             Dim FolderLocation As String
             FolderLocation = Server.MapPath("~/Reports")
-            Dim filepath As String = FolderLocation & "/confirmApproval.pdf"
+            Dim filepath As String = FolderLocation & "/confirmApproval" & Session("User_Id") & ".pdf"
             If Directory.Exists(filepath) Then
                 File.Delete(filepath)
             End If
             bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
                 encoding, extension, streamids, warnings)
-            Dim fs As New FileStream(FolderLocation & "/confirmApproval.pdf", FileMode.Create)
+            Dim fs As New FileStream(FolderLocation & "/confirmApproval" & Session("User_Id") & ".pdf", FileMode.Create)
             fs.Write(bytes, 0, bytes.Length)
             fs.Close()
-            Response.Redirect("~/Reports/confirmApproval.pdf", False)
+            Response.Redirect("~/Reports/confirmApproval" & Session("User_Id") & ".pdf", False)
 
         Catch ex As Exception
             MsgBox(ex.Message)

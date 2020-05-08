@@ -52,7 +52,7 @@ Public Class SERVICES_PRICES
                     insClinic.Parameters.AddWithValue("@private_prc", CDec(txt_private_prc.Text))
                     insClinic.Parameters.AddWithValue("@inc_prc", CDec(txt_inc_prc.Text))
                     insClinic.Parameters.AddWithValue("@inv_prc", CDec(txt_invoice_prc.Text))
-                    insClinic.Parameters.AddWithValue("@user_id", 1)
+                    insClinic.Parameters.AddWithValue("@user_id", Session("User_Id"))
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
                     insClinic.Parameters.AddWithValue("@cost_prc", CDec(txt_cost_price.Text))

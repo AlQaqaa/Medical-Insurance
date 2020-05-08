@@ -31,7 +31,7 @@ Public Class createProfilePrices
             insNewProfile.CommandType = CommandType.StoredProcedure
             insNewProfile.Parameters.AddWithValue("@profile_name", txt_profile_name.Text)
             insNewProfile.Parameters.AddWithValue("@is_default", is_default)
-            insNewProfile.Parameters.AddWithValue("@user_id", 1)
+            insNewProfile.Parameters.AddWithValue("@user_id", Session("User_Id"))
             insNewProfile.Parameters.AddWithValue("@user_ip", GetIPAddress())
             insNewProfile.Parameters.AddWithValue("@p_id", SqlDbType.Int).Direction = ParameterDirection.Output
             insurance_SQLcon.Open()
@@ -41,7 +41,7 @@ Public Class createProfilePrices
 
             txt_profile_name.Text = ""
 
-            add_action(1, 1, 3, "إنشاء ملف أسعار جديد باسم: " & txt_profile_name.Text & " رقم الملف: " & Session("profile_no"), 1, GetIPAddress())
+            add_action(1, 1, 3, "إنشاء ملف أسعار جديد باسم: " & txt_profile_name.Text & " رقم الملف: " & Session("profile_no"), Session("User_Id"), GetIPAddress())
 
             Response.Redirect("SERVICES_PRICES.aspx", False)
             Exit Sub
@@ -153,7 +153,7 @@ Public Class createProfilePrices
                 setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
                 setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
                 setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
-                setDefaultProfilePrice.Parameters.AddWithValue("@user_id", 1)
+                setDefaultProfilePrice.Parameters.AddWithValue("@user_id", Session("User_Id"))
                 setDefaultProfilePrice.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()
                 setDefaultProfilePrice.ExecuteNonQuery()
@@ -192,8 +192,7 @@ Public Class createProfilePrices
 
     Private Sub GridView2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView2.RowCommand
 
-        Try
-            If (e.CommandName = "stop_block") Then
+        If (e.CommandName = "stop_block") Then
                 Dim index As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = GridView2.Rows(index)
 
@@ -205,8 +204,6 @@ Public Class createProfilePrices
                 getStopProfile()
                 getActiveProfile()
             End If
-        Catch ex As Exception
 
-        End Try
     End Sub
 End Class

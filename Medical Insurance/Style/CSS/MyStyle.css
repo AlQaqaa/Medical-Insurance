@@ -70,14 +70,18 @@
     margin-left: 0;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 .panel-scroll {
-    height: 350px;
-    max-height: 350px;
-    
+    max-height: 530px;
+    max-width: 100%;
 }
 
 .scrollable {
     overflow-y: auto;
+    overflow-x: auto;
 }
 
 .panel-scroll::-webkit-scrollbar {

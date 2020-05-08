@@ -48,7 +48,7 @@ Public Class patientInfo
             lbl_exp_dt.Text = dr_pat!EXP_DATE
             lbl_bage_no.Text = dr_pat!BAGE_NO
             ViewState("bage_no") = dr_pat!BAGE_NO
-            ViewState("company_no") = dr_pat!C_ID
+            Session("company_id") = dr_pat!C_ID
             lbl_const.Text = dr_pat!CONST_ID
             img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
@@ -91,9 +91,9 @@ Public Class patientInfo
             insurance_SQLcon.Close()
 
             If new_sts = 1 Then
-                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
             Else
-                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
             End If
 
             getPatInfo()
@@ -111,7 +111,7 @@ Public Class patientInfo
             ins_com.Parameters.Add("@SER_ID", SqlDbType.Int).Value = ddl_services.SelectedValue
             ins_com.Parameters.Add("@BLOCK_TP", SqlDbType.Int).Value = 1 ' Block Service
             ins_com.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = txt_notes.Text
-            ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = 1
+            ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = Session("User_Id")
             ins_com.Parameters.Add("@USER_IP", SqlDbType.NVarChar).Value = GetIPAddress()
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
@@ -159,7 +159,7 @@ Public Class patientInfo
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
 
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
@@ -168,9 +168,10 @@ Public Class patientInfo
     End Sub
 
     Private Sub getConstList()
+
         Try
             If ViewState("bage_no") <> 0 Then
-                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND PINC_ID <> " & Val(Session("patiant_id") & " AND C_ID = " & ViewState("company_no") & " ORDER BY CONST_ID ACS"), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND C_ID = " & Session("company_id") & " ORDER BY CONST_ID ASC", insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -242,7 +243,7 @@ Public Class patientInfo
             renew_card.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
 
             getPatInfo()
         Catch ex As Exception

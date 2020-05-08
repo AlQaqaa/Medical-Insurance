@@ -134,15 +134,15 @@ Public Class invoiceContent
         Dim bytes As Byte()
         Dim FolderLocation As String
         FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/invoiceContent.pdf"
+        Dim filepath As String = FolderLocation & "/invoiceContent" & Session("User_Id") & ".pdf"
         If Directory.Exists(filepath) Then
             File.Delete(filepath)
         End If
         bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
             encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/invoiceContent.pdf", FileMode.Create)
+        Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("User_Id") & ".pdf", FileMode.Create)
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
-        Response.Redirect("~/Reports/invoiceContent.pdf")
+        Response.Redirect("~/Reports/invoiceContent" & Session("User_Id") & ".pdf")
     End Sub
 End Class

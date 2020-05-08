@@ -162,7 +162,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="panel scrollable">
+                            <div class="panel-scroll scrollable">
                                 <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm com-tbl" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
                                     <Columns>
                                         <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">

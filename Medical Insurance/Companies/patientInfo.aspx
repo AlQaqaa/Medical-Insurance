@@ -155,18 +155,21 @@
                         <div class="card bg-light mb-3">
                             <div class="card-header bg-success text-white">آخر الخدمات المقدمة لهذا المنتفع</div>
                             <div class="card-body">
-                                <asp:GridView ID="GridView3" class="table table-striped table-bordered nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
-                                    <Columns>
-                                        <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Date" HeaderText="التاريخ"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Cilinc" HeaderText="العيادة"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_SubServices" HeaderText="الخدمة"></asp:BoundField>
-                                        <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Price" HeaderText="سعر الخدمة" DataFormatString="{0:C3}"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Paid" HeaderText="قيمة المنتفع" DataFormatString="{0:C3}"></asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Residual" HeaderText="قيمة الشركة" DataFormatString="{0:C3}"></asp:BoundField>
-                                    </Columns>
-                                </asp:GridView>
+                                <div class="panel-scroll scrollable">
+                                    <asp:GridView ID="GridView3" class="table table-striped table-bordered table-sm nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                        <Columns>
+                                            <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_Date" HeaderText="التاريخ"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_Cilinc" HeaderText="العيادة"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_SubServices" HeaderText="الخدمة"></asp:BoundField>
+                                            <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_Price" HeaderText="سعر الخدمة" DataFormatString="{0:C3}"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_Paid" HeaderText="قيمة المنتفع" DataFormatString="{0:C3}"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_Residual" HeaderText="قيمة الشركة" DataFormatString="{0:C3}"></asp:BoundField>
+                                        </Columns>
+                                    </asp:GridView>
+                                </div>
+
                             </div>
                         </div>
                     </div>

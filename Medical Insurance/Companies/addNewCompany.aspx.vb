@@ -61,7 +61,7 @@ Public Class addNewCompany
             insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
             insToCompany.Parameters.AddWithValue("@bic_pic", "images/ImageCompany/UnknownUser.png")
             insToCompany.Parameters.AddWithValue("@profile_price_id", ddl_profiles_prices.SelectedValue)
-            insToCompany.Parameters.AddWithValue("@userId", 1)
+            insToCompany.Parameters.AddWithValue("@userId", Session("User_Id"))
             insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
             insToCompany.Parameters.AddWithValue("@max_one_processes", CDec(txt_max_one_processes.Text))
             insurance_SQLcon.Open()
@@ -69,7 +69,7 @@ Public Class addNewCompany
             insurance_SQLcon.Close()
             clrTxt()
 
-            add_action(1, 1, 1, "إضافة شركة جديدة: " & txt_company_name_ar.Text, 1, GetIPAddress())
+            add_action(1, 1, 1, "إضافة شركة جديدة: " & txt_company_name_ar.Text, Session("User_Id"), GetIPAddress())
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         Catch ex As Exception

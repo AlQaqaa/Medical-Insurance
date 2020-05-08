@@ -94,17 +94,17 @@ Public Class printPatientProcesses
         Dim bytes As Byte()
         Dim FolderLocation As String
         FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/patientMotalbaDetailes.pdf"
+        Dim filepath As String = FolderLocation & "/patientMotalbaDetailes" & Session("User_Id") & ".pdf"
         If Directory.Exists(filepath) Then
             File.Delete(filepath)
         End If
         bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
             encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/patientMotalbaDetailes.pdf", FileMode.Create)
+        Dim fs As New FileStream(FolderLocation & "/patientMotalbaDetailes" & Session("User_Id") & ".pdf", FileMode.Create)
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
         'Response.Redirect("~/Reports/patientMotalbaDetailes.pdf")
-        ltEmbed.Text = "<embed src='../Reports/patientMotalbaDetailes.pdf' width='100%' height='600'>"
+        ltEmbed.Text = "<embed src='../Reports/patientMotalbaDetailes" & Session("User_Id") & ".pdf' width='100%' height='600'>"
     End Sub
 
 End Class

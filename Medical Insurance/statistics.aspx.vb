@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Web.UI.DataVisualization.Charting
 Imports System.IO
+Imports ClosedXML.Excel
 
 Public Class statistics
     Inherits System.Web.UI.Page
@@ -577,50 +578,43 @@ Public Class statistics
         End If
     End Sub
 
-    Protected Sub OnPageIndexChanging(sender As Object, e As GridViewPageEventArgs)
-        GridView1.PageIndex = e.NewPageIndex
-        Me.getData()
-    End Sub
+    'Protected Sub OnPageIndexChanging(sender As Object, e As GridViewPageEventArgs)
+    '    GridView1.PageIndex = e.NewPageIndex
+    '    Me.getData()
+    'End Sub
 
-    Public Overrides Sub VerifyRenderingInServerForm(control As Control)
-        ' Verifies that the control is rendered
-    End Sub
+    'Public Overrides Sub VerifyRenderingInServerForm(control As Control)
+    '    ' Verifies that the control is rendered
+    'End Sub
 
     Private Sub btn_export_excel_Click(sender As Object, e As EventArgs) Handles btn_export_excel.Click
-        If GridView1.Rows.Count > 0 Then
-            Try
-                GridView1.AllowPaging = False
-                GridView1.GridLines = GridLines.Both
-                GridView1.Font.Name = "Arial"
-                GridView1.HeaderStyle.Font.Size = 14
-                GridView1.HeaderStyle.VerticalAlign = VerticalAlign.Middle
-                GridView1.HeaderStyle.Height = 30
-                GridView1.RowStyle.Font.Size = 11
-                GridView1.RowStyle.Font.Bold = True
-                GridView1.RowStyle.HorizontalAlign = HorizontalAlign.Center
-                getData()
-                GridView1.DataSource = dt_search_result
-                GridView1.DataBind()
-                HttpContext.Current.Response.ClearContent()
-                HttpContext.Current.Response.Buffer = True
-                HttpContext.Current.Response.AddHeader("content-disposition", String.Format("attachment; filename={0}", "Report.xls"))
-                HttpContext.Current.Response.ContentType = "application/ms-excel"
-                HttpContext.Current.Response.Charset = "UTF-8"
-                HttpContext.Current.Response.ContentEncoding = System.Text.Encoding.Unicode
-                HttpContext.Current.Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble())
-                Dim sw As New StringWriter()
-                Dim htw As New HtmlTextWriter(sw)
-                Panel2.RenderControl(htw)
-                HttpContext.Current.Response.Write(sw.ToString())
-                HttpContext.Current.Response.[End]()
 
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            Finally
-                GridView1.Columns(0).Visible = True
+        Dim dt As New DataTable("GridView_Data")
+        For Each cell As TableCell In GridView1.HeaderRow.Cells
+            dt.Columns.Add(cell.Text)
+        Next
+        For Each row As GridViewRow In GridView1.Rows
+            dt.Rows.Add()
+            For i As Integer = 0 To row.Cells.Count - 1
+                dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text
+            Next
+        Next
 
-            End Try
-        End If
+        Using wb As New XLWorkbook()
+            wb.Worksheets.Add(dt)
+
+            Response.Clear()
+            Response.Buffer = True
+            Response.Charset = ""
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            Response.AddHeader("content-disposition", "attachment;filename=StatisticsReport.xlsx")
+            Using MyMemoryStream As New MemoryStream()
+                wb.SaveAs(MyMemoryStream)
+                MyMemoryStream.WriteTo(Response.OutputStream)
+                Response.Flush()
+                Response.[End]()
+            End Using
+        End Using
     End Sub
 
     Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand

@@ -268,7 +268,7 @@
                         <div class="card card-body mt-2 pb-1 border-info">
                             <div class="panel-scroll scrollable">
 
-                                <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                                <asp:GridView ID="GridView1" CssClass="table table-striped table-bordered table-sm nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                     <Columns>
                                         <asp:BoundField HeaderText="رقم المنتفع" DataField="PINC_ID">
                                             <ControlStyle CssClass="hide-colum" />
@@ -323,6 +323,9 @@
             </asp:Panel>
 
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btn_export_excel" />
+        </Triggers>
     </asp:UpdatePanel>
 
     <script src="Style/plugins/scrollreveal.js"></script>

@@ -88,12 +88,16 @@
                                 <asp:HyperLink ID="hr_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#confirm" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-clipboard-check"></i> طلبات الموافقة</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="confirm">
                                     <li>
-                                        <asp:HyperLink ID="hl_list_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/listApproval.aspx"><i class="fas fa-list"></i> طلبات معلقة</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_new_confirm" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/approvalConfirm/newApproval.aspx"><i class="fas fa-file"></i>&nbsp;طلب جديد</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="hl_pending_approved" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/listApprovedPendingRequests.aspx"><i class="fas fa-list"></i> طلبات معلقة قدمت</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_list_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/listApproval.aspx"><i class="fas fa-list"></i> طلبات معلقة</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_pending_approved" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/listApprovedPendingRequests.aspx"><i class="fas fa-list"></i> طلبات معلقة قدمت</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
                                 </ul>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i> الاستفسارات والإحصائيات <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                             <li class="nav-item">

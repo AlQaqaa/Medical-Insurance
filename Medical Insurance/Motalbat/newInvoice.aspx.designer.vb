@@ -23,6 +23,42 @@ Partial Public Class newInvoice
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
     
     '''<summary>
+    '''UpdatePanel1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''RadioButton1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadioButton1 As Global.System.Web.UI.WebControls.RadioButton
+    
+    '''<summary>
+    '''txt_search_code control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search_code As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''RadioButton2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RadioButton2 As Global.System.Web.UI.WebControls.RadioButton
+    
+    '''<summary>
     '''ddl_companies control.
     '''</summary>
     '''<remarks>
@@ -131,13 +167,13 @@ Partial Public Class newInvoice
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''UpdatePanel1 control.
+    '''UpdatePanel2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
+    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
     '''btn_create control.

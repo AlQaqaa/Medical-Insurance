@@ -8,12 +8,23 @@ Public Class newInvoice
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsPostBack = False Then
+            txt_search_code.Focus()
+            Me.txt_search_code.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
+        End If
+
     End Sub
 
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE SUBSTRING([Processes_Reservation_Code],7 , 2) = " & ddl_companies.SelectedValue & " AND Processes_State = 4 AND Processes_Residual <> 0 AND CONVERT(VARCHAR, Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, Processes_Date, 103) <= '" & txt_end_dt.Text & "' AND Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
+            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE Processes_State = 4"
+
+            If RadioButton1.Checked = True Then
+                sql_str = sql_str & " AND Processes_ID = " & txt_search_code.Text
+            Else
+                sql_str = sql_str & " AND SUBSTRING([Processes_Reservation_Code],7 , 2) = " & ddl_companies.SelectedValue & " AND Processes_Residual <> 0 AND CONVERT(VARCHAR, Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, Processes_Date, 103) <= '" & txt_end_dt.Text & "' AND Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
+            End If
 
             If ddl_invoice_type.SelectedValue = 1 Then
                 sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
@@ -34,6 +45,14 @@ Public Class newInvoice
                 GridView1.DataBind()
                 CheckBox1.Visible = True
                 btn_create.Enabled = True
+
+                If RadioButton1.Checked = True Then
+                    CheckBox1.Checked = True
+                    For Each dd As GridViewRow In GridView1.Rows
+                        Dim ch As CheckBox = dd.FindControl("CheckBox2")
+                        ch.Checked = True
+                    Next
+                End If
             Else
                 dt_result.Rows.Clear()
                 GridView1.DataSource = dt_result
@@ -132,4 +151,22 @@ Public Class newInvoice
         Next
     End Sub
 
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
+        If RadioButton1.Checked = True Then
+            txt_search_code.Enabled = True
+            ddl_companies.Enabled = False
+            txt_start_dt.Enabled = False
+            txt_end_dt.Enabled = False
+            ddl_invoice_type.Enabled = False
+            txt_search_code.Focus()
+        End If
+    End Sub
+
+    Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
+        txt_search_code.Enabled = False
+        ddl_companies.Enabled = True
+        txt_start_dt.Enabled = True
+        txt_end_dt.Enabled = True
+        ddl_invoice_type.Enabled = True
+    End Sub
 End Class

@@ -38,6 +38,8 @@
                                                 <asp:Label ID="lbl_name_eng" runat="server" Text="AlQaqaa Benghuzi"></asp:Label></li>
                                             <li class="mt-1"><b>الاسم: </b>
                                                 <asp:Label ID="lbl_pat_name" runat="server" Text="القعقاع بن غزي"></asp:Label></li>
+                                            <li class="mt-1 text-center">
+                                                <asp:Label ID="lbl_code" runat="server" Text=""></asp:Label></li>
                                             <li class="mt-1"><b>تاريخ الميلاد: </b>
                                                 <asp:Label ID="lbl_birthdate" runat="server" Text="1990-04-17"></asp:Label></li>
                                             <li class="mt-1"><b>الرقم الوطني: </b>
@@ -159,7 +161,7 @@
                                 <div class="panel-scroll scrollable">
                                     <asp:GridView ID="GridView3" class="table table-striped table-bordered table-sm nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                                         <Columns>
-                                            <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_ID" HeaderText="كود الحركة"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Date" HeaderText="التاريخ"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Cilinc" HeaderText="العيادة"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_SubServices" HeaderText="الخدمة"></asp:BoundField>

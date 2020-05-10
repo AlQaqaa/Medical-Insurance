@@ -185,6 +185,15 @@ Partial Public Class motalbat
     Protected WithEvents hr_confirm As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_new_confirm control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_new_confirm As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_list_confirm control.
     '''</summary>
     '''<remarks>
@@ -201,6 +210,15 @@ Partial Public Class motalbat
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_pending_approved As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''hl_approved_archive control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_approved_archive As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
     '''hl_Statistics control.

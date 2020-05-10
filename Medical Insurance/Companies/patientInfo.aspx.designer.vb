@@ -68,6 +68,15 @@ Partial Public Class patientInfo
     Protected WithEvents lbl_pat_name As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''lbl_code control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbl_code As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''lbl_birthdate control.
     '''</summary>
     '''<remarks>

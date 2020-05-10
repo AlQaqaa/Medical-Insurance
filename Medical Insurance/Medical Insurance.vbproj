@@ -137,7 +137,8 @@
     <Import Include="System.Web.UI.HtmlControls" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="approvalDetails.aspx" />
+    <Content Include="approvalConfirm\approvalArchive.aspx" />
+    <Content Include="approvalConfirm\approvalDetails.aspx" />
     <Content Include="Companies\addNewCompany.aspx" />
     <Content Include="Companies\addNewContract.aspx" />
     <Content Include="Companies\companyClinic.aspx" />
@@ -155,14 +156,14 @@
     <Content Include="createProfilePrices.aspx" />
     <Content Include="dorctorsForms.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
-    <Content Include="listApproval.aspx" />
-    <Content Include="listApprovedPendingRequests.aspx" />
+    <Content Include="approvalConfirm\listApproval.aspx" />
+    <Content Include="approvalConfirm\listApprovedPendingRequests.aspx" />
     <Content Include="Motalbat\Default.aspx" />
     <Content Include="Motalbat\invoiceContent.aspx" />
     <Content Include="Motalbat\invoicesList.aspx" />
     <Content Include="Motalbat\newInvoice.aspx" />
     <Content Include="Motalbat\printPatientProcesses.aspx" />
-    <Content Include="newApproval.aspx" />
+    <Content Include="approvalConfirm\newApproval.aspx" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
@@ -215,10 +216,17 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="approvalDetails.aspx.designer.vb">
+    <Compile Include="approvalConfirm\approvalArchive.aspx.designer.vb">
+      <DependentUpon>approvalArchive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="approvalConfirm\approvalArchive.aspx.vb">
+      <DependentUpon>approvalArchive.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="approvalConfirm\approvalDetails.aspx.designer.vb">
       <DependentUpon>approvalDetails.aspx</DependentUpon>
     </Compile>
-    <Compile Include="approvalDetails.aspx.vb">
+    <Compile Include="approvalConfirm\approvalDetails.aspx.vb">
       <DependentUpon>approvalDetails.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -346,17 +354,17 @@
       <DependentUpon>dorctorsForms.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="listApproval.aspx.designer.vb">
+    <Compile Include="approvalConfirm\listApproval.aspx.designer.vb">
       <DependentUpon>listApproval.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listApproval.aspx.vb">
+    <Compile Include="approvalConfirm\listApproval.aspx.vb">
       <DependentUpon>listApproval.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="listApprovedPendingRequests.aspx.designer.vb">
+    <Compile Include="approvalConfirm\listApprovedPendingRequests.aspx.designer.vb">
       <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="listApprovedPendingRequests.aspx.vb">
+    <Compile Include="approvalConfirm\listApprovedPendingRequests.aspx.vb">
       <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
@@ -406,10 +414,10 @@
       <DependentUpon>printPatientProcesses.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="newApproval.aspx.designer.vb">
+    <Compile Include="approvalConfirm\newApproval.aspx.designer.vb">
       <DependentUpon>newApproval.aspx</DependentUpon>
     </Compile>
-    <Compile Include="newApproval.aspx.vb">
+    <Compile Include="approvalConfirm\newApproval.aspx.vb">
       <DependentUpon>newApproval.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>

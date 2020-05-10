@@ -139,9 +139,9 @@ Public Class statistics
             End If
 
             If CheckBox2.Checked = True Then
-                sql_str = sql_str & " AND Processes_State in (2,4)"
+                sql_str = sql_str & " AND Processes_State = 4"
             Else
-                sql_str = sql_str & " AND Processes_State = 2"
+                sql_str = sql_str & " AND Processes_State in (2,4)"
             End If
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
@@ -270,9 +270,9 @@ Public Class statistics
             End If
 
             If CheckBox2.Checked = True Then
-                sql_str = sql_str & " AND Processes_State in (2,4)"
+                sql_str = sql_str & " AND Processes_State = 4"
             Else
-                sql_str = sql_str & " AND Processes_State = 2"
+                sql_str = sql_str & " AND Processes_State in (2,4)"
             End If
 
             sql_str = sql_str & " GROUP BY SUBSTRING(Processes_Reservation_Code,9 , 6 )"
@@ -387,9 +387,9 @@ Public Class statistics
             End If
 
             If CheckBox2.Checked = True Then
-                sql_str = sql_str & " AND Processes_State in (2,4)"
+                sql_str = sql_str & " AND Processes_State = 4"
             Else
-                sql_str = sql_str & " AND Processes_State = 2"
+                sql_str = sql_str & " AND Processes_State in (2,4)"
             End If
 
             sql_str = sql_str & " GROUP BY Processes_Cilinc"
@@ -452,7 +452,7 @@ Public Class statistics
         Dim total_val As Decimal = 0
 
         Try
-            Dim sql_str As String = "SELECT SUM(Processes_Paid) AS Processes_Paid FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+            Dim sql_str As String = "SELECT SUM(Processes_Residual) AS Processes_Residual FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
                 sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) = " & ddl_companies.SelectedValue
@@ -543,9 +543,9 @@ Public Class statistics
             End If
 
             If CheckBox2.Checked = True Then
-                sql_str = sql_str & " AND Processes_State in (2,4)"
+                sql_str = sql_str & " AND Processes_State = 4"
             Else
-                sql_str = sql_str & " AND Processes_State = 2"
+                sql_str = sql_str & " AND Processes_State in (2,4)"
             End If
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
@@ -577,15 +577,6 @@ Public Class statistics
             txt_search_val.Text = ""
         End If
     End Sub
-
-    'Protected Sub OnPageIndexChanging(sender As Object, e As GridViewPageEventArgs)
-    '    GridView1.PageIndex = e.NewPageIndex
-    '    Me.getData()
-    'End Sub
-
-    'Public Overrides Sub VerifyRenderingInServerForm(control As Control)
-    '    ' Verifies that the control is rendered
-    'End Sub
 
     Private Sub btn_export_excel_Click(sender As Object, e As EventArgs) Handles btn_export_excel.Click
 

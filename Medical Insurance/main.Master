@@ -10,14 +10,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link href="Style/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
-    <link href="Style/plugins/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="Style/CSS/MyStyle.css" rel="stylesheet" />
-    <link href="Style/plugins/select2/select2.min.css" rel="stylesheet" />
-    <link href="Style/CSS/animate.css" rel="stylesheet" />
+    <link href="~/Style/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/Style/plugins/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Style/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/animate.css" rel="stylesheet" />
     <link href="Style/CSS/all.min.css" rel="stylesheet" />
-    <link href="Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
+    <link href="~/Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
+    <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
 
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -89,11 +89,13 @@
                                 <asp:HyperLink ID="hr_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#confirm" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-clipboard-check"></i> طلبات الموافقة</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="confirm">
                                     <li>
-                                        <asp:HyperLink ID="hl_new_confirm" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/newApproval.aspx"><i class="fas fa-file"></i>&nbsp;طلب جديد</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_new_confirm" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/approvalConfirm/newApproval.aspx"><i class="fas fa-file"></i>&nbsp;طلب جديد</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="hl_list_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/listApproval.aspx"><i class="fas fa-list"></i> طلبات معلقة</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_list_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/listApproval.aspx"><i class="fas fa-list"></i> طلبات معلقة</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="hl_pending_approved" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/listApprovedPendingRequests.aspx"><i class="fas fa-list"></i> طلبات معلقة قدمت</asp:HyperLink></li>
+                                        <asp:HyperLink ID="hl_pending_approved" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/listApprovedPendingRequests.aspx"><i class="fas fa-list"></i> طلبات معلقة قدمت</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -125,18 +127,17 @@
 
     </form>
 
-    <script src="Style/JS/jquery-3.4.1.min.js"></script>
-    <script src="Style/plugins/dataTables/jquery.dataTables.min.js"></script>
-    <script src="Style/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
-    <script src="Style/JS/popper.min.js"></script>
-    <script src="Style/JS/bootstrap.min.js"></script>
-    <script src="Style/plugins/select2/select2.min.js"></script>
-    <script src="Style/JS/MyJs.js"></script>
-    <script src="Style/JS/Restrictions.js"></script>
-    <script src="Style/JS/all.min.js"></script>
-    <script src="Style/plugins/alertify/alertify.min.js"></script>
-    <script src="Style/JS/pdfobject.min.js"></script>
-
+    <script src='<%= ResolveUrl("~/Style/JS/jquery-3.4.1.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/dataTables/jquery.dataTables.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/dataTables/dataTables.bootstrap4.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/popper.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/bootstrap.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/select2/select2.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/Restrictions.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/alertify/alertify.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/pdfobject.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/all.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/MyJs.js") %>'></script>
 </body>
 
 </html>

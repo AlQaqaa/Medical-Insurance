@@ -102,7 +102,7 @@
             </div>
             <div class="row mt-2">
                 <div class="col-sm-12">
-                    <asp:GridView ID="GridView1" class="table table-striped table-bordered com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
+                    <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm com-tbl nowrap w-100" runat="server" Width="100%" AutoGenerateColumns="False" GridLines="None">
                         <Columns>
                             <asp:BoundField HeaderText="رقم المنتفع" DataField="PINC_ID">
                                 <ControlStyle CssClass="hide-colum" />
@@ -110,7 +110,9 @@
                                 <HeaderStyle CssClass="hide-colum" />
                                 <ItemStyle CssClass="hide-colum" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
+                            <asp:BoundField DataField="Processes_ID" HeaderText="كود الحركة"></asp:BoundField>
+                            <asp:BoundField DataField="Processes_State" HeaderText="حالة التسوية"></asp:BoundField>
+                            <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود المريض"></asp:BoundField>
                             <asp:ButtonField DataTextField="PATIENT_NAME" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> اسم المنتفع <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
                             <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
                             <asp:BoundField DataField="Processes_Time" HeaderText="وقت الحركة"></asp:BoundField>

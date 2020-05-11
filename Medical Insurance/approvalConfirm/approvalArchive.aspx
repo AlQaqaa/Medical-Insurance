@@ -11,6 +11,7 @@
                 "scrollX": true,
                 "responsive": true,
                 "pageLength": 25,
+                "order": [ 0, 'desc' ],
                 "processing": true,
                 "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
                 "language": {

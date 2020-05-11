@@ -10,6 +10,8 @@ Public Class _Default1
         If IsPostBack = False Then
             getCompanyData()
             Session.Remove("profile_no")
+
+            txt_pat_search.Focus()
         End If
 
     End Sub
@@ -126,4 +128,63 @@ Public Class _Default1
 
     End Sub
 
+    Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+
+        Try
+
+            Dim search_flag As Char = txt_pat_search.Text.Substring(0, 1)
+
+            Dim query_str As String = "SELECT PINC_ID, CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, C_ID, PHONE_NO, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS C_NAME, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, NAT_NUMBER, (CASE WHEN (P_STATE) = 0 THEN 'مفعل' ELSE 'موقوف' END) AS P_STATE, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID FROM INC_PATIANT WHERE 1=1"
+
+            Select Case search_flag
+                Case "1"
+                    query_str = query_str & " AND CARD_NO = '" & txt_pat_search.Text.Remove(0, 1) & "'"
+                Case "2"
+                    query_str = query_str & " AND BAGE_NO = '" & txt_pat_search.Text.Remove(0, 1) & "'"
+                Case Else
+                    query_str = query_str & " AND NAME_ARB LIKE '%" & txt_pat_search.Text & "%'"
+            End Select
+
+            Dim sel_com As New SqlCommand(query_str, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+            If dt_result.Rows.Count > 0 Then
+                Panel1.Visible = True
+                btn_clear.Visible = True
+                GridView1.DataSource = dt_result
+                GridView1.DataBind()
+            Else
+                Panel1.Visible = False
+                btn_clear.Visible = False
+                dt_result.Rows.Clear()
+                GridView1.DataSource = dt_result
+                GridView1.DataBind()
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        '################ When User Press On Patiant Name ################
+        If (e.CommandName = "pat_name") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+            Session.Item("patiant_id") = (row.Cells(0).Text) ' 13471
+            Session.Item("company_id") = (row.Cells(1).Text) '56 
+
+            Response.Redirect("Companies/patientInfo.aspx")
+        End If
+    End Sub
+
+    Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
+        txt_pat_search.Text = ""
+        txt_pat_search.Focus()
+        GridView1.DataBind()
+        btn_clear.Visible = False
+    End Sub
 End Class

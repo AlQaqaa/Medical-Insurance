@@ -221,6 +221,24 @@ Partial Public Class main
     Protected WithEvents hl_approved_archive As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_doctors_forms control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_doctors_forms As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''hl_Statistics control.
     '''</summary>
     '''<remarks>
@@ -239,22 +257,22 @@ Partial Public Class main
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''hl_doctors_forms control.
+    '''hl_reports control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents hl_doctors_forms As Global.System.Web.UI.WebControls.HyperLink
+    Protected WithEvents hl_reports As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''Label2 control.
+    '''hl_dailyReport control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents hl_dailyReport As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
     '''ContentPlaceHolder1 control.

@@ -22,6 +22,7 @@
                     { "searchable": false },
                     null,
                     null,
+                    null,
                     { "searchable": false },
                     { "searchable": false },
                     { "searchable": false },
@@ -83,7 +84,7 @@
         <div class="row mt-2">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">إنشاء فاتورة جديدة</div>
+                    <div class="card-header">تسوية الأطباء</div>
                     <div class="card-body">
                         <div class="form-row">
                             <div class="form-group col-xs-6 col-sm-3">
@@ -93,8 +94,7 @@
                         <!-- /form-row -->
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="panel-scroll scrollable">
-                                    <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm com-tbl" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
+                                    <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm nowrap com-tbl" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
                                         <Columns>
                                             <asp:TemplateField HeaderText="تحديد">
                                                 <ItemTemplate>
@@ -113,7 +113,8 @@
                                                 <HeaderStyle CssClass="hide-colum" />
                                                 <ItemStyle CssClass="hide-colum" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
+                                            <asp:BoundField DataField="pros_code" HeaderText="كود الحركة"></asp:BoundField>
+                                            <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود المنتفع"></asp:BoundField>
                                             <asp:BoundField DataField="PATIENT_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Time" HeaderText="وقت الحركة"></asp:BoundField>
@@ -125,7 +126,6 @@
                                             <asp:BoundField DataField="Processes_Residual" HeaderText="قيمة الشركة" DataFormatString="{0:C3}"></asp:BoundField>
                                         </Columns>
                                     </asp:GridView>
-                                </div>
                             </div>
                         </div>
                         <!-- /row -->

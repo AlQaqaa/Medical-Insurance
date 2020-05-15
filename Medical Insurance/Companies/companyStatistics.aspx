@@ -8,7 +8,7 @@
         <div class="col-xs-12 col-sm-12">
             <div class="alert alert-info" role="alert">
                 <i class="fas fa-info-circle"></i>هذه البيانات من تاريخ بداية عقد الشركة
-                <asp:Label ID="lbl_start_date" runat="server" Text="01-01-2020"></asp:Label>
+                <asp:Label ID="lbl_start_date" runat="server" Text="01-01-2020" Font-Bold="True"></asp:Label>
                 إلى تاريخ اليوم
             </div>
         </div>

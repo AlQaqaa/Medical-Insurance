@@ -12,6 +12,10 @@ Public Class statistics
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsPostBack = False Then
+            Me.txt_processes_code.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
+        End If
+
     End Sub
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
@@ -33,9 +37,11 @@ Public Class statistics
         Label1.Text = ""
 
         getData()
-        bindChartsClinic()
-        lbl_total.Text = Format(getTotalValue(), "0,0.000") & " د.ل"
-        lbl_patient_count.Text = patientCount()
+        If txt_processes_code.Text = "" Then
+            bindChartsClinic()
+            lbl_total.Text = Format(getTotalValue(), "0,0.000") & " د.ل"
+            lbl_patient_count.Text = patientCount()
+        End If
 
 
         If ddl_companies.SelectedValue <> 0 Then
@@ -43,12 +49,18 @@ Public Class statistics
         Else
             lbl_header_chart.Text = ""
         End If
+
+
     End Sub
 
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,7 , 2 )), '') AS COMPANY_NAME, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,7 , 2 )), '') AS COMPANY_NAME, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+
+            If txt_processes_code.Text <> "" Then
+                sql_str = " SELECT Processes_ID, Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,7 , 2 )), '') AS COMPANY_NAME, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE pros_code IN (" & txt_processes_code.Text & ")"
+            End If
 
             If ddl_companies.SelectedItem.Value <> 0 Then
                 sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) = " & ddl_companies.SelectedValue
@@ -154,7 +166,10 @@ Public Class statistics
 
             If dt_search_result.Rows.Count > 0 Then
                 btn_export_excel.Enabled = True
-                Panel1.Visible = True
+                If txt_processes_code.Text = "" Then
+                    Panel1.Visible = True
+                End If
+
                 Panel2.Visible = True
                 lbl_services_count.Text = dt_search_result.Rows.Count
                 GridView1.DataSource = dt_search_result

@@ -14,7 +14,7 @@
     <link href="~/Style/plugins/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/Style/plugins/select2/select2.min.css" rel="stylesheet" />
     <link href="~/Style/CSS/animate.css" rel="stylesheet" />
-    <link href="Style/CSS/all.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/all.min.css" rel="stylesheet" />
     <link href="~/Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
     <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
 

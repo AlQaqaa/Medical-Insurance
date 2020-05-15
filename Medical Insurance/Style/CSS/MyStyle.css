@@ -155,17 +155,6 @@
 
 /* ================================================================= */
 
-/* Start Login Page */
-
-.login-img {
-    margin-top: 20px;
-    margin-bottom: 40px;
-}
-
-/* End Login Page */
-
-/* ================================================================= */
-
 /* Start Sidebar Menu */
 
 .side-menu .user-info {
@@ -291,7 +280,7 @@ ajax__calendar_months {
 
 /* ================================================================= */
 
-/* Start statistics page */
+/* Start Border For cards */
 
 .no-gutters {
     margin-right: 0;

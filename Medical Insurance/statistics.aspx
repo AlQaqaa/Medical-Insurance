@@ -5,8 +5,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -20,6 +18,12 @@
             <div class="collapse show mt-1" id="advancedSearch">
                 <div class="card card-body">
                     <div class="tab-pane fade show active" id="search1" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="row mb-2">
+                            <div class="col-xs-12 col-sm-4">
+                                <asp:TextBox ID="txt_processes_code" runat="server" CssClass="form-control" placeholder="كود الحركة"></asp:TextBox>
+                            </div>
+                        </div>
+                        <!-- /row -->
                         <div class="row mb-2">
                             <div class="col-xs-12 col-sm-4">
                                 <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" Width="100%"></asp:DropDownList>
@@ -65,7 +69,7 @@
                             <div class="col-xs-12 col-sm-4">
                                 <asp:DropDownList ID="ddl_sub_service" CssClass="chosen-select drop-down-list form-control" runat="server" Width="100%" DataSourceID="SqlDataSource3" DataTextField="SubService_AR_Name" DataValueField="SubService_ID"></asp:DropDownList>
 
-                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS SubService_ID, 'جميع الخدمات' AS SubService_AR_Name FROM Main_SubServices UNOIN SELECT [SubService_ID], [SubService_AR_Name] FROM [Main_SubServices] WHERE ([SubService_Service_ID] = @SubService_Service_ID)">
+                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS SubService_ID, 'جميع الخدمات' AS SubService_AR_Name FROM Main_SubServices UNION SELECT [SubService_ID], [SubService_AR_Name] FROM [Main_SubServices] WHERE ([SubService_Service_ID] = @SubService_Service_ID)">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="ddl_services" PropertyName="SelectedValue" Name="SubService_Service_ID" Type="Int16"></asp:ControlParameter>
                                     </SelectParameters>
@@ -276,7 +280,8 @@
                                             <HeaderStyle CssClass="hide-colum" />
                                             <ItemStyle CssClass="hide-colum" />
                                         </asp:BoundField>
-                                        <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود الحركة"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_ID" HeaderText="كود الحركة"></asp:BoundField>
+                                        <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود المنتفع"></asp:BoundField>
                                         <asp:ButtonField DataTextField="PATIENT_NAME" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> اسم المنتفع <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
                                         <asp:BoundField DataField="COMPANY_NAME" HeaderText="الشركة"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
@@ -332,5 +337,14 @@
 
     <script>
         ScrollReveal().reveal('.headline');
+    </script>
+
+    <script>
+        function button_click(objTextBox, objBtnID) {
+            if (window.event.keyCode == 13) {
+                document.getElementById('ContentPlaceHolder1_btn_search').focus();
+                document.getElementById('ContentPlaceHolder1_btn_search').click();
+            }
+        }
     </script>
 </asp:Content>

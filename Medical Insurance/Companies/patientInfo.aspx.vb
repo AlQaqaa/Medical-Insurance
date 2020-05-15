@@ -307,7 +307,7 @@ Public Class patientInfo
         Try
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
             If FileUpload1.PostedFile.FileName <> Nothing Then
-                Dim newFilename As String = Val(Session("patiant_id"))
+                Dim newFilename As String = Val(Session("patiant_id")) & "N"
                 Dim fileExtension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
                 Dim updatedFilename As String = newFilename + fileExtension
                 Dim fpath As String = Server.MapPath("../images/ImagePatiant") & "/" & updatedFilename

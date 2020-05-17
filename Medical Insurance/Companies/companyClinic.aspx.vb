@@ -154,17 +154,38 @@ Public Class companyClinic
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
         If Val(txt_session_count.Text) <> 0 And CDec(txt_max_val.Text) <> 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! لا يمكن إدخال السقف وعدد الجلسات لنفس العيادة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ! لا يمكن إدخال السقف وعدد الجلسات لنفس العيادة',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+
             Exit Sub
         End If
 
         If Val(txt_session_count.Text) <> 0 And dist_list.Items.Count > 1 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! لا يمكن مشاركة عدد الجلسات لأكثر من عيادة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ! لا يمكن مشاركة عدد الجلسات لأكثر من عيادة',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+
             Exit Sub
         End If
 
         If dist_list.Items.Count = 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يجب اختيار عيادة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ! يجب اختيار عيادة واحدة على الأقل',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+
             Exit Sub
         End If
 
@@ -187,7 +208,13 @@ Public Class companyClinic
                 insClinic.ExecuteNonQuery()
                 insurance_SQLcon.Close()
                 insClinic.CommandText = ""
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 fillListClinic()
                 getClinicAvailable()
                 clrTxt()
@@ -226,7 +253,13 @@ Public Class companyClinic
                     insurance_SQLcon.Close()
                     insClinic.CommandText = ""
                 Next
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 fillListClinic()
                 getClinicAvailable()
                 clrTxt()
@@ -277,7 +310,13 @@ Public Class companyClinic
             getClinicAvailable()
 
 
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت العملية بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
 
         End If
 

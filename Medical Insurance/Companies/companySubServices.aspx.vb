@@ -197,7 +197,13 @@ Public Class companySubServices
                     'End If
 
                     If CDec(txt_person_max.Text) > CDec(txt_family_max.Text) Then
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! سقف الفرد يجب أن يكون أقل من سقف العائلة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ! سقف الفرد يجب أن يكون أقل من سقف العائلة',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                         Exit Sub
                     End If
 
@@ -244,7 +250,13 @@ Public Class companySubServices
             Next
         End If
 
-        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
 
         getSubServicesAvailable()
 

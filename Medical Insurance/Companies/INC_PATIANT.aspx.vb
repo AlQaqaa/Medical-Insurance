@@ -61,7 +61,14 @@ Public Class INC_PATIANT
             dt_result.Load(sel_com.ExecuteReader)
             insurance_SQLcon.Close()
             If dt_result.Rows.Count > 0 Then
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطا! هذا المشترك تمت إضافته مسبقاً'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطا! هذا المشترك تمت إضافته مسبقاً',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 Exit Sub
             End If
 
@@ -98,7 +105,13 @@ Public Class INC_PATIANT
             insurance_SQLcon.Close()
 
             clrTxt()
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

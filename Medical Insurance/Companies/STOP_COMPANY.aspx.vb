@@ -81,7 +81,13 @@ Public Class STOP_COMPANY
                 insurance_SQLcon.Open()
                 stopCompany.ExecuteNonQuery()
                 insurance_SQLcon.Close()
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.set('notifier','position', 'top-right'); alertify.success('تم تفعيل الشركة بنجاح');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تم تفعيل الشركة بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 getCompanyData()
                 dt_GridView.DataBind()
             Catch ex As Exception

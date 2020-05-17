@@ -94,7 +94,13 @@ Public Class WebForm1
             ins_PAT.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية التعدبل البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية تعديل البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

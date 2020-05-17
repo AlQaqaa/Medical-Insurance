@@ -32,33 +32,6 @@ Partial Public Class newInvoice
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''RadioButton1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadioButton1 As Global.System.Web.UI.WebControls.RadioButton
-    
-    '''<summary>
-    '''txt_search_code control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_search_code As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RadioButton2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RadioButton2 As Global.System.Web.UI.WebControls.RadioButton
-    
-    '''<summary>
     '''ddl_companies control.
     '''</summary>
     '''<remarks>

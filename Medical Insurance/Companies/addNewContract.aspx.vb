@@ -63,10 +63,23 @@ Public Class addNewContract
                 insToCompany.ExecuteNonQuery()
                 insurance_SQLcon.Close()
 
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 clrTxt()
             Else
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ هناك عقد ساري لهذه الشركة بنفس الفترة التي اخترتها'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ هناك عقد ساري لهذه الشركة بنفس الفترة التي اخترتها',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

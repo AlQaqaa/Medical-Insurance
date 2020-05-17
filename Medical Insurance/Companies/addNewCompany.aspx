@@ -3,13 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../Style/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
-    <link href="../Style/CSS/MyStyle.css" rel="stylesheet" />
-    <link href="../Style/plugins/select2/select2.min.css" rel="stylesheet" />
-    <link href="../Style/CSS/animate.css" rel="stylesheet" />
-    <link href="../Style/CSS/all.min.css" rel="stylesheet" />
-    <link href="../Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
     <style>
         .UserPic {
             border-radius: 50%;
@@ -150,17 +143,9 @@
                         </div>
                     </div>
                 </ContentTemplate>
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btn_save" EventName="Click" />
-                </Triggers>
+                
             </asp:UpdatePanel>
         </div>
     </div>
-    <script src="../Style/JS/jquery-3.4.1.min.js"></script>
-    <script src="../Style/JS/bootstrap.min.js"></script>
-    <script src="../Style/plugins/select2/select2.min.js"></script>
-    <script src="../Style/JS/MyJs.js"></script>
-    <script src="../Style/JS/Restrictions.js"></script>
-    <script src="../Style/JS/all.min.js"></script>
-    <script src="../Style/plugins/alertify/alertify.min.js"></script>
+
 </asp:Content>

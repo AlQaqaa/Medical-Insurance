@@ -10,14 +10,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="../Style/CSS/bootstrap.min.css" rel="stylesheet" />
-    <link href="../Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
-    <link href="../Style/plugins/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="../Style/CSS/MyStyle.css" rel="stylesheet" />
-    <link href="../Style/plugins/select2/select2.min.css" rel="stylesheet" />
-    <link href="../Style/CSS/animate.css" rel="stylesheet" />
-    <link href="../Style/CSS/all.min.css" rel="stylesheet" />
-    <link href="../Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
+    <link href="~/Style/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/Style/plugins/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Style/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/animate.css" rel="stylesheet" />
+    <link href="~/Style/CSS/all.min.css" rel="stylesheet" />
+    <link href="~/Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
+    <link href="~/Style/plugins/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+     <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -139,10 +140,11 @@
     <script src="../Style/JS/popper.min.js"></script>
     <script src="../Style/JS/bootstrap.min.js"></script>
     <script src="../Style/plugins/select2/select2.min.js"></script>
-    <script src="../Style/JS/MyJs.js"></script>
     <script src="../Style/JS/Restrictions.js"></script>
     <script src="../Style/JS/all.min.js"></script>
     <script src="../Style/plugins/alertify/alertify.min.js"></script>
+    <script src="../Style/plugins/sweetalert/sweetalert2.all.min.js"></script>
+    <script src="../Style/JS/MyJs.js"></script>
 
 </body>
 </html>

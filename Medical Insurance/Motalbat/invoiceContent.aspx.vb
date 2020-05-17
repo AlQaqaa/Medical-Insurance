@@ -64,6 +64,7 @@ Public Class invoiceContent
             End Using
 
             If dt_result.Rows.Count > 0 Then
+                ViewState("invoice_count") = dt_result.Rows.Count
                 GridView1.DataSource = dt_result
                 GridView1.DataBind()
             Else
@@ -87,8 +88,60 @@ Public Class invoiceContent
                 Response.Write("</script>")
                 'Response.Redirect("printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text), False)
             End If
-        Catch ex As Exception
 
+            If (e.CommandName = "returnProcess") Then
+
+                If ViewState("invoice_count") > 1 Then
+                    Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+                    Dim row As GridViewRow = GridView1.Rows(index)
+
+                    Dim returnInvoice As New SqlCommand
+                    returnInvoice.Connection = insurance_SQLcon
+                    returnInvoice.CommandText = "INC_deletePatientInvoice"
+                    returnInvoice.CommandType = CommandType.StoredProcedure
+                    returnInvoice.Parameters.AddWithValue("@inv_no", ViewState("invoice_no"))
+                    returnInvoice.Parameters.AddWithValue("@patient_no", (row.Cells(2).Text))
+                    insurance_SQLcon.Open()
+                    returnInvoice.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+                    GridView1.DataBind()
+
+                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(3).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("User_Id"), GetIPAddress())
+
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية إرجاع الحركة بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+                Else
+                    Dim returnInvoice As New SqlCommand
+                    returnInvoice.Connection = insurance_SQLcon
+                    returnInvoice.CommandText = "INC_deleteInvoice"
+                    returnInvoice.CommandType = CommandType.StoredProcedure
+                    returnInvoice.Parameters.AddWithValue("@inv_no", ViewState("invoice_no"))
+                    insurance_SQLcon.Open()
+                    returnInvoice.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+
+                    add_action(1, 3, 3, "إرجاع المطالبة رقم: " & ViewState("invoice_no"), Session("User_Id"), GetIPAddress())
+
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية إرجاع المطالبة بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.setTimeout(function () {
+                window.location.href = 'invoicesList.aspx';
+            }, 1500);", True)
+                End If
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -144,5 +197,33 @@ Public Class invoiceContent
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
         Response.Redirect("~/Reports/invoiceContent" & Session("User_Id") & ".pdf")
+    End Sub
+
+    Private Sub btn_return_Click(sender As Object, e As EventArgs) Handles btn_return.Click
+        Try
+            Dim returnInvoice As New SqlCommand
+            returnInvoice.Connection = insurance_SQLcon
+            returnInvoice.CommandText = "INC_deleteInvoice"
+            returnInvoice.CommandType = CommandType.StoredProcedure
+            returnInvoice.Parameters.AddWithValue("@inv_no", ViewState("invoice_no"))
+            insurance_SQLcon.Open()
+            returnInvoice.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            add_action(1, 3, 3, "إرجاع المطالبة رقم: " & ViewState("invoice_no"), Session("User_Id"), GetIPAddress())
+
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية إرجاع المطالبة بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.setTimeout(function () {
+                window.location.href = 'invoicesList.aspx';
+            }, 1500);", True)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

@@ -92,7 +92,7 @@
                     <div class="card-body">
                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                             <ContentTemplate>
-                                <div class="form-row">
+                                <%--<div class="form-row">
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <div class="form-check">
                                             <asp:RadioButton ID="RadioButton1" class="form-check-input form-check-label" runat="server" GroupName="search_type" Checked="True" AutoPostBack="True" />
@@ -104,23 +104,23 @@
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <asp:TextBox ID="txt_search_code" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
-                                </div>
+                                </div>--%>
                                 <!-- /row -->
 
                                 <div class="form-row">
-                                    <div class="form-group col-xs-12 col-sm-1">
+                                    <%--<div class="form-group col-xs-12 col-sm-1">
                                         <div class="form-check">
                                             <asp:RadioButton ID="RadioButton2" class="form-check-input form-check-label" runat="server" GroupName="search_type" AutoPostBack="True" />
                                         </div>
-                                    </div>
+                                    </div>--%>
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <label for="ddl_companies">الشركة</label>
-                                        <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" Enabled="False"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id"></asp:DropDownList>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-2">
                                         <label for="ddl_companies">نوع الفاتورة</label>
-                                        <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server" Enabled="False">
+                                        <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server">
                                             <asp:ListItem Value="0">الكل</asp:ListItem>
                                             <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
                                             <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
@@ -129,7 +129,7 @@
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <label for="txt_start_dt">الفترة من</label>
                                         <div class="input-group">
-                                            <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" Enabled="False"></asp:TextBox>
+                                            <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
@@ -142,7 +142,7 @@
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <label for="txt_start_dt">إلى</label>
                                         <div class="input-group">
-                                            <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" Enabled="False"></asp:TextBox>
+                                            <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
@@ -204,7 +204,7 @@
                                                 <HeaderStyle CssClass="hide-colum" />
                                                 <ItemStyle CssClass="hide-colum" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="Processes_ID" HeaderText="كود الحركة"></asp:BoundField>
+                                            <asp:BoundField DataField="pros_code" HeaderText="كود الحركة"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود المنتفع"></asp:BoundField>
                                             <asp:BoundField DataField="PATIENT_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
@@ -230,12 +230,12 @@
         </div>
         <!-- /row -->
     </div>
-    <script>
+    <%--<script>
         function button_click(objTextBox, objBtnID) {
             if (window.event.keyCode == 13) {
                 document.getElementById('ContentPlaceHolder1_btn_search').focus();
                 document.getElementById('ContentPlaceHolder1_btn_search').click();
             }
         }
-    </script>
+    </script>--%>
 </asp:Content>

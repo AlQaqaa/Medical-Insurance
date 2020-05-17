@@ -220,7 +220,13 @@ Public Class companyServices
         End If
 
 
-        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
 
         getServicesAvailable()
 

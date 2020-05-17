@@ -216,6 +216,8 @@
     <Content Include="Style\JS\Restrictions.js" />
     <Content Include="Style\JS\jquery-3.4.1.min.js" />
     <Content Include="Style\plugins\select2\select2.min.js" />
+    <Content Include="Style\plugins\sweetalert\sweetalert2.all.min.js" />
+    <Content Include="Style\plugins\sweetalert\sweetalert2.min.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -140,7 +140,13 @@ Public Class editClinc
 
             add_action(1, 3, 2, "تعديل السقف العام لمجموعة عيادات رقم المجموعة: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
 
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية تعديل البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية تعديل البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
 
             getClinicData()
 
@@ -174,7 +180,13 @@ Public Class editClinc
 
             add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " وفصلها عن المجموعة رقم: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
 
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية تعديل البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية تعديل البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
 
             getClinicData()
         Catch ex As Exception

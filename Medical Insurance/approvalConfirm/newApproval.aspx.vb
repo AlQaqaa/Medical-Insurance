@@ -241,12 +241,24 @@ Public Class newApproval
         Try
 
             If GridView1.Rows.Count = 0 Then
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى اختيار خدمة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'يرجى اختيار خدمة واحدة على الأقل',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 Exit Sub
             End If
 
             If source_list.SelectedValue = 0 Then
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يرجى اختيار منتفع'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ! يرجى اختيار منتفع',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                 Exit Sub
             End If
 
@@ -314,13 +326,25 @@ Public Class newApproval
     End Sub
 
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
-        If ddl_sub_service.SelectedValue = 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى اختيار خدمة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        If GridView1.Rows.Count = 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'يرجى اختيار خدمة واحدة على الأقل',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
             Exit Sub
         End If
 
         If source_list.SelectedValue = 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يرجى اختيار منتفع'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'خطأ! يرجى اختيار منتفع',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
             Exit Sub
         End If
 

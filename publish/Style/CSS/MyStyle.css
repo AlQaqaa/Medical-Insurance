@@ -1,0 +1,304 @@
+﻿@font-face {
+    font-family: 'Cairo-Regular';
+    src: url('../Fonts/Cairo-Regular.ttf') format('truetype');
+}
+
+.chart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Start Main Rules */
+
+.container-fluid {
+    margin-bottom: 30px;
+}
+
+.com-tbl td a {
+    text-decoration: none;
+    color: #000;
+}
+
+.com-tbl td a:hover {
+    color: #2098D1;
+}
+
+.alertify-notifier {
+    color: #fff;
+}
+
+.hide-colum{
+     display:none;
+     visibility:hidden;
+ }
+
+.btn-new {
+    padding: .10rem .10rem;
+    font-size: 1.2rem;
+}
+
+.btn-small {
+    padding: .2rem .2rem;
+    font-size: .6rem;
+}
+
+.table td {
+    padding: .35rem;
+}
+
+.company_name {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.drop-down-list {
+    padding: 2px !important;
+}
+
+.check-box-style {
+    margin-top: 35px;
+    margin-right: 10px;
+}
+
+.check-box-style span input[type=checkbox] {
+    margin-left: 10px;
+}
+
+.input-group>.custom-select:not(:last-child), .input-group>.form-control:not(:last-child) {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.input-group-prepend {
+    margin-right: -1px;
+    margin-left: 0;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+.panel-scroll {
+    max-height: 530px;
+    max-width: 100%;
+}
+
+.scrollable {
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.panel-scroll::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.panel-scroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.panel-scroll::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+
+.breadcrumb-item + .breadcrumb-item {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    display: inline-block;
+    padding-left: .5rem;
+    color: #6c757d;
+    content: "/";
+}
+
+/* End Main Rules */
+
+/* ================================================================= */
+
+/* Start Company Info Page */
+
+.info-page .card {
+    overflow:hidden;
+}
+
+.info-page .card-body .rotate {
+    z-index: 8;
+    float: left;
+    height: 100%;
+}
+
+.info-page .card-body .rotate svg {
+    color: rgba(20, 20, 20, 0.15);
+    position: absolute;
+    right: 0;
+    right: auto;
+    left: -10px;
+    bottom: 0;
+    display: block;
+    -webkit-transform: rotate(44deg);
+    -moz-transform: rotate(44deg);
+    -o-transform: rotate(44deg);
+    -ms-transform: rotate(44deg);
+    transform: rotate(44deg);
+}
+
+/* End Company Info Page */
+
+/* ================================================================= */
+
+/* Start Sidebar Menu */
+
+.side-menu .user-info {
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.side-menu .user-info img {
+    margin-bottom: 10px;
+
+}
+
+.side-menu .user-info span {
+    font-size: 12px;
+}
+
+.side-menu ul li a {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #d8d8d8;
+    color: #000;
+}
+
+ul.sub-menu li {
+    width: 100%;
+}
+
+.sub-menu li a {
+    padding-right: 30px;
+    font-size: 14px;
+    background-color: #e0e0e0 !important;
+    border-bottom: 1px solid #c1c1c1 !important;
+}
+
+/* Back Pulse */
+@-webkit-keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+@keyframes hvr-back-pulse {
+  50% {
+    background-color: rgba(32, 152, 209, 0.75);
+  }
+}
+.hvr-back-pulse {
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-back-pulse:hover, .hvr-back-pulse:focus, .hvr-back-pulse:active {
+  -webkit-animation-name: hvr-back-pulse;
+  animation-name: hvr-back-pulse;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  background-color: #2098D1;
+  background-color: #2098d1;
+  color: white;
+}
+
+/* End Sidebar Menu */
+
+/* ================================================================= */
+
+/* Start Footer */
+
+.footer {
+    background-color: #0b0a0d;
+    color: #eee;
+    padding: 6px;
+    margin-top: 20px;
+    font-size: 10px;
+}
+
+/* End Footer */
+
+
+/* ############# ajax__calendar ################################ */
+
+.ajax__calendar_container {
+    width: 230px !important;
+}
+
+.ajax__calendar_body {
+    height: 200px !important;
+    width: 215px !important;
+}
+
+.ajax__calendar_days, .ajax__calendar_months, .ajax__calendar_years {
+    height: 200px !important;
+    width: 210px !important;
+}
+
+.ajax__calendar_day {
+    height: 22px !important;
+    width: 22px !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    padding: 2px !important;
+    border: 1px solid #000 !important;
+    font-size: 12px !important;
+}
+
+ajax__calendar_months {
+    visibility: visible;
+    position: absolute;
+    left: 0px;
+    top: -179px;
+}
+
+
+/* ================================================================= */
+
+/* Start Border For cards */
+
+.no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.border-right-primary {
+    border-right: .25rem solid #4e73df !important;
+}
+
+.border-right-success {
+    border-right: .25rem solid #1cc88a !important;
+}
+
+.border-right-info {
+    border-right: .25rem solid #36b9cc !important;
+}
+
+.border-right-warning {
+    border-right: .25rem solid #f6c23e !important;
+}

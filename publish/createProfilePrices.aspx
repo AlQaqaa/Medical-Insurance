@@ -28,14 +28,14 @@
                                 </div>
                             </div>
                             <!-- row -->
-                            <div class="row justify-content-center mb-5">
+                            <%--<div class="row justify-content-center mb-5">
                                 <div class="col-sm-12 col-md-6">
                                     <div class="form-check">
                                         <asp:CheckBox ID="cb_is_default" CssClass="form-check-input" runat="server" Text=" إعتماد ملف الأسعار هذا كملف أساسي؟" />
                                     </div>
 
                                 </div>
-                            </div>
+                            </div>--%>
                             <!-- row -->
                             <hr />
                             <div class="row justify-content-end">
@@ -72,7 +72,7 @@
                                     </asp:BoundField>
                                     <asp:ButtonField DataTextField="PROFILE_NAME" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم الملف لمشاهدة الأسعار وطباعتها'> اسم الملف <i class='fas fa-info-circle'></i></span>" CommandName="show_profile"></asp:ButtonField>
                                     <asp:BoundField DataField="PROFILE_DT" HeaderText="تاريخ إنشاء الملف"></asp:BoundField>
-                                    <asp:TemplateField>
+                                    <%--<asp:TemplateField>
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btn_set_default" runat="server"
                                                 CommandName="set_default"
@@ -80,7 +80,7 @@
                                                 ToolTip="تحديد ملف الأسعار كملف أساسي"
                                                 ControlStyle-CssClass="btn btn-secondary btn-sm btn-small">أساسي</asp:LinkButton>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
+                                    </asp:TemplateField>--%>
                                     <asp:TemplateField>
                                         <ItemTemplate>
                                             <asp:LinkButton ID="btn_edit_price" runat="server"

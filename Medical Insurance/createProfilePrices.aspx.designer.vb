@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class createProfilePrices
-
+    
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class createProfilePrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-
+    
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class createProfilePrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-
+    
     '''<summary>
     '''txt_profile_name control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class createProfilePrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_profile_name As Global.System.Web.UI.WebControls.TextBox
-
+    
     '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
@@ -48,16 +48,7 @@ Partial Public Class createProfilePrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-
-    '''<summary>
-    '''cb_is_default control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents cb_is_default As Global.System.Web.UI.WebControls.CheckBox
-
+    
     '''<summary>
     '''btn_next control.
     '''</summary>
@@ -66,7 +57,7 @@ Partial Public Class createProfilePrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_next As Global.System.Web.UI.WebControls.Button
-
+    
     '''<summary>
     '''GridView1 control.
     '''</summary>
@@ -75,7 +66,7 @@ Partial Public Class createProfilePrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-
+    
     '''<summary>
     '''GridView2 control.
     '''</summary>

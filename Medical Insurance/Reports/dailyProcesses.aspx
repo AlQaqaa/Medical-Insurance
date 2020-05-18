@@ -26,7 +26,6 @@
                 <ContentTemplate>
                     <div class="row">
                         <div class="form-group col-xs-12 col-sm-3">
-                            <label for="txt_start_dt">من</label>
                             <div class="input-group">
                                 <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
                                 <div class="input-group-prepend">

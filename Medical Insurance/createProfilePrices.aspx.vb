@@ -17,20 +17,20 @@ Public Class createProfilePrices
 
     Private Sub btn_next_Click(sender As Object, e As EventArgs) Handles btn_next.Click
 
-        Dim is_default As Boolean
+        'Dim is_default As Boolean
 
-        If cb_is_default.Checked = True Then
-            is_default = True
-        Else
-            is_default = False
-        End If
+        'If cb_is_default.Checked = True Then
+        '    is_default = True
+        'Else
+        '    is_default = False
+        'End If
         Try
             Dim insNewProfile As New SqlCommand
             insNewProfile.Connection = insurance_SQLcon
             insNewProfile.CommandText = "INC_addNewProfilePrices"
             insNewProfile.CommandType = CommandType.StoredProcedure
             insNewProfile.Parameters.AddWithValue("@profile_name", txt_profile_name.Text)
-            insNewProfile.Parameters.AddWithValue("@is_default", is_default)
+            insNewProfile.Parameters.AddWithValue("@is_default", 0)
             insNewProfile.Parameters.AddWithValue("@user_id", Session("User_Id"))
             insNewProfile.Parameters.AddWithValue("@user_ip", GetIPAddress())
             insNewProfile.Parameters.AddWithValue("@p_id", SqlDbType.Int).Direction = ParameterDirection.Output
@@ -43,7 +43,18 @@ Public Class createProfilePrices
 
             add_action(1, 1, 3, "إنشاء ملف أسعار جديد باسم: " & txt_profile_name.Text & " رقم الملف: " & Session("profile_no"), Session("User_Id"), GetIPAddress())
 
-            Response.Redirect("SERVICES_PRICES.aspx", False)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تم إنشاء ملف أسعار جديد بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.setTimeout(function () {
+                window.location.href = 'SERVICES_PRICES.aspx';
+            }, 1500);", True)
+
+            'Response.Redirect("SERVICES_PRICES.aspx", False)
             Exit Sub
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -111,7 +122,13 @@ Public Class createProfilePrices
                 result_a = sel_com.ExecuteScalar()
                 insurance_SQLcon.Close()
                 If result_a <> 0 Then
-                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('لا يمكن تعطيل ملف الأسعار هذا'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'لا يمكن تعطيل ملف الأسعار هذا',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
                     Exit Sub
                 Else
                     If (row.Cells(1).Text) = True Then
@@ -125,13 +142,26 @@ Public Class createProfilePrices
                     insurance_SQLcon.Close()
                     getStopProfile()
                     getActiveProfile()
-                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية تعطيل ملف الأسعار بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية تعطيل ملف الأسعار بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+
                 End If
 
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('لا يمكن تعطيل ملف الأسعار هذا'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'لا يمكن تعطيل ملف الأسعار هذا',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
             Exit Sub
         End Try
 
@@ -143,31 +173,31 @@ Public Class createProfilePrices
             Exit Sub
         End If
 
-        If (e.CommandName = "set_default") Then
-            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-            Dim row As GridViewRow = GridView1.Rows(index)
+        'If (e.CommandName = "set_default") Then
+        '    Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+        '    Dim row As GridViewRow = GridView1.Rows(index)
 
-            Try
-                Dim setDefaultProfilePrice As New SqlCommand
-                setDefaultProfilePrice.Connection = insurance_SQLcon
-                setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
-                setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
-                setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
-                setDefaultProfilePrice.Parameters.AddWithValue("@user_id", Session("User_Id"))
-                setDefaultProfilePrice.Parameters.AddWithValue("@user_ip", GetIPAddress())
-                insurance_SQLcon.Open()
-                setDefaultProfilePrice.ExecuteNonQuery()
-                insurance_SQLcon.Close()
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم تحديد ملف الأسعار كأساسي بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-                getActiveProfile()
-                getStopProfile()
+        '    Try
+        '        Dim setDefaultProfilePrice As New SqlCommand
+        '        setDefaultProfilePrice.Connection = insurance_SQLcon
+        '        setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
+        '        setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
+        '        setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
+        '        setDefaultProfilePrice.Parameters.AddWithValue("@user_id", Session("User_Id"))
+        '        setDefaultProfilePrice.Parameters.AddWithValue("@user_ip", GetIPAddress())
+        '        insurance_SQLcon.Open()
+        '        setDefaultProfilePrice.ExecuteNonQuery()
+        '        insurance_SQLcon.Close()
+        '        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم تحديد ملف الأسعار كأساسي بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        '        getActiveProfile()
+        '        getStopProfile()
 
-            Catch ex As Exception
-                MsgBox(ex.Message)
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-            End Try
+        '    Catch ex As Exception
+        '        MsgBox(ex.Message)
+        '        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        '    End Try
 
-        End If
+        'End If
 
         If (e.CommandName = "show_profile") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
@@ -177,17 +207,17 @@ Public Class createProfilePrices
     End Sub
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim cell As TableCell = e.Row.Cells(1)
-            Dim mov_state As String = cell.Text
+        'If e.Row.RowType = DataControlRowType.DataRow Then
+        '    Dim cell As TableCell = e.Row.Cells(1)
+        '    Dim mov_state As String = cell.Text
 
-            If mov_state = False Then
-                e.Row.Cells(4).Visible = True
-            Else
-                e.Row.Cells(4).Visible = False
-                e.Row.ForeColor = Drawing.Color.Green
-            End If
-        End If
+        '    If mov_state = False Then
+        '        e.Row.Cells(4).Visible = True
+        '    Else
+        '        e.Row.Cells(4).Visible = False
+        '        e.Row.ForeColor = Drawing.Color.Green
+        '    End If
+        'End If
     End Sub
 
     Private Sub GridView2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView2.RowCommand

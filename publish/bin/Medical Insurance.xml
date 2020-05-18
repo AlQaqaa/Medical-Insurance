@@ -3286,15 +3286,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.createProfilePrices._cb_is_default">
-<summary>
-cb_is_default control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.createProfilePrices._btn_next">
 <summary>
 btn_next control.

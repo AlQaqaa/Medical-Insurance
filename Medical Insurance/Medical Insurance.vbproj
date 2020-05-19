@@ -142,6 +142,7 @@
   <ItemGroup>
     <Content Include="approvalConfirm\approvalArchive.aspx" />
     <Content Include="approvalConfirm\approvalDetails.aspx" />
+    <Content Include="cashPrices.aspx" />
     <Content Include="Companies\addNewCompany.aspx" />
     <Content Include="Companies\addNewContract.aspx" />
     <Content Include="Companies\companyClinic.aspx" />
@@ -235,6 +236,13 @@
     </Compile>
     <Compile Include="approvalConfirm\approvalDetails.aspx.vb">
       <DependentUpon>approvalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="cashPrices.aspx.designer.vb">
+      <DependentUpon>cashPrices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cashPrices.aspx.vb">
+      <DependentUpon>cashPrices.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Companies\addNewCompany.aspx.designer.vb">

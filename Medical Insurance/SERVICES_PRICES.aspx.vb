@@ -56,6 +56,7 @@ Public Class SERVICES_PRICES
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
                     insClinic.Parameters.AddWithValue("@cost_prc", CDec(txt_cost_price.Text))
+                    insClinic.Parameters.AddWithValue("@doctor_id", 0)
                     insurance_SQLcon.Open()
                     insClinic.ExecuteNonQuery()
                     insurance_SQLcon.Close()

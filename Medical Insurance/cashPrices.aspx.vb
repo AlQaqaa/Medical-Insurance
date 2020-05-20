@@ -16,21 +16,33 @@ Public Class cashPrices
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
                 Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                 Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                Dim txt_invoice_per As TextBox = dd.FindControl("txt_invoice_per")
+
+                Dim is_per As Boolean = False
+                Dim inv_val As Decimal = 0
+                If txt_invoice_prc.Text = "" And txt_invoice_per.Text <> "" Then
+                    is_per = True
+                    inv_val = Val(txt_invoice_per.Text)
+                ElseIf txt_invoice_prc.Text <> "" And txt_invoice_per.Text = "" Then
+                    is_per = False
+                    inv_val = CDec(txt_invoice_prc.Text)
+                End If
 
                 If ch.Checked = True Then
                     Dim insClinic As New SqlCommand
                     insClinic.Connection = insurance_SQLcon
-                    insClinic.CommandText = "INC_addServicesPrice"
+                    insClinic.CommandText = "INC_addServicesCashPrice"
                     insClinic.CommandType = CommandType.StoredProcedure
                     insClinic.Parameters.AddWithValue("@service_id", dd.Cells(0).Text)
                     insClinic.Parameters.AddWithValue("@private_prc", CDec(txt_private_prc.Text))
                     insClinic.Parameters.AddWithValue("@inc_prc", 0)
-                    insClinic.Parameters.AddWithValue("@inv_prc", CDec(txt_invoice_prc.Text))
+                    insClinic.Parameters.AddWithValue("@inv_prc", inv_val)
                     insClinic.Parameters.AddWithValue("@user_id", Session("User_Id"))
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
                     insClinic.Parameters.AddWithValue("@cost_prc", 0)
                     insClinic.Parameters.AddWithValue("@doctor_id", dll_doctors.SelectedValue)
+                    insClinic.Parameters.AddWithValue("@Is_Percent", is_per)
                     insurance_SQLcon.Open()
                     insClinic.ExecuteNonQuery()
                     insurance_SQLcon.Close()

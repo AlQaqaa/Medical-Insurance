@@ -39,11 +39,9 @@
                             <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                         </div>
                         <div class="form-group col-xs-12 col-sm-2">
-                            <label for="txt_start_dt"></label>
-                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block mt-2" runat="server" Text="بحث" ValidationGroup="search" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
+                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block" runat="server" Text="بحث" ValidationGroup="search" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                         </div>
                         <div class="form-group col-xs-12 col-sm-2">
-                            <label for="txt_start_dt"></label>
                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
                                 <ProgressTemplate>
                                     <div class="spinner-border text-info mt-2" role="status">

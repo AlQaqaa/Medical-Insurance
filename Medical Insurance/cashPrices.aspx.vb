@@ -7,6 +7,12 @@ Public Class cashPrices
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsPostBack = False Then
+            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
+                Response.Redirect("http://10.10.1.10", True)
+            End If
+        End If
+
     End Sub
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
@@ -39,7 +45,7 @@ Public Class cashPrices
                     insClinic.Parameters.AddWithValue("@inv_prc", inv_val)
                     insClinic.Parameters.AddWithValue("@user_id", Session("User_Id"))
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
-                    insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
+                    insClinic.Parameters.AddWithValue("@profile_price_id", getProfileId())
                     insClinic.Parameters.AddWithValue("@cost_prc", 0)
                     insClinic.Parameters.AddWithValue("@doctor_id", dll_doctors.SelectedValue)
                     insClinic.Parameters.AddWithValue("@Is_Percent", is_per)
@@ -166,12 +172,14 @@ Public Class cashPrices
             GridView1.DataSource = Nothing
             GridView1.DataBind()
 
-            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS CASH_PRS,"
+            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & getProfileId() & " AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS CASH_PRS,"
 
-            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS "
+            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & getProfileId() & " AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS, "
+
+            Dim is_per As String = "ISNULL((SELECT top(1) Is_Percent FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & getProfileId() & " AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC), ISNULL((SELECT top(1) Is_Percent FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS Is_Percent "
 
 
-            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INVO_PRS & " FROM Main_SubServices WHERE SubService_State = 0 "
+            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INVO_PRS & is_per & " FROM Main_SubServices WHERE SubService_State = 0 "
 
             If ddl_clinics.SelectedValue <> 0 Then
                 sql_str = sql_str & " AND SubService_Clinic = " & ddl_clinics.SelectedValue
@@ -202,13 +210,23 @@ Public Class cashPrices
                 GridView1.DataSource = dt_res
                 GridView1.DataBind()
                 For i = 0 To dt_res.Rows.Count - 1
+
                     Dim dd As GridViewRow = GridView1.Rows(i)
 
                     Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                     Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                    Dim txt_invoice_per As TextBox = dd.FindControl("txt_invoice_per")
+
+                    If dt_res.Rows(i)("Is_Percent") = 1 Then
+                        txt_invoice_per.Text = dt_res.Rows(i)("INVO_PRS")
+                        txt_invoice_prc.Text = "0"
+                    Else
+                        txt_invoice_per.Text = "0"
+                        txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+                    End If
 
                     txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
-                    txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+
                 Next
             Else
                 Panel1.Visible = False
@@ -239,5 +257,17 @@ Public Class cashPrices
         GridView1.DataSource = Nothing
         GridView1.DataBind()
     End Sub
+
+    Function getProfileId() As Integer
+
+        Dim profile_id As Integer = 0
+        Dim sel_com As New SqlCommand("SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1", insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        profile_id = sel_com.ExecuteScalar
+        insurance_SQLcon.Close()
+
+        Return profile_id
+    End Function
 
 End Class

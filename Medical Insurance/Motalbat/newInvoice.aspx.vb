@@ -11,7 +11,9 @@ Public Class newInvoice
         If IsPostBack = False Then
             'txt_search_code.Focus()
             'Me.txt_search_code.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
-
+            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
+                Response.Redirect("http://10.10.1.10", True)
+            End If
         End If
 
     End Sub

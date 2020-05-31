@@ -9,13 +9,13 @@ Public Class main
         If IsPostBack = False Then
             lbl_date_now.Text = Date.Now.ToLongDateString
 
-            'If Session("User_Id") Is Nothing Or Session("User_Id") = 0 Then
-            '    Response.Redirect("http://10.10.1.10", True)
-            'End If
+            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 Then
+                Response.Redirect("http://10.10.1.10", True)
+            End If
 
-            'If Session("systemlogin") <> "401" Then
-            '    Response.Redirect("http://10.10.1.10", True)
-            'End If
+            If Session("systemlogin") <> "401" Then
+                Response.Redirect("http://10.10.1.10", True)
+            End If
 
         End If
         'calculateCompanyExpenses()

@@ -1,8 +1,11 @@
 ﻿Imports System.IO
 Imports System.Security.Cryptography
+Imports System.Data.SqlClient
 
 Public Class index
     Inherits System.Web.UI.Page
+
+    Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
@@ -22,6 +25,23 @@ Public Class index
                 Dim p As String = Decrypt(Request.QueryString("p").Replace(" ", "+"))
                 Dim d As String = Decrypt(Request.QueryString("d").Replace(" ", "+"))
                 Dim t As String = Decrypt(Request.QueryString("t").Replace(" ", "+"))
+
+                Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id = " & u, insurance_SQLcon)
+                Dim dt_user As New DataTable
+                dt_user.Rows.Clear()
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_user.Load(sel_com.ExecuteReader)
+                insurance_SQLcon.Close()
+
+                If dt_user.Rows.Count > 0 Then
+                    Dim dr_user = dt_user.Rows(0)
+                    Session.Item("User_Id") = dr_user!user_id
+                    Session.Item("User_name") = dr_user!user_name
+                    Session.Item("user_full_name") = dr_user!Orginal_UserName
+                    Session.Item("User_per") = dr_user!user_type
+                    Session.Item("User_ip") = dr_user!user_ip
+                End If
 
                 Dim tim1 As Date = DateTime.FromOADate(t)
 

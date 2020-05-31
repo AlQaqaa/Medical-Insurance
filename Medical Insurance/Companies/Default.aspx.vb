@@ -7,10 +7,6 @@ Public Class _Default3
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
-
             ViewState("company_no") = Val(Session("company_id"))
 
             If ViewState("company_no") = 0 Then

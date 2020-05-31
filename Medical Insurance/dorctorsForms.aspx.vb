@@ -10,10 +10,6 @@ Public Class dorctorsForms
 
         If IsPostBack = False Then
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
-
             getData()
         End If
     End Sub

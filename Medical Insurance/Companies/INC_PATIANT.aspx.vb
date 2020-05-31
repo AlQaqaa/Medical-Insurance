@@ -13,10 +13,6 @@ Public Class INC_PATIANT
 
         If IsPostBack = False Then
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
-
             company_no = Val(Session("company_id"))
 
             If company_no = 0 Then

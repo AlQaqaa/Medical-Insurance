@@ -10,10 +10,6 @@ Public Class WebForm1
 
         If IsPostBack = False Then
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
-
             ViewState("patiant_id") = Val(Session("patiant_id"))
 
             If ViewState("patiant_id") = 0 Then

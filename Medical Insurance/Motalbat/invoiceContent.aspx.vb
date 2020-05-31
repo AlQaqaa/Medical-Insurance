@@ -17,10 +17,6 @@ Public Class invoiceContent
 
         If IsPostBack = False Then
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 And Session("systemlogin") <> "401" Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
-
             If ViewState("invoice_no") <> 0 Then
 
                 txt_invoice_no.Text = ViewState("invoice_no")

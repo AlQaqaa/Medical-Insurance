@@ -580,7 +580,7 @@
                                 <TextRun>
                                   <Value>=Fields!total_val.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <Format>#,0.000;(#,0.000)</Format>
                                   </Style>
@@ -616,7 +616,7 @@
                                 <TextRun>
                                   <Value>=Fields!DATE_TO.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <Format>yyyy-MM-dd</Format>
                                   </Style>
@@ -652,7 +652,7 @@
                                 <TextRun>
                                   <Value>=Fields!DATE_FROM.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <Format>yyyy-MM-dd</Format>
                                   </Style>
@@ -688,7 +688,7 @@
                                 <TextRun>
                                   <Value>=Fields!INVOICE_NO.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -723,7 +723,7 @@
                                 <TextRun>
                                   <Value>=RowNumber(Nothing)</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>

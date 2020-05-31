@@ -276,7 +276,7 @@
                                 <TextRun>
                                   <Value>=Fields!PROCESSES_RESIDUAL.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <Format>#,0.000;(#,0.000)</Format>
                                   </Style>
@@ -312,7 +312,7 @@
                                 <TextRun>
                                   <Value>=Fields!NAME_ARB.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -347,7 +347,7 @@
                                 <TextRun>
                                   <Value>=Fields!BAGE_NO.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -382,7 +382,7 @@
                                 <TextRun>
                                   <Value>=Fields!CARD_NO.Value</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -417,7 +417,7 @@
                                 <TextRun>
                                   <Value>=RowNumber(Nothing)</Value>
                                   <Style>
-                                    <FontFamily>Traditional Arabic</FontFamily>
+                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>

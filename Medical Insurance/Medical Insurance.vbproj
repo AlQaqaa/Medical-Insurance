@@ -172,6 +172,7 @@
     <Content Include="approvalConfirm\newApproval.aspx" />
     <Content Include="notificationCenter.aspx" />
     <Content Include="Reports\dailyProcesses.aspx" />
+    <Content Include="Reports\totalExpenses.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
     <Content Include="Companies\STOP_COMPANY.aspx" />
@@ -471,6 +472,13 @@
       <DependentUpon>servicesPrices.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\totalExpenses.aspx.designer.vb">
+      <DependentUpon>totalExpenses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\totalExpenses.aspx.vb">
+      <DependentUpon>totalExpenses.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="servicesPricesShow.aspx.designer.vb">
       <DependentUpon>servicesPricesShow.aspx</DependentUpon>
     </Compile>
@@ -551,6 +559,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPrices.vb</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Reports\totalExpensesCompany.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.Master" />

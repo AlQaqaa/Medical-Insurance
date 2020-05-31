@@ -2,348 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="Textbox2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>الهلال الأحمر الليبي</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>0.41215cm</Top>
-        <Left>21.92728cm</Left>
-        <Height>0.83234cm</Height>
-        <Width>5.51985cm</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox4">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>مصحة ابن سينا</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>1.24449cm</Top>
-        <Left>21.92728cm</Left>
-        <Height>0.83234cm</Height>
-        <Width>5.51985cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox6">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>بنغازي</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>14pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.11211cm</Top>
-        <Left>21.92728cm</Left>
-        <Height>0.78521cm</Height>
-        <Width>5.51985cm</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Image Name="Image2">
-        <Source>Embedded</Source>
-        <Value>reports_header</Value>
-        <Sizing>FitProportional</Sizing>
-        <Top>0.36255cm</Top>
-        <Left>13.26177cm</Left>
-        <Height>2.00271cm</Height>
-        <Width>1.97679cm</Width>
-        <ZIndex>3</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Image>
-      <Textbox Name="Textbox7">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>LIBYAN RED CRESCENT</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>0.41215cm</Top>
-        <Left>0.43995cm</Left>
-        <Height>0.83234cm</Height>
-        <Width>6.05303cm</Width>
-        <ZIndex>4</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox8">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>IBN SINA POLY CLINIC</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>1.27977cm</Top>
-        <Left>0.43995cm</Left>
-        <Height>0.83234cm</Height>
-        <Width>6.05303cm</Width>
-        <ZIndex>5</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox9">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>BENGHAZI</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>12pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>2.1474cm</Top>
-        <Left>0.43995cm</Left>
-        <Height>0.78521cm</Height>
-        <Width>6.05303cm</Width>
-        <ZIndex>6</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox10">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>تقرير بالحركة اليومية للتأمين الصحي</Value>
-                <Style>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>16pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>2.77813cm</Top>
-        <Left>9.06251cm</Left>
-        <Height>0.97042cm</Height>
-        <Width>10.01416cm</Width>
-        <ZIndex>7</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="ExecutionTime2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Globals!ExecutionTime</Value>
-                <Style>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontWeight>Bold</FontWeight>
-                  <Format>yyyy-MM-dd</Format>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>ExecutionTime</rd:DefaultName>
-        <Top>4.03917cm</Top>
-        <Left>11.62731cm</Left>
-        <Height>0.75875cm</Height>
-        <Width>3.29375cm</Width>
-        <ZIndex>8</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox43">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>:التاريخ</Value>
-                <Style>
-                  <FontFamily>Tajawal</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox43</rd:DefaultName>
-        <Top>4.03917cm</Top>
-        <Left>14.95634cm</Left>
-        <Height>0.75875cm</Height>
-        <Width>1.55326cm</Width>
-        <ZIndex>9</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Tablix Name="Tablix1">
         <TablixBody>
           <TablixColumns>
@@ -755,7 +413,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.75875cm</Height>
+              <Height>0.67938cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -768,7 +426,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Residual.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <Format>#,0.000;(#,0.000)</Format>
                               </Style>
                             </TextRun>
@@ -803,7 +461,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Paid.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <Format>#,0.000;(#,0.000)</Format>
                               </Style>
                             </TextRun>
@@ -838,7 +496,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Price.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <Format>#,0.000;(#,0.000)</Format>
                               </Style>
                             </TextRun>
@@ -873,7 +531,7 @@
                             <TextRun>
                               <Value>=Fields!MedicalStaff_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -907,7 +565,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_SubServices.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -941,7 +599,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Cilinc.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -975,7 +633,7 @@
                             <TextRun>
                               <Value>=Fields!C_NAME.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1009,7 +667,7 @@
                             <TextRun>
                               <Value>=Fields!PATIENT_NAME.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1043,7 +701,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Reservation_Code.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1077,7 +735,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_ID.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1129,11 +787,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DPR_DS</DataSetName>
-        <Top>5.50016cm</Top>
-        <Left>0cm</Left>
-        <Height>1.43192cm</Height>
+        <Top>0.34078cm</Top>
+        <Left>0.06953cm</Left>
+        <Height>1.35254cm</Height>
         <Width>28.10859cm</Width>
-        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1158,11 +815,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>7.19349cm</Top>
-        <Left>4.91808cm</Left>
+        <Top>2.03412cm</Top>
+        <Left>4.98761cm</Left>
         <Height>0.73229cm</Height>
         <Width>3.30762cm</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1191,11 +848,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>8.10217cm</Top>
-        <Left>4.91807cm</Left>
+        <Top>2.9428cm</Top>
+        <Left>4.9876cm</Left>
         <Height>0.73229cm</Height>
         <Width>3.59866cm</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1227,11 +884,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>7.19349cm</Top>
-        <Left>0.43995cm</Left>
+        <Top>2.03412cm</Top>
+        <Left>0.50948cm</Left>
         <Height>0.73229cm</Height>
         <Width>4.33701cm</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>Dotted</Style>
@@ -1263,11 +920,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox14</rd:DefaultName>
-        <Top>8.06689cm</Top>
-        <Left>0.43995cm</Left>
+        <Top>2.90752cm</Top>
+        <Left>0.50948cm</Left>
         <Height>0.73229cm</Height>
         <Width>4.33701cm</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>Dotted</Style>
@@ -1279,11 +936,365 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>9.07259cm</Height>
+    <Height>4.04551cm</Height>
     <Style />
   </Body>
   <Width>28.17812cm</Width>
   <Page>
+    <PageHeader>
+      <Height>4.87991cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>الهلال الأحمر الليبي</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.46507cm</Top>
+          <Left>21.92728cm</Left>
+          <Height>0.83234cm</Height>
+          <Width>5.51985cm</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>مصحة ابن سينا</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>1.29741cm</Top>
+          <Left>21.92728cm</Left>
+          <Height>0.83234cm</Height>
+          <Width>5.51985cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox6">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>بنغازي</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>14pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>2.16503cm</Top>
+          <Left>21.92728cm</Left>
+          <Height>0.78521cm</Height>
+          <Width>5.51985cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="Image2">
+          <Source>Embedded</Source>
+          <Value>reports_header</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.12704cm</Top>
+          <Left>13.57927cm</Left>
+          <Height>2.00271cm</Height>
+          <Width>1.97679cm</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox10">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>تقرير بالحركة اليومية للتأمين الصحي</Value>
+                  <Style>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>16pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox10</rd:DefaultName>
+          <Top>2.54262cm</Top>
+          <Left>9.38001cm</Left>
+          <Height>0.97042cm</Height>
+          <Width>10.01416cm</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="ExecutionTime2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=Globals!ExecutionTime</Value>
+                  <Style>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontWeight>Bold</FontWeight>
+                    <Format>yyyy-MM-dd</Format>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>ExecutionTime</rd:DefaultName>
+          <Top>3.80366cm</Top>
+          <Left>11.94481cm</Left>
+          <Height>0.75875cm</Height>
+          <Width>3.29375cm</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox43">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>:التاريخ</Value>
+                  <Style>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>11pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox43</rd:DefaultName>
+          <Top>3.80366cm</Top>
+          <Left>15.27384cm</Left>
+          <Height>0.75875cm</Height>
+          <Width>1.55326cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox7">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>LIBYAN RED CRESCENT</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>0.46507cm</Top>
+          <Left>0.43995cm</Left>
+          <Height>0.83234cm</Height>
+          <Width>6.05303cm</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox8">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>IBN SINA POLY CLINIC</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>1.33269cm</Top>
+          <Left>0.43995cm</Left>
+          <Height>0.83234cm</Height>
+          <Width>6.05303cm</Width>
+          <ZIndex>8</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox9">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>BENGHAZI</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontFamily>Tajawal</FontFamily>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox2</rd:DefaultName>
+          <Top>2.20032cm</Top>
+          <Left>0.43995cm</Left>
+          <Height>0.78521cm</Height>
+          <Width>6.05303cm</Width>
+          <ZIndex>9</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
     <PageFooter>
       <Height>1.12599cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>

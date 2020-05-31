@@ -266,7 +266,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Residual.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <Format>'د.ل.‏'#,0.000;('د.ل.‏'#,0.000)</Format>
                               </Style>
@@ -303,7 +303,7 @@
                             <TextRun>
                               <Value>=Fields!Processes_Date.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <Format>yyyy-MM-dd</Format>
                               </Style>
@@ -339,7 +339,7 @@
                             <TextRun>
                               <Value>=Fields!MedicalStaff_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -374,7 +374,7 @@
                             <TextRun>
                               <Value>=Fields!SubService_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -409,7 +409,7 @@
                             <TextRun>
                               <Value>=Fields!Clinic_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -444,7 +444,7 @@
                             <TextRun>
                               <Value>=RowNumber(Nothing)</Value>
                               <Style>
-                                <FontFamily>Traditional Arabic</FontFamily>
+                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>

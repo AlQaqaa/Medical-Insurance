@@ -9,14 +9,20 @@ Public Class index
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If Session("hublogin") = 1 Then
+        If Session("INC_hublogin") = 1 Then
+            Session("INC_hublogin") = Nothing
+            Session("systemlogin") = Nothing
             Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
         Else
 
             If Session("systemlogin") = "401" Then
+                Session("INC_hublogin") = Nothing
+                Session("systemlogin") = Nothing
                 Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
             Else
                 If (Request.QueryString("u")) = "" Then
+                    Session("INC_hublogin") = Nothing
+                    Session("systemlogin") = Nothing
                     Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
 
                 End If
@@ -36,11 +42,12 @@ Public Class index
 
                 If dt_user.Rows.Count > 0 Then
                     Dim dr_user = dt_user.Rows(0)
-                    Session.Item("User_Id") = dr_user!user_id
-                    Session.Item("User_name") = dr_user!user_name
-                    Session.Item("user_full_name") = dr_user!Orginal_UserName
-                    Session.Item("User_per") = dr_user!user_type
-                    Session.Item("User_ip") = dr_user!user_ip
+                    Session.Item("INC_User_Id") = dr_user!user_id
+                    Session.Item("INC_User_name") = dr_user!user_name
+                    Session.Item("INC_user_full_name") = dr_user!Orginal_UserName
+                    Session.Item("INC_User_type") = dr_user!user_type
+                    Session.Item("INC_User_ip") = dr_user!user_ip
+                    Session("User_per") = getUserPermissions()
                 End If
 
                 Dim tim1 As Date = DateTime.FromOADate(t)
@@ -48,9 +55,9 @@ Public Class index
                 'If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
                 '    Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
                 'Else
-                Session("hublogin") = 1
-                    Session("systemlogin") = "401"
-                    Response.Redirect("default.aspx", False)
+                Session("INC_hublogin") = 1
+                Session("systemlogin") = "401"
+                Response.Redirect("default.aspx", False)
                 'End If
 
             End If
@@ -77,6 +84,17 @@ Public Class index
             End Using
         End Using
         Return cipherText
+    End Function
+
+    Public Function getUserPermissions() As DataTable
+        Dim dt_result As New DataTable
+
+        Dim sel_com As New SqlCommand("SELECT * FROM SYS_INC_Permissions WHERE user_id = " & Session("INC_User_Id"), insurance_SQLcon)
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+
+        Return dt_result
     End Function
 
 End Class

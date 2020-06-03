@@ -56,7 +56,7 @@ Public Class addNewContract
                 insToCompany.Parameters.AddWithValue("@contractType", ddl_contractType.SelectedValue) ' 3تمدبد2.. تجدبد
                 insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
                 insToCompany.Parameters.AddWithValue("@profile_price_id", ddl_profiles_prices.SelectedValue)
-                insToCompany.Parameters.AddWithValue("@userId", Session("User_Id"))
+                insToCompany.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
                 insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
                 insToCompany.Parameters.AddWithValue("@max_one_processes", CDec(txt_max_one_processes.Text))
                 insurance_SQLcon.Close()

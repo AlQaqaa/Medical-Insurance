@@ -40,7 +40,7 @@ Public Class totalExpenses
 
             rp1 = New ReportParameter("from_dt", start_dt)
             rp2 = New ReportParameter("to_dt", end_dt)
-            rp3 = New ReportParameter("user_name", Session("User_name").ToString)
+            rp3 = New ReportParameter("user_name", Session("INC_User_name").ToString)
 
 
             ReportViewer1.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3})

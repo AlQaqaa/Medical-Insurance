@@ -106,7 +106,7 @@ Public Class invoiceContent
                     insurance_SQLcon.Close()
                     GridView1.DataBind()
 
-                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(3).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("User_Id"), GetIPAddress())
+                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(3).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
 
                     ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
@@ -125,7 +125,7 @@ Public Class invoiceContent
                     returnInvoice.ExecuteNonQuery()
                     insurance_SQLcon.Close()
 
-                    add_action(1, 3, 3, "إرجاع المطالبة رقم: " & ViewState("invoice_no"), Session("User_Id"), GetIPAddress())
+                    add_action(1, 3, 3, "إرجاع المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
 
                     ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
@@ -187,16 +187,16 @@ Public Class invoiceContent
         Dim bytes As Byte()
         Dim FolderLocation As String
         FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/invoiceContent" & Session("User_Id") & ".pdf"
+        Dim filepath As String = FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf"
         If Directory.Exists(filepath) Then
             File.Delete(filepath)
         End If
         bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
             encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("User_Id") & ".pdf", FileMode.Create)
+        Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf", FileMode.Create)
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
-        Response.Redirect("~/Reports/invoiceContent" & Session("User_Id") & ".pdf")
+        Response.Redirect("~/Reports/invoiceContent" & Session("INC_User_Id") & ".pdf")
     End Sub
 
     Private Sub btn_return_Click(sender As Object, e As EventArgs) Handles btn_return.Click
@@ -210,7 +210,7 @@ Public Class invoiceContent
             returnInvoice.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 3, 3, "إرجاع المطالبة رقم: " & ViewState("invoice_no"), Session("User_Id"), GetIPAddress())
+            add_action(1, 3, 3, "إرجاع المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',

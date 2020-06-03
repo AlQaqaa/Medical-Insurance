@@ -97,7 +97,7 @@ Public Class INC_PATIANT
             ins_PAT.Parameters.AddWithValue("@KID_NO", Val(txt_KID_NO.Text))
             ins_PAT.Parameters.AddWithValue("@CITY_ID", ddl_CITY_ID.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@IMAGE_CARD", "images/ImagePatiant/card.png")
-            ins_PAT.Parameters.AddWithValue("@userId", Session("User_Id"))
+            ins_PAT.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
             ins_PAT.Parameters.AddWithValue("@userIp", GetIPAddress())
 
             insurance_SQLcon.Close()

@@ -9,7 +9,7 @@ Public Class main
         If IsPostBack = False Then
             lbl_date_now.Text = Date.Now.ToLongDateString
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 Then
+            If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
                 Response.Redirect("http://10.10.1.10", True)
             End If
 

@@ -32,7 +32,7 @@ Public Class createProfilePrices
             insNewProfile.CommandType = CommandType.StoredProcedure
             insNewProfile.Parameters.AddWithValue("@profile_name", txt_profile_name.Text)
             insNewProfile.Parameters.AddWithValue("@is_default", 0)
-            insNewProfile.Parameters.AddWithValue("@user_id", Session("User_Id"))
+            insNewProfile.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
             insNewProfile.Parameters.AddWithValue("@user_ip", GetIPAddress())
             insNewProfile.Parameters.AddWithValue("@p_id", SqlDbType.Int).Direction = ParameterDirection.Output
             insurance_SQLcon.Open()
@@ -42,7 +42,7 @@ Public Class createProfilePrices
 
             txt_profile_name.Text = ""
 
-            add_action(1, 1, 3, "إنشاء ملف أسعار جديد باسم: " & txt_profile_name.Text & " رقم الملف: " & Session("profile_no"), Session("User_Id"), GetIPAddress())
+            add_action(1, 1, 3, "إنشاء ملف أسعار جديد باسم: " & txt_profile_name.Text & " رقم الملف: " & Session("profile_no"), Session("INC_User_Id"), GetIPAddress())
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
@@ -184,7 +184,7 @@ Public Class createProfilePrices
         '        setDefaultProfilePrice.CommandText = "INC_setDefaultProfilePrice"
         '        setDefaultProfilePrice.CommandType = CommandType.StoredProcedure
         '        setDefaultProfilePrice.Parameters.AddWithValue("@profile_no", (row.Cells(0).Text))
-        '        setDefaultProfilePrice.Parameters.AddWithValue("@user_id", Session("User_Id"))
+        '        setDefaultProfilePrice.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
         '        setDefaultProfilePrice.Parameters.AddWithValue("@user_ip", GetIPAddress())
         '        insurance_SQLcon.Open()
         '        setDefaultProfilePrice.ExecuteNonQuery()

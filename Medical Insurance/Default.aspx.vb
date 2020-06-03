@@ -9,7 +9,7 @@ Public Class _Default1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
-            If Session("User_Id") Is Nothing Or Session("User_Id") = 0 Then
+            If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
                 Response.Redirect("http://10.10.1.10", True)
             End If
 
@@ -106,7 +106,7 @@ Public Class _Default1
                 stopCompany.CommandText = "INC_stopCompany"
                 stopCompany.CommandType = CommandType.StoredProcedure
                 stopCompany.Parameters.AddWithValue("@comID", (row.Cells(0).Text))
-                stopCompany.Parameters.AddWithValue("@user_id", Session("User_Id"))
+                stopCompany.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                 stopCompany.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()
                 stopCompany.ExecuteNonQuery()
@@ -131,7 +131,7 @@ Public Class _Default1
             end_contract.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "إنهاء عقد الشركة رقم: " & (row.Cells(0).Text), Session("User_Id"), GetIPAddress())
+            add_action(1, 2, 2, "إنهاء عقد الشركة رقم: " & (row.Cells(0).Text), Session("INC_User_Id"), GetIPAddress())
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم إنهاء عقد الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         End If
 

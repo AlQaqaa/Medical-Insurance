@@ -41,6 +41,15 @@ Partial Public Class companies
     Protected WithEvents Image1 As Global.System.Web.UI.WebControls.Image
     
     '''<summary>
+    '''HyperLink10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink10 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''img_user_img control.
     '''</summary>
     '''<remarks>

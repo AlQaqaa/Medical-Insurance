@@ -108,7 +108,7 @@ Public Class editClinc
                 update_clinic.ExecuteNonQuery()
                 insurance_SQLcon.Close()
 
-                add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
+                add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("INC_User_Id"), GetIPAddress())
             Else
                 ' في حالة كانت العيادة علاج طبيعي يتم تعديل عدد الجلسات وليس السقف
                 Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET SESSION_COUNT = @SESSION_COUNT WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
@@ -121,7 +121,7 @@ Public Class editClinc
                 update_clinic.ExecuteNonQuery()
                 insurance_SQLcon.Close()
 
-                add_action(1, 3, 2, "تعديل عدد الجلسات للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
+                add_action(1, 3, 2, "تعديل عدد الجلسات للعيادة رقم: " & Val(txt_clinic_id.Text) & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("INC_User_Id"), GetIPAddress())
             End If
 
 
@@ -138,7 +138,7 @@ Public Class editClinc
             update_clinic.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 3, 2, "تعديل السقف العام لمجموعة عيادات رقم المجموعة: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
+            add_action(1, 3, 2, "تعديل السقف العام لمجموعة عيادات رقم المجموعة: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("INC_User_Id"), GetIPAddress())
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
@@ -178,7 +178,7 @@ Public Class editClinc
                 insurance_SQLcon.Close()
             End If
 
-            add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " وفصلها عن المجموعة رقم: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
+            add_action(1, 3, 2, "تعديل السقف العام للعيادة رقم: " & Val(txt_clinic_id.Text) & " وفصلها عن المجموعة رقم: " & ViewState("group_no") & " للشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("INC_User_Id"), GetIPAddress())
 
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',

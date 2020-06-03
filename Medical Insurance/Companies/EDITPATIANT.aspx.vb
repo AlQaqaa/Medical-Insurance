@@ -86,7 +86,7 @@ Public Class WebForm1
             ins_PAT.Parameters.AddWithValue("@KID_NO", txt_KID_NO.Text)
             ins_PAT.Parameters.AddWithValue("@CITY_ID", ddl_CITY_ID.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@PINC_ID", ViewState("patiant_id"))
-            ins_PAT.Parameters.AddWithValue("@user_id", Session("User_Id"))
+            ins_PAT.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
             ins_PAT.Parameters.AddWithValue("@user_ip", GetIPAddress())
 
             insurance_SQLcon.Close()

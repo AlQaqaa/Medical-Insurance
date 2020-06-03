@@ -202,7 +202,7 @@ Public Class companyClinic
                 insClinic.Parameters.AddWithValue("@clinicPersonPer", 0)
                 insClinic.Parameters.AddWithValue("@sessionCount", Val(txt_session_count.Text))
                 insClinic.Parameters.AddWithValue("@group_no", 0)
-                insClinic.Parameters.AddWithValue("@userId", Session("User_Id"))
+                insClinic.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
                 insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
                 insurance_SQLcon.Open()
                 insClinic.ExecuteNonQuery()
@@ -246,7 +246,7 @@ Public Class companyClinic
                     insClinic.Parameters.AddWithValue("@clinicPersonPer", 0)
                     insClinic.Parameters.AddWithValue("@sessionCount", Val(txt_session_count.Text))
                     insClinic.Parameters.AddWithValue("@group_no", group_no)
-                    insClinic.Parameters.AddWithValue("@userId", Session("User_Id"))
+                    insClinic.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
                     insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
                     insurance_SQLcon.Open()
                     insClinic.ExecuteNonQuery()
@@ -304,7 +304,7 @@ Public Class companyClinic
             insurance_SQLcon.Close()
             stopClinic.CommandText = ""
 
-            add_action(1, 2, 2, "إيقاف العيادة رقم: " & (row.Cells(0).Text) & " عن الشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("User_Id"), GetIPAddress())
+            add_action(1, 2, 2, "إيقاف العيادة رقم: " & (row.Cells(0).Text) & " عن الشركة رقم " & ViewState("company_no") & " عقد رقم: " & ViewState("contract_no"), Session("INC_User_Id"), GetIPAddress())
 
             fillListClinic()
             getClinicAvailable()

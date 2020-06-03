@@ -98,7 +98,7 @@ Public Class EDITCOMPANY
             insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))
             insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
             insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)
-            insToCompany.Parameters.AddWithValue("@userId", Session("User_Id"))
+            insToCompany.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
             insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()

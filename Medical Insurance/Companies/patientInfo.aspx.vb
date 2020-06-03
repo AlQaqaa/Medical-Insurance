@@ -141,9 +141,9 @@ Public Class patientInfo
             insurance_SQLcon.Close()
 
             If new_sts = 1 Then
-                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
+                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
             Else
-                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
+                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
             End If
 
             getPatInfo()
@@ -161,7 +161,7 @@ Public Class patientInfo
             ins_com.Parameters.Add("@SER_ID", SqlDbType.Int).Value = ddl_services.SelectedValue
             ins_com.Parameters.Add("@BLOCK_TP", SqlDbType.Int).Value = 1 ' Block Service
             ins_com.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = txt_notes.Text
-            ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = Session("User_Id")
+            ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = Session("INC_User_Id")
             ins_com.Parameters.Add("@USER_IP", SqlDbType.NVarChar).Value = GetIPAddress()
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
@@ -209,7 +209,7 @@ Public Class patientInfo
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
+            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
 
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
@@ -296,7 +296,7 @@ Public Class patientInfo
             renew_card.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), Session("User_Id"), GetIPAddress())
+            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
 
             getPatInfo()
         Catch ex As Exception

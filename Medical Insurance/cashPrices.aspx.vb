@@ -38,7 +38,7 @@ Public Class cashPrices
                     insClinic.Parameters.AddWithValue("@private_prc", CDec(txt_private_prc.Text))
                     insClinic.Parameters.AddWithValue("@inc_prc", 0)
                     insClinic.Parameters.AddWithValue("@inv_prc", inv_val)
-                    insClinic.Parameters.AddWithValue("@user_id", Session("User_Id"))
+                    insClinic.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insClinic.Parameters.AddWithValue("@profile_price_id", getProfileId())
                     insClinic.Parameters.AddWithValue("@cost_prc", 0)

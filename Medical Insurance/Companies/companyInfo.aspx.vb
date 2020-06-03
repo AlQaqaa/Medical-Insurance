@@ -95,7 +95,7 @@ Public Class companyInfo
             ins_com.Parameters.Add("@SER_ID", SqlDbType.Int).Value = ddl_services.SelectedValue
             ins_com.Parameters.Add("@BLOCK_TP", SqlDbType.Int).Value = 2 ' Block Doctor
             ins_com.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = txt_notes.Text
-            ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = Session("User_Id")
+            ins_com.Parameters.Add("@USER_ID", SqlDbType.Int).Value = Session("INC_User_Id")
             ins_com.Parameters.Add("@USER_IP", SqlDbType.NVarChar).Value = GetIPAddress()
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()

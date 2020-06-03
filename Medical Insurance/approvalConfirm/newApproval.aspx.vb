@@ -187,7 +187,7 @@ Public Class newApproval
             insToConfirm.Parameters.AddWithValue("@end_date", end_dt)
             insToConfirm.Parameters.AddWithValue("@approved_value", 0)
             insToConfirm.Parameters.AddWithValue("@req_unit", 1)
-            insToConfirm.Parameters.AddWithValue("@user_id", Session("User_Id"))
+            insToConfirm.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
             insToConfirm.Parameters.AddWithValue("@user_ip", GetIPAddress())
             insToConfirm.Parameters.AddWithValue("@confirm_id", SqlDbType.Int).Direction = ParameterDirection.Output
             insurance_SQLcon.Open()
@@ -309,16 +309,16 @@ Public Class newApproval
             Dim bytes As Byte()
             Dim FolderLocation As String
             FolderLocation = Server.MapPath("~/Reports")
-            Dim filepath As String = FolderLocation & "/confirmApproval" & Session("User_Id") & ".pdf"
+            Dim filepath As String = FolderLocation & "/confirmApproval" & Session("INC_User_Id") & ".pdf"
             If Directory.Exists(filepath) Then
                 File.Delete(filepath)
             End If
             bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
                 encoding, extension, streamids, warnings)
-            Dim fs As New FileStream(FolderLocation & "/confirmApproval" & Session("User_Id") & ".pdf", FileMode.Create)
+            Dim fs As New FileStream(FolderLocation & "/confirmApproval" & Session("INC_User_Id") & ".pdf", FileMode.Create)
             fs.Write(bytes, 0, bytes.Length)
             fs.Close()
-            Response.Redirect("~/Reports/confirmApproval" & Session("User_Id") & ".pdf", False)
+            Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", False)
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -378,7 +378,7 @@ Public Class newApproval
                     insToConfirm.Parameters.AddWithValue("@confirm_id", ViewState("approv_no"))
                     insToConfirm.Parameters.AddWithValue("@req_unit", 1)
                     insToConfirm.Parameters.AddWithValue("@req_type", 1)
-                    insToConfirm.Parameters.AddWithValue("@user_id", Session("User_Id"))
+                    insToConfirm.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                     insToConfirm.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insurance_SQLcon.Open()
                     insToConfirm.ExecuteNonQuery()
@@ -397,7 +397,7 @@ Public Class newApproval
                 insToConfirm.Parameters.AddWithValue("@confirm_id", ViewState("approv_no"))
                 insToConfirm.Parameters.AddWithValue("@req_unit", 1)
                 insToConfirm.Parameters.AddWithValue("@req_type", 2)
-                insToConfirm.Parameters.AddWithValue("@user_id", Session("User_Id"))
+                insToConfirm.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                 insToConfirm.Parameters.AddWithValue("@user_ip", GetIPAddress())
                 insurance_SQLcon.Open()
                 insToConfirm.ExecuteNonQuery()

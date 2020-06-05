@@ -77,7 +77,7 @@
                                         <asp:BoundField DataField="total_val" HeaderText="إجمالي قيمة الفاتورة" DataFormatString="{0:C3}"></asp:BoundField>
                                         <asp:TemplateField>
                                             <ItemTemplate>
-                                                <asp:Button ID="btn_print" runat="server"
+                                                <asp:Button ID="btn_print1" runat="server"
                                                     CommandName="printInvoice"
                                                     CommandArgument="<%# CType(Container,GridViewRow).RowIndex %>"
                                                     Text="طباعة تفاصيل الفاتورة"

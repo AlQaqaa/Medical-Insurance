@@ -14,9 +14,15 @@ Public Class statistics
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("search") = False Then
+                    Response.Redirect("Default.aspx", True)
+                    Exit Sub
+                End If
+            End If
             Me.txt_processes_code.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
 
-        End If
+            End If
 
     End Sub
 

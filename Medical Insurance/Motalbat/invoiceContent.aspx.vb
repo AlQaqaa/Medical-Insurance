@@ -17,33 +17,41 @@ Public Class invoiceContent
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("print_motalba") = False Then
+                    btn_print.Visible = False
+                End If
+                If Session("User_per")("return_motalba") = False Then
+                    btn_return.Visible = False
+                End If
+            End If
             If ViewState("invoice_no") <> 0 Then
 
-                txt_invoice_no.Text = ViewState("invoice_no")
-                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
-                Dim dt_result As New DataTable
-                dt_result.Rows.Clear()
-                insurance_SQLcon.Close()
-                insurance_SQLcon.Open()
-                dt_result.Load(sel_com.ExecuteReader)
-                insurance_SQLcon.Close()
+                    txt_invoice_no.Text = ViewState("invoice_no")
+                    Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+                    Dim dt_result As New DataTable
+                    dt_result.Rows.Clear()
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    dt_result.Load(sel_com.ExecuteReader)
+                    insurance_SQLcon.Close()
 
-                If dt_result.Rows.Count > 0 Then
-                    Dim dr_inv = dt_result.Rows(0)
-                    txt_company_name.Text = dr_inv!COMPANY_NAME
-                    ViewState("company_no") = dr_inv!C_ID
-                    txt_start_dt.Text = dr_inv!DATE_FROM
-                    txt_end_dt.Text = dr_inv!DATE_TO
+                    If dt_result.Rows.Count > 0 Then
+                        Dim dr_inv = dt_result.Rows(0)
+                        txt_company_name.Text = dr_inv!COMPANY_NAME
+                        ViewState("company_no") = dr_inv!C_ID
+                        txt_start_dt.Text = dr_inv!DATE_FROM
+                        txt_end_dt.Text = dr_inv!DATE_TO
 
-                    getData()
+                        getData()
 
+                    End If
+
+                Else
+                    Response.Redirect("Default.aspx", False)
                 End If
 
-            Else
-                Response.Redirect("Default.aspx", False)
             End If
-
-        End If
 
     End Sub
 
@@ -225,5 +233,19 @@ Public Class invoiceContent
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
+
+        If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim cell As TableCell = e.Row.Cells(9)
+                Dim btn_print_one As LinkButton = cell.FindControl("btn_print_one")
+                Dim btn_return_one As LinkButton = cell.FindControl("btn_return_one")
+                btn_print_one.Visible = Session("User_per")("print_motalba")
+                btn_return_one.Visible = Session("User_per")("return_motalba")
+            End If
+        End If
+
     End Sub
 End Class

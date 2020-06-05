@@ -28,10 +28,19 @@
 
         <div class="container-fluid">
             <div class="top-navbar">
-                <nav class="navbar navbar-light" style="background-color: #f0f0f0; border-bottom: 1px solid #d8d8d8;">
+                <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #f0f0f0">
+
                     <span class="navbar-brand mb-0 h1">
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" />
                         التأمين الطبي</span>
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+                        <li class="nav-item active">
+                            <asp:HyperLink ID="HyperLink10" CssClass="dropdown-item" runat="server" NavigateUrl="~/index.aspx">تسجيل خروج</asp:HyperLink>
+                        </li>
+
+                    </ul>
+
                 </nav>
             </div>
 
@@ -53,7 +62,7 @@
                                 </div>
                             </div>
                         </div>
-                         <ul class="nav flex-column">
+                        <ul class="nav flex-column">
                             <li class="nav-item">
                                 <asp:HyperLink ID="HyperLink1" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Default.aspx"><i class="fas fa-home"></i> الرئيسية</asp:HyperLink>
                             </li>
@@ -75,7 +84,8 @@
                                 <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i> مركز الإشعارات <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
+                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i>مركز الإشعارات
+                                    <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_invoices_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#motalbat" data-toggle="collapse" data-target="#motalbat" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-receipt"></i> الفواتير والمطالبات</asp:HyperLink>
@@ -100,10 +110,12 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i> تسوية الأطباء <asp:Label ID="Label2" runat="server" Text=""></asp:Label></asp:HyperLink>
+                                <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i>تسوية الأطباء
+                                    <asp:Label ID="Label2" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i> الاستفسارات والإحصائيات <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
+                                <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i>الاستفسارات والإحصائيات
+                                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_reports" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#reports" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-file-invoice"></i> التقارير</asp:HyperLink>

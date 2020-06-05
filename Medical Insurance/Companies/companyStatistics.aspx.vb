@@ -11,6 +11,12 @@ Public Class companyStatistics
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("search") = False Then
+                    Response.Redirect("../Default.aspx", True)
+                End If
+            End If
+
             If Session("company_id") IsNot Nothing Then
 
                 getCompanyInfo()

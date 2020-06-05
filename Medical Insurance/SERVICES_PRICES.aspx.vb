@@ -9,28 +9,34 @@ Public Class SERVICES_PRICES
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
-            If Val(Session("profile_no")) = 0 Then
-                Response.Redirect("createProfilePrices.aspx", False)
-            Else
-                Dim sel_profile As New SqlCommand("SELECT PROFILE_NAME FROM INC_PRICES_PROFILES WHERE PROFILE_ID = " & Session("profile_no"), insurance_SQLcon)
-                Dim dt_name As New DataTable
-                dt_name.Rows.Clear()
-                insurance_SQLcon.Close()
-                insurance_SQLcon.Open()
-                dt_name.Load(sel_profile.ExecuteReader)
-                insurance_SQLcon.Close()
-                If dt_name.Rows.Count > 0 Then
-                    Dim dr_name = dt_name.Rows(0)
-                    lbl_profile_name.Text = dr_name!PROFILE_NAME
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("services_prices") = False Then
+                    Response.Redirect("Default.aspx", True)
+                    Exit Sub
                 End If
             End If
+            If Val(Session("profile_no")) = 0 Then
+                    Response.Redirect("createProfilePrices.aspx", False)
+                Else
+                    Dim sel_profile As New SqlCommand("SELECT PROFILE_NAME FROM INC_PRICES_PROFILES WHERE PROFILE_ID = " & Session("profile_no"), insurance_SQLcon)
+                    Dim dt_name As New DataTable
+                    dt_name.Rows.Clear()
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    dt_name.Load(sel_profile.ExecuteReader)
+                    insurance_SQLcon.Close()
+                    If dt_name.Rows.Count > 0 Then
+                        Dim dr_name = dt_name.Rows(0)
+                        lbl_profile_name.Text = dr_name!PROFILE_NAME
+                    End If
+                End If
 
-            ddl_group.Enabled = False
-            lbl_groub.Enabled = False
-            ddl_services_group.Enabled = False
-            lbl_services_group.Enabled = False
+                ddl_group.Enabled = False
+                lbl_groub.Enabled = False
+                ddl_services_group.Enabled = False
+                lbl_services_group.Enabled = False
 
-        End If
+            End If
     End Sub
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click

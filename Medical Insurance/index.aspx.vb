@@ -9,60 +9,90 @@ Public Class index
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        If Session("INC_hublogin") = 1 Then
-            Session("INC_hublogin") = Nothing
-            Session("systemlogin") = Nothing
-            Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
-        Else
 
-            If Session("systemlogin") = "401" Then
-                Session("INC_hublogin") = Nothing
-                Session("systemlogin") = Nothing
-                Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
-            Else
-                If (Request.QueryString("u")) = "" Then
-                    Session("INC_hublogin") = Nothing
-                    Session("systemlogin") = Nothing
-                    Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
+        Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =1 ", insurance_SQLcon)
+        Dim dt_user As New DataTable
+        dt_user.Rows.Clear()
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_user.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
 
-                End If
-
-                Dim u As String = Decrypt(Request.QueryString("u").Replace(" ", "+"))
-                Dim p As String = Decrypt(Request.QueryString("p").Replace(" ", "+"))
-                Dim d As String = Decrypt(Request.QueryString("d").Replace(" ", "+"))
-                Dim t As String = Decrypt(Request.QueryString("t").Replace(" ", "+"))
-
-                Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id = " & u, insurance_SQLcon)
-                Dim dt_user As New DataTable
-                dt_user.Rows.Clear()
-                insurance_SQLcon.Close()
-                insurance_SQLcon.Open()
-                dt_user.Load(sel_com.ExecuteReader)
-                insurance_SQLcon.Close()
-
-                If dt_user.Rows.Count > 0 Then
-                    Dim dr_user = dt_user.Rows(0)
-                    Session.Item("INC_User_Id") = dr_user!user_id
-                    Session.Item("INC_User_name") = dr_user!user_name
-                    Session.Item("INC_user_full_name") = dr_user!Orginal_UserName
-                    Session.Item("INC_User_type") = dr_user!user_type
-                    Session.Item("INC_User_ip") = dr_user!user_ip
-                    Session("User_per") = getUserPermissions()
-                End If
-
-                Dim tim1 As Date = DateTime.FromOADate(t)
-
-                'If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
-                '    Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
-                'Else
-                Session("INC_hublogin") = 1
-                Session("systemlogin") = "401"
-                Response.Redirect("default.aspx", False)
-                'End If
-
-            End If
+        If dt_user.Rows.Count > 0 Then
+            Dim dr_user = dt_user.Rows(0)
+            Session.Item("INC_User_Id") = dr_user!user_id
+            Session.Item("INC_User_name") = dr_user!user_name
+            Session.Item("INC_user_full_name") = dr_user!Orginal_UserName
+            Session.Item("INC_User_type") = dr_user!user_type
+            Session.Item("INC_User_ip") = dr_user!user_ip
+            Session("User_per") = getUserPermissions().Rows(0)
 
         End If
+
+        'Dim tim1 As Date = DateTime.FromOADate(t)
+
+        'If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
+        '    Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
+        'Else
+        Session("INC_hublogin") = 1
+        Session("systemlogin") = "401"
+        Response.Redirect("default.aspx", False)
+
+        'If Session("INC_hublogin") = 1 Then
+        '    Session("INC_hublogin") = Nothing
+        '    Session("systemlogin") = Nothing
+        '    Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
+        'Else
+
+        '    If Session("systemlogin") = "401" Then
+        '        Session("INC_hublogin") = Nothing
+        '        Session("systemlogin") = Nothing
+        '        Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
+        '    Else
+        '        If (Request.QueryString("u")) = "" Then
+        '            Session("INC_hublogin") = Nothing
+        '            Session("systemlogin") = Nothing
+        '            Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
+
+        '        End If
+
+        '        Dim u As String = Decrypt(Request.QueryString("u").Replace(" ", "+"))
+        '        Dim p As String = Decrypt(Request.QueryString("p").Replace(" ", "+"))
+        '        Dim d As String = Decrypt(Request.QueryString("d").Replace(" ", "+"))
+        '        Dim t As String = Decrypt(Request.QueryString("t").Replace(" ", "+"))
+
+        '        Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id = " & u, insurance_SQLcon)
+        '        Dim dt_user As New DataTable
+        '        dt_user.Rows.Clear()
+        '        insurance_SQLcon.Close()
+        '        insurance_SQLcon.Open()
+        '        dt_user.Load(sel_com.ExecuteReader)
+        '        insurance_SQLcon.Close()
+
+        '        If dt_user.Rows.Count > 0 Then
+        '            Dim dr_user = dt_user.Rows(0)
+        '            Session.Item("INC_User_Id") = dr_user!user_id
+        '            Session.Item("INC_User_name") = dr_user!user_name
+        '            Session.Item("INC_user_full_name") = dr_user!Orginal_UserName
+        '            Session.Item("INC_User_type") = dr_user!user_type
+        '            Session.Item("INC_User_ip") = dr_user!user_ip
+        '            Session("User_per") = getUserPermissions().Rows(0)
+
+        '        End If
+
+        '        Dim tim1 As Date = DateTime.FromOADate(t)
+
+        '        'If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
+        '        '    Response.Redirect("http://10.10.1.10:888/Default.aspx", True)
+        '        'Else
+        '        Session("INC_hublogin") = 1
+        '        Session("systemlogin") = "401"
+        '        Response.Redirect("default.aspx", False)
+        '        'End If
+
+        '    End If
+
+        'End If
 
     End Sub
 

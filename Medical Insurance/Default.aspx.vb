@@ -9,13 +9,13 @@ Public Class _Default1
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
-            If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
+            'If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
+            '    Response.Redirect("http://10.10.1.10", True)
+            'End If
 
-            If Session("systemlogin") <> "401" Then
-                Response.Redirect("http://10.10.1.10", True)
-            End If
+            'If Session("systemlogin") <> "401" Then
+            '    Response.Redirect("http://10.10.1.10", True)
+            'End If
 
             getCompanyData()
             Session.Remove("profile_no")
@@ -195,5 +195,24 @@ Public Class _Default1
         txt_pat_search.Focus()
         GridView1.DataBind()
         btn_clear.Visible = False
+    End Sub
+
+    Private Sub dt_GridView_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles dt_GridView.RowDataBound
+        If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim cell As TableCell = e.Row.Cells(5)
+                Dim btn_edit_com As LinkButton = cell.FindControl("btn_edit_com")
+                Dim btn_add_pat As LinkButton = cell.FindControl("btn_add_pat")
+                Dim btn_contract As LinkButton = cell.FindControl("btn_contract")
+                Dim btn_com_stop As LinkButton = cell.FindControl("btn_com_stop")
+                Dim btn_end_contract As LinkButton = cell.FindControl("btn_end_contract")
+                btn_edit_com.Visible = Session("User_per")("active_company")
+                btn_add_pat.Visible = Session("User_per")("active_card")
+                btn_contract.Visible = Session("User_per")("active_company")
+                btn_com_stop.Visible = Session("User_per")("active_company")
+                btn_end_contract.Visible = Session("User_per")("active_company")
+            End If
+        End If
+
     End Sub
 End Class

@@ -12,6 +12,12 @@ Public Class invoicesList
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        If IsPostBack = False Then
+            If Session("User_per")("print_motalba") = False Then
+                btn_print.Visible = False
+            End If
+        End If
+
     End Sub
 
     Sub getData()
@@ -207,5 +213,16 @@ Public Class invoicesList
         If ddl_companies.SelectedValue <> 0 Then
             getData()
         End If
+    End Sub
+
+    Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
+        If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim cell As TableCell = e.Row.Cells(9)
+                Dim btn_print1 As LinkButton = cell.FindControl("btn_print1")
+                btn_print1.Visible = Session("User_per")("print_motalba")
+            End If
+        End If
+
     End Sub
 End Class

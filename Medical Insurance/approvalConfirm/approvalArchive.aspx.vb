@@ -7,6 +7,15 @@ Public Class approvalArchive
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
+
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("confirm_approval") = False Then
+                    Response.Redirect("../Default.aspx")
+                    Exit Sub
+                End If
+            End If
+
+
             getPendingRequests(0)
         End If
     End Sub

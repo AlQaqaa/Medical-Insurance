@@ -7,6 +7,10 @@ Public Class _Default3
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                btn_ban_doctor.Enabled = Session("User_per")("company_services")
+            End If
+
             ViewState("company_no") = Val(Session("company_id"))
 
             If ViewState("company_no") = 0 Then

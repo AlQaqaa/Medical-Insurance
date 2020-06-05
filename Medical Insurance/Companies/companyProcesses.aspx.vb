@@ -9,6 +9,12 @@ Public Class companyProcesses
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("search") = False Then
+                    Response.Redirect("../Default.aspx", True)
+                End If
+            End If
+
             btn_apply.Enabled = False
             txt_start_dt.Enabled = False
             txt_end_dt.Enabled = False

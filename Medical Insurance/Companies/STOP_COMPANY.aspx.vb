@@ -6,6 +6,12 @@ Public Class STOP_COMPANY
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("active_company") = False Then
+                    Response.Redirect("../Default.aspx", True)
+                End If
+            End If
+
             getCompanyData()
 
         End If

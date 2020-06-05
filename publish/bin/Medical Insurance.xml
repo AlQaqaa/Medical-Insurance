@@ -928,6 +928,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._HyperLink10">
+<summary>
+HyperLink10 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._img_user_img">
 <summary>
 img_user_img control.
@@ -1426,132 +1435,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companyClinic._GridView1">
 <summary>
 GridView1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._ScriptManager1">
-<summary>
-ScriptManager1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._lbl_name_page">
-<summary>
-lbl_name_page control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._lbl_pats_count">
-<summary>
-lbl_pats_count control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._lbl_company_sts">
-<summary>
-lbl_company_sts control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._lbl_main_company">
-<summary>
-lbl_main_company control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._lbl_start_dt">
-<summary>
-lbl_start_dt control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._lbl_end_dt">
-<summary>
-lbl_end_dt control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._GridView1">
-<summary>
-GridView1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._GridView2">
-<summary>
-GridView2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._Label1">
-<summary>
-Label1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._ddl_services">
-<summary>
-ddl_services control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._SqlDataSource1">
-<summary>
-SqlDataSource1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._txt_notes">
-<summary>
-txt_notes control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companyInfo._btn_ban_doctor">
-<summary>
-btn_ban_doctor control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4339,6 +4222,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.motalbat._HyperLink8">
+<summary>
+HyperLink8 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.motalbat._img_user_img">
 <summary>
 img_user_img control.
@@ -5854,6 +5746,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._Image1">
 <summary>
 Image1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._HyperLink8">
+<summary>
+HyperLink8 control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -8,6 +8,15 @@ Public Class createProfilePrices
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("create_profile_prices") = False Then
+                    btn_next.Visible = False
+                    txt_profile_name.Enabled = False
+                End If
+            End If
+
+
+
             getActiveProfile()
             getStopProfile()
 
@@ -208,17 +217,15 @@ Public Class createProfilePrices
     End Sub
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
-        'If e.Row.RowType = DataControlRowType.DataRow Then
-        '    Dim cell As TableCell = e.Row.Cells(1)
-        '    Dim mov_state As String = cell.Text
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim services_prices As TableCell = e.Row.Cells(5)
+            Dim stop_profile As TableCell = e.Row.Cells(5)
+            Dim btn_edit_price As LinkButton = services_prices.FindControl("btn_edit_com")
+            Dim btn_stop_profile As LinkButton = services_prices.FindControl("btn_stop_profile")
 
-        '    If mov_state = False Then
-        '        e.Row.Cells(4).Visible = True
-        '    Else
-        '        e.Row.Cells(4).Visible = False
-        '        e.Row.ForeColor = Drawing.Color.Green
-        '    End If
-        'End If
+            btn_edit_price.Visible = Session("User_per")("services_prices")
+            btn_stop_profile.Visible = Session("User_per")("services_prices")
+        End If
     End Sub
 
     Private Sub GridView2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView2.RowCommand

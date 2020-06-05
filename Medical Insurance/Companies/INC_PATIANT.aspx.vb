@@ -13,6 +13,12 @@ Public Class INC_PATIANT
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("active_card") = False Then
+                    Response.Redirect("../Default.aspx", True)
+                End If
+            End If
+
             company_no = Val(Session("company_id"))
 
             If company_no = 0 Then

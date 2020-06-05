@@ -13,6 +13,12 @@ Public Class patientInfo
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                btn_change_sts.Enabled = Session("User_per")("active_card")
+                btn_renew_card.Enabled = Session("User_per")("active_card")
+                btn_ban_service.Enabled = Session("User_per")("company_services")
+            End If
+
             Dim pat_no As Integer = Val(Session("patiant_id"))
 
             If pat_no = 0 Then

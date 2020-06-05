@@ -9,6 +9,16 @@ Public Class main
         If IsPostBack = False Then
             lbl_date_now.Text = Date.Now.ToLongDateString
 
+            If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
+                Response.Redirect("http://10.10.1.10", True)
+            End If
+
+            If Session("systemlogin") <> "401" Then
+                Response.Redirect("http://10.10.1.10", True)
+            End If
+
+            lbl_user_name.Text = Session("INC_user_full_name")
+
             If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
                 HyperLink2.Visible = Session("User_per")("active_company")
                 hl_listPatiant.Visible = Session("User_per")("active_card")
@@ -22,15 +32,6 @@ Public Class main
                     hl_invoices_motalbat.Visible = False
                 End If
             End If
-
-
-            'If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
-            '    Response.Redirect("http://10.10.1.10", True)
-            'End If
-
-            'If Session("systemlogin") <> "401" Then
-            '    Response.Redirect("http://10.10.1.10", True)
-            'End If
 
         End If
         'calculateCompanyExpenses()

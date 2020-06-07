@@ -219,10 +219,11 @@ Public Class createProfilePrices
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
         If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
             If e.Row.RowType = DataControlRowType.DataRow Then
-                Dim services_prices As TableCell = e.Row.Cells(4)
-                Dim stop_profile As TableCell = e.Row.Cells(5)
-                Dim btn_edit_price As LinkButton = services_prices.FindControl("btn_edit_com")
-                Dim btn_stop_profile As LinkButton = services_prices.FindControl("btn_stop_profile")
+                Dim cell1 As TableCell = e.Row.Cells(4)
+                Dim cell2 As TableCell = e.Row.Cells(5)
+
+                Dim btn_edit_price As LinkButton = cell1.FindControl("btn_edit_price")
+                Dim btn_stop_profile As LinkButton = cell2.FindControl("btn_stop_profile")
 
                 btn_edit_price.Visible = Session("User_per")("services_prices")
                 btn_stop_profile.Visible = Session("User_per")("services_prices")

@@ -12,15 +12,18 @@ Public Class newInvoice
             'txt_search_code.Focus()
             'Me.txt_search_code.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
 
-            If Session("User_per")("new_invoice_opd") = True Then
-                ddl_companies.SelectedValue = 1
-                ddl_companies.Enabled = False
-            ElseIf Session("User_per")("new_invoice_ewa") = True Then
-                ddl_companies.SelectedValue = 2
-                ddl_companies.Enabled = False
-            ElseIf Session("User_per")("new_invoice_ewa") = True And Session("User_per")("new_invoice_opd") = True Then
-                ddl_companies.Enabled = True
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("new_invoice_opd") = True Then
+                    ddl_companies.SelectedValue = 1
+                    ddl_companies.Enabled = False
+                ElseIf Session("User_per")("new_invoice_ewa") = True Then
+                    ddl_companies.SelectedValue = 2
+                    ddl_companies.Enabled = False
+                ElseIf Session("User_per")("new_invoice_ewa") = True And Session("User_per")("new_invoice_opd") = True Then
+                    ddl_companies.Enabled = True
+                End If
             End If
+
 
         End If
 

@@ -22,11 +22,14 @@ Public Class main
             If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
                 HyperLink2.Visible = Session("User_per")("active_company")
                 hl_listPatiant.Visible = Session("User_per")("active_card")
-                hl_services_prices.Visible = Session("User_per")("services_prices")
                 hr_confirm.Visible = Session("User_per")("confirm_approval")
                 hl_doctors_forms.Visible = Session("User_per")("doctors_settled")
                 hl_Statistics.Visible = Session("User_per")("search")
                 hl_reports.Visible = Session("User_per")("search")
+
+                If Session("User_per")("services_prices") = False And Session("User_per")("create_profile_prices") = False Then
+                    hl_services_prices.Visible = False
+                End If
 
                 If Session("User_per")("new_invoice_opd") = False And Session("User_per")("new_invoice_ewa") = False And Session("User_per")("print_motalba") = False And Session("User_per")("return_motalba") = False Then
                     hl_invoices_motalbat.Visible = False

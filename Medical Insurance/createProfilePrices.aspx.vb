@@ -91,7 +91,7 @@ Public Class createProfilePrices
                 GridView1.DataBind()
             End If
         Catch ex As Exception
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('" & ex.Message & "'); ", True)
         End Try
     End Sub
 
@@ -217,15 +217,18 @@ Public Class createProfilePrices
     End Sub
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
-        If e.Row.RowType = DataControlRowType.DataRow Then
-            Dim services_prices As TableCell = e.Row.Cells(5)
-            Dim stop_profile As TableCell = e.Row.Cells(5)
-            Dim btn_edit_price As LinkButton = services_prices.FindControl("btn_edit_com")
-            Dim btn_stop_profile As LinkButton = services_prices.FindControl("btn_stop_profile")
+        If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+            If e.Row.RowType = DataControlRowType.DataRow Then
+                Dim services_prices As TableCell = e.Row.Cells(4)
+                Dim stop_profile As TableCell = e.Row.Cells(5)
+                Dim btn_edit_price As LinkButton = services_prices.FindControl("btn_edit_com")
+                Dim btn_stop_profile As LinkButton = services_prices.FindControl("btn_stop_profile")
 
-            btn_edit_price.Visible = Session("User_per")("services_prices")
-            btn_stop_profile.Visible = Session("User_per")("services_prices")
+                btn_edit_price.Visible = Session("User_per")("services_prices")
+                btn_stop_profile.Visible = Session("User_per")("services_prices")
+            End If
         End If
+
     End Sub
 
     Private Sub GridView2_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView2.RowCommand

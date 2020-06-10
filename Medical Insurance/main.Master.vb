@@ -7,7 +7,7 @@ Public Class main
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If IsPostBack = False Then
-            lbl_date_now.Text = Date.Now.ToLongDateString
+
 
             If Session("INC_User_Id") Is Nothing Or Session("INC_User_Id") = 0 Then
                 Response.Redirect("http://10.10.1.10", True)
@@ -17,6 +17,7 @@ Public Class main
                 Response.Redirect("http://10.10.1.10", True)
             End If
 
+            lbl_date_now.Text = Date.Now.ToLongDateString
             lbl_user_name.Text = Session("INC_user_full_name")
 
             If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then

@@ -170,6 +170,7 @@
     <Content Include="Motalbat\printPatientProcesses.aspx" />
     <Content Include="approvalConfirm\newApproval.aspx" />
     <Content Include="notificationCenter.aspx" />
+    <Content Include="Reports\companyData.aspx" />
     <Content Include="Reports\dailyProcesses.aspx" />
     <Content Include="Reports\totalExpenses.aspx" />
     <Content Include="servicesPricesShow.aspx" />
@@ -451,6 +452,13 @@
       <DependentUpon>notificationCenter.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Reports\companyData.aspx.designer.vb">
+      <DependentUpon>companyData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\companyData.aspx.vb">
+      <DependentUpon>companyData.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\dailyProcesses.aspx.designer.vb">
       <DependentUpon>dailyProcesses.aspx</DependentUpon>
     </Compile>
@@ -547,6 +555,7 @@
     <Content Include="Reports\confirmApproval.rdlc" />
     <Content Include="Reports\dailyProcesses.rdlc" />
     <Content Include="Reports\servicesCashPrices.rdlc" />
+    <Content Include="Reports\companyDataReport.rdlc" />
     <EmbeddedResource Include="Reports\servicesPrices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPrices.vb</LastGenOutput>

@@ -10,7 +10,7 @@ Public Class index
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
-        'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =75 ", insurance_SQLcon)
+        'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =80 ", insurance_SQLcon)
         'Dim dt_user As New DataTable
         'dt_user.Rows.Clear()
         'insurance_SQLcon.Close()
@@ -31,7 +31,7 @@ Public Class index
 
         'Session("INC_hublogin") = 1
         'Session("systemlogin") = "401"
-        'Response.Redirect("default.aspx", False)
+        'Response.Redirect("default.aspx", True)
 
         Try
             If Session("INC_hublogin") = 1 Then

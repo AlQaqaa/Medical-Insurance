@@ -11,6 +11,10 @@ Public Class _Default3
                 btn_ban_doctor.Enabled = Session("User_per")("company_services")
             End If
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                Panel1.Visible = Session("User_per")("company_services")
+            End If
+
             ViewState("company_no") = Val(Session("company_id"))
 
             If ViewState("company_no") = 0 Then

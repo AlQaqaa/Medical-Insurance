@@ -13,6 +13,9 @@
                 Response.Redirect("http://10.10.1.10", True)
             End If
 
+            lbl_date_now.Text = Date.Now.ToLongDateString
+            lbl_user_name.Text = Session("INC_user_full_name")
+
             If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
                 HyperLink2.Visible = Session("User_per")("active_company")
                 hl_listPatiant.Visible = Session("User_per")("active_card")

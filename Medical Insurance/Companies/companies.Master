@@ -122,6 +122,12 @@
                                 <ul class="nav collapse sub-menu" id="reports">
                                     <li>
                                         <asp:HyperLink ID="hl_dailyReport" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/dailyProcesses.aspx"><i class="fas fa-file"></i>&nbsp;الحركة اليومية</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink11" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/totalExpenses.aspx"><i class="fas fa-file"></i>&nbsp;إجمالي مصروفات الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink12" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/companyData.aspx"><i class="fas fa-file"></i>&nbsp;بيانات الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink13" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/stopPatients.aspx"><i class="fas fa-file"></i>&nbsp;المنتفعين الموقوفين</asp:HyperLink></li>
                                 </ul>
                             </li>
                         </ul>

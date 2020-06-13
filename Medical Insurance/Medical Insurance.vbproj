@@ -172,6 +172,7 @@
     <Content Include="notificationCenter.aspx" />
     <Content Include="Reports\companyData.aspx" />
     <Content Include="Reports\dailyProcesses.aspx" />
+    <Content Include="Reports\stopPatients.aspx" />
     <Content Include="Reports\totalExpenses.aspx" />
     <Content Include="servicesPricesShow.aspx" />
     <Content Include="SERVICES_PRICES.aspx" />
@@ -472,6 +473,13 @@
       <DependentUpon>servicesPrices.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\stopPatients.aspx.designer.vb">
+      <DependentUpon>stopPatients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\stopPatients.aspx.vb">
+      <DependentUpon>stopPatients.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\totalExpenses.aspx.designer.vb">
       <DependentUpon>totalExpenses.aspx</DependentUpon>
     </Compile>
@@ -561,6 +569,7 @@
       <LastGenOutput>servicesPrices.vb</LastGenOutput>
     </EmbeddedResource>
     <Content Include="Reports\totalExpensesCompany.rdlc" />
+    <Content Include="Reports\stopPatientsReport.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.Master" />

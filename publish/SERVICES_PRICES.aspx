@@ -114,22 +114,22 @@
                     <div class="form-group col-xs-12 col-sm-1">
                         <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Checked="True" />
                     </div>
-                    <div class="form-group col-xs-12 col-sm-2">
+                    <%--<div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_private_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEUIN(event)" placeholder="سعر الخاص"></asp:TextBox>
-                    </div>
+                    </div>--%>
                     <div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_inc_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر التأمين"></asp:TextBox>
                     </div>
-                    <div class="form-group col-xs-12 col-sm-2">
+                   <%-- <div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_invoice_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر المستأجر"></asp:TextBox>
-                    </div>
+                    </div>--%>
                     <div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_cost_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر التكلفة"></asp:TextBox>
                     </div>
-                    <div class="form-group col-xs-12 col-sm-2">
+                    <%--<div class="form-group col-xs-12 col-sm-2">
                         <asp:TextBox ID="txt_add_per" runat="server" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="نسبة زيادة سعر التأمين"></asp:TextBox>
-                    </div>
-                    <div class="form-group col-xs-12 col-sm-1">
+                    </div>--%>
+                    <div class="form-group col-xs-12 col-sm-2">
                         <asp:Button ID="btn_apply" CssClass="btn btn-success btn-block" runat="server" Text="تطبيق" />
                     </div>
 
@@ -162,7 +162,7 @@
 
                     <div class="row">
                         <div class="col-sm-12">
-                            <div class="panel-scroll scrollable">
+                            
                                 <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm com-tbl" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
                                     <Columns>
                                         <asp:BoundField DataField="SubService_ID" HeaderText="رقم الخدمة">
@@ -180,24 +180,24 @@
                                         <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة بالعربي" SortExpression="SubService_AR_Name" />
                                         <asp:BoundField DataField="SubService_EN_Name" HeaderText="اسم الخدمة بالانجليزي" SortExpression="SubService_EN_Name" />
                                         <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
-                                        <asp:TemplateField HeaderText="سعر الخاص" SortExpression="22">
+                                        <%--<asp:TemplateField HeaderText="سعر الخاص" SortExpression="22">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txt_private_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="سعر التأمين" SortExpression="22">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txt_inc_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="سعر المستأجر">
+                                        <%--<asp:TemplateField HeaderText="سعر المستأجر">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txt_invoice_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle Width="100px" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="سعر التكلفة">
                                             <ItemTemplate>
                                                 <asp:TextBox ID="txt_cost_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>
@@ -206,7 +206,7 @@
                                         </asp:TemplateField>
                                     </Columns>
                                 </asp:GridView>
-                            </div>
+                       
                         </div>
                     </div>
                 

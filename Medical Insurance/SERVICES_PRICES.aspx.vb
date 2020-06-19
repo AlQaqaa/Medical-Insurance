@@ -44,9 +44,9 @@ Public Class SERVICES_PRICES
         Try
             For Each dd As GridViewRow In GridView1.Rows
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
-                Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
+                'Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                 Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
-                Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                'Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
                 Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
                 If ch.Checked = True Then
@@ -55,9 +55,9 @@ Public Class SERVICES_PRICES
                     insClinic.CommandText = "INC_addServicesPrice"
                     insClinic.CommandType = CommandType.StoredProcedure
                     insClinic.Parameters.AddWithValue("@service_id", dd.Cells(0).Text)
-                    insClinic.Parameters.AddWithValue("@private_prc", CDec(txt_private_prc.Text))
+                    insClinic.Parameters.AddWithValue("@private_prc", 0)
                     insClinic.Parameters.AddWithValue("@inc_prc", CDec(txt_inc_prc.Text))
-                    insClinic.Parameters.AddWithValue("@inv_prc", CDec(txt_invoice_prc.Text))
+                    insClinic.Parameters.AddWithValue("@inv_prc", 0)
                     insClinic.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
                     insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
@@ -154,28 +154,28 @@ Public Class SERVICES_PRICES
 
         For Each dd As GridViewRow In GridView1.Rows
             Dim ch As CheckBox = dd.FindControl("CheckBox2")
-            Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
+            'Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
             Dim txt_inc_price As TextBox = dd.FindControl("txt_inc_price")
-            Dim txt_invoice_price As TextBox = dd.FindControl("txt_invoice_price")
+            'Dim txt_invoice_price As TextBox = dd.FindControl("txt_invoice_price")
             Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
             If ch.Checked = True Then
-                If txt_private_all.Text <> "" Then
-                    txt_private_price.Text = CDec(txt_private_all.Text)
-                End If
-                If txt_inc_price_all.Text <> "" And txt_add_per.Text = "" Then
+                'If txt_private_all.Text <> "" Then
+                '    txt_private_price.Text = CDec(txt_private_all.Text)
+                'End If
+                If txt_inc_price_all.Text <> "" Then
                     txt_inc_price.Text = CDec(txt_inc_price_all.Text)
                 End If
-                If txt_invoice_price_all.Text <> "" Then
-                    txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
-                End If
+                'If txt_invoice_price_all.Text <> "" Then
+                '    txt_invoice_price.Text = CDec(txt_invoice_price_all.Text)
+                'End If
                 If txt_cost_price_all.Text <> "" Then
                     txt_cost_price.Text = CDec(txt_cost_price_all.Text)
                 End If
-                If txt_add_per.Text <> "" And txt_invoice_price_all.Text = "" And txt_private_all.Text <> "" Then
-                    Dim add_val As Decimal = CDec(txt_private_price.Text) + (CDec(txt_private_price.Text) * CDec(txt_add_per.Text) / 100)
-                    txt_inc_price.Text = CDec(add_val)
-                End If
+                'If txt_add_per.Text <> "" And txt_invoice_price_all.Text = "" And txt_private_all.Text <> "" Then
+                '    Dim add_val As Decimal = CDec(txt_private_price.Text) + (CDec(txt_private_price.Text) * CDec(txt_add_per.Text) / 100)
+                '    txt_inc_price.Text = CDec(add_val)
+                'End If
             End If
 
         Next
@@ -187,12 +187,12 @@ Public Class SERVICES_PRICES
             GridView1.DataSource = Nothing
             GridView1.DataBind()
 
-            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS CASH_PRS,"
+            'Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0) AS CASH_PRS,"
             Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INS_PRS,"
-            Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS,"
+            '  Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS,"
             Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS COST_PRICE "
 
-            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & INS_PRS & INVO_PRS & COST_PRS & " FROM Main_SubServices WHERE SubService_State = 0 "
+            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & INS_PRS & COST_PRS & " FROM Main_SubServices WHERE SubService_State = 0 "
 
             If ddl_clinics.SelectedValue <> 0 Then
                 sql_str = sql_str & " AND SubService_Clinic = " & ddl_clinics.SelectedValue
@@ -225,14 +225,14 @@ Public Class SERVICES_PRICES
                 For i = 0 To dt_res.Rows.Count - 1
                     Dim dd As GridViewRow = GridView1.Rows(i)
 
-                    Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
+                    ' Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
                     Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
-                    Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+                    ' Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
                     Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
 
-                    txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
+                    '  txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
                     txt_inc_prc.Text = dt_res.Rows(i)("INS_PRS")
-                    txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
+                    ' txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
                     txt_cost_price.Text = dt_res.Rows(i)("COST_PRICE")
                 Next
             Else

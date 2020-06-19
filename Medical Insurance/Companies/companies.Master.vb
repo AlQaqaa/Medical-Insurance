@@ -27,7 +27,7 @@ Public Class companies
                 hr_confirm.Visible = Session("User_per")("confirm_approval")
                 hl_doctors_forms.Visible = Session("User_per")("doctors_settled")
                 hl_Statistics.Visible = Session("User_per")("search")
-                hl_reports.Visible = Session("User_per")("search")
+                hl_reports.Visible = Session("User_per")("reports_per")
 
                 If Session("User_per")("services_prices") = False And Session("User_per")("create_profile_prices") = False Then
                     hl_services_prices.Visible = False

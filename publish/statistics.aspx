@@ -292,6 +292,7 @@
                                         <asp:BoundField DataField="Processes_Price" HeaderText="سعر الخدمة" DataFormatString="{0:C3}"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Paid" HeaderText="قيمة المنتفع" DataFormatString="{0:C3}"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Residual" HeaderText="قيمة الشركة" DataFormatString="{0:C3}"></asp:BoundField>
+                                        <asp:BoundField DataField="INVOICE_NO" HeaderText="رقم الفاتورة"></asp:BoundField>
                                     </Columns>
                                 </asp:GridView>
 

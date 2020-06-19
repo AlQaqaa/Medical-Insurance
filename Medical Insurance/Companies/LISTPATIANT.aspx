@@ -67,7 +67,7 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
+   
     <div class="card mt-1 ">
         <div class="card-header bg-success text-light">
             <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>

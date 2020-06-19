@@ -1324,6 +1324,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._Image2">
+<summary>
+Image2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._ContentPlaceHolder1">
 <summary>
 ContentPlaceHolder1 control.
@@ -5747,15 +5756,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.SERVICES_PRICES._txt_private_all">
-<summary>
-txt_private_all control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.SERVICES_PRICES._txt_inc_price_all">
 <summary>
 txt_inc_price_all control.
@@ -5765,27 +5765,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.SERVICES_PRICES._txt_invoice_price_all">
-<summary>
-txt_invoice_price_all control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.SERVICES_PRICES._txt_cost_price_all">
 <summary>
 txt_cost_price_all control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.SERVICES_PRICES._txt_add_per">
-<summary>
-txt_add_per control.
 </summary>
 <remarks>
 Auto-generated field.

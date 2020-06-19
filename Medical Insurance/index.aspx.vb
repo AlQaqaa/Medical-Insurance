@@ -10,7 +10,7 @@ Public Class index
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
 
-        'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =80 ", insurance_SQLcon)
+        'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =1 ", insurance_SQLcon)
         'Dim dt_user As New DataTable
         'dt_user.Rows.Clear()
         'insurance_SQLcon.Close()
@@ -25,7 +25,7 @@ Public Class index
         '    Session.Item("INC_user_full_name") = dr_user!Orginal_UserName
         '    Session.Item("INC_User_type") = dr_user!user_type
         '    Session.Item("INC_User_ip") = dr_user!user_ip
-        '    Session("User_per") = getUserPermissions().Rows(0)
+        '    ' Session("User_per") = getUserPermissions().Rows(0)
 
         'End If
 

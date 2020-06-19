@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class LISTPATIANT
-
+    
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class LISTPATIANT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-
+    
     '''<summary>
     '''main_company_panel control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class LISTPATIANT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents main_company_panel As Global.System.Web.UI.WebControls.Panel
-
+    
     '''<summary>
     '''ddl_companies control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class LISTPATIANT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_companies As Global.System.Web.UI.WebControls.DropDownList
-
+    
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class LISTPATIANT
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
-
+    
     '''<summary>
     '''GridView1 control.
     '''</summary>

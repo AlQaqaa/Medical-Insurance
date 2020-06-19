@@ -13,6 +13,12 @@ Public Class companyData
 
         If IsPostBack = False Then
 
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("reports_per") = False Then
+                    Response.Redirect("../Default.aspx", True)
+                    Exit Sub
+                End If
+            End If
 
             Dim sql_str As String = "SELECT [C_NAME_ARB],(CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY, (SELECT TOP (1) convert(varchar, [DATE_START], 23) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [DATE_START], (SELECT TOP (1) convert(varchar, [DATE_END], 23) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [DATE_END], (SELECT TOP (1) [MAX_VAL] FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [MAX_VAL] FROM INC_COMPANY_DATA WHERE C_STATE = 0"
 

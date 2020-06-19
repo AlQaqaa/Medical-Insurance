@@ -302,3 +302,54 @@ ajax__calendar_months {
 .border-right-warning {
     border-right: .25rem solid #f6c23e !important;
 }
+
+/* ================================================================= */
+
+/* Start Wating */
+
+.LockOn {
+    display: block;
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top: 0px;
+    left: 0px;
+    width: 105%;
+    height: 105%;
+    background-color: white;
+    vertical-align: bottom;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    font-size: large;
+    color: blue;
+    font-style: italic;
+    font-weight: 400;
+    background-image: url("images/loading.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.ScreenLocked {
+    display: block;
+    position: absolute;
+    z-index: 9999;
+    top: 0px;
+    left: 0px;
+    width: 105%;
+    height: 105%;
+    background-color: white;
+    vertical-align: bottom;
+    padding-top: 20%;
+    filter: alpha(opacity=75);
+    opacity: 0.75;
+    font-size: large;
+    color: blue;
+    font-style: italic;
+    font-weight: 400;
+    background-image: url("images/loading.gif");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}

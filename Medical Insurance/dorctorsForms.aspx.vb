@@ -52,7 +52,7 @@ Public Class dorctorsForms
 
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('" & ex.Message & "')", True)
         End Try
 
     End Sub

@@ -9,7 +9,6 @@ Public Class index
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-
         'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =1 ", insurance_SQLcon)
         'Dim dt_user As New DataTable
         'dt_user.Rows.Clear()

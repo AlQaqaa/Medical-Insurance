@@ -2764,15 +2764,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.INC_PATIANT._UpdatePanel1">
-<summary>
-UpdatePanel1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.INC_PATIANT._txt_CARD_NO">
 <summary>
 txt_CARD_NO control.
@@ -3037,6 +3028,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.INC_PATIANT._txt_NOTES">
 <summary>
 txt_NOTES control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.INC_PATIANT._FileUpload1">
+<summary>
+FileUpload1 control.
 </summary>
 <remarks>
 Auto-generated field.

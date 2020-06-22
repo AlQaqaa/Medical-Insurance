@@ -79,6 +79,8 @@ Public Class INC_PATIANT
                 Exit Sub
             End If
 
+            Dim dbpath As String = "images/ImagePatiant/card.png"
+
             Dim dob As String = DateTime.ParseExact(txt_BIRTHDATE.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
             Dim exp As String = DateTime.ParseExact(txt_exp_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
 
@@ -102,23 +104,45 @@ Public Class INC_PATIANT
             ins_PAT.Parameters.AddWithValue("@NAT_NUMBER", Val(txt_NAT_NUMBER.Text))
             ins_PAT.Parameters.AddWithValue("@KID_NO", Val(txt_KID_NO.Text))
             ins_PAT.Parameters.AddWithValue("@CITY_ID", ddl_CITY_ID.SelectedValue)
-            ins_PAT.Parameters.AddWithValue("@IMAGE_CARD", "images/ImagePatiant/card.png")
+            ins_PAT.Parameters.AddWithValue("@IMAGE_CARD", dbpath)
             ins_PAT.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
             ins_PAT.Parameters.AddWithValue("@userIp", GetIPAddress())
-
+            ins_PAT.Parameters.AddWithValue("@pat_id", SqlDbType.Int).Direction = ParameterDirection.Output
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             ins_PAT.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
+            Dim pat_id As Integer = ins_PAT.Parameters("@pat_id").Value.ToString()
+
+            If FileUpload1.HasFile = True Then
+                Dim newFilename As String = Val(pat_id) & "N"
+                Dim fileExtension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
+                Dim updatedFilename As String = newFilename + fileExtension
+                Dim fpath As String = Server.MapPath("../images/ImagePatiant") & "/" & updatedFilename
+                dbpath = "images/ImagePatiant" & "/" & updatedFilename
+                Dim FEx As String
+                FEx = IO.Path.GetExtension(fpath)
+                If FEx <> ".jpg" And FEx <> ".JPG" And FEx <> ".png" And FEx <> ".PNG" And FEx <> ".bmp" And FEx <> ".jpeg" Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.[GetType](), "alertMessage", "alter('خطأ! صيغة الصورة غير صحيحة ');", True)
+                    Exit Sub
+                End If
+                If System.IO.File.Exists(fpath) Then
+                    System.IO.File.Delete(Server.MapPath("../images/ImagePatiant" & "/" & updatedFilename))
+                End If
+                FileUpload1.PostedFile.SaveAs(fpath)
+
+                Dim edit_img As New SqlCommand("UPDATE INC_PATIANT SET IMAGE_CARD = @IMAGE_CARD WHERE PINC_ID = " & Val(pat_id), insurance_SQLcon)
+                edit_img.Parameters.AddWithValue("@IMAGE_CARD", dbpath)
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                edit_img.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+
+            End If
+
             clrTxt()
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'تمت عملية حفظ البيانات بنجاح',
-                showConfirmButton: false,
-                timer: 1500
-            });", True)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('تمت عملية حفظ البيانات بنجاح');", True)
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

@@ -95,7 +95,7 @@
                 </nav>
             </div>
 
-            <div class="row">
+            <div class="row mr-0 ml-0">
                 <div class="col-sm-3">
                     <div class="side-menu">
                         <div class="user-info">
@@ -325,9 +325,9 @@
             </div>
         </div>
 
-        <div class="row mr-0 ml-0 fixed-bottom">
+        <div class="row fixed-bottom">
             <div class="col-sm-12">
-                <div class="footer text-center">
+                <div class="footer text-center fixed-bottom">
                     <a href='http://www.injaztech-ly.com' style="color: #ffd800;">شركة إنجاز | Enjaz Co</a>
                 </div>
             </div>

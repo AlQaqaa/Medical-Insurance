@@ -335,16 +335,7 @@ Public Class newApproval
     End Sub
 
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
-        If GridView1.Rows.Count = 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'يرجى اختيار خدمة واحدة على الأقل',
-                showConfirmButton: false,
-                timer: 1500
-            });", True)
-            Exit Sub
-        End If
+
 
         If source_list.SelectedValue = 0 Then
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({

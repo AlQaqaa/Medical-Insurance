@@ -238,7 +238,7 @@ Public Class newApproval
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_CONFIRM_DETAILS WHERE EWA_NO = 0 AND CD_ID = " & (row.Cells(1).Text), insurance_SQLcon)
+            Dim del_com As New SqlCommand("DELETE FROM INC_CONFIRM_DETAILS WHERE (SELECT EWA_NO FROM INC_CONFIRM WHERE INC_CONFIRM.CONFIRM_ID = INC_CONFIRM_DETAILS.CONFIRM_ID) = 0 AND CD_ID = " & (row.Cells(1).Text), insurance_SQLcon)
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()

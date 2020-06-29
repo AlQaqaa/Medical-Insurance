@@ -208,6 +208,114 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.newApproval2._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._ddl_companies">
+<summary>
+ddl_companies control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._SqlDataSource1">
+<summary>
+SqlDataSource1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator3">
+<summary>
+RequiredFieldValidator3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._txt_name">
+<summary>
+txt_name control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._txt_service_name">
+<summary>
+txt_service_name control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator2">
+<summary>
+RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._txt_value">
+<summary>
+txt_value control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._btn_print">
+<summary>
+btn_print control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.cashPrices._ScriptManager1">
 <summary>
 ScriptManager1 control.
@@ -1084,6 +1192,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companies._hl_new_confirm">
 <summary>
 hl_new_confirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._hl_new_confirm_2">
+<summary>
+hl_new_confirm_2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2764,6 +2881,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.INC_PATIANT._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.INC_PATIANT._txt_CARD_NO">
 <summary>
 txt_CARD_NO control.
@@ -2794,6 +2920,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.INC_PATIANT._RequiredFieldValidator2">
 <summary>
 RequiredFieldValidator2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.INC_PATIANT._LtlTableBody">
+<summary>
+LtlTableBody control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3552,6 +3687,11 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.INC_COMPANY_DATA1DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3598,6 +3738,11 @@ Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.INC_STOP_PATIANTRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1.INC_COMPANY_DATA1Row">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -3652,6 +3797,11 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.INC_COMPANY_DATA1RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRowChangeEvent">
 <summary>
 Row event argument class
@@ -3698,6 +3848,11 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.INC_STOP_PATIANTTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1TableAdapters.INC_COMPANY_DATA1TableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -4481,6 +4636,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.motalbat._hl_new_confirm">
 <summary>
 hl_new_confirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._hl_new_confirm_2">
+<summary>
+hl_new_confirm_2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6083,6 +6247,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._hl_new_confirm">
 <summary>
 hl_new_confirm control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._hl_new_confirm_2">
+<summary>
+hl_new_confirm_2 control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -25,7 +25,7 @@ Public Class INC_PATIANT
                 Response.Redirect("Default.aspx")
             End If
 
-            Dim sel_com As New SqlCommand("SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT C_NAME_ARB, (SELECT TOP (1) DATE_END FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS DATE_END FROM INC_COMPANY_DATA WHERE C_id = " & company_no, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -36,6 +36,7 @@ Public Class INC_PATIANT
                 Dim dr_company = dt_result.Rows(0)
                 Session("lb") = dr_company!C_NAME_ARB
                 Session("lb1") = company_no
+                CalendarExtender1.SelectedDate = dr_company!DATE_END
             End If
         End If
     End Sub
@@ -147,5 +148,33 @@ Public Class INC_PATIANT
             MsgBox(ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub txt_CARD_NO_TextChanged(sender As Object, e As EventArgs) Handles txt_CARD_NO.TextChanged
+        Try
+            Dim sel_com As New SqlCommand("SELECT NAME_ARB FROM INC_PATIANT WHERE CARD_NO = '" & txt_CARD_NO.Text & "' AND C_ID = " & Val(Session("company_id")), insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+                Dim strbody As New StringBuilder()
+                strbody.Append("<div class='alert alert-info' role='alert'>")
+                strbody.Append("<ul class='list-unstyled'>")
+
+                For i = 0 To dt_result.Rows.Count - 1
+                    Dim dr_result = dt_result.Rows(i)
+                    strbody.Append("<li>" & dr_result!NAME_ARB & "</li>")
+                Next
+                strbody.Append("</ul>")
+                strbody.Append("</div>")
+
+                LtlTableBody.Text = strbody.ToString()
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

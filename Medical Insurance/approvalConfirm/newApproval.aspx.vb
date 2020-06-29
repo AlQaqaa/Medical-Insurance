@@ -155,7 +155,7 @@ Public Class newApproval
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
         If ddl_type.SelectedValue = 1 Then
-            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_AR_Name FROM Main_SubServices WHERE SubService_Service_ID = " & ddl_services.SelectedValue, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, concat(SubService_Code, ' | ', SubService_AR_Name) AS SubService_AR_Name FROM Main_SubServices WHERE SubService_Service_ID = " & ddl_services.SelectedValue, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -327,7 +327,7 @@ Public Class newApproval
             Dim fs As New FileStream(FolderLocation & "/confirmApproval" & Session("INC_User_Id") & ".pdf", FileMode.Create)
             fs.Write(bytes, 0, bytes.Length)
             fs.Close()
-            Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", False)
+            Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", True)
 
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -414,7 +414,7 @@ Public Class newApproval
 
     Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
         If ddl_type.SelectedValue = 1 Then
-            Dim sel_com As New SqlCommand("SELECT SubService_ID, SubService_AR_Name FROM Main_SubServices WHERE SubService_Clinic = " & ddl_clinics.SelectedValue, insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, concat(SubService_Code, ' | ', SubService_AR_Name) AS SubService_AR_Name FROM Main_SubServices WHERE SubService_Clinic = " & ddl_clinics.SelectedValue, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()

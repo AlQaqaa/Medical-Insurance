@@ -142,6 +142,7 @@
   <ItemGroup>
     <Content Include="approvalConfirm\approvalArchive.aspx" />
     <Content Include="approvalConfirm\approvalDetails.aspx" />
+    <Content Include="approvalConfirm\newApproval2.aspx" />
     <Content Include="cashPrices.aspx" />
     <Content Include="Companies\addNewCompany.aspx" />
     <Content Include="Companies\addNewContract.aspx" />
@@ -239,6 +240,13 @@
     </Compile>
     <Compile Include="approvalConfirm\approvalDetails.aspx.vb">
       <DependentUpon>approvalDetails.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="approvalConfirm\newApproval2.aspx.designer.vb">
+      <DependentUpon>newApproval2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="approvalConfirm\newApproval2.aspx.vb">
+      <DependentUpon>newApproval2.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="cashPrices.aspx.designer.vb">
@@ -564,6 +572,7 @@
     <Content Include="Reports\dailyProcesses.rdlc" />
     <Content Include="Reports\servicesCashPrices.rdlc" />
     <Content Include="Reports\companyDataReport.rdlc" />
+    <Content Include="Reports\confirmApproval2.rdlc" />
     <EmbeddedResource Include="Reports\servicesPrices.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPrices.vb</LastGenOutput>

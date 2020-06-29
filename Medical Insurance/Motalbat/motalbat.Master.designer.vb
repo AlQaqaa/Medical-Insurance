@@ -203,6 +203,15 @@ Partial Public Class motalbat
     Protected WithEvents hl_new_confirm As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_new_confirm_2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_new_confirm_2 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_list_confirm control.
     '''</summary>
     '''<remarks>

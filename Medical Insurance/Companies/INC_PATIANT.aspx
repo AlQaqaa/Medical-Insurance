@@ -9,18 +9,27 @@
     <div class="card mt-1">
         <div class="card-header bg-info text-white">بيانات المنتفع</div>
         <div class="card-body">
-            <div class="form-row">
-                <div class="form-group col-xs-12 col-sm-4">
-                    <label for="txt_CARD_NO">رقم البطاقة</label>
-                    <asp:TextBox ID="txt_CARD_NO" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_CARD_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
-                </div>
-                <div class="form-group col-sm-4">
-                    <label for="BAGE_NO">الرقم الوظيفي</label>
-                    <asp:TextBox ID="txt_BAGE_NO" CssClass="form-control" runat="server"></asp:TextBox>
-                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_BAGE_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
-                </div>
-            </div>
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <div class="form-row">
+                        <div class="form-group col-xs-12 col-sm-4">
+                            <label for="txt_CARD_NO">رقم البطاقة</label>
+                            <asp:TextBox ID="txt_CARD_NO" CssClass="form-control" runat="server" AutoPostBack="True"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_CARD_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <label for="BAGE_NO">الرقم الوظيفي</label>
+                            <asp:TextBox ID="txt_BAGE_NO" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_BAGE_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="form-group col-sm-4">
+                            <asp:Literal ID="LtlTableBody" runat="server"></asp:Literal>
+                        </div>
+                    </div>
+                    <!-- row -->
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
             <div class="form-row">
                 <div class="form-group col-sm-4">
                     <label for="txt_NAME_ARB">اسم المشترك بالعربي</label>

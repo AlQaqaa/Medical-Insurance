@@ -32,7 +32,7 @@ Public Class newInvoice
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT pros_code, Processes_ID, Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE Processes_State = 4 AND Processes_Residual <> 0 AND Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
+            Dim sql_str As String = "SELECT pros_code, Processes_ID, Processes_Reservation_Code, PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE Processes_State = 4 AND Processes_Residual <> 0 AND Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
             'If RadioButton1.Checked = True Then
             '    sql_str = sql_str & " AND pros_code IN (" & txt_search_code.Text & ")"
@@ -42,7 +42,7 @@ Public Class newInvoice
 
             If ddl_companies.SelectedValue <> "" Then
                 If ddl_companies.SelectedValue <> 0 Then
-                    sql_str = sql_str & " AND SUBSTRING([Processes_Reservation_Code],7 , 2) = " & ddl_companies.SelectedValue
+                    sql_str = sql_str & " AND C_ID = " & ddl_companies.SelectedValue
                 End If
             End If
 

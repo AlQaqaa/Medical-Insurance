@@ -64,26 +64,26 @@ Public Class statistics
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,7 , 2 )), '') AS COMPANY_NAME, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME, ISNULL((SELECT INVOICE_NO FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1), 0) AS INVOICE_NO FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID), '') AS COMPANY_NAME, PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID), '') AS PATIENT_NAME, ISNULL((SELECT INVOICE_NO FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1), 0) AS INVOICE_NO FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0"
 
             If txt_processes_code.Text <> "" Then
-                sql_str = " SELECT Processes_ID, Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,7 , 2 )), '') AS COMPANY_NAME, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME, ISNULL((SELECT INVOICE_NO FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1), 0) AS INVOICE_NO FROM INC_CompanyProcesses WHERE pros_code IN (" & txt_processes_code.Text & ")"
+                sql_str = "SELECT Processes_ID, Processes_Reservation_Code, ISNULL((SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID), '') AS COMPANY_NAME, PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID), '') AS PATIENT_NAME, ISNULL((SELECT INVOICE_NO FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1), 0) AS INVOICE_NO FROM INC_CompanyProcesses WHERE pros_code IN (" & txt_processes_code.Text & ")"
             End If
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) = " & ddl_companies.SelectedValue
+                sql_str = sql_str & " AND C_ID = " & ddl_companies.SelectedValue
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
             End If
 
             If txt_patient_code.Text <> "" Then
@@ -119,7 +119,7 @@ Public Class statistics
             End If
 
             If ddl_payment_type.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
+                sql_str = sql_str & " AND C_ID IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
             End If
 
             If ddl_invoice_type.SelectedValue = 1 Then
@@ -129,19 +129,19 @@ Public Class statistics
             End If
 
             If ddl_relation.SelectedValue <> -1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
             End If
 
             If ddl_sex.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
             End If
 
             If txt_phone_num.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
             End If
 
             If ddl_NAL_ID.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
             If CheckBox1.Checked = True Then
@@ -153,7 +153,7 @@ Public Class statistics
             End If
 
             If ddl_search_field.SelectedValue = 1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
             ElseIf ddl_search_field.SelectedValue = 2 Then
                 sql_str = sql_str & " AND Processes_Price " & ddl_operation.SelectedValue & " " & txt_search_val.Text
             End If
@@ -192,7 +192,7 @@ Public Class statistics
                 GridView1.DataBind()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("1" & ex.Message)
         End Try
 
     End Sub
@@ -202,22 +202,22 @@ Public Class statistics
         Dim count_val As Integer = 0
 
         Try
-            Dim sql_str As String = "SELECT SUBSTRING(Processes_Reservation_Code,9 , 6 ) FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+            Dim sql_str As String = "SELECT PINC_ID FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) = " & ddl_companies.SelectedValue
+                sql_str = sql_str & " AND C_ID = " & ddl_companies.SelectedValue
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
             End If
 
             If txt_patient_code.Text <> "" Then
@@ -253,7 +253,7 @@ Public Class statistics
             End If
 
             If ddl_payment_type.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
+                sql_str = sql_str & " AND C_ID IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
             End If
 
             If ddl_invoice_type.SelectedValue = 1 Then
@@ -263,19 +263,19 @@ Public Class statistics
             End If
 
             If ddl_relation.SelectedValue <> -1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
             End If
 
             If ddl_sex.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
             End If
 
             If txt_phone_num.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
             End If
 
             If ddl_NAL_ID.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
             If CheckBox1.Checked = True Then
@@ -287,7 +287,7 @@ Public Class statistics
             End If
 
             If ddl_search_field.SelectedValue = 1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
             ElseIf ddl_search_field.SelectedValue = 2 Then
                 sql_str = sql_str & " AND Processes_Price " & ddl_operation.SelectedValue & " " & txt_search_val.Text
             End If
@@ -298,7 +298,7 @@ Public Class statistics
                 sql_str = sql_str & " AND Processes_State in (2,4)"
             End If
 
-            sql_str = sql_str & " GROUP BY SUBSTRING(Processes_Reservation_Code,9 , 6 )"
+            sql_str = sql_str & " GROUP BY PINC_ID"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -313,28 +313,28 @@ Public Class statistics
             Return count_val
 
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("2" & ex.Message)
         End Try
     End Function
 
     Sub bindChartsClinic()
         Try
-            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) = " & ddl_companies.SelectedValue
+                sql_str = sql_str & " AND C_ID = " & ddl_companies.SelectedValue
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
             End If
 
             If txt_patient_code.Text <> "" Then
@@ -370,7 +370,7 @@ Public Class statistics
             End If
 
             If ddl_payment_type.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
+                sql_str = sql_str & " AND C_ID IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
             End If
 
             If ddl_invoice_type.SelectedValue = 1 Then
@@ -380,19 +380,19 @@ Public Class statistics
             End If
 
             If ddl_relation.SelectedValue <> -1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
             End If
 
             If ddl_sex.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
             End If
 
             If txt_phone_num.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
             End If
 
             If ddl_NAL_ID.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
             If CheckBox1.Checked = True Then
@@ -404,7 +404,7 @@ Public Class statistics
             End If
 
             If ddl_search_field.SelectedValue = 1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
             ElseIf ddl_search_field.SelectedValue = 2 Then
                 sql_str = sql_str & " AND Processes_Price " & ddl_operation.SelectedValue & " " & txt_search_val.Text
             End If
@@ -466,7 +466,7 @@ Public Class statistics
 
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("3" & ex.Message)
         End Try
     End Sub
 
@@ -475,22 +475,22 @@ Public Class statistics
         Dim total_val As Decimal = 0
 
         Try
-            Dim sql_str As String = "SELECT SUM(Processes_Residual) AS Processes_Residual FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) <> 0"
+            Dim sql_str As String = "SELECT SUM(Processes_Residual) AS Processes_Residual FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) = " & ddl_companies.SelectedValue
+                sql_str = sql_str & " AND C_ID = " & ddl_companies.SelectedValue
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
             End If
 
             If txt_patient_code.Text <> "" Then
@@ -526,7 +526,7 @@ Public Class statistics
             End If
 
             If ddl_payment_type.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,7 , 2 ) IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
+                sql_str = sql_str & " AND C_ID IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
             End If
 
             If ddl_invoice_type.SelectedValue = 1 Then
@@ -536,19 +536,19 @@ Public Class statistics
             End If
 
             If ddl_relation.SelectedValue <> -1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
             End If
 
             If ddl_sex.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
             End If
 
             If txt_phone_num.Text <> "" Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
             End If
 
             If ddl_NAL_ID.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
             If CheckBox1.Checked = True Then
@@ -560,7 +560,7 @@ Public Class statistics
             End If
 
             If ddl_search_field.SelectedValue = 1 Then
-                sql_str = sql_str & " AND SUBSTRING(Processes_Reservation_Code,9 , 6 ) IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
+                sql_str = sql_str & " AND PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
             ElseIf ddl_search_field.SelectedValue = 2 Then
                 sql_str = sql_str & " AND Processes_Price " & ddl_operation.SelectedValue & " " & txt_search_val.Text
             End If
@@ -580,7 +580,7 @@ Public Class statistics
 
             Return total_val
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("4" & ex.Message)
         End Try
     End Function
 

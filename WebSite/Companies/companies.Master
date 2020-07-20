@@ -132,7 +132,15 @@
                                 <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-hand-holding-usd"></i> أسعار الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices"  data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="prices">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink14" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;ملفات الأسعار</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink15" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/cashPrices.aspx"><i class="fas fa-hand-holding-usd"></i>&nbsp;أسعار عروض الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink16" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/printPrices.aspx"><i class="fas fa-print"></i>&nbsp;طباعة الأسعار</asp:HyperLink></li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx">

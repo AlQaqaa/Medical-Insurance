@@ -104,7 +104,7 @@
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="ddl_profiles_prices">ملف الأسعار</label>
                     <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
-                    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
+                    <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0 AND PROFILE_ID <> 3025"></asp:SqlDataSource>
                 </div>
                 <div class="form-group col-xs-12 col-sm-3">
                     <label for="txt_max_company_value">سقف المعاينة الواحدة</label>

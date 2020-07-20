@@ -45,6 +45,8 @@ Partial Public Class DataSet1
     
     Private tableINC_COMPANY_DATA1 As INC_COMPANY_DATA1DataTable
     
+    Private tableprintKashef As printKashefDataTable
+    
     Private tableinvoicesList As invoicesListDataTable
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
@@ -105,6 +107,9 @@ Partial Public Class DataSet1
             End If
             If (Not (ds.Tables("INC_COMPANY_DATA1")) Is Nothing) Then
                 MyBase.Tables.Add(New INC_COMPANY_DATA1DataTable(ds.Tables("INC_COMPANY_DATA1")))
+            End If
+            If (Not (ds.Tables("printKashef")) Is Nothing) Then
+                MyBase.Tables.Add(New printKashefDataTable(ds.Tables("printKashef")))
             End If
             If (Not (ds.Tables("invoicesList")) Is Nothing) Then
                 MyBase.Tables.Add(New invoicesListDataTable(ds.Tables("invoicesList")))
@@ -230,6 +235,16 @@ Partial Public Class DataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property printKashef() As printKashefDataTable
+        Get
+            Return Me.tableprintKashef
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
     Public ReadOnly Property invoicesList() As invoicesListDataTable
         Get
             Return Me.tableinvoicesList
@@ -333,6 +348,9 @@ Partial Public Class DataSet1
             If (Not (ds.Tables("INC_COMPANY_DATA1")) Is Nothing) Then
                 MyBase.Tables.Add(New INC_COMPANY_DATA1DataTable(ds.Tables("INC_COMPANY_DATA1")))
             End If
+            If (Not (ds.Tables("printKashef")) Is Nothing) Then
+                MyBase.Tables.Add(New printKashefDataTable(ds.Tables("printKashef")))
+            End If
             If (Not (ds.Tables("invoicesList")) Is Nothing) Then
                 MyBase.Tables.Add(New invoicesListDataTable(ds.Tables("invoicesList")))
             End If
@@ -428,6 +446,12 @@ Partial Public Class DataSet1
                 Me.tableINC_COMPANY_DATA1.InitVars
             End If
         End If
+        Me.tableprintKashef = CType(MyBase.Tables("printKashef"),printKashefDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableprintKashef) Is Nothing) Then
+                Me.tableprintKashef.InitVars
+            End If
+        End If
         Me.tableinvoicesList = CType(MyBase.Tables("invoicesList"),invoicesListDataTable)
         If (initTable = true) Then
             If (Not (Me.tableinvoicesList) Is Nothing) Then
@@ -464,6 +488,8 @@ Partial Public Class DataSet1
         MyBase.Tables.Add(Me.tableINC_STOP_PATIANT)
         Me.tableINC_COMPANY_DATA1 = New INC_COMPANY_DATA1DataTable()
         MyBase.Tables.Add(Me.tableINC_COMPANY_DATA1)
+        Me.tableprintKashef = New printKashefDataTable()
+        MyBase.Tables.Add(Me.tableprintKashef)
         Me.tableinvoicesList = New invoicesListDataTable()
         MyBase.Tables.Add(Me.tableinvoicesList)
     End Sub
@@ -525,6 +551,12 @@ Partial Public Class DataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Private Function ShouldSerializeINC_COMPANY_DATA1() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializeprintKashef() As Boolean
         Return false
     End Function
     
@@ -621,6 +653,9 @@ Partial Public Class DataSet1
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub INC_COMPANY_DATA1RowChangeEventHandler(ByVal sender As Object, ByVal e As INC_COMPANY_DATA1RowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub printKashefRowChangeEventHandler(ByVal sender As Object, ByVal e As printKashefRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub invoicesListRowChangeEventHandler(ByVal sender As Object, ByVal e As invoicesListRowChangeEvent)
@@ -4060,6 +4095,445 @@ Partial Public Class DataSet1
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class printKashefDataTable
+        Inherits Global.System.Data.TypedTableBase(Of printKashefRow)
+        
+        Private columnSubService_ID As Global.System.Data.DataColumn
+        
+        Private columnSubService_Code As Global.System.Data.DataColumn
+        
+        Private columnSubService_AR_Name As Global.System.Data.DataColumn
+        
+        Private columnSubService_Service_ID As Global.System.Data.DataColumn
+        
+        Private columnService_AR_Name As Global.System.Data.DataColumn
+        
+        Private columnSubService_Clinic As Global.System.Data.DataColumn
+        
+        Private columnSUBGROUP_ID As Global.System.Data.DataColumn
+        
+        Private columnSubGroup_ARname As Global.System.Data.DataColumn
+        
+        Private columnSubGroup_ENname As Global.System.Data.DataColumn
+        
+        Private columnMainGroup_ID As Global.System.Data.DataColumn
+        
+        Private columnGroup_ARname As Global.System.Data.DataColumn
+        
+        Private columnINS_PRS As Global.System.Data.DataColumn
+        
+        Private columnDOCTOR_ID As Global.System.Data.DataColumn
+        
+        Private columnPROFILE_PRICE_ID As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "printKashef"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_CodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_Code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_AR_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_AR_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_Service_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_Service_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Service_AR_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnService_AR_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_ClinicColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_Clinic
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SUBGROUP_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSUBGROUP_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubGroup_ARnameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubGroup_ARname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubGroup_ENnameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubGroup_ENname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MainGroup_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMainGroup_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Group_ARnameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGroup_ARname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property INS_PRSColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnINS_PRS
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property DOCTOR_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDOCTOR_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property PROFILE_PRICE_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPROFILE_PRICE_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As printKashefRow
+            Get
+                Return CType(Me.Rows(index),printKashefRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event printKashefRowChanging As printKashefRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event printKashefRowChanged As printKashefRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event printKashefRowDeleting As printKashefRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event printKashefRowDeleted As printKashefRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AddprintKashefRow(ByVal row As printKashefRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddprintKashefRow(ByVal SubService_ID As Integer, ByVal SubService_Code As String, ByVal SubService_AR_Name As String, ByVal SubService_Service_ID As Short, ByVal Service_AR_Name As String, ByVal SubService_Clinic As Byte, ByVal SUBGROUP_ID As Integer, ByVal SubGroup_ARname As String, ByVal SubGroup_ENname As String, ByVal MainGroup_ID As Integer, ByVal Group_ARname As String, ByVal INS_PRS As Decimal, ByVal DOCTOR_ID As Integer, ByVal PROFILE_PRICE_ID As Integer) As printKashefRow
+            Dim rowprintKashefRow As printKashefRow = CType(Me.NewRow,printKashefRow)
+            Dim columnValuesArray() As Object = New Object() {SubService_ID, SubService_Code, SubService_AR_Name, SubService_Service_ID, Service_AR_Name, SubService_Clinic, SUBGROUP_ID, SubGroup_ARname, SubGroup_ENname, MainGroup_ID, Group_ARname, INS_PRS, DOCTOR_ID, PROFILE_PRICE_ID}
+            rowprintKashefRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowprintKashefRow)
+            Return rowprintKashefRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function FindBySubService_ID(ByVal SubService_ID As Integer) As printKashefRow
+            Return CType(Me.Rows.Find(New Object() {SubService_ID}),printKashefRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As printKashefDataTable = CType(MyBase.Clone,printKashefDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New printKashefDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnSubService_ID = MyBase.Columns("SubService_ID")
+            Me.columnSubService_Code = MyBase.Columns("SubService_Code")
+            Me.columnSubService_AR_Name = MyBase.Columns("SubService_AR_Name")
+            Me.columnSubService_Service_ID = MyBase.Columns("SubService_Service_ID")
+            Me.columnService_AR_Name = MyBase.Columns("Service_AR_Name")
+            Me.columnSubService_Clinic = MyBase.Columns("SubService_Clinic")
+            Me.columnSUBGROUP_ID = MyBase.Columns("SUBGROUP_ID")
+            Me.columnSubGroup_ARname = MyBase.Columns("SubGroup_ARname")
+            Me.columnSubGroup_ENname = MyBase.Columns("SubGroup_ENname")
+            Me.columnMainGroup_ID = MyBase.Columns("MainGroup_ID")
+            Me.columnGroup_ARname = MyBase.Columns("Group_ARname")
+            Me.columnINS_PRS = MyBase.Columns("INS_PRS")
+            Me.columnDOCTOR_ID = MyBase.Columns("DOCTOR_ID")
+            Me.columnPROFILE_PRICE_ID = MyBase.Columns("PROFILE_PRICE_ID")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnSubService_ID = New Global.System.Data.DataColumn("SubService_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_ID)
+            Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_Code)
+            Me.columnSubService_AR_Name = New Global.System.Data.DataColumn("SubService_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_AR_Name)
+            Me.columnSubService_Service_ID = New Global.System.Data.DataColumn("SubService_Service_ID", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_Service_ID)
+            Me.columnService_AR_Name = New Global.System.Data.DataColumn("Service_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnService_AR_Name)
+            Me.columnSubService_Clinic = New Global.System.Data.DataColumn("SubService_Clinic", GetType(Byte), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_Clinic)
+            Me.columnSUBGROUP_ID = New Global.System.Data.DataColumn("SUBGROUP_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSUBGROUP_ID)
+            Me.columnSubGroup_ARname = New Global.System.Data.DataColumn("SubGroup_ARname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubGroup_ARname)
+            Me.columnSubGroup_ENname = New Global.System.Data.DataColumn("SubGroup_ENname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubGroup_ENname)
+            Me.columnMainGroup_ID = New Global.System.Data.DataColumn("MainGroup_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMainGroup_ID)
+            Me.columnGroup_ARname = New Global.System.Data.DataColumn("Group_ARname", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGroup_ARname)
+            Me.columnINS_PRS = New Global.System.Data.DataColumn("INS_PRS", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnINS_PRS)
+            Me.columnDOCTOR_ID = New Global.System.Data.DataColumn("DOCTOR_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDOCTOR_ID)
+            Me.columnPROFILE_PRICE_ID = New Global.System.Data.DataColumn("PROFILE_PRICE_ID", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPROFILE_PRICE_ID)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnSubService_ID}, true))
+            Me.columnSubService_ID.AllowDBNull = false
+            Me.columnSubService_ID.Unique = true
+            Me.columnSubService_Code.MaxLength = 50
+            Me.columnSubService_AR_Name.MaxLength = 50
+            Me.columnService_AR_Name.ReadOnly = true
+            Me.columnService_AR_Name.MaxLength = 50
+            Me.columnSUBGROUP_ID.AllowDBNull = false
+            Me.columnSubGroup_ARname.MaxLength = 50
+            Me.columnSubGroup_ENname.ReadOnly = true
+            Me.columnSubGroup_ENname.MaxLength = 50
+            Me.columnGroup_ARname.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewprintKashefRow() As printKashefRow
+            Return CType(Me.NewRow,printKashefRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New printKashefRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(printKashefRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.printKashefRowChangedEvent) Is Nothing) Then
+                RaiseEvent printKashefRowChanged(Me, New printKashefRowChangeEvent(CType(e.Row,printKashefRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.printKashefRowChangingEvent) Is Nothing) Then
+                RaiseEvent printKashefRowChanging(Me, New printKashefRowChangeEvent(CType(e.Row,printKashefRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.printKashefRowDeletedEvent) Is Nothing) Then
+                RaiseEvent printKashefRowDeleted(Me, New printKashefRowChangeEvent(CType(e.Row,printKashefRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.printKashefRowDeletingEvent) Is Nothing) Then
+                RaiseEvent printKashefRowDeleting(Me, New printKashefRowChangeEvent(CType(e.Row,printKashefRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemoveprintKashefRow(ByVal row As printKashefRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DataSet1 = New DataSet1()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "printKashefDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class invoicesListDataTable
         Inherits Global.System.Data.TypedTableBase(Of invoicesListRow)
         
@@ -6206,6 +6680,368 @@ Partial Public Class DataSet1
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
+    Partial Public Class printKashefRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableprintKashef As printKashefDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableprintKashef = CType(Me.Table,printKashefDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_ID() As Integer
+            Get
+                Return CType(Me(Me.tableprintKashef.SubService_IDColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubService_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_Code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.SubService_CodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Code' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubService_CodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_AR_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.SubService_AR_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_AR_Name' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubService_AR_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_Service_ID() As Short
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.SubService_Service_IDColumn),Short)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Service_ID' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubService_Service_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Service_AR_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.Service_AR_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Service_AR_Name' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.Service_AR_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_Clinic() As Byte
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.SubService_ClinicColumn),Byte)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Clinic' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubService_ClinicColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SUBGROUP_ID() As Integer
+            Get
+                Return CType(Me(Me.tableprintKashef.SUBGROUP_IDColumn),Integer)
+            End Get
+            Set
+                Me(Me.tableprintKashef.SUBGROUP_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubGroup_ARname() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.SubGroup_ARnameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubGroup_ARname' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubGroup_ARnameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubGroup_ENname() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.SubGroup_ENnameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubGroup_ENname' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.SubGroup_ENnameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MainGroup_ID() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.MainGroup_IDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MainGroup_ID' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.MainGroup_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Group_ARname() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.Group_ARnameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Group_ARname' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.Group_ARnameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property INS_PRS() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.INS_PRSColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'INS_PRS' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.INS_PRSColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property DOCTOR_ID() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.DOCTOR_IDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DOCTOR_ID' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.DOCTOR_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property PROFILE_PRICE_ID() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tableprintKashef.PROFILE_PRICE_IDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PROFILE_PRICE_ID' in table 'printKashef' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableprintKashef.PROFILE_PRICE_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_CodeNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.SubService_CodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_CodeNull()
+            Me(Me.tableprintKashef.SubService_CodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_AR_NameNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.SubService_AR_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_AR_NameNull()
+            Me(Me.tableprintKashef.SubService_AR_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_Service_IDNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.SubService_Service_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_Service_IDNull()
+            Me(Me.tableprintKashef.SubService_Service_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsService_AR_NameNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.Service_AR_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetService_AR_NameNull()
+            Me(Me.tableprintKashef.Service_AR_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_ClinicNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.SubService_ClinicColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_ClinicNull()
+            Me(Me.tableprintKashef.SubService_ClinicColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubGroup_ARnameNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.SubGroup_ARnameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubGroup_ARnameNull()
+            Me(Me.tableprintKashef.SubGroup_ARnameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubGroup_ENnameNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.SubGroup_ENnameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubGroup_ENnameNull()
+            Me(Me.tableprintKashef.SubGroup_ENnameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMainGroup_IDNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.MainGroup_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMainGroup_IDNull()
+            Me(Me.tableprintKashef.MainGroup_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsGroup_ARnameNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.Group_ARnameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetGroup_ARnameNull()
+            Me(Me.tableprintKashef.Group_ARnameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsINS_PRSNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.INS_PRSColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetINS_PRSNull()
+            Me(Me.tableprintKashef.INS_PRSColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsDOCTOR_IDNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.DOCTOR_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetDOCTOR_IDNull()
+            Me(Me.tableprintKashef.DOCTOR_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsPROFILE_PRICE_IDNull() As Boolean
+            Return Me.IsNull(Me.tableprintKashef.PROFILE_PRICE_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetPROFILE_PRICE_IDNull()
+            Me(Me.tableprintKashef.PROFILE_PRICE_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
     Partial Public Class invoicesListRow
         Inherits Global.System.Data.DataRow
         
@@ -6700,6 +7536,42 @@ Partial Public Class DataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property Row() As INC_COMPANY_DATA1Row
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class printKashefRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As printKashefRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As printKashefRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As printKashefRow
             Get
                 Return Me.eventRow
             End Get
@@ -9031,6 +9903,202 @@ Namespace DataSet1TableAdapters
         Public Overloads Overridable Function GetData() As DataSet1.INC_COMPANY_DATA1DataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As DataSet1.INC_COMPANY_DATA1DataTable = New DataSet1.INC_COMPANY_DATA1DataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class printKashefTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "printKashef"
+            tableMapping.ColumnMappings.Add("SubService_ID", "SubService_ID")
+            tableMapping.ColumnMappings.Add("SubService_Code", "SubService_Code")
+            tableMapping.ColumnMappings.Add("SubService_AR_Name", "SubService_AR_Name")
+            tableMapping.ColumnMappings.Add("SubService_Service_ID", "SubService_Service_ID")
+            tableMapping.ColumnMappings.Add("Service_AR_Name", "Service_AR_Name")
+            tableMapping.ColumnMappings.Add("SubService_Clinic", "SubService_Clinic")
+            tableMapping.ColumnMappings.Add("SUBGROUP_ID", "SUBGROUP_ID")
+            tableMapping.ColumnMappings.Add("SubGroup_ARname", "SubGroup_ARname")
+            tableMapping.ColumnMappings.Add("SubGroup_ENname", "SubGroup_ENname")
+            tableMapping.ColumnMappings.Add("MainGroup_ID", "MainGroup_ID")
+            tableMapping.ColumnMappings.Add("Group_ARname", "Group_ARname")
+            tableMapping.ColumnMappings.Add("INS_PRS", "INS_PRS")
+            tableMapping.ColumnMappings.Add("DOCTOR_ID", "DOCTOR_ID")
+            tableMapping.ColumnMappings.Add("PROFILE_PRICE_ID", "PROFILE_PRICE_ID")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("insurance_CS").ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "  SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_Service_I"& _ 
+                "D, (SELECT Service_AR_Name FROM Main_Services WHERE Main_Services.Service_ID=Sub"& _ 
+                "Service_Service_ID) AS Service_AR_Name,SubService_Clinic, SUBGROUP_ID, SubGroup_"& _ 
+                "ARname, isnull(SubGroup_ENname, '') as SubGroup_ENname, MainGroup_ID, Group_ARna"& _ 
+                "me, INS_PRS, DOCTOR_ID, PROFILE_PRICE_ID FROM MAIN_SUBGROUP "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  inner join MAIN_"& _ 
+                "SUBSERVICES on MAIN_SUBSERVICES.SubService_ID = (SELECT TOP (1) SUBSERVICE_ID FR"& _ 
+                "OM MAIN_SUBSERVICES WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBG"& _ 
+                "ROUP_ID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  inner join INC_SERVICES_PRICES on INC_SERVICES_PRICES.SER_ID = (SELE"& _ 
+                "CT TOP (1) SUBSERVICE_ID FROM MAIN_SUBSERVICES WHERE MAIN_SUBSERVICES.SUBSERVICE"& _ 
+                "_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  inner join Main_GroupSubService on Main_G"& _ 
+                "roupSubService.Group_ID = Main_SubGroup.MainGroup_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"  where Group_flag <> 1"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet1.printKashefDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As DataSet1.printKashefDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As DataSet1.printKashefDataTable = New DataSet1.printKashefDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function

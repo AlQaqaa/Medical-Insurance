@@ -310,6 +310,39 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="printKashefTableAdapter" GeneratorDataComponentClassName="printKashefTableAdapter" Name="printKashef" UserDataComponentName="printKashefTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>  SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_Service_ID, (SELECT Service_AR_Name FROM Main_Services WHERE Main_Services.Service_ID=SubService_Service_ID) AS Service_AR_Name,SubService_Clinic, SUBGROUP_ID, SubGroup_ARname, isnull(SubGroup_ENname, '') as SubGroup_ENname, MainGroup_ID, Group_ARname, INS_PRS, DOCTOR_ID, PROFILE_PRICE_ID FROM MAIN_SUBGROUP 
+  inner join MAIN_SUBSERVICES on MAIN_SUBSERVICES.SubService_ID = (SELECT TOP (1) SUBSERVICE_ID FROM MAIN_SUBSERVICES WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)
+  inner join INC_SERVICES_PRICES on INC_SERVICES_PRICES.SER_ID = (SELECT TOP (1) SUBSERVICE_ID FROM MAIN_SUBSERVICES WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)
+  inner join Main_GroupSubService on Main_GroupSubService.Group_ID = Main_SubGroup.MainGroup_ID
+  where Group_flag &lt;&gt; 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="SubService_ID" DataSetColumn="SubService_ID" />
+              <Mapping SourceColumn="SubService_Code" DataSetColumn="SubService_Code" />
+              <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
+              <Mapping SourceColumn="SubService_Service_ID" DataSetColumn="SubService_Service_ID" />
+              <Mapping SourceColumn="Service_AR_Name" DataSetColumn="Service_AR_Name" />
+              <Mapping SourceColumn="SubService_Clinic" DataSetColumn="SubService_Clinic" />
+              <Mapping SourceColumn="SUBGROUP_ID" DataSetColumn="SUBGROUP_ID" />
+              <Mapping SourceColumn="SubGroup_ARname" DataSetColumn="SubGroup_ARname" />
+              <Mapping SourceColumn="SubGroup_ENname" DataSetColumn="SubGroup_ENname" />
+              <Mapping SourceColumn="MainGroup_ID" DataSetColumn="MainGroup_ID" />
+              <Mapping SourceColumn="Group_ARname" DataSetColumn="Group_ARname" />
+              <Mapping SourceColumn="INS_PRS" DataSetColumn="INS_PRS" />
+              <Mapping SourceColumn="DOCTOR_ID" DataSetColumn="DOCTOR_ID" />
+              <Mapping SourceColumn="PROFILE_PRICE_ID" DataSetColumn="PROFILE_PRICE_ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -734,6 +767,62 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="printKashef" msprop:Generator_TableClassName="printKashefDataTable" msprop:Generator_TableVarName="tableprintKashef" msprop:Generator_TablePropName="printKashef" msprop:Generator_RowDeletingName="printKashefRowDeleting" msprop:Generator_RowChangingName="printKashefRowChanging" msprop:Generator_RowEvHandlerName="printKashefRowChangeEventHandler" msprop:Generator_RowDeletedName="printKashefRowDeleted" msprop:Generator_UserTableName="printKashef" msprop:Generator_RowChangedName="printKashefRowChanged" msprop:Generator_RowEvArgName="printKashefRowChangeEvent" msprop:Generator_RowClassName="printKashefRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubService_ID" msprop:Generator_ColumnVarNameInTable="columnSubService_ID" msprop:Generator_ColumnPropNameInRow="SubService_ID" msprop:Generator_ColumnPropNameInTable="SubService_IDColumn" msprop:Generator_UserColumnName="SubService_ID" type="xs:int" />
+              <xs:element name="SubService_Code" msprop:Generator_ColumnVarNameInTable="columnSubService_Code" msprop:Generator_ColumnPropNameInRow="SubService_Code" msprop:Generator_ColumnPropNameInTable="SubService_CodeColumn" msprop:Generator_UserColumnName="SubService_Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_AR_Name" msprop:Generator_ColumnVarNameInTable="columnSubService_AR_Name" msprop:Generator_ColumnPropNameInRow="SubService_AR_Name" msprop:Generator_ColumnPropNameInTable="SubService_AR_NameColumn" msprop:Generator_UserColumnName="SubService_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_Service_ID" msprop:Generator_ColumnVarNameInTable="columnSubService_Service_ID" msprop:Generator_ColumnPropNameInRow="SubService_Service_ID" msprop:Generator_ColumnPropNameInTable="SubService_Service_IDColumn" msprop:Generator_UserColumnName="SubService_Service_ID" type="xs:short" minOccurs="0" />
+              <xs:element name="Service_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnService_AR_Name" msprop:Generator_ColumnPropNameInRow="Service_AR_Name" msprop:Generator_ColumnPropNameInTable="Service_AR_NameColumn" msprop:Generator_UserColumnName="Service_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_Clinic" msprop:Generator_ColumnVarNameInTable="columnSubService_Clinic" msprop:Generator_ColumnPropNameInRow="SubService_Clinic" msprop:Generator_ColumnPropNameInTable="SubService_ClinicColumn" msprop:Generator_UserColumnName="SubService_Clinic" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="SUBGROUP_ID" msprop:Generator_ColumnVarNameInTable="columnSUBGROUP_ID" msprop:Generator_ColumnPropNameInRow="SUBGROUP_ID" msprop:Generator_ColumnPropNameInTable="SUBGROUP_IDColumn" msprop:Generator_UserColumnName="SUBGROUP_ID" type="xs:int" />
+              <xs:element name="SubGroup_ARname" msprop:Generator_ColumnVarNameInTable="columnSubGroup_ARname" msprop:Generator_ColumnPropNameInRow="SubGroup_ARname" msprop:Generator_ColumnPropNameInTable="SubGroup_ARnameColumn" msprop:Generator_UserColumnName="SubGroup_ARname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubGroup_ENname" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSubGroup_ENname" msprop:Generator_ColumnPropNameInRow="SubGroup_ENname" msprop:Generator_ColumnPropNameInTable="SubGroup_ENnameColumn" msprop:Generator_UserColumnName="SubGroup_ENname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MainGroup_ID" msprop:Generator_ColumnVarNameInTable="columnMainGroup_ID" msprop:Generator_ColumnPropNameInRow="MainGroup_ID" msprop:Generator_ColumnPropNameInTable="MainGroup_IDColumn" msprop:Generator_UserColumnName="MainGroup_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="Group_ARname" msprop:Generator_ColumnVarNameInTable="columnGroup_ARname" msprop:Generator_ColumnPropNameInRow="Group_ARname" msprop:Generator_ColumnPropNameInTable="Group_ARnameColumn" msprop:Generator_UserColumnName="Group_ARname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="INS_PRS" msprop:Generator_ColumnVarNameInTable="columnINS_PRS" msprop:Generator_ColumnPropNameInRow="INS_PRS" msprop:Generator_ColumnPropNameInTable="INS_PRSColumn" msprop:Generator_UserColumnName="INS_PRS" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DOCTOR_ID" msprop:Generator_ColumnVarNameInTable="columnDOCTOR_ID" msprop:Generator_ColumnPropNameInRow="DOCTOR_ID" msprop:Generator_ColumnPropNameInTable="DOCTOR_IDColumn" msprop:Generator_UserColumnName="DOCTOR_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="PROFILE_PRICE_ID" msprop:Generator_ColumnVarNameInTable="columnPROFILE_PRICE_ID" msprop:Generator_ColumnPropNameInRow="PROFILE_PRICE_ID" msprop:Generator_ColumnPropNameInTable="PROFILE_PRICE_IDColumn" msprop:Generator_UserColumnName="PROFILE_PRICE_ID" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -755,6 +844,10 @@
     <xs:unique name="INC_STOP_PATIANT_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:INC_STOP_PATIANT" />
       <xs:field xpath="mstns:PINC_ID" />
+    </xs:unique>
+    <xs:unique name="printKashef_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:printKashef" />
+      <xs:field xpath="mstns:SubService_ID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

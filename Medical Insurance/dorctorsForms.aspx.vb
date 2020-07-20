@@ -85,30 +85,14 @@ Public Class dorctorsForms
                 insurance_SQLcon.Close()
                 getData()
 
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'تمت العملية بنجاح',
-                showConfirmButton: false,
-                timer: 1500
-            });", True)
-
             End If
 
             If ch_counter = 0 Then
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'يرجى اختيار حركة واحدة على الأقل',
-                showConfirmButton: false,
-                timer: 1500
-            });", True)
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('خطأ! لم تقم باختيار أي حركة');", True)
                 Exit Sub
             End If
 
         Next
-
-
-
+        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('تمت التسوية مع الطبيب بنجاح');", True)
     End Sub
 End Class

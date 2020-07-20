@@ -32,6 +32,15 @@ Partial Public Class cashPrices
     Protected WithEvents lbl_profile_name As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''Label4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''ddl_show_type control.
     '''</summary>
     '''<remarks>
@@ -167,6 +176,15 @@ Partial Public Class cashPrices
     Protected WithEvents SqlDataSource3 As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
+    '''CheckBox1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
+    
+    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>
@@ -176,6 +194,24 @@ Partial Public Class cashPrices
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''btn_print control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_print As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btn_print1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_print1 As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Panel1 control.
     '''</summary>
     '''<remarks>
@@ -183,15 +219,6 @@ Partial Public Class cashPrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
-    '''CheckBox1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
     
     '''<summary>
     '''txt_private_all control.
@@ -212,24 +239,6 @@ Partial Public Class cashPrices
     Protected WithEvents txt_per_add As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txt_invoice_price_all control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_invoice_price_all As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''txt_invoice_per_all control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_invoice_per_all As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
     '''btn_apply control.
     '''</summary>
     '''<remarks>
@@ -237,24 +246,6 @@ Partial Public Class cashPrices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_apply As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''UpdatePanel1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''UpdateProgress1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdateProgress1 As Global.System.Web.UI.UpdateProgress
     
     '''<summary>
     '''btn_save control.

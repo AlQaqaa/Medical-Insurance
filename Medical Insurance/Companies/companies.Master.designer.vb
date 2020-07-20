@@ -140,6 +140,33 @@ Partial Public Class companies
     Protected WithEvents hl_services_prices As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''HyperLink14 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink14 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''HyperLink15 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink15 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''HyperLink16 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink16 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_notifications control.
     '''</summary>
     '''<remarks>

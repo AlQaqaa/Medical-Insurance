@@ -140,6 +140,33 @@ Partial Public Class motalbat
     Protected WithEvents hl_services_prices As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''HyperLink7 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink7 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''HyperLink9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink9 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
+    '''HyperLink10 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink10 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_notifications control.
     '''</summary>
     '''<remarks>

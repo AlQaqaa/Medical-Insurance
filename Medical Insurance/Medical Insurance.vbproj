@@ -171,6 +171,7 @@
     <Content Include="Motalbat\printPatientProcesses.aspx" />
     <Content Include="approvalConfirm\newApproval.aspx" />
     <Content Include="notificationCenter.aspx" />
+    <Content Include="printPrices.aspx" />
     <Content Include="Reports\companyData.aspx" />
     <Content Include="Reports\dailyProcesses.aspx" />
     <Content Include="Reports\stopPatients.aspx" />
@@ -373,6 +374,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet2.Designer.vb" />
     <Compile Include="dorctorsForms.aspx.designer.vb">
       <DependentUpon>dorctorsForms.aspx</DependentUpon>
     </Compile>
@@ -461,6 +463,13 @@
       <DependentUpon>notificationCenter.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="printPrices.aspx.designer.vb">
+      <DependentUpon>printPrices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="printPrices.aspx.vb">
+      <DependentUpon>printPrices.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\companyData.aspx.designer.vb">
       <DependentUpon>companyData.aspx</DependentUpon>
     </Compile>
@@ -475,10 +484,10 @@
       <DependentUpon>dailyProcesses.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Reports\servicesPrices.vb">
+    <Compile Include="Reports\servicesPricesKashf.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>servicesPrices.rpt</DependentUpon>
+      <DependentUpon>servicesPricesKashf.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\stopPatients.aspx.designer.vb">
@@ -573,9 +582,9 @@
     <Content Include="Reports\servicesCashPrices.rdlc" />
     <Content Include="Reports\companyDataReport.rdlc" />
     <Content Include="Reports\confirmApproval2.rdlc" />
-    <EmbeddedResource Include="Reports\servicesPrices.rpt">
+    <EmbeddedResource Include="Reports\servicesPricesKashf.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>servicesPrices.vb</LastGenOutput>
+      <LastGenOutput>servicesPricesKashf.vb</LastGenOutput>
     </EmbeddedResource>
     <Content Include="Reports\totalExpensesCompany.rdlc" />
     <Content Include="Reports\stopPatientsReport.rdlc" />
@@ -595,6 +604,13 @@
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
     <Content Include="Motalbat\motalbat.Master" />
+    <Content Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet2.xsd" />
+    <Content Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

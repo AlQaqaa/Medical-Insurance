@@ -115,40 +115,40 @@ Public Class servicesPricesShow
 
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
 
-        Try
+        'Try
 
-            Dim CrReport As New servicesPrices()
-            Dim CrExportOptions As ExportOptions
-            Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions()
-            Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions()
-            CrReport.SetDataSource(getDataReport())
+        '    Dim CrReport As New servicesPrices()
+        '    Dim CrExportOptions As ExportOptions
+        '    Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions()
+        '    Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions()
+        '    CrReport.SetDataSource(getDataReport())
 
-            Dim FolderLocation As String
-            FolderLocation = Server.MapPath("~/Reports")
-            Dim filepath As String = FolderLocation & "/servicesPrices.pdf"
-            CrDiskFileDestinationOptions.DiskFileName = filepath
+        '    Dim FolderLocation As String
+        '    FolderLocation = Server.MapPath("~/Reports")
+        '    Dim filepath As String = FolderLocation & "/servicesPrices.pdf"
+        '    CrDiskFileDestinationOptions.DiskFileName = filepath
 
-            CrExportOptions = CrReport.ExportOptions
+        '    CrExportOptions = CrReport.ExportOptions
 
-            With CrExportOptions
+        '    With CrExportOptions
 
-                'Set the destination to a disk file
-                .ExportDestinationType = ExportDestinationType.DiskFile
+        '        'Set the destination to a disk file
+        '        .ExportDestinationType = ExportDestinationType.DiskFile
 
-                'Set the format to PDF
-                .ExportFormatType = ExportFormatType.PortableDocFormat
+        '        'Set the format to PDF
+        '        .ExportFormatType = ExportFormatType.PortableDocFormat
 
-                'Set the destination options to DiskFileDestinationOptions object
-                .DestinationOptions = CrDiskFileDestinationOptions
-                .FormatOptions = CrFormatTypeOptions
-            End With
+        '        'Set the destination options to DiskFileDestinationOptions object
+        '        .DestinationOptions = CrDiskFileDestinationOptions
+        '        .FormatOptions = CrFormatTypeOptions
+        '    End With
 
-            CrReport.Export()
-            Response.Redirect("~/Reports/servicesPrices.pdf", False)
+        '    CrReport.Export()
+        '    Response.Redirect("~/Reports/servicesPrices.pdf", False)
 
-        Catch ex As Exception
-            MsgBox(ex.Message)
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
-        End Try
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        'End Try
     End Sub
 End Class

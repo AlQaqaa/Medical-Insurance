@@ -74,7 +74,7 @@ Public Class createProfilePrices
 
     Private Sub getActiveProfile()
         Try
-            Dim sel_com As New SqlCommand("SELECT PROFILE_ID, PROFILE_NAME, CONVERT(VARCHAR, PROFILE_DT, 23) AS PROFILE_DT, is_default FROM INC_PRICES_PROFILES WHERE PROFILE_STS = 0 AND is_default = 0", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT PROFILE_ID, PROFILE_NAME, CONVERT(VARCHAR, PROFILE_DT, 23) AS PROFILE_DT, is_default FROM INC_PRICES_PROFILES WHERE PROFILE_STS = 0 AND is_default = 0 AND PROFILE_ID <> 3025", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -97,7 +97,7 @@ Public Class createProfilePrices
 
     Private Sub getStopProfile()
         Try
-            Dim sel_com As New SqlCommand("SELECT PROFILE_ID, PROFILE_NAME, CONVERT(VARCHAR, PROFILE_DT, 23) AS PROFILE_DT FROM INC_PRICES_PROFILES WHERE PROFILE_STS = 1", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT PROFILE_ID, PROFILE_NAME, CONVERT(VARCHAR, PROFILE_DT, 23) AS PROFILE_DT FROM INC_PRICES_PROFILES WHERE PROFILE_STS = 1 AND PROFILE_ID <> 3025", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()

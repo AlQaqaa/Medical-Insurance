@@ -87,12 +87,24 @@ Public Class dorctorsForms
 
             End If
 
-            If ch_counter = 0 Then
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('خطأ! لم تقم باختيار أي حركة');", True)
-                Exit Sub
-            End If
-
         Next
-        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('تمت التسوية مع الطبيب بنجاح');", True)
+
+        If ch_counter = 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('خطأ! لم تقم باختيار أي حركة');", True)
+            Exit Sub
+        End If
+
+        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت التسوية مع الطبيب بنجاح',
+                showConfirmButton: false,
+                timer: 1000
+            });
+            window.setTimeout(function () {
+                window.location.href = 'dorctorsForms.aspx';
+            }, 1000);", True)
+
+        'ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('تمت التسوية مع الطبيب بنجاح');", True)
     End Sub
 End Class

@@ -13,8 +13,11 @@ Public Class invoicesList
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         If IsPostBack = False Then
-            If Session("User_per")("print_motalba") = False Then
-                btn_print.Visible = False
+            If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
+                If Session("User_per")("print_motalba") = False Then
+                    btn_print.Visible = False
+                End If
+
             End If
         End If
 

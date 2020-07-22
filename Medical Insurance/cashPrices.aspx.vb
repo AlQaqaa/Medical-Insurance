@@ -268,110 +268,110 @@ Public Class cashPrices
         GridView1.DataBind()
     End Sub
 
-    Protected Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
-        'Dim sql_str As String = "SELECT * FROM CashPrices WHERE clinic_id in ((select Clinic_id from UserClinicPermissions where user_id = " & Val(Session("pruser_id")) & "))"
-        Dim sql_str As String = "SELECT * FROM CashPrices  where 1=1 "
-        If ddl_clinics.SelectedValue > 0 Then sql_str = sql_str & " and Clinic_id=" & ddl_clinics.SelectedValue
-        Dim ds As New DataSet2
-        Dim viewer As ReportViewer = New ReportViewer()
+    'Protected Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
+    '    'Dim sql_str As String = "SELECT * FROM CashPrices WHERE clinic_id in ((select Clinic_id from UserClinicPermissions where user_id = " & Val(Session("pruser_id")) & "))"
+    '    Dim sql_str As String = "SELECT * FROM CashPrices  where 1=1 "
+    '    If ddl_clinics.SelectedValue > 0 Then sql_str = sql_str & " and Clinic_id=" & ddl_clinics.SelectedValue
+    '    Dim ds As New DataSet2
+    '    Dim viewer As ReportViewer = New ReportViewer()
 
-        Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
-        insurance_SQLcon.Close()
-        insurance_SQLcon.Open()
-        ds.Tables("INC_SERVICES_PRICES").Load(sel_com.ExecuteReader)
-        insurance_SQLcon.Close()
+    '    Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
+    '    insurance_SQLcon.Close()
+    '    insurance_SQLcon.Open()
+    '    ds.Tables("INC_SERVICES_PRICES").Load(sel_com.ExecuteReader)
+    '    insurance_SQLcon.Close()
 
-        Dim datasource As New ReportDataSource("CashPricesDataset", ds.Tables("INC_SERVICES_PRICES"))
-        viewer.LocalReport.DataSources.Clear()
-        viewer.ProcessingMode = ProcessingMode.Local
-        viewer.LocalReport.ReportPath = Server.MapPath("~/reports/pricesReport.rdlc")
-        viewer.LocalReport.DataSources.Add(datasource)
+    '    Dim datasource As New ReportDataSource("CashPricesDataset", ds.Tables("INC_SERVICES_PRICES"))
+    '    viewer.LocalReport.DataSources.Clear()
+    '    viewer.ProcessingMode = ProcessingMode.Local
+    '    viewer.LocalReport.ReportPath = Server.MapPath("~/reports/pricesReport.rdlc")
+    '    viewer.LocalReport.DataSources.Add(datasource)
 
-        'Dim rp1 As ReportParameter
-        'Dim rp2 As ReportParameter
-        Dim rp3 As ReportParameter
+    '    'Dim rp1 As ReportParameter
+    '    'Dim rp2 As ReportParameter
+    '    Dim rp3 As ReportParameter
 
-        'rp1 = New ReportParameter("from_dt", start_dt)
-        'rp2 = New ReportParameter("to_dt", end_dt)
-        rp3 = New ReportParameter("user_name", Session("pruser_full_name").ToString)
+    '    'rp1 = New ReportParameter("from_dt", start_dt)
+    '    'rp2 = New ReportParameter("to_dt", end_dt)
+    '    rp3 = New ReportParameter("user_name", Session("pruser_full_name").ToString)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp3})
+    '    viewer.LocalReport.SetParameters(New ReportParameter() {rp3})
 
-        Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-        Dim r As String = "~/reports/pricesReport.rdlc"
-        ' Page.Controls.Add(rv)
+    '    Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+    '    Dim r As String = "~/reports/pricesReport.rdlc"
+    '    ' Page.Controls.Add(rv)
 
-        Dim warnings As Warning() = Nothing
-        Dim streamids As String() = Nothing
-        Dim mimeType As String = Nothing
-        Dim encoding As String = Nothing
-        Dim extension As String = Nothing
-        Dim bytes As Byte()
-        Dim FolderLocation As String
-        FolderLocation = Server.MapPath("~/files")
-        Dim filepath As String = FolderLocation & "/pricesReport1" & Session("pruser_id") & ".pdf"
-        If Directory.Exists(filepath) Then
-            File.Delete(filepath)
-        End If
-        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
-            encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/pricesReport1" & Session("pruser_id") & ".pdf", FileMode.Create)
-        fs.Write(bytes, 0, bytes.Length)
-        fs.Close()
-        Response.Redirect("~/files/pricesReport1" & Session("pruser_id") & ".pdf", True)
-    End Sub
+    '    Dim warnings As Warning() = Nothing
+    '    Dim streamids As String() = Nothing
+    '    Dim mimeType As String = Nothing
+    '    Dim encoding As String = Nothing
+    '    Dim extension As String = Nothing
+    '    Dim bytes As Byte()
+    '    Dim FolderLocation As String
+    '    FolderLocation = Server.MapPath("~/files")
+    '    Dim filepath As String = FolderLocation & "/pricesReport1" & Session("pruser_id") & ".pdf"
+    '    If Directory.Exists(filepath) Then
+    '        File.Delete(filepath)
+    '    End If
+    '    bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
+    '        encoding, extension, streamids, warnings)
+    '    Dim fs As New FileStream(FolderLocation & "/pricesReport1" & Session("pruser_id") & ".pdf", FileMode.Create)
+    '    fs.Write(bytes, 0, bytes.Length)
+    '    fs.Close()
+    '    Response.Redirect("~/files/pricesReport1" & Session("pruser_id") & ".pdf", True)
+    'End Sub
 
-    Protected Sub btn_print1_Click(sender As Object, e As EventArgs) Handles btn_print1.Click
-        'Dim sql_str As String = "SELECT * FROM CashPrices WHERE clinic_id in ((select Clinic_id from UserClinicPermissions where user_id = " & Val(Session("pruser_id")) & "))"
-        Dim sql_str As String = "SELECT * FROM CashPrices  where 1=1 "
-        sql_str = sql_str & " and CASH_PRS=0"
-        If ddl_clinics.SelectedValue > 0 Then sql_str = sql_str & " and Clinic_id=" & ddl_clinics.SelectedValue
-        Dim ds As New DataSet2
-        Dim viewer As ReportViewer = New ReportViewer()
+    'Protected Sub btn_print1_Click(sender As Object, e As EventArgs) Handles btn_print1.Click
+    '    'Dim sql_str As String = "SELECT * FROM CashPrices WHERE clinic_id in ((select Clinic_id from UserClinicPermissions where user_id = " & Val(Session("pruser_id")) & "))"
+    '    Dim sql_str As String = "SELECT * FROM CashPrices  where 1=1 "
+    '    sql_str = sql_str & " and CASH_PRS=0"
+    '    If ddl_clinics.SelectedValue > 0 Then sql_str = sql_str & " and Clinic_id=" & ddl_clinics.SelectedValue
+    '    Dim ds As New DataSet2
+    '    Dim viewer As ReportViewer = New ReportViewer()
 
-        Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
-        insurance_SQLcon.Close()
-        insurance_SQLcon.Open()
-        ds.Tables("INC_SERVICES_PRICES").Load(sel_com.ExecuteReader)
-        insurance_SQLcon.Close()
+    '    Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
+    '    insurance_SQLcon.Close()
+    '    insurance_SQLcon.Open()
+    '    ds.Tables("INC_SERVICES_PRICES").Load(sel_com.ExecuteReader)
+    '    insurance_SQLcon.Close()
 
-        Dim datasource As New ReportDataSource("CashPricesDataset", ds.Tables("INC_SERVICES_PRICES"))
-        viewer.LocalReport.DataSources.Clear()
-        viewer.ProcessingMode = ProcessingMode.Local
-        viewer.LocalReport.ReportPath = Server.MapPath("~/reports/pricesReport.rdlc")
-        viewer.LocalReport.DataSources.Add(datasource)
+    '    Dim datasource As New ReportDataSource("CashPricesDataset", ds.Tables("INC_SERVICES_PRICES"))
+    '    viewer.LocalReport.DataSources.Clear()
+    '    viewer.ProcessingMode = ProcessingMode.Local
+    '    viewer.LocalReport.ReportPath = Server.MapPath("~/reports/pricesReport.rdlc")
+    '    viewer.LocalReport.DataSources.Add(datasource)
 
-        'Dim rp1 As ReportParameter
-        'Dim rp2 As ReportParameter
-        Dim rp3 As ReportParameter
+    '    'Dim rp1 As ReportParameter
+    '    'Dim rp2 As ReportParameter
+    '    Dim rp3 As ReportParameter
 
-        'rp1 = New ReportParameter("from_dt", start_dt)
-        'rp2 = New ReportParameter("to_dt", end_dt)
-        rp3 = New ReportParameter("user_name", Session("pruser_full_name").ToString)
+    '    'rp1 = New ReportParameter("from_dt", start_dt)
+    '    'rp2 = New ReportParameter("to_dt", end_dt)
+    '    rp3 = New ReportParameter("user_name", Session("pruser_full_name").ToString)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp3})
+    '    viewer.LocalReport.SetParameters(New ReportParameter() {rp3})
 
-        Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-        Dim r As String = "~/reports/pricesReport.rdlc"
-        ' Page.Controls.Add(rv)
+    '    Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+    '    Dim r As String = "~/reports/pricesReport.rdlc"
+    '    ' Page.Controls.Add(rv)
 
-        Dim warnings As Warning() = Nothing
-        Dim streamids As String() = Nothing
-        Dim mimeType As String = Nothing
-        Dim encoding As String = Nothing
-        Dim extension As String = Nothing
-        Dim bytes As Byte()
-        Dim FolderLocation As String
-        FolderLocation = Server.MapPath("~/files")
-        Dim filepath As String = FolderLocation & "/pricesReport2" & Session("pruser_id") & ".pdf"
-        If Directory.Exists(filepath) Then
-            File.Delete(filepath)
-        End If
-        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
-            encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/pricesReport2" & Session("pruser_id") & ".pdf", FileMode.Create)
-        fs.Write(bytes, 0, bytes.Length)
-        fs.Close()
-        Response.Redirect("~/files/pricesReport2" & Session("pruser_id") & ".pdf", True)
-    End Sub
+    '    Dim warnings As Warning() = Nothing
+    '    Dim streamids As String() = Nothing
+    '    Dim mimeType As String = Nothing
+    '    Dim encoding As String = Nothing
+    '    Dim extension As String = Nothing
+    '    Dim bytes As Byte()
+    '    Dim FolderLocation As String
+    '    FolderLocation = Server.MapPath("~/files")
+    '    Dim filepath As String = FolderLocation & "/pricesReport2" & Session("pruser_id") & ".pdf"
+    '    If Directory.Exists(filepath) Then
+    '        File.Delete(filepath)
+    '    End If
+    '    bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
+    '        encoding, extension, streamids, warnings)
+    '    Dim fs As New FileStream(FolderLocation & "/pricesReport2" & Session("pruser_id") & ".pdf", FileMode.Create)
+    '    fs.Write(bytes, 0, bytes.Length)
+    '    fs.Close()
+    '    Response.Redirect("~/files/pricesReport2" & Session("pruser_id") & ".pdf", True)
+    'End Sub
 End Class

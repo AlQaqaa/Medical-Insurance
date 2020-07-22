@@ -154,12 +154,12 @@
                     <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-primary btn-block" Text="بحث" ValidationGroup="save_data" />
 
                 </div>
-                <div class="col-lg-4">
+                <%--<div class="col-lg-4">
                     <br />
                     <asp:Button ID="btn_print" CssClass="btn btn-outline-secondary" runat="server" Text="طباعة الأسعار" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                     <asp:Button ID="btn_print1" CssClass="btn btn-outline-secondary" runat="server" Text="طباعة خدمات بدون سعر" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                 </div>
-
+--%>
 
             </div>
 

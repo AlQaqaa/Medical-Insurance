@@ -41,7 +41,7 @@
                                 <!-- /form-row -->
                                 <div class="form-row justify-content-end">
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة" />
+                                        <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_return" runat="server" OnClientClick="return confirm('هل أنت متأكد من إرجاع هذه المطالبة؟')" CssClass="btn btn-outline-danger btn-block" Text="إرجاع المطالبة" />
@@ -92,7 +92,7 @@
                                                             CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                                             Text="إرجاع"
                                                             ToolTip="إرجاع حركة المنتفع من المطالبة"
-                                                            ControlStyle-CssClass="btn btn-danger btn-small" 
+                                                            ControlStyle-CssClass="btn btn-danger btn-small"
                                                             OnClientClick="return confirm('هل أنت متأكد من الاستمرار في هذا الإجراء؟')" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -110,6 +110,9 @@
                 <!-- /row -->
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:AsyncPostBackTrigger ControlID="btn_print" EventName="Click" />
+        </Triggers>
     </asp:UpdatePanel>
 
 </asp:Content>

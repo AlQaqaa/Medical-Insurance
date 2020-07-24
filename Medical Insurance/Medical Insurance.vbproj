@@ -490,6 +490,12 @@
       <DependentUpon>servicesPricesKashf.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\servicesPricesOprations.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>servicesPricesOprations.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\stopPatients.aspx.designer.vb">
       <DependentUpon>stopPatients.aspx</DependentUpon>
     </Compile>
@@ -588,6 +594,10 @@
     </EmbeddedResource>
     <Content Include="Reports\totalExpensesCompany.rdlc" />
     <Content Include="Reports\stopPatientsReport.rdlc" />
+    <EmbeddedResource Include="Reports\servicesPricesOprations.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>servicesPricesOprations.vb</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.Master" />

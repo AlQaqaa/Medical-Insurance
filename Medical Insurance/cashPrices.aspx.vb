@@ -25,7 +25,7 @@ Public Class cashPrices
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Session("pruser_id") = 1
 
-        profile_no = 3025
+        ViewState("profile_no") = 3025
 
     End Sub
 
@@ -59,7 +59,7 @@ Public Class cashPrices
                     insClinic.Parameters.AddWithValue("@inv_prc", 0)
                     insClinic.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                     insClinic.Parameters.AddWithValue("@user_ip", GetIPAddress())
-                    insClinic.Parameters.AddWithValue("@profile_price_id", Val(Session("profile_no")))
+                    insClinic.Parameters.AddWithValue("@profile_price_id", Val(ViewState("profile_no")))
                     insClinic.Parameters.AddWithValue("@cost_prc", 0)
                     insClinic.Parameters.AddWithValue("@doctor_id", dll_doctors.SelectedValue)
                     insurance_SQLcon.Open()
@@ -193,7 +193,7 @@ Public Class cashPrices
         Try
             GridView1.DataSource = Nothing
             GridView1.DataBind()
-            Dim CASH_PRS As String = "ISNULL(  (SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3024   AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS CASH_PRS "
+            Dim CASH_PRS As String = "ISNULL(  (SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3025 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS CASH_PRS "
             'Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & profile_no & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS CASH_PRS,"
 
             'Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & profile_no & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS "

@@ -55,10 +55,10 @@
 
                     <div class="row justify-content-center mt-3">
                         <div class="col-sm-12 col-md-3">
-                            <asp:Button ID="btn_show" runat="server" Text="عرض" CssClass="btn btn-info btn-block" />
+                            <asp:Button ID="btn_show" runat="server" Text="عرض" CssClass="btn btn-info btn-block" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                         </div>
                         <div class="col-sm-12 col-md-3">
-                            <asp:Button ID="btn_print" runat="server" Text="طباعة" CssClass="btn btn-success btn-block" Enabled="False" />
+                            <asp:Button ID="btn_print" runat="server" Text="طباعة" CssClass="btn btn-success btn-block" Enabled="False" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                         </div>
 
                     </div>
@@ -75,7 +75,7 @@
                                     </asp:BoundField>
                                     <asp:BoundField DataField="SubService_Code" HeaderText="كود الخدمة" SortExpression="SubService_Code" />
                                     <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة" SortExpression="SubService_AR_Name" />
-                                    <asp:BoundField DataField="Service_AR_Name" HeaderText="القسم" SortExpression="Service_AR_Name" />
+                                    <asp:BoundField DataField="Service_EN_Name" HeaderText="القسم" SortExpression="Service_AR_Name" />
                                     <asp:BoundField DataField="SubGroup_ARname" HeaderText="المجموعة" SortExpression="SubGroup_ARname"></asp:BoundField>
                                     <asp:BoundField DataField="Group_ARname" HeaderText="التصنيف" SortExpression="Group_ARname"></asp:BoundField>
                                     <asp:BoundField DataField="INS_PRS" HeaderText="السعر" SortExpression="INS_PRS" DataFormatString="{0:c3}"></asp:BoundField>
@@ -84,6 +84,10 @@
                         </div>
                     </div>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btn_show" EventName="Click" />
+                    <asp:AsyncPostBackTrigger ControlID="btn_print" EventName="Click" />
+                </Triggers>
             </asp:UpdatePanel>
 
         </div>

@@ -41,11 +41,22 @@ Public Class printPrices
 
     Private Function getData() As DataSet1
 
-        Dim query_str As String = " SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_Service_ID, (SELECT Service_AR_Name FROM Main_Services WHERE Main_Services.Service_ID=SubService_Service_ID) AS Service_AR_Name,SubService_Clinic, SUBGROUP_ID, SubGroup_ARname, isnull(SubGroup_ENname, '') as SubGroup_ENname, MainGroup_ID, Group_ARname, INS_PRS, DOCTOR_ID, PROFILE_PRICE_ID FROM MAIN_SUBGROUP 
+        Dim query_str As String
+
+        If ddl_show_type.SelectedValue = 2 Then
+            query_str = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, SubService_Service_ID, (SELECT Service_EN_Name FROM Main_Services WHERE Main_Services.Service_ID=SubService_Service_ID) AS Service_EN_Name,SubService_Clinic, SUBGROUP_ID, SubGroup_ARname, isnull(SubGroup_ENname, '') as SubGroup_ENname, MainGroup_ID, Group_ARname, INS_PRS, DOCTOR_ID, PROFILE_PRICE_ID FROM MAIN_SUBGROUP 
+          inner join MAIN_SUBSERVICES on MAIN_SUBSERVICES.SubService_Group = MAIN_SUBGROUP.SubGroup_ID
+          inner join INC_SERVICES_PRICES on INC_SERVICES_PRICES.SER_ID = MAIN_SUBSERVICES.SubService_ID
+          inner join Main_GroupSubService on Main_GroupSubService.Group_ID = Main_SubGroup.MainGroup_ID
+          where Group_flag <> 1 AND PROFILE_PRICE_ID = " & ddl_prices_profile.SelectedValue & " AND DOCTOR_ID = " & dll_doctors.SelectedValue
+        Else
+            query_str = " SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, SubService_Service_ID, (SELECT Service_EN_Name FROM Main_Services WHERE Main_Services.Service_ID=SubService_Service_ID) AS Service_EN_Name,SubService_Clinic, SUBGROUP_ID, SubGroup_ARname, isnull(SubGroup_ENname, '') as SubGroup_ENname, MainGroup_ID, Group_ARname, INS_PRS, DOCTOR_ID, PROFILE_PRICE_ID FROM MAIN_SUBGROUP 
           inner join MAIN_SUBSERVICES on MAIN_SUBSERVICES.SubService_ID = (SELECT TOP (1) SUBSERVICE_ID FROM MAIN_SUBSERVICES WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)
           inner join INC_SERVICES_PRICES on INC_SERVICES_PRICES.SER_ID = (SELECT TOP (1) SUBSERVICE_ID FROM MAIN_SUBSERVICES WHERE MAIN_SUBSERVICES.SUBSERVICE_GROUP = MAIN_SUBGROUP.SUBGROUP_ID)
           inner join Main_GroupSubService on Main_GroupSubService.Group_ID = Main_SubGroup.MainGroup_ID
           where Group_flag <> 1 AND PROFILE_PRICE_ID = " & ddl_prices_profile.SelectedValue & " AND DOCTOR_ID = " & dll_doctors.SelectedValue
+
+        End If
 
         If ddl_show_type.SelectedValue <> 0 Then
             query_str = query_str & " and MainGroup_ID = " & ddl_show_type.SelectedValue
@@ -55,10 +66,8 @@ Public Class printPrices
             query_str = query_str & " and SubGroup_ID = " & ddl_sub_gourp.SelectedValue
         End If
 
-        If ddl_clinics.SelectedValue <> -1 Then
-            If ddl_services.SelectedValue <> 0 Then
-                query_str = query_str & " and SubService_Service_ID = " & ddl_services.SelectedValue
-            End If
+        If Val(ddl_services.SelectedValue) <> 0 Then
+            query_str = query_str & " and SubService_Service_ID = " & ddl_services.SelectedValue
         End If
 
 
@@ -84,13 +93,15 @@ Public Class printPrices
     End Function
 
     Private Sub btn_show_Click(sender As Object, e As EventArgs) Handles btn_show.Click
+
         getData()
+
     End Sub
 
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
         Try
 
-            If ddl_clinics.SelectedValue = -1 Or Val(ddl_services.SelectedValue) = 0 Then
+            If ddl_show_type.SelectedValue <> 2 Then
                 Dim CrReport As New servicesPricesKashf()
                 Dim CrExportOptions As ExportOptions
                 Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions()
@@ -121,7 +132,34 @@ Public Class printPrices
                 Response.Redirect("~/Reports/servicesPricesKashf.pdf", False)
 
             Else
+                Dim CrReport As New servicesPricesOprations()
+                Dim CrExportOptions As ExportOptions
+                Dim CrDiskFileDestinationOptions As New DiskFileDestinationOptions()
+                Dim CrFormatTypeOptions As New PdfRtfWordFormatOptions()
+                CrReport.SetDataSource(getData())
 
+                Dim FolderLocation As String
+                FolderLocation = Server.MapPath("~/Reports")
+                Dim filepath As String = FolderLocation & "/servicesPricesOprations.pdf"
+                CrDiskFileDestinationOptions.DiskFileName = filepath
+
+                CrExportOptions = CrReport.ExportOptions
+
+                With CrExportOptions
+
+                    'Set the destination to a disk file
+                    .ExportDestinationType = ExportDestinationType.DiskFile
+
+                    'Set the format to PDF
+                    .ExportFormatType = ExportFormatType.PortableDocFormat
+
+                    'Set the destination options to DiskFileDestinationOptions object
+                    .DestinationOptions = CrDiskFileDestinationOptions
+                    .FormatOptions = CrFormatTypeOptions
+                End With
+
+                CrReport.Export()
+                Response.Redirect("~/Reports/servicesPricesOprations.pdf", False)
             End If
 
         Catch ex As Exception

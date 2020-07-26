@@ -33,7 +33,7 @@
 
                     <span class="navbar-brand mb-0 h1">
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" />
-                        التأمين الطبي</span>
+                        التأمين الصحي</span>
                     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                         <li class="nav-item active">
                             <asp:HyperLink ID="HyperLink8" CssClass="dropdown-item" runat="server" NavigateUrl="~/index.aspx">تسجيل خروج</asp:HyperLink>

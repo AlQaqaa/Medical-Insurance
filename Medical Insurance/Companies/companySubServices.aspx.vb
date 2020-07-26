@@ -77,9 +77,10 @@ Public Class companySubServices
         Dim PARENT_PER As String = "ISNULL((SELECT PARENT_PER FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PARENT_PER,"
         Dim MAX_PERSON_VAL As String = "ISNULL((SELECT MAX_PERSON_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_PERSON_VAL,"
         Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
-        Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE"
+        Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE, "
+        Dim Is_Approval As String = "(SELECT Is_Approval FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & ") AS Is_Approval"
 
-        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE (SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_SubServices.SubService_Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") = 0 " & search_by, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & Is_Approval & " from Main_SubServices WHERE (SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_SubServices.SubService_Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") = 0 " & search_by, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()
@@ -95,6 +96,7 @@ Public Class companySubServices
                 Dim dd As GridViewRow = GridView1.Rows(i)
 
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
+                Dim ch_Is_Approval As CheckBox = dd.FindControl("CheckBox3")
                 Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
                 Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
@@ -107,6 +109,13 @@ Public Class companySubServices
                     ch.Checked = True
                 Else
                     ch.Checked = True
+                End If
+                If IsDBNull(dt_res.Rows(i)("Is_Approval")) Then
+                    ch_Is_Approval.Checked = False
+                ElseIf dt_res.Rows(i)("Is_Approval") = 1 Then
+                    ch_Is_Approval.Checked = True
+                Else
+                    ch_Is_Approval.Checked = True
                 End If
                 txt_person_per.Text = dt_res.Rows(i)("PERSON_PER")
                 txt_family_per.Text = dt_res.Rows(i)("FAMILY_PER")
@@ -177,6 +186,7 @@ Public Class companySubServices
                     insClinic.Parameters.AddWithValue("@serFamilyMax", 0)
                     insClinic.Parameters.AddWithValue("@serState", 0)
                     insClinic.Parameters.AddWithValue("@serPaymentType", 0)
+                    insClinic.Parameters.AddWithValue("@Is_Approval", 0)
                     insClinic.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
                     insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
                     insurance_SQLcon.Open()
@@ -188,6 +198,7 @@ Public Class companySubServices
         Else
             For Each dd As GridViewRow In GridView1.Rows
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
+                Dim ch_Is_Approval As CheckBox = dd.FindControl("CheckBox3")
                 Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
                 Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
@@ -195,6 +206,7 @@ Public Class companySubServices
                 Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
 
                 Dim ser_sts As Boolean = False
+                Dim Is_Approval As Boolean = False
 
                 If ch.Checked = True Then
                     ser_sts = False
@@ -225,6 +237,12 @@ Public Class companySubServices
                         insurance_SQLcon.Close()
                     End If
 
+                    If ch_Is_Approval.Checked = True Then
+                        Is_Approval = False
+                    Else
+                        Is_Approval = True
+                    End If
+
                     Dim insClinic As New SqlCommand
                     insClinic.Connection = insurance_SQLcon
                     insClinic.CommandText = "INC_addCompanySubServices"
@@ -240,6 +258,7 @@ Public Class companySubServices
                     insClinic.Parameters.AddWithValue("@serFamilyMax", CDec(txt_family_max.Text))
                     insClinic.Parameters.AddWithValue("@serState", ser_sts)
                     insClinic.Parameters.AddWithValue("@serPaymentType", 0)
+                    insClinic.Parameters.AddWithValue("@Is_Approval", Is_Approval)
                     insClinic.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
                     insClinic.Parameters.AddWithValue("@userIp", GetIPAddress())
                     insurance_SQLcon.Open()
@@ -399,9 +418,10 @@ Public Class companySubServices
         Dim PARENT_PER As String = "ISNULL((SELECT PARENT_PER FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS PARENT_PER,"
         Dim MAX_PERSON_VAL As String = "ISNULL((SELECT MAX_PERSON_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_PERSON_VAL,"
         Dim MAX_FAMILY_VAL As String = "ISNULL((SELECT MAX_FAMILY_VAL FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_FAMILY_VAL,"
-        Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE"
+        Dim SER_STATE As String = "(SELECT SER_STATE FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND CONTRACT_NO = " & ViewState("contract_no") & ") AS SER_STATE, "
+        Dim Is_Approval As String = "(SELECT Is_Approval FROM INC_SUB_SERVICES_RESTRICTIONS WHERE INC_SUB_SERVICES_RESTRICTIONS.SubService_ID = Main_SubServices.SubService_ID AND C_ID = " & Session("company_id") & " AND CONTRACT_NO = " & ViewState("contract_no") & ") AS Is_Approval"
 
-        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & " from Main_SubServices WHERE " & search_by, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select SubService_ID, SubService_Code, SubService_AR_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & PERSON_PER & FAMILY_PER & PARENT_PER & MAX_PERSON_VAL & MAX_FAMILY_VAL & SER_STATE & Is_Approval & " from Main_SubServices WHERE " & search_by, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()
@@ -417,6 +437,7 @@ Public Class companySubServices
                 Dim dd As GridViewRow = GridView1.Rows(i)
 
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
+                Dim ch_Is_Approval As CheckBox = dd.FindControl("CheckBox3")
                 Dim txt_person_per As TextBox = dd.FindControl("txt_person_per")
                 Dim txt_family_per As TextBox = dd.FindControl("txt_family_per")
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
@@ -429,6 +450,13 @@ Public Class companySubServices
                     ch.Checked = False
                 Else
                     ch.Checked = True
+                End If
+                If IsDBNull(dt_res.Rows(i)("Is_Approval")) Then
+                    ch_Is_Approval.Checked = False
+                ElseIf dt_res.Rows(i)("Is_Approval") = 1 Then
+                    ch_Is_Approval.Checked = True
+                Else
+                    ch_Is_Approval.Checked = True
                 End If
                 txt_person_per.Text = dt_res.Rows(i)("PERSON_PER")
                 txt_family_per.Text = dt_res.Rows(i)("FAMILY_PER")

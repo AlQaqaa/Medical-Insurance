@@ -1,4 +1,4 @@
-﻿<%@ Page Title="تسوية الأطباء" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="dorctorsForms.aspx.vb" Inherits="Medical_Insurance.dorctorsForms" %>
+﻿<%@ Page Title="تسوية الأطباء" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="dorctorsForms.aspx.vb" Inherits="Medical_Insurance.dorctorsForms" Culture="ar-LY" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -80,15 +80,33 @@
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
 
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <div class="motalbat-pate">
-                <div class="row mt-2">
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-header">تسوية الأطباء</div>
-                            <div class="card-body">
-                                <div class="form-row">
+
+    <div class="motalbat-pate">
+
+        <div class="row mt-2">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">تسوية الأطباء</div>
+                    <div class="card-body">
+                        <div class="form-row mt-2">
+                            <div class="form-group col-sm-12 col-md-3">
+                                <asp:Label ID="Label1" runat="server" Text="العيادة"></asp:Label>
+                                <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Clinic_AR_Name" DataValueField="CLINIC_ID">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT 0 AS clinic_id, '- جميع العيادات -' AS Clinic_AR_Name FROM [MAIN_CLINIC] UNION SELECT clinic_id, Clinic_AR_Name FROM [MAIN_CLINIC] WHERE Clinic_State = 0"></asp:SqlDataSource>
+                            </div>
+                            <div class="form-group col-sm-12 col-md-3">
+                                <asp:Label ID="Label3" runat="server" Text="الطبيب"></asp:Label>
+                                <asp:DropDownList ID="dll_doctors" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource3" DataTextField="MedicalStaff_AR_Name" DataValueField="MedicalStaff_ID" AutoPostBack="True">
+                                </asp:DropDownList>
+                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [MedicalStaff_ID], '- جميع الأطباء -' AS [MedicalStaff_AR_Name] FROM [Main_MedicalStaff] UNION SELECT [MedicalStaff_ID], [MedicalStaff_AR_Name] FROM [Main_MedicalStaff]"></asp:SqlDataSource>
+
+                            </div>
+                        </div>
+
+                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                            <ContentTemplate>
+                                <div class="form-row mt-2">
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Visible="false" />
                                     </div>
@@ -120,8 +138,8 @@
                                                 <asp:BoundField DataField="PATIENT_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
                                                 <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
                                                 <asp:BoundField DataField="Processes_Time" HeaderText="وقت الحركة"></asp:BoundField>
-                                                <asp:BoundField DataField="Processes_Cilinc" HeaderText="العيادة"></asp:BoundField>
-                                                <asp:BoundField DataField="Processes_SubServices" HeaderText="الخدمة"></asp:BoundField>
+                                                <asp:BoundField DataField="Clinic_AR_Name" HeaderText="العيادة"></asp:BoundField>
+                                                <asp:BoundField DataField="SubService_AR_Name" HeaderText="الخدمة"></asp:BoundField>
                                                 <asp:BoundField DataField="MedicalStaff_AR_Name" HeaderText="اسم الطبيب"></asp:BoundField>
                                                 <asp:BoundField DataField="Processes_Price" HeaderText="سعر الخدمة" DataFormatString="{0:C3}"></asp:BoundField>
                                                 <asp:BoundField DataField="Processes_Paid" HeaderText="قيمة المنتفع" DataFormatString="{0:C3}"></asp:BoundField>
@@ -136,15 +154,16 @@
                                         <asp:Button ID="btn_confirm" runat="server" CssClass="btn btn-outline-dark btn-block" Text="تأكيد" />
                                     </div>
                                 </div>
-                            </div>
-                            <!-- /card-body -->
-                        </div>
-                        <!-- /card -->
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
                     </div>
+                    <!-- /card-body -->
                 </div>
-                <!-- /row -->
+                <!-- /card -->
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
+        </div>
+        <!-- /row -->
+    </div>
+
 
 </asp:Content>

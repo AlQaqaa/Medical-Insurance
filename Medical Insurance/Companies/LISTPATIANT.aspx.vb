@@ -93,19 +93,22 @@ Public Class LISTPATIANT
             GridView1.DataBind()
             sel_com = Nothing
 
-            ' جلب بيانات الشركة
-            Dim get_comp As New SqlCommand("SELECT C_NAME_ARB,C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & ddl_companies.SelectedValue, insurance_SQLcon)
-            Dim dt_comp As New DataTable
-            dt_comp.Rows.Clear()
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_comp.Load(get_comp.ExecuteReader)
-            insurance_SQLcon.Close()
-            If dt_comp.Rows.Count > 0 Then
-                Dim dr_company = dt_comp.Rows(0)
-                Page.Title = "منتفعي شركة " & dr_company!C_NAME_ARB
-                Label1.Text = "منتفعي شركة " & dr_company!C_NAME_ARB
-            End If
+            Page.Title = "منتفعي شركة " & ddl_companies.SelectedItem.Text
+            Label1.Text = "منتفعي شركة " & ddl_companies.SelectedItem.Text
+
+            '' جلب بيانات الشركة
+            'Dim get_comp As New SqlCommand("SELECT C_NAME_ARB,C_NAME_ENG FROM INC_COMPANY_DATA WHERE C_id = " & ddl_companies.SelectedValue, insurance_SQLcon)
+            'Dim dt_comp As New DataTable
+            'dt_comp.Rows.Clear()
+            'insurance_SQLcon.Close()
+            'insurance_SQLcon.Open()
+            'dt_comp.Load(get_comp.ExecuteReader)
+            'insurance_SQLcon.Close()
+            'If dt_comp.Rows.Count > 0 Then
+            '    Dim dr_company = dt_comp.Rows(0)
+            '    Page.Title = "منتفعي شركة " & dr_company!C_NAME_ARB
+            '    Label1.Text = "منتفعي شركة " & dr_company!C_NAME_ARB
+            'End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

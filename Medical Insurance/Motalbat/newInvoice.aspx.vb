@@ -14,13 +14,13 @@ Public Class newInvoice
 
             If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
                 If Session("User_per")("new_invoice_opd") = True Then
-                    ddl_companies.SelectedValue = 1
-                    ddl_companies.Enabled = False
+                    ddl_invoice_type.SelectedValue = 1
+                    ddl_invoice_type.Enabled = False
                 ElseIf Session("User_per")("new_invoice_ewa") = True Then
-                    ddl_companies.SelectedValue = 2
-                    ddl_companies.Enabled = False
+                    ddl_invoice_type.SelectedValue = 2
+                    ddl_invoice_type.Enabled = False
                 ElseIf Session("User_per")("new_invoice_ewa") = True And Session("User_per")("new_invoice_opd") = True Then
-                    ddl_companies.Enabled = True
+                    ddl_invoice_type.Enabled = True
                 End If
             End If
 

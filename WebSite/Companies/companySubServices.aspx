@@ -137,6 +137,11 @@
                                                         <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="موافقة؟">
+                                                    <ItemTemplate>
+                                                        <asp:CheckBox ID="CheckBox3" runat="server" Checked="false" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                                 <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>
                                                 <asp:BoundField HeaderText="اسم الخدمة" DataField="SubService_AR_Name"></asp:BoundField>
                                                 <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>

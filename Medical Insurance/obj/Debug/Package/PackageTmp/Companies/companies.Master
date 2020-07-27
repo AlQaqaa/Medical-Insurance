@@ -1,0 +1,382 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="companies.master.vb" Inherits="Medical_Insurance.companies" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link href="~/Style/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/Style/plugins/dataTables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Style/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/animate.css" rel="stylesheet" />
+    <link href="~/Style/CSS/all.min.css" rel="stylesheet" />
+    <link href="~/Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
+    <link href="~/Style/plugins/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
+
+    <style type="text/css">
+        /* START LOADER CSS */
+        .fullpage-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            background: #fff;
+            z-index: 9999;
+            opacity: 1;
+            transition: opacity .5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullpage-loader__logo {
+            position: relative;
+        }
+
+            .fullpage-loader__logo:after {
+                height: 100%;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                animation: shine 2.5s infinite cubic-bezier(0.42, 0, 0.58, 1);
+                background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+            }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) skew(-30deg);
+            }
+
+            100% {
+                transform: translateX(200%) skew(-30deg);
+            }
+        }
+
+        .fullpage-loader--invisible {
+            opacity: 0;
+        }
+
+        /* END LOADER CSS */
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="font-family: 'Cairo-Regular'; min-height: 600px;">
+    <form id="form1" runat="server">
+
+        <div class="container-fluid">
+            <div class="top-navbar">
+                <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #f0f0f0">
+
+                    <span class="navbar-brand mb-0 h1">
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" />
+                        التأمين الصحي</span>
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+
+                        <li class="nav-item active">
+                            <asp:HyperLink ID="HyperLink10" CssClass="dropdown-item" runat="server" NavigateUrl="~/index.aspx">تسجيل خروج</asp:HyperLink>
+                        </li>
+
+                    </ul>
+
+                </nav>
+            </div>
+
+            <div class="row mr-0 ml-0">
+                <div class="col-sm-3">
+                    <div class="side-menu">
+                        <div class="user-info">
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-4">
+                                    <div class="text-center">
+                                        <asp:Image ID="img_user_img" CssClass="img-fluid img-thumbnail rounded " runat="server" ImageUrl="~/Style/images/avatar.jpg" Width="64px" Height="64px" />
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-8">
+                                    <span class="user_name">
+                                        <asp:Label ID="lbl_user_name" runat="server" Text="القعقاع بن غزي"></asp:Label></span><br />
+                                    <span>
+                                        <asp:Label ID="lbl_date_now" runat="server" Text=""></asp:Label></span>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <asp:HyperLink ID="HyperLink1" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Default.aspx"><i class="fas fa-home"></i> الرئيسية</asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="HyperLink2" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#companies" data-toggle="collapse" data-target="#companies" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-city"></i> الشركات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="companies">
+                                    <li>
+                                        <asp:HyperLink ID="hl_addNewCompany" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/addNewCompany.aspx"><i class="fas fa-folder-plus"></i>&nbsp;إضافة شركة جديدة</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_companiesList" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Default.aspx"><i class="fas fa-landmark"></i>&nbsp;قائمة الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_stop_company" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Companies/STOP_COMPANY.aspx"><i class="fas fa-pause-circle"></i>&nbsp;الشركات الموقوفة</asp:HyperLink></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices"  data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="prices">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink14" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;ملفات الأسعار</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink15" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/cashPrices.aspx"><i class="fas fa-hand-holding-usd"></i>&nbsp;أسعار عروض الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink16" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/printPrices.aspx"><i class="fas fa-print"></i>&nbsp;طباعة الأسعار</asp:HyperLink></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx">
+                                    <i class="fas fa-bell"></i>مركز الإشعارات
+                                    <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label>
+                                </asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_invoices_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#motalbat" data-toggle="collapse" data-target="#motalbat" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-receipt"></i> الفواتير والمطالبات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="motalbat">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink9" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Motalbat/newInvoice.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;فاتورة جديدة</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/invoicesList.aspx"><i class="fas fa-receipt"></i> المطالبات</asp:HyperLink></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hr_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#confirm" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-clipboard-check"></i> طلبات الموافقة</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="confirm">
+                                    <li>
+                                        <asp:HyperLink ID="hl_new_confirm" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/approvalConfirm/newApproval.aspx"><i class="fas fa-file"></i>&nbsp;طلب جديد</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_new_confirm_2" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/approvalConfirm/newApproval2.aspx"><i class="fas fa-file"></i>&nbsp;طلب جديد مخصص</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_list_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/listApproval.aspx"><i class="fas fa-list"></i> طلبات معلقة</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_pending_approved" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/listApprovedPendingRequests.aspx"><i class="fas fa-list"></i> طلبات معلقة قدمت</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx">
+                                    <i class="fab fa-wpforms"></i>تسوية الأطباء
+                                    <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+                                </asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx">
+                                    <i class="fas fa-chart-pie"></i>الاستفسارات والإحصائيات
+                                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                                </asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_reports" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#reports" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-file-invoice"></i> التقارير</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="reports">
+                                    <li>
+                                        <asp:HyperLink ID="hl_dailyReport" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/dailyProcesses.aspx"><i class="fas fa-file"></i>&nbsp;الحركة اليومية</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink11" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/totalExpenses.aspx"><i class="fas fa-file"></i>&nbsp;إجمالي مصروفات الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink12" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/companyData.aspx"><i class="fas fa-file"></i>&nbsp;بيانات الشركات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink13" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/stopPatients.aspx"><i class="fas fa-file"></i>&nbsp;المنتفعين الموقوفين</asp:HyperLink></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="col-sm-9">
+                    <div class="page-content mt-1">
+                        <asp:Panel ID="Panel1" runat="server">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#companyNavbar" aria-controls="companyNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+
+                                        <div class="collapse navbar-collapse" id="companyNavbar">
+                                            <ul class="navbar-nav mr-auto">
+                                                <li class="nav-item">
+                                                    <asp:HyperLink ID="HyperLink8" runat="server" CssClass="nav-link" NavigateUrl="~/Companies/Default.aspx"><i class="fas fa-info-circle"></i>&nbsp;معلومات الشركة</asp:HyperLink></li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i>&nbsp;منتفعي الشركة 
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                                        <asp:HyperLink ID="HyperLink3" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/INC_PATIANT.aspx"><i class="fas fa-user-plus"></i>&nbsp;إضافة منتفع جديد</asp:HyperLink>
+                                                        <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المنتفعين</asp:HyperLink>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="manafe" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-stethoscope"></i>&nbsp;المنافع
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="manafe">
+                                                        <asp:HyperLink ID="HyperLink5" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> العيادات</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink4" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-h-square"></i> الأقسام</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink6" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companySubServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
+
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <asp:HyperLink ID="hl_company_processes" runat="server" CssClass="nav-link" NavigateUrl="~/Companies/companyProcesses.aspx"><i class="fas fa-bullseye"></i>&nbsp;حركة الشركة</asp:HyperLink></li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="company_setting" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-cogs"></i>&nbsp;إعدادات الشركة
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="company_setting">
+                                                        <asp:HyperLink ID="HyperLink7" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/EDITCOMPANY.aspx"><i class="fas fa-edit"></i> تعديل بيانات الشركة</asp:HyperLink>
+                                                        <button type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#staticBackdrop">
+                                                            <i class="fas fa-flag"></i>&nbsp;تغيير شعار الشركة
+                                                        </button>
+                                                        <button type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#price_profile">
+                                                            <i class="fas fa-dollar-sign"></i>&nbsp;تغيير ملف الأسعار
+                                                        </button>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <asp:HyperLink ID="hl_com_Statistics" runat="server" CssClass="nav-link" NavigateUrl="~/Companies/companyStatistics.aspx"><i class="fas fa-chart-pie"></i>&nbsp;إحصائيات الشركة</asp:HyperLink></li>
+                                            </ul>
+                                        </div>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- /row -->
+                        </asp:Panel>
+                        <asp:Panel ID="Panel_company_info" runat="server">
+                            <div class="row mt-1 mr-0 ml-0">
+                                <div class="col-sm-12 col-md-9 d-none d-sm-block">
+                                    <h1>
+                                        <asp:Label ID="lbl_company_name" runat="server" Text=""></asp:Label></h1>
+                                    <p class="lead d-none d-sm-block">
+                                        <asp:Label ID="lbl_en_name" runat="server" Text=""></asp:Label>
+                                    </p>
+                                </div>
+                                <div class="col-sm-12 col-md-3 text-right d-none d-sm-block">
+                                    <asp:Image ID="img_company_logo" runat="server" CssClass="img-thumbnail" ImageUrl="~/Images/ImageCompany/company-logo.jpg" Width="120px" />
+                                </div>
+                            </div>
+                        </asp:Panel>
+                        <!-- START LOADER HTML -->
+                        <div class="fullpage-loader">
+                            <div class="fullpage-loader__logo">
+                                <asp:Image ID="Image2" runat="server" ImageUrl="~/Style/images/loading.gif" />
+                            </div>
+                        </div>
+                        <!-- END LOADER HTML -->
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal change company logo -->
+        <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">تغيير شعار الشركة</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <asp:FileUpload ID="FileUpload1" runat="server" />
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btn_change_img" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal change company prices profile -->
+        <div class="modal fade" id="price_profile" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="price_profileLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="price_profileLabel">تغيير ملف أسعار الشركة</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="form-group col-xs-12">
+                                <label for="ddl_profiles_prices">يرجى اختيار ملف الأسعار</label><br />
+                                <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
+                                <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btn_change_profile" CssClass="btn btn-outline-success" runat="server" Text="حفظ" />
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">إغلاق</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row fixed-bottom">
+            <div class="col-sm-12">
+                <div class="footer text-center fixed-bottom">
+                    <a href='http://www.injaztech-ly.com' style="color: #ffd800;">شركة إنجاز | Enjaz Co</a>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <script src='<%= ResolveUrl("~/Style/JS/jquery-3.4.1.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/dataTables/jquery.dataTables.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/dataTables/dataTables.bootstrap4.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/popper.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/bootstrap.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/select2/select2.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/Restrictions.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/alertify/alertify.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/pdfobject.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/all.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/sweetalert/sweetalert2.all.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/JS/MyJs.js") %>'></script>
+
+    <script>
+        /* START LOADER JS */
+        const loaderEl = document.getElementsByClassName('fullpage-loader')[0];
+        document.addEventListener('readystatechange', (event) => {
+            // const readyState = "interactive";
+            const readyState = "complete";
+
+            if (document.readyState == readyState) {
+                // when document ready add lass to fadeout loader
+                loaderEl.classList.add('fullpage-loader--invisible');
+
+                // when loader is invisible remove it from the DOM
+                setTimeout(() => {
+                    loaderEl.parentNode.removeChild(loaderEl);
+                }, 2000)
+            }
+        });
+        /* END LOADER JS */
+    </script>
+
+</body>
+</html>

@@ -111,7 +111,7 @@
                                     <div class="form-group">
                                         <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
                                             <ProgressTemplate>
-                                                <img src="Style/images/loading.gif" width="50px" />
+                                                <asp:Image ID="Image1" runat="server" width="50px" ImageUrl="~/Style/images/loading.gif" />
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
                                     </div>
@@ -139,7 +139,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="موافقة؟">
                                                     <ItemTemplate>
-                                                        <asp:CheckBox ID="CheckBox3" runat="server" Checked="false" />
+                                                        <asp:CheckBox ID="CheckBox3" runat="server" Checked="False" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField HeaderText="رمز الخدمة" DataField="SubService_Code"></asp:BoundField>

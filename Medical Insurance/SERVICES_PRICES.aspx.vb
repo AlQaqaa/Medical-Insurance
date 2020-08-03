@@ -188,11 +188,13 @@ Public Class SERVICES_PRICES
             GridView1.DataBind()
 
             'Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0) AS CASH_PRS,"
-            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INS_PRS,"
+            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INS_PRS,"
             '  Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS,"
-            Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS COST_PRICE "
+            Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS COST_PRICE "
 
-            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & INS_PRS & COST_PRS & " FROM Main_SubServices WHERE SubService_State = 0 "
+            Dim sql_str As String = "SELECT ISNULL((SELECT SER_ID FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = 1), 0) AS SER_ID, SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (Clinic_AR_Name) AS CLINIC_NAME, " & INS_PRS & COST_PRS & " FROM Main_SubServices
+                LEFT JOIN Main_Clinic ON Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic
+                 WHERE SubService_State = 0 "
 
             If ddl_clinics.SelectedValue <> 0 Then
                 sql_str = sql_str & " AND SubService_Clinic = " & ddl_clinics.SelectedValue
@@ -263,5 +265,18 @@ Public Class SERVICES_PRICES
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
         GridView1.DataSource = Nothing
         GridView1.DataBind()
+    End Sub
+
+    Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
+        If e.Row.RowType = DataControlRowType.DataRow Then
+            Dim cell As TableCell = e.Row.Cells(2)
+
+            If cell.Text = 0 Then
+                e.Row.Cells(3).ForeColor = Drawing.Color.Red
+                e.Row.Cells(4).ForeColor = Drawing.Color.Red
+                e.Row.Cells(5).ForeColor = Drawing.Color.Red
+                e.Row.Cells(6).ForeColor = Drawing.Color.Red
+            End If
+        End If
     End Sub
 End Class

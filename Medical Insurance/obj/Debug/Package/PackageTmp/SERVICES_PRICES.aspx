@@ -176,6 +176,12 @@
                                     <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
                                 </ItemTemplate>
                             </asp:TemplateField>
+                            <asp:BoundField DataField="SER_ID" HeaderText="رقم الخدمة">
+                                <ControlStyle CssClass="hide-colum" />
+                                <FooterStyle CssClass="hide-colum" />
+                                <HeaderStyle CssClass="hide-colum" />
+                                <ItemStyle CssClass="hide-colum" />
+                            </asp:BoundField>
                             <asp:BoundField DataField="SubService_Code" HeaderText="كود الخدمة" SortExpression="SubService_Code" />
                             <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة بالعربي" SortExpression="SubService_AR_Name" />
                             <asp:BoundField DataField="SubService_EN_Name" HeaderText="اسم الخدمة بالانجليزي" SortExpression="SubService_EN_Name" />

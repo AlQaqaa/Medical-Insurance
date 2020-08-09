@@ -9,7 +9,7 @@ Public Class index
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =1 ", insurance_SQLcon)
+        'Dim sel_com As New SqlCommand("SELECT * FROM User_Table WHERE user_id =374 ", insurance_SQLcon)
         'Dim dt_user As New DataTable
         'dt_user.Rows.Clear()
         'insurance_SQLcon.Close()
@@ -24,7 +24,15 @@ Public Class index
         '    Session.Item("INC_user_full_name") = dr_user!Orginal_UserName
         '    Session.Item("INC_User_type") = dr_user!user_type
         '    Session.Item("INC_User_ip") = dr_user!user_ip
-        '    ' Session("User_per") = getUserPermissions().Rows(0)
+        '    If dr_user!user_type <> 1 And dr_user!user_type <> 0 Then
+        '        If getUserPermissions().Rows.Count = Nothing Then
+        '            MsgBox("No Permissions")
+        '        Else
+        '            Session("User_per") = getUserPermissions().Rows(0)
+
+        '        End If
+        '    End If
+
 
         'End If
 
@@ -73,13 +81,21 @@ Public Class index
                         Session.Item("INC_User_ip") = dr_user!user_ip
 
                         If dr_user!user_type <> 1 And dr_user!user_type <> 0 Then
-                            If getUserPermissions().Rows.Count = 0 Then
+                            If getUserPermissions().Rows.Count = Nothing Then
                                 Session("INC_hublogin") = Nothing
                                 Session("systemlogin") = Nothing
-                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:4", True)
+                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:NoPermissions", True)
                                 Exit Sub
+                            Else
+                                Session("User_per") = getUserPermissions().Rows(0)
                             End If
-                            Session("User_per") = getUserPermissions().Rows(0)
+                            'If getUserPermissions().Rows.Count = 0 Then
+                            '    Session("INC_hublogin") = Nothing
+                            '    Session("systemlogin") = Nothing
+                            '    Response.Redirect("http://10.10.1.10/Default.aspx?flag:4", True)
+                            '    Exit Sub
+                            'End If
+
                         End If
 
                     End If

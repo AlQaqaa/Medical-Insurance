@@ -246,35 +246,78 @@ ul.sub-menu li {
 
 /* ############# ajax__calendar ################################ */
 
+.ajax__calendar_container TABLE {
+    font-size: 10px !important;
+}
+
 .ajax__calendar_container {
     width: 230px !important;
+    z-index: 9999 !important;
+}
+
+.ajax__calendar_title {
+    font-size: 10px !important;
 }
 
 .ajax__calendar_body {
-    height: 200px !important;
+    height: 139px !important;
     width: 215px !important;
 }
 
 .ajax__calendar_days, .ajax__calendar_months, .ajax__calendar_years {
-    height: 200px !important;
+    height: 139px !important;
     width: 210px !important;
 }
 
 .ajax__calendar_day {
-    height: 22px !important;
-    width: 22px !important;
+    height: 20px !important;
+    width: 26px !important;
     text-align: center !important;
     cursor: pointer !important;
     padding: 2px !important;
-    border: 1px solid #000 !important;
-    font-size: 12px !important;
+    border: 1px solid #efefef !important;
+    font-size: 11px !important;
 }
 
-ajax__calendar_months {
-    visibility: visible;
-    position: absolute;
-    left: 0px;
-    top: -179px;
+.ajax__calendar .ajax__calendar_active .ajax__calendar_day {
+    background-color: #007bff !important;
+    border-color: #0066cc !important;
+    color: #ffffff !important;
+}
+
+.ajax__calendar_month {
+    visibility: visible !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.ajax__calendar_dayname {
+    height: 20px !important;
+    width: 22px !important;
+    text-align: left !important;
+    padding: 0 1px !important;
+    font-size: 11px !important;
+}
+
+.ajax__calendar_today {
+    font-family: Tahoma, Calibri, sans-serif;
+    font-size: 10px;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px #D3D3D3;
+    text-align: center !important;
+    text-transform: uppercase;
+    margin: 1px;
+    color: #6B6B6B;
+}
+
+.ajax__calendar_other .ajax__calendar_day {
+    background-color: #E0E0E0 !important;
+}
+
+.ajax__calendar_footer {
+    height: 18px !important;
+    font-size: 10px !important;
 }
 
 

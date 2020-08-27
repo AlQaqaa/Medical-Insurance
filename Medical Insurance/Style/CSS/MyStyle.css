@@ -270,11 +270,11 @@ ul.sub-menu li {
 }
 
 .ajax__calendar_day {
-    height: 20px !important;
-    width: 26px !important;
+    height: 16px !important;
+    width: 22px !important;
     text-align: center !important;
     cursor: pointer !important;
-    padding: 2px !important;
+    padding: 1px !important;
     border: 1px solid #efefef !important;
     font-size: 11px !important;
 }
@@ -292,8 +292,8 @@ ul.sub-menu li {
 }
 
 .ajax__calendar_dayname {
-    height: 20px !important;
-    width: 22px !important;
+    height: 16px !important;
+    width: 20px !important;
     text-align: left !important;
     padding: 0 1px !important;
     font-size: 11px !important;

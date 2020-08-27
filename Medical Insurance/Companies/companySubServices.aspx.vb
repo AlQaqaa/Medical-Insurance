@@ -37,8 +37,9 @@ Public Class companySubServices
             End If
 
             getClinicAvailable()
+            Panel1.Visible = True
             ' getSubServicesAvailable()
-            getSubServices(3)
+            'getSubServices(3)
 
         End If
     End Sub
@@ -85,7 +86,7 @@ Public Class companySubServices
         insurance_SQLcon.Close()
 
         If dt_res.Rows.Count > 0 Then
-            Panel1.Visible = True
+
             GridView1.DataSource = dt_res
             GridView1.DataBind()
             For i = 0 To dt_res.Rows.Count - 1

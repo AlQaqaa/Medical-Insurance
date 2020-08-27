@@ -16,32 +16,48 @@ Public Class SERVICES_PRICES
                 End If
             End If
             If Val(Session("profile_no")) = 0 Then
-                    Response.Redirect("createProfilePrices.aspx", False)
-                Else
-                    Dim sel_profile As New SqlCommand("SELECT PROFILE_NAME FROM INC_PRICES_PROFILES WHERE PROFILE_ID = " & Session("profile_no"), insurance_SQLcon)
-                    Dim dt_name As New DataTable
-                    dt_name.Rows.Clear()
-                    insurance_SQLcon.Close()
-                    insurance_SQLcon.Open()
-                    dt_name.Load(sel_profile.ExecuteReader)
-                    insurance_SQLcon.Close()
-                    If dt_name.Rows.Count > 0 Then
-                        Dim dr_name = dt_name.Rows(0)
-                        lbl_profile_name.Text = dr_name!PROFILE_NAME
-                    End If
+                Response.Redirect("createProfilePrices.aspx", False)
+            Else
+                Dim sel_profile As New SqlCommand("SELECT PROFILE_NAME FROM INC_PRICES_PROFILES WHERE PROFILE_ID = " & Session("profile_no"), insurance_SQLcon)
+                Dim dt_name As New DataTable
+                dt_name.Rows.Clear()
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_name.Load(sel_profile.ExecuteReader)
+                insurance_SQLcon.Close()
+                If dt_name.Rows.Count > 0 Then
+                    Dim dr_name = dt_name.Rows(0)
+                    lbl_profile_name.Text = dr_name!PROFILE_NAME
                 End If
-
-                ddl_group.Enabled = False
-                lbl_groub.Enabled = False
-                ddl_services_group.Enabled = False
-                lbl_services_group.Enabled = False
-
             End If
+
+            ddl_group.Enabled = False
+            lbl_groub.Enabled = False
+            ddl_services_group.Enabled = False
+            lbl_services_group.Enabled = False
+
+        End If
     End Sub
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
         Try
+            'Dim chech_value As Integer = 0
+            'For Each dd As GridViewRow In GridView1.Rows
+            '    Dim ch As CheckBox = dd.FindControl("CheckBox2")
+            '    'Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
+            '    Dim txt_inc_prc As TextBox = dd.FindControl("txt_inc_price")
+            '    'Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
+            '    Dim txt_cost_price As TextBox = dd.FindControl("txt_cost_price")
+            '    If CDec(txt_inc_prc.Text) = 0 Then
+            '        chech_value = chech_value + 1
+            '    End If
+            'Next
+
+            'If Val(chech_value) <> 0 Then
+            '    ScriptManager.RegisterStartupScript(Me, Page.GetType, "Script", "Confirm();", True)
+            'End If
+
             For Each dd As GridViewRow In GridView1.Rows
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
                 'Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
@@ -68,8 +84,10 @@ Public Class SERVICES_PRICES
                     insurance_SQLcon.Close()
                     insClinic.CommandText = ""
                 End If
+
             Next
 
+            getSubServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
                 icon: 'success',
@@ -187,12 +205,11 @@ Public Class SERVICES_PRICES
             GridView1.DataSource = Nothing
             GridView1.DataBind()
 
-            'Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0) AS CASH_PRS,"
-            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INS_PRS,"
-            '  Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS,"
-            Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS COST_PRICE "
+            Dim INS_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS INS_PRS,"
+            Dim COST_PRS As String = "ISNULL((SELECT top(1) COST_PRICE FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & Val(Session("profile_no")) & " order by n DESC), 0) AS COST_PRICE "
 
-            Dim sql_str As String = "SELECT ISNULL((SELECT SER_ID FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = 1), 0) AS SER_ID, SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (Clinic_AR_Name) AS CLINIC_NAME, " & INS_PRS & COST_PRS & " FROM Main_SubServices
+
+            Dim sql_str As String = "SELECT ISNULL((SELECT SER_ID FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & Val(Session("profile_no")) & "), 0) AS SER_ID, SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (Clinic_AR_Name) AS CLINIC_NAME, " & INS_PRS & COST_PRS & " FROM Main_SubServices
                 LEFT JOIN Main_Clinic ON Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic
                  WHERE SubService_State = 0 "
 

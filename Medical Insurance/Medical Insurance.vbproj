@@ -155,7 +155,9 @@
     <Content Include="Companies\editClinic.aspx" />
     <Content Include="Companies\EDITCOMPANY.aspx" />
     <Content Include="Companies\EDITPATIANT.aspx" />
+    <Content Include="Companies\getcategories.asmx" />
     <Content Include="Companies\INC_PATIANT.aspx" />
+    <Content Include="Companies\list1.aspx" />
     <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
     <Content Include="createProfilePrices.aspx" />
@@ -341,12 +343,23 @@
       <DependentUpon>EDITPATIANT.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Companies\getcategories.asmx.vb">
+      <DependentUpon>getcategories.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Companies\INC_PATIANT.aspx.designer.vb">
       <DependentUpon>INC_PATIANT.aspx</DependentUpon>
     </Compile>
     <Compile Include="Companies\INC_PATIANT.aspx.vb">
       <DependentUpon>INC_PATIANT.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Companies\list1.aspx.designer.vb">
+      <DependentUpon>list1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Companies\list1.aspx.vb">
+      <DependentUpon>list1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Companies\LISTPATIANT.aspx.designer.vb">
       <DependentUpon>LISTPATIANT.aspx</DependentUpon>
@@ -605,6 +618,7 @@
     <Content Include="DataSet1.xsc">
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Content>
+    <Content Include="Companies\server_processing.ashx" />
     <None Include="DataSet1.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

@@ -19,9 +19,9 @@ Public Class patientInfo
                 btn_ban_service.Enabled = Session("User_per")("company_services")
             End If
 
-            Dim pat_no As Integer = Val(Session("patiant_id"))
+            ViewState("p_no") = Val(Request.QueryString("pID"))
 
-            If pat_no = 0 Then
+            If ViewState("p_no") = 0 Then
                 Response.Redirect("LISTPATIANT.aspx")
             End If
 
@@ -84,7 +84,7 @@ Public Class patientInfo
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME, OLD_ID FROM INC_PATIANT WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME, OLD_ID FROM INC_PATIANT WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
         Dim dt_pat As New DataTable
         dt_pat.Rows.Clear()
         insurance_SQLcon.Close()
@@ -140,16 +140,16 @@ Public Class patientInfo
         End If
 
         Try
-            Dim edit_sts As New SqlCommand("UPDATE INC_PATIANT SET P_STATE = " & new_sts & " WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+            Dim edit_sts As New SqlCommand("UPDATE INC_PATIANT SET P_STATE = " & new_sts & " WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             edit_sts.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
             If new_sts = 1 Then
-                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
+                add_action(1, 2, 2, "إيقاف المنتفع رقم: " & Val(ViewState("p_no")), Session("INC_User_Id"), GetIPAddress())
             Else
-                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
+                add_action(1, 2, 2, "تفعيل المنتفع رقم: " & Val(ViewState("p_no")), Session("INC_User_Id"), GetIPAddress())
             End If
 
             getPatInfo()
@@ -163,7 +163,7 @@ Public Class patientInfo
     Private Sub btn_ban_service_Click(sender As Object, e As EventArgs) Handles btn_ban_service.Click
         Try
             Dim ins_com As New SqlCommand("INSERT INTO INC_BLOCK_SERVICES (OBJECT_ID, SER_ID, BLOCK_TP, NOTES, USER_ID, USER_IP) VALUES (@OBJECT_ID, @SER_ID, @BLOCK_TP, @NOTES, @USER_ID, @USER_IP)", insurance_SQLcon)
-            ins_com.Parameters.Add("@OBJECT_ID", SqlDbType.Int).Value = Val(Session("patiant_id"))
+            ins_com.Parameters.Add("@OBJECT_ID", SqlDbType.Int).Value = Val(ViewState("p_no"))
             ins_com.Parameters.Add("@SER_ID", SqlDbType.Int).Value = ddl_services.SelectedValue
             ins_com.Parameters.Add("@BLOCK_TP", SqlDbType.Int).Value = 1 ' Block Service
             ins_com.Parameters.Add("@NOTES", SqlDbType.NVarChar).Value = txt_notes.Text
@@ -174,7 +174,7 @@ Public Class patientInfo
             ins_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "حظر الخدمة رقم: " & ddl_services.SelectedValue & " عن المنتفع رقم: " & Val(Session("patiant_id")), 1, GetIPAddress())
+            add_action(1, 2, 2, "حظر الخدمة رقم: " & ddl_services.SelectedValue & " عن المنتفع رقم: " & Val(ViewState("p_no")), 1, GetIPAddress())
 
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت عملية حفظ البيانات بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
@@ -184,7 +184,7 @@ Public Class patientInfo
     End Sub
 
     Sub getBlockServices()
-        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND BLOCK_TP = 1", insurance_SQLcon)
+        Dim get_com As New SqlCommand("SELECT SER_ID, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERVICE_NAME, (SELECT SubService_Code FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_BLOCK_SERVICES.SER_ID) AS SERV_CODE, NOTES FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(ViewState("p_no")) & " AND BLOCK_TP = 1", insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
         insurance_SQLcon.Close()
@@ -209,13 +209,13 @@ Public Class patientInfo
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
 
-            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(Session("patiant_id")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 1", insurance_SQLcon)
+            Dim del_com As New SqlCommand("DELETE FROM INC_BLOCK_SERVICES WHERE OBJECT_ID = " & Val(ViewState("p_no")) & " AND SER_ID = " & (row.Cells(0).Text) & " AND BLOCK_TP = 1", insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             del_com.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
+            add_action(1, 2, 2, "إيقف حظر الخدمة رقم: " & (row.Cells(0).Text) & " عن المنتفع رقم: " & Val(ViewState("p_no")), Session("INC_User_Id"), GetIPAddress())
 
             getBlockServices()
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تمت العملية بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
@@ -264,7 +264,7 @@ Public Class patientInfo
     Private Sub getProcessesData()
 
         Try
-            Dim sql_str As String = "SELECT TOP(10) Processes_ID, Processes_Reservation_Code, PINC_ID AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE PINC_ID = " & Session("patiant_id") & ""
+            Dim sql_str As String = "SELECT TOP(10) Processes_ID, Processes_Reservation_Code, PINC_ID AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE PINC_ID = " & ViewState("p_no") & ""
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -295,14 +295,14 @@ Public Class patientInfo
         Try
             Dim exp As String = DateTime.ParseExact(txt_exp_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
 
-            Dim renew_card As New SqlCommand("UPDATE INC_PATIANT SET EXP_DATE=@EXP_DATE WHERE PINC_ID=" & Session("patiant_id"), insurance_SQLcon)
+            Dim renew_card As New SqlCommand("UPDATE INC_PATIANT SET EXP_DATE=@EXP_DATE WHERE PINC_ID=" & ViewState("p_no"), insurance_SQLcon)
             renew_card.Parameters.AddWithValue("@EXP_DATE", exp)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             renew_card.ExecuteNonQuery()
             insurance_SQLcon.Close()
 
-            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(Session("patiant_id")), Session("INC_User_Id"), GetIPAddress())
+            add_action(1, 2, 2, "تجديد بطاقة المنتفع رقم: " & Val(ViewState("p_no")), Session("INC_User_Id"), GetIPAddress())
 
             getPatInfo()
         Catch ex As Exception
@@ -314,7 +314,7 @@ Public Class patientInfo
         Try
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
             If FileUpload1.PostedFile.FileName <> Nothing Then
-                Dim newFilename As String = Val(Session("patiant_id")) & "N"
+                Dim newFilename As String = Val(ViewState("p_no")) & "N"
                 Dim fileExtension As String = Path.GetExtension(FileUpload1.PostedFile.FileName)
                 Dim updatedFilename As String = newFilename + fileExtension
                 Dim fpath As String = Server.MapPath("../images/ImagePatiant") & "/" & updatedFilename
@@ -330,7 +330,7 @@ Public Class patientInfo
                 End If
                 FileUpload1.PostedFile.SaveAs(fpath)
 
-                Dim edit_img As New SqlCommand("UPDATE INC_PATIANT SET IMAGE_CARD = @IMAGE_CARD WHERE PINC_ID = " & Val(Session("patiant_id")), insurance_SQLcon)
+                Dim edit_img As New SqlCommand("UPDATE INC_PATIANT SET IMAGE_CARD = @IMAGE_CARD WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
                 edit_img.Parameters.AddWithValue("@IMAGE_CARD", dbpath)
                 insurance_SQLcon.Close()
                 insurance_SQLcon.Open()
@@ -347,7 +347,7 @@ Public Class patientInfo
 
     Sub bindChartsSubServices()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(Session("patiant_id")) & " GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(ViewState("p_no")) & " GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -404,7 +404,7 @@ Public Class patientInfo
 
     Sub bindChartsDoctros()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id) AS MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(Session("patiant_id")) & " AND doctor_id <> 0 GROUP BY doctor_id ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT TOP (10) (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id) AS MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(ViewState("p_no")) & " AND doctor_id <> 0 GROUP BY doctor_id ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -464,7 +464,7 @@ Public Class patientInfo
     Function getTotalPatientExpenses() As Decimal
         Dim total_val As Decimal = 0
 
-        Dim sel_com As New SqlCommand("select TOTAL_EXPENSES from INC_totalPatientExpenses(" & Session("patiant_id") & ",(select top(1) DATE_START from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc),(select top(1) DATE_END from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc))", insurance_SQLcon)
+        Dim sel_com As New SqlCommand("select TOTAL_EXPENSES from INC_totalPatientExpenses(" & ViewState("p_no") & ",(select top(1) DATE_START from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc),(select top(1) DATE_END from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc))", insurance_SQLcon)
         insurance_SQLcon.Close()
         insurance_SQLcon.Open()
         total_val = sel_com.ExecuteScalar

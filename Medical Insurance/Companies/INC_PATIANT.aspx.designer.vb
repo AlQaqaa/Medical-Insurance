@@ -122,31 +122,40 @@ Partial Public Class INC_PATIANT
     Protected WithEvents txt_BIRTHDATE As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''ImageButton3 control.
+    '''ImageButton1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents ImageButton3 As Global.System.Web.UI.WebControls.ImageButton
+    Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
     
     '''<summary>
-    '''CalendarExtender1 control.
+    '''RequiredFieldValidator5 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
+    Protected WithEvents RequiredFieldValidator5 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''MaskedEditExtender1 control.
+    '''CalendarExtender3 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MaskedEditExtender1 As Global.AjaxControlToolkit.MaskedEditExtender
+    Protected WithEvents CalendarExtender3 As Global.AjaxControlToolkit.CalendarExtender
+    
+    '''<summary>
+    '''MaskedEditExtender3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents MaskedEditExtender3 As Global.AjaxControlToolkit.MaskedEditExtender
     
     '''<summary>
     '''ddl_NAL_ID control.
@@ -239,22 +248,22 @@ Partial Public Class INC_PATIANT
     Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
-    '''CalendarExtender2 control.
+    '''CalendarExtender1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CalendarExtender2 As Global.AjaxControlToolkit.CalendarExtender
+    Protected WithEvents CalendarExtender1 As Global.AjaxControlToolkit.CalendarExtender
     
     '''<summary>
-    '''MaskedEditExtender2 control.
+    '''MaskedEditExtender1 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents MaskedEditExtender2 As Global.AjaxControlToolkit.MaskedEditExtender
+    Protected WithEvents MaskedEditExtender1 As Global.AjaxControlToolkit.MaskedEditExtender
     
     '''<summary>
     '''txt_NAT_NUMBER control.

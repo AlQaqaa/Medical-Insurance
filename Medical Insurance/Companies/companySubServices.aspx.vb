@@ -37,9 +37,8 @@ Public Class companySubServices
             End If
 
             getClinicAvailable()
-            Panel1.Visible = True
             ' getSubServicesAvailable()
-            'getSubServices(3)
+            getSubServices(3)
 
         End If
     End Sub
@@ -86,7 +85,7 @@ Public Class companySubServices
         insurance_SQLcon.Close()
 
         If dt_res.Rows.Count > 0 Then
-
+            Panel1.Visible = True
             GridView1.DataSource = dt_res
             GridView1.DataBind()
             For i = 0 To dt_res.Rows.Count - 1
@@ -165,11 +164,11 @@ Public Class companySubServices
                     insClinic.Parameters.AddWithValue("@clinicID", dr_res!SubService_Clinic)
                     insClinic.Parameters.AddWithValue("@contractNo", ViewState("contract_no"))
                     insClinic.Parameters.AddWithValue("@subServiceId", dr_res!SubService_ID)
-                    insClinic.Parameters.AddWithValue("@serPersonPer", CDec(Val(txt_person_per_all.Text)))
-                    insClinic.Parameters.AddWithValue("@serFamilyPer", CDec(Val(txt_family_per_all.Text)))
-                    insClinic.Parameters.AddWithValue("@serParentPer", CDec(Val(txt_parent_per_all.Text)))
-                    insClinic.Parameters.AddWithValue("@serPersonMax", CDec(Val(txt_person_max_all.Text)))
-                    insClinic.Parameters.AddWithValue("@serFamilyMax", CDec(Val(txt_family_max_all.Text)))
+                    insClinic.Parameters.AddWithValue("@serPersonPer", 0)
+                    insClinic.Parameters.AddWithValue("@serFamilyPer", 0)
+                    insClinic.Parameters.AddWithValue("@serParentPer", 0)
+                    insClinic.Parameters.AddWithValue("@serPersonMax", 0)
+                    insClinic.Parameters.AddWithValue("@serFamilyMax", 0)
                     insClinic.Parameters.AddWithValue("@serState", 0)
                     insClinic.Parameters.AddWithValue("@serPaymentType", 0)
                     insClinic.Parameters.AddWithValue("@Is_Approval", True)

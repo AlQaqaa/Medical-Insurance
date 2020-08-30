@@ -35,8 +35,8 @@ Public Class EDITCOMPANY
     End Sub
 
     Protected Sub getData()
-        Dim s1 As String = " (SELECT top 1 CONVERT(VARCHAR, DATE_START, 111) AS DATE_START FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_STARt"
-        Dim s2 As String = " (SELECT top 1 CONVERT(VARCHAR, DATE_END, 111) AS DATE_END FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END"
+        Dim s1 As String = " (SELECT top 1 (DATE_START) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_STARt"
+        Dim s2 As String = " (SELECT top 1 (DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END"
         Dim s3 As String = " (SELECT top 1 (MAX_VAL) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_VAL"
         Dim s4 As String = " (SELECT top 1 (MAX_CARD) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_CARD"
         Dim s5 As String = " (SELECT top 1 (PATIAINT_PER) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS PATIAINT_PER"
@@ -97,8 +97,8 @@ Public Class EDITCOMPANY
             insToCompany.Parameters.AddWithValue("@contractNo", Val(ViewState("contract_no")))
             insToCompany.Parameters.AddWithValue("@cNameAr", txt_company_name_ar.Text)
             insToCompany.Parameters.AddWithValue("@cNameEn", txt_company_name_en.Text)
-            insToCompany.Parameters.AddWithValue("@startDt", DateTime.Parse(txt_start_dt.Text))
-            insToCompany.Parameters.AddWithValue("@endDt", DateTime.Parse(txt_end_dt.Text))
+            insToCompany.Parameters.AddWithValue("@startDt", txt_start_dt.Text)
+            insToCompany.Parameters.AddWithValue("@endDt", txt_end_dt.Text)
             insToCompany.Parameters.AddWithValue("@maxVal", CDec(txt_max_company_value.Text))
             insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
             insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))

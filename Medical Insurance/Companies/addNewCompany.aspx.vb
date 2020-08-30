@@ -47,6 +47,9 @@ Public Class addNewCompany
             company_level = ddl_companies.SelectedValue
         End If
 
+        Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+        Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
         Try
             Dim insToCompany As New SqlCommand
             insToCompany.Connection = insurance_SQLcon
@@ -56,8 +59,8 @@ Public Class addNewCompany
             insToCompany.Parameters.AddWithValue("@cNameEn", txt_company_name_en.Text)
             insToCompany.Parameters.AddWithValue("@cState", False)
             insToCompany.Parameters.AddWithValue("@c_level", company_level)
-            insToCompany.Parameters.AddWithValue("@startDt", DateTime.Parse(txt_start_dt.Text))
-            insToCompany.Parameters.AddWithValue("@endDt", DateTime.Parse(txt_end_dt.Text))
+            insToCompany.Parameters.AddWithValue("@startDt", start_dt)
+            insToCompany.Parameters.AddWithValue("@endDt", end_dt)
             insToCompany.Parameters.AddWithValue("@maxVal", CDec(txt_max_company_value.Text))
             insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
             insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))

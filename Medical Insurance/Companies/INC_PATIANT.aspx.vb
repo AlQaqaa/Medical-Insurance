@@ -82,6 +82,9 @@ Public Class INC_PATIANT
 
             Dim dbpath As String = "images/ImagePatiant/card.png"
 
+            Dim dob As String = DateTime.ParseExact(txt_BIRTHDATE.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+            Dim exp As String = DateTime.ParseExact(txt_exp_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
             Dim ins_PAT As New SqlCommand
             ins_PAT.Connection = insurance_SQLcon
             ins_PAT.CommandText = "INC_addNewpatiant"
@@ -89,14 +92,14 @@ Public Class INC_PATIANT
             ins_PAT.Parameters.AddWithValue("@CARD_NO", txt_CARD_NO.Text)
             ins_PAT.Parameters.AddWithValue("@NAME_ARB", txt_NAME_ARB.Text)
             ins_PAT.Parameters.AddWithValue("@NAME_ENG", txt_NAME_ENG.Text)
-            ins_PAT.Parameters.AddWithValue("@BIRTHDATE", DateTime.Parse(txt_BIRTHDATE.Text))
+            ins_PAT.Parameters.AddWithValue("@BIRTHDATE", dob)
             ins_PAT.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
             ins_PAT.Parameters.AddWithValue("@C_ID", Val(Session("company_id")))
             ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@NAL_ID", ddl_NAL_ID.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@PHONE_NO", Val(txt_PHONE_NO.Text))
             ins_PAT.Parameters.AddWithValue("@CONST_ID", CONST_ID.SelectedValue)
-            ins_PAT.Parameters.AddWithValue("@EXP_DATE", DateTime.Parse(txt_exp_date.Text))
+            ins_PAT.Parameters.AddWithValue("@EXP_DATE", exp)
             ins_PAT.Parameters.AddWithValue("@NOTES", txt_NOTES.Text)
             ins_PAT.Parameters.AddWithValue("@P_STATE", P_STATE.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@NAT_NUMBER", Val(txt_NAT_NUMBER.Text))

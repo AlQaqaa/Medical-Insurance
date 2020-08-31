@@ -35,11 +35,8 @@ Public Class addNewContract
 
     Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
-        Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-        Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-
         Try
-            Dim sel_data As New SqlCommand("SELECT * FROM INC_COMPANY_DETIAL WHERE C_ID = " & Session("company_id") & " AND DATE_END >= '" & start_dt & "'", insurance_SQLcon)
+            Dim sel_data As New SqlCommand("SELECT * FROM INC_COMPANY_DETIAL WHERE C_ID = " & Session("company_id") & " AND DATE_END >= '" & DateTime.Parse(txt_start_dt.Text) & "'", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -53,8 +50,8 @@ Public Class addNewContract
                 insToCompany.CommandText = "INC_addNewContract"
                 insToCompany.CommandType = CommandType.StoredProcedure
                 insToCompany.Parameters.AddWithValue("@cid", Val(Session("company_id")))
-                insToCompany.Parameters.AddWithValue("@startDt", start_dt)
-                insToCompany.Parameters.AddWithValue("@endDt", end_dt)
+                insToCompany.Parameters.AddWithValue("@startDt", DateTime.Parse(txt_start_dt.Text))
+                insToCompany.Parameters.AddWithValue("@endDt", DateTime.Parse(txt_end_dt.Text))
                 insToCompany.Parameters.AddWithValue("@maxVal", CDec(txt_max_company_value.Text))
                 insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
                 insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))

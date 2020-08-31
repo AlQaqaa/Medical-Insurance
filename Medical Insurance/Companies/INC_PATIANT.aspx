@@ -55,8 +55,8 @@
                         </div>
                     </div>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_BIRTHDATE" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
-                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_BIRTHDATE" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_BIRTHDATE_MaskedEditExtender" TargetControlID="txt_BIRTHDATE" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_BIRTHDATE" ID="CalendarExtender3" Format="yyyy/MM/dd" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_BIRTHDATE_MaskedEditExtender" TargetControlID="txt_BIRTHDATE" ID="MaskedEditExtender3" Mask="9999/99/99" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                 </div>
 
             </div>
@@ -115,8 +115,8 @@
                         </div>
                     </div>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_exp_date" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
-                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_exp_date" ID="CalendarExtender1" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_exp_date_MaskedEditExtender" TargetControlID="txt_exp_date" ID="MaskedEditExtender1" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                    <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_exp_date" ID="CalendarExtender1" Format="yyyy/MM/dd" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                    <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_exp_date_MaskedEditExtender" TargetControlID="txt_exp_date" ID="MaskedEditExtender1" Mask="9999/99/99" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                 </div>
                 <div class="form-group col-sm-3">
                     <label for="txt_NAT_NUMBER">الرقم الوطني</label>

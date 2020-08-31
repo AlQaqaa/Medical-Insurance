@@ -25,6 +25,8 @@ Public Class patientInfo
                 Response.Redirect("LISTPATIANT.aspx")
             End If
 
+            hl_edit.NavigateUrl = "~/Companies/EDITPATIANT.aspx?pID=" & ViewState("p_no")
+
             Dim company_name_panel As Panel = DirectCast(Master.FindControl("Panel_company_info"), Panel)
 
             getPatInfo()

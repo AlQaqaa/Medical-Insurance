@@ -129,7 +129,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
+                                <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/patientList.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices"  data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
@@ -220,7 +220,7 @@
                                                     </a>
                                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                         <asp:HyperLink ID="HyperLink3" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/INC_PATIANT.aspx"><i class="fas fa-user-plus"></i>&nbsp;إضافة منتفع جديد</asp:HyperLink>
-                                                        <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/LISTPATIANT.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المنتفعين</asp:HyperLink>
+                                                        <asp:HyperLink ID="hl_company_users_list" runat="server" CssClass="dropdown-item" NavigateUrl="~/Companies/patientList.aspx"><i class="fas fa-users"></i>&nbsp;قائمة المنتفعين</asp:HyperLink>
                                                     </div>
                                                 </li>
                                                 <li class="nav-item dropdown">
@@ -274,11 +274,11 @@
                             </div>
                         </asp:Panel>
                         <!-- START LOADER HTML -->
-                        <div class="fullpage-loader">
+                       <%-- <div class="fullpage-loader">
                             <div class="fullpage-loader__logo">
                                 <asp:Image ID="Image2" runat="server" ImageUrl="~/Style/images/loading.gif" />
                             </div>
-                        </div>
+                        </div>--%>
                         <!-- END LOADER HTML -->
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                         </asp:ContentPlaceHolder>
@@ -360,21 +360,21 @@
 
     <script>
         /* START LOADER JS */
-        const loaderEl = document.getElementsByClassName('fullpage-loader')[0];
-        document.addEventListener('readystatechange', (event) => {
-            // const readyState = "interactive";
-            const readyState = "complete";
+        //const loaderEl = document.getElementsByClassName('fullpage-loader')[0];
+        //document.addEventListener('readystatechange', (event) => {
+        //    // const readyState = "interactive";
+        //    const readyState = "complete";
 
-            if (document.readyState == readyState) {
-                // when document ready add lass to fadeout loader
-                loaderEl.classList.add('fullpage-loader--invisible');
+        //    if (document.readyState == readyState) {
+        //        // when document ready add lass to fadeout loader
+        //        loaderEl.classList.add('fullpage-loader--invisible');
 
-                // when loader is invisible remove it from the DOM
-                setTimeout(() => {
-                    loaderEl.parentNode.removeChild(loaderEl);
-                }, 2000)
-            }
-        });
+        //        // when loader is invisible remove it from the DOM
+        //        setTimeout(() => {
+        //            loaderEl.parentNode.removeChild(loaderEl);
+        //        }, 2000)
+        //    }
+        //});
         /* END LOADER JS */
     </script>
 

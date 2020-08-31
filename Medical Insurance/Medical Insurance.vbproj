@@ -157,9 +157,8 @@
     <Content Include="Companies\EDITPATIANT.aspx" />
     <Content Include="Companies\getcategories.asmx" />
     <Content Include="Companies\INC_PATIANT.aspx" />
-    <Content Include="Companies\list1.aspx" />
-    <Content Include="Companies\LISTPATIANT.aspx" />
     <Content Include="Companies\patientInfo.aspx" />
+    <Content Include="Companies\patientList.aspx" />
     <Content Include="createProfilePrices.aspx" />
     <Content Include="dorctorsForms.aspx" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
@@ -354,25 +353,18 @@
       <DependentUpon>INC_PATIANT.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Companies\list1.aspx.designer.vb">
-      <DependentUpon>list1.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Companies\list1.aspx.vb">
-      <DependentUpon>list1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Companies\LISTPATIANT.aspx.designer.vb">
-      <DependentUpon>LISTPATIANT.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Companies\LISTPATIANT.aspx.vb">
-      <DependentUpon>LISTPATIANT.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
     <Compile Include="Companies\patientInfo.aspx.designer.vb">
       <DependentUpon>patientInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Companies\patientInfo.aspx.vb">
       <DependentUpon>patientInfo.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Companies\patientList.aspx.designer.vb">
+      <DependentUpon>patientList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Companies\patientList.aspx.vb">
+      <DependentUpon>patientList.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="createProfilePrices.aspx.designer.vb">

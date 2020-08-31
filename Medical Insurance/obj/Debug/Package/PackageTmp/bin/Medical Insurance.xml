@@ -703,18 +703,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.addNewCompany._CalendarExtender1">
+<member name="F:Medical_Insurance.addNewCompany._CalendarExtender2">
 <summary>
-CalendarExtender1 control.
+CalendarExtender2 control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.addNewCompany._MaskedEditExtender1">
+<member name="F:Medical_Insurance.addNewCompany._MaskedEditExtender2">
 <summary>
-MaskedEditExtender1 control.
+MaskedEditExtender2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1444,15 +1444,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companies._img_company_logo">
 <summary>
 img_company_logo control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companies._Image2">
-<summary>
-Image2 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2989,27 +2980,36 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.INC_PATIANT._ImageButton3">
+<member name="F:Medical_Insurance.INC_PATIANT._ImageButton1">
 <summary>
-ImageButton3 control.
+ImageButton1 control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.INC_PATIANT._CalendarExtender1">
+<member name="F:Medical_Insurance.INC_PATIANT._RequiredFieldValidator5">
 <summary>
-CalendarExtender1 control.
+RequiredFieldValidator5 control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.INC_PATIANT._MaskedEditExtender1">
+<member name="F:Medical_Insurance.INC_PATIANT._CalendarExtender3">
 <summary>
-MaskedEditExtender1 control.
+CalendarExtender3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.INC_PATIANT._MaskedEditExtender3">
+<summary>
+MaskedEditExtender3 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3106,18 +3106,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.INC_PATIANT._CalendarExtender2">
+<member name="F:Medical_Insurance.INC_PATIANT._CalendarExtender1">
 <summary>
-CalendarExtender2 control.
+CalendarExtender1 control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.INC_PATIANT._MaskedEditExtender2">
+<member name="F:Medical_Insurance.INC_PATIANT._MaskedEditExtender1">
 <summary>
-MaskedEditExtender2 control.
+MaskedEditExtender1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3181,51 +3181,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.INC_PATIANT._btn_save">
 <summary>
 btn_save control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.LISTPATIANT._Label1">
-<summary>
-Label1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.LISTPATIANT._main_company_panel">
-<summary>
-main_company_panel control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.LISTPATIANT._ddl_companies">
-<summary>
-ddl_companies control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.LISTPATIANT._SqlDataSource1">
-<summary>
-SqlDataSource1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.LISTPATIANT._GridView1">
-<summary>
-GridView1 control.
 </summary>
 <remarks>
 Auto-generated field.

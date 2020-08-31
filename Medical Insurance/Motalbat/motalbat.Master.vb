@@ -13,6 +13,8 @@
                 Response.Redirect("http://10.10.1.10", True)
             End If
 
+            Session("company_id") = Nothing
+
             lbl_date_now.Text = Date.Now.ToLongDateString
             lbl_user_name.Text = Session("INC_user_full_name")
 

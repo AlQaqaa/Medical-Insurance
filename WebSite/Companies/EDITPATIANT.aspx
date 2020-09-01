@@ -94,7 +94,6 @@
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="PHONE_NO">رقم الهاتف</label>
                                 <asp:TextBox ID="txt_PHONE_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_PHONE_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
                                 <label for="txt_EXP_DATE">تاريخ صلاحية البطاقة</label>

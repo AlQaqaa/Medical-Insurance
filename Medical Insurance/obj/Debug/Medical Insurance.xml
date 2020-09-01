@@ -2773,15 +2773,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.WebForm1._RequiredFieldValidator5">
-<summary>
-RequiredFieldValidator5 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.WebForm1._txt_exp_date">
 <summary>
 txt_exp_date control.

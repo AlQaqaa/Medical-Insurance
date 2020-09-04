@@ -89,12 +89,12 @@ Public Class index
                             Else
                                 Session("User_per") = getUserPermissions().Rows(0)
                             End If
-                            'If getUserPermissions().Rows.Count = 0 Then
-                            '    Session("INC_hublogin") = Nothing
-                            '    Session("systemlogin") = Nothing
-                            '    Response.Redirect("http://10.10.1.10/Default.aspx?flag:4", True)
-                            '    Exit Sub
-                            'End If
+                            If getUserPermissions().Rows.Count = 0 Then
+                                Session("INC_hublogin") = Nothing
+                                Session("systemlogin") = Nothing
+                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:4", True)
+                                Exit Sub
+                            End If
 
                         End If
 
@@ -102,19 +102,19 @@ Public Class index
 
                     Dim tim1 As Date = DateTime.FromOADate(t)
 
-                    'If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
-                    '    Response.Redirect("http://10.10.1.10/Default.aspx", True)
-                    'Else
-                    Session("INC_hublogin") = 1
-                    Session("systemlogin") = "401"
-                    Response.Redirect("default.aspx", False)
-                    'End If
+                    If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
+                        Response.Redirect("http://10.10.1.10/Default.aspx", True)
+                    Else
+                        Session("INC_hublogin") = 1
+                        Session("systemlogin") = "401"
+                        Response.Redirect("default.aspx", False)
+                    End If
 
                 End If
 
             End If
         Catch ex As Exception
-            'Label1.Text = ex.Message
+            Label1.Text = ex.Message
             Response.Redirect("http://10.10.1.10/Default.aspx?flag:5", True)
         End Try
 

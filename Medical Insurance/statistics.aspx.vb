@@ -475,7 +475,7 @@ Public Class statistics
         Dim total_val As Decimal = 0
 
         Try
-            Dim sql_str As String = "SELECT SUM(Processes_Residual) AS Processes_Residual FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0"
+            Dim sql_str As String = "SELECT ISNULL(SUM(Processes_Residual), 0) AS Processes_Residual FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
                 sql_str = sql_str & " AND C_ID = " & ddl_companies.SelectedValue
@@ -578,7 +578,7 @@ Public Class statistics
             total_val = sel_com.ExecuteScalar
             insurance_SQLcon.Close()
 
-            Return total_val
+            Return CDec(total_val)
         Catch ex As Exception
             MsgBox("4" & ex.Message)
         End Try

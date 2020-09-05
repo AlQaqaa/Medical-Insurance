@@ -183,10 +183,10 @@ Public Class _Default1
         If (e.CommandName = "pat_name") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
-            Session.Item("patiant_id") = (row.Cells(0).Text) ' 13471
+            'Session.Item("patiant_id") = (row.Cells(0).Text) ' 13471
             Session.Item("company_id") = (row.Cells(1).Text) '56 
 
-            Response.Redirect("Companies/patientInfo.aspx")
+            Response.Redirect("Companies/patientInfo.aspx?pID=" & (row.Cells(0).Text))
         End If
     End Sub
 

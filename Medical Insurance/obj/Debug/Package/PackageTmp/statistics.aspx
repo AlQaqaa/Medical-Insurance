@@ -148,12 +148,12 @@
                                 <asp:DropDownList ID="ddl_NAL_ID" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource6" DataTextField="Nationality_AR_Name" DataValueField="Nationality_ID"></asp:DropDownList>
                                 <asp:SqlDataSource ID="SqlDataSource6" runat="server" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS Nationality_ID, 'جميع الجنسيات' AS Nationality_AR_Name FROM Main_Nationality UNION SELECT [Nationality_ID], [Nationality_AR_Name] FROM [Main_Nationality] WHERE Nationality_State=0"></asp:SqlDataSource>
                             </div>
-                            <div class="col-xs-12 col-sm-2">
+                            <%--<div class="col-xs-12 col-sm-2">
                                 <div class="form-check">
                                     <asp:CheckBox ID="CheckBox2" CssClass="form-check-input form-check-label" runat="server" Text="تسوية الطبيب" AutoPostBack="True" />
                                 </div>
 
-                            </div>
+                            </div>--%>
                         </div>
                         <!-- row -->
                         <hr />

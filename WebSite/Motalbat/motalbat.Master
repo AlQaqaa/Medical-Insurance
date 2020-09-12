@@ -91,9 +91,9 @@
                                         <asp:HyperLink ID="HyperLink10" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/printPrices.aspx"><i class="fas fa-print"></i>&nbsp;طباعة الأسعار</asp:HyperLink></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                            <%--<li class="nav-item">
                                 <asp:HyperLink ID="hl_notifications" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/notificationCenter.aspx"><i class="fas fa-bell"></i> مركز الإشعارات <asp:Label ID="lbl_notification" runat="server" Text=""></asp:Label></asp:HyperLink>
-                            </li>
+                            </li>--%>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_invoices_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#motalbat" data-toggle="collapse" data-target="#motalbat" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-receipt"></i> الفواتير والمطالبات</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="motalbat">
@@ -118,9 +118,9 @@
                                         <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
                                 </ul>
                             </li>
-                            <li class="nav-item">
+                           <%-- <li class="nav-item">
                                 <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i> تسوية الأطباء <asp:Label ID="Label2" runat="server" Text=""></asp:Label></asp:HyperLink>
-                            </li>
+                            </li>--%>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i> الاستفسارات والإحصائيات <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>

@@ -26,7 +26,7 @@ Public Class main
                 HyperLink2.Visible = Session("User_per")("active_company")
                 hl_listPatiant.Visible = Session("User_per")("active_card")
                 hr_confirm.Visible = Session("User_per")("confirm_approval")
-                hl_doctors_forms.Visible = Session("User_per")("doctors_settled")
+                ' hl_doctors_forms.Visible = Session("User_per")("doctors_settled")
                 hl_Statistics.Visible = Session("User_per")("search")
                 hl_reports.Visible = Session("User_per")("reports_per")
 

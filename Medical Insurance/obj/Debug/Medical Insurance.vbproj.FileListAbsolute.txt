@@ -598,7 +598,6 @@ E:\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.WinForms.re
 E:\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
 E:\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
 E:\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbprojAssemblyReference.cache
 E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical_Insurance.Resources.resources
 E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbproj.GenerateResource.cache
 E:\Medical-Insurance\Medical Insurance\obj\Debug\RdlCompile.cache
@@ -608,3 +607,4 @@ E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbproj.CopyCo
 E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.dll
 E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.xml
 E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.pdb
+E:\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbprojAssemblyReference.cache

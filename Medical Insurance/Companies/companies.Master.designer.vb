@@ -167,24 +167,6 @@ Partial Public Class companies
     Protected WithEvents HyperLink16 As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''hl_notifications control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hl_notifications As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''lbl_notification control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lbl_notification As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
     '''hl_invoices_motalbat control.
     '''</summary>
     '''<remarks>
@@ -264,24 +246,6 @@ Partial Public Class companies
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_approved_archive As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''hl_doctors_forms control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hl_doctors_forms As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''hl_Statistics control.

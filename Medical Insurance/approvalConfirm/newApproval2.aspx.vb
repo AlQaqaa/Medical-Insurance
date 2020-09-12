@@ -21,39 +21,90 @@ Public Class newApproval2
         End If
     End Sub
 
+    Private Sub ddl_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_type.SelectedIndexChanged
+
+        If ddl_type.SelectedValue = 1 Then
+            ddl_clinics.Enabled = True
+            ddl_services.Enabled = True
+            ddl_sub_service.Enabled = True
+            Panel3.Visible = False
+        ElseIf ddl_type.SelectedValue = 2 Then
+            ddl_clinics.Enabled = False
+            ddl_services.Enabled = False
+            ddl_sub_service.Enabled = False
+            Panel3.Visible = True
+
+        Else
+            ddl_clinics.Enabled = False
+            ddl_services.Enabled = False
+            ddl_sub_service.Enabled = False
+        End If
+
+    End Sub
+
+    Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
+        If ddl_type.SelectedValue = 1 Then
+            Dim sel_com As New SqlCommand("SELECT SubService_ID, concat(SubService_Code, ' | ', SubService_AR_Name) AS SubService_AR_Name FROM Main_SubServices WHERE SubService_Service_ID = " & ddl_services.SelectedValue, insurance_SQLcon)
+            Dim dt_result As New DataTable
+            dt_result.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_result.Load(sel_com.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If dt_result.Rows.Count > 0 Then
+                ddl_sub_service.DataSource = dt_result
+                ddl_sub_service.DataValueField = "SubService_ID"
+                ddl_sub_service.DataTextField = "SubService_AR_Name"
+                ddl_sub_service.DataBind()
+            End If
+
+        End If
+    End Sub
+
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
 
-        Using main_ds
-            Dim sel_com As New SqlCommand("select C_Name_Arb from INC_COMPANY_DATA WHERE C_ID = " & ddl_companies.SelectedValue)
-            Using sda As New SqlDataAdapter()
-                sel_com.Connection = insurance_SQLcon
-                sda.SelectCommand = sel_com
-                sda.Fill(main_ds, "INC_COMPANY_DATA1")
-            End Using
-        End Using
+        If GridView1.Rows.Count = 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'error',
+                title: 'يرجى اختيار خدمة واحدة على الأقل',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+            Exit Sub
+        End If
+
+        add_action(1, 1, 1, "إنشاء طلب موافقة جديد للشركة: " & ddl_companies.SelectedItem.Text & " اسم المنتفع: " & txt_name.Text, Session("INC_User_Id"), GetIPAddress())
 
         Dim viewer As ReportViewer = New ReportViewer()
 
-        Dim datasource As New ReportDataSource("DataSet11", main_ds.Tables("INC_COMPANY_DATA1"))
+        Dim datasource As New ReportDataSource("confirmDS", Session("dt"))
         viewer.LocalReport.DataSources.Clear()
         viewer.ProcessingMode = ProcessingMode.Local
-        viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/confirmApproval2.rdlc")
+        viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/confirmApproval.rdlc")
         viewer.LocalReport.DataSources.Add(datasource)
 
         Dim rp1 As ReportParameter
         Dim rp2 As ReportParameter
         Dim rp3 As ReportParameter
         Dim rp4 As ReportParameter
+        Dim rp5 As ReportParameter
+        Dim rp6 As ReportParameter
+        Dim rp7 As ReportParameter
 
         rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
-        rp2 = New ReportParameter("pat_name", txt_name.Text)
-        rp3 = New ReportParameter("pros_name", txt_service_name.Text)
-        rp4 = New ReportParameter("price", CDec(txt_value.Text))
+        rp2 = New ReportParameter("pat_name", "للمنتفع: " & txt_name.Text)
+        rp3 = New ReportParameter("card_no", " ")
+        rp4 = New ReportParameter("emp_no", " ")
+        rp5 = New ReportParameter("moshtark_name", " ")
+        rp6 = New ReportParameter("relation_m", " ")
+        rp7 = New ReportParameter("approv_no", " ")
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-        Dim r As String = "~/Reports/confirmApproval2.rdlc"
+        Dim r As String = "~/Reports/confirmApproval.rdlc"
         ' Page.Controls.Add(rv)
 
         Dim warnings As Warning() = Nothing
@@ -64,15 +115,95 @@ Public Class newApproval2
         Dim bytes As Byte()
         Dim FolderLocation As String
         FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/confirmApproval2" & Session("INC_User_Id") & ".pdf"
+        Dim filepath As String = FolderLocation & "/confirmApproval" & Session("INC_User_Id") & ".pdf"
         If Directory.Exists(filepath) Then
             File.Delete(filepath)
         End If
         bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
             encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/confirmApproval2" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+        Dim fs As New FileStream(FolderLocation & "/confirmApproval" & Session("INC_User_Id") & ".pdf", FileMode.Create)
         fs.Write(bytes, 0, bytes.Length)
         fs.Close()
-        Response.Redirect("~/Reports/confirmApproval2" & Session("INC_User_Id") & ".pdf", True)
+        Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", True)
     End Sub
+
+    Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
+
+        If ddl_type.SelectedValue = 1 Then
+            Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = 3024) AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
+            Dim dt_service_info As New DataTable
+            dt_service_info.Rows.Clear()
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            dt_service_info.Load(sel_service.ExecuteReader)
+            insurance_SQLcon.Close()
+
+            If GridView1.Rows.Count = 0 Then
+                Dim dt As New DataTable
+                dt.Columns.Add("SUB_SERVICE_ID")
+                dt.Columns.Add("SERVICE_PRICE", System.Type.GetType("System.Decimal"))
+                dt.Columns.Add("REQUEST_TYPE")
+                dt.Columns.Add("SubService_Code")
+                dt.Columns.Add("SubService_AR_Name")
+                Dim dr = dt.NewRow()
+                dr("SUB_SERVICE_ID") = ddl_sub_service.SelectedValue
+                dr("SERVICE_PRICE") = dt_service_info.Rows(0)("SubService_Price")
+                dr("REQUEST_TYPE") = "عملية/خدمة"
+                dr("SubService_Code") = dt_service_info.Rows(0)("SubService_Code")
+                dr("SubService_AR_Name") = dt_service_info.Rows(0)("SubService_AR_Name")
+                dt.Rows.Add(dr)
+                Session("dt") = dt
+                GridView1.DataSource = dt
+                GridView1.DataBind()
+
+            Else
+                Dim dt As New DataTable
+                dt = Session("dt")
+                Dim dr = dt.NewRow()
+                dr("SUB_SERVICE_ID") = ddl_sub_service.SelectedValue
+                dr("SERVICE_PRICE") = dt_service_info.Rows(0)("SubService_Price")
+                dr("REQUEST_TYPE") = "عملية/خدمة"
+                dr("SubService_Code") = dt_service_info.Rows(0)("SubService_Code")
+                dr("SubService_AR_Name") = dt_service_info.Rows(0)("SubService_AR_Name")
+                dt.Rows.Add(dr)
+                Session("dt") = dt
+                GridView1.DataSource = dt
+                GridView1.DataBind()
+            End If
+
+        ElseIf ddl_type.SelectedValue = 2 Then
+            If GridView1.Rows.Count = 0 Then
+                Dim dt As New DataTable
+                dt.Columns.Add("SUB_SERVICE_ID")
+                dt.Columns.Add("SERVICE_PRICE", System.Type.GetType("System.Decimal"))
+                dt.Columns.Add("REQUEST_TYPE")
+                dt.Columns.Add("SubService_Code")
+                Dim dr = dt.NewRow()
+                dr("SUB_SERVICE_ID") = 999999
+                dr("SERVICE_PRICE") = CDec(txt_add_price.Text)
+                dr("REQUEST_TYPE") = "إضافة للعملية"
+                dr("SubService_Code") = ""
+                dr("SubService_AR_Name") = txt_add_name.Text
+                dt.Rows.Add(dr)
+                Session("dt") = dt
+                GridView1.DataSource = dt
+                GridView1.DataBind()
+            Else
+                Dim dt As New DataTable
+                dt = Session("dt")
+                Dim dr = dt.NewRow()
+                dr("SUB_SERVICE_ID") = 999999
+                dr("SERVICE_PRICE") = CDec(txt_add_price.Text)
+                dr("REQUEST_TYPE") = "إضافة للعملية"
+                dr("SubService_Code") = ""
+                dr("SubService_AR_Name") = txt_add_name.Text
+                dt.Rows.Add(dr)
+                Session("dt") = dt
+                GridView1.DataSource = dt
+                GridView1.DataBind()
+            End If
+        End If
+
+    End Sub
+
 End Class

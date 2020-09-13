@@ -127,10 +127,28 @@ Public Class newApproval2
         Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", True)
     End Sub
 
+    Private Function getCompanyInfo() As DataTable
+        Dim sel_com As New SqlCommand("SELECT TOP(1) PYMENT_TYPE,PROFILE_PRICE_ID FROM INC_COMPANY_DETIAL WHERE C_ID = " & ddl_companies.SelectedValue & " ORDER BY N DESC", insurance_SQLcon)
+        Dim dt_result As New DataTable
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+
+        Return dt_result
+    End Function
+
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
 
+        Dim pay_type As String = ""
+        If getCompanyInfo().Rows(0)("PYMENT_TYPE") = 1 Then
+            pay_type = "CASH_PRS"
+        Else
+            pay_type = "INS_PRS"
+        End If
+
         If ddl_type.SelectedValue = 1 Then
-            Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = 3024) AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
+            Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & getCompanyInfo().Rows(0)("PROFILE_PRICE_ID") & ") AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
             Dim dt_service_info As New DataTable
             dt_service_info.Rows.Clear()
             insurance_SQLcon.Close()

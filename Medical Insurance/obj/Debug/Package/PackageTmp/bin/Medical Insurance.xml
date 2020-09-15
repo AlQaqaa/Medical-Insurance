@@ -244,15 +244,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator3">
-<summary>
-RequiredFieldValidator3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.newApproval2._txt_name">
 <summary>
 txt_name control.
@@ -265,6 +256,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator1">
 <summary>
 RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._txt_company_name">
+<summary>
+txt_company_name control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -361,36 +361,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.newApproval2._btn_add">
-<summary>
-btn_add control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.newApproval2._Panel3">
-<summary>
-Panel3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.newApproval2._txt_add_name">
 <summary>
 txt_add_name control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator4">
-<summary>
-RequiredFieldValidator4 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -406,9 +379,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.newApproval2._RequiredFieldValidator6">
+<member name="F:Medical_Insurance.newApproval2._btn_add">
 <summary>
-RequiredFieldValidator6 control.
+btn_add control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newApproval2._txt_notes">
+<summary>
+txt_notes control.
 </summary>
 <remarks>
 Auto-generated field.

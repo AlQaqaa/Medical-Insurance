@@ -50,15 +50,6 @@ Partial Public Class newApproval2
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
-    '''RequiredFieldValidator3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
     '''txt_name control.
     '''</summary>
     '''<remarks>
@@ -75,6 +66,15 @@ Partial Public Class newApproval2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''txt_company_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_company_name As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label9 control.
@@ -167,24 +167,6 @@ Partial Public Class newApproval2
     Protected WithEvents ddl_sub_service As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
-    '''btn_add control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_add As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''Panel3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Panel3 As Global.System.Web.UI.WebControls.Panel
-    
-    '''<summary>
     '''txt_add_name control.
     '''</summary>
     '''<remarks>
@@ -192,15 +174,6 @@ Partial Public Class newApproval2
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_add_name As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RequiredFieldValidator4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator4 As Global.System.Web.UI.WebControls.RequiredFieldValidator
     
     '''<summary>
     '''txt_add_price control.
@@ -212,13 +185,22 @@ Partial Public Class newApproval2
     Protected WithEvents txt_add_price As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''RequiredFieldValidator6 control.
+    '''btn_add control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents RequiredFieldValidator6 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    Protected WithEvents btn_add As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''txt_notes control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_notes As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''GridView1 control.

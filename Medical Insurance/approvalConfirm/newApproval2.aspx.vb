@@ -27,12 +27,12 @@ Public Class newApproval2
             ddl_clinics.Enabled = True
             ddl_services.Enabled = True
             ddl_sub_service.Enabled = True
-            Panel3.Visible = False
+            txt_add_name.Visible = False
         ElseIf ddl_type.SelectedValue = 2 Then
             ddl_clinics.Enabled = False
             ddl_services.Enabled = False
             ddl_sub_service.Enabled = False
-            Panel3.Visible = True
+            txt_add_name.Visible = True
 
         Else
             ddl_clinics.Enabled = False
@@ -92,6 +92,7 @@ Public Class newApproval2
         Dim rp5 As ReportParameter
         Dim rp6 As ReportParameter
         Dim rp7 As ReportParameter
+        Dim rp8 As ReportParameter
 
         rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
         rp2 = New ReportParameter("pat_name", "للمنتفع: " & txt_name.Text)
@@ -100,8 +101,9 @@ Public Class newApproval2
         rp5 = New ReportParameter("moshtark_name", " ")
         rp6 = New ReportParameter("relation_m", " ")
         rp7 = New ReportParameter("approv_no", " ")
+        rp8 = New ReportParameter("notes", "ملاحظات: " & txt_notes.Text)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/confirmApproval.rdlc"
@@ -141,20 +143,36 @@ Public Class newApproval2
     Private Sub btn_add_Click(sender As Object, e As EventArgs) Handles btn_add.Click
 
         Dim pay_type As String = ""
-        If getCompanyInfo().Rows(0)("PYMENT_TYPE") = 1 Then
-            pay_type = "CASH_PRS"
-        Else
-            pay_type = "INS_PRS"
+        If getCompanyInfo().Rows.Count > 0 Then
+            If getCompanyInfo().Rows(0)("PYMENT_TYPE") = 1 Then
+                pay_type = "CASH_PRS"
+            Else
+                pay_type = "INS_PRS"
+            End If
         End If
 
+        Dim service_price As Decimal = 0 
+
         If ddl_type.SelectedValue = 1 Then
-            Dim sel_service As New SqlCommand("SELECT SubService_ID, SubService_Code, SubService_AR_Name, (SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & getCompanyInfo().Rows(0)("PROFILE_PRICE_ID") & ") AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue, insurance_SQLcon)
+            Dim query_str As String
+            If ddl_companies.SelectedValue = 0 Then
+                query_str = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, 0 AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue
+            Else
+                query_str = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, ISNULL((SELECT " & pay_type & " FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = " & getCompanyInfo().Rows(0)("PROFILE_PRICE_ID") & "), 0) AS SubService_Price FROM Main_SubServices WHERE SubService_ID = " & ddl_sub_service.SelectedValue
+            End If
+            Dim sel_service As New SqlCommand(query_str, insurance_SQLcon)
             Dim dt_service_info As New DataTable
             dt_service_info.Rows.Clear()
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             dt_service_info.Load(sel_service.ExecuteReader)
             insurance_SQLcon.Close()
+
+            If ddl_companies.SelectedValue = 0 Then
+                service_price = CDec(txt_add_price.Text)
+            Else
+                service_price = dt_service_info.Rows(0)("SubService_Price")
+            End If
 
             If GridView1.Rows.Count = 0 Then
                 Dim dt As New DataTable
@@ -165,7 +183,7 @@ Public Class newApproval2
                 dt.Columns.Add("SubService_AR_Name")
                 Dim dr = dt.NewRow()
                 dr("SUB_SERVICE_ID") = ddl_sub_service.SelectedValue
-                dr("SERVICE_PRICE") = dt_service_info.Rows(0)("SubService_Price")
+                dr("SERVICE_PRICE") = service_price
                 dr("REQUEST_TYPE") = "عملية/خدمة"
                 dr("SubService_Code") = dt_service_info.Rows(0)("SubService_Code")
                 dr("SubService_AR_Name") = dt_service_info.Rows(0)("SubService_AR_Name")
@@ -179,7 +197,7 @@ Public Class newApproval2
                 dt = Session("dt")
                 Dim dr = dt.NewRow()
                 dr("SUB_SERVICE_ID") = ddl_sub_service.SelectedValue
-                dr("SERVICE_PRICE") = dt_service_info.Rows(0)("SubService_Price")
+                dr("SERVICE_PRICE") = service_price
                 dr("REQUEST_TYPE") = "عملية/خدمة"
                 dr("SubService_Code") = dt_service_info.Rows(0)("SubService_Code")
                 dr("SubService_AR_Name") = dt_service_info.Rows(0)("SubService_AR_Name")
@@ -187,6 +205,7 @@ Public Class newApproval2
                 Session("dt") = dt
                 GridView1.DataSource = dt
                 GridView1.DataBind()
+
             End If
 
         ElseIf ddl_type.SelectedValue = 2 Then
@@ -196,6 +215,7 @@ Public Class newApproval2
                 dt.Columns.Add("SERVICE_PRICE", System.Type.GetType("System.Decimal"))
                 dt.Columns.Add("REQUEST_TYPE")
                 dt.Columns.Add("SubService_Code")
+                dt.Columns.Add("SubService_AR_Name")
                 Dim dr = dt.NewRow()
                 dr("SUB_SERVICE_ID") = 999999
                 dr("SERVICE_PRICE") = CDec(txt_add_price.Text)
@@ -206,6 +226,7 @@ Public Class newApproval2
                 Session("dt") = dt
                 GridView1.DataSource = dt
                 GridView1.DataBind()
+
             Else
                 Dim dt As New DataTable
                 dt = Session("dt")
@@ -219,9 +240,19 @@ Public Class newApproval2
                 Session("dt") = dt
                 GridView1.DataSource = dt
                 GridView1.DataBind()
+
             End If
         End If
 
     End Sub
 
+    Private Sub ddl_companies_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_companies.SelectedIndexChanged
+        If ddl_companies.SelectedValue = 0 Then
+            txt_company_name.Visible = True
+            txt_add_price.Visible = True
+        Else
+            txt_company_name.Visible = False
+            txt_add_price.Visible = False
+        End If
+    End Sub
 End Class

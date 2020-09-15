@@ -293,6 +293,7 @@ Public Class newApproval
             Dim rp5 As ReportParameter
             Dim rp6 As ReportParameter
             Dim rp7 As ReportParameter
+            Dim rp8 As ReportParameter
 
             rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
             rp2 = New ReportParameter("pat_name", Label3.Text)
@@ -301,8 +302,9 @@ Public Class newApproval
             rp5 = New ReportParameter("moshtark_name", Label1.Text)
             rp6 = New ReportParameter("relation_m", Label4.Text)
             rp7 = New ReportParameter("approv_no", ViewState("approv_no").ToString)
+            rp8 = New ReportParameter("notes", " ")
 
-            viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
+            viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8})
 
             Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
             Dim r As String = "~/Reports/confirmApproval.rdlc"

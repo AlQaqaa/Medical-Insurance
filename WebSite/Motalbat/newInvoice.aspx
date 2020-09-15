@@ -154,6 +154,15 @@
                                     </div>
                                 </div>
                                 <!-- /form-row -->
+                                <div class="form-row">
+                                    <div class="form-group col-xs-12 col-sm-3">
+                                        <label for="ddl_clinics">العيادة</label>
+                                        <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource2" DataTextField="Clinic_AR_Name" DataValueField="CLINIC_ID">
+                                        </asp:DropDownList>
+                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT 0 AS clinic_id, 'يرجى اختيار عيادة' AS Clinic_AR_Name FROM [MAIN_CLINIC] UNION SELECT clinic_id, Clinic_AR_Name FROM [MAIN_CLINIC]"></asp:SqlDataSource>
+                                    </div>
+                                </div>
+                                <!-- /form-row -->
                             </ContentTemplate>
                         </asp:UpdatePanel>
                         <div class="form-row justify-content-end">

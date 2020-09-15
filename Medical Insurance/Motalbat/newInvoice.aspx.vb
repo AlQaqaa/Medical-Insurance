@@ -33,18 +33,12 @@ Public Class newInvoice
 
         Try
             Dim sql_str As String = "SELECT pros_code, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
-ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
-LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
-LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
-WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
-
-            'If RadioButton1.Checked = True Then
-            '    sql_str = sql_str & " AND pros_code IN (" & txt_search_code.Text & ")"
-            'Else
-            '    sql_str = sql_str & " AND SUBSTRING([Processes_Reservation_Code],7 , 2) = " & ddl_companies.SelectedValue & " AND CONVERT(VARCHAR, Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, Processes_Date, 103) <= '" & txt_end_dt.Text & "'"
-            'End If
+                ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
+                LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
+                LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
+                WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
             If ddl_companies.SelectedValue <> "" Then
                 If ddl_companies.SelectedValue <> 0 Then
@@ -63,6 +57,10 @@ WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Pro
                 sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
             End If
 
+            If ddl_clinics.SelectedValue <> 0 Then
+                sql_str = sql_str & " AND Processes_Cilinc = " & ddl_clinics.SelectedValue
+            End If
+
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
@@ -77,15 +75,6 @@ WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Pro
                 CheckBox1.Visible = True
                 btn_create.Enabled = True
 
-                'If RadioButton1.Checked = True Then
-                '    Dim dr = dt_result.Rows(0)
-                '    ViewState("pros_dt") = dr!Processes_Date
-                '    CheckBox1.Checked = True
-                '    For Each dd As GridViewRow In GridView1.Rows
-                '        Dim ch As CheckBox = dd.FindControl("CheckBox2")
-                '        ch.Checked = True
-                '    Next
-                'End If
             Else
                 dt_result.Rows.Clear()
                 GridView1.DataSource = dt_result

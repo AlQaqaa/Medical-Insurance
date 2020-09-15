@@ -5118,6 +5118,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.newInvoice._ddl_clinics">
+<summary>
+ddl_clinics control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newInvoice._SqlDataSource2">
+<summary>
+SqlDataSource2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.newInvoice._btn_search">
 <summary>
 btn_search control.

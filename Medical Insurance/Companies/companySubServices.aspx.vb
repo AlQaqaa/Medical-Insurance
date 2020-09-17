@@ -38,7 +38,7 @@ Public Class companySubServices
 
             getClinicAvailable()
             ' getSubServicesAvailable()
-            getSubServices(3)
+            ' getSubServices(3)
 
         End If
     End Sub

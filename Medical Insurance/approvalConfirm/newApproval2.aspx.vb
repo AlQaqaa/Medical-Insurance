@@ -28,12 +28,15 @@ Public Class newApproval2
             ddl_services.Enabled = True
             ddl_sub_service.Enabled = True
             txt_add_name.Visible = False
+            If ddl_companies.SelectedValue <> 0 Then
+                txt_add_price.Visible = False
+            End If
         ElseIf ddl_type.SelectedValue = 2 Then
             ddl_clinics.Enabled = False
             ddl_services.Enabled = False
             ddl_sub_service.Enabled = False
             txt_add_name.Visible = True
-
+            txt_add_price.Visible = True
         Else
             ddl_clinics.Enabled = False
             ddl_services.Enabled = False
@@ -151,7 +154,7 @@ Public Class newApproval2
             End If
         End If
 
-        Dim service_price As Decimal = 0 
+        Dim service_price As Decimal = 0
 
         If ddl_type.SelectedValue = 1 Then
             Dim query_str As String

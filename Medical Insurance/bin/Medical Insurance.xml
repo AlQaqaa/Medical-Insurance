@@ -1963,6 +1963,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companySubServices._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companySubServices._ddl_show_type">
 <summary>
 ddl_show_type control.
@@ -2047,15 +2056,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companySubServices._ddl_services_group">
 <summary>
 ddl_services_group control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.companySubServices._UpdatePanel1">
-<summary>
-UpdatePanel1 control.
 </summary>
 <remarks>
 Auto-generated field.

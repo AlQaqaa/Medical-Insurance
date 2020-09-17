@@ -14,61 +14,63 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="card mt-1">
-                <div class="card-header bg-info text-white">العيادات والخدمات</div>
-                <div class="card-body">
-                    <div class="form-row">
-                        <div class="form-group col-xs-12 col-sm-4">
-                            <label for="ddl_clinics">طريقة العرض</label>
-                            <asp:DropDownList ID="ddl_show_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
-                                <asp:ListItem Value="1">العيادات</asp:ListItem>
-                                <asp:ListItem Value="2">الخدمات المجمعة</asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
-                    </div>
-                    <!-- form-row -->
-                    <asp:Panel ID="clinic_Panel" runat="server">
-                        <div class="form-row">
-                            <div class="form-group col-xs-12 col-sm-4">
-                                <label for="ddl_clinics">العيادة</label>
-                                <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card mt-1">
+                        <div class="card-header bg-info text-white">العيادات والخدمات</div>
+                        <div class="card-body">
+                            <div class="form-row">
+                                <div class="form-group col-xs-12 col-sm-4">
+                                    <label for="ddl_clinics">طريقة العرض</label>
+                                    <asp:DropDownList ID="ddl_show_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
+                                        <asp:ListItem Value="1">العيادات</asp:ListItem>
+                                        <asp:ListItem Value="2">الخدمات المجمعة</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
                             </div>
-                            <div class="form-group col-xs-12 col-sm-4">
-                                <label for="txt_clinics_max">القسم</label>
-                                <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
-                            </div>
-                            <div class="form-group col-xs-12 col-sm-4">
-                                <label for="txt_clinics_max">سقف العيادة</label>
-                                <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-xs-6 col-sm-12">
-                                <asp:Panel ID="Panel2" runat="server">
-                                    <div class="alert alert-warning" role="alert">
-                                        عند اختيار جميع العيادات سيتم تغطية كافة الأقسام للعيادات المغطاة بأسقف مفتوحة
+                            <!-- form-row -->
+                            <asp:Panel ID="clinic_Panel" runat="server">
+                                <div class="form-row">
+                                    <div class="form-group col-xs-12 col-sm-4">
+                                        <label for="ddl_clinics">العيادة</label>
+                                        <asp:DropDownList ID="ddl_clinics" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
                                     </div>
-                                </asp:Panel>
-                            </div>
-                        </div>
-                    </asp:Panel>
-                    <asp:Panel ID="groups_Panel" runat="server" Visible="False">
-                        <div class="form-row">
-                            <div class="form-group col-xs-12 col-sm-4">
-                                <label for="ddl_clinics">المجموعة</label>
-                                <asp:DropDownList ID="ddl_gourp" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="GROUP_ARNAME" DataValueField="GROUP_ID"></asp:DropDownList>
-                                <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS GROUP_ID, 'الكل' AS GROUP_ARNAME FROM Main_GroupSubService UNION SELECT GROUP_ID, GROUP_ARNAME FROM [Main_GroupSubService] WHERE GROUP_STATE = 0"></asp:SqlDataSource>
-                            </div>
-                            <div class="form-group col-xs-12 col-sm-4">
-                                <label for="txt_clinics_max">الخدمات</label>
-                                <asp:DropDownList ID="ddl_services_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
-                            </div>
-                        </div>
-                    </asp:Panel>
-                    <%--<div class="form-row">
+                                    <div class="form-group col-xs-12 col-sm-4">
+                                        <label for="txt_clinics_max">القسم</label>
+                                        <asp:DropDownList ID="ddl_services" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-4">
+                                        <label for="txt_clinics_max">سقف العيادة</label>
+                                        <asp:TextBox ID="txt_clinics_max" runat="server" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-6 col-sm-12">
+                                        <asp:Panel ID="Panel2" runat="server">
+                                            <div class="alert alert-warning" role="alert">
+                                                عند اختيار جميع العيادات سيتم تغطية كافة الأقسام للعيادات المغطاة بأسقف مفتوحة
+                                            </div>
+                                        </asp:Panel>
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                            <asp:Panel ID="groups_Panel" runat="server" Visible="False">
+                                <div class="form-row">
+                                    <div class="form-group col-xs-12 col-sm-4">
+                                        <label for="ddl_clinics">المجموعة</label>
+                                        <asp:DropDownList ID="ddl_gourp" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="GROUP_ARNAME" DataValueField="GROUP_ID"></asp:DropDownList>
+                                        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS GROUP_ID, 'الكل' AS GROUP_ARNAME FROM Main_GroupSubService UNION SELECT GROUP_ID, GROUP_ARNAME FROM [Main_GroupSubService] WHERE GROUP_STATE = 0"></asp:SqlDataSource>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-4">
+                                        <label for="txt_clinics_max">الخدمات</label>
+                                        <asp:DropDownList ID="ddl_services_group" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True"></asp:DropDownList>
+                                    </div>
+                                </div>
+                            </asp:Panel>
+                            <%--<div class="form-row">
                         <div class="form-group col-xs-12">
                             <h6>العيادات المغطاة</h6>
                             <asp:Literal ID="Literal1" runat="server"></asp:Literal>
@@ -76,12 +78,11 @@
                     </div>
                     <hr />--%>
 
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                        <ContentTemplate>
+
                             <asp:Panel ID="Panel1" runat="server">
                                 <div class="form-row">
                                     <div class="form-group col-xs-12 col-sm-1">
-                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" />
+                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Checked="True" />
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-2">
                                         <asp:TextBox ID="txt_person_per_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEU(event)" placeholder="نسبة الفرد"></asp:TextBox>
@@ -111,7 +112,7 @@
                                     <div class="form-group">
                                         <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
                                             <ProgressTemplate>
-                                                <asp:Image ID="Image1" runat="server" width="50px" ImageUrl="~/Style/images/loading.gif" />
+                                                <asp:Image ID="Image1" runat="server" Width="50px" ImageUrl="~/Style/images/loading.gif" />
                                             </ProgressTemplate>
                                         </asp:UpdateProgress>
                                     </div>
@@ -175,11 +176,11 @@
                                     </div>
                                 </div>
                             </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

@@ -22,7 +22,7 @@ Public Class statistics
             End If
             Me.txt_processes_code.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
 
-            End If
+        End If
 
     End Sub
 
@@ -64,7 +64,7 @@ Public Class statistics
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_ID, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO FROM INC_CompanyProcesses 
+            Dim sql_str As String = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO FROM INC_CompanyProcesses 
                 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
@@ -74,7 +74,7 @@ Public Class statistics
                 WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND Processes_State = 2"
 
             If txt_processes_code.Text <> "" Then
-                sql_str = "SELECT INC_CompanyProcesses.Processes_ID, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
+                sql_str = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
                 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices

@@ -401,6 +401,35 @@ GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable2TableAdapter" GeneratorDataComponentClassName="DataTable2TableAdapter" Name="DataTable2" UserDataComponentName="DataTable2TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Processes_Reservation_Code, INC_PATIANT.NAME_ARB, INC_PATIANT.CARD_NO, INC_PATIANT.BAGE_NO, CONVERT(VARCHAR, INC_PATIANT.BIRTHDATE, 111) AS BIRTHDATE ,Processes_Price, Processes_Paid, Main_Clinic.Clinic_AR_Name ,Main_SubServices.SubService_AR_Name, CONVERT(VARCHAR, Processes_Date, 111) AS Processes_Date FROM HAG_Processes
+LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = HAG_Processes.Processes_SubServices
+LEFT JOIN Main_Clinic ON Main_Clinic.clinic_id = HAG_Processes.Processes_Cilinc
+LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = HAG_Processes.Processes_Reservation_Code
+WHERE Processes_State = 2</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Processes_Reservation_Code" DataSetColumn="Processes_Reservation_Code" />
+              <Mapping SourceColumn="NAME_ARB" DataSetColumn="NAME_ARB" />
+              <Mapping SourceColumn="Processes_Price" DataSetColumn="Processes_Price" />
+              <Mapping SourceColumn="Processes_Paid" DataSetColumn="Processes_Paid" />
+              <Mapping SourceColumn="Clinic_AR_Name" DataSetColumn="Clinic_AR_Name" />
+              <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
+              <Mapping SourceColumn="Processes_Date" DataSetColumn="Processes_Date" />
+              <Mapping SourceColumn="CARD_NO" DataSetColumn="CARD_NO" />
+              <Mapping SourceColumn="BAGE_NO" DataSetColumn="BAGE_NO" />
+              <Mapping SourceColumn="BIRTHDATE" DataSetColumn="BIRTHDATE" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -977,6 +1006,70 @@ GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Processes_Reservation_Code" msprop:Generator_ColumnVarNameInTable="columnProcesses_Reservation_Code" msprop:Generator_ColumnPropNameInRow="Processes_Reservation_Code" msprop:Generator_ColumnPropNameInTable="Processes_Reservation_CodeColumn" msprop:Generator_UserColumnName="Processes_Reservation_Code">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NAME_ARB" msprop:Generator_ColumnVarNameInTable="columnNAME_ARB" msprop:Generator_ColumnPropNameInRow="NAME_ARB" msprop:Generator_ColumnPropNameInTable="NAME_ARBColumn" msprop:Generator_UserColumnName="NAME_ARB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Processes_Price" msprop:Generator_ColumnVarNameInTable="columnProcesses_Price" msprop:Generator_ColumnPropNameInRow="Processes_Price" msprop:Generator_ColumnPropNameInTable="Processes_PriceColumn" msprop:Generator_UserColumnName="Processes_Price" type="xs:double" />
+              <xs:element name="Processes_Paid" msprop:Generator_ColumnVarNameInTable="columnProcesses_Paid" msprop:Generator_ColumnPropNameInRow="Processes_Paid" msprop:Generator_ColumnPropNameInTable="Processes_PaidColumn" msprop:Generator_UserColumnName="Processes_Paid" type="xs:double" />
+              <xs:element name="Clinic_AR_Name" msprop:Generator_ColumnVarNameInTable="columnClinic_AR_Name" msprop:Generator_ColumnPropNameInRow="Clinic_AR_Name" msprop:Generator_ColumnPropNameInTable="Clinic_AR_NameColumn" msprop:Generator_UserColumnName="Clinic_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SubService_AR_Name" msprop:Generator_ColumnVarNameInTable="columnSubService_AR_Name" msprop:Generator_ColumnPropNameInRow="SubService_AR_Name" msprop:Generator_ColumnPropNameInTable="SubService_AR_NameColumn" msprop:Generator_UserColumnName="SubService_AR_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Processes_Date" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnProcesses_Date" msprop:Generator_ColumnPropNameInRow="Processes_Date" msprop:Generator_ColumnPropNameInTable="Processes_DateColumn" msprop:Generator_UserColumnName="Processes_Date" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CARD_NO" msprop:Generator_ColumnVarNameInTable="columnCARD_NO" msprop:Generator_ColumnPropNameInRow="CARD_NO" msprop:Generator_ColumnPropNameInTable="CARD_NOColumn" msprop:Generator_UserColumnName="CARD_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BAGE_NO" msprop:Generator_ColumnVarNameInTable="columnBAGE_NO" msprop:Generator_ColumnPropNameInRow="BAGE_NO" msprop:Generator_ColumnPropNameInTable="BAGE_NOColumn" msprop:Generator_UserColumnName="BAGE_NO" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BIRTHDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_UserColumnName="BIRTHDATE" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

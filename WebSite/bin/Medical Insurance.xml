@@ -3716,6 +3716,11 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.DataTable2DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3787,6 +3792,11 @@ Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.INC_PATIANTRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1.DataTable2Row">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -3866,6 +3876,11 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.DataTable2RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRowChangeEvent">
 <summary>
 Row event argument class
@@ -3937,6 +3952,11 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.INC_PATIANTTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1TableAdapters.DataTable2TableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>

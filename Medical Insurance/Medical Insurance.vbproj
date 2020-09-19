@@ -175,7 +175,6 @@
     <Content Include="printPrices.aspx" />
     <Content Include="Reports\companyData.aspx" />
     <Content Include="Reports\dailyProcesses.aspx" />
-    <Content Include="Reports\patientProcesses.aspx" />
     <Content Include="Reports\patientsExpenses.aspx" />
     <Content Include="Reports\stopPatients.aspx" />
     <Content Include="Reports\totalExpenses.aspx" />
@@ -491,13 +490,6 @@
       <DependentUpon>dailyProcesses.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Reports\patientProcesses.aspx.designer.vb">
-      <DependentUpon>patientProcesses.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\patientProcesses.aspx.vb">
-      <DependentUpon>patientProcesses.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
-    </Compile>
     <Compile Include="Reports\patientsExpenses.aspx.designer.vb">
       <DependentUpon>patientsExpenses.aspx</DependentUpon>
     </Compile>
@@ -610,6 +602,7 @@
     <Content Include="Reports\companyDataReport.rdlc" />
     <Content Include="Reports\confirmApproval2.rdlc" />
     <Content Include="Reports\patientsExpenses.rdlc" />
+    <Content Include="Reports\pateintProcesses.rdlc" />
     <EmbeddedResource Include="Reports\servicesPricesKashf.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPricesKashf.vb</LastGenOutput>

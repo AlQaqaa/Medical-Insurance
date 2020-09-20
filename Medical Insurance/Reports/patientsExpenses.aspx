@@ -14,14 +14,20 @@
                 <ContentTemplate>
                     <div class="row">
                         <div class="form-group col-sm-12 col-md-4">
-                            <asp:DropDownList ID="ddl_companies" runat="server" CssClass="form-control drop-down-list chosen-select" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID" AutoPostBack="True"></asp:DropDownList>
+                            <asp:DropDownList ID="ddl_companies" runat="server" CssClass="form-control drop-down-list chosen-select" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID"></asp:DropDownList>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [C_ID], N'- يرجى اختيار شركة -' AS [C_Name_Arb] FROM [INC_COMPANY_DATA] UNION SELECT [C_ID], [C_Name_Arb] FROM [INC_COMPANY_DATA] WHERE C_State = 0"></asp:SqlDataSource>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب اختيار شركة" ControlToValidate="ddl_companies" InitialValue="0" ValidationGroup="search"></asp:RequiredFieldValidator>
                         </div>
-
+                        <div class="form-group col-sm-12 col-md-3">
+                            <asp:TextBox ID="txt_value" runat="server" CssClass="form-control" placeholder="قيمة المصروفات" onblur="appendDollar(this.id);" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
+                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block" runat="server" Text="بحث" ValidationGroup="search"/>
+                        </div>
                         <div class="form-group col-sm-12 col-md-2">
                             <asp:Button ID="btn_print" CssClass="btn btn-outline-secondary btn-block" runat="server" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" Enabled="False" />
                         </div>
-                        <div class="form-group col-sm-12 col-md-2">
+                        <div class="form-group col-sm-12 col-md-1">
                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
                                 <ProgressTemplate>
                                     <div class="spinner-border text-info mt-2" role="status">
@@ -32,8 +38,13 @@
                         </div>
                     </div>
                     <!-- /row -->
-
                     <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <asp:Label ID="Label1" runat="server" Text="" Font-Bold="True"></asp:Label>
+                        </div>
+                    </div>
+                    <!-- /row -->
+                    <div class="row mt-3">
                         <div class="col-sm-12">
                             <div class="panel-scroll scrollable">
 

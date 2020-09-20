@@ -24,10 +24,15 @@ Public Class patientsExpenses
 
     Private Sub getData()
         Try
-            Dim sel_com As New SqlCommand("SELECT INC_Patient_Code, ISNULL(SUM(Processes_Price), 0) AS TOTAL_WITHDRAW, CARD_NO, NAME_ARB FROM INC_PATIANT
+            Dim sql_str As String = "SELECT INC_Patient_Code, ISNULL(SUM(Processes_Price), 0) AS TOTAL_WITHDRAW, CARD_NO, NAME_ARB FROM INC_PATIANT
             LEFT JOIN HAG_Processes ON Processes_Reservation_Code = INC_PATIANT.INC_Patient_Code AND Processes_State = 2 AND HAG_Processes.Processes_Date BETWEEN (SELECT MAX(DATE_START) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND DATE_END > GETDATE()) AND GETDATE()
-            WHERE INC_Patient_Code IS NOT NULL AND INC_PATIANT.C_ID = " & ddl_companies.SelectedValue & "
-            GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB", insurance_SQLcon)
+            WHERE INC_Patient_Code IS NOT NULL AND INC_PATIANT.C_ID = " & ddl_companies.SelectedValue & " GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB"
+
+            If txt_value.Text <> "" Then
+                sql_str = sql_str & " HAVING SUM(Processes_Price) >= " & txt_value.Text
+            End If
+
+            Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
@@ -50,18 +55,7 @@ Public Class patientsExpenses
     End Sub
 
     Private Sub ddl_companies_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_companies.SelectedIndexChanged
-        If ddl_companies.SelectedValue Then
-            getData()
 
-            Dim sel_com As New SqlCommand("SELECT TOP(1) DATE_START,MAX_PERSON FROM INC_COMPANY_DETIAL WHERE C_ID = " & ddl_companies.SelectedValue & " ORDER BY N DESC", insurance_SQLcon)
-            Dim dt_result As New DataTable
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-            ViewState("start_dt") = dt_result.Rows(0)("DATE_START")
-            ViewState("MAX_PERSON") = dt_result.Rows(0)("MAX_PERSON")
-        End If
     End Sub
 
     Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
@@ -180,5 +174,19 @@ Public Class patientsExpenses
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+        getData()
+
+        Dim sel_com As New SqlCommand("SELECT TOP(1) DATE_START,MAX_PERSON FROM INC_COMPANY_DETIAL WHERE C_ID = " & ddl_companies.SelectedValue & " ORDER BY N DESC", insurance_SQLcon)
+        Dim dt_result As New DataTable
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+        ViewState("start_dt") = dt_result.Rows(0)("DATE_START")
+        ViewState("MAX_PERSON") = dt_result.Rows(0)("MAX_PERSON")
+        Label1.Text = "سقف المنتفع: " & ViewState("MAX_PERSON")
     End Sub
 End Class

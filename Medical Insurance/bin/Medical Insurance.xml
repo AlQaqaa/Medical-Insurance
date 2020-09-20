@@ -5977,6 +5977,33 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.patientsExpenses._RequiredFieldValidator1">
+<summary>
+RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.patientsExpenses._txt_value">
+<summary>
+txt_value control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.patientsExpenses._btn_search">
+<summary>
+btn_search control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.patientsExpenses._btn_print">
 <summary>
 btn_print control.
@@ -5989,6 +6016,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.patientsExpenses._UpdateProgress1">
 <summary>
 UpdateProgress1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.patientsExpenses._Label1">
+<summary>
+Label1 control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -44,18 +44,18 @@ Public Class index
             If Session("INC_hublogin") = 1 Then
                 Session("INC_hublogin") = Nothing
                 Session("systemlogin") = Nothing
-                Response.Redirect("http://10.10.1.10/Default.aspx?flag:1", False)
+                Response.Redirect("http://10.10.1.10/Default.aspx?flag:1")
             Else
 
                 If Session("systemlogin") = "401" Then
                     Session("INC_hublogin") = Nothing
                     Session("systemlogin") = Nothing
-                    Response.Redirect("http://10.10.1.10/Default.aspx?flag:2", False)
+                    Response.Redirect("http://10.10.1.10/Default.aspx?flag:2")
                 Else
                     If (Request.QueryString("u")) = "" Then
                         Session("INC_hublogin") = Nothing
                         Session("systemlogin") = Nothing
-                        Response.Redirect("http://10.10.1.10/Default.aspx?flag:3", False)
+                        Response.Redirect("http://10.10.1.10/Default.aspx?flag:3")
 
                     End If
 
@@ -84,7 +84,7 @@ Public Class index
                             If getUserPermissions().Rows.Count = Nothing Then
                                 Session("INC_hublogin") = Nothing
                                 Session("systemlogin") = Nothing
-                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:NoPermissions", False)
+                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:NoPermissions")
                                 Exit Sub
                             Else
                                 Session("User_per") = getUserPermissions().Rows(0)
@@ -92,7 +92,7 @@ Public Class index
                             If getUserPermissions().Rows.Count = 0 Then
                                 Session("INC_hublogin") = Nothing
                                 Session("systemlogin") = Nothing
-                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:4", False)
+                                Response.Redirect("http://10.10.1.10/Default.aspx?flag:4")
                                 Exit Sub
                             End If
 
@@ -103,11 +103,11 @@ Public Class index
                     Dim tim1 As Date = DateTime.FromOADate(t)
 
                     If DateDiff(DateInterval.Second, CDate(tim1.ToString("HH:mm:ss")), CDate(DateTime.Now.ToString("HH:mm:ss"))) > 5 Then
-                        Response.Redirect("http://10.10.1.10/Default.aspx", False)
+                        Response.Redirect("http://10.10.1.10/Default.aspx")
                     Else
                         Session("INC_hublogin") = 1
                         Session("systemlogin") = "401"
-                        Response.Redirect("default.aspx", False)
+                        Response.Redirect("default.aspx")
                     End If
 
                 End If
@@ -115,7 +115,7 @@ Public Class index
             End If
         Catch ex As Exception
             Label1.Text = ex.Message
-            Response.Redirect("http://10.10.1.10/Default.aspx?flag:5", False)
+            Response.Redirect("http://10.10.1.10/Default.aspx?flag:5")
         End Try
 
     End Sub

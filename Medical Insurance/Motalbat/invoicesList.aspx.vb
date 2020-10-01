@@ -222,7 +222,7 @@ Public Class invoicesList
         If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
             If e.Row.RowType = DataControlRowType.DataRow Then
                 Dim cell As TableCell = e.Row.Cells(9)
-                Dim btn_print1 As LinkButton = cell.FindControl("btn_print1")
+                Dim btn_print1 As Button = cell.FindControl("btn_print1")
                 btn_print1.Visible = Session("User_per")("print_motalba")
             End If
         End If

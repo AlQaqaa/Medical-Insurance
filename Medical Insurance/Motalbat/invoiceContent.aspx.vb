@@ -80,7 +80,7 @@ Public Class invoiceContent
                 GridView1.DataBind()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('" & ex.Message & "')", True)
         End Try
     End Sub
 
@@ -239,8 +239,8 @@ Public Class invoiceContent
         If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
             If e.Row.RowType = DataControlRowType.DataRow Then
                 Dim cell As TableCell = e.Row.Cells(9)
-                Dim btn_print_one As LinkButton = cell.FindControl("btn_print_one")
-                Dim btn_return_one As LinkButton = cell.FindControl("btn_return_one")
+                Dim btn_print_one As Button = cell.FindControl("btn_print_one")
+                Dim btn_return_one As Button = cell.FindControl("btn_return_one")
                 btn_print_one.Visible = Session("User_per")("print_motalba")
                 btn_return_one.Visible = Session("User_per")("return_motalba")
             End If

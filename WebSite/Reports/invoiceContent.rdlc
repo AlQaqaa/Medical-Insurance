@@ -37,10 +37,18 @@
           <DataField>NAME_ARB</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="P_ID1">
+          <DataField>P_ID</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="C_Name_Arb">
+          <DataField>C_Name_Arb</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>E:\Medical Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>E:\Medical-Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>INC_IvoicesProcesses</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -86,7 +94,6 @@
                                 <TextRun>
                                   <Value>القيمة المستحقة</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -123,7 +130,6 @@
                                 <TextRun>
                                   <Value>الاســــــــــــــــم</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -160,7 +166,6 @@
                                 <TextRun>
                                   <Value>الرقم الوظيفي</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -197,7 +202,6 @@
                                 <TextRun>
                                   <Value>رقم البطاقة</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -234,7 +238,6 @@
                                 <TextRun>
                                   <Value>ر.ت</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -276,7 +279,6 @@
                                 <TextRun>
                                   <Value>=Fields!PROCESSES_RESIDUAL.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <Format>#,0.000;(#,0.000)</Format>
                                   </Style>
@@ -312,7 +314,6 @@
                                 <TextRun>
                                   <Value>=Fields!NAME_ARB.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -347,7 +348,6 @@
                                 <TextRun>
                                   <Value>=Fields!BAGE_NO.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -382,7 +382,6 @@
                                 <TextRun>
                                   <Value>=Fields!CARD_NO.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -417,7 +416,6 @@
                                 <TextRun>
                                   <Value>=RowNumber(Nothing)</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -485,7 +483,6 @@
                     <Value>الهلال الأحمر الليبي</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -521,7 +518,6 @@
                     <Value>مصحة ابن سينا</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -557,7 +553,6 @@
                     <Value>بنغازي</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>14pt</FontSize>
                     </Style>
                   </TextRun>
@@ -608,7 +603,6 @@
                     <Value>LIBYAN RED CRESCENT</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -623,7 +617,7 @@
             <Top>0.181cm</Top>
             <Left>0.25474cm</Left>
             <Height>0.83234cm</Height>
-            <Width>5.51985cm</Width>
+            <Width>6.21262cm</Width>
             <ZIndex>5</ZIndex>
             <Style>
               <Border>
@@ -645,7 +639,6 @@
                     <Value>IBN SINA POLY CLINIC</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -660,7 +653,7 @@
             <Top>1.04862cm</Top>
             <Left>0.25474cm</Left>
             <Height>0.83234cm</Height>
-            <Width>5.51985cm</Width>
+            <Width>6.21262cm</Width>
             <ZIndex>6</ZIndex>
             <Style>
               <Border>
@@ -682,7 +675,6 @@
                     <Value>BENGHAZI</Value>
                     <Style>
                       <FontStyle>Italic</FontStyle>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -697,7 +689,7 @@
             <Top>1.91624cm</Top>
             <Left>0.25474cm</Left>
             <Height>0.78521cm</Height>
-            <Width>5.51985cm</Width>
+            <Width>6.21262cm</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -718,7 +710,6 @@
                   <TextRun>
                     <Value>Inv No:</Value>
                     <Style>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
@@ -751,7 +742,6 @@
                   <TextRun>
                     <Value>فاتـــورة</Value>
                     <Style>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -766,7 +756,6 @@
                   <TextRun>
                     <Value>INVIOCE</Value>
                     <Style>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>14pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -803,9 +792,7 @@
                     <TextRuns>
                       <TextRun>
                         <Value>:الفترة من</Value>
-                        <Style>
-                          <FontFamily>Tajawal</FontFamily>
-                        </Style>
+                        <Style />
                       </TextRun>
                     </TextRuns>
                     <Style>
@@ -836,9 +823,7 @@
                     <TextRuns>
                       <TextRun>
                         <Value>:إلى</Value>
-                        <Style>
-                          <FontFamily>Tajawal</FontFamily>
-                        </Style>
+                        <Style />
                       </TextRun>
                     </TextRuns>
                     <Style>
@@ -955,7 +940,6 @@
                   <TextRun>
                     <Value>=Parameters!INVOICE_NO.Value</Value>
                     <Style>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                     </Style>
                   </TextRun>
@@ -988,7 +972,6 @@
                   <TextRun>
                     <Value>=Sum(Fields!PROCESSES_RESIDUAL.Value, "invoiceContentDS")</Value>
                     <Style>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                       <Format>#,0.000;(#,0.000)</Format>
                     </Style>
@@ -1025,7 +1008,6 @@
                   <TextRun>
                     <Value>الإجمالي</Value>
                     <Style>
-                      <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1044,6 +1026,41 @@
               <Border>
                 <Style>Solid</Style>
                 <Width>0.75pt</Width>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="NAME_ARB1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!C_Name_Arb.Value, "invoiceContentDS")</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>NAME_ARB1</rd:DefaultName>
+            <Top>5.07683cm</Top>
+            <Left>5.90728cm</Left>
+            <Height>0.93394cm</Height>
+            <Width>8.05923cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
               </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -1071,7 +1088,6 @@
                     <TextRun>
                       <Value>=Globals!ExecutionTime</Value>
                       <Style>
-                        <FontFamily>Tajawal</FontFamily>
                         <Format>dd-MM-yyyy</Format>
                       </Style>
                     </TextRun>
@@ -1104,9 +1120,7 @@
                   <TextRuns>
                     <TextRun>
                       <Value>Printed on:</Value>
-                      <Style>
-                        <FontFamily>Tajawal</FontFamily>
-                      </Style>
+                      <Style />
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -1136,9 +1150,7 @@
                   <TextRuns>
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
-                      <Style>
-                        <FontFamily>Tajawal</FontFamily>
-                      </Style>
+                      <Style />
                     </TextRun>
                   </TextRuns>
                   <Style />

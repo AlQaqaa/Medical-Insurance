@@ -23,8 +23,8 @@ Public Class newInvoice
                     ddl_invoice_type.Enabled = True
                 End If
             End If
-
-
+            txt_search.Focus()
+            Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
         End If
 
     End Sub
@@ -40,25 +40,27 @@ Public Class newInvoice
                 LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
                 WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
-            If ddl_companies.SelectedValue <> "" Then
-                If ddl_companies.SelectedValue <> 0 Then
-                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
-                End If
-            End If
-
-
-            If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-                sql_str = sql_str & " And CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) <= '" & txt_end_dt.Text & "'"
-            End If
-
-            If ddl_invoice_type.SelectedValue = 1 Then
-                sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
-            ElseIf ddl_invoice_type.SelectedValue = 2 Then
-                sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
-            End If
-
             If ddl_clinics.SelectedValue <> 0 Then
+
+                If ddl_companies.SelectedValue <> "" Then
+                    If ddl_companies.SelectedValue <> 0 Then
+                        sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                    End If
+                End If
+
+                If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
+                    sql_str = sql_str & " And CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) <= '" & txt_end_dt.Text & "'"
+                End If
+
+                If ddl_invoice_type.SelectedValue = 1 Then
+                    sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
+                ElseIf ddl_invoice_type.SelectedValue = 2 Then
+                    sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
+                End If
+
                 sql_str = sql_str & " AND Processes_Cilinc = " & ddl_clinics.SelectedValue
+            Else
+                sql_str = sql_str & " AND pros_code = '" & txt_search.Text & "'"
             End If
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
@@ -70,21 +72,88 @@ Public Class newInvoice
             insurance_SQLcon.Close()
 
             If dt_result.Rows.Count > 0 Then
-                GridView1.DataSource = dt_result
-                GridView1.DataBind()
-                CheckBox1.Visible = True
-                btn_create.Enabled = True
+                If GridView1.Rows.Count = 0 Then
+                    Session("dt") = dt_result
+                    GridView1.DataSource = dt_result
+                    GridView1.DataBind()
+                Else
+                    Dim counter As Integer = 0
+                    For Each dd As GridViewRow In GridView1.Rows
 
-            Else
-                dt_result.Rows.Clear()
-                GridView1.DataSource = dt_result
-                GridView1.DataBind()
-                CheckBox1.Visible = False
-                btn_create.Enabled = False
+                        If dd.Cells(1).Text = dt_result.Rows(counter)("Processes_ID") Then
+                            Exit Sub
+                        End If
+                        counter = +1
+                    Next
+                    Dim dt As New DataTable
+                    dt = Session("dt")
+                    dt.Merge(dt_result)
+                    Session("dt") = dt
+                    GridView1.DataSource = dt
+                    GridView1.DataBind()
+                End If
             End If
+
+            txt_search.Text = ""
+            txt_search.Focus()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+        'Try
+        '    Dim sql_str As String = "SELECT pros_code, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
+        '        ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
+        '        LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+        '        LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+        '        LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
+        '        LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
+        '        WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
+
+        '    If ddl_companies.SelectedValue <> "" Then
+        '        If ddl_companies.SelectedValue <> 0 Then
+        '            sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+        '        End If
+        '    End If
+
+
+        '    If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
+        '        sql_str = sql_str & " And CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) <= '" & txt_end_dt.Text & "'"
+        '    End If
+
+        '    If ddl_invoice_type.SelectedValue = 1 Then
+        '        sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
+        '    ElseIf ddl_invoice_type.SelectedValue = 2 Then
+        '        sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
+        '    End If
+
+        '    If ddl_clinics.SelectedValue <> 0 Then
+        '        sql_str = sql_str & " AND Processes_Cilinc = " & ddl_clinics.SelectedValue
+        '    End If
+
+        '    Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
+        '    Dim dt_result As New DataTable
+        '    dt_result.Rows.Clear()
+        '    insurance_SQLcon.Close()
+        '    insurance_SQLcon.Open()
+        '    dt_result.Load(sel_com.ExecuteReader)
+        '    insurance_SQLcon.Close()
+
+        '    If dt_result.Rows.Count > 0 Then
+        '        GridView1.DataSource = dt_result
+        '        GridView1.DataBind()
+        '        CheckBox1.Visible = True
+        '        btn_create.Enabled = True
+
+        '    Else
+        '        dt_result.Rows.Clear()
+        '        GridView1.DataSource = dt_result
+        '        GridView1.DataBind()
+        '        CheckBox1.Visible = False
+        '        btn_create.Enabled = False
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox(ex.Message)
+        'End Try
 
     End Sub
 
@@ -94,16 +163,16 @@ Public Class newInvoice
 
     Private Sub btn_create_Click(sender As Object, e As EventArgs) Handles btn_create.Click
 
-        Dim ch_counter As Integer = 0
+        'Dim ch_counter As Integer = 0
 
-        For Each dd As GridViewRow In GridView1.Rows
-            Dim ch As CheckBox = dd.FindControl("CheckBox2")
-            If ch.Checked = True Then
-                ch_counter = ch_counter + 1
-            End If
-        Next
+        'For Each dd As GridViewRow In GridView1.Rows
+        '    Dim ch As CheckBox = dd.FindControl("CheckBox2")
+        '    If ch.Checked = True Then
+        '        ch_counter = ch_counter + 1
+        '    End If
+        'Next
 
-        If ch_counter = 0 Then
+        If GridView1.Rows.Count = 0 Then
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى اختيار حركة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
             Exit Sub
         End If
@@ -167,35 +236,25 @@ Public Class newInvoice
         End Try
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        For Each dd As GridViewRow In GridView1.Rows
-            Dim ch As CheckBox = dd.FindControl("CheckBox2")
-
-            If CheckBox1.Checked = True Then
-                ch.Checked = True
-            Else
-                ch.Checked = False
-
-            End If
-        Next
+    Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
+        If ddl_clinics.SelectedValue = 0 Then
+            txt_search.Visible = True
+        Else
+            txt_search.Visible = False
+        End If
     End Sub
 
-    'Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton1.CheckedChanged
-    '    If RadioButton1.Checked = True Then
-    '        txt_search_code.Enabled = True
-    '        ddl_companies.Enabled = False
-    '        txt_start_dt.Enabled = False
-    '        txt_end_dt.Enabled = False
-    '        ddl_invoice_type.Enabled = False
-    '        txt_search_code.Focus()
-    '    End If
+    'Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+    '    For Each dd As GridViewRow In GridView1.Rows
+    '        Dim ch As CheckBox = dd.FindControl("CheckBox2")
+
+    '        If CheckBox1.Checked = True Then
+    '            ch.Checked = True
+    '        Else
+    '            ch.Checked = False
+
+    '        End If
+    '    Next
     'End Sub
 
-    'Private Sub RadioButton2_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton2.CheckedChanged
-    '    txt_search_code.Enabled = False
-    '    ddl_companies.Enabled = True
-    '    txt_start_dt.Enabled = True
-    '    txt_end_dt.Enabled = True
-    '    ddl_invoice_type.Enabled = True
-    'End Sub
 End Class

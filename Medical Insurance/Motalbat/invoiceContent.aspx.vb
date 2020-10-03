@@ -60,7 +60,10 @@ Public Class invoiceContent
             dt_result.Rows.Clear()
 
             Using main_ds
-                Dim sel_com As New SqlCommand("SELECT P_ID,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,(SELECT CARD_NO FROM DBO.INC_PATIANT WHERE INC_PATIANT.PINC_ID = P_ID) AS CARD_NO,(SELECT BAGE_NO FROM DBO.INC_PATIANT WHERE INC_PATIANT.PINC_ID = P_ID) AS BAGE_NO, (SELECT NAME_ARB FROM DBO.INC_PATIANT WHERE INC_PATIANT.PINC_ID = P_ID) AS NAME_ARB FROM INC_IVOICESPROCESSES WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY P_ID")
+                Dim sel_com As New SqlCommand("SELECT P_ID,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
+            FROM INC_IVOICESPROCESSES 
+            INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IVOICESPROCESSES.P_ID
+            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND INC_IVOICESPROCESSES.C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb")
                 Using sda As New SqlDataAdapter()
                     sel_com.Connection = insurance_SQLcon
                     sda.SelectCommand = sel_com
@@ -90,9 +93,10 @@ Public Class invoiceContent
                 Dim index As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = GridView1.Rows(index)
                 Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(2).Text)
-                Response.Write("<script type='text/javascript'>")
-                Response.Write("window.open('" & p_link & "','_blank');")
-                Response.Write("</script>")
+                'Response.Write("<script type='text/javascript'>")
+                'Response.Write("window.open('" & p_link & "','_blank');")
+                'Response.Write("</script>")
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "window.open('" & p_link & "','_blank');", True)
                 'Response.Redirect("printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text), False)
             End If
 
@@ -238,9 +242,10 @@ Public Class invoiceContent
 
         If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
             If e.Row.RowType = DataControlRowType.DataRow Then
-                Dim cell As TableCell = e.Row.Cells(9)
-                Dim btn_print_one As Button = cell.FindControl("btn_print_one")
-                Dim btn_return_one As Button = cell.FindControl("btn_return_one")
+                Dim cell As TableCell = e.Row.Cells(7)
+
+                Dim btn_print_one As LinkButton = cell.FindControl("btn_print_one")
+                Dim btn_return_one As LinkButton = cell.FindControl("btn_return_one")
                 btn_print_one.Visible = Session("User_per")("print_motalba")
                 btn_return_one.Visible = Session("User_per")("return_motalba")
             End If

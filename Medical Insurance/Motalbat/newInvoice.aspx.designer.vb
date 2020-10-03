@@ -149,6 +149,15 @@ Partial Public Class newInvoice
     Protected WithEvents SqlDataSource2 As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
+    '''txt_search control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_search As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>
@@ -158,15 +167,6 @@ Partial Public Class newInvoice
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''UpdatePanel2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
     '''btn_create control.
     '''</summary>
     '''<remarks>
@@ -174,15 +174,6 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_create As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''CheckBox1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
     
     '''<summary>
     '''GridView1 control.

@@ -174,4 +174,9 @@ Public Class INC_PATIANT
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Private Sub txt_NAME_ARB_TextChanged(sender As Object, e As EventArgs) Handles txt_NAME_ARB.TextChanged
+        txt_NAME_ENG.Text = TransA2E(txt_NAME_ARB.Text)
+        txt_NAME_ENG.Focus()
+    End Sub
 End Class

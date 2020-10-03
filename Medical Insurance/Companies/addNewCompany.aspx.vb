@@ -88,5 +88,8 @@ Public Class addNewCompany
         End Try
     End Sub
 
-
+    Private Sub txt_company_name_ar_TextChanged(sender As Object, e As EventArgs) Handles txt_company_name_ar.TextChanged
+        txt_company_name_en.Text = TransA2E(txt_company_name_ar.Text)
+        txt_company_name_en.Focus()
+    End Sub
 End Class

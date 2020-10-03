@@ -77,17 +77,14 @@
                                                 <asp:BoundField DataField="PROCESSES_RESIDUAL" HeaderText="القيمة المستحقة" DataFormatString="{0:C3}"></asp:BoundField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btn_print_one" runat="server"
+                                                        <asp:LinkButton ID="btn_print_one" runat="server"
                                                             CommandName="printProcess"
                                                             CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                                             Text="طباعة المرفق"
                                                             ToolTip="طباعة حركة المنتفع"
                                                             ControlStyle-CssClass="btn btn-primary btn-small" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:Button ID="btn_return_one" runat="server"
+
+                                                        <asp:LinkButton ID="btn_return_one" runat="server"
                                                             CommandName="returnProcess"
                                                             CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                                             Text="إرجاع"
@@ -96,6 +93,7 @@
                                                             OnClientClick="return confirm('هل أنت متأكد من الاستمرار في هذا الإجراء؟')" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                
                                             </Columns>
                                         </asp:GridView>
                                     </div>

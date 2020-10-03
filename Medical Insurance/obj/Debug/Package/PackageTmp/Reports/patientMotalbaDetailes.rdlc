@@ -39,7 +39,6 @@
                             <TextRun>
                               <Value>السعر</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -76,7 +75,6 @@
                             <TextRun>
                               <Value>التاريخ</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -113,7 +111,6 @@
                             <TextRun>
                               <Value>الطبيب</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -150,7 +147,6 @@
                             <TextRun>
                               <Value>الخدمة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -187,7 +183,6 @@
                             <TextRun>
                               <Value>العيادة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -224,7 +219,6 @@
                             <TextRun>
                               <Value>ر.ت</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -266,7 +260,6 @@
                             <TextRun>
                               <Value>=Fields!Processes_Residual.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <Format>'د.ل.‏'#,0.000;('د.ل.‏'#,0.000)</Format>
                               </Style>
@@ -303,7 +296,6 @@
                             <TextRun>
                               <Value>=Fields!Processes_Date.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                                 <Format>yyyy-MM-dd</Format>
                               </Style>
@@ -339,7 +331,6 @@
                             <TextRun>
                               <Value>=Fields!MedicalStaff_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -374,7 +365,6 @@
                             <TextRun>
                               <Value>=Fields!SubService_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -409,7 +399,6 @@
                             <TextRun>
                               <Value>=Fields!Clinic_AR_Name.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -444,7 +433,6 @@
                             <TextRun>
                               <Value>=RowNumber(Nothing)</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>11pt</FontSize>
                               </Style>
                             </TextRun>
@@ -503,14 +491,85 @@
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox5">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Sum(Fields!Processes_Residual.Value, "patientMotalbaDataSet")</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>#,0.000;(#,0.000)</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox5</rd:DefaultName>
+        <Top>1.94957cm</Top>
+        <Left>0.35073cm</Left>
+        <Height>0.68082cm</Height>
+        <Width>2.71843cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox17">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>:المجموع</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox10</rd:DefaultName>
+        <Top>1.94957cm</Top>
+        <Left>3.10444cm</Left>
+        <Height>0.68082cm</Height>
+        <Width>1.64453cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>2.16959cm</Height>
+    <Height>3.39768cm</Height>
     <Style />
   </Body>
   <Width>19.89286cm</Width>
   <Page>
     <PageHeader>
-      <Height>6.21262cm</Height>
+      <Height>7.41206cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -524,7 +583,6 @@
                   <Value>الهلال الأحمر الليبي</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
@@ -559,7 +617,6 @@
                   <Value>مصحة ابن سينا</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
@@ -595,7 +652,6 @@
                   <Value>بنغازي</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                   </Style>
                 </TextRun>
@@ -661,7 +717,7 @@
           <Top>0.38488cm</Top>
           <Left>0.35073cm</Left>
           <Height>0.83234cm</Height>
-          <Width>5.51985cm</Width>
+          <Width>5.94318cm</Width>
           <ZIndex>4</ZIndex>
           <Style>
             <Border>
@@ -698,7 +754,7 @@
           <Top>1.2525cm</Top>
           <Left>0.35073cm</Left>
           <Height>0.83234cm</Height>
-          <Width>5.51985cm</Width>
+          <Width>5.94318cm</Width>
           <ZIndex>5</ZIndex>
           <Style>
             <Border>
@@ -735,7 +791,7 @@
           <Top>2.12012cm</Top>
           <Left>0.35073cm</Left>
           <Height>0.78521cm</Height>
-          <Width>5.51985cm</Width>
+          <Width>5.94318cm</Width>
           <ZIndex>6</ZIndex>
           <Style>
             <Border>
@@ -789,7 +845,6 @@
                 <TextRun>
                   <Value>:اسم المريض</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -801,10 +856,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>4.44673cm</Top>
-          <Left>16.81663cm</Left>
+          <Top>5.71673cm</Top>
+          <Left>17.26642cm</Left>
           <Height>0.63528cm</Height>
-          <Width>2.83514cm</Width>
+          <Width>2.38535cm</Width>
           <ZIndex>8</ZIndex>
           <Style>
             <Border>
@@ -825,7 +880,6 @@
                 <TextRun>
                   <Value>:رقم البطاقة</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -837,10 +891,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>5.22312cm</Top>
-          <Left>16.81663cm</Left>
+          <Top>6.49312cm</Top>
+          <Left>17.531cm</Left>
           <Height>0.68082cm</Height>
-          <Width>2.83514cm</Width>
+          <Width>2.12078cm</Width>
           <ZIndex>9</ZIndex>
           <Style>
             <Border>
@@ -861,7 +915,6 @@
                 <TextRun>
                   <Value>:تاريخ الميلاد</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -873,10 +926,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>4.44673cm</Top>
-          <Left>6.77017cm</Left>
+          <Top>5.71673cm</Top>
+          <Left>7.37871cm</Left>
           <Height>0.68082cm</Height>
-          <Width>2.90425cm</Width>
+          <Width>2.29571cm</Width>
           <ZIndex>10</ZIndex>
           <Style>
             <Border>
@@ -897,7 +950,6 @@
                 <TextRun>
                   <Value>:الرقم الوظيفي</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -909,10 +961,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>5.22312cm</Top>
-          <Left>6.77017cm</Left>
+          <Top>6.49312cm</Top>
+          <Left>7.37871cm</Left>
           <Height>0.68082cm</Height>
-          <Width>2.90425cm</Width>
+          <Width>2.29571cm</Width>
           <ZIndex>11</ZIndex>
           <Style>
             <Border>
@@ -933,7 +985,6 @@
                 <TextRun>
                   <Value>مرفــــــق</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -969,7 +1020,6 @@
                 <TextRun>
                   <Value>=Fields!NAME_ARB.Value</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                   </Style>
                 </TextRun>
@@ -980,10 +1030,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox29</rd:DefaultName>
-          <Top>4.44673cm</Top>
-          <Left>12.44691cm</Left>
+          <Top>5.71673cm</Top>
+          <Left>11.54733cm</Left>
           <Height>0.63528cm</Height>
-          <Width>4.19333cm</Width>
+          <Width>5.54271cm</Width>
           <ZIndex>13</ZIndex>
           <Style>
             <Border>
@@ -1004,7 +1054,6 @@
                 <TextRun>
                   <Value>=Fields!CARD_NO.Value</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                   </Style>
                 </TextRun>
@@ -1015,10 +1064,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox30</rd:DefaultName>
-          <Top>5.22312cm</Top>
-          <Left>12.44691cm</Left>
+          <Top>6.49312cm</Top>
+          <Left>11.54733cm</Left>
           <Height>0.68082cm</Height>
-          <Width>4.15806cm</Width>
+          <Width>5.54271cm</Width>
           <ZIndex>14</ZIndex>
           <Style>
             <Border>
@@ -1039,7 +1088,6 @@
                 <TextRun>
                   <Value>=Fields!BIRTHDATE.Value</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <Format>yyyy-MM-dd</Format>
                   </Style>
@@ -1051,10 +1099,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox30</rd:DefaultName>
-          <Top>4.44673cm</Top>
+          <Top>5.71673cm</Top>
           <Left>2.50627cm</Left>
           <Height>0.68082cm</Height>
-          <Width>4.15806cm</Width>
+          <Width>4.69605cm</Width>
           <ZIndex>15</ZIndex>
           <Style>
             <Border>
@@ -1075,7 +1123,6 @@
                 <TextRun>
                   <Value>=Fields!BAGE_NO.Value</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                   </Style>
                 </TextRun>
@@ -1086,10 +1133,10 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox30</rd:DefaultName>
-          <Top>5.22312cm</Top>
+          <Top>6.49312cm</Top>
           <Left>2.471cm</Left>
           <Height>0.68082cm</Height>
-          <Width>4.15806cm</Width>
+          <Width>4.73132cm</Width>
           <ZIndex>16</ZIndex>
           <Style>
             <Border>
@@ -1102,7 +1149,7 @@
           </Style>
         </Textbox>
         <Line Name="Line1">
-          <Top>6.14206cm</Top>
+          <Top>7.41206cm</Top>
           <Left>0.79058cm</Left>
           <Height>0cm</Height>
           <Width>18.2427cm</Width>
@@ -1148,6 +1195,75 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
+        <Textbox Name="C_Name_Arb">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>=First(Fields!C_Name_Arb.Value, "patientMotalbaDataSet")</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>C_Name_Arb</rd:DefaultName>
+          <Top>4.42027cm</Top>
+          <Left>10.90349cm</Left>
+          <Height>0.63528cm</Height>
+          <Width>6.52167cm</Width>
+          <ZIndex>19</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox16">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>:اسم الشركة</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Right</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox10</rd:DefaultName>
+          <Top>4.42027cm</Top>
+          <Left>17.531cm</Left>
+          <Height>0.63528cm</Height>
+          <Width>2.12076cm</Width>
+          <ZIndex>20</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
@@ -1168,9 +1284,7 @@
               <TextRuns>
                 <TextRun>
                   <Value>=Globals!ExecutionTime</Value>
-                  <Style>
-                    <FontFamily>Tajawal</FontFamily>
-                  </Style>
+                  <Style />
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1199,9 +1313,7 @@
               <TextRuns>
                 <TextRun>
                   <Value>Printed on:</Value>
-                  <Style>
-                    <FontFamily>Tajawal</FontFamily>
-                  </Style>
+                  <Style />
                 </TextRun>
               </TextRuns>
               <Style />
@@ -1303,10 +1415,14 @@
           <DataField>Processes_Date</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
+        <Field Name="C_Name_Arb">
+          <DataField>C_Name_Arb</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>E:\Medical Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>E:\Medical-Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>INC_IvoicesProcessesPatient</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

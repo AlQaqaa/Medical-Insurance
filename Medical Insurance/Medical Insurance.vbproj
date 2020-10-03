@@ -413,6 +413,7 @@
     <Compile Include="Modules\checkModule.vb" />
     <Compile Include="Modules\CurrencyInfo.vb" />
     <Compile Include="Modules\ToWord.vb" />
+    <Compile Include="Modules\translator.vb" />
     <Compile Include="Motalbat\Default.aspx.designer.vb">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>

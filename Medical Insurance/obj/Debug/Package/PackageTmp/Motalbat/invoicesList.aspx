@@ -22,10 +22,11 @@
                                         <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" AutoPostBack="True"></asp:DropDownList>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-2">
+                                    <div class="form-group col-xs-12 col-sm-3">
                                         <label for="ddl_companies">نوع الفاتورة</label>
                                         <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
-                                            <asp:ListItem Value="0">الكل</asp:ListItem>
+                                            <asp:ListItem Value="-1">الكل</asp:ListItem>
+                                            <asp:ListItem Value="0">الخدمات الطبية / الإيواء والعمليات</asp:ListItem>
                                             <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
                                             <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                         </asp:DropDownList>
@@ -79,6 +80,17 @@
                                                 <asp:BoundField DataField="total_val" HeaderText="إجمالي قيمة الفاتورة" DataFormatString="{0:C3}"></asp:BoundField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
+                                                        <asp:Button ID="btn_add" runat="server"
+                                                            CommandName="addProcess"
+                                                            CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                            Text="إضافة خدمات"
+                                                            ToolTip="إرفاق خدمات للفاتورة"
+                                                            ControlStyle-CssClass="btn btn-success btn-small" />
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField>
+                                                    <ItemTemplate>
                                                         <asp:Button ID="btn_print1" runat="server"
                                                             CommandName="printInvoice"
                                                             CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
@@ -88,6 +100,7 @@
 
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                
                                             </Columns>
                                         </asp:GridView>
                                     </div>

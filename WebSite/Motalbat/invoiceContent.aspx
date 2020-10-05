@@ -44,6 +44,9 @@
                                         <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
+                                        <asp:Button ID="btn_print_details" runat="server" CssClass="btn btn-outline-info btn-block" Text="طباعة المرفقات" />
+                                    </div>
+                                    <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_return" runat="server" OnClientClick="return confirm('هل أنت متأكد من إرجاع هذه المطالبة؟')" CssClass="btn btn-outline-danger btn-block" Text="إرجاع المطالبة" />
                                     </div>
                                 </div>
@@ -66,6 +69,12 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField HeaderText="رقم المنتفع" DataField="P_ID">
+                                                    <ControlStyle CssClass="hide-colum" />
+                                                    <FooterStyle CssClass="hide-colum" />
+                                                    <HeaderStyle CssClass="hide-colum" />
+                                                    <ItemStyle CssClass="hide-colum" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="رقم المنتفع" DataField="INC_Patient_Code">
                                                     <ControlStyle CssClass="hide-colum" />
                                                     <FooterStyle CssClass="hide-colum" />
                                                     <HeaderStyle CssClass="hide-colum" />

@@ -19,6 +19,7 @@ Public Class invoiceContent
             If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
                 If Session("User_per")("print_motalba") = False Then
                     btn_print.Visible = False
+                    btn_print_details.Visible = False
                 End If
                 If Session("User_per")("return_motalba") = False Then
                     btn_return.Visible = False
@@ -26,32 +27,51 @@ Public Class invoiceContent
             End If
             If ViewState("invoice_no") <> 0 Then
 
-                    txt_invoice_no.Text = ViewState("invoice_no")
-                    Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
-                    Dim dt_result As New DataTable
-                    dt_result.Rows.Clear()
-                    insurance_SQLcon.Close()
-                    insurance_SQLcon.Open()
-                    dt_result.Load(sel_com.ExecuteReader)
-                    insurance_SQLcon.Close()
+                txt_invoice_no.Text = ViewState("invoice_no")
+                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+                Dim dt_result As New DataTable
+                dt_result.Rows.Clear()
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_result.Load(sel_com.ExecuteReader)
+                insurance_SQLcon.Close()
 
-                    If dt_result.Rows.Count > 0 Then
-                        Dim dr_inv = dt_result.Rows(0)
-                        txt_company_name.Text = dr_inv!COMPANY_NAME
-                        ViewState("company_no") = dr_inv!C_ID
-                        txt_start_dt.Text = dr_inv!DATE_FROM
-                        txt_end_dt.Text = dr_inv!DATE_TO
+                If dt_result.Rows.Count > 0 Then
+                    Dim dr_inv = dt_result.Rows(0)
+                    txt_company_name.Text = dr_inv!COMPANY_NAME
+                    ViewState("company_no") = dr_inv!C_ID
+                    txt_start_dt.Text = dr_inv!DATE_FROM
+                    txt_end_dt.Text = dr_inv!DATE_TO
 
-                        getData()
+                    getData()
 
-                    End If
-
-                Else
-                    Response.Redirect("Default.aspx", False)
                 End If
 
+            Else
+                Response.Redirect("Default.aspx", False)
             End If
 
+        End If
+
+    End Sub
+
+    Sub getPatientProcessesInvoice()
+        Using main_ds
+            Dim sel_com As New SqlCommand("SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb FROM INC_IvoicesProcesses
+                INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID
+                INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
+                LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID
+                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
+                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " ORDER BY NAME_ARB")
+            Using sda As New SqlDataAdapter()
+                sel_com.Connection = insurance_SQLcon
+                sda.SelectCommand = sel_com
+                sda.Fill(main_ds, "patientProcessesInvoice")
+                'sda.Fill(dt_result)
+                'Return main_ds
+            End Using
+        End Using
     End Sub
 
     Sub getData()
@@ -60,10 +80,10 @@ Public Class invoiceContent
             dt_result.Rows.Clear()
 
             Using main_ds
-                Dim sel_com As New SqlCommand("SELECT P_ID,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
+                Dim sel_com As New SqlCommand("SELECT P_ID,INC_PATIANT.INC_Patient_Code,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
             FROM INC_IVOICESPROCESSES 
             INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IVOICESPROCESSES.P_ID
-            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND INC_IVOICESPROCESSES.C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb")
+            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND INC_IVOICESPROCESSES.C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,INC_PATIANT.INC_Patient_Code")
                 Using sda As New SqlDataAdapter()
                     sel_com.Connection = insurance_SQLcon
                     sda.SelectCommand = sel_com
@@ -111,13 +131,13 @@ Public Class invoiceContent
                     returnInvoice.CommandText = "INC_deletePatientInvoice"
                     returnInvoice.CommandType = CommandType.StoredProcedure
                     returnInvoice.Parameters.AddWithValue("@inv_no", ViewState("invoice_no"))
-                    returnInvoice.Parameters.AddWithValue("@patient_no", (row.Cells(2).Text))
+                    returnInvoice.Parameters.AddWithValue("@patient_no", (row.Cells(3).Text))
                     insurance_SQLcon.Open()
                     returnInvoice.ExecuteNonQuery()
                     insurance_SQLcon.Close()
-                    GridView1.DataBind()
+                    getData()
 
-                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(3).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
+                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(4).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
 
                     ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
@@ -159,14 +179,17 @@ Public Class invoiceContent
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
 
         getData()
+        getPatientProcessesInvoice()
 
         Dim viewer As ReportViewer = New ReportViewer()
 
         Dim datasource As New ReportDataSource("invoiceContentDS", main_ds.Tables("INC_IvoicesProcesses"))
+        Dim datasource1 As New ReportDataSource("patientProcesses", main_ds.Tables("patientProcessesInvoice"))
         viewer.LocalReport.DataSources.Clear()
         viewer.ProcessingMode = ProcessingMode.Local
         viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/invoiceContent.rdlc")
         viewer.LocalReport.DataSources.Add(datasource)
+        viewer.LocalReport.DataSources.Add(datasource1)
 
         Dim rp1 As ReportParameter
         Dim rp2 As ReportParameter
@@ -242,7 +265,7 @@ Public Class invoiceContent
 
         If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
             If e.Row.RowType = DataControlRowType.DataRow Then
-                Dim cell As TableCell = e.Row.Cells(7)
+                Dim cell As TableCell = e.Row.Cells(8)
 
                 Dim btn_print_one As LinkButton = cell.FindControl("btn_print_one")
                 Dim btn_return_one As LinkButton = cell.FindControl("btn_return_one")
@@ -251,5 +274,40 @@ Public Class invoiceContent
             End If
         End If
 
+    End Sub
+
+    Private Sub btn_print_details_Click(sender As Object, e As EventArgs) Handles btn_print_details.Click
+
+        getPatientProcessesInvoice()
+
+        Dim viewer As ReportViewer = New ReportViewer()
+        Dim datasource As New ReportDataSource("patientProcesses", main_ds.Tables("patientProcessesInvoice"))
+        viewer.LocalReport.DataSources.Clear()
+        viewer.ProcessingMode = ProcessingMode.Local
+        viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/motalbaDetailes.rdlc")
+        viewer.LocalReport.DataSources.Add(datasource)
+
+        Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+        Dim r As String = "~/Reports/motalbaDetailes.rdlc"
+        ' Page.Controls.Add(rv)
+
+        Dim warnings As Warning() = Nothing
+        Dim streamids As String() = Nothing
+        Dim mimeType As String = Nothing
+        Dim encoding As String = Nothing
+        Dim extension As String = Nothing
+        Dim bytes As Byte()
+        Dim FolderLocation As String
+        FolderLocation = Server.MapPath("~/Reports")
+        Dim filepath As String = FolderLocation & "/motalbaDetailes" & Session("INC_User_Id") & ".pdf"
+        If Directory.Exists(filepath) Then
+            File.Delete(filepath)
+        End If
+        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
+            encoding, extension, streamids, warnings)
+        Dim fs As New FileStream(FolderLocation & "/motalbaDetailes" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+        fs.Write(bytes, 0, bytes.Length)
+        fs.Close()
+        Response.Redirect("~/Reports/motalbaDetailes" & Session("INC_User_Id") & ".pdf")
     End Sub
 End Class

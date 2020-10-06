@@ -193,13 +193,14 @@ Public Class cashPrices
         Try
             GridView1.DataSource = Nothing
             GridView1.DataBind()
-            Dim CASH_PRS As String = "ISNULL(  (SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3025 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS CASH_PRS "
+            Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3024 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS CASH_PRS, "
+            Dim SHOW_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3025 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS SHOW_PRS "
             'Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & profile_no & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS CASH_PRS,"
 
             'Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & profile_no & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS "
 
 
-            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & " FROM Main_SubServices WHERE SubService_State = 0 "
+            Dim sql_str As String = "SELECT SubService_ID, SubService_Code, SubService_AR_Name, SubService_EN_Name, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic) AS CLINIC_NAME, " & CASH_PRS & SHOW_PRS & " FROM Main_SubServices WHERE SubService_State = 0 "
 
             If ddl_clinics.SelectedValue <> 0 Then
                 sql_str = sql_str & " AND SubService_Clinic = " & ddl_clinics.SelectedValue
@@ -235,7 +236,7 @@ Public Class cashPrices
                     Dim txt_private_prc As TextBox = dd.FindControl("txt_service_price")
                     'Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
 
-                    txt_private_prc.Text = dt_res.Rows(i)("CASH_PRS")
+                    txt_private_prc.Text = dt_res.Rows(i)("SHOW_PRS")
                     'txt_invoice_prc.Text = dt_res.Rows(i)("INVO_PRS")
                 Next
             Else

@@ -71,7 +71,7 @@ Public Class STOP_COMPANY
                     Dim check_main_com As New SqlCommand("SELECT C_STATE FROM INC_COMPANY_DATA WHERE C_ID = " & c_level, insurance_SQLcon)
                     insurance_SQLcon.Close()
                     insurance_SQLcon.Open()
-                    If sel_com.ExecuteScalar = 1 Then
+                    If sel_com.ExecuteScalar = True Then
                         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('خطأ! لا يمكن تفعيل هذه الشركة، الشركة الأم موقوفة حالياً');", True)
                         Exit Sub
                     End If

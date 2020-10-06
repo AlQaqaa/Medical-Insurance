@@ -172,7 +172,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <br />
-                                    <asp:TextBox ID="txt_private_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEUIN(event)" placeholder="سعر الخاص"></asp:TextBox>
+                                    <asp:TextBox ID="txt_private_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEUIN(event)" placeholder="سعر الخدمة"></asp:TextBox>
                                 </div>
                                 <div class="col-lg-3">
                                     <br />
@@ -216,6 +216,7 @@
                                     <asp:BoundField DataField="SubService_AR_Name" HeaderText="اسم الخدمة بالعربي" SortExpression="SubService_AR_Name" />
                                     <asp:BoundField DataField="SubService_EN_Name" HeaderText="اسم الخدمة بالانجليزي" SortExpression="SubService_EN_Name" />
                                     <asp:BoundField HeaderText="اسم العيادة" DataField="CLINIC_NAME"></asp:BoundField>
+                                    <asp:BoundField HeaderText="سعر النقدي" DataField="CASH_PRS"></asp:BoundField>
                                     <asp:TemplateField HeaderText="السعر" SortExpression="22">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txt_service_price" runat="server" CssClass="form-control" Width="100px"></asp:TextBox>

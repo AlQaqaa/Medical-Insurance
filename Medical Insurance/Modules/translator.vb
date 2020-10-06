@@ -2,7 +2,7 @@
 Imports System.Data.SqlClient
 
 Module translator
-    Dim con_str As New SqlConnection(ConfigurationManager.ConnectionStrings("con_string").ToString)
+    Dim con_str As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
 
     Public Function TransA2E(W As String) As String
         Dim str As String = W

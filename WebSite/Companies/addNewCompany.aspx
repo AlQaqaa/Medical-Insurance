@@ -37,12 +37,12 @@
                     <div class="form-row">
                         <div class="form-group col-xs-12 col-sm-6">
                             <label for="txt_company_name_ar">اسم الشركة بالعربية</label>
-                            <asp:TextBox ID="txt_company_name_ar" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyAR(event)"></asp:TextBox>
+                            <asp:TextBox ID="txt_company_name_ar" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyAR(event)" AutoPostBack="True"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال اسم الشركة" ControlToValidate="txt_company_name_ar" ForeColor="Red" ValidationGroup="save_data"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group col-xs-12 col-sm-6">
                             <label for="txt_company_name_en">اسم الشركة بالإنجليزية</label>
-                            <asp:TextBox ID="txt_company_name_en" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEN(event)"></asp:TextBox>
+                            <asp:TextBox ID="txt_company_name_en" CssClass="form-control" dir="ltr" runat="server" onkeypress="return isAlphabetKeyEN(event)"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال اسم الشركة" ControlToValidate="txt_company_name_en" ForeColor="Red" ValidationGroup="save_data"></asp:RequiredFieldValidator>
                         </div>
                     </div>

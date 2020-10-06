@@ -1491,7 +1491,7 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value>=Sum(Fields!INVOICE_NO.Value, "patientProcesses")</Value>
+                  <Value>=MAX(Fields!INVOICE_NO.Value, "patientProcesses")</Value>
                   <Style>
                     <FontSize>12pt</FontSize>
                   </Style>
@@ -1504,7 +1504,7 @@
           </Paragraphs>
           <rd:DefaultName>INVOICE_NO</rd:DefaultName>
           <Top>3.64607cm</Top>
-          <Left>1.67263cm</Left>
+          <Left>1.60207cm</Left>
           <Height>0.68082cm</Height>
           <Width>2.5cm</Width>
           <ZIndex>11</ZIndex>

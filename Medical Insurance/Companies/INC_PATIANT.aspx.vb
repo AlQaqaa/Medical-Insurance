@@ -170,6 +170,8 @@ Public Class INC_PATIANT
 
                 LtlTableBody.Text = strbody.ToString()
             End If
+
+            txt_BAGE_NO.Focus()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

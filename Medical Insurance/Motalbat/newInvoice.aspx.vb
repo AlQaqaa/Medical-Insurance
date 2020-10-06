@@ -336,14 +336,6 @@ Public Class newInvoice
         End Try
     End Sub
 
-    Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
-        If ddl_clinics.SelectedValue = 0 Then
-            txt_search.Visible = True
-        Else
-            txt_search.Visible = False
-        End If
-    End Sub
-
     'Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
     '    For Each dd As GridViewRow In GridView1.Rows
     '        Dim ch As CheckBox = dd.FindControl("CheckBox2")

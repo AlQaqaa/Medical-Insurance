@@ -15,19 +15,16 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>4.28563cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.32431cm</Width>
-            </TablixColumn>
-            <TablixColumn>
-              <Width>3.4309cm</Width>
+              <Width>3.96106cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>3.29375cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.85646cm</Width>
+              <Width>4.86497cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.5cm</Width>
@@ -61,41 +58,6 @@
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox19</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>WhiteSmoke</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox29">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>قيمة المنتفع</Value>
-                              <Style>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox29</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -431,40 +393,6 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Processes_Paid">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!Processes_Paid.Value</Value>
-                              <Style>
-                                <Format>#,0.000;(#,0.000)</Format>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Processes_Paid</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="Processes_Price">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -738,7 +666,6 @@
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -751,11 +678,13 @@
             </TablixMember>
           </TablixMembers>
         </TablixRowHierarchy>
+        <RepeatColumnHeaders>true</RepeatColumnHeaders>
+        <RepeatRowHeaders>true</RepeatRowHeaders>
         <DataSetName>patientProcesses</DataSetName>
         <Top>0.17639cm</Top>
         <Left>0.08103cm</Left>
         <Height>1.2cm</Height>
-        <Width>28.16459cm</Width>
+        <Width>28.16458cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -796,40 +725,6 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox41">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>=Sum(Fields!Processes_Paid.Value, "patientProcesses")</Value>
-                <Style>
-                  <Format>#,0.000;(#,0.000)</Format>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>1.55278cm</Top>
-        <Left>2.58103cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>2</ZIndex>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox42">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -850,10 +745,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
         <Top>1.55278cm</Top>
-        <Left>5.08103cm</Left>
+        <Left>2.58103cm</Left>
         <Height>0.6cm</Height>
         <Width>2.5cm</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -882,10 +777,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox43</rd:DefaultName>
         <Top>1.55278cm</Top>
-        <Left>7.68687cm</Left>
+        <Left>5.08103cm</Left>
         <Height>0.6cm</Height>
         <Width>4.77542cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -918,7 +813,7 @@
         <Left>25.07932cm</Left>
         <Height>0.67938cm</Height>
         <Width>2.89688cm</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -954,7 +849,7 @@
         <Left>21.39652cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.68281cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Color>Silver</Color>
@@ -990,7 +885,7 @@
         <Left>19.49734cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.8639cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1023,7 +918,7 @@
         <Left>25.07931cm</Left>
         <Height>0.67938cm</Height>
         <Width>2.89688cm</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1059,7 +954,7 @@
         <Left>21.39651cm</Left>
         <Height>0.67938cm</Height>
         <Width>3.68281cm</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Color>Silver</Color>
@@ -1095,7 +990,7 @@
         <Left>19.49733cm</Left>
         <Height>0.67938cm</Height>
         <Width>1.8639cm</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>

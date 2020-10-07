@@ -93,7 +93,7 @@ Public Class statistics
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
@@ -227,7 +227,7 @@ Public Class statistics
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
@@ -344,7 +344,7 @@ Public Class statistics
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then
@@ -500,7 +500,7 @@ Public Class statistics
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_patient_name.Text & "')"
+                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
             End If
 
             If txt_emp_no.Text <> "" Then

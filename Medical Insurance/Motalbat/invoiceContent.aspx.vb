@@ -61,7 +61,7 @@ Public Class invoiceContent
                 INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID
                 INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
                 INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
-                LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID
+                LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND doc_type = 0
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
                 INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " ORDER BY NAME_ARB")
             Using sda As New SqlDataAdapter()
@@ -83,7 +83,7 @@ Public Class invoiceContent
                 Dim sel_com As New SqlCommand("SELECT P_ID,INC_PATIANT.INC_Patient_Code,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
             FROM INC_IVOICESPROCESSES 
             INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IVOICESPROCESSES.P_ID
-            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND INC_IVOICESPROCESSES.C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,INC_PATIANT.INC_Patient_Code")
+            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND INC_IVOICESPROCESSES.C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,INC_PATIANT.INC_Patient_Code ORDER BY NAME_ARB")
                 Using sda As New SqlDataAdapter()
                     sel_com.Connection = insurance_SQLcon
                     sda.SelectCommand = sel_com
@@ -225,7 +225,7 @@ Public Class invoiceContent
         If Directory.Exists(filepath) Then
             File.Delete(filepath)
         End If
-        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
+        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
             encoding, extension, streamids, warnings)
         Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf", FileMode.Create)
         fs.Write(bytes, 0, bytes.Length)

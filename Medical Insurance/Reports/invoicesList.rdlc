@@ -161,9 +161,9 @@
             <Value>reports_header</Value>
             <Sizing>FitProportional</Sizing>
             <Top>0.37399cm</Top>
-            <Left>9.29197cm</Left>
-            <Height>1.5cm</Height>
-            <Width>1.5cm</Width>
+            <Left>8.8951cm</Left>
+            <Height>2.47607cm</Height>
+            <Width>2.79646cm</Width>
             <ZIndex>3</ZIndex>
             <Style>
               <Border>
@@ -299,8 +299,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox10</rd:DefaultName>
-            <Top>2.07395cm</Top>
-            <Left>8.31301cm</Left>
+            <Top>3.02645cm</Top>
+            <Left>8.33947cm</Left>
             <Height>0.78521cm</Height>
             <Width>3.66416cm</Width>
             <ZIndex>7</ZIndex>

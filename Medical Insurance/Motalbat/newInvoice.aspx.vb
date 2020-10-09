@@ -38,6 +38,7 @@ Public Class newInvoice
                 Panel2.Visible = False
                 btn_create.Text = "إنشاء"
                 btn_create.CssClass = "btn btn-outline-dark btn-block"
+                Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
             End If
 
             ViewState("counter") = 0
@@ -53,7 +54,7 @@ Public Class newInvoice
                 End If
             End If
             txt_search.Focus()
-            Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
+
         End If
 
     End Sub

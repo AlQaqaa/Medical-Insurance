@@ -14,16 +14,19 @@
                 </div>
                 <div class="card-body">
                     <div class="form-row">
-                        <div class="form-group col-xs-12 col-sm-4">
+                        <div class="form-group col-xs-12 col-sm-3">
                             <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" AutoPostBack="True"></asp:DropDownList>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-4">
+                        <div class="form-group col-xs-12 col-sm-3">
                             <asp:TextBox ID="txt_name" CssClass="form-control" placeholder="اسم المنتفع" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_name" ValidationGroup="print" ForeColor="Red"></asp:RequiredFieldValidator>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-4">
+                        <div class="form-group col-xs-12 col-sm-3">
                             <asp:TextBox ID="txt_company_name" CssClass="form-control" placeholder="اسم الشركة" runat="server"></asp:TextBox>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <asp:TextBox ID="txt_emp_name" CssClass="form-control" placeholder="اسم المشترك" runat="server"></asp:TextBox>
                         </div>
                     </div>
                     <!-- form-row -->

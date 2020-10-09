@@ -78,7 +78,15 @@ Public Class newApproval2
             Exit Sub
         End If
 
-        add_action(1, 1, 1, "إنشاء طلب موافقة جديد للشركة: " & ddl_companies.SelectedItem.Text & " اسم المنتفع: " & txt_name.Text, Session("INC_User_Id"), GetIPAddress())
+        Dim com_name As String = ""
+
+        If ddl_companies.SelectedValue = 0 Then
+            com_name = txt_company_name.Text
+        Else
+            com_name = ddl_companies.SelectedItem.Text
+        End If
+
+        add_action(1, 1, 1, "إنشاء طلب موافقة جديد للشركة: " & com_name & " اسم المنتفع: " & txt_name.Text, Session("INC_User_Id"), GetIPAddress())
 
         Dim viewer As ReportViewer = New ReportViewer()
 
@@ -97,11 +105,11 @@ Public Class newApproval2
         Dim rp7 As ReportParameter
         Dim rp8 As ReportParameter
 
-        rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
+        rp1 = New ReportParameter("company_name", com_name)
         rp2 = New ReportParameter("pat_name", "للمنتفع: " & txt_name.Text)
         rp3 = New ReportParameter("card_no", " ")
         rp4 = New ReportParameter("emp_no", " ")
-        rp5 = New ReportParameter("moshtark_name", " ")
+        rp5 = New ReportParameter("moshtark_name", "اسم المشترك:" & txt_emp_name.Text)
         rp6 = New ReportParameter("relation_m", " ")
         rp7 = New ReportParameter("approv_no", " ")
         rp8 = New ReportParameter("notes", "ملاحظات: " & txt_notes.Text)
@@ -252,9 +260,11 @@ Public Class newApproval2
     Private Sub ddl_companies_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_companies.SelectedIndexChanged
         If ddl_companies.SelectedValue = 0 Then
             txt_company_name.Visible = True
+            txt_emp_name.Visible = True
             txt_add_price.Visible = True
         Else
             txt_company_name.Visible = False
+            txt_emp_name.Visible = False
             txt_add_price.Visible = False
         End If
     End Sub

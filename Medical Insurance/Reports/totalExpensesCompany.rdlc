@@ -75,7 +75,6 @@
                                 <TextRun>
                                   <Value>الإجمـــــــــالي</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -112,7 +111,6 @@
                                 <TextRun>
                                   <Value>الشـــــــــركة الأم</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -149,7 +147,6 @@
                                 <TextRun>
                                   <Value>اســـــــــــــم الشــــــــركة</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -186,7 +183,6 @@
                                 <TextRun>
                                   <Value>ر.ت</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -228,7 +224,6 @@
                                 <TextRun>
                                   <Value>=Fields!TOTAL_EXP.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <Format>#,0.000;(#,0.000)</Format>
                                   </Style>
@@ -264,7 +259,6 @@
                                 <TextRun>
                                   <Value>=Fields!MAIN_COMPANY.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -299,7 +293,6 @@
                                 <TextRun>
                                   <Value>=Fields!C_NAME_ARB.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -334,7 +327,6 @@
                                 <TextRun>
                                   <Value>=RowNumber(Nothing)</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                   </Style>
                                 </TextRun>
@@ -412,7 +404,6 @@
                       <Value>الهلال الأحمر الليبي</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -448,7 +439,6 @@
                       <Value>مصحة ابن سينا</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -485,7 +475,6 @@
                       <Value>بنغازي</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -522,7 +511,6 @@
                       <Value>LIBYAN RED CRESCENT</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -559,7 +547,6 @@
                       <Value>IBN SINA POLY CLINIC</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -596,7 +583,6 @@
                       <Value>BENGHAZI</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -627,10 +613,10 @@
               <Source>Embedded</Source>
               <Value>reports_header</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.58043cm</Top>
-              <Left>9.12104cm</Left>
-              <Height>2.32021cm</Height>
-              <Width>2.18846cm</Width>
+              <Top>0.1651cm</Top>
+              <Left>8.57926cm</Left>
+              <Height>2.73554cm</Height>
+              <Width>3.02015cm</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
@@ -647,7 +633,6 @@
                     <TextRun>
                       <Value>تقرير بإجمالي المصروفات للشركات</Value>
                       <Style>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -684,9 +669,7 @@
                       <TextRuns>
                         <TextRun>
                           <Value>:الفترة من</Value>
-                          <Style>
-                            <FontFamily>Tajawal</FontFamily>
-                          </Style>
+                          <Style />
                         </TextRun>
                       </TextRuns>
                       <Style>
@@ -717,9 +700,7 @@
                       <TextRuns>
                         <TextRun>
                           <Value>:إلى</Value>
-                          <Style>
-                            <FontFamily>Tajawal</FontFamily>
-                          </Style>
+                          <Style />
                         </TextRun>
                       </TextRuns>
                       <Style>
@@ -752,7 +733,6 @@
                         <TextRun>
                           <Value>=Parameters!from_dt.Value</Value>
                           <Style>
-                            <FontFamily>Tajawal</FontFamily>
                             <Format>yyyy-MM-dd</Format>
                           </Style>
                         </TextRun>
@@ -787,7 +767,6 @@
                         <TextRun>
                           <Value>=Parameters!to_dt.Value</Value>
                           <Style>
-                            <FontFamily>Tajawal</FontFamily>
                             <Format>yyyy-MM-dd</Format>
                           </Style>
                         </TextRun>

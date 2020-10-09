@@ -26,14 +26,6 @@ Public Class statistics
 
     End Sub
 
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked = True Then
-            txt_invoce_no.Enabled = True
-            txt_invoce_no.Focus()
-        Else
-            txt_invoce_no.Enabled = False
-        End If
-    End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
 
@@ -158,8 +150,10 @@ Public Class statistics
                 sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
-            If CheckBox1.Checked = True Then
+            If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+            ElseIf ddl_motalba.SelectedValue = 2 Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -292,8 +286,10 @@ Public Class statistics
                 sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
-            If CheckBox1.Checked = True Then
+            If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+            ElseIf ddl_motalba.SelectedValue = 2 Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -409,8 +405,10 @@ Public Class statistics
                 sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
-            If CheckBox1.Checked = True Then
+            If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+            ElseIf ddl_motalba.SelectedValue = 2 Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -565,8 +563,10 @@ Public Class statistics
                 sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
-            If CheckBox1.Checked = True Then
+            If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+            ElseIf ddl_motalba.SelectedValue = 2 Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -579,12 +579,6 @@ Public Class statistics
                 sql_str = sql_str & " AND Processes_Price " & ddl_operation.SelectedValue & " " & txt_search_val.Text
             End If
 
-            'If CheckBox2.Checked = True Then
-            '    sql_str = sql_str & " AND Processes_State = 4"
-            'Else
-            '    sql_str = sql_str & " AND Processes_State in (2,4)"
-            'End If
-
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
 
             insurance_SQLcon.Close()
@@ -592,7 +586,8 @@ Public Class statistics
             total_val = sel_com.ExecuteScalar
             insurance_SQLcon.Close()
 
-            Return CDec(total_val)
+            Return total_val
+
         Catch ex As Exception
             MsgBox("4" & ex.Message)
         End Try
@@ -649,9 +644,17 @@ Public Class statistics
         If (e.CommandName = "pat_name") Then
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = GridView1.Rows(index)
-            Session.Item("patiant_id") = (row.Cells(0).Text) ' 13471
 
-            Response.Redirect("Companies/patientInfo.aspx")
+            Response.Redirect("Companies/patientInfo.aspx?pID=" & (row.Cells(0).Text))
+        End If
+    End Sub
+
+    Private Sub ddl_motalba_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_motalba.SelectedIndexChanged
+        If ddl_motalba.SelectedValue = 1 Then
+            txt_invoce_no.Enabled = True
+            txt_invoce_no.Focus()
+        Else
+            txt_invoce_no.Enabled = False
         End If
     End Sub
 End Class

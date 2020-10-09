@@ -2,6 +2,7 @@
 Imports System.Web.UI.DataVisualization.Charting
 Imports System.IO
 Imports System.Globalization
+Imports ClosedXML.Excel
 
 Public Class patientInfo
     Inherits System.Web.UI.Page
@@ -52,8 +53,8 @@ Public Class patientInfo
             End If
 
             lbl_total_expensess.Text = "إجمالي المصروفات " & Format(total_expenses, "0,0.000") & " د.ل"
-            If getMaxValue() <> 0 Then
-                With Me.Chart3
+            'If getMaxValue() <> 0 Then
+            With Me.Chart3
                     .Legends.Clear()
                     .Series.Clear()
                     .ChartAreas.Clear()
@@ -77,16 +78,21 @@ Public Class patientInfo
                 End With
 
                 Dim legends1 As Legend = Me.Chart3.Legends.Add("Legends1")
+                'End If
+
+
             End If
-
-
-        End If
 
 
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, (SELECT C_NAME_ARB FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, (SELECT Nationality_AR_Name FROM Main_Nationality WHERE MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID) AS NAT_NAME, (SELECT City_AR_Name FROM Main_City WHERE Main_City.City_ID = INC_PATIANT.CITY_ID) AS CITY_NAME, OLD_ID FROM INC_PATIANT WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, 0) AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID FROM INC_PATIANT
+LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID
+LEFT JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND INC_COMPANY_DETIAL.DATE_START <= GETDATE() AND INC_COMPANY_DETIAL.DATE_END >= GETDATE()
+LEFT JOIN Main_Nationality ON MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID
+LEFT JOIN Main_City ON Main_City.City_ID = INC_PATIANT.CITY_ID
+WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
         Dim dt_pat As New DataTable
         dt_pat.Rows.Clear()
         insurance_SQLcon.Close()
@@ -105,6 +111,7 @@ Public Class patientInfo
             lbl_exp_dt.Text = dr_pat!EXP_DATE
             lbl_bage_no.Text = dr_pat!BAGE_NO
             ViewState("bage_no") = dr_pat!BAGE_NO
+            ViewState("contract_no") = dr_pat!CONTRACT_NO
             Session("company_id") = dr_pat!C_ID
             ViewState("old_id") = dr_pat!OLD_ID
             lbl_const.Text = dr_pat!CONST_ID
@@ -228,7 +235,7 @@ Public Class patientInfo
     Private Sub getConstList()
 
         Try
-            If ViewState("bage_no") <> "" Or ViewState("bage_no") IsNot Nothing Or ViewState("bage_no") <> 0 Then
+            If ViewState("bage_no") <> "" And ViewState("bage_no") = 0 And ViewState("bage_no") <> "0" Then
                 Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND C_ID = " & Session("company_id") & " ORDER BY CONST_ID ASC", insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
@@ -266,7 +273,12 @@ Public Class patientInfo
     Private Sub getProcessesData()
 
         Try
-            Dim sql_str As String = "SELECT TOP(10) Processes_ID, Processes_Reservation_Code, PINC_ID AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME FROM INC_CompanyProcesses WHERE PINC_ID = " & ViewState("p_no") & ""
+            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name AS Processes_Cilinc, SubService_AR_Name AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
+LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
+LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
+where INC_CompanyProcesses.PINC_ID = " & ViewState("p_no") & " AND [Processes_Date] >= (select DATE_START from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") AND [Processes_Date] <= (select DATE_END from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ")"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -349,7 +361,9 @@ Public Class patientInfo
 
     Sub bindChartsSubServices()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(ViewState("p_no")) & " GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses
+INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+ WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(ViewState("p_no")) & " AND [Processes_Date] >= (select DATE_START from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") AND [Processes_Date] <= (select DATE_END from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") GROUP BY Processes_SubServices,SubService_AR_Name ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -406,7 +420,9 @@ Public Class patientInfo
 
     Sub bindChartsDoctros()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id) AS MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(ViewState("p_no")) & " AND doctor_id <> 0 GROUP BY doctor_id ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = " SELECT MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses 
+ INNER JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
+ WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND PINC_ID = " & Val(ViewState("p_no")) & " AND doctor_id <> 0 AND [Processes_Date] >= (select DATE_START from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") AND [Processes_Date] <= (select DATE_END from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") GROUP BY doctor_id,MedicalStaff_AR_Name ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -462,7 +478,6 @@ Public Class patientInfo
         End Try
     End Sub
 
-
     Function getTotalPatientExpenses() As Decimal
         Dim total_val As Decimal = 0
 
@@ -499,4 +514,34 @@ Public Class patientInfo
         Return max_val
 
     End Function
+
+    Private Sub btn_export_excel_Click(sender As Object, e As EventArgs) Handles btn_export_excel.Click
+
+        Dim dt As New DataTable("GridView_Data")
+        For Each cell As TableCell In GridView3.HeaderRow.Cells
+            dt.Columns.Add(cell.Text)
+        Next
+        For Each row As GridViewRow In GridView3.Rows
+            dt.Rows.Add()
+            For i As Integer = 0 To row.Cells.Count - 1
+                dt.Rows(dt.Rows.Count - 1)(i) = row.Cells(i).Text
+            Next
+        Next
+
+        Using wb As New XLWorkbook()
+            wb.Worksheets.Add(dt)
+
+            Response.Clear()
+            Response.Buffer = True
+            Response.Charset = ""
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            Response.AddHeader("content-disposition", "attachment;filename=patientStatisticsReport.xlsx")
+            Using MyMemoryStream As New MemoryStream()
+                wb.SaveAs(MyMemoryStream)
+                MyMemoryStream.WriteTo(Response.OutputStream)
+                Response.Flush()
+                Response.[End]()
+            End Using
+        End Using
+    End Sub
 End Class

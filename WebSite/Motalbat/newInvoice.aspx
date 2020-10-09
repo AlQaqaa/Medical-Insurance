@@ -93,7 +93,7 @@
                             <div class="card-body">
                                 <asp:Panel ID="Panel1" runat="server">
                                     <div class="form-row">
-                                        <div class="form-group col-xs-12 col-sm-3">
+                                        <div class="form-group col-xs-12 col-sm-4">
                                             <label for="ddl_companies">الشركة</label>
                                             <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id"></asp:DropDownList>
                                             <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA]"></asp:SqlDataSource>

@@ -271,6 +271,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.newApproval2._txt_emp_name">
+<summary>
+txt_emp_name control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.newApproval2._Label9">
 <summary>
 Label9 control.
@@ -3442,6 +3451,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.patientInfo._GridView3">
 <summary>
 GridView3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.patientInfo._btn_export_excel">
+<summary>
+btn_export_excel control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7320,9 +7338,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.statistics._CheckBox1">
+<member name="F:Medical_Insurance.statistics._ddl_motalba">
 <summary>
-CheckBox1 control.
+ddl_motalba control.
 </summary>
 <remarks>
 Auto-generated field.

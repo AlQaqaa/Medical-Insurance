@@ -3,7 +3,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -179,13 +178,21 @@
                     <!-- /col -->
                 </div>
                 <!-- /row -->
+                <div class="row mb-2 justify-content-end">
+
+                    <div class="col-xs-12 col-sm-2">
+                        <asp:Button ID="btn_export_excel" runat="server" CssClass="btn btn-outline-primary btn-block mt-2" Text="تصدير إلى Execl" />
+                    </div>
+
+                </div>
+                <!-- row -->
 
                 <div class="row mt-3">
                     <div class="col-xs-12 col-sm-6">
                         <div class="card mb-3 border-info shadow">
                             <div class="card-body">
-                                <div class="card-title text-primary"><strong>أكثر 10 خدمات استخداماً</strong></div>
-                               <asp:Chart ID="Chart1" runat="server" CssClass="chart" Width="600px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True">
+                                <div class="card-title text-primary"><strong>أكثر الخدمات استخداماً</strong></div>
+                                <asp:Chart ID="Chart1" runat="server" CssClass="chart" Width="600px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True">
                                     <Series>
                                         <asp:Series Name="Series1"></asp:Series>
                                     </Series>
@@ -200,7 +207,7 @@
                     <div class="col-xs-12 col-sm-6">
                         <div class="card mb-3 border-danger shadow">
                             <div class="card-body">
-                                <div class="card-title text-danger"><strong>أكثر 10 أطباء زيارة</strong></div>
+                                <div class="card-title text-danger"><strong>أكثر الأطباء زيارة</strong></div>
                                 <asp:Chart ID="Chart2" runat="server" CssClass="chart" Width="600px" Palette="BrightPastel" RightToLeft="Yes" BackImageWrapMode="Tile" IsMapEnabled="True" BackGradientStyle="VerticalCenter">
                                     <Series>
                                         <asp:Series Name="Series1" Color="#009933" Font="Cairo-Regular" Label="عدد الزيارات" XAxisType="Secondary"></asp:Series>
@@ -212,14 +219,15 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- /row -->
                 <div class="row">
                     <div class="col-xs-12 col-sm-6">
                         <div class="card mb-3 border-success shadow">
                             <div class="card-body">
-                                <div class="card-title text-success"><strong><asp:Label ID="lbl_total_expensess" runat="server" Text="Label"></asp:Label></strong></div>
+                                <div class="card-title text-success"><strong>
+                                    <asp:Label ID="lbl_total_expensess" runat="server" Text="Label"></asp:Label></strong></div>
                                 <asp:Chart ID="Chart3" runat="server" CssClass="chart" Width="600px" RightToLeft="Yes" BackGradientStyle="VerticalCenter" Palette="SeaGreen">
                                     <Series>
                                         <asp:Series Name="Series1" Color="#009933" Font="Cairo-Regular" Label="عدد الزيارات" XAxisType="Secondary" ChartType="Doughnut"></asp:Series>
@@ -231,9 +239,13 @@
                             </div>
                         </div>
                     </div>
-                </div><!-- /row -->
+                </div>
+                <!-- /row -->
             </div>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btn_export_excel" />
+        </Triggers>
     </asp:UpdatePanel>
     <!-- Ban Services Modal -->
     <div class="modal fade" id="ban_service" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

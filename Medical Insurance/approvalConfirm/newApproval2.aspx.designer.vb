@@ -77,6 +77,15 @@ Partial Public Class newApproval2
     Protected WithEvents txt_company_name As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''txt_emp_name control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_emp_name As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''Label9 control.
     '''</summary>
     '''<remarks>

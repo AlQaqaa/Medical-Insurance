@@ -599,7 +599,6 @@
     <Content Include="Reports\invoicesList.rdlc" />
     <Content Include="Reports\confirmApproval.rdlc" />
     <Content Include="Reports\dailyProcesses.rdlc" />
-    <Content Include="Reports\servicesCashPrices.rdlc" />
     <Content Include="Reports\companyDataReport.rdlc" />
     <Content Include="Reports\confirmApproval2.rdlc" />
     <Content Include="Reports\patientsExpenses.rdlc" />

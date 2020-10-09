@@ -302,13 +302,13 @@ Partial Public Class statistics
     Protected WithEvents SqlDataSource6 As Global.System.Web.UI.WebControls.SqlDataSource
     
     '''<summary>
-    '''CheckBox1 control.
+    '''ddl_motalba control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents CheckBox1 As Global.System.Web.UI.WebControls.CheckBox
+    Protected WithEvents ddl_motalba As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
     '''txt_invoce_no control.

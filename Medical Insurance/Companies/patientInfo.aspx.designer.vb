@@ -221,6 +221,15 @@ Partial Public Class patientInfo
     Protected WithEvents GridView3 As Global.System.Web.UI.WebControls.GridView
     
     '''<summary>
+    '''btn_export_excel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_export_excel As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''Chart1 control.
     '''</summary>
     '''<remarks>

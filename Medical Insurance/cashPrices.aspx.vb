@@ -168,7 +168,7 @@ Public Class cashPrices
 
             If ch.Checked = True Then
                 If txt_private_all.Text = "" And txt_per_add.Text <> "" Then
-                    Dim add_val As Decimal = CDec(txt_service_price.Text) + (CDec(txt_service_price.Text) * CDec(txt_per_add.Text) / 100)
+                    Dim add_val As Decimal = CDec(dd.Cells(6).Text) + (CDec(dd.Cells(6).Text) * CDec(txt_per_add.Text) / 100)
                     txt_service_price.Text = CDec(add_val)
                 End If
 

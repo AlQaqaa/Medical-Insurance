@@ -159,10 +159,12 @@
                         <hr />
                         <div class="row mb-2">
                             <div class="col-xs-12 col-sm-2">
-                                <div class="form-check">
-                                    <asp:CheckBox ID="CheckBox1" CssClass="form-check-input form-check-label" runat="server" Text="تمت المطالبة" AutoPostBack="True" />
-                                </div>
-
+                                <asp:DropDownList ID="ddl_motalba" CssClass="drop-down-list form-control" runat="server" Width="100%" AutoPostBack="True">
+                                    <asp:ListItem Value="0">الكل</asp:ListItem>
+                                    <asp:ListItem Value="1">تمت المطالبة</asp:ListItem>
+                                    <asp:ListItem Value="2">لم تتم المطالبة</asp:ListItem>
+                                </asp:DropDownList>
+                               
                             </div>
                             <div class="col-xs-12 col-sm-3">
                                 <asp:TextBox ID="txt_invoce_no" CssClass="form-control" runat="server" AutoCompleteType="Disabled" placeholder="رقم الفاتورة" Enabled="False"></asp:TextBox>
@@ -249,7 +251,7 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col ml-2">
-                                            <div class="small font-weight-bold text-info text-uppercase mb-1">إجمالي الخدمات</div>
+                                            <div class="small font-weight-bold text-info text-uppercase mb-1">إجمالي المستحق</div>
                                             <div class="h5 mb-0 font-weight-bold text-secondary">
                                                 <asp:Label ID="lbl_total" runat="server" Text="0"></asp:Label>
                                             </div>

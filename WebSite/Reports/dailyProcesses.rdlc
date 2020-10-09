@@ -51,7 +51,6 @@
                             <TextRun>
                               <Value>قيمة الشركة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -88,7 +87,6 @@
                             <TextRun>
                               <Value>المدفوع</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -125,7 +123,6 @@
                             <TextRun>
                               <Value>سعر الخدمة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -162,7 +159,6 @@
                             <TextRun>
                               <Value>الطبيب</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -199,7 +195,6 @@
                             <TextRun>
                               <Value>الخدمة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -236,7 +231,6 @@
                             <TextRun>
                               <Value>العيادة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -273,7 +267,6 @@
                             <TextRun>
                               <Value>الشركة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -310,7 +303,6 @@
                             <TextRun>
                               <Value>اسم المنتفع</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -347,7 +339,6 @@
                             <TextRun>
                               <Value>كود المنتفع</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -384,7 +375,6 @@
                             <TextRun>
                               <Value>كود الحركة</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
@@ -426,7 +416,6 @@
                             <TextRun>
                               <Value>=Fields!Processes_Residual.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <Format>#,0.000;(#,0.000)</Format>
                               </Style>
                             </TextRun>
@@ -461,7 +450,6 @@
                             <TextRun>
                               <Value>=Fields!Processes_Paid.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <Format>#,0.000;(#,0.000)</Format>
                               </Style>
                             </TextRun>
@@ -496,7 +484,6 @@
                             <TextRun>
                               <Value>=Fields!Processes_Price.Value</Value>
                               <Style>
-                                <FontFamily>Tajawal</FontFamily>
                                 <Format>#,0.000;(#,0.000)</Format>
                               </Style>
                             </TextRun>
@@ -530,9 +517,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!MedicalStaff_AR_Name.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -564,9 +549,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Processes_SubServices.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -598,9 +581,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Processes_Cilinc.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -632,9 +613,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!C_NAME.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -666,9 +645,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!PATIENT_NAME.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -700,9 +677,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Processes_Reservation_Code.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -734,9 +709,7 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Processes_ID.Value</Value>
-                              <Style>
-                                <FontFamily>Tajawal</FontFamily>
-                              </Style>
+                              <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -789,7 +762,7 @@
         <DataSetName>DPR_DS</DataSetName>
         <Top>0.34078cm</Top>
         <Left>0.06953cm</Left>
-        <Height>1.35254cm</Height>
+        <Height>1.35255cm</Height>
         <Width>28.10859cm</Width>
         <Style>
           <Border>
@@ -806,7 +779,6 @@
               <TextRun>
                 <Value>:إجمالي المدفوع</Value>
                 <Style>
-                  <FontFamily>Tajawal</FontFamily>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -839,7 +811,6 @@
               <TextRun>
                 <Value>:إجمالي قيمة الشركة</Value>
                 <Style>
-                  <FontFamily>Tajawal</FontFamily>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -872,7 +843,6 @@
               <TextRun>
                 <Value>=Sum(Fields!Processes_Paid.Value, "DPR_DS")</Value>
                 <Style>
-                  <FontFamily>Tajawal</FontFamily>
                   <FontWeight>Bold</FontWeight>
                   <Format>#,0.000;(#,0.000)</Format>
                 </Style>
@@ -908,7 +878,6 @@
               <TextRun>
                 <Value>=Sum(Fields!Processes_Residual.Value, "DPR_DS")</Value>
                 <Style>
-                  <FontFamily>Tajawal</FontFamily>
                   <FontWeight>Bold</FontWeight>
                   <Format>#,0.000;(#,0.000)</Format>
                 </Style>
@@ -942,7 +911,7 @@
   <Width>28.17812cm</Width>
   <Page>
     <PageHeader>
-      <Height>4.87991cm</Height>
+      <Height>4.95929cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -956,7 +925,6 @@
                   <Value>الهلال الأحمر الليبي</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -992,7 +960,6 @@
                   <Value>مصحة ابن سينا</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1029,7 +996,6 @@
                   <Value>بنغازي</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>14pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1061,9 +1027,9 @@
           <Value>reports_header</Value>
           <Sizing>FitProportional</Sizing>
           <Top>0.12704cm</Top>
-          <Left>13.57927cm</Left>
-          <Height>2.00271cm</Height>
-          <Width>1.97679cm</Width>
+          <Left>12.7326cm</Left>
+          <Height>2.8232cm</Height>
+          <Width>2.82346cm</Width>
           <ZIndex>3</ZIndex>
           <Style>
             <Border>
@@ -1080,7 +1046,6 @@
                 <TextRun>
                   <Value>تقرير بالحركة اليومية للتأمين الصحي</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>16pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1092,7 +1057,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>2.54262cm</Top>
+          <Top>3.0208cm</Top>
           <Left>9.38001cm</Left>
           <Height>0.97042cm</Height>
           <Width>10.01416cm</Width>
@@ -1116,7 +1081,6 @@
                 <TextRun>
                   <Value>=Globals!ExecutionTime</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontWeight>Bold</FontWeight>
                     <Format>yyyy-MM-dd</Format>
                   </Style>
@@ -1128,7 +1092,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>ExecutionTime</rd:DefaultName>
-          <Top>3.80366cm</Top>
+          <Top>4.12116cm</Top>
           <Left>11.94481cm</Left>
           <Height>0.75875cm</Height>
           <Width>3.29375cm</Width>
@@ -1152,7 +1116,6 @@
                 <TextRun>
                   <Value>:التاريخ</Value>
                   <Style>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>11pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1162,7 +1125,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox43</rd:DefaultName>
-          <Top>3.80366cm</Top>
+          <Top>4.12116cm</Top>
           <Left>15.27384cm</Left>
           <Height>0.75875cm</Height>
           <Width>1.55326cm</Width>
@@ -1187,7 +1150,6 @@
                   <Value>LIBYAN RED CRESCENT</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1224,7 +1186,6 @@
                   <Value>IBN SINA POLY CLINIC</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -1261,7 +1222,6 @@
                   <Value>BENGHAZI</Value>
                   <Style>
                     <FontStyle>Italic</FontStyle>
-                    <FontFamily>Tajawal</FontFamily>
                     <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>

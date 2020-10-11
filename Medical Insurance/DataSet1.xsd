@@ -130,14 +130,13 @@ WHERE MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.
               <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectName="IbnSina_DataBase.dbo.INC_CompanyProcesses" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT Processes_ID, Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت التسوية' else 'لم تتم التسوية' end) AS Processes_State, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING([Processes_Reservation_Code],7 , 2)) AS C_NAME FROM INC_CompanyProcesses</CommandText>
+                    <CommandText>SELECT pros_code, Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation_Code,9 , 6)), '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت التسوية' else 'لم تتم التسوية' end) AS Processes_State, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING([Processes_Reservation_Code],7 , 2)) AS C_NAME FROM INC_CompanyProcesses</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="Processes_ID" DataSetColumn="Processes_ID" />
               <Mapping SourceColumn="Processes_Reservation_Code" DataSetColumn="Processes_Reservation_Code" />
               <Mapping SourceColumn="PINC_ID" DataSetColumn="PINC_ID" />
               <Mapping SourceColumn="Processes_Date" DataSetColumn="Processes_Date" />
@@ -151,6 +150,7 @@ WHERE MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.
               <Mapping SourceColumn="PATIENT_NAME" DataSetColumn="PATIENT_NAME" />
               <Mapping SourceColumn="Processes_State" DataSetColumn="Processes_State" />
               <Mapping SourceColumn="C_NAME" DataSetColumn="C_NAME" />
+              <Mapping SourceColumn="pros_code" DataSetColumn="pros_code" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -485,7 +485,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
   <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="INC_servicesPrices" msprop:Generator_TableClassName="INC_servicesPricesDataTable" msprop:Generator_TableVarName="tableINC_servicesPrices" msprop:Generator_RowChangedName="INC_servicesPricesRowChanged" msprop:Generator_TablePropName="INC_servicesPrices" msprop:Generator_RowDeletingName="INC_servicesPricesRowDeleting" msprop:Generator_RowChangingName="INC_servicesPricesRowChanging" msprop:Generator_RowEvHandlerName="INC_servicesPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_servicesPricesRowDeleted" msprop:Generator_RowClassName="INC_servicesPricesRow" msprop:Generator_UserTableName="INC_servicesPrices" msprop:Generator_RowEvArgName="INC_servicesPricesRowChangeEvent">
+        <xs:element name="INC_servicesPrices" msprop:Generator_TableClassName="INC_servicesPricesDataTable" msprop:Generator_TableVarName="tableINC_servicesPrices" msprop:Generator_TablePropName="INC_servicesPrices" msprop:Generator_RowDeletingName="INC_servicesPricesRowDeleting" msprop:Generator_RowChangingName="INC_servicesPricesRowChanging" msprop:Generator_RowEvHandlerName="INC_servicesPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_servicesPricesRowDeleted" msprop:Generator_UserTableName="INC_servicesPrices" msprop:Generator_RowChangedName="INC_servicesPricesRowChanged" msprop:Generator_RowEvArgName="INC_servicesPricesRowChangeEvent" msprop:Generator_RowClassName="INC_servicesPricesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SER_ID" msprop:Generator_ColumnVarNameInTable="columnSER_ID" msprop:Generator_ColumnPropNameInRow="SER_ID" msprop:Generator_ColumnPropNameInTable="SER_IDColumn" msprop:Generator_UserColumnName="SER_ID" type="xs:int" minOccurs="0" />
@@ -521,7 +521,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_IvoicesProcessesPatient" msprop:Generator_TableClassName="INC_IvoicesProcessesPatientDataTable" msprop:Generator_TableVarName="tableINC_IvoicesProcessesPatient" msprop:Generator_TablePropName="INC_IvoicesProcessesPatient" msprop:Generator_RowDeletingName="INC_IvoicesProcessesPatientRowDeleting" msprop:Generator_RowChangingName="INC_IvoicesProcessesPatientRowChanging" msprop:Generator_RowEvHandlerName="INC_IvoicesProcessesPatientRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_IvoicesProcessesPatientRowDeleted" msprop:Generator_UserTableName="INC_IvoicesProcessesPatient" msprop:Generator_RowChangedName="INC_IvoicesProcessesPatientRowChanged" msprop:Generator_RowEvArgName="INC_IvoicesProcessesPatientRowChangeEvent" msprop:Generator_RowClassName="INC_IvoicesProcessesPatientRow">
+        <xs:element name="INC_IvoicesProcessesPatient" msprop:Generator_TableClassName="INC_IvoicesProcessesPatientDataTable" msprop:Generator_TableVarName="tableINC_IvoicesProcessesPatient" msprop:Generator_RowChangedName="INC_IvoicesProcessesPatientRowChanged" msprop:Generator_TablePropName="INC_IvoicesProcessesPatient" msprop:Generator_RowDeletingName="INC_IvoicesProcessesPatientRowDeleting" msprop:Generator_RowChangingName="INC_IvoicesProcessesPatientRowChanging" msprop:Generator_RowEvHandlerName="INC_IvoicesProcessesPatientRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_IvoicesProcessesPatientRowDeleted" msprop:Generator_RowClassName="INC_IvoicesProcessesPatientRow" msprop:Generator_UserTableName="INC_IvoicesProcessesPatient" msprop:Generator_RowEvArgName="INC_IvoicesProcessesPatientRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Processes_ID" msprop:Generator_ColumnVarNameInTable="columnProcesses_ID" msprop:Generator_ColumnPropNameInRow="Processes_ID" msprop:Generator_ColumnPropNameInTable="Processes_IDColumn" msprop:Generator_UserColumnName="Processes_ID" type="xs:long" />
@@ -581,7 +581,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_IvoicesProcesses" msprop:Generator_TableClassName="INC_IvoicesProcessesDataTable" msprop:Generator_TableVarName="tableINC_IvoicesProcesses" msprop:Generator_TablePropName="INC_IvoicesProcesses" msprop:Generator_RowDeletingName="INC_IvoicesProcessesRowDeleting" msprop:Generator_RowChangingName="INC_IvoicesProcessesRowChanging" msprop:Generator_RowEvHandlerName="INC_IvoicesProcessesRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_IvoicesProcessesRowDeleted" msprop:Generator_UserTableName="INC_IvoicesProcesses" msprop:Generator_RowChangedName="INC_IvoicesProcessesRowChanged" msprop:Generator_RowEvArgName="INC_IvoicesProcessesRowChangeEvent" msprop:Generator_RowClassName="INC_IvoicesProcessesRow">
+        <xs:element name="INC_IvoicesProcesses" msprop:Generator_TableClassName="INC_IvoicesProcessesDataTable" msprop:Generator_TableVarName="tableINC_IvoicesProcesses" msprop:Generator_RowChangedName="INC_IvoicesProcessesRowChanged" msprop:Generator_TablePropName="INC_IvoicesProcesses" msprop:Generator_RowDeletingName="INC_IvoicesProcessesRowDeleting" msprop:Generator_RowChangingName="INC_IvoicesProcessesRowChanging" msprop:Generator_RowEvHandlerName="INC_IvoicesProcessesRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_IvoicesProcessesRowDeleted" msprop:Generator_RowClassName="INC_IvoicesProcessesRow" msprop:Generator_UserTableName="INC_IvoicesProcesses" msprop:Generator_RowEvArgName="INC_IvoicesProcessesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="P_ID" msprop:Generator_ColumnVarNameInTable="columnP_ID" msprop:Generator_ColumnPropNameInRow="P_ID" msprop:Generator_ColumnPropNameInTable="P_IDColumn" msprop:Generator_UserColumnName="P_ID" minOccurs="0">
@@ -624,7 +624,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="invoicesList" msprop:Generator_TableClassName="invoicesListDataTable" msprop:Generator_TableVarName="tableinvoicesList" msprop:Generator_RowChangedName="invoicesListRowChanged" msprop:Generator_TablePropName="invoicesList" msprop:Generator_RowDeletingName="invoicesListRowDeleting" msprop:Generator_RowChangingName="invoicesListRowChanging" msprop:Generator_RowEvHandlerName="invoicesListRowChangeEventHandler" msprop:Generator_RowDeletedName="invoicesListRowDeleted" msprop:Generator_RowClassName="invoicesListRow" msprop:Generator_UserTableName="invoicesList" msprop:Generator_RowEvArgName="invoicesListRowChangeEvent">
+        <xs:element name="invoicesList" msprop:Generator_TableClassName="invoicesListDataTable" msprop:Generator_TableVarName="tableinvoicesList" msprop:Generator_TablePropName="invoicesList" msprop:Generator_RowDeletingName="invoicesListRowDeleting" msprop:Generator_RowChangingName="invoicesListRowChanging" msprop:Generator_RowEvHandlerName="invoicesListRowChangeEventHandler" msprop:Generator_RowDeletedName="invoicesListRowDeleted" msprop:Generator_UserTableName="invoicesList" msprop:Generator_RowChangedName="invoicesListRowChanged" msprop:Generator_RowEvArgName="invoicesListRowChangeEvent" msprop:Generator_RowClassName="invoicesListRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" type="xs:string" minOccurs="0" />
@@ -635,7 +635,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_CONFIRM_DETAILS" msprop:Generator_TableClassName="INC_CONFIRM_DETAILSDataTable" msprop:Generator_TableVarName="tableINC_CONFIRM_DETAILS" msprop:Generator_RowChangedName="INC_CONFIRM_DETAILSRowChanged" msprop:Generator_TablePropName="INC_CONFIRM_DETAILS" msprop:Generator_RowDeletingName="INC_CONFIRM_DETAILSRowDeleting" msprop:Generator_RowChangingName="INC_CONFIRM_DETAILSRowChanging" msprop:Generator_RowEvHandlerName="INC_CONFIRM_DETAILSRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_CONFIRM_DETAILSRowDeleted" msprop:Generator_RowClassName="INC_CONFIRM_DETAILSRow" msprop:Generator_UserTableName="INC_CONFIRM_DETAILS" msprop:Generator_RowEvArgName="INC_CONFIRM_DETAILSRowChangeEvent">
+        <xs:element name="INC_CONFIRM_DETAILS" msprop:Generator_TableClassName="INC_CONFIRM_DETAILSDataTable" msprop:Generator_TableVarName="tableINC_CONFIRM_DETAILS" msprop:Generator_TablePropName="INC_CONFIRM_DETAILS" msprop:Generator_RowDeletingName="INC_CONFIRM_DETAILSRowDeleting" msprop:Generator_RowChangingName="INC_CONFIRM_DETAILSRowChanging" msprop:Generator_RowEvHandlerName="INC_CONFIRM_DETAILSRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_CONFIRM_DETAILSRowDeleted" msprop:Generator_UserTableName="INC_CONFIRM_DETAILS" msprop:Generator_RowChangedName="INC_CONFIRM_DETAILSRowChanged" msprop:Generator_RowEvArgName="INC_CONFIRM_DETAILSRowChangeEvent" msprop:Generator_RowClassName="INC_CONFIRM_DETAILSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CD_ID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnCD_ID" msprop:Generator_ColumnPropNameInRow="CD_ID" msprop:Generator_ColumnPropNameInTable="CD_IDColumn" msprop:Generator_UserColumnName="CD_ID" type="xs:long" />
@@ -665,10 +665,9 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="dailyProcesses" msprop:Generator_TableClassName="dailyProcessesDataTable" msprop:Generator_TableVarName="tabledailyProcesses" msprop:Generator_TablePropName="dailyProcesses" msprop:Generator_RowDeletingName="dailyProcessesRowDeleting" msprop:Generator_RowChangingName="dailyProcessesRowChanging" msprop:Generator_RowEvHandlerName="dailyProcessesRowChangeEventHandler" msprop:Generator_RowDeletedName="dailyProcessesRowDeleted" msprop:Generator_UserTableName="dailyProcesses" msprop:Generator_RowChangedName="dailyProcessesRowChanged" msprop:Generator_RowEvArgName="dailyProcessesRowChangeEvent" msprop:Generator_RowClassName="dailyProcessesRow">
+        <xs:element name="dailyProcesses" msprop:Generator_TableClassName="dailyProcessesDataTable" msprop:Generator_TableVarName="tabledailyProcesses" msprop:Generator_RowChangedName="dailyProcessesRowChanged" msprop:Generator_TablePropName="dailyProcesses" msprop:Generator_RowDeletingName="dailyProcessesRowDeleting" msprop:Generator_RowChangingName="dailyProcessesRowChanging" msprop:Generator_RowEvHandlerName="dailyProcessesRowChangeEventHandler" msprop:Generator_RowDeletedName="dailyProcessesRowDeleted" msprop:Generator_RowClassName="dailyProcessesRow" msprop:Generator_UserTableName="dailyProcesses" msprop:Generator_RowEvArgName="dailyProcessesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Processes_ID" msprop:Generator_ColumnVarNameInTable="columnProcesses_ID" msprop:Generator_ColumnPropNameInRow="Processes_ID" msprop:Generator_ColumnPropNameInTable="Processes_IDColumn" msprop:Generator_UserColumnName="Processes_ID" type="xs:long" />
               <xs:element name="Processes_Reservation_Code" msprop:Generator_ColumnVarNameInTable="columnProcesses_Reservation_Code" msprop:Generator_ColumnPropNameInRow="Processes_Reservation_Code" msprop:Generator_ColumnPropNameInTable="Processes_Reservation_CodeColumn" msprop:Generator_UserColumnName="Processes_Reservation_Code">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -736,10 +735,17 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="pros_code" msprop:Generator_ColumnVarNameInTable="columnpros_code" msprop:Generator_ColumnPropNameInRow="pros_code" msprop:Generator_ColumnPropNameInTable="pros_codeColumn" msprop:Generator_UserColumnName="pros_code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="servicesCashPrices" msprop:Generator_TableClassName="servicesCashPricesDataTable" msprop:Generator_TableVarName="tableservicesCashPrices" msprop:Generator_RowChangedName="servicesCashPricesRowChanged" msprop:Generator_TablePropName="servicesCashPrices" msprop:Generator_RowDeletingName="servicesCashPricesRowDeleting" msprop:Generator_RowChangingName="servicesCashPricesRowChanging" msprop:Generator_RowEvHandlerName="servicesCashPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="servicesCashPricesRowDeleted" msprop:Generator_RowClassName="servicesCashPricesRow" msprop:Generator_UserTableName="servicesCashPrices" msprop:Generator_RowEvArgName="servicesCashPricesRowChangeEvent">
+        <xs:element name="servicesCashPrices" msprop:Generator_TableClassName="servicesCashPricesDataTable" msprop:Generator_TableVarName="tableservicesCashPrices" msprop:Generator_TablePropName="servicesCashPrices" msprop:Generator_RowDeletingName="servicesCashPricesRowDeleting" msprop:Generator_RowChangingName="servicesCashPricesRowChanging" msprop:Generator_RowEvHandlerName="servicesCashPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="servicesCashPricesRowDeleted" msprop:Generator_UserTableName="servicesCashPrices" msprop:Generator_RowChangedName="servicesCashPricesRowChanged" msprop:Generator_RowEvArgName="servicesCashPricesRowChangeEvent" msprop:Generator_RowClassName="servicesCashPricesRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SubService_ID" msprop:Generator_ColumnVarNameInTable="columnSubService_ID" msprop:Generator_ColumnPropNameInRow="SubService_ID" msprop:Generator_ColumnPropNameInTable="SubService_IDColumn" msprop:Generator_UserColumnName="SubService_ID" type="xs:int" />
@@ -777,7 +783,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="totalCompanyExpenses" msprop:Generator_TableClassName="totalCompanyExpensesDataTable" msprop:Generator_TableVarName="tabletotalCompanyExpenses" msprop:Generator_TablePropName="totalCompanyExpenses" msprop:Generator_RowDeletingName="totalCompanyExpensesRowDeleting" msprop:Generator_RowChangingName="totalCompanyExpensesRowChanging" msprop:Generator_RowEvHandlerName="totalCompanyExpensesRowChangeEventHandler" msprop:Generator_RowDeletedName="totalCompanyExpensesRowDeleted" msprop:Generator_UserTableName="totalCompanyExpenses" msprop:Generator_RowChangedName="totalCompanyExpensesRowChanged" msprop:Generator_RowEvArgName="totalCompanyExpensesRowChangeEvent" msprop:Generator_RowClassName="totalCompanyExpensesRow">
+        <xs:element name="totalCompanyExpenses" msprop:Generator_TableClassName="totalCompanyExpensesDataTable" msprop:Generator_TableVarName="tabletotalCompanyExpenses" msprop:Generator_RowChangedName="totalCompanyExpensesRowChanged" msprop:Generator_TablePropName="totalCompanyExpenses" msprop:Generator_RowDeletingName="totalCompanyExpensesRowDeleting" msprop:Generator_RowChangingName="totalCompanyExpensesRowChanging" msprop:Generator_RowEvHandlerName="totalCompanyExpensesRowChangeEventHandler" msprop:Generator_RowDeletedName="totalCompanyExpensesRowDeleted" msprop:Generator_RowClassName="totalCompanyExpensesRow" msprop:Generator_UserTableName="totalCompanyExpenses" msprop:Generator_RowEvArgName="totalCompanyExpensesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="C_NAME_ARB" msprop:Generator_ColumnVarNameInTable="columnC_NAME_ARB" msprop:Generator_ColumnPropNameInRow="C_NAME_ARB" msprop:Generator_ColumnPropNameInTable="C_NAME_ARBColumn" msprop:Generator_UserColumnName="C_NAME_ARB" minOccurs="0">
@@ -798,7 +804,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_COMPANY_DATA" msprop:Generator_TableClassName="INC_COMPANY_DATADataTable" msprop:Generator_TableVarName="tableINC_COMPANY_DATA" msprop:Generator_RowChangedName="INC_COMPANY_DATARowChanged" msprop:Generator_TablePropName="INC_COMPANY_DATA" msprop:Generator_RowDeletingName="INC_COMPANY_DATARowDeleting" msprop:Generator_RowChangingName="INC_COMPANY_DATARowChanging" msprop:Generator_RowEvHandlerName="INC_COMPANY_DATARowChangeEventHandler" msprop:Generator_RowDeletedName="INC_COMPANY_DATARowDeleted" msprop:Generator_RowClassName="INC_COMPANY_DATARow" msprop:Generator_UserTableName="INC_COMPANY_DATA" msprop:Generator_RowEvArgName="INC_COMPANY_DATARowChangeEvent">
+        <xs:element name="INC_COMPANY_DATA" msprop:Generator_TableClassName="INC_COMPANY_DATADataTable" msprop:Generator_TableVarName="tableINC_COMPANY_DATA" msprop:Generator_TablePropName="INC_COMPANY_DATA" msprop:Generator_RowDeletingName="INC_COMPANY_DATARowDeleting" msprop:Generator_RowChangingName="INC_COMPANY_DATARowChanging" msprop:Generator_RowEvHandlerName="INC_COMPANY_DATARowChangeEventHandler" msprop:Generator_RowDeletedName="INC_COMPANY_DATARowDeleted" msprop:Generator_UserTableName="INC_COMPANY_DATA" msprop:Generator_RowChangedName="INC_COMPANY_DATARowChanged" msprop:Generator_RowEvArgName="INC_COMPANY_DATARowChangeEvent" msprop:Generator_RowClassName="INC_COMPANY_DATARow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="C_NAME_ARB" msprop:Generator_ColumnVarNameInTable="columnC_NAME_ARB" msprop:Generator_ColumnPropNameInRow="C_NAME_ARB" msprop:Generator_ColumnPropNameInTable="C_NAME_ARBColumn" msprop:Generator_UserColumnName="C_NAME_ARB" minOccurs="0">
@@ -833,7 +839,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_STOP_PATIANT" msprop:Generator_TableClassName="INC_STOP_PATIANTDataTable" msprop:Generator_TableVarName="tableINC_STOP_PATIANT" msprop:Generator_TablePropName="INC_STOP_PATIANT" msprop:Generator_RowDeletingName="INC_STOP_PATIANTRowDeleting" msprop:Generator_RowChangingName="INC_STOP_PATIANTRowChanging" msprop:Generator_RowEvHandlerName="INC_STOP_PATIANTRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_STOP_PATIANTRowDeleted" msprop:Generator_UserTableName="INC_STOP_PATIANT" msprop:Generator_RowChangedName="INC_STOP_PATIANTRowChanged" msprop:Generator_RowEvArgName="INC_STOP_PATIANTRowChangeEvent" msprop:Generator_RowClassName="INC_STOP_PATIANTRow">
+        <xs:element name="INC_STOP_PATIANT" msprop:Generator_TableClassName="INC_STOP_PATIANTDataTable" msprop:Generator_TableVarName="tableINC_STOP_PATIANT" msprop:Generator_RowChangedName="INC_STOP_PATIANTRowChanged" msprop:Generator_TablePropName="INC_STOP_PATIANT" msprop:Generator_RowDeletingName="INC_STOP_PATIANTRowDeleting" msprop:Generator_RowChangingName="INC_STOP_PATIANTRowChanging" msprop:Generator_RowEvHandlerName="INC_STOP_PATIANTRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_STOP_PATIANTRowDeleted" msprop:Generator_RowClassName="INC_STOP_PATIANTRow" msprop:Generator_UserTableName="INC_STOP_PATIANT" msprop:Generator_RowEvArgName="INC_STOP_PATIANTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PINC_ID" msprop:Generator_ColumnVarNameInTable="columnPINC_ID" msprop:Generator_ColumnPropNameInRow="PINC_ID" msprop:Generator_ColumnPropNameInTable="PINC_IDColumn" msprop:Generator_UserColumnName="PINC_ID" type="xs:int" />
@@ -903,7 +909,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_COMPANY_DATA1" msprop:Generator_TableClassName="INC_COMPANY_DATA1DataTable" msprop:Generator_TableVarName="tableINC_COMPANY_DATA1" msprop:Generator_RowChangedName="INC_COMPANY_DATA1RowChanged" msprop:Generator_TablePropName="INC_COMPANY_DATA1" msprop:Generator_RowDeletingName="INC_COMPANY_DATA1RowDeleting" msprop:Generator_RowChangingName="INC_COMPANY_DATA1RowChanging" msprop:Generator_RowEvHandlerName="INC_COMPANY_DATA1RowChangeEventHandler" msprop:Generator_RowDeletedName="INC_COMPANY_DATA1RowDeleted" msprop:Generator_RowClassName="INC_COMPANY_DATA1Row" msprop:Generator_UserTableName="INC_COMPANY_DATA1" msprop:Generator_RowEvArgName="INC_COMPANY_DATA1RowChangeEvent">
+        <xs:element name="INC_COMPANY_DATA1" msprop:Generator_TableClassName="INC_COMPANY_DATA1DataTable" msprop:Generator_TableVarName="tableINC_COMPANY_DATA1" msprop:Generator_TablePropName="INC_COMPANY_DATA1" msprop:Generator_RowDeletingName="INC_COMPANY_DATA1RowDeleting" msprop:Generator_RowChangingName="INC_COMPANY_DATA1RowChanging" msprop:Generator_RowEvHandlerName="INC_COMPANY_DATA1RowChangeEventHandler" msprop:Generator_RowDeletedName="INC_COMPANY_DATA1RowDeleted" msprop:Generator_UserTableName="INC_COMPANY_DATA1" msprop:Generator_RowChangedName="INC_COMPANY_DATA1RowChanged" msprop:Generator_RowEvArgName="INC_COMPANY_DATA1RowChangeEvent" msprop:Generator_RowClassName="INC_COMPANY_DATA1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="C_Name_Arb" msprop:Generator_ColumnVarNameInTable="columnC_Name_Arb" msprop:Generator_ColumnPropNameInRow="C_Name_Arb" msprop:Generator_ColumnPropNameInTable="C_Name_ArbColumn" msprop:Generator_UserColumnName="C_Name_Arb" minOccurs="0">
@@ -916,7 +922,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="printKashef" msprop:Generator_TableClassName="printKashefDataTable" msprop:Generator_TableVarName="tableprintKashef" msprop:Generator_RowChangedName="printKashefRowChanged" msprop:Generator_TablePropName="printKashef" msprop:Generator_RowDeletingName="printKashefRowDeleting" msprop:Generator_RowChangingName="printKashefRowChanging" msprop:Generator_RowEvHandlerName="printKashefRowChangeEventHandler" msprop:Generator_RowDeletedName="printKashefRowDeleted" msprop:Generator_RowClassName="printKashefRow" msprop:Generator_UserTableName="printKashef" msprop:Generator_RowEvArgName="printKashefRowChangeEvent">
+        <xs:element name="printKashef" msprop:Generator_TableClassName="printKashefDataTable" msprop:Generator_TableVarName="tableprintKashef" msprop:Generator_TablePropName="printKashef" msprop:Generator_RowDeletingName="printKashefRowDeleting" msprop:Generator_RowChangingName="printKashefRowChanging" msprop:Generator_RowEvHandlerName="printKashefRowChangeEventHandler" msprop:Generator_RowDeletedName="printKashefRowDeleted" msprop:Generator_UserTableName="printKashef" msprop:Generator_RowChangedName="printKashefRowChanged" msprop:Generator_RowEvArgName="printKashefRowChangeEvent" msprop:Generator_RowClassName="printKashefRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SubService_ID" msprop:Generator_ColumnVarNameInTable="columnSubService_ID" msprop:Generator_ColumnPropNameInRow="SubService_ID" msprop:Generator_ColumnPropNameInTable="SubService_IDColumn" msprop:Generator_UserColumnName="SubService_ID" type="xs:int" />
@@ -979,7 +985,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="printPrices" msprop:Generator_TableClassName="printPricesDataTable" msprop:Generator_TableVarName="tableprintPrices" msprop:Generator_TablePropName="printPrices" msprop:Generator_RowDeletingName="printPricesRowDeleting" msprop:Generator_RowChangingName="printPricesRowChanging" msprop:Generator_RowEvHandlerName="printPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="printPricesRowDeleted" msprop:Generator_UserTableName="printPrices" msprop:Generator_RowChangedName="printPricesRowChanged" msprop:Generator_RowEvArgName="printPricesRowChangeEvent" msprop:Generator_RowClassName="printPricesRow">
+        <xs:element name="printPrices" msprop:Generator_TableClassName="printPricesDataTable" msprop:Generator_TableVarName="tableprintPrices" msprop:Generator_RowChangedName="printPricesRowChanged" msprop:Generator_TablePropName="printPrices" msprop:Generator_RowDeletingName="printPricesRowDeleting" msprop:Generator_RowChangingName="printPricesRowChanging" msprop:Generator_RowEvHandlerName="printPricesRowChangeEventHandler" msprop:Generator_RowDeletedName="printPricesRowDeleted" msprop:Generator_RowClassName="printPricesRow" msprop:Generator_UserTableName="printPrices" msprop:Generator_RowEvArgName="printPricesRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SubService_ID" msprop:Generator_ColumnVarNameInTable="columnSubService_ID" msprop:Generator_ColumnPropNameInRow="SubService_ID" msprop:Generator_ColumnPropNameInTable="SubService_IDColumn" msprop:Generator_UserColumnName="SubService_ID" type="xs:int" />
@@ -1035,7 +1041,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SUB_SERVICE_ID" msprop:Generator_ColumnVarNameInTable="columnSUB_SERVICE_ID" msprop:Generator_ColumnPropNameInRow="SUB_SERVICE_ID" msprop:Generator_ColumnPropNameInTable="SUB_SERVICE_IDColumn" msprop:Generator_UserColumnName="SUB_SERVICE_ID" type="xs:string" minOccurs="0" />
@@ -1046,7 +1052,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="INC_PATIANT" msprop:Generator_TableClassName="INC_PATIANTDataTable" msprop:Generator_TableVarName="tableINC_PATIANT" msprop:Generator_TablePropName="INC_PATIANT" msprop:Generator_RowDeletingName="INC_PATIANTRowDeleting" msprop:Generator_RowChangingName="INC_PATIANTRowChanging" msprop:Generator_RowEvHandlerName="INC_PATIANTRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_PATIANTRowDeleted" msprop:Generator_UserTableName="INC_PATIANT" msprop:Generator_RowChangedName="INC_PATIANTRowChanged" msprop:Generator_RowEvArgName="INC_PATIANTRowChangeEvent" msprop:Generator_RowClassName="INC_PATIANTRow">
+        <xs:element name="INC_PATIANT" msprop:Generator_TableClassName="INC_PATIANTDataTable" msprop:Generator_TableVarName="tableINC_PATIANT" msprop:Generator_RowChangedName="INC_PATIANTRowChanged" msprop:Generator_TablePropName="INC_PATIANT" msprop:Generator_RowDeletingName="INC_PATIANTRowDeleting" msprop:Generator_RowChangingName="INC_PATIANTRowChanging" msprop:Generator_RowEvHandlerName="INC_PATIANTRowChangeEventHandler" msprop:Generator_RowDeletedName="INC_PATIANTRowDeleted" msprop:Generator_RowClassName="INC_PATIANTRow" msprop:Generator_UserTableName="INC_PATIANT" msprop:Generator_RowEvArgName="INC_PATIANTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="INC_Patient_Code" msprop:Generator_ColumnVarNameInTable="columnINC_Patient_Code" msprop:Generator_ColumnPropNameInRow="INC_Patient_Code" msprop:Generator_ColumnPropNameInTable="INC_Patient_CodeColumn" msprop:Generator_UserColumnName="INC_Patient_Code" minOccurs="0">
@@ -1074,7 +1080,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Processes_Reservation_Code" msprop:Generator_ColumnVarNameInTable="columnProcesses_Reservation_Code" msprop:Generator_ColumnPropNameInRow="Processes_Reservation_Code" msprop:Generator_ColumnPropNameInTable="Processes_Reservation_CodeColumn" msprop:Generator_UserColumnName="Processes_Reservation_Code">
@@ -1138,7 +1144,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="patientProcessesInvoice" msprop:Generator_TableClassName="patientProcessesInvoiceDataTable" msprop:Generator_TableVarName="tablepatientProcessesInvoice" msprop:Generator_TablePropName="patientProcessesInvoice" msprop:Generator_RowDeletingName="patientProcessesInvoiceRowDeleting" msprop:Generator_RowChangingName="patientProcessesInvoiceRowChanging" msprop:Generator_RowEvHandlerName="patientProcessesInvoiceRowChangeEventHandler" msprop:Generator_RowDeletedName="patientProcessesInvoiceRowDeleted" msprop:Generator_UserTableName="patientProcessesInvoice" msprop:Generator_RowChangedName="patientProcessesInvoiceRowChanged" msprop:Generator_RowEvArgName="patientProcessesInvoiceRowChangeEvent" msprop:Generator_RowClassName="patientProcessesInvoiceRow">
+        <xs:element name="patientProcessesInvoice" msprop:Generator_TableClassName="patientProcessesInvoiceDataTable" msprop:Generator_TableVarName="tablepatientProcessesInvoice" msprop:Generator_RowChangedName="patientProcessesInvoiceRowChanged" msprop:Generator_TablePropName="patientProcessesInvoice" msprop:Generator_RowDeletingName="patientProcessesInvoiceRowDeleting" msprop:Generator_RowChangingName="patientProcessesInvoiceRowChanging" msprop:Generator_RowEvHandlerName="patientProcessesInvoiceRowChangeEventHandler" msprop:Generator_RowDeletedName="patientProcessesInvoiceRowDeleted" msprop:Generator_RowClassName="patientProcessesInvoiceRow" msprop:Generator_UserTableName="patientProcessesInvoice" msprop:Generator_RowEvArgName="patientProcessesInvoiceRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Processes_ID" msprop:Generator_ColumnVarNameInTable="columnProcesses_ID" msprop:Generator_ColumnPropNameInRow="Processes_ID" msprop:Generator_ColumnPropNameInTable="Processes_IDColumn" msprop:Generator_UserColumnName="Processes_ID" type="xs:long" />
@@ -1215,10 +1221,6 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
     <xs:unique name="INC_CONFIRM_DETAILS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:INC_CONFIRM_DETAILS" />
       <xs:field xpath="mstns:CD_ID" />
-    </xs:unique>
-    <xs:unique name="dailyProcesses_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:dailyProcesses" />
-      <xs:field xpath="mstns:Processes_ID" />
     </xs:unique>
     <xs:unique name="servicesCashPrices_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:servicesCashPrices" />

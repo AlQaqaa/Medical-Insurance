@@ -1,4 +1,4 @@
-﻿<%@ Page Title="أسعار الخدمات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Main.Master" CodeBehind="cashPrices.aspx.vb" Inherits="Medical_Insurance.cashPrices" %>
+﻿<%@ Page Title="أسعار الخدمات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Main.Master" CodeBehind="cashPrices.aspx.vb" Inherits="Medical_Insurance.cashPrices" Culture="ar-LY" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>

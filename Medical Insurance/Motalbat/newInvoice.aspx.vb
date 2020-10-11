@@ -16,9 +16,9 @@ Public Class newInvoice
                 Panel2.Visible = True
                 btn_create.Text = "حفظ"
                 btn_create.CssClass = "btn btn-outline-success btn-block"
-
+                Label2.Text = "إضافة خدمات للمطالبة رقم: " & ViewState("invoice_no")
                 txt_invoice_no.Text = ViewState("invoice_no")
-                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 111) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 111) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -30,8 +30,8 @@ Public Class newInvoice
                     Dim dr_inv = dt_result.Rows(0)
                     txt_company_name.Text = dr_inv!COMPANY_NAME
                     ViewState("company_no") = dr_inv!C_ID
-                    txt_start_dt.Text = dr_inv!DATE_FROM
-                    txt_end_dt.Text = dr_inv!DATE_TO
+                    TextBox1.Text = dr_inv!DATE_FROM.ToString
+                    TextBox2.Text = dr_inv!DATE_TO
                 End If
             Else
                 Panel1.Visible = True
@@ -53,15 +53,41 @@ Public Class newInvoice
                     ddl_invoice_type.Enabled = True
                 End If
             End If
+            getTempData()
             txt_search.Focus()
 
         End If
 
     End Sub
 
+    Private Sub getTempData()
+        'جلب البيانات المحفوظة مؤقتاً في حال وجودها
+        Dim sel_temp_data As New SqlCommand("SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
+                ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
+                LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
+                LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
+                WHERE pros_code IN (SELECT Req_Code FROM INC_MOTALBA_TEMP WHERE User_Id = " & Session("INC_User_Id") & ") ORDER BY Id DESC", insurance_SQLcon)
+        Dim dt_temp_result As New DataTable
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_temp_result.Load(sel_temp_data.ExecuteReader)
+        insurance_SQLcon.Close()
+        If dt_temp_result.Rows.Count > 0 Then
+            ddl_companies.SelectedValue = dt_temp_result.Rows(0)("C_ID")
+            GridView1.DataSource = dt_temp_result
+            GridView1.DataBind()
+            btn_clear.Visible = True
+        Else
+            btn_clear.Visible = False
+        End If
+    End Sub
+
     Private Sub getData()
 
         Try
+
             Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
@@ -144,9 +170,18 @@ Public Class newInvoice
             });", True)
                         Exit Sub
                     End If
-
                 End If
 
+                If txt_search.Text <> "" Then
+                    ' حفظ الحركة في جدول المطالبات المؤقت
+                    Dim ins_com As New SqlCommand("INSERT INTO INC_MOTALBA_TEMP (Req_Code,User_Id) VALUES (@Req_Code,@User_Id)", insurance_SQLcon)
+                    ins_com.Parameters.AddWithValue("Req_Code", SqlDbType.NVarChar).Value = txt_search.Text
+                    ins_com.Parameters.AddWithValue("User_Id", SqlDbType.NVarChar).Value = Session("INC_User_Id")
+                    insurance_SQLcon.Close()
+                    insurance_SQLcon.Open()
+                    ins_com.ExecuteNonQuery()
+                    insurance_SQLcon.Close()
+                End If
 
                 If GridView1.Rows.Count = 0 Then
                     Session("dt") = dt_result
@@ -260,14 +295,6 @@ Public Class newInvoice
 
         Try
 
-            'If RadioButton1.Checked = True Then
-            '    start_dt = ViewState("pros_dt")
-            '    end_dt = ViewState("pros_dt")
-            'Else
-            '    start_dt = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-            '    end_dt = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-            'End If
-
             If ViewState("invoice_no") = 0 Then
 
                 Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
@@ -337,17 +364,15 @@ Public Class newInvoice
         End Try
     End Sub
 
-    'Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-    '    For Each dd As GridViewRow In GridView1.Rows
-    '        Dim ch As CheckBox = dd.FindControl("CheckBox2")
-
-    '        If CheckBox1.Checked = True Then
-    '            ch.Checked = True
-    '        Else
-    '            ch.Checked = False
-
-    '        End If
-    '    Next
-    'End Sub
-
+    Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
+        Dim del_com As New SqlCommand("DELETE FROM INC_MOTALBA_TEMP WHERE User_Id = " & Session("INC_User_Id"), insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        del_com.ExecuteNonQuery()
+        insurance_SQLcon.Close()
+        Dim dt_clear As New DataTable
+        dt_clear.Rows.Clear()
+        GridView1.DataSource = dt_clear
+        GridView1.DataBind()
+    End Sub
 End Class

@@ -30,10 +30,10 @@
               <Width>3.60141cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.50718cm</Width>
+              <Width>3.87403cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.5cm</Width>
+              <Width>3.13315cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -701,14 +701,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Processes_ID">
+                    <Textbox Name="pros_code">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Processes_ID.Value</Value>
+                              <Value>=Fields!pros_code.Value</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -717,7 +717,7 @@
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Processes_ID</rd:DefaultName>
+                      <rd:DefaultName>pros_code</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1384,10 +1384,6 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="Processes_ID">
-          <DataField>Processes_ID</DataField>
-          <rd:TypeName>System.Int64</rd:TypeName>
-        </Field>
         <Field Name="Processes_Reservation_Code">
           <DataField>Processes_Reservation_Code</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1440,10 +1436,14 @@
           <DataField>C_NAME</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="pros_code">
+          <DataField>pros_code</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>E:\Medical Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>E:\Medical-Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>dailyProcesses</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

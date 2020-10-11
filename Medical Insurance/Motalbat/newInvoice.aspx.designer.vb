@@ -32,6 +32,15 @@ Partial Public Class newInvoice
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
+    '''Label2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''Panel1 control.
     '''</summary>
     '''<remarks>
@@ -239,6 +248,24 @@ Partial Public Class newInvoice
     Protected WithEvents txt_search As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''btn_clear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_clear As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>
@@ -264,13 +291,4 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
-    
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
 End Class

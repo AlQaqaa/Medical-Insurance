@@ -2261,8 +2261,6 @@ Partial Public Class DataSet1
     Partial Public Class dailyProcessesDataTable
         Inherits Global.System.Data.TypedTableBase(Of dailyProcessesRow)
         
-        Private columnProcesses_ID As Global.System.Data.DataColumn
-        
         Private columnProcesses_Reservation_Code As Global.System.Data.DataColumn
         
         Private columnPINC_ID As Global.System.Data.DataColumn
@@ -2288,6 +2286,8 @@ Partial Public Class DataSet1
         Private columnProcesses_State As Global.System.Data.DataColumn
         
         Private columnC_NAME As Global.System.Data.DataColumn
+        
+        Private columnpros_code As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -2323,14 +2323,6 @@ Partial Public Class DataSet1
             MyBase.New(info, context)
             Me.InitVars
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property Processes_IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnProcesses_ID
-            End Get
-        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -2437,6 +2429,14 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property pros_codeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnpros_code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2473,18 +2473,12 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AdddailyProcessesRow(ByVal Processes_ID As Long, ByVal Processes_Reservation_Code As String, ByVal PINC_ID As String, ByVal Processes_Date As String, ByVal Processes_Time As System.TimeSpan, ByVal Processes_Cilinc As String, ByVal Processes_SubServices As String, ByVal Processes_Price As Double, ByVal Processes_Paid As Double, ByVal Processes_Residual As Double, ByVal MedicalStaff_AR_Name As String, ByVal PATIENT_NAME As String, ByVal Processes_State As String, ByVal C_NAME As String) As dailyProcessesRow
+        Public Overloads Function AdddailyProcessesRow(ByVal Processes_Reservation_Code As String, ByVal PINC_ID As String, ByVal Processes_Date As String, ByVal Processes_Time As System.TimeSpan, ByVal Processes_Cilinc As String, ByVal Processes_SubServices As String, ByVal Processes_Price As Double, ByVal Processes_Paid As Double, ByVal Processes_Residual As Double, ByVal MedicalStaff_AR_Name As String, ByVal PATIENT_NAME As String, ByVal Processes_State As String, ByVal C_NAME As String, ByVal pros_code As String) As dailyProcessesRow
             Dim rowdailyProcessesRow As dailyProcessesRow = CType(Me.NewRow,dailyProcessesRow)
-            Dim columnValuesArray() As Object = New Object() {Processes_ID, Processes_Reservation_Code, PINC_ID, Processes_Date, Processes_Time, Processes_Cilinc, Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, MedicalStaff_AR_Name, PATIENT_NAME, Processes_State, C_NAME}
+            Dim columnValuesArray() As Object = New Object() {Processes_Reservation_Code, PINC_ID, Processes_Date, Processes_Time, Processes_Cilinc, Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, MedicalStaff_AR_Name, PATIENT_NAME, Processes_State, C_NAME, pros_code}
             rowdailyProcessesRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowdailyProcessesRow)
             Return rowdailyProcessesRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByProcesses_ID(ByVal Processes_ID As Long) As dailyProcessesRow
-            Return CType(Me.Rows.Find(New Object() {Processes_ID}),dailyProcessesRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2504,7 +2498,6 @@ Partial Public Class DataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnProcesses_ID = MyBase.Columns("Processes_ID")
             Me.columnProcesses_Reservation_Code = MyBase.Columns("Processes_Reservation_Code")
             Me.columnPINC_ID = MyBase.Columns("PINC_ID")
             Me.columnProcesses_Date = MyBase.Columns("Processes_Date")
@@ -2518,13 +2511,12 @@ Partial Public Class DataSet1
             Me.columnPATIENT_NAME = MyBase.Columns("PATIENT_NAME")
             Me.columnProcesses_State = MyBase.Columns("Processes_State")
             Me.columnC_NAME = MyBase.Columns("C_NAME")
+            Me.columnpros_code = MyBase.Columns("pros_code")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnProcesses_ID = New Global.System.Data.DataColumn("Processes_ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnProcesses_ID)
             Me.columnProcesses_Reservation_Code = New Global.System.Data.DataColumn("Processes_Reservation_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnProcesses_Reservation_Code)
             Me.columnPINC_ID = New Global.System.Data.DataColumn("PINC_ID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -2551,9 +2543,8 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnProcesses_State)
             Me.columnC_NAME = New Global.System.Data.DataColumn("C_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnC_NAME)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnProcesses_ID}, true))
-            Me.columnProcesses_ID.AllowDBNull = false
-            Me.columnProcesses_ID.Unique = true
+            Me.columnpros_code = New Global.System.Data.DataColumn("pros_code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnpros_code)
             Me.columnProcesses_Reservation_Code.AllowDBNull = false
             Me.columnProcesses_Reservation_Code.MaxLength = 18
             Me.columnPINC_ID.ReadOnly = true
@@ -2576,6 +2567,7 @@ Partial Public Class DataSet1
             Me.columnProcesses_State.MaxLength = 14
             Me.columnC_NAME.ReadOnly = true
             Me.columnC_NAME.MaxLength = 50
+            Me.columnpros_code.MaxLength = 12
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7789,17 +7781,6 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Processes_ID() As Long
-            Get
-                Return CType(Me(Me.tabledailyProcesses.Processes_IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tabledailyProcesses.Processes_IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Processes_Reservation_Code() As String
             Get
                 Return CType(Me(Me.tabledailyProcesses.Processes_Reservation_CodeColumn),String)
@@ -7976,6 +7957,21 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property pros_code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tabledailyProcesses.pros_codeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'pros_code' in table 'dailyProcesses' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tabledailyProcesses.pros_codeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsPINC_IDNull() As Boolean
             Return Me.IsNull(Me.tabledailyProcesses.PINC_IDColumn)
         End Function
@@ -8068,6 +8064,18 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetC_NAMENull()
             Me(Me.tabledailyProcesses.C_NAMEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function Ispros_codeNull() As Boolean
+            Return Me.IsNull(Me.tabledailyProcesses.pros_codeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub Setpros_codeNull()
+            Me(Me.tabledailyProcesses.pros_codeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -12159,7 +12167,6 @@ Namespace DataSet1TableAdapters
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "dailyProcesses"
-            tableMapping.ColumnMappings.Add("Processes_ID", "Processes_ID")
             tableMapping.ColumnMappings.Add("Processes_Reservation_Code", "Processes_Reservation_Code")
             tableMapping.ColumnMappings.Add("PINC_ID", "PINC_ID")
             tableMapping.ColumnMappings.Add("Processes_Date", "Processes_Date")
@@ -12173,6 +12180,7 @@ Namespace DataSet1TableAdapters
             tableMapping.ColumnMappings.Add("PATIENT_NAME", "PATIENT_NAME")
             tableMapping.ColumnMappings.Add("Processes_State", "Processes_State")
             tableMapping.ColumnMappings.Add("C_NAME", "C_NAME")
+            tableMapping.ColumnMappings.Add("pros_code", "pros_code")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -12189,20 +12197,20 @@ Namespace DataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Processes_ID, Processes_Reservation_Code, SUBSTRING([Processes_Reservation"& _ 
-                "_Code],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date"& _ 
-                ", Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLIN"& _ 
-                "IC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubS"& _ 
-                "ervice_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_"& _ 
-                "CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Pric"& _ 
-                "e, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM "& _ 
-                "Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses"& _ 
-                ".doctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIA"& _ 
-                "NT WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservat"& _ 
-                "ion_Code,9 , 6)), '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت "& _ 
-                "التسوية' else 'لم تتم التسوية' end) AS Processes_State, (SELECT C_Name_Arb FROM "& _ 
-                "INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING([Processes_Reservation_"& _ 
-                "Code],7 , 2)) AS C_NAME FROM INC_CompanyProcesses"
+            Me._commandCollection(0).CommandText = "SELECT pros_code, Processes_Reservation_Code, SUBSTRING([Processes_Reservation_Co"& _ 
+                "de],9 , 6) AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, P"& _ 
+                "rocesses_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_"& _ 
+                "ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubServ"& _ 
+                "ice_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_Com"& _ 
+                "panyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, "& _ 
+                "Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Mai"& _ 
+                "n_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.do"& _ 
+                "ctor_id), '') AS MedicalStaff_AR_Name, ISNULL((SELECT NAME_ARB FROM INC_PATIANT "& _ 
+                "WHERE INC_PATIANT.PINC_ID = SUBSTRING(INC_CompanyProcesses.Processes_Reservation"& _ 
+                "_Code,9 , 6)), '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت الت"& _ 
+                "سوية' else 'لم تتم التسوية' end) AS Processes_State, (SELECT C_Name_Arb FROM INC"& _ 
+                "_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = SUBSTRING([Processes_Reservation_Cod"& _ 
+                "e],7 , 2)) AS C_NAME FROM INC_CompanyProcesses"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

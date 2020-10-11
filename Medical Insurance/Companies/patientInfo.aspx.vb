@@ -87,7 +87,7 @@ Public Class patientInfo
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, 0) AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID FROM INC_PATIANT
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, '0') AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID FROM INC_PATIANT
 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID
 LEFT JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND INC_COMPANY_DETIAL.DATE_START <= GETDATE() AND INC_COMPANY_DETIAL.DATE_END >= GETDATE()
 LEFT JOIN Main_Nationality ON MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID
@@ -235,7 +235,7 @@ WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
     Private Sub getConstList()
 
         Try
-            If ViewState("bage_no") <> "" And ViewState("bage_no") = 0 And ViewState("bage_no") <> "0" Then
+            If ViewState("bage_no") <> "" And ViewState("bage_no") <> "0" And ViewState("bage_no") <> "***" Then
                 Dim sel_com As New SqlCommand("SELECT PINC_ID, NAME_ARB, C_ID, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_NAME FROM INC_PATIANT WHERE BAGE_NO = '" & ViewState("bage_no") & "' AND C_ID = " & Session("company_id") & " ORDER BY CONST_ID ASC", insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()

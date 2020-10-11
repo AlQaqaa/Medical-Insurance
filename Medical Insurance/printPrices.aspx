@@ -1,4 +1,4 @@
-﻿<%@ Page Title="طباعة ملف أسعار الخدمات" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="printPrices.aspx.vb" Inherits="Medical_Insurance.printPrices" %>
+﻿<%@ Page Title="طباعة ملف أسعار الخدمات" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="printPrices.aspx.vb" Inherits="Medical_Insurance.printPrices"  Culture="ar-LY" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

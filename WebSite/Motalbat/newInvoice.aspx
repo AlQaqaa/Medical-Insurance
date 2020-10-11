@@ -89,7 +89,8 @@
                 <div class="row mt-2">
                     <div class="col-sm-12">
                         <div class="card">
-                            <div class="card-header">إنشاء فاتورة جديدة</div>
+                            <div class="card-header">
+                                <asp:Label ID="Label2" runat="server" Text="إنشاء فاتورة جديدة"></asp:Label></div>
                             <div class="card-body">
                                 <asp:Panel ID="Panel1" runat="server">
                                     <div class="form-row">
@@ -153,11 +154,11 @@
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-2">
                                             <label for="txt_start_dt">الفترة من</label>
-                                            <asp:TextBox ID="TextBox1" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox1" runat="server" dir="rtl" CssClass="form-control" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-2">
                                             <label for="txt_start_dt">إلى</label>
-                                            <asp:TextBox ID="TextBox2" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox2" runat="server" dir="rtl" CssClass="form-control" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>
                                         </div>
                                     </div>
                                     <!-- /form-row -->
@@ -177,25 +178,24 @@
                                 <!-- /form-row -->
 
                                 <div class="form-row justify-content-end">
+                                    <div class="col-sm-12 col-md-3">
+                                        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                                    </div>
+                                    <div class="form-group col-xs-6 col-sm-3">
+                                        <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من حذف العمليات؟')" CssClass="btn btn-outline-danger btn-block" Text="حذف الحركات" Visible="False" />
+                                    </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" />
                                     </div>
-
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_create" runat="server" CssClass="" Text="إنشاء" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" ValidationGroup="create" />
-
                                     </div>
-
+                                    
                                 </div>
                                 <!-- /form-row -->
 
                                 <hr />
-                                <%--<div class="form-row">
-                                    <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:CheckBox ID="CheckBox1" runat="server" Text="الكل" AutoPostBack="True" Visible="false" />
-                                    </div>
-                                </div>--%>
-                                <!-- /form-row -->
+                                
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="panel-scroll scrollable">
@@ -235,12 +235,7 @@
                                     </div>
                                 </div>
                                 <!-- /row -->
-                                <div class="row mt-2">
-                                    <div class="col-sm-12 col-md-3">
-                                        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
-                                    </div>
-                                </div>
-                                <!-- /row -->
+                                
                             </div>
                             <!-- /card-body -->
                         </div>

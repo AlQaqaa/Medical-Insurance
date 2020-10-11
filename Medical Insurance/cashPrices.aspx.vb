@@ -34,7 +34,7 @@ Public Class cashPrices
         Try
             For Each dd As GridViewRow In GridView1.Rows
                 Dim ch As CheckBox = dd.FindControl("CheckBox2")
-                Dim txt_private_prc As TextBox = dd.FindControl("txt_private_price")
+                Dim txt_private_prc As TextBox = dd.FindControl("txt_service_price")
                 'Dim txt_invoice_prc As TextBox = dd.FindControl("txt_invoice_price")
                 'Dim txt_invoice_per As TextBox = dd.FindControl("txt_invoice_per")
 
@@ -169,7 +169,7 @@ Public Class cashPrices
             If ch.Checked = True Then
                 If txt_private_all.Text = "" And txt_per_add.Text <> "" Then
                     Dim add_val As Decimal = CDec(dd.Cells(6).Text) + (CDec(dd.Cells(6).Text) * CDec(txt_per_add.Text) / 100)
-                    txt_service_price.Text = CDec(add_val)
+                    txt_service_price.Text = Math.Ceiling(add_val / 5) * 5
                 End If
 
                 If txt_private_all.Text <> "" And txt_per_add.Text = "" Then
@@ -194,7 +194,7 @@ Public Class cashPrices
             GridView1.DataSource = Nothing
             GridView1.DataBind()
             Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3024 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS CASH_PRS, "
-            Dim SHOW_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3025 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS SHOW_PRS "
+            Dim SHOW_PRS As String = "ISNULL((SELECT top(1) INS_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = 3025 AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " order by n DESC),0) AS SHOW_PRS "
             'Dim CASH_PRS As String = "ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & profile_no & " order by n DESC), ISNULL((SELECT top(1) CASH_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS CASH_PRS,"
 
             'Dim INVO_PRS As String = "ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND PROFILE_PRICE_ID = " & profile_no & " order by n DESC), ISNULL((SELECT top(1) INVO_PRS FROM INC_SERVICES_PRICES WHERE INC_SERVICES_PRICES.SER_ID = Main_SubServices.SubService_ID AND DOCTOR_ID = " & dll_doctors.SelectedItem.Value & " AND PROFILE_PRICE_ID = (SELECT profile_Id FROM INC_PRICES_PROFILES WHERE is_default = 1) order by n DESC),0)) AS INVO_PRS "

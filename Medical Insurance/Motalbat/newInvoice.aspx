@@ -90,7 +90,8 @@
                     <div class="col-sm-12">
                         <div class="card">
                             <div class="card-header">
-                                <asp:Label ID="Label2" runat="server" Text="إنشاء فاتورة جديدة"></asp:Label></div>
+                                <asp:Label ID="Label2" runat="server" Text="إنشاء فاتورة جديدة"></asp:Label>
+                            </div>
                             <div class="card-body">
                                 <asp:Panel ID="Panel1" runat="server">
                                     <div class="form-row">
@@ -190,12 +191,12 @@
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_create" runat="server" CssClass="" Text="إنشاء" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" ValidationGroup="create" />
                                     </div>
-                                    
+
                                 </div>
                                 <!-- /form-row -->
 
                                 <hr />
-                                
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="panel-scroll scrollable">
@@ -235,7 +236,7 @@
                                     </div>
                                 </div>
                                 <!-- /row -->
-                                
+
                             </div>
                             <!-- /card-body -->
                         </div>
@@ -255,6 +256,11 @@
                 document.getElementById('ContentPlaceHolder1_btn_search').focus();
                 document.getElementById('ContentPlaceHolder1_btn_search').click();
             }
+        }
+
+        function playSound(url) {
+            const audio = new Audio(url);
+            audio.play();
         }
     </script>
 </asp:Content>

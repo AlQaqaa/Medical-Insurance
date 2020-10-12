@@ -277,11 +277,13 @@ Public Class SERVICES_PRICES
     Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
         GridView1.DataSource = Nothing
         GridView1.DataBind()
+        Panel1.Visible = False
     End Sub
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
         GridView1.DataSource = Nothing
         GridView1.DataBind()
+        Panel1.Visible = False
     End Sub
 
     Private Sub GridView1_RowDataBound(sender As Object, e As GridViewRowEventArgs) Handles GridView1.RowDataBound
@@ -295,5 +297,37 @@ Public Class SERVICES_PRICES
                 e.Row.Cells(6).ForeColor = Drawing.Color.Red
             End If
         End If
+    End Sub
+
+    Private Sub btnOpenPopUp_Click(sender As Object, e As EventArgs) Handles btnOpenPopUp.Click
+        mpePopUp.Show()
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        mpePopUp.Hide()
+    End Sub
+
+    Private Sub btn_copy_Click(sender As Object, e As EventArgs) Handles btn_copy.Click
+        Try
+            Dim ins_com As New SqlCommand("INSERT INTO INC_SERVICES_PRICES (SER_ID, CASH_PRS,INS_PRS,INVO_PRS,USER_ID,PROFILE_PRICE_ID,COST_PRICE,DOCTOR_ID)
+            SELECT SER_ID,0,INS_PRS,0," & Session("INC_User_Id") & "," & Val(Session("profile_no")) & ",0,0
+            FROM INC_SERVICES_PRICES
+            WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue, insurance_SQLcon)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            ins_com.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حفظ البيانات بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });", True)
+
+        Catch ex As Exception
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+        End Try
     End Sub
 End Class

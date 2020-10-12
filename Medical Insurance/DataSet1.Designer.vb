@@ -5900,6 +5900,8 @@ Partial Public Class DataSet1
         
         Private columnC_Name_Arb As Global.System.Data.DataColumn
         
+        Private columnSubService_Code As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -6048,6 +6050,14 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_CodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_Code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -6084,9 +6094,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddpatientProcessesInvoiceRow(ByVal Processes_ID As Long, ByVal Processes_Date As Date, ByVal Processes_Residual As Double, ByVal Processes_Price As Double, ByVal Processes_Paid As Double, ByVal INVOICE_NO As Integer, ByVal CARD_NO As String, ByVal NAME_ARB As String, ByVal BAGE_NO As String, ByVal BIRTHDATE As String, ByVal Clinic_AR_Name As String, ByVal SubService_AR_Name As String, ByVal MedicalStaff_AR_Name As String, ByVal C_Name_Arb As String) As patientProcessesInvoiceRow
+        Public Overloads Function AddpatientProcessesInvoiceRow(ByVal Processes_ID As Long, ByVal Processes_Date As Date, ByVal Processes_Residual As Double, ByVal Processes_Price As Double, ByVal Processes_Paid As Double, ByVal INVOICE_NO As Integer, ByVal CARD_NO As String, ByVal NAME_ARB As String, ByVal BAGE_NO As String, ByVal BIRTHDATE As String, ByVal Clinic_AR_Name As String, ByVal SubService_AR_Name As String, ByVal MedicalStaff_AR_Name As String, ByVal C_Name_Arb As String, ByVal SubService_Code As String) As patientProcessesInvoiceRow
             Dim rowpatientProcessesInvoiceRow As patientProcessesInvoiceRow = CType(Me.NewRow,patientProcessesInvoiceRow)
-            Dim columnValuesArray() As Object = New Object() {Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO, CARD_NO, NAME_ARB, BAGE_NO, BIRTHDATE, Clinic_AR_Name, SubService_AR_Name, MedicalStaff_AR_Name, C_Name_Arb}
+            Dim columnValuesArray() As Object = New Object() {Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO, CARD_NO, NAME_ARB, BAGE_NO, BIRTHDATE, Clinic_AR_Name, SubService_AR_Name, MedicalStaff_AR_Name, C_Name_Arb, SubService_Code}
             rowpatientProcessesInvoiceRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowpatientProcessesInvoiceRow)
             Return rowpatientProcessesInvoiceRow
@@ -6129,6 +6139,7 @@ Partial Public Class DataSet1
             Me.columnSubService_AR_Name = MyBase.Columns("SubService_AR_Name")
             Me.columnMedicalStaff_AR_Name = MyBase.Columns("MedicalStaff_AR_Name")
             Me.columnC_Name_Arb = MyBase.Columns("C_Name_Arb")
+            Me.columnSubService_Code = MyBase.Columns("SubService_Code")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -6162,6 +6173,8 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnMedicalStaff_AR_Name)
             Me.columnC_Name_Arb = New Global.System.Data.DataColumn("C_Name_Arb", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnC_Name_Arb)
+            Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_Code)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnProcesses_ID}, true))
             Me.columnProcesses_ID.AllowDBNull = false
             Me.columnProcesses_ID.Unique = true
@@ -6179,6 +6192,7 @@ Partial Public Class DataSet1
             Me.columnMedicalStaff_AR_Name.ReadOnly = true
             Me.columnMedicalStaff_AR_Name.MaxLength = 50
             Me.columnC_Name_Arb.MaxLength = 50
+            Me.columnSubService_Code.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10181,6 +10195,22 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_Code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablepatientProcessesInvoice.SubService_CodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Code' in table 'patientProcessesInvoice' is DBNu"& _ 
+                            "ll.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablepatientProcessesInvoice.SubService_CodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsINVOICE_NONull() As Boolean
             Return Me.IsNull(Me.tablepatientProcessesInvoice.INVOICE_NOColumn)
         End Function
@@ -10285,6 +10315,18 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetC_Name_ArbNull()
             Me(Me.tablepatientProcessesInvoice.C_Name_ArbColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_CodeNull() As Boolean
+            Return Me.IsNull(Me.tablepatientProcessesInvoice.SubService_CodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_CodeNull()
+            Me(Me.tablepatientProcessesInvoice.SubService_CodeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -14391,6 +14433,7 @@ Namespace DataSet1TableAdapters
             tableMapping.ColumnMappings.Add("SubService_AR_Name", "SubService_AR_Name")
             tableMapping.ColumnMappings.Add("MedicalStaff_AR_Name", "MedicalStaff_AR_Name")
             tableMapping.ColumnMappings.Add("C_Name_Arb", "C_Name_Arb")
+            tableMapping.ColumnMappings.Add("SubService_Code", "SubService_Code")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -14410,15 +14453,15 @@ Namespace DataSet1TableAdapters
             Me._commandCollection(0).CommandText = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Process"& _ 
                 "es_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS"& _ 
                 " BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') "& _ 
-                "AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb FROM INC_IvoicesProcesses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
-                "INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER"& _ 
-                " JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cili"& _ 
-                "nc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesP"& _ 
-                "rocesses.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_"& _ 
-                "Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN Main_M"& _ 
-                "edicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processe"& _ 
-                "s_Doctor_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesP"& _ 
-                "rocesses.C_ID"
+                "AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_Iv"& _ 
+                "oicesProcesses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IvoicesProce"& _ 
+                "sses.P_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesse"& _ 
+                "s.Processes_Cilinc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN Main_SubServices ON Main_SubServices.SubService_I"& _ 
+                "D = INC_IvoicesProcesses.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN HAG_Processes_Doctor O"& _ 
+                "N HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes"& _ 
+                "_Doctor.Processes_Doctor_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_I"& _ 
+                "D = INC_IvoicesProcesses.C_ID"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

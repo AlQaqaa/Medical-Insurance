@@ -104,10 +104,40 @@
                     <!-- form-row -->
 
                     <div class="form-row justify-content-end">
+                        <div class="form-group col-sm-12 col-md-3">
+                            <asp:Button ID="btnOpenPopUp" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="نسخ الأسعار من ملف أسعار آخر" />
+                            <asp:Label ID="lblHidden" runat="server" Text=""></asp:Label>
+                            <ajaxToolkit:ModalPopupExtender ID="mpePopUp" runat="server" TargetControlID="lblHidden" PopupControlID="divPopUp"></ajaxToolkit:ModalPopupExtender>
 
-                        <div class="form-group col-xs-6 col-sm-2">
+                            <div id="divPopUp" class="modal-dialog shadow" style="width: 450px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">نسخ الأسعار من ملف أسعار آخر</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-row">
+                                            <div class="col-sm-12">
+                                                <label>يرجى اختيار ملف الأسعار الذي تود نسخ الأسعار منه</label>
+                                                <asp:DropDownList ID="DropDownList1" CssClass="form-control drop-down-list" runat="server" DataSourceID="SqlDataSource3" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
+                                                <asp:SqlDataSource runat="server" ID="SqlDataSource3" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE ([profile_Id] <> @profile_Id)">
+                                                    <SelectParameters>
+                                                        <asp:SessionParameter SessionField="profile_no" Name="profile_Id" Type="Int32"></asp:SessionParameter>
+                                                    </SelectParameters>
+                                                </asp:SqlDataSource>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <asp:Button ID="btnCancel" runat="server" class="btn btn-outline-secondary" Text="إغلاق" />
+                                        <asp:Button ID="btn_copy" runat="server" class="btn btn-outline-success" Text="نسخ" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12 col-md-2">
                             <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" ValidationGroup="save_data" />
                         </div>
+                        
                     </div>
 
                     <asp:Panel ID="Panel1" runat="server" Visible="false">

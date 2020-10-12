@@ -108,9 +108,7 @@ Public Class index
                 Session("systemlogin") = "401"
                 Response.Redirect("default.aspx", False)
                 'End If
-
             End If
-
         End If
 
     End Sub

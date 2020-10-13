@@ -178,7 +178,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
             motalba_type = "قائمة فواتير الخدمات الطبية"
         ElseIf ddl_invoice_type.SelectedValue = 2 Then
             motalba_type = "قائمة فواتير العمليات والإيواء"
-        ElseIf ddl_invoice_type.SelectedValue = 0 Then
+        Else
             motalba_type = "قائمة فواتير الخدمات الطبية والعمليات والإيواء"
         End If
 

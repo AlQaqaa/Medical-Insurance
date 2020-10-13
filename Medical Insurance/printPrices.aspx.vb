@@ -66,6 +66,10 @@ Public Class printPrices
             query_str = query_str & " and SubGroup_ID = " & ddl_sub_gourp.SelectedValue
         End If
 
+        If ddl_clinics.SelectedValue <> 0 Then
+            query_str = query_str & " and SubService_Clinic = " & ddl_clinics.SelectedValue
+        End If
+
         If Val(ddl_services.SelectedValue) <> 0 Then
             query_str = query_str & " and SubService_Service_ID = " & ddl_services.SelectedValue
         End If

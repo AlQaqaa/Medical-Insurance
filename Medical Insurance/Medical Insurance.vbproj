@@ -161,6 +161,7 @@
     <Content Include="Companies\patientList.aspx" />
     <Content Include="createProfilePrices.aspx" />
     <Content Include="dorctorsForms.aspx" />
+    <Content Include="Images\002.jpg" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="approvalConfirm\listApproval.aspx" />
     <Content Include="approvalConfirm\listApprovedPendingRequests.aspx" />

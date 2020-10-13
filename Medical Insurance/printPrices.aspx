@@ -38,7 +38,7 @@
                         <div class="form-group col-sm-12 col-md-3">
                             <label for="ddl_clincs">العيادة</label>
                             <asp:DropDownList ID="ddl_clinics" runat="server" AutoPostBack="True" CssClass="chosen-select drop-down-list form-control" DataSourceID="SqlDataSource1" DataTextField="Clinic_AR_Name" DataValueField="clinic_id"></asp:DropDownList>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT -1 AS [clinic_id], N'يرجى اختيار عيادة' AS [Clinic_AR_Name] FROM [Main_Clinic] UNION SELECT [clinic_id], [Clinic_AR_Name] FROM [Main_Clinic] where Clinic_State = 0"></asp:SqlDataSource>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [clinic_id], [Clinic_AR_Name] FROM [Main_Clinic] where Clinic_State = 0 order by clinic_id "></asp:SqlDataSource>
                         </div>
                         <div class="form-group col-sm-12 col-md-3">
                             <label for="ddl_services">القسم</label>

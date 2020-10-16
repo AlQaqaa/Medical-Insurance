@@ -28,7 +28,9 @@ Public Class invoiceContent
             If ViewState("invoice_no") <> 0 Then
 
                 txt_invoice_no.Text = ViewState("invoice_no")
-                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, INC_INVOICES.C_ID, TBL1.C_Name_Arb AS COMPANY_NAME, ISNULL(TBL2.C_Name_Arb, '') AS MAIN_COMPANY,CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES
+                    LEFT JOIN INC_COMPANY_DATA AS TBL1 ON TBL1.C_ID = INC_INVOICES.C_ID
+                    LEFT JOIN INC_COMPANY_DATA AS TBL2 ON TBL2.C_ID = TBL1.C_Level WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -40,6 +42,7 @@ Public Class invoiceContent
                     Dim dr_inv = dt_result.Rows(0)
                     txt_company_name.Text = dr_inv!COMPANY_NAME
                     ViewState("company_no") = dr_inv!C_ID
+                    ViewState("main_company") = dr_inv!MAIN_COMPANY
                     txt_start_dt.Text = dr_inv!DATE_FROM
                     txt_end_dt.Text = dr_inv!DATE_TO
 
@@ -194,7 +197,7 @@ Public Class invoiceContent
         Dim rp1 As ReportParameter
         Dim rp2 As ReportParameter
         Dim rp3 As ReportParameter
-        'Dim rp4 As ReportParameter
+        Dim rp4 As ReportParameter
         'Dim rp5 As ReportParameter
         'Dim rp6 As ReportParameter
         'Dim rp7 As ReportParameter
@@ -206,8 +209,9 @@ Public Class invoiceContent
         rp1 = New ReportParameter("from_dt", txt_start_dt.Text.ToString)
         rp2 = New ReportParameter("to_dt", txt_end_dt.Text.ToString)
         rp3 = New ReportParameter("INVOICE_NO", ViewState("invoice_no").ToString)
+        rp4 = New ReportParameter("main_company", ViewState("main_company").ToString)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/invoiceContent.rdlc"

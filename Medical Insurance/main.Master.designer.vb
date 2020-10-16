@@ -248,6 +248,15 @@ Partial Public Class main
     Protected WithEvents hl_approved_archive As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_doctors_forms control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_doctors_forms As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_Statistics control.
     '''</summary>
     '''<remarks>
@@ -255,15 +264,6 @@ Partial Public Class main
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents hl_Statistics As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''hl_reports control.

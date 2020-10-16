@@ -117,13 +117,13 @@
                                         <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
                                 </ul>
                             </li>
-                            <%--<li class="nav-item">
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i>&nbsp;تسوية الأطباء
-                                    <asp:Label ID="Label2" runat="server" Text=""></asp:Label></asp:HyperLink>
-                            </li>--%>
+                                    </asp:HyperLink>
+                            </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i>&nbsp;الاستفسارات والإحصائيات
-                                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
+                                    </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_reports" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#reports" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-file-invoice"></i> التقارير</asp:HyperLink>

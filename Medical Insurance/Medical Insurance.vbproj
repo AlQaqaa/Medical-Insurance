@@ -204,6 +204,7 @@
     <Content Include="Style\images\avatar.jpg" />
     <Content Include="Style\images\home.png" />
     <Content Include="Style\images\loading.gif" />
+    <Content Include="Style\images\searchicon.png" />
     <Content Include="Style\JS\pdfobject.min.js" />
     <Content Include="Style\plugins\alertify\alertify.rtl.css" />
     <Content Include="Style\CSS\all.min.css" />
@@ -404,6 +405,7 @@
       <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Ds_dataset.Designer.vb" />
     <Compile Include="index.aspx.designer.vb">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
@@ -640,6 +642,9 @@
     <Content Include="DataSet2.xss">
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </Content>
+    <Content Include="Ds_dataset.xsc" />
+    <None Include="Ds_dataset.xsd" />
+    <Content Include="Ds_dataset.xss" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

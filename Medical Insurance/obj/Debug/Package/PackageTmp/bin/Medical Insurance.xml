@@ -4163,72 +4163,27 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.dorctorsForms._Label1">
+<member name="F:Medical_Insurance.dorctorsForms._DDMain_MedicalStaff">
 <summary>
-Label1 control.
+DDMain_MedicalStaff control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.dorctorsForms._ddl_clinics">
+<member name="F:Medical_Insurance.dorctorsForms._TextBox1">
 <summary>
-ddl_clinics control.
+TextBox1 control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.dorctorsForms._SqlDataSource1">
+<member name="F:Medical_Insurance.dorctorsForms._ImageButton1">
 <summary>
-SqlDataSource1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.dorctorsForms._Label3">
-<summary>
-Label3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.dorctorsForms._dll_doctors">
-<summary>
-dll_doctors control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.dorctorsForms._SqlDataSource3">
-<summary>
-SqlDataSource3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.dorctorsForms._UpdatePanel1">
-<summary>
-UpdatePanel1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.dorctorsForms._CheckBox1">
-<summary>
-CheckBox1 control.
+ImageButton1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4244,9 +4199,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.dorctorsForms._btn_confirm">
+<member name="F:Medical_Insurance.dorctorsForms._GridView2">
 <summary>
-btn_confirm control.
+GridView2 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.dorctorsForms._Button1">
+<summary>
+Button1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4288,6 +4252,111 @@ GridView2 control.
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset">
+<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaycashDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaycash1DataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaytamenDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaycashRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaycash1Row">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaytamenRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaycashRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaycash1RowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_dataset.acc_rep_userpaytamenRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_datasetTableAdapters.acc_rep_userpaycashTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_datasetTableAdapters.acc_rep_userpaycash1TableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_datasetTableAdapters.acc_rep_userpaytamenTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager">
+<summary>
+TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
+</summary>
+</member>
+<member name="M:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.UpdateUpdatedRows(Medical_Insurance.Ds_dataset,System.Collections.Generic.List{System.Data.DataRow},System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Update rows in top-down order.
+</summary>
+</member>
+<member name="M:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.UpdateInsertedRows(Medical_Insurance.Ds_dataset,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Insert rows in top-down order.
+</summary>
+</member>
+<member name="M:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.UpdateDeletedRows(Medical_Insurance.Ds_dataset,System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Delete rows in bottom-up order.
+</summary>
+</member>
+<member name="M:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.GetRealUpdatedRows(System.Data.DataRow[],System.Collections.Generic.List{System.Data.DataRow})">
+<summary>
+Remove inserted rows that become updated rows after calling TableAdapter.Update(inserted rows) first
+</summary>
+</member>
+<member name="M:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.UpdateAll(Medical_Insurance.Ds_dataset)">
+<summary>
+Update all changes to the dataset.
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.UpdateOrderOption">
+<summary>
+Update Order Option
+</summary>
+</member>
+<member name="T:Medical_Insurance.Ds_datasetTableAdapters.TableAdapterManager.SelfReferenceComparer">
+<summary>
+Used to sort self-referenced table's rows
+</summary>
 </member>
 <member name="F:Medical_Insurance.index._form1">
 <summary>
@@ -7050,18 +7119,18 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.main._hl_Statistics">
+<member name="F:Medical_Insurance.main._hl_doctors_forms">
 <summary>
-hl_Statistics control.
+hl_doctors_forms control.
 </summary>
 <remarks>
 Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.main._Label1">
+<member name="F:Medical_Insurance.main._hl_Statistics">
 <summary>
-Label1 control.
+hl_Statistics control.
 </summary>
 <remarks>
 Auto-generated field.

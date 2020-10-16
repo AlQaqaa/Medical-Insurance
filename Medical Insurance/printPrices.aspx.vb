@@ -114,7 +114,7 @@ Public Class printPrices
 
                 Dim FolderLocation As String
                 FolderLocation = Server.MapPath("~/Reports")
-                Dim filepath As String = FolderLocation & "/servicesPricesKashf.pdf"
+                Dim filepath As String = FolderLocation & "/servicesPricesKashf" & Session("INC_User_Id") & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = filepath
 
                 CrExportOptions = CrReport.ExportOptions
@@ -133,7 +133,7 @@ Public Class printPrices
                 End With
 
                 CrReport.Export()
-                Response.Redirect("~/Reports/servicesPricesKashf.pdf", False)
+                Response.Redirect("~/Reports/servicesPricesKashf" & Session("INC_User_Id") & ".pdf", False)
 
             Else
                 Dim CrReport As New servicesPricesOprations()
@@ -144,7 +144,7 @@ Public Class printPrices
 
                 Dim FolderLocation As String
                 FolderLocation = Server.MapPath("~/Reports")
-                Dim filepath As String = FolderLocation & "/servicesPricesOprations.pdf"
+                Dim filepath As String = FolderLocation & "/servicesPricesOprations" & Session("INC_User_Id") & ".pdf"
                 CrDiskFileDestinationOptions.DiskFileName = filepath
 
                 CrExportOptions = CrReport.ExportOptions
@@ -163,7 +163,7 @@ Public Class printPrices
                 End With
 
                 CrReport.Export()
-                Response.Redirect("~/Reports/servicesPricesOprations.pdf", False)
+                Response.Redirect("~/Reports/servicesPricesOprations" & Session("INC_User_Id") & ".pdf", False)
             End If
 
         Catch ex As Exception

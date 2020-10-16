@@ -856,8 +856,8 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>ExecutionTime</rd:DefaultName>
-                <Top>4.49665cm</Top>
-                <Left>12.61236cm</Left>
+                <Top>5.76665cm</Top>
+                <Left>13.65388cm</Left>
                 <Height>0.70584cm</Height>
                 <Width>4.00439cm</Width>
                 <Style>
@@ -890,7 +890,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox3</rd:DefaultName>
-                <Top>6.22335cm</Top>
+                <Top>8.12835cm</Top>
                 <Left>15.02598cm</Left>
                 <Height>0.99688cm</Height>
                 <Width>2.63229cm</Width>
@@ -924,7 +924,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox10</rd:DefaultName>
-                <Top>6.22335cm</Top>
+                <Top>8.15481cm</Top>
                 <Left>4.90598cm</Left>
                 <Height>0.99688cm</Height>
                 <Width>10.01417cm</Width>
@@ -958,10 +958,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>9.08084cm</Top>
-                <Left>8.33947cm</Left>
+                <Top>11.0123cm</Top>
+                <Left>9.84921cm</Left>
                 <Height>0.94396cm</Height>
-                <Width>7.92507cm</Width>
+                <Width>7.20188cm</Width>
                 <ZIndex>3</ZIndex>
                 <Style>
                   <Border>
@@ -992,7 +992,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox13</rd:DefaultName>
-                <Top>7.51981cm</Top>
+                <Top>9.74231cm</Top>
                 <Left>15.02598cm</Left>
                 <Height>1.07625cm</Height>
                 <Width>3.75236cm</Width>
@@ -1026,10 +1026,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>value_text</rd:DefaultName>
-                <Top>10.20119cm</Top>
-                <Left>2.29597cm</Left>
+                <Top>12.13265cm</Top>
+                <Left>1.84618cm</Left>
                 <Height>0.94396cm</Height>
-                <Width>13.96857cm</Width>
+                <Width>15.20492cm</Width>
                 <ZIndex>5</ZIndex>
                 <Style>
                   <Border>
@@ -1060,10 +1060,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>11.44196cm</Top>
-                <Left>12.43634cm</Left>
+                <Top>13.37342cm</Top>
+                <Left>13.65388cm</Left>
                 <Height>0.94396cm</Height>
-                <Width>3.8282cm</Width>
+                <Width>3.39721cm</Width>
                 <ZIndex>6</ZIndex>
                 <Style>
                   <Border>
@@ -1094,10 +1094,10 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>motalba_type</rd:DefaultName>
-                <Top>11.44196cm</Top>
-                <Left>2.29597cm</Left>
+                <Top>13.37342cm</Top>
+                <Left>1.84618cm</Left>
                 <Height>0.94396cm</Height>
-                <Width>9.96398cm</Width>
+                <Width>11.66659cm</Width>
                 <ZIndex>7</ZIndex>
                 <Style>
                   <Border>
@@ -1128,7 +1128,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>13.80585cm</Top>
+                <Top>16.68981cm</Top>
                 <Left>6.10721cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>6.55179cm</Width>
@@ -1163,13 +1163,14 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox5</rd:DefaultName>
-                <Top>9.08084cm</Top>
-                <Left>2.29597cm</Left>
+                <Top>11.0123cm</Top>
+                <Left>4.90598cm</Left>
                 <Height>0.94396cm</Height>
-                <Width>5.97294cm</Width>
+                <Width>4.80212cm</Width>
                 <ZIndex>9</ZIndex>
                 <Style>
                   <Border>
+                    <Color>Silver</Color>
                     <Style>Solid</Style>
                     <Width>0.75pt</Width>
                   </Border>
@@ -1198,7 +1199,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>mang_name</rd:DefaultName>
-                <Top>20.04287cm</Top>
+                <Top>20.99537cm</Top>
                 <Left>0.64858cm</Left>
                 <Height>0.78521cm</Height>
                 <Width>6.22422cm</Width>
@@ -1232,7 +1233,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>21.00446cm</Top>
+                <Top>21.95696cm</Top>
                 <Left>0.7112cm</Left>
                 <Height>0.86459cm</Height>
                 <Width>6.1616cm</Width>
@@ -1266,7 +1267,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>22.39572cm</Top>
+                <Top>23.34822cm</Top>
                 <Left>0.7112cm</Left>
                 <Height>0.70584cm</Height>
                 <Width>6.1616cm</Width>
@@ -1320,7 +1321,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>22.14023cm</Top>
+                <Top>23.09273cm</Top>
                 <Left>13.21877cm</Left>
                 <Height>1.6848cm</Height>
                 <Width>5.71181cm</Width>
@@ -1352,11 +1353,45 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>20.89862cm</Top>
+                <Top>21.85112cm</Top>
                 <Left>15.65885cm</Left>
                 <Height>0.65293cm</Height>
                 <Width>3.27173cm</Width>
                 <ZIndex>14</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox29">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>وذلك حسب الكشف المرفق</Value>
+                        <Style>
+                          <FontSize>16pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox12</rd:DefaultName>
+                <Top>14.49377cm</Top>
+                <Left>11.69597cm</Left>
+                <Height>0.94396cm</Height>
+                <Width>5.35513cm</Width>
+                <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1380,10 +1415,6 @@
               <Border>
                 <Style>None</Style>
               </Border>
-              <BackgroundImage>
-                <Source>Embedded</Source>
-                <Value>ID0022</Value>
-              </BackgroundImage>
             </Style>
           </Rectangle>
           <Textbox Name="motalba_type1">

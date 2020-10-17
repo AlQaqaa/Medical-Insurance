@@ -1128,7 +1128,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>16.68981cm</Top>
+                <Top>17.85398cm</Top>
                 <Left>6.10721cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>6.55179cm</Width>
@@ -1387,11 +1387,149 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>14.49377cm</Top>
-                <Left>11.69597cm</Left>
+                <Top>15.60474cm</Top>
+                <Left>11.69596cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>5.35513cm</Width>
                 <ZIndex>15</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox30">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>لمشتركيكم خلال الفترة من</Value>
+                        <Style>
+                          <FontSize>16pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox12</rd:DefaultName>
+                <Top>14.49377cm</Top>
+                <Left>12.17222cm</Left>
+                <Height>0.94396cm</Height>
+                <Width>4.87888cm</Width>
+                <ZIndex>16</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="date_from">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!date_from.Value</Value>
+                        <Style>
+                          <FontSize>16pt</FontSize>
+                          <Format>yyyy/MM/dd</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>date_from</rd:DefaultName>
+                <Top>14.49377cm</Top>
+                <Left>8.65479cm</Left>
+                <Height>0.94396cm</Height>
+                <Width>3.51743cm</Width>
+                <ZIndex>17</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Textbox31">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>إلى</Value>
+                        <Style>
+                          <FontSize>16pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Textbox12</rd:DefaultName>
+                <Top>14.49377cm</Top>
+                <Left>7.73584cm</Left>
+                <Height>0.94396cm</Height>
+                <Width>0.88367cm</Width>
+                <ZIndex>18</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="date_to">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!date_to.Value</Value>
+                        <Style>
+                          <FontSize>16pt</FontSize>
+                          <Format>yyyy/MM/dd</Format>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Right</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>date_to</rd:DefaultName>
+                <Top>14.49377cm</Top>
+                <Left>4.43542cm</Left>
+                <Height>0.94396cm</Height>
+                <Width>3.22986cm</Width>
+                <ZIndex>19</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1497,6 +1635,16 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="date_from">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="date_to">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1527,6 +1675,16 @@
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>mang_name</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>date_from</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>date_to</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

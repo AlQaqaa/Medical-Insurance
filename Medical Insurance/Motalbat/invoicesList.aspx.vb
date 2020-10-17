@@ -30,6 +30,8 @@ Public Class invoicesList
             sql_str = sql_str & " AND INVOICE_TYPE = " & ddl_invoice_type.SelectedValue
         End If
 
+        sql_str = sql_str & " ORDER BY INVOICE_NO DESC"
+
         Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
         Dim dt_result As New DataTable
         dt_result.Rows.Clear()
@@ -153,13 +155,18 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Dim ch_counter As Integer = 0
         Dim total_val As Decimal = 0
 
+        Dim dateStart As New List(Of Date)()
+        Dim dateEnd As New List(Of Date)()
+
         For Each dd As GridViewRow In GridView1.Rows
             Dim ch As CheckBox = dd.FindControl("CheckBox2")
-            
+
             If ch.Checked = True Then
                 main_ds.Tables("invoicesList").Rows.Add(dd.Cells(0).Text, dd.Cells(4).Text, dd.Cells(6).Text, dd.Cells(7).Text, CDec(dd.Cells(8).Text))
                 ch_counter = ch_counter + 1
                 total_val = total_val + CDec(dd.Cells(8).Text)
+                dateStart.Add(dd.Cells(6).Text)
+                dateEnd.Add(dd.Cells(7).Text)
             End If
         Next
 
@@ -196,13 +203,17 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Dim rp2 As ReportParameter
         Dim rp3 As ReportParameter
         Dim rp4 As ReportParameter
+        Dim rp5 As ReportParameter
+        Dim rp6 As ReportParameter
 
         rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
         rp2 = New ReportParameter("value_text", value_word)
         rp3 = New ReportParameter("motalba_type", motalba_type.ToString)
         rp4 = New ReportParameter("mang_name", txt_mang_name.Text)
+        rp5 = New ReportParameter("date_from", dateStart.Min)
+        rp6 = New ReportParameter("date_to", dateEnd.Max)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/invoicesList.rdlc"

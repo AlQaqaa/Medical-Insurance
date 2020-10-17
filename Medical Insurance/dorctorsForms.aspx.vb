@@ -687,46 +687,46 @@ inner join HAG_Processes on Processes_ID =Req_PID"
 
 
 
-    Function GetData4(prm1 As Integer, prn_id As Integer) As Ds_dataset
+    'Function GetData4(prm1 As Integer, prn_id As Integer) As Ds_dataset
 
 
-        If Session("acc_user_pay") Is Nothing Or Session("INC_User_Id") = 0 Then
-            Response.Redirect("~/index.aspx", False)
-        End If
+    '    If Session("acc_user_pay") Is Nothing Or Session("INC_User_Id") = 0 Then
+    '        Response.Redirect("~/index.aspx", False)
+    '    End If
 
-        Dim dt As New Ds_dataset()
+    '    Dim dt As New Ds_dataset()
 
-        Dim cmd As SqlCommand = New SqlCommand("acc_rep_dr", insurance_SQLcon)
+    '    Dim cmd As SqlCommand = New SqlCommand("acc_rep_dr", insurance_SQLcon)
 
-        cmd.CommandType = CommandType.StoredProcedure
-
-
-        cmd.Parameters.AddWithValue("@user", Session("INC_User_Id"))
-        cmd.Parameters.AddWithValue("@dr", DDMain_MedicalStaff.SelectedValue)
-        cmd.Parameters.AddWithValue("@prm1", prm1)
-        cmd.Parameters.AddWithValue("@prn", prn_id)
-
-        'cmd.Parameters.AddWithValue("@Date1", CDate(TxtDate_6.Text))
-        'cmd.Parameters.AddWithValue("@Date2", CDate(TxtDate_7.Text))
-
-        If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
+    '    cmd.CommandType = CommandType.StoredProcedure
 
 
+    '    cmd.Parameters.AddWithValue("@user", Session("INC_User_Id"))
+    '    cmd.Parameters.AddWithValue("@dr", DDMain_MedicalStaff.SelectedValue)
+    '    cmd.Parameters.AddWithValue("@prm1", prm1)
+    '    cmd.Parameters.AddWithValue("@prn", prn_id)
 
-        'Using con As New SqlConnection(conString)
-        Using sda As New SqlDataAdapter()
-            cmd.Connection = insurance_SQLcon
+    '    'cmd.Parameters.AddWithValue("@Date1", CDate(TxtDate_6.Text))
+    '    'cmd.Parameters.AddWithValue("@Date2", CDate(TxtDate_7.Text))
 
-            sda.SelectCommand = cmd
-            Using dsCustomers As New Ds_dataset()
-                sda.Fill(dsCustomers, "acc_rep_userpaycash1")
-                Return dsCustomers
-            End Using
-
-        End Using
-
-        insurance_SQLcon.Close()
+    '    If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
 
 
-    End Function
+
+    '    'Using con As New SqlConnection(conString)
+    '    Using sda As New SqlDataAdapter()
+    '        cmd.Connection = insurance_SQLcon
+
+    '        sda.SelectCommand = cmd
+    '        Using dsCustomers As New Ds_dataset()
+    '            sda.Fill(dsCustomers, "acc_rep_userpaycash1")
+    '            Return dsCustomers
+    '        End Using
+
+    '    End Using
+
+    '    insurance_SQLcon.Close()
+
+
+    'End Function
 End Class

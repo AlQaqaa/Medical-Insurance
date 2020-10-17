@@ -114,7 +114,7 @@ Public Class newInvoice
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
-                WHERE Processes_Residual <> 0 AND NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
+                WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
             If ddl_clinics.SelectedValue <> 0 Then
                 If ViewState("invoice_no") = 0 Then
@@ -174,6 +174,20 @@ Public Class newInvoice
                         txt_search.Focus()
                         Exit Sub
                 End Select
+
+                If dt_result.Rows(0)("Processes_Residual") = 0 Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'خطأ! سعر الشركة لهذه الخدمة صفر',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });playSound('../Style/error.mp3');", True)
+                    txt_search.Text = ""
+                    txt_search.Focus()
+                    Exit Sub
+                End If
+
 
                 'التحقق من أن الحركة تابعة للشركة المختارة
                 If ViewState("invoice_no") = 0 Then
@@ -283,61 +297,6 @@ Public Class newInvoice
             MsgBox(ex.Message)
         End Try
 
-        'Try
-        '    Dim sql_str As String = "SELECT pros_code, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
-        '        ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
-        '        LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-        '        LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
-        '        LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-        '        LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
-        '        WHERE Processes_State = 2 AND Processes_Residual <> 0 AND NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
-
-        '    If ddl_companies.SelectedValue <> "" Then
-        '        If ddl_companies.SelectedValue <> 0 Then
-        '            sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
-        '        End If
-        '    End If
-
-
-        '    If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-        '        sql_str = sql_str & " And CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) >= '" & txt_start_dt.Text & "' AND CONVERT(VARCHAR, INC_CompanyProcesses.Processes_Date, 103) <= '" & txt_end_dt.Text & "'"
-        '    End If
-
-        '    If ddl_invoice_type.SelectedValue = 1 Then
-        '        sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
-        '    ElseIf ddl_invoice_type.SelectedValue = 2 Then
-        '        sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
-        '    End If
-
-        '    If ddl_clinics.SelectedValue <> 0 Then
-        '        sql_str = sql_str & " AND Processes_Cilinc = " & ddl_clinics.SelectedValue
-        '    End If
-
-        '    Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
-        '    Dim dt_result As New DataTable
-        '    dt_result.Rows.Clear()
-        '    insurance_SQLcon.Close()
-        '    insurance_SQLcon.Open()
-        '    dt_result.Load(sel_com.ExecuteReader)
-        '    insurance_SQLcon.Close()
-
-        '    If dt_result.Rows.Count > 0 Then
-        '        GridView1.DataSource = dt_result
-        '        GridView1.DataBind()
-        '        CheckBox1.Visible = True
-        '        btn_create.Enabled = True
-
-        '    Else
-        '        dt_result.Rows.Clear()
-        '        GridView1.DataSource = dt_result
-        '        GridView1.DataBind()
-        '        CheckBox1.Visible = False
-        '        btn_create.Enabled = False
-        '    End If
-        'Catch ex As Exception
-        '    MsgBox(ex.Message)
-        'End Try
-
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
@@ -408,6 +367,12 @@ Public Class newInvoice
                     Response.Redirect("invoiceContent.aspx?invID=" & invoice_id, False)
                 End If
             Else
+                Dim del_temp As New SqlCommand("DELETE FROM INC_MOTALBA_TEMP WHERE [User_Id] = @user_id", insurance_SQLcon)
+                del_temp.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
+                If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
+                del_temp.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+
                 For Each dd As GridViewRow In GridView1.Rows
                     Dim ch As CheckBox = dd.FindControl("CheckBox2")
 

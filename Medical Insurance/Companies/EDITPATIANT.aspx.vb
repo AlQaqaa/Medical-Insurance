@@ -72,7 +72,7 @@ Public Class WebForm1
             ins_PAT.Parameters.AddWithValue("@NAME_ENG", txt_NAME_ENG.Text)
             ins_PAT.Parameters.AddWithValue("@BIRTHDATE", DateTime.Parse(txt_BIRTHDATE.Text))
             ins_PAT.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
-            ins_PAT.Parameters.AddWithValue("@C_ID", Val(Session("company_id")))
+            ins_PAT.Parameters.AddWithValue("@C_ID", ddl_company.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@NAL_ID", ddl_NAL_ID.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@PHONE_NO", txt_PHONE_NO.Text)

@@ -405,7 +405,6 @@
       <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
-    <Compile Include="Ds_dataset.Designer.vb" />
     <Compile Include="index.aspx.designer.vb">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
@@ -642,9 +641,6 @@
     <Content Include="DataSet2.xss">
       <DependentUpon>DataSet2.xsd</DependentUpon>
     </Content>
-    <Content Include="Ds_dataset.xsc" />
-    <None Include="Ds_dataset.xsd" />
-    <Content Include="Ds_dataset.xss" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

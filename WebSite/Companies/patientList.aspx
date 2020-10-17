@@ -160,7 +160,7 @@
                             <select
                         id="dplbankslist"
                         name="bankslist"
-                        class="form-control drop-down-list "
+                        class="form-control drop-down-list chosen-select"
                         required="required">
                     </select>
                         </div>

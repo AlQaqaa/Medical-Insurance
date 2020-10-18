@@ -167,6 +167,7 @@
     <Content Include="approvalConfirm\listApprovedPendingRequests.aspx" />
     <Content Include="index.aspx" />
     <Content Include="Motalbat\Default.aspx" />
+    <Content Include="Motalbat\sentInvoices.aspx" />
     <Content Include="Style\error.mp3" />
     <Content Include="Motalbat\invoiceContent.aspx" />
     <Content Include="Motalbat\invoicesList.aspx" />
@@ -464,6 +465,13 @@
     </Compile>
     <Compile Include="approvalConfirm\newApproval.aspx.vb">
       <DependentUpon>newApproval.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Motalbat\sentInvoices.aspx.designer.vb">
+      <DependentUpon>sentInvoices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Motalbat\sentInvoices.aspx.vb">
+      <DependentUpon>sentInvoices.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="notificationCenter.aspx.designer.vb">

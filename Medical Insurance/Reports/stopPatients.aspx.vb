@@ -25,12 +25,17 @@ Public Class stopPatients
             Dim sql_str As String = "SELECT PINC_ID, CARD_NO, NAME_ARB, NAME_ENG, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, BAGE_NO, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID) AS C_Name_Arb, PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID FROM INC_PATIANT WHERE 1=1"
 
             Select Case DropDownList1.SelectedValue
-                Case 0
-                    sql_str = sql_str & " AND P_STATE = 1 OR EXP_DATE < '" & Date.Now.Date & "'"
                 Case 1
                     sql_str = sql_str & " AND P_STATE = 1"
+                    ViewState("report_title") = "تقرير عن المنتفعين الموقوفين"
                 Case 2
                     sql_str = sql_str & " AND EXP_DATE < '" & Date.Now.Date & "'"
+                    ViewState("report_title") = "تقرير عن المنتفعين الموقوفين"
+                Case 3
+                    sql_str = sql_str & " AND P_STATE = 0"
+                    ViewState("report_title") = "تقرير عن المنتفعين المفعلين"
+                Case Else
+                    ViewState("report_title") = "تقرير عن جميع المنتفعين"
             End Select
 
             If DropDownList2.SelectedValue <> 0 Then
@@ -49,16 +54,16 @@ Public Class stopPatients
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/stopPatientsReport.rdlc")
             ReportViewer1.LocalReport.DataSources.Add(datasource)
 
-            'Dim rp1 As ReportParameter
+            Dim rp1 As ReportParameter
             'Dim rp2 As ReportParameter
             Dim rp3 As ReportParameter
 
-            'rp1 = New ReportParameter("from_dt", start_dt)
+            rp1 = New ReportParameter("report_title", ViewState("report_title").ToString)
             'rp2 = New ReportParameter("to_dt", end_dt)
             rp3 = New ReportParameter("user_name", Session("INC_User_name").ToString)
 
 
-            ReportViewer1.LocalReport.SetParameters(New ReportParameter() {rp3})
+            ReportViewer1.LocalReport.SetParameters(New ReportParameter() {rp1, rp3})
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

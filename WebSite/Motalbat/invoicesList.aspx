@@ -36,12 +36,17 @@
                                         <asp:TextBox ID="txt_mang_name" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_mang_name" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                                     </div>
-                                    <div class="form-group col-xs-6 col-sm-3">
-                                        <label for="ddl_companies"></label>
-                                        <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" ValidationGroup="save" Visible="False" />
-                                    </div>
+                                    
                                 </div>
                                 <!-- /form-row -->
+                                <div class="form-row">
+                                    <div class="form-group col-xs-6 col-sm-3">
+                                        <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" ValidationGroup="save" Visible="False" />
+                                    </div>
+                                    <div class="form-group col-xs-6 col-sm-3">
+                                        <asp:Button ID="btn_send" runat="server" CssClass="btn btn-outline-danger btn-block" Text="تمت إرسالها للشركة" Visible="False" OnClientClick="return confirm('هل أنت متأكد إجراء هذه الخطوة؟')"/>
+                                    </div>
+                                </div><!-- /form-row -->
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-xs-12 col-sm-6">
                                         <asp:Label ID="lbl_msg" runat="server" Text=""></asp:Label>

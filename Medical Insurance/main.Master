@@ -100,6 +100,8 @@
                                         <asp:HyperLink ID="HyperLink4" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Motalbat/newInvoice.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;فاتورة جديدة</asp:HyperLink></li>
                                     <li>
                                         <asp:HyperLink ID="hl_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/invoicesList.aspx"><i class="fas fa-receipt"></i> المطالبات</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="hl_sent_invoices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/sentInvoices.aspx"><i class="fas fa-receipt"></i> فواتير مرسلة</asp:HyperLink></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
@@ -135,7 +137,7 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink5" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/companyData.aspx"><i class="fas fa-file"></i>&nbsp;بيانات الشركات</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink6" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/stopPatients.aspx"><i class="fas fa-file"></i>&nbsp;المنتفعين الموقوفين</asp:HyperLink></li>
+                                        <asp:HyperLink ID="HyperLink6" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/stopPatients.aspx"><i class="fas fa-file"></i>&nbsp;تقرير المنتفعين</asp:HyperLink></li>
                                     <li>
                                         <asp:HyperLink ID="HyperLink11" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/patientsExpenses.aspx"><i class="fas fa-file"></i>&nbsp;أرصدة ومصروفات المنتفعين</asp:HyperLink></li>
                                 </ul>

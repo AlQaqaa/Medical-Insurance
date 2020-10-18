@@ -1279,6 +1279,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._hl_sent_invoices">
+<summary>
+hl_sent_invoices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._hr_confirm">
 <summary>
 hr_confirm control.
@@ -1390,6 +1399,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companies._HyperLink13">
 <summary>
 HyperLink13 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink17">
+<summary>
+HyperLink17 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4728,6 +4746,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.invoicesList._btn_send">
+<summary>
+btn_send control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.invoicesList._lbl_msg">
 <summary>
 lbl_msg control.
@@ -4935,6 +4962,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.motalbat._hl_sent_invoices">
+<summary>
+hl_sent_invoices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.motalbat._hr_confirm">
 <summary>
 hr_confirm control.
@@ -5046,6 +5082,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.motalbat._HyperLink6">
 <summary>
 HyperLink6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._HyperLink11">
+<summary>
+HyperLink11 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -5793,6 +5838,87 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.newApproval._btn_print">
 <summary>
 btn_print control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._ddl_companies">
+<summary>
+ddl_companies control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._SqlDataSource1">
+<summary>
+SqlDataSource1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._ddl_invoice_type">
+<summary>
+ddl_invoice_type control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._btn_send">
+<summary>
+btn_send control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._lbl_msg">
+<summary>
+lbl_msg control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._Label1">
+<summary>
+Label1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.sentInvoices._GridView1">
+<summary>
+GridView1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -6954,6 +7080,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._hl_motalbat">
 <summary>
 hl_motalbat control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._hl_sent_invoices">
+<summary>
+hl_sent_invoices control.
 </summary>
 <remarks>
 Auto-generated field.

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="تقرير عن المنتفعين الموقوفين" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="stopPatients.aspx.vb" Inherits="Medical_Insurance.stopPatients" %>
+﻿<%@ Page Title="تقرير عن المنتفعين" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="stopPatients.aspx.vb" Inherits="Medical_Insurance.stopPatients" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 
@@ -11,24 +11,25 @@
 
     <div class="card mt-1">
         <div class="card-header">
-            تقرير عن المنتفعين الموقوفين
+            تقرير عن المنتفعين 
         </div>
         <div class="card-body">
             <div class="form-row">
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>البحث عن</label>
-                        <asp:DropDownList ID="DropDownList1" CssClass="form-control drop-down-list" runat="server" AutoPostBack="True">
+                        <asp:DropDownList ID="DropDownList1" CssClass="form-control drop-down-list" runat="server">
                         <asp:ListItem Value="0">الكل</asp:ListItem>
                         <asp:ListItem Value="1">الموقوفين</asp:ListItem>
                         <asp:ListItem Value="2">إنتهاء صلاحية البطاقة</asp:ListItem>
+                        <asp:ListItem Value="3">المفعلين</asp:ListItem>
                     </asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="form-group">
                         <label>الشركة</label>
-                        <asp:DropDownList ID="DropDownList2" CssClass="form-control drop-down-list" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID">
+                        <asp:DropDownList ID="DropDownList2" CssClass="form-control drop-down-list chosen-select" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID">
                         </asp:DropDownList>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [C_ID], 'جميع الشركات' AS [C_Name_Arb] FROM [INC_COMPANY_DATA] UNION SELECT [C_ID], [C_Name_Arb] FROM [INC_COMPANY_DATA] WHERE C_STATE = 0"></asp:SqlDataSource>
                     </div>

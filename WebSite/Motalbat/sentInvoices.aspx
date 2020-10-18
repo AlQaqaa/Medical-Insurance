@@ -1,9 +1,4 @@
-﻿<%@ Page Title="قائمة الفواتير" Language="vb" AutoEventWireup="false" MasterPageFile="~/Motalbat/motalbat.Master" CodeBehind="invoicesList.aspx.vb" Inherits="Medical_Insurance.invoicesList" Culture="ar-LY" %>
-
-<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
+﻿<%@ Page Title="قائمة فواتير تم إرسالها للشركات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Motalbat/motalbat.Master" CodeBehind="sentInvoices.aspx.vb" Inherits="Medical_Insurance.sentInvoices" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,7 +9,7 @@
                 <div class="row mt-2">
                     <div class="col-sm-12">
                         <div class="card">
-                            <div class="card-header">قائمة الفواتير</div>
+                            <div class="card-header">قائمة فواتير تم إرسالها للشركات</div>
                             <div class="card-body">
                                 <div class="form-row">
                                     <div class="form-group col-xs-12 col-sm-4">
@@ -31,22 +26,13 @@
                                             <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-3">
-                                        <label for="txt_mang_name">رئيس مجلس الإدارة</label>
-                                        <asp:TextBox ID="txt_mang_name" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_mang_name" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                                    <div class="form-group col-xs-6 col-sm-3">
+                                        <label for="ddl_companies"></label>
+                                        <asp:Button ID="btn_send" runat="server" CssClass="btn btn-outline-danger btn-block mt-2" Text="الإرجاع لقائمة الفواتير" Visible="False" OnClientClick="return confirm('هل أنت متأكد إجراء هذه الخطوة؟')"/>
                                     </div>
-                                    
                                 </div>
                                 <!-- /form-row -->
-                                <div class="form-row">
-                                    <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" ValidationGroup="save" Visible="False" />
-                                    </div>
-                                    <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_send" runat="server" CssClass="btn btn-outline-danger btn-block" Text="تمت إرسالها للشركة" Visible="False" OnClientClick="return confirm('هل أنت متأكد إجراء هذه الخطوة؟')"/>
-                                    </div>
-                                </div><!-- /form-row -->
+
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-xs-12 col-sm-6">
                                         <asp:Label ID="lbl_msg" runat="server" Text=""></asp:Label>
@@ -83,17 +69,6 @@
                                                 <asp:BoundField DataField="DATE_FROM" HeaderText="الفترة من"></asp:BoundField>
                                                 <asp:BoundField DataField="DATE_TO" HeaderText="إلى"></asp:BoundField>
                                                 <asp:BoundField DataField="total_val" HeaderText="إجمالي قيمة الفاتورة" DataFormatString="{0:C3}"></asp:BoundField>
-                                                <asp:TemplateField>
-                                                    <ItemTemplate>
-                                                        <asp:Button ID="btn_add" runat="server"
-                                                            CommandName="addProcess"
-                                                            CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
-                                                            Text="إضافة خدمات"
-                                                            ToolTip="إرفاق خدمات للفاتورة"
-                                                            ControlStyle-CssClass="btn btn-success btn-small" />
-
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>
                                                         <asp:Button ID="btn_print1" runat="server"

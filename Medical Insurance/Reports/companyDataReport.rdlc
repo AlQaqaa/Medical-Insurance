@@ -11,7 +11,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="companyDataDS">
+    <DataSet Name="DataSet1">
       <Query>
         <DataSourceName>DataSet1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
@@ -37,10 +37,18 @@
           <DataField>MAX_VAL</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
+        <Field Name="MAX_PERSON">
+          <DataField>MAX_PERSON</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="MAX_CARD">
+          <DataField>MAX_CARD</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>E:\Medical Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>E:\Medical-Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>INC_COMPANY_DATA</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -56,25 +64,103 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.90607cm</Width>
+                  <Width>3.01985cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.89688cm</Width>
+                  <Width>2.94979cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.01562cm</Width>
+                  <Width>3.5145cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.66091cm</Width>
+                  <Width>3.00271cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.77542cm</Width>
+                  <Width>3.04208cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>5.93139cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>6.36292cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>1.34083cm</Height>
+                  <Height>0.7852cm</Height>
                   <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>سقف الفرد</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>سقف العائلة</Value>
+                                  <Style>
+                                    <FontSize>12pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox9">
@@ -86,7 +172,6 @@
                                 <TextRun>
                                   <Value>السقف العام</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -123,7 +208,6 @@
                                 <TextRun>
                                   <Value>تاريخ نهاية التعاقد</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -160,7 +244,6 @@
                                 <TextRun>
                                   <Value>تاريخ بداية التعاقد</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -197,7 +280,6 @@
                                 <TextRun>
                                   <Value>الشركــــة الأم</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -234,7 +316,6 @@
                                 <TextRun>
                                   <Value>اســم الشركـــة</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
                                     <FontSize>12pt</FontSize>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -267,6 +348,74 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="MAX_PERSON">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!MAX_PERSON.Value</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>MAX_PERSON</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="MAX_CARD">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!MAX_CARD.Value</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>MAX_CARD</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="MAX_VAL">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -276,8 +425,7 @@
                                 <TextRun>
                                   <Value>=Fields!MAX_VAL.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
-                                    <FontSize>12pt</FontSize>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -311,8 +459,7 @@
                                 <TextRun>
                                   <Value>=Fields!DATE_END.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
-                                    <FontSize>12pt</FontSize>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -346,8 +493,7 @@
                                 <TextRun>
                                   <Value>=Fields!DATE_START.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
-                                    <FontSize>12pt</FontSize>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -381,8 +527,7 @@
                                 <TextRun>
                                   <Value>=Fields!MAIN_COMPANY.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
-                                    <FontSize>12pt</FontSize>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -416,8 +561,7 @@
                                 <TextRun>
                                   <Value>=Fields!C_NAME_ARB.Value</Value>
                                   <Style>
-                                    <FontFamily>Tajawal</FontFamily>
-                                    <FontSize>12pt</FontSize>
+                                    <FontSize>11pt</FontSize>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -451,6 +595,8 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -463,11 +609,11 @@
                 </TablixMember>
               </TablixMembers>
             </TablixRowHierarchy>
-            <DataSetName>companyDataDS</DataSetName>
+            <DataSetName>DataSet1</DataSetName>
             <Top>0.36724cm</Top>
             <Left>0.33412cm</Left>
-            <Height>2.07312cm</Height>
-            <Width>19.2549cm</Width>
+            <Height>1.5175cm</Height>
+            <Width>27.82324cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -475,10 +621,10 @@
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>3.01625cm</Height>
+        <Height>2.09021cm</Height>
         <Style />
       </Body>
-      <Width>19.92312cm</Width>
+      <Width>28.33687cm</Width>
       <Page>
         <PageHeader>
           <Height>3.99521cm</Height>
@@ -495,7 +641,6 @@
                       <Value>الهلال الأحمر الليبي</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                       </Style>
                     </TextRun>
@@ -506,8 +651,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>0.27698cm</Top>
-              <Left>14.06916cm</Left>
+              <Top>0.2417cm</Top>
+              <Left>22.40353cm</Left>
               <Height>0.83234cm</Height>
               <Width>5.51985cm</Width>
               <Style>
@@ -530,7 +675,6 @@
                       <Value>مصحة ابن سينا</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                       </Style>
                     </TextRun>
@@ -541,8 +685,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>1.10932cm</Top>
-              <Left>14.06916cm</Left>
+              <Top>1.07404cm</Top>
+              <Left>22.40353cm</Left>
               <Height>0.83234cm</Height>
               <Width>5.51985cm</Width>
               <ZIndex>1</ZIndex>
@@ -566,7 +710,6 @@
                       <Value>بنغازي</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                       </Style>
                     </TextRun>
@@ -577,8 +720,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
-              <Top>1.97694cm</Top>
-              <Left>14.06916cm</Left>
+              <Top>1.94166cm</Top>
+              <Left>22.40353cm</Left>
               <Height>0.78521cm</Height>
               <Width>5.51985cm</Width>
               <ZIndex>2</ZIndex>
@@ -596,8 +739,8 @@
               <Source>Embedded</Source>
               <Value>reports_header</Value>
               <Sizing>FitProportional</Sizing>
-              <Top>0.21496cm</Top>
-              <Left>8.76682cm</Left>
+              <Top>0.27698cm</Top>
+              <Left>13.10599cm</Left>
               <Height>2.48517cm</Height>
               <Width>2.79347cm</Width>
               <ZIndex>3</ZIndex>
@@ -617,7 +760,6 @@
                       <Value>LIBYAN RED CRESCENT</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -654,7 +796,6 @@
                       <Value>IBN SINA POLY CLINIC</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -691,7 +832,6 @@
                       <Value>BENGHAZI</Value>
                       <Style>
                         <FontStyle>Italic</FontStyle>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -727,7 +867,6 @@
                     <TextRun>
                       <Value>تقرير ببيانات الشركات</Value>
                       <Style>
-                        <FontFamily>Tajawal</FontFamily>
                         <FontSize>14pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
@@ -739,8 +878,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox10</rd:DefaultName>
-              <Top>2.87652cm</Top>
-              <Left>7.0446cm</Left>
+              <Top>2.93854cm</Top>
+              <Left>11.38377cm</Left>
               <Height>0.78521cm</Height>
               <Width>5.96604cm</Width>
               <ZIndex>7</ZIndex>
@@ -812,8 +951,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>ExecutionTime</rd:DefaultName>
-              <Top>0.17639cm</Top>
-              <Left>17.08902cm</Left>
+              <Top>0.14111cm</Top>
+              <Left>25.65736cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>1</ZIndex>
@@ -842,8 +981,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox46</rd:DefaultName>
-              <Top>0.17639cm</Top>
-              <Left>15.05646cm</Left>
+              <Top>0.14111cm</Top>
+              <Left>23.6248cm</Left>
               <Height>0.6cm</Height>
               <Width>1.96201cm</Width>
               <ZIndex>2</ZIndex>
@@ -875,7 +1014,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.17639cm</Top>
-              <Left>8.50224cm</Left>
+              <Left>12.82097cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>3</ZIndex>
@@ -896,8 +1035,8 @@
             </Border>
           </Style>
         </PageFooter>
-        <PageHeight>29.7cm</PageHeight>
-        <PageWidth>21cm</PageWidth>
+        <PageHeight>21cm</PageHeight>
+        <PageWidth>29.7cm</PageWidth>
         <LeftMargin>0.5cm</LeftMargin>
         <RightMargin>0.5cm</RightMargin>
         <TopMargin>0.5cm</TopMargin>

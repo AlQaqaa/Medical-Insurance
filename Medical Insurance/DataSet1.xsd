@@ -231,7 +231,7 @@ WHERE MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.
               <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectName="IbnSina_DataBase.dbo.INC_COMPANY_DATA" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT [C_NAME_ARB],(CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY, (SELECT TOP (1) convert(varchar, [DATE_START], 23) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [DATE_START], (SELECT TOP (1) convert(varchar, [DATE_END], 23) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [DATE_END], (SELECT TOP (1) [MAX_VAL] FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [MAX_VAL] FROM INC_COMPANY_DATA WHERE C_STATE = 0</CommandText>
+                    <CommandText>SELECT [C_NAME_ARB],(CASE WHEN (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL ) IS NULL THEN  '-' ELSE (SELECT C_NAME_ARB FROM [INC_COMPANY_DATA] AS X WHERE X.C_ID=[INC_COMPANY_DATA].C_LEVEL) END)AS MAIN_COMPANY, (SELECT TOP (1) convert(varchar, [DATE_START], 23) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [DATE_START], (SELECT TOP (1) convert(varchar, [DATE_END], 23) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [DATE_END], (SELECT TOP (1) [MAX_VAL] FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [MAX_VAL], (SELECT TOP (1) [MAX_PERSON] FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [MAX_PERSON], (SELECT TOP (1) [MAX_CARD] FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID ORDER BY N DESC) AS [MAX_CARD] FROM INC_COMPANY_DATA WHERE C_STATE = 0</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -243,6 +243,8 @@ WHERE MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.
               <Mapping SourceColumn="DATE_START" DataSetColumn="DATE_START" />
               <Mapping SourceColumn="DATE_END" DataSetColumn="DATE_END" />
               <Mapping SourceColumn="MAX_VAL" DataSetColumn="MAX_VAL" />
+              <Mapping SourceColumn="MAX_PERSON" DataSetColumn="MAX_PERSON" />
+              <Mapping SourceColumn="MAX_CARD" DataSetColumn="MAX_CARD" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -475,6 +477,26 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
               <Mapping SourceColumn="MedicalStaff_AR_Name" DataSetColumn="MedicalStaff_AR_Name" />
               <Mapping SourceColumn="C_Name_Arb" DataSetColumn="C_Name_Arb" />
               <Mapping SourceColumn="SubService_Code" DataSetColumn="SubService_Code" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable3TableAdapter" GeneratorDataComponentClassName="DataTable3TableAdapter" Name="DataTable3" UserDataComponentName="DataTable3TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT INC_IvoicesProcesses.C_ID,INC_COMPANY_DATA.C_Name_Arb, SUM(Processes_Residual) AS Processes_Residual FROM INC_IvoicesProcesses 
+INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
+GROUP BY INC_IvoicesProcesses.C_ID,INC_COMPANY_DATA.C_Name_Arb</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="C_ID" DataSetColumn="C_ID" />
+              <Mapping SourceColumn="C_Name_Arb" DataSetColumn="C_Name_Arb" />
+              <Mapping SourceColumn="Processes_Residual" DataSetColumn="Processes_Residual" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -837,6 +859,8 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
                 </xs:simpleType>
               </xs:element>
               <xs:element name="MAX_VAL" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMAX_VAL" msprop:Generator_ColumnPropNameInRow="MAX_VAL" msprop:Generator_ColumnPropNameInTable="MAX_VALColumn" msprop:Generator_UserColumnName="MAX_VAL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MAX_PERSON" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMAX_PERSON" msprop:Generator_ColumnPropNameInRow="MAX_PERSON" msprop:Generator_ColumnPropNameInTable="MAX_PERSONColumn" msprop:Generator_UserColumnName="MAX_PERSON" type="xs:decimal" minOccurs="0" />
+              <xs:element name="MAX_CARD" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMAX_CARD" msprop:Generator_ColumnPropNameInRow="MAX_CARD" msprop:Generator_ColumnPropNameInTable="MAX_CARDColumn" msprop:Generator_UserColumnName="MAX_CARD" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1217,6 +1241,21 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DataTable3" msprop:Generator_TableClassName="DataTable3DataTable" msprop:Generator_TableVarName="tableDataTable3" msprop:Generator_RowChangedName="DataTable3RowChanged" msprop:Generator_TablePropName="DataTable3" msprop:Generator_RowDeletingName="DataTable3RowDeleting" msprop:Generator_RowChangingName="DataTable3RowChanging" msprop:Generator_RowEvHandlerName="DataTable3RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable3RowDeleted" msprop:Generator_RowClassName="DataTable3Row" msprop:Generator_UserTableName="DataTable3" msprop:Generator_RowEvArgName="DataTable3RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="C_ID" msprop:Generator_ColumnVarNameInTable="columnC_ID" msprop:Generator_ColumnPropNameInRow="C_ID" msprop:Generator_ColumnPropNameInTable="C_IDColumn" msprop:Generator_UserColumnName="C_ID" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="C_Name_Arb" msprop:Generator_ColumnVarNameInTable="columnC_Name_Arb" msprop:Generator_ColumnPropNameInRow="C_Name_Arb" msprop:Generator_ColumnPropNameInTable="C_Name_ArbColumn" msprop:Generator_UserColumnName="C_Name_Arb" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Processes_Residual" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnProcesses_Residual" msprop:Generator_ColumnPropNameInRow="Processes_Residual" msprop:Generator_ColumnPropNameInTable="Processes_ResidualColumn" msprop:Generator_UserColumnName="Processes_Residual" type="xs:double" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

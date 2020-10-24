@@ -186,7 +186,7 @@
                                         <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من حذف العمليات؟')" CssClass="btn btn-outline-danger btn-block" Text="حذف الحركات" Visible="False" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" />
+                                        <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" OnClientClick="this.disabled = true;" UseSubmitBehavior="false"/>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_create" runat="server" CssClass="" Text="إنشاء" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" ValidationGroup="create" />
@@ -248,12 +248,12 @@
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btn_create" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="btn_search" EventName="Click" />
         </Triggers>
     </asp:UpdatePanel>
     <script>
         function button_click(objTextBox, objBtnID) {
             if (window.event.keyCode == 13) {
-                document.getElementById('ContentPlaceHolder1_btn_search').focus();
                 document.getElementById('ContentPlaceHolder1_btn_search').click();
             }
         }

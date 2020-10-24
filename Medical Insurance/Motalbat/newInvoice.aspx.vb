@@ -108,6 +108,24 @@ Public Class newInvoice
                 Exit Sub
             End If
 
+            If txt_search.Text <> "" Then
+                For Each dd As GridViewRow In GridView1.Rows
+                    If dd.Cells(3).Text = txt_search.Text Then
+                        txt_search.Text = ""
+                        txt_search.Focus()
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'خطأ! هذه الخدمة تمت إضافتها سابقاً',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                               playSound('../Style/error.mp3');", True)
+                        Exit Sub
+                    End If
+                Next
+            End If
+
             Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME,Processes_State FROM INC_CompanyProcesses
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
@@ -136,7 +154,7 @@ Public Class newInvoice
                     sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
                 End If
 
-                sql_str = sql_str & " AND Processes_State = 2 AND Processes_Cilinc = " & ddl_clinics.SelectedValue
+                sql_str = sql_str & " AND Processes_State = 2 AND Processes_Residual <> 0 AND Processes_Cilinc = " & ddl_clinics.SelectedValue
             Else
                 sql_str = sql_str & " AND pros_code = '" & txt_search.Text & "'"
             End If
@@ -163,10 +181,18 @@ Public Class newInvoice
                         txt_search.Focus()
                         Exit Sub
                     Case 3
+                        Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
+inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID in (select top 1 HAG_Request.Req_PID  from HAG_Request  where req_code ='" & txt_search.Text & "')", insurance_SQLcon)
+                        Dim dt_user_name As New DataTable
+                        If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                        insurance_SQLcon.Open()
+                        dt_user_name.Load(sel_del.ExecuteReader)
+                        insurance_SQLcon.Close()
+
                         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
-                            title: 'خطأ! هذه الخدمة ملغية',
+                            title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: " & dt_user_name.Rows(0)("Orginal_UserName") & "',
                             showConfirmButton: false,
                             timer: 2500
                         });playSound('../Style/error.mp3');", True)
@@ -232,23 +258,7 @@ Public Class newInvoice
                 End If
 
                 If txt_search.Text <> "" Then
-                    For Each dd As GridViewRow In GridView1.Rows
-                        If dd.Cells(3).Text = txt_search.Text Then
-                            txt_search.Text = ""
-                            txt_search.Focus()
-                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'خطأ! هذه الخدمة تمت إضافتها سابقاً',
-                                showConfirmButton: false,
-                                timer: 2500
-                            });
-                               playSound('../Style/error.mp3');", True)
-                            txt_search.Text = ""
-                            txt_search.Focus()
-                            Exit Sub
-                        End If
-                    Next
+
 
                     ' حفظ الحركة في جدول المطالبات المؤقت
                     Dim ins_com As New SqlCommand("INSERT INTO INC_MOTALBA_TEMP (Req_Code,User_Id) VALUES (@Req_Code,@User_Id)", insurance_SQLcon)
@@ -305,23 +315,12 @@ Public Class newInvoice
 
     Private Sub btn_create_Click(sender As Object, e As EventArgs) Handles btn_create.Click
 
-        'Dim ch_counter As Integer = 0
-
-        'For Each dd As GridViewRow In GridView1.Rows
-        '    Dim ch As CheckBox = dd.FindControl("CheckBox2")
-        '    If ch.Checked = True Then
-        '        ch_counter = ch_counter + 1
-        '    End If
-        'Next
-
         If GridView1.Rows.Count = 0 Then
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('يرجى اختيار حركة واحدة على الأقل'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
             Exit Sub
         End If
 
-
         Try
-
             If ViewState("invoice_no") = 0 Then
 
                 Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
@@ -407,5 +406,8 @@ Public Class newInvoice
         dt_clear.Rows.Clear()
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
+
+        btn_clear.Visible = False
+        Label1.Text = ""
     End Sub
 End Class

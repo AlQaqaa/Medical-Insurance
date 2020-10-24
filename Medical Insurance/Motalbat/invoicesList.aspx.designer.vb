@@ -95,6 +95,15 @@ Partial Public Class invoicesList
     Protected WithEvents btn_send As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
+    '''btn_print_main control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_print_main As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''lbl_msg control.
     '''</summary>
     '''<remarks>

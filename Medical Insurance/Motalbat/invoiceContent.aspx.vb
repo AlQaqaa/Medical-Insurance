@@ -66,7 +66,7 @@ Public Class invoiceContent
                 INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
                 LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND ISNULL(HAG_Processes_Doctor.doc_type, 0) = 0
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
-                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " ORDER BY NAME_ARB")
+                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " ORDER BY INC_IvoicesProcesses.id")
             Using sda As New SqlDataAdapter()
                 sel_com.Connection = insurance_SQLcon
                 sda.SelectCommand = sel_com

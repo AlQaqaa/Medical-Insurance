@@ -42,6 +42,10 @@ Public Class stopPatients
                 sql_str = sql_str & " AND C_ID = " & DropDownList2.SelectedValue
             End If
 
+            If DropDownList3.SelectedValue <> 0 Then
+                sql_str = sql_str & " AND CONST_ID = 0"
+            End If
+
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()

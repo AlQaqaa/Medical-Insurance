@@ -244,7 +244,9 @@ Public Class statistics
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-                sql_str = sql_str & " AND CONVERT(VARCHAR, Processes_Date, 103) between '" & txt_start_dt.Text & "' AND '" & txt_end_dt.Text & "'"
+                Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text = "" Then
@@ -363,7 +365,9 @@ Public Class statistics
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-                sql_str = sql_str & " AND CONVERT(VARCHAR, Processes_Date, 103) between '" & txt_start_dt.Text & "' AND '" & txt_end_dt.Text & "'"
+                Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text = "" Then
@@ -521,7 +525,9 @@ Public Class statistics
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-                sql_str = sql_str & " AND CONVERT(VARCHAR, Processes_Date, 103) between '" & txt_start_dt.Text & "' AND '" & txt_end_dt.Text & "'"
+                Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text = "" Then

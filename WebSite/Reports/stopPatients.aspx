@@ -15,7 +15,7 @@
         </div>
         <div class="card-body">
             <div class="form-row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="form-group">
                         <label>البحث عن</label>
                         <asp:DropDownList ID="DropDownList1" CssClass="form-control drop-down-list" runat="server">
@@ -32,6 +32,15 @@
                         <asp:DropDownList ID="DropDownList2" CssClass="form-control drop-down-list chosen-select" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID">
                         </asp:DropDownList>
                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [C_ID], 'جميع الشركات' AS [C_Name_Arb] FROM [INC_COMPANY_DATA] UNION SELECT [C_ID], [C_Name_Arb] FROM [INC_COMPANY_DATA] WHERE C_STATE = 0"></asp:SqlDataSource>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label>نوع البحث</label>
+                        <asp:DropDownList ID="DropDownList3" CssClass="form-control drop-down-list" runat="server">
+                        <asp:ListItem Value="0">الكل</asp:ListItem>
+                        <asp:ListItem Value="1">المشتركين فقط</asp:ListItem>
+                    </asp:DropDownList>
                     </div>
                 </div>
                 <div class="col-sm-2">

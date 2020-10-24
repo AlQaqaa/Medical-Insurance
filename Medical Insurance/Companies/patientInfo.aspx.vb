@@ -87,7 +87,7 @@ Public Class patientInfo
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, '0') AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID FROM INC_PATIANT
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, '0') AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID, ISNULL(INC_Patient_Code, 0) AS INC_Patient_Code, INC_COMPANY_DETIAL.DATE_START, INC_COMPANY_DETIAL.DATE_END FROM INC_PATIANT
 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID
 LEFT JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND INC_COMPANY_DETIAL.DATE_START <= GETDATE() AND INC_COMPANY_DETIAL.DATE_END >= GETDATE()
 LEFT JOIN Main_Nationality ON MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID
@@ -114,6 +114,9 @@ WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
             ViewState("contract_no") = dr_pat!CONTRACT_NO
             Session("company_id") = dr_pat!C_ID
             ViewState("old_id") = dr_pat!OLD_ID
+            ViewState("p_code") = dr_pat!INC_Patient_Code
+            ViewState("DATE_START") = dr_pat!DATE_START
+            ViewState("DATE_END") = dr_pat!DATE_END
             lbl_const.Text = dr_pat!CONST_ID
             img_pat_img.ImageUrl = "../" & dr_pat!IMAGE_CARD
             ViewState("pat_state") = dr_pat!P_STATE
@@ -480,12 +483,13 @@ INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProce
 
     Function getTotalPatientExpenses() As Decimal
         Dim total_val As Decimal = 0
-
-        Dim sel_com As New SqlCommand("select TOTAL_EXPENSES from INC_totalPatientExpenses(" & ViewState("p_no") & ",(select top(1) DATE_START from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc),(select top(1) DATE_END from [dbo].[INC_COMPANY_DETIAL] where C_ID = " & Session("company_id") & " order by n desc))", insurance_SQLcon)
-        insurance_SQLcon.Close()
-        insurance_SQLcon.Open()
-        total_val = sel_com.ExecuteScalar
-        insurance_SQLcon.Close()
+        If Val(ViewState("p_code")) <> 0 Then
+            Dim sel_com As New SqlCommand("SELECT SUM(Processes_Residual) AS Processes_Residual FROM HAG_Processes WHERE Processes_Reservation_Code = " & ViewState("p_code") & " AND Processes_Date BETWEEN '" & ViewState("DATE_START") & "' AND '" & ViewState("DATE_END" & "'"), insurance_SQLcon)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            total_val = sel_com.ExecuteScalar
+            insurance_SQLcon.Close()
+        End If
 
         Return total_val
     End Function

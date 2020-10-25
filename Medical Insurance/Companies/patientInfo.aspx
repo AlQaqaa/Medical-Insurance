@@ -77,9 +77,10 @@
 
                     <div class="col-sm-2 text-center align-self-center">
 
-                        <asp:Label ID="lbl_icon_sts" runat="server" Text="<i class='fa fa-user fa-3x'></i>"></asp:Label><br />
+                        <asp:Label ID="lbl_icon_sts" runat="server" Text="<i class='fa fa-user fa-2x'></i>"></asp:Label><br />
                         <asp:Label ID="lbl_sts" runat="server" Text=""></asp:Label><br />
                         <br />
+                        <asp:Button ID="btn_delete" runat="server" CssClass="btn btn-outline-danger btn-block" Text="حذف" />
                         <asp:Button ID="btn_change_sts" runat="server" CssClass="btn btn-outline-danger btn-block" Text="إيقاف" />
                         <asp:HyperLink ID="hl_edit" CssClass="btn btn-outline-primary btn-block" role="button" runat="server" NavigateUrl="~/Companies/EDITPATIANT.aspx">تعديل البيانات</asp:HyperLink>
                     </div>

@@ -18,6 +18,7 @@ Public Class patientInfo
                 btn_change_sts.Enabled = Session("User_per")("active_card")
                 btn_renew_card.Enabled = Session("User_per")("active_card")
                 btn_ban_service.Enabled = Session("User_per")("company_services")
+                btn_delete.Enabled = False
             End If
 
             ViewState("p_no") = Val(Request.QueryString("pID"))
@@ -483,8 +484,12 @@ INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProce
 
     Function getTotalPatientExpenses() As Decimal
         Dim total_val As Decimal = 0
+
+        Dim start_dt As String = DateTime.ParseExact(ViewState("DATE_START"), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+        Dim end_dt As String = DateTime.ParseExact(ViewState("DATE_END"), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
         If Val(ViewState("p_code")) <> 0 Then
-            Dim sel_com As New SqlCommand("SELECT SUM(Processes_Residual) AS Processes_Residual FROM HAG_Processes WHERE Processes_Reservation_Code = " & ViewState("p_code") & " AND Processes_Date BETWEEN '" & ViewState("DATE_START") & "' AND '" & ViewState("DATE_END" & "'"), insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT SUM(Processes_Residual) AS Processes_Residual FROM HAG_Processes WHERE Processes_Reservation_Code = '" & ViewState("p_code") & "' AND Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'", insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             total_val = sel_com.ExecuteScalar
@@ -547,5 +552,51 @@ INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProce
                 Response.[End]()
             End Using
         End Using
+    End Sub
+
+    Private Sub btn_delete_Click(sender As Object, e As EventArgs) Handles btn_delete.Click
+        Try
+            Dim total_count As Integer = 0
+
+            If Val(ViewState("p_code")) <> 0 Then
+
+                Dim sel_com As New SqlCommand("SELECT COUNT(Processes_Id) AS Processes_Residual FROM HAG_Processes WHERE Processes_Reservation_Code = '" & ViewState("p_code"), insurance_SQLcon)
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                total_count = sel_com.ExecuteScalar
+                insurance_SQLcon.Close()
+            End If
+
+            If total_count = 0 Then
+                Dim del_com As New SqlCommand("DELETE FROM INC_PATIANT WHERE PINC_ID = " & ViewState("p_no"), insurance_SQLcon)
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                del_com.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+
+                add_action(1, 1, 3, "حذف المنتفع المنتفع رقم: " & Val(ViewState("p_no")), Session("INC_User_Id"), GetIPAddress())
+
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'تمت عملية حذف المنتفع بنجاح',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            window.setTimeout(function () {
+                window.location.href = '../Default.aspx';
+            }, 1500);", True)
+            Else
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'لا يمكن حذف هذا المنتفع',
+                showConfirmButton: false,
+                timer: 2500
+            });", True)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

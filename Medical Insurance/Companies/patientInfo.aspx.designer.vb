@@ -167,6 +167,15 @@ Partial Public Class patientInfo
     Protected WithEvents lbl_sts As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
+    '''btn_delete control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_delete As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
     '''btn_change_sts control.
     '''</summary>
     '''<remarks>

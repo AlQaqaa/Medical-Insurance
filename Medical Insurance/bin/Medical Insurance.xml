@@ -3421,6 +3421,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.patientInfo._btn_delete">
+<summary>
+btn_delete control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.patientInfo._btn_change_sts">
 <summary>
 btn_change_sts control.

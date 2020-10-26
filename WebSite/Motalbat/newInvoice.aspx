@@ -183,7 +183,7 @@
                                         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من حذف العمليات؟')" CssClass="btn btn-outline-danger btn-block" Text="حذف الحركات" Visible="False" />
+                                        <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من مسح هذه البيانات؟')" CssClass="btn btn-outline-danger btn-block" Text="مسح البيانات" Visible="False" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" OnClientClick="this.disabled = true;" UseSubmitBehavior="false"/>

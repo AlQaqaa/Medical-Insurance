@@ -46,9 +46,6 @@
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_send" runat="server" CssClass="btn btn-outline-danger btn-block" Text="تمت إرسالها للشركة" Visible="False" OnClientClick="return confirm('هل أنت متأكد إجراء هذه الخطوة؟')"/>
                                     </div>
-                                    <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_print_main" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الشركات" ValidationGroup="save" Visible="False" />
-                                    </div>
                                 </div><!-- /form-row -->
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-xs-12 col-sm-6">

@@ -194,6 +194,15 @@ Partial Public Class companies
     Protected WithEvents hl_motalbat As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_motalbat2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_motalbat2 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_sent_invoices control.
     '''</summary>
     '''<remarks>

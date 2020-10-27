@@ -246,7 +246,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
     Private Sub ddl_invoice_type_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_invoice_type.SelectedIndexChanged
         If ddl_companies.SelectedValue <> 0 Then
             getData()
-            getDataForMainCompany()
+
         End If
     End Sub
 
@@ -301,34 +301,4 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         End Try
     End Sub
 
-    Private Sub getDataForMainCompany()
-        Try
-            Dim invoiceNo As New List(Of Integer)()
-            For Each dd As GridViewRow In GridView1.Rows
-                Dim ch As CheckBox = dd.FindControl("CheckBox2")
-                If ch.Checked = True Then
-                    invoiceNo.Add(dd.Cells(0).Text)
-                End If
-            Next
-
-            Dim sel_com As New SqlCommand("SELECT INC_IvoicesProcesses.C_ID,INC_COMPANY_DATA.C_Name_Arb, SUM(Processes_Residual) AS Processes_Residual FROM INC_IvoicesProcesses 
-            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID
-            WHERE INC_COMPANY_DATA.C_Level = " & ddl_companies.SelectedValue & " 
-            GROUP BY INC_IvoicesProcesses.C_ID,INC_COMPANY_DATA.C_Name_Arb", insurance_SQLcon)
-            Dim dt_result As New DataTable
-            If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-
-            If dt_result.Rows.Count > 0 Then
-                btn_print_main.Visible = True
-                main_ds.Tables("DataTable3").Load(dt_result)
-            Else
-                btn_print_main.Visible = False
-            End If
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
-    End Sub
 End Class

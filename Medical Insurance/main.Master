@@ -101,6 +101,8 @@
                                     <li>
                                         <asp:HyperLink ID="hl_motalbat" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/invoicesList.aspx"><i class="fas fa-receipt"></i> المطالبات</asp:HyperLink></li>
                                     <li>
+                                        <asp:HyperLink ID="hl_motalbat2" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/mainCompany.aspx"><i class="fas fa-receipt"></i> مطالبات الشركات الأم</asp:HyperLink></li>
+                                    <li>
                                         <asp:HyperLink ID="hl_sent_invoices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Motalbat/sentInvoices.aspx"><i class="fas fa-receipt"></i> فواتير مرسلة</asp:HyperLink></li>
                                 </ul>
                             </li>

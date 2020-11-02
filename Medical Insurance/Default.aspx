@@ -90,9 +90,11 @@
                                                     <asp:BoundField DataField="P_STATE" HeaderText="حالة المنتفع">
                                                         <ItemStyle BackColor="#33CC33" ForeColor="White"></ItemStyle>
                                                     </asp:BoundField>
+                                                    
                                                     <asp:BoundField HeaderText="رقم البطاقة" DataField="CARD_NO"></asp:BoundField>
                                                     <asp:ButtonField DataTextField="NAME_ARB" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالعربي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
                                                     <asp:ButtonField DataTextField="NAME_ENG" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> الاسم بالإنجليزي <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
+                                                    <asp:BoundField HeaderText="كود المنتفع" DataField="INC_Patient_Code"></asp:BoundField>
                                                     <asp:BoundField HeaderText="اسم الشركة" DataField="C_NAME"></asp:BoundField>
                                                     <asp:BoundField HeaderText="تاريخ الميلاد" DataField="BIRTHDATE"></asp:BoundField>
                                                     <asp:BoundField HeaderText="الرقم الوظيفي" DataField="BAGE_NO"></asp:BoundField>

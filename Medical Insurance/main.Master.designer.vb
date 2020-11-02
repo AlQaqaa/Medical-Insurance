@@ -275,6 +275,15 @@ Partial Public Class main
     Protected WithEvents hl_doctors_forms As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''hl_missing_forms control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents hl_missing_forms As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_Statistics control.
     '''</summary>
     '''<remarks>

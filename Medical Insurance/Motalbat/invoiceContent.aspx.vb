@@ -115,7 +115,7 @@ Public Class invoiceContent
             If (e.CommandName = "printProcess") Then
                 Dim index As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = GridView1.Rows(index)
-                Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(2).Text)
+                Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text)
                 'Response.Write("<script type='text/javascript'>")
                 'Response.Write("window.open('" & p_link & "','_blank');")
                 'Response.Write("</script>")
@@ -134,13 +134,13 @@ Public Class invoiceContent
                     returnInvoice.CommandText = "INC_deletePatientInvoice"
                     returnInvoice.CommandType = CommandType.StoredProcedure
                     returnInvoice.Parameters.AddWithValue("@inv_no", ViewState("invoice_no"))
-                    returnInvoice.Parameters.AddWithValue("@patient_no", (row.Cells(3).Text))
+                    returnInvoice.Parameters.AddWithValue("@patient_no", (row.Cells(2).Text))
                     insurance_SQLcon.Open()
                     returnInvoice.ExecuteNonQuery()
                     insurance_SQLcon.Close()
                     getData()
 
-                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(4).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
+                    add_action(1, 3, 3, "إرجاع حركة المنتفع: " & (row.Cells(3).Text) & " من المطالبة رقم: " & ViewState("invoice_no"), Session("INC_User_Id"), GetIPAddress())
 
                     ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'top-end',
@@ -269,7 +269,7 @@ Public Class invoiceContent
 
         If Session("INC_User_type") <> 0 And Session("INC_User_type") <> 1 Then
             If e.Row.RowType = DataControlRowType.DataRow Then
-                Dim cell As TableCell = e.Row.Cells(8)
+                Dim cell As TableCell = e.Row.Cells(7)
 
                 Dim btn_print_one As LinkButton = cell.FindControl("btn_print_one")
                 Dim btn_return_one As LinkButton = cell.FindControl("btn_return_one")

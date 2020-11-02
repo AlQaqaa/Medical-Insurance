@@ -26,10 +26,12 @@ Public Class patientsExpenses
         Try
             Dim sql_str As String = "SELECT INC_Patient_Code, ISNULL(SUM(Processes_Price), 0) AS TOTAL_WITHDRAW, CARD_NO, NAME_ARB FROM INC_PATIANT
             LEFT JOIN HAG_Processes ON Processes_Reservation_Code = INC_PATIANT.INC_Patient_Code AND Processes_State = 2 AND HAG_Processes.Processes_Date BETWEEN (SELECT MAX(DATE_START) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND DATE_END > GETDATE()) AND GETDATE()
-            WHERE INC_Patient_Code IS NOT NULL AND INC_PATIANT.C_ID = " & ddl_companies.SelectedValue & " GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB ORDER BY CARD_NO"
+            WHERE INC_Patient_Code IS NOT NULL AND INC_PATIANT.C_ID = " & ddl_companies.SelectedValue & " GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB"
 
             If txt_value.Text <> "" Then
-                sql_str = sql_str & " HAVING SUM(Processes_Price) >= " & txt_value.Text
+                sql_str = sql_str & " HAVING SUM(Processes_Price) >= " & txt_value.Text & " ORDER BY CARD_NO"
+            Else
+                sql_str = sql_str & " ORDER BY CARD_NO"
             End If
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)

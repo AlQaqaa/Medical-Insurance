@@ -33,6 +33,7 @@ Public Class newInvoice
                     TextBox1.Text = dr_inv!DATE_FROM.ToString
                     TextBox2.Text = dr_inv!DATE_TO
                 End If
+                Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
             Else
                 Panel1.Visible = True
                 Panel2.Visible = False
@@ -88,11 +89,12 @@ Public Class newInvoice
     Private Sub getData()
 
         Try
-            If txt_start_dt.Text = "" And txt_end_dt.Text = "" Then
+            If ViewState("invoice_no") = 0 Then
+                If txt_start_dt.Text = "" And txt_end_dt.Text = "" Then
 
-                txt_search.Text = ""
-                txt_search.Focus()
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                    txt_search.Text = ""
+                    txt_search.Focus()
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                                 position: 'center',
                                 icon: 'error',
                                 title: 'خطأ! يرجى إدخال التاريخ',
@@ -100,8 +102,10 @@ Public Class newInvoice
                                 timer: 2500
                             });
                                playSound('../Style/error.mp3');", True)
-                Exit Sub
+                    Exit Sub
+                End If
             End If
+
 
             ' التحقق من الخدمة إذا تمت المطالبة بها من قبل أو لا
             Dim invoice_no As Integer = 0
@@ -141,8 +145,7 @@ Public Class newInvoice
                 Next
             End If
 
-            Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
 
             Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME,Processes_State FROM INC_CompanyProcesses
@@ -150,12 +153,16 @@ Public Class newInvoice
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
-                WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)  And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
+                WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
             If ddl_clinics.SelectedValue <> 0 Then
                 If ViewState("invoice_no") = 0 Then
+                    Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                    Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                    sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
                     If ddl_companies.SelectedValue <> 0 Then
                         sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+
                     End If
                 Else
                     sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ViewState("company_no")
@@ -226,20 +233,6 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                     txt_search.Focus()
                     Exit Sub
                 End If
-
-                If dt_result.Rows(0)("Processes_Date") = 0 Then
-                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'خطأ! سعر الشركة لهذه الخدمة صفر',
-                            showConfirmButton: false,
-                            timer: 2500
-                        });playSound('../Style/error.mp3');", True)
-                    txt_search.Text = ""
-                    txt_search.Focus()
-                    Exit Sub
-                End If
-
 
                 'التحقق من أن الحركة تابعة للشركة المختارة
                 If ViewState("invoice_no") = 0 Then
@@ -443,7 +436,26 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         dt_clear.Rows.Clear()
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
+        ddl_companies.SelectedValue = 0
+        txt_start_dt.Text = ""
+        txt_end_dt.Text = ""
+        btn_clear.Visible = False
+        Label1.Text = ""
+    End Sub
 
+    Private Sub ddl_companies_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_companies.SelectedIndexChanged
+        Dim del_com As New SqlCommand("DELETE FROM INC_MOTALBA_TEMP WHERE User_Id = " & Session("INC_User_Id"), insurance_SQLcon)
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        del_com.ExecuteNonQuery()
+        insurance_SQLcon.Close()
+        Dim dt_clear As New DataTable
+        dt_clear.Rows.Clear()
+        GridView1.DataSource = dt_clear
+        GridView1.DataBind()
+
+        txt_start_dt.Text = ""
+        txt_end_dt.Text = ""
         btn_clear.Visible = False
         Label1.Text = ""
     End Sub

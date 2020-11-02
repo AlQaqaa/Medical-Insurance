@@ -1351,6 +1351,24 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._hl_doctors_forms">
+<summary>
+hl_doctors_forms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._hl_missing_forms">
+<summary>
+hl_missing_forms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._hl_Statistics">
 <summary>
 hl_Statistics control.
@@ -4356,6 +4374,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.missingForms._GridView1">
+<summary>
+GridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="P:Medical_Insurance.CurrencyInfo.CurrencyID">
  <summary>
  Currency ID
@@ -5284,6 +5311,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.motalbat._hl_approved_archive">
 <summary>
 hl_approved_archive control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._hl_doctors_forms">
+<summary>
+hl_doctors_forms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._hl_missing_forms">
+<summary>
+hl_missing_forms control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7435,6 +7480,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._hl_doctors_forms">
 <summary>
 hl_doctors_forms control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._hl_missing_forms">
+<summary>
+hl_missing_forms control.
 </summary>
 <remarks>
 Auto-generated field.

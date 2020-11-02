@@ -625,8 +625,20 @@ Public Class statistics
         Next
 
         Using wb As New XLWorkbook()
-            wb.Worksheets.Add(dt)
-
+            Dim ws = wb.Worksheets.Add(dt)
+            ws.Rows().Height = 20
+            ws.Tables.FirstOrDefault().ShowAutoFilter = False
+            ws.Rows().Style.Border.TopBorder = XLBorderStyleValues.Medium
+            ws.Rows().Style.Border.TopBorderColor = XLColor.Black
+            ws.Rows().Style.Border.BottomBorder = XLBorderStyleValues.Medium
+            ws.Rows().Style.Border.BottomBorderColor = XLColor.Black
+            ws.Rows().Style.Border.RightBorder = XLBorderStyleValues.Medium
+            ws.Rows().Style.Border.RightBorderColor = XLColor.Black
+            ws.Rows().Style.Border.LeftBorder = XLBorderStyleValues.Medium
+            ws.Rows().Style.Border.LeftBorderColor = XLColor.Black
+            ws.Rows().Style.Fill.BackgroundColor = XLColor.White
+            ws.Rows().Style.Font.FontColor = XLColor.Black
+            ws.Rows(1).Style.Font.FontColor = XLColor.Black
             Response.Clear()
             Response.Buffer = True
             Response.Charset = ""

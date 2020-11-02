@@ -56,11 +56,7 @@
                                     <div class="col-sm-12">
                                         <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">
                                             <Columns>
-                                                <asp:TemplateField HeaderText="تحديد">
-                                                    <ItemTemplate>
-                                                        <asp:CheckBox ID="CheckBox2" runat="server" Checked="True" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                
                                                 <asp:TemplateField HeaderText="ر.ت">
                                                     <ItemTemplate>
                                                         <span>

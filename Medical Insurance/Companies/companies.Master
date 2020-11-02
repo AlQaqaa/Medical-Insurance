@@ -176,12 +176,14 @@
                                         <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
                                 </ul>
                             </li>
-                            <%--<li class="nav-item">
-                                <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx">
-                                    <i class="fab fa-wpforms"></i>تسوية الأطباء
-                                    <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
-                                </asp:HyperLink>
-                            </li>--%>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i>&nbsp;تسوية الأطباء
+                                    </asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="hl_missing_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/missingForms.aspx"><i class="far fa-file"></i>&nbsp;النماذج المفقودة
+                                    </asp:HyperLink>
+                            </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx">
                                     <i class="fas fa-chart-pie"></i>الاستفسارات والإحصائيات

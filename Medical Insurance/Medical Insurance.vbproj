@@ -166,6 +166,7 @@
     <Content Include="approvalConfirm\listApproval.aspx" />
     <Content Include="approvalConfirm\listApprovedPendingRequests.aspx" />
     <Content Include="index.aspx" />
+    <Content Include="missingForms.aspx" />
     <Content Include="Motalbat\Default.aspx" />
     <Content Include="Motalbat\mainCompany.aspx" />
     <Content Include="Motalbat\sentInvoices.aspx" />
@@ -412,6 +413,13 @@
     </Compile>
     <Compile Include="index.aspx.vb">
       <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="missingForms.aspx.designer.vb">
+      <DependentUpon>missingForms.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="missingForms.aspx.vb">
+      <DependentUpon>missingForms.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Modules\actionHistoryMDL.vb" />

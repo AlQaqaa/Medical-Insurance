@@ -8,7 +8,10 @@ Public Class newInvoice
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+        Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
+
         If IsPostBack = False Then
+
             ViewState("invoice_no") = Val(Request.QueryString("invID"))
 
             If ViewState("invoice_no") <> 0 Then
@@ -30,16 +33,16 @@ Public Class newInvoice
                     Dim dr_inv = dt_result.Rows(0)
                     txt_company_name.Text = dr_inv!COMPANY_NAME
                     ViewState("company_no") = dr_inv!C_ID
-                    TextBox1.Text = dr_inv!DATE_FROM.ToString
+                    TextBox1.Text = dr_inv!DATE_FROM
                     TextBox2.Text = dr_inv!DATE_TO
                 End If
-                Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
+                btn_clear.Visible = False
             Else
                 Panel1.Visible = True
                 Panel2.Visible = False
                 btn_create.Text = "إنشاء"
                 btn_create.CssClass = "btn btn-outline-dark btn-block"
-                Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
+
             End If
 
             ViewState("counter") = 0
@@ -63,14 +66,21 @@ Public Class newInvoice
 
     Private Sub getTempData()
         'جلب البيانات المحفوظة مؤقتاً في حال وجودها
-        Dim sel_temp_data As New SqlCommand("SELECT INC_CompanyProcesses.pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
+        Dim ss As String
+
+        ss = "SELECT INC_CompanyProcesses.pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_MOTALBA_TEMP
 				LEFT JOIN INC_CompanyProcesses ON INC_CompanyProcesses.pros_code = INC_MOTALBA_TEMP.Req_Code
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
-                WHERE INC_MOTALBA_TEMP.User_Id = " & Session("INC_User_Id") & " ORDER BY INC_MOTALBA_TEMP.Id DESC", insurance_SQLcon)
+                WHERE INC_MOTALBA_TEMP.User_Id = " & Session("INC_User_Id")
+
+        If DropDownList1.SelectedValue = 0 Then ss += " ORDER BY INC_MOTALBA_TEMP.Id DESC"
+        If DropDownList1.SelectedValue = 1 Then ss += " ORDER BY Processes_Reservation_Code DESC"
+
+        Dim sel_temp_data As New SqlCommand(ss, insurance_SQLcon)
         Dim dt_temp_result As New DataTable
         insurance_SQLcon.Close()
         insurance_SQLcon.Open()
@@ -80,9 +90,11 @@ Public Class newInvoice
             ddl_companies.SelectedValue = dt_temp_result.Rows(0)("C_ID")
             GridView1.DataSource = dt_temp_result
             GridView1.DataBind()
-            btn_clear.Visible = True
+            btn_clear.Enabled = True
+            btn_search.Enabled = True
+            txt_search.Focus()
         Else
-            btn_clear.Visible = False
+            btn_clear.Enabled = False
         End If
     End Sub
 
@@ -105,7 +117,6 @@ Public Class newInvoice
                     Exit Sub
                 End If
             End If
-
 
             ' التحقق من الخدمة إذا تمت المطالبة بها من قبل أو لا
             Dim invoice_no As Integer = 0
@@ -145,8 +156,6 @@ Public Class newInvoice
                 Next
             End If
 
-
-
             Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME,Processes_State FROM INC_CompanyProcesses
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
@@ -155,26 +164,31 @@ Public Class newInvoice
                 LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
                 WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
+            If ViewState("invoice_no") = 0 Then
+                Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+                sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
+            End If
+
+            If ViewState("invoice_no") = 0 Then
+                If ddl_companies.SelectedValue <> 0 Then
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                End If
+            Else
+                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ViewState("company_no")
+            End If
+
+            If ddl_invoice_type.SelectedValue = 1 Then
+                sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
+            ElseIf ddl_invoice_type.SelectedValue = 2 Then
+                sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
+            End If
+
             If ddl_clinics.SelectedValue <> 0 Then
-                If ViewState("invoice_no") = 0 Then
-                    Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                    Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                    sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
-                    If ddl_companies.SelectedValue <> 0 Then
-                        sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
-
-                    End If
-                Else
-                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ViewState("company_no")
-                End If
-
-                If ddl_invoice_type.SelectedValue = 1 Then
-                    sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
-                ElseIf ddl_invoice_type.SelectedValue = 2 Then
-                    sql_str = sql_str & " AND Processes_ID IN (SELECT Ewa_Exit_ID FROM Ewa_Exit WHERE Ewa_Exit.Ewa_Exit_ID = INC_CompanyProcesses.Processes_ID)"
-                End If
-
                 sql_str = sql_str & " AND Processes_State = 2 AND Processes_Residual <> 0 AND Processes_Cilinc = " & ddl_clinics.SelectedValue
+                If Val(ddl_service.SelectedValue) <> 0 Then
+                    sql_str = sql_str & " AND Processes_State = 2 AND Processes_Residual <> 0 AND Processes_Services = " & ddl_service.SelectedValue
+                End If
             Else
                 sql_str = sql_str & " AND pros_code = '" & txt_search.Text & "'"
             End If
@@ -188,70 +202,73 @@ Public Class newInvoice
             insurance_SQLcon.Close()
 
             If dt_result.Rows.Count > 0 Then
-                Select Case dt_result.Rows(0)("Processes_State")
-                    Case 0
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+
+                If ddl_clinics.SelectedValue = 0 Then
+                    Select Case dt_result.Rows(0)("Processes_State")
+                        Case 0
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
                             title: 'خطأ! هذه الخدمة لم تتم تسويتها',
                             showConfirmButton: false,
                             timer: 2500
                         });playSound('../Style/error.mp3');", True)
-                        txt_search.Text = ""
-                        txt_search.Focus()
-                        Exit Sub
-                    Case 3
-                        Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
+                            txt_search.Text = ""
+                            txt_search.Focus()
+                            Exit Sub
+                        Case 3
+                            Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
 inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID in (select top 1 HAG_Request.Req_PID  from HAG_Request  where req_code ='" & txt_search.Text & "')", insurance_SQLcon)
-                        Dim dt_user_name As New DataTable
-                        If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
-                        insurance_SQLcon.Open()
-                        dt_user_name.Load(sel_del.ExecuteReader)
-                        insurance_SQLcon.Close()
+                            Dim dt_user_name As New DataTable
+                            If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                            insurance_SQLcon.Open()
+                            dt_user_name.Load(sel_del.ExecuteReader)
+                            insurance_SQLcon.Close()
 
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
                             title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: " & dt_user_name.Rows(0)("Orginal_UserName") & "',
                             showConfirmButton: false,
                             timer: 2500
                         });playSound('../Style/error.mp3');", True)
-                        txt_search.Text = ""
-                        txt_search.Focus()
-                        Exit Sub
-                End Select
+                            txt_search.Text = ""
+                            txt_search.Focus()
+                            Exit Sub
+                    End Select
 
-                If dt_result.Rows(0)("Processes_Residual") = 0 Then
-                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+
+                    If dt_result.Rows(0)("Processes_Residual") = 0 Then
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
                             title: 'خطأ! سعر الشركة لهذه الخدمة صفر',
                             showConfirmButton: false,
                             timer: 2500
                         });playSound('../Style/error.mp3');", True)
-                    txt_search.Text = ""
-                    txt_search.Focus()
-                    Exit Sub
-                End If
+                        txt_search.Text = ""
+                        txt_search.Focus()
+                        Exit Sub
+                    End If
 
-                'التحقق من أن الحركة تابعة للشركة المختارة
-                If ViewState("invoice_no") = 0 Then
-                    If ddl_companies.SelectedValue <> 0 Then
-                        If dt_result.Rows(0)("C_ID") <> ddl_companies.SelectedValue Then
-                            txt_search.Text = ""
-                            txt_search.Focus()
-                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                    'التحقق من أن الحركة تابعة للشركة المختارة
+                    If ViewState("invoice_no") = 0 Then
+                        If ddl_companies.SelectedValue <> 0 Then
+                            If dt_result.Rows(0)("C_ID") <> ddl_companies.SelectedValue Then
+                                txt_search.Text = ""
+                                txt_search.Focus()
+                                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                                 position: 'center',
                                 icon: 'error',
                                 title: 'خطأ! هذه الخدمة غير مقدمة لهذه الشركة',
                                 showConfirmButton: true
                             });playSound('../Style/error.mp3');", True)
-                            Exit Sub
-                        End If
-                    Else
-                        txt_search.Text = ""
-                        txt_search.Focus()
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                                Exit Sub
+                            End If
+                        Else
+                            txt_search.Text = ""
+                            txt_search.Focus()
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'top-end',
                             icon: 'error',
                             title: 'خطأ! يجب اختيار شركة',
@@ -260,23 +277,21 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                         });
                         playSound('../Style/error.mp3');", True)
 
-                        Exit Sub
-                    End If
-                Else
-                    If dt_result.Rows(0)("C_ID") <> ViewState("company_no") Then
-                        txt_search.Text = ""
-                        txt_search.Focus()
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                            Exit Sub
+                        End If
+                    Else
+                        If dt_result.Rows(0)("C_ID") <> ViewState("company_no") Then
+                            txt_search.Text = ""
+                            txt_search.Focus()
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
                             title: 'خطأ! هذه الخدمة غير مقدمة لهذه الشركة',
                             showConfirmButton: true
                         });", True)
-                        Exit Sub
+                            Exit Sub
+                        End If
                     End If
-                End If
-
-                If txt_search.Text <> "" Then
 
                     ' حفظ الحركة في جدول المطالبات المؤقت
                     Dim ins_com As New SqlCommand("INSERT INTO INC_MOTALBA_TEMP (Req_Code,User_Id) VALUES (@Req_Code,@User_Id)", insurance_SQLcon)
@@ -286,37 +301,13 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                     insurance_SQLcon.Open()
                     ins_com.ExecuteNonQuery()
                     insurance_SQLcon.Close()
+                    Label1.Text = "الإجمالي: " & GridView1.Rows.Count
 
                     getTempData()
                 Else
                     GridView1.DataSource = dt_result
                     GridView1.DataBind()
                 End If
-
-                'If GridView1.Rows.Count = 0 Then
-                '    Session("dt") = dt_result
-                '    GridView1.DataSource = dt_result
-                '    GridView1.DataBind()
-                'Else
-
-                '    For Each dd As GridViewRow In GridView1.Rows
-
-                '        If dd.Cells(1).Text = dt_result.Rows(0)("Processes_ID") Then
-                '            txt_search.Text = ""
-                '            txt_search.Focus()
-                '            Exit Sub
-                '        End If
-
-                '    Next
-                '    Dim dt As New DataTable
-                '    dt = Session("dt")
-                '    dt.Merge(dt_result)
-                '    Session("dt") = dt
-                '    GridView1.DataSource = dt
-                '    GridView1.DataBind()
-                'End If
-
-                Label1.Text = "الإجمالي: " & GridView1.Rows.Count
             Else
                 txt_search.Text = ""
                 txt_search.Focus()
@@ -336,6 +327,29 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+
+        'If GridView1.Rows.Count = 0 Then
+        '    Session("dt") = dt_result
+        '    GridView1.DataSource = dt_result
+        '    GridView1.DataBind()
+        'Else
+
+        '    For Each dd As GridViewRow In GridView1.Rows
+
+        '        If dd.Cells(1).Text = dt_result.Rows(0)("Processes_ID") Then
+        '            txt_search.Text = ""
+        '            txt_search.Focus()
+        '            Exit Sub
+        '        End If
+
+        '    Next
+        '    Dim dt As New DataTable
+        '    dt = Session("dt")
+        '    dt.Merge(dt_result)
+        '    Session("dt") = dt
+        '    GridView1.DataSource = dt
+        '    GridView1.DataBind()
+        'End If
 
     End Sub
 
@@ -436,11 +450,7 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         dt_clear.Rows.Clear()
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
-        ddl_companies.SelectedValue = 0
-        txt_start_dt.Text = ""
-        txt_end_dt.Text = ""
-        btn_clear.Visible = False
-        Label1.Text = ""
+
     End Sub
 
     Private Sub ddl_companies_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_companies.SelectedIndexChanged
@@ -454,9 +464,21 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
 
-        txt_start_dt.Text = ""
-        txt_end_dt.Text = ""
-        btn_clear.Visible = False
-        Label1.Text = ""
+    End Sub
+
+    Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
+        Dim sel_com As New SqlCommand("SELECT 0 AS Service_ID, '- تحديد قسم -' AS Service_AR_Name FROM Main_Services UNION SELECT Service_ID,Service_AR_Name FROM Main_Services WHERE Service_State=0 AND Service_Clinic=" & ddl_clinics.SelectedValue, insurance_SQLcon)
+        Dim dt_result As New DataTable
+        insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        dt_result.Load(sel_com.ExecuteReader)
+        insurance_SQLcon.Close()
+        If dt_result.Rows.Count > 0 Then
+            ddl_service.DataSource = dt_result
+            ddl_service.DataValueField = "Service_ID"
+            ddl_service.DataTextField = "Service_AR_Name"
+            ddl_service.DataBind()
+        End If
+
     End Sub
 End Class

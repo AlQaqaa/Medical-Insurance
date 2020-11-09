@@ -171,9 +171,23 @@
                                         </asp:DropDownList>
                                         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:insurance_CS %>" SelectCommand="SELECT 0 AS clinic_id, 'يرجى اختيار عيادة' AS Clinic_AR_Name FROM [MAIN_CLINIC] UNION SELECT clinic_id, Clinic_AR_Name FROM [MAIN_CLINIC]"></asp:SqlDataSource>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-9">
+                                    <div class="form-group col-xs-12 col-sm-3">
+                                        <label for="ddl_sevice">القسم</label>
+                                        <asp:DropDownList ID="ddl_service" CssClass="chosen-select drop-down-list form-control" runat="server">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-6">
                                         <label for="txt_search"></label>
-                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
+                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" AutoCompleteType="Disabled"  TabIndex="1"></asp:TextBox>
+                                    </div>
+
+                                       <div class="form-group col-xs-12 col-sm-3">
+                                        <label for="ddl_clinics">الترتيب</label>
+                                        <asp:DropDownList ID="DropDownList1" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" >
+                                            <asp:ListItem Value="0">الادخال</asp:ListItem>
+                                            <asp:ListItem Value="1">رقم المريض</asp:ListItem>
+                                        </asp:DropDownList>
+                                        
                                     </div>
                                 </div>
                                 <!-- /form-row -->
@@ -183,15 +197,15 @@
                                         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من مسح هذه البيانات؟')" CssClass="btn btn-outline-danger btn-block" Text="مسح البيانات" Visible="False" />
+                                        <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من مسح هذه البيانات؟')" CssClass="btn btn-outline-danger btn-block" Text="مسح البيانات" TabIndex="999" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" OnClientClick="this.disabled = true;" UseSubmitBehavior="false"/>
+                                        <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" TabIndex="2" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_create" runat="server" CssClass="" Text="إنشاء" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" ValidationGroup="create" />
                                     </div>
-
+                                    
                                 </div>
                                 <!-- /form-row -->
 
@@ -249,12 +263,13 @@
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btn_create" EventName="Click" />
             <asp:AsyncPostBackTrigger ControlID="btn_search" EventName="Click" />
+            
         </Triggers>
     </asp:UpdatePanel>
     <script>
         function button_click(objTextBox, objBtnID) {
             if (window.event.keyCode == 13) {
-                document.getElementById('ContentPlaceHolder1_btn_search').click();
+                document.getElementById('<%=btn_search.ClientID %>').click();
             }
         }
 

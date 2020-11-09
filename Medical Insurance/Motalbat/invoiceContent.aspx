@@ -29,6 +29,17 @@
                                         <label for="ddl_companies">رقم الفاتورة</label>
                                         <asp:TextBox ID="txt_invoice_no" runat="server" dir="rtl" CssClass="form-control" ReadOnly="True"></asp:TextBox>
                                     </div>
+
+                                    
+                                       <div class="form-group col-xs-12 col-sm-3">
+                                        <label for="ddl_clinics">الترتيب</label>
+                                        <asp:DropDownList ID="DropDownList1" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" >
+                                            <asp:ListItem Value="0">الادخال</asp:ListItem>
+                                            <asp:ListItem Value="1">رقم المريض</asp:ListItem>
+                                        </asp:DropDownList>
+                                        
+                                    </div>
+
                                     <div class="form-group col-xs-12 col-sm-2">
                                         <label for="txt_start_dt">الفترة من</label>
                                         <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>

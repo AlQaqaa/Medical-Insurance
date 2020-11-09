@@ -148,7 +148,7 @@ Public Class statistics
             If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -286,7 +286,7 @@ Public Class statistics
             If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -407,7 +407,7 @@ Public Class statistics
             If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
             End If
 
             If txt_invoce_no.Text <> "" Then
@@ -567,7 +567,7 @@ Public Class statistics
             If ddl_motalba.SelectedValue = 1 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
             End If
 
             If txt_invoce_no.Text <> "" Then

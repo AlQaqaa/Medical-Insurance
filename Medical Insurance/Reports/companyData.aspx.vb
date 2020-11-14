@@ -29,7 +29,7 @@ Public Class companyData
             ds.Tables("INC_COMPANY_DATA").Load(sel_com.ExecuteReader)
             insurance_SQLcon.Close()
 
-            Dim datasource As New ReportDataSource("companyDataDS", ds.Tables("INC_COMPANY_DATA"))
+            Dim datasource As New ReportDataSource("DataSet1", ds.Tables("INC_COMPANY_DATA"))
             ReportViewer1.LocalReport.DataSources.Clear()
             ReportViewer1.ProcessingMode = ProcessingMode.Local
             ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/companyDataReport.rdlc")

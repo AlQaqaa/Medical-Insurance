@@ -1441,6 +1441,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._HyperLink18">
+<summary>
+HyperLink18 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._Panel1">
 <summary>
 Panel1 control.
@@ -5583,6 +5592,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.motalbat._HyperLink11">
 <summary>
 HyperLink11 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._HyperLink12">
+<summary>
+HyperLink12 control.
 </summary>
 <remarks>
 Auto-generated field.

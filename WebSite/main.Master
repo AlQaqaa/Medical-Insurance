@@ -147,7 +147,7 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink11" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/patientsExpenses.aspx"><i class="fas fa-file"></i>&nbsp;أرصدة ومصروفات المنتفعين</asp:HyperLink></li>
                                     <li>
-                                        <asp:HyperLink ID="HyperLink12" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/Report1.aspx"><i class="fas fa-file"></i>&nbsp;تقرير</asp:HyperLink></li>
+                                        <asp:HyperLink ID="HyperLink12" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/Report1.aspx"><i class="fas fa-file"></i>&nbsp;تسوية المالية - المشغلين</asp:HyperLink></li>
                                 </ul>
                             </li>
                         </ul>

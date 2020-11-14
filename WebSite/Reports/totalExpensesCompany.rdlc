@@ -679,7 +679,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox21</rd:DefaultName>
                   <Top>0cm</Top>
-                  <Left>11.50281cm</Left>
+                  <Left>11.6792cm</Left>
                   <Height>0.6cm</Height>
                   <Width>1.57396cm</Width>
                   <Style>
@@ -710,7 +710,7 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox21</rd:DefaultName>
                   <Top>0cm</Top>
-                  <Left>7.94088cm</Left>
+                  <Left>7.64984cm</Left>
                   <Height>0.6cm</Height>
                   <Width>0.72729cm</Width>
                   <ZIndex>1</ZIndex>
@@ -744,9 +744,9 @@
                   </Paragraphs>
                   <rd:DefaultName>from_dt</rd:DefaultName>
                   <Top>0cm</Top>
-                  <Left>8.68531cm</Left>
+                  <Left>8.4124cm</Left>
                   <Height>0.6cm</Height>
-                  <Width>2.8175cm</Width>
+                  <Width>3.19624cm</Width>
                   <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
@@ -778,7 +778,7 @@
                   </Paragraphs>
                   <rd:DefaultName>to_dt</rd:DefaultName>
                   <Top>0cm</Top>
-                  <Left>5.16748cm</Left>
+                  <Left>4.87644cm</Left>
                   <Height>0.6cm</Height>
                   <Width>2.73812cm</Width>
                   <ZIndex>3</ZIndex>
@@ -1000,15 +1000,13 @@
   </ReportSections>
   <ReportParameters>
     <ReportParameter Name="from_dt">
-      <DataType>String</DataType>
+      <DataType>DateTime</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="to_dt">
-      <DataType>String</DataType>
+      <DataType>DateTime</DataType>
       <Nullable>true</Nullable>
-      <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
     <ReportParameter Name="user_name">

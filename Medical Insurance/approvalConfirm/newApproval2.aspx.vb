@@ -104,17 +104,19 @@ Public Class newApproval2
         Dim rp6 As ReportParameter
         Dim rp7 As ReportParameter
         Dim rp8 As ReportParameter
+        Dim rp9 As ReportParameter
 
         rp1 = New ReportParameter("company_name", com_name)
-        rp2 = New ReportParameter("pat_name", "للمنتفع: " & txt_name.Text)
+        rp2 = New ReportParameter("pat_name", "للمريض: " & txt_name.Text)
         rp3 = New ReportParameter("card_no", " ")
         rp4 = New ReportParameter("emp_no", " ")
         rp5 = New ReportParameter("moshtark_name", "اسم المشترك:" & txt_emp_name.Text)
         rp6 = New ReportParameter("relation_m", " ")
         rp7 = New ReportParameter("approv_no", " ")
         rp8 = New ReportParameter("notes", "ملاحظات: " & txt_notes.Text)
+        rp9 = New ReportParameter("notes", Session("INC_User_name").ToString)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8, rp9})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/confirmApproval.rdlc"

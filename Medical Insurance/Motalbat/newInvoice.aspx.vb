@@ -301,9 +301,9 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                     insurance_SQLcon.Open()
                     ins_com.ExecuteNonQuery()
                     insurance_SQLcon.Close()
-                    Label1.Text = "الإجمالي: " & GridView1.Rows.Count
 
                     getTempData()
+                    Label1.Text = "الإجمالي: " & GridView1.Rows.Count
                 Else
                     GridView1.DataSource = dt_result
                     GridView1.DataBind()

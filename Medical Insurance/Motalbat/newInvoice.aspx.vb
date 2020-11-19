@@ -225,13 +225,23 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                             dt_user_name.Load(sel_del.ExecuteReader)
                             insurance_SQLcon.Close()
 
-                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: " & dt_user_name.Rows(0)("Orginal_UserName") & "',
-                            showConfirmButton: false,
-                            timer: 2500
-                        });playSound('../Style/error.mp3');", True)
+                            If dt_user_name.Rows.Count > 0 Then
+                                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: " & dt_user_name.Rows(0)("Orginal_UserName") & "',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                });playSound('../Style/error.mp3');", True)
+                            Else
+                                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                                    position: 'center',
+                                    icon: 'error',
+                                    title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: لا يمكن عرض اسم المستخدم',
+                                    showConfirmButton: false,
+                                    timer: 2500
+                                });playSound('../Style/error.mp3');", True)
+                            End If
                             txt_search.Text = ""
                             txt_search.Focus()
                             Exit Sub

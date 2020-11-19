@@ -55,7 +55,7 @@
                                         <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_print_details" runat="server" CssClass="btn btn-outline-info btn-block" Text="طباعة المرفقات" />
+                                        <asp:Button ID="btn_print_details" runat="server" CssClass="btn btn-outline-info btn-block" Text="طباعة المرفقات" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_return" runat="server" OnClientClick="return confirm('هل أنت متأكد من إرجاع هذه المطالبة؟')" CssClass="btn btn-outline-danger btn-block" Text="إرجاع المطالبة" />
@@ -126,6 +126,7 @@
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btn_print" EventName="Click" />
+            <asp:AsyncPostBackTrigger ControlID="btn_print_details" EventName="Click" />
         </Triggers>
     </asp:UpdatePanel>
 

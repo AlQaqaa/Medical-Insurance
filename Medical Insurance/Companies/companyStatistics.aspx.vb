@@ -159,7 +159,7 @@ Public Class companyStatistics
 
     Sub bindChartsSubServices()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING([Processes_Reservation_Code],7 , 2 ) = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable

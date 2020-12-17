@@ -39,7 +39,7 @@ Public Class STOP_COMPANY
             Dim index As Integer = Convert.ToInt32(e.CommandArgument)
             Dim row As GridViewRow = dt_GridView.Rows(index)
             Session.Item("company_id") = (row.Cells(0).Text)
-            Response.Redirect("companyInfo.aspx")
+            Response.Redirect("Default.aspx")
         End If
 
         '################ When User Press On Edit Button ################

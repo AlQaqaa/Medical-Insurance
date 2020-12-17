@@ -162,10 +162,24 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Dim dateStart As New List(Of Date)()
         Dim dateEnd As New List(Of Date)()
 
+        Dim index_no As Integer = 0
+        Dim sel_com As New SqlCommand("SELECT MAX(ISNULL(INDEX_NUM, 0)) FROM INC_INVOICES", insurance_SQLcon)
+        If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+        insurance_SQLcon.Open()
+        index_no = sel_com.ExecuteScalar()
+        insurance_SQLcon.Close()
+
         For Each dd As GridViewRow In GridView1.Rows
             Dim ch As CheckBox = dd.FindControl("CheckBox2")
 
             If ch.Checked = True Then
+                Dim update_com As New SqlCommand("UPDATE INC_INVOICES SET INDEX_NUM=@INDEX_NUM WHERE INVOICE_NO = " & dd.Cells(0).Text, insurance_SQLcon)
+                update_com.Parameters.Add("@INDEX_NUM", SqlDbType.Int).Value = index_no + 1
+                If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                update_com.ExecuteNonQuery()
+                insurance_SQLcon.Close()
+
                 main_ds.Tables("invoicesList").Rows.Add(dd.Cells(0).Text, dd.Cells(4).Text, dd.Cells(6).Text, dd.Cells(7).Text, CDec(dd.Cells(8).Text))
                 ch_counter = ch_counter + 1
                 total_val = total_val + CDec(dd.Cells(8).Text)
@@ -195,6 +209,8 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
 
         Dim value_word As String = GetNumberToWord(total_val)
 
+        Dim index_number As String = Format(index_no, "000000") & "/" & Date.Now.Year & "/" & Date.Now.Month
+
         Dim viewer As ReportViewer = New ReportViewer()
 
         Dim datasource As New ReportDataSource("invListDS", main_ds.Tables("invoicesList"))
@@ -209,6 +225,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Dim rp4 As ReportParameter
         Dim rp5 As ReportParameter
         Dim rp6 As ReportParameter
+        Dim rp7 As ReportParameter
 
         rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
         rp2 = New ReportParameter("value_text", value_word)
@@ -216,8 +233,9 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         rp4 = New ReportParameter("mang_name", txt_mang_name.Text)
         rp5 = New ReportParameter("date_from", dateStart.Min)
         rp6 = New ReportParameter("date_to", dateEnd.Max)
+        rp7 = New ReportParameter("index_no", index_number)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/invoicesList.rdlc"

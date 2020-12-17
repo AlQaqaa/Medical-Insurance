@@ -60,7 +60,7 @@ Public Class companyStatistics
 
     Sub getMostPatientVisit()
         Try
-            Dim sel_com As New SqlCommand("SELECT TOP(10) COUNT(Processes_ID) AS P_COUNT, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID) AS P_NAME FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date > '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY PINC_ID ORDER BY P_COUNT DESC", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT TOP(10) COUNT(Processes_ID) AS P_COUNT, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.INC_Patient_Code = INC_CompanyProcesses.Processes_Reservation_Code) AS P_NAME FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date > '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_Reservation_Code ORDER BY P_COUNT DESC", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -353,7 +353,7 @@ Public Class companyStatistics
     End Sub
 
     Sub getPetientCount()
-        Dim sql_str As String = "SELECT COUNT(DISTINCT PINC_ID) AS p_count FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4)"
+        Dim sql_str As String = "SELECT COUNT(DISTINCT Processes_Reservation_Code) AS p_count FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4)"
 
         Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
         Dim dt_result As New DataTable

@@ -57,13 +57,14 @@ Public Class editClinc
             txt_clinic_id.Text = dr_clinic!Clinic_ID
             txt_clini_name.Text = dr_clinic!Clinic_AR_Name
             Page.Title = dr_clinic!Clinic_AR_Name
-            If dr_clinic!SESSION_COUNT = 0 Then
+            If dr_clinic!Clinic_ID <> 18 Then
                 txt_max_val.Text = CDec(dr_clinic!MAX_VALUE)
                 Label1.Text = "السقف العام"
             Else
                 txt_max_val.Text = Val(dr_clinic!SESSION_COUNT)
                 Label1.Text = "عدد الجلسات"
             End If
+            ViewState("Clinic_ID") = dr_clinic!Clinic_ID
             ViewState("SESSION_COUNT") = dr_clinic!SESSION_COUNT
             ViewState("group_no") = dr_clinic!GROUP_NO
             If dr_clinic!GROUP_NO <> 0 Then
@@ -103,7 +104,7 @@ Public Class editClinc
 
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
         If ViewState("group_no") = 0 Then
-            If ViewState("SESSION_COUNT") = 0 Then
+            If ViewState("Clinic_ID") <> 18 Then
                 Dim update_clinic As New SqlCommand("UPDATE INC_CLINICAL_RESTRICTIONS SET MAX_VALUE = @MAX_VALUE WHERE C_ID=@C_ID AND CLINIC_ID=@CLINIC_ID AND CONTRACT_NO=@CONTRACT_NO", insurance_SQLcon)
                 update_clinic.Parameters.AddWithValue("@MAX_VALUE", CDec(txt_max_val.Text))
                 update_clinic.Parameters.AddWithValue("@C_ID", ViewState("company_no"))

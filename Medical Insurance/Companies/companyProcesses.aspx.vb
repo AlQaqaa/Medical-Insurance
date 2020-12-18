@@ -33,11 +33,11 @@ Public Class companyProcesses
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, INC_PATIANT.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name AS Processes_Cilinc, SubService_AR_Name AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت التسوية' else 'لم تتم التسوية' end) AS Processes_State FROM INC_CompanyProcesses
+            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name AS Processes_Cilinc, SubService_AR_Name AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت التسوية' else 'لم تتم التسوية' end) AS Processes_State FROM INC_CompanyProcesses
 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-LEFT JOIN INC_PATIANT ON INC_PATIANT.[INC_Patient_Code] = INC_CompanyProcesses.Processes_Reservation_Code WHERE INC_CompanyProcesses.C_ID = " & Session("company_id") & " AND Processes_State in (2,4)"
+WHERE INC_CompanyProcesses.C_ID = " & Session("company_id") & " AND Processes_State in (2,4)"
 
             Select Case ddl_time.SelectedValue
                 Case 1

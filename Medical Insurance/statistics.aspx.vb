@@ -40,7 +40,7 @@ Public Class statistics
         getData()
         If txt_processes_code.Text = "" Then
             bindChartsClinic()
-            lbl_total.Text = Format(getTotalValue(), "0,0.000") & " د.ل"
+
             lbl_patient_count.Text = patientCount()
         End If
 
@@ -57,22 +57,20 @@ Public Class statistics
     Private Sub getData()
 
         Try
-            Dim sql_str As String = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_PATIANT.PINC_ID, INC_PATIANT.CARD_NO,convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO FROM INC_CompanyProcesses 
+            Dim sql_str As String = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, CARD_NO, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO FROM INC_CompanyProcesses 
                 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-                LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_CompanyProcesses.Processes_Reservation_Code
                 LEFT JOIN INC_MOTALBAT ON INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1
                 WHERE Processes_State = 2"
 
             If txt_processes_code.Text <> "" Then
-                sql_str = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_PATIANT.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
+                sql_str = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_PATIANT.PINC_ID, CARD_NO, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
                 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-                LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_CompanyProcesses.Processes_Reservation_Code
                 LEFT JOIN INC_MOTALBAT ON INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1 
                 WHERE pros_code = " & txt_processes_code.Text & " AND Processes_State = 2"
             End If
@@ -82,11 +80,11 @@ Public Class statistics
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND NAME_ARB LIKE '%" & txt_patient_name.Text & "%'"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.PINC_ID IN (SELECT PINC_ID FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
+                sql_str = sql_str & " AND CARD_NO = '" & txt_card_no.Text & "'"
             End If
 
             If txt_emp_no.Text <> "" Then
@@ -185,6 +183,7 @@ Public Class statistics
                 lbl_services_count.Text = dt_search_result.Rows.Count
                 GridView1.DataSource = dt_search_result
                 GridView1.DataBind()
+                lbl_total.Text = Format(Convert.ToInt32(dt_search_result.Compute("SUM(Processes_Residual)", String.Empty)), "0,0.000") & " د.ل"
             Else
                 btn_export_excel.Enabled = False
                 Panel1.Visible = False
@@ -205,18 +204,18 @@ Public Class statistics
         Dim count_val As Integer = 0
 
         Try
-            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND Processes_State = 2"
+            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses WHERE Processes_State = 2"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND NAME_ARB LIKE '%" & txt_patient_name.Text & "%'"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
+                sql_str = sql_str & " CARD_NO = '" & txt_card_no.Text & "'"
             End If
 
             If txt_emp_no.Text <> "" Then
@@ -326,18 +325,18 @@ Public Class statistics
 
     Sub bindChartsClinic()
         Try
-            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND Processes_State = 2"
+            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_State = 2"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
             End If
 
             If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
+                sql_str = sql_str & " AND NAME_ARB LIKE '%" & txt_patient_name.Text & "%'"
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
+                sql_str = sql_str & " AND CARD_NO = '" & txt_card_no.Text & "'"
             End If
 
             If txt_emp_no.Text <> "" Then
@@ -480,119 +479,6 @@ Public Class statistics
             MsgBox("3" & ex.Message)
         End Try
     End Sub
-
-    Function getTotalValue() As Decimal
-
-        Dim total_val As Decimal = 0
-
-        Try
-            Dim sql_str As String = "SELECT ISNULL(SUM(Processes_Residual), 0) AS Processes_Residual FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND SUBSTRING(Processes_Reservation_Code,8 , 1 ) <> 0 AND Processes_State = 2"
-
-            If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
-            End If
-
-            If txt_patient_name.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE NAME_ARB LIKE '%" & txt_patient_name.Text & "%')"
-            End If
-
-            If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE CARD_NO = '" & txt_card_no.Text & "')"
-            End If
-
-            If txt_emp_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE BAGE_NO = '" & txt_emp_no.Text & "')"
-            End If
-
-            If txt_patient_code.Text <> "" Then
-                sql_str = sql_str & " AND Processes_Reservation_Code = " & txt_patient_code.Text
-            End If
-
-            If ddl_doctors.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_Doctor_ID FROM HAG_Processes_Doctor WHERE Doctor_Processes_ID = " & ddl_doctors.SelectedValue & ")"
-            End If
-
-            If ddl_clinics.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND Processes_Cilinc = " & ddl_clinics.SelectedValue
-            End If
-
-            If ddl_services.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND Processes_Services = " & ddl_services.SelectedValue
-            End If
-
-            If ddl_sub_service.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND Processes_SubServices = " & ddl_sub_service.SelectedValue
-            End If
-
-            If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-                Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
-            End If
-
-            If txt_start_dt.Text <> "" And txt_end_dt.Text = "" Then
-                sql_str = sql_str & " AND Processes_Date = '" & txt_start_dt.Text & "'"
-            End If
-
-            If txt_start_dt.Text = "" And txt_end_dt.Text <> "" Then
-                sql_str = sql_str & " AND Processes_Date = '" & txt_end_dt.Text & "'"
-            End If
-
-            If ddl_payment_type.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DETIAL WHERE PYMENT_TYPE = " & ddl_payment_type.SelectedValue & " AND DATE_START <= '" & Date.Now.Date & "' AND DATE_END >= '" & Date.Now.Date & "')"
-            End If
-
-            If ddl_invoice_type.SelectedValue = 1 Then
-                sql_str = sql_str & " AND Processes_Cilinc NOT IN (SELECT ECID FROM EWA_Clinic)"
-            ElseIf ddl_invoice_type.SelectedValue = 2 Then
-                sql_str = sql_str & " AND Processes_Cilinc IN (SELECT ECID FROM EWA_Clinic)"
-            End If
-
-            If ddl_relation.SelectedValue <> -1 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE CONST_ID = " & ddl_relation.SelectedValue & ")"
-            End If
-
-            If ddl_sex.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE GENDER = " & ddl_sex.SelectedValue & ")"
-            End If
-
-            If txt_phone_num.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE PHONE_NO = '" & txt_phone_num.Text & "')"
-            End If
-
-            If ddl_NAL_ID.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
-            End If
-
-            If ddl_motalba.SelectedValue = 1 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
-            ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
-            End If
-
-            If txt_invoce_no.Text <> "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
-            End If
-
-            If ddl_search_field.SelectedValue = 1 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE DATEDIFF(YEAR, BIRTHDATE, getdate()) " & ddl_operation.SelectedValue & " " & txt_search_val.Text & ")"
-            ElseIf ddl_search_field.SelectedValue = 2 Then
-                sql_str = sql_str & " AND Processes_Price " & ddl_operation.SelectedValue & " " & txt_search_val.Text
-            End If
-
-            Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
-
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            total_val = sel_com.ExecuteScalar
-            insurance_SQLcon.Close()
-
-            Return total_val
-
-        Catch ex As Exception
-            MsgBox("4" & ex.Message)
-        End Try
-    End Function
 
     Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
         Response.Redirect(Request.RawUrl)

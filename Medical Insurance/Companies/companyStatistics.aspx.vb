@@ -60,7 +60,7 @@ Public Class companyStatistics
 
     Sub getMostPatientVisit()
         Try
-            Dim sel_com As New SqlCommand("SELECT TOP(10) COUNT(Processes_ID) AS P_COUNT, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.INC_Patient_Code = INC_CompanyProcesses.Processes_Reservation_Code) AS P_NAME FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date > '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_Reservation_Code ORDER BY P_COUNT DESC", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT TOP(10) COUNT(Processes_ID) AS P_COUNT, (SELECT NAME_ARB FROM INC_PATIANT WHERE INC_PATIANT.INC_Patient_Code = INC_CompanyProcesses.Processes_Reservation_Code) AS P_NAME FROM INC_CompanyProcesses WHERE C_ID = " & Session("company_id") & " AND Processes_Date > '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_Reservation_Code ORDER BY P_COUNT DESC", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -115,7 +115,7 @@ Public Class companyStatistics
 
     Sub getMoneyInfo()
         Try
-            Dim sel_com As New SqlCommand("SELECT SUM(Processes_Residual) AS C_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND Processes_State IN (2,4) AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "'", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT SUM(Processes_Residual) AS C_COUNT FROM INC_CompanyProcesses WHERE Processes_State IN (2,4) AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "'", insurance_SQLcon)
 
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
@@ -159,7 +159,7 @@ Public Class companyStatistics
 
     Sub bindChartsSubServices()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT TOP (10) (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS SubService_AR_Name, COUNT(*) AS SubService_COUNT FROM INC_CompanyProcesses WHERE C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_SubServices ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -216,7 +216,7 @@ Public Class companyStatistics
 
     Sub bindChartsClinic()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS Clinic_AR_Name, COUNT(*) AS Clinic_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_Cilinc ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT TOP (10) (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS Clinic_AR_Name, COUNT(*) AS Clinic_COUNT FROM INC_CompanyProcesses WHERE C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4) GROUP BY Processes_Cilinc ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -273,7 +273,7 @@ Public Class companyStatistics
 
     Sub bindChartsDoctros()
         Try
-            Dim sql_str As String = "SELECT TOP (10) (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id) AS MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND doctor_id <> 0 AND Processes_State IN (2,4) GROUP BY doctor_id ORDER BY COUNT(*) DESC"
+            Dim sql_str As String = "SELECT TOP (10) (SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id) AS MedicalStaff_AR_Name, COUNT(*) AS doctors_COUNT FROM INC_CompanyProcesses WHERE C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND doctor_id <> 0 AND Processes_State IN (2,4) GROUP BY doctor_id ORDER BY COUNT(*) DESC"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable
@@ -330,7 +330,7 @@ Public Class companyStatistics
     End Sub
 
     Sub getSummary()
-        Dim sql_str As String = "SELECT ISNULL(AVG(Processes_Residual),0) AS AVG_EXPENS, ISNULL(SUM(Processes_Residual),0) AS TOTAL_EXPENS, ISNULL(COUNT(*),0) AS TOTAL_SERVICES FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4)"
+        Dim sql_str As String = "SELECT ISNULL(AVG(Processes_Residual),0) AS AVG_EXPENS, ISNULL(SUM(Processes_Residual),0) AS TOTAL_EXPENS, ISNULL(COUNT(*),0) AS TOTAL_SERVICES FROM INC_CompanyProcesses WHERE C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4)"
 
         Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
         Dim dt_result As New DataTable
@@ -353,7 +353,7 @@ Public Class companyStatistics
     End Sub
 
     Sub getPetientCount()
-        Dim sql_str As String = "SELECT COUNT(DISTINCT Processes_Reservation_Code) AS p_count FROM INC_CompanyProcesses WHERE Processes_Residual <> 0 AND C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4)"
+        Dim sql_str As String = "SELECT COUNT(DISTINCT Processes_Reservation_Code) AS p_count FROM INC_CompanyProcesses WHERE C_ID = " & Session("company_id") & " AND Processes_Date >= '" & ViewState("start_dt") & "' AND Processes_State IN (2,4)"
 
         Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
         Dim dt_result As New DataTable

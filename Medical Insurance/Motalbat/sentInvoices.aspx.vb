@@ -2,6 +2,7 @@
 Imports CrystalDecisions.Shared
 Imports Microsoft.Reporting.WebForms
 Imports System.IO
+Imports System.Globalization
 
 Public Class sentInvoices
     Inherits System.Web.UI.Page
@@ -22,11 +23,31 @@ Public Class sentInvoices
 
     End Sub
 
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+
+            If CheckBox1.Checked = True Then
+                ch.Checked = True
+            Else
+                ch.Checked = False
+
+            End If
+        Next
+    End Sub
+
     Sub getData()
+        Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+        Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+
         Dim sql_str As String = "SELECT INVOICE_NO, CONVERT(VARCHAR, INCOICE_CREATE_DT, 23) AS INCOICE_CREATE_DT,(SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO,isnull((select SUM(Processes_Residual) from INC_IvoicesProcesses where INC_IvoicesProcesses.INVOICE_NO in (INC_INVOICES.INVOICE_NO)), 0) as total_val FROM INC_INVOICES WHERE INCOICE_STS = 1 AND C_ID = " & ddl_companies.SelectedValue
 
         If ddl_invoice_type.SelectedValue <> -1 Then
             sql_str = sql_str & " AND INVOICE_TYPE = " & ddl_invoice_type.SelectedValue
+        End If
+
+        If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
+            sql_str = sql_str & " AND INCOICE_CREATE_DT BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
         End If
 
         sql_str = sql_str & " ORDER BY INVOICE_NO DESC"
@@ -44,12 +65,14 @@ Public Class sentInvoices
             GridView1.DataBind()
             Label1.Text = ""
             btn_send.Visible = True
+            CheckBox1.Visible = True
         Else
             dt_result.Rows.Clear()
             GridView1.DataSource = dt_result
             GridView1.DataBind()
             Label1.Text = "<div class='alert alert-danger' role='alert'>لا يوجد بيانات لعرضها</div>"
             btn_send.Visible = False
+            CheckBox1.Visible = False
         End If
     End Sub
 
@@ -198,5 +221,9 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+        getData()
     End Sub
 End Class

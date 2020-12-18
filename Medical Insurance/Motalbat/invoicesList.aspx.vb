@@ -162,8 +162,8 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Dim dateStart As New List(Of Date)()
         Dim dateEnd As New List(Of Date)()
 
-        Dim index_no As Integer = 0
-        Dim sel_com As New SqlCommand("SELECT MAX(ISNULL(INDEX_NUM, 0)) FROM INC_INVOICES", insurance_SQLcon)
+        Dim index_no As String = "0"
+        Dim sel_com As New SqlCommand("SELECT MAX(ISNULL(RIGHT('000000' + CAST(INDEX_NUM + 1 AS VARCHAR(6)), 6), 0)) FROM INC_INVOICES", insurance_SQLcon)
         If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
         insurance_SQLcon.Open()
         index_no = sel_com.ExecuteScalar()
@@ -174,7 +174,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
 
             If ch.Checked = True Then
                 Dim update_com As New SqlCommand("UPDATE INC_INVOICES SET INDEX_NUM=@INDEX_NUM WHERE INVOICE_NO = " & dd.Cells(0).Text, insurance_SQLcon)
-                update_com.Parameters.Add("@INDEX_NUM", SqlDbType.Int).Value = index_no + 1
+                update_com.Parameters.Add("@INDEX_NUM", SqlDbType.Int).Value = index_no
                 If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
                 insurance_SQLcon.Open()
                 update_com.ExecuteNonQuery()
@@ -209,7 +209,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
 
         Dim value_word As String = GetNumberToWord(total_val)
 
-        Dim index_number As String = Format(index_no, "000000") & "/" & Date.Now.Year & "/" & Date.Now.Month
+        Dim index_number As String = index_no & "/" & Date.Now.Year & "/" & Date.Now.Month
 
         Dim viewer As ReportViewer = New ReportViewer()
 

@@ -284,7 +284,9 @@
                                         </asp:BoundField>
                                         <asp:BoundField DataField="pros_code" HeaderText="كود الحركة"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Reservation_Code" HeaderText="كود المنتفع"></asp:BoundField>
-                                        <asp:ButtonField DataTextField="PATIENT_NAME" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على اسم المنتفع للوصول إلى الإعدادت والمعلومات الخاصة به'> اسم المنتفع <i class='fas fa-info-circle'></i></span>" CommandName="pat_name"></asp:ButtonField>
+                                        <asp:BoundField DataField="CARD_NO" HeaderText="رقم البطاقة"></asp:BoundField>
+                                        <asp:BoundField DataField="PATIENT_NAME" HeaderText="اسم المنتفع"></asp:BoundField>
+                                        <%--<asp:ButtonField DataTextField="PATIENT_NAME" HeaderText="اسم المنتفع" CommandName="pat_name"></asp:ButtonField>--%>
                                         <asp:BoundField DataField="COMPANY_NAME" HeaderText="الشركة"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Date" HeaderText="تاريخ الحركة"></asp:BoundField>
                                         <asp:BoundField DataField="Processes_Time" HeaderText="وقت الحركة"></asp:BoundField>

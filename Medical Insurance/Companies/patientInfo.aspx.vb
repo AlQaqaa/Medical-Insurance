@@ -278,12 +278,11 @@ WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
     Private Sub getProcessesData()
 
         Try
-            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, INC_PATIANT.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name AS Processes_Cilinc, SubService_AR_Name AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
-LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_CompanyProcesses.Processes_Reservation_Code
+            Dim sql_str As String = "SELECT Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name AS Processes_Cilinc, SubService_AR_Name AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses.NAME_ARB, '') AS PATIENT_NAME FROM INC_CompanyProcesses
 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-where INC_PATIANT.PINC_ID = " & ViewState("p_no") & " AND [Processes_Date] >= (select DATE_START from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") AND [Processes_Date] <= (select DATE_END from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ")"
+where INC_CompanyProcesses.PINC_ID = " & ViewState("p_no") & " AND [Processes_Date] >= (select DATE_START from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ") AND [Processes_Date] <= (select DATE_END from INC_COMPANY_DETIAL where C_ID = " & Session("company_id") & " and CONTRACT_NO = " & ViewState("contract_no") & ")"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_result As New DataTable

@@ -47,7 +47,7 @@ Public Class sentInvoices
         End If
 
         If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
-            sql_str = sql_str & " AND INCOICE_CREATE_DT BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
+            sql_str = sql_str & " AND DATE_FROM >= '" & start_dt & "' AND DATE_TO <= '" & end_dt & "'"
         End If
 
         sql_str = sql_str & " ORDER BY INVOICE_NO DESC"

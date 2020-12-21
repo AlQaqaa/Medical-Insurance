@@ -53,6 +53,10 @@
           <DataField>PATIENT_NAME</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Processes_Paid">
+          <DataField>Processes_Paid</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
@@ -72,34 +76,73 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>2.56301cm</Width>
+                  <Width>2.31097cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.56301cm</Width>
+                  <Width>2.39815cm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.30722cm</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>4.65229cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.56301cm</Width>
+                  <Width>2.07165cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.82832cm</Width>
+                  <Width>2.19199cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.65321cm</Width>
+                  <Width>4.79916cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>3.85946cm</Width>
+                  <Width>3.62134cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.04467cm</Width>
+                  <Width>3.62134cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
                   <Height>0.6cm</Height>
                   <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>نسبة المريض</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>WhiteSmoke</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="Textbox26">
@@ -395,6 +438,41 @@
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="Processes_Paid">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Processes_Paid.Value</Value>
+                                  <Style>
+                                    <FontSize>11pt</FontSize>
+                                    <Format>#,0.000;(#,0.000)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Processes_Paid</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="CASH_PRS">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -681,6 +759,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -695,9 +774,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet10</DataSetName>
             <Top>0.34079cm</Top>
-            <Left>0.35455cm</Left>
+            <Left>0.10743cm</Left>
             <Height>1.2cm</Height>
-            <Width>27.72698cm</Width>
+            <Width>27.97411cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -725,9 +804,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>1.6819cm</Top>
-            <Left>2.91756cm</Left>
+            <Left>4.88711cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.56301cm</Width>
+            <Width>2.23666cm</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -762,9 +841,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox2</rd:DefaultName>
             <Top>1.6819cm</Top>
-            <Left>0.35455cm</Left>
+            <Left>2.52424cm</Left>
             <Height>0.6cm</Height>
-            <Width>2.5cm</Width>
+            <Width>2.29232cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -795,8 +874,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox3</rd:DefaultName>
-            <Top>1.64662cm</Top>
-            <Left>5.55113cm</Left>
+            <Top>1.6819cm</Top>
+            <Left>7.2296cm</Left>
             <Height>0.6cm</Height>
             <Width>4.28687cm</Width>
             <ZIndex>3</ZIndex>
@@ -810,11 +889,48 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox5">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Sum(Fields!Processes_Paid.Value, "DataSet10")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                      <Format>#,0.000;(#,0.000)</Format>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox2</rd:DefaultName>
+            <Top>1.6819cm</Top>
+            <Left>0.10743cm</Left>
+            <Height>0.6cm</Height>
+            <Width>2.31097cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>Solid</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>2.61937cm</Height>
         <Style />
       </Body>
-      <Width>28.47726cm</Width>
+      <Width>28.23914cm</Width>
       <Page>
         <PageHeader>
           <Height>5.35933cm</Height>
@@ -1331,7 +1447,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.14111cm</Top>
-              <Left>25.97726cm</Left>
+              <Left>25.65976cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>2</ZIndex>

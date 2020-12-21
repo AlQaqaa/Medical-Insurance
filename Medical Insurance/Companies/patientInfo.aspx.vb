@@ -3,6 +3,7 @@ Imports System.Web.UI.DataVisualization.Charting
 Imports System.IO
 Imports System.Globalization
 Imports ClosedXML.Excel
+Imports System.Drawing
 
 Public Class patientInfo
     Inherits System.Web.UI.Page
@@ -56,41 +57,41 @@ Public Class patientInfo
             lbl_total_expensess.Text = "إجمالي المصروفات " & Format(total_expenses, "0,0.000") & " د.ل"
             'If getMaxValue() <> 0 Then
             With Me.Chart3
-                    .Legends.Clear()
-                    .Series.Clear()
-                    .ChartAreas.Clear()
-                End With
+                .Legends.Clear()
+                .Series.Clear()
+                .ChartAreas.Clear()
+            End With
 
-                Dim areas1 As ChartArea = Me.Chart3.ChartAreas.Add("Areas1")
+            Dim areas1 As ChartArea = Me.Chart3.ChartAreas.Add("Areas1")
 
-                With areas1
-                End With
+            With areas1
+            End With
 
-                Dim series1 As Series = Me.Chart3.Series.Add("Series1")
+            Dim series1 As Series = Me.Chart3.Series.Add("Series1")
 
-                With series1
-                    .ChartArea = areas1.Name
-                    .ChartType = SeriesChartType.Doughnut
-                    .Points.AddXY("إجمالي المصروفات", total_expenses)
-                    .Points.AddXY("السقف العام", getMaxValue())
-                    .ToolTip = "#VALX" & vbLf & "الإجمالي: #VALY" & vbLf & "النسبة: #PERCENT"
-                    .Label = "#PERCENT"
-                    .LegendText = "#AXISLABEL"
-                End With
+            With series1
+                .ChartArea = areas1.Name
+                .ChartType = SeriesChartType.Doughnut
+                .Points.AddXY("إجمالي المصروفات", total_expenses)
+                .Points.AddXY("السقف العام", getMaxValue())
+                .ToolTip = "#VALX" & vbLf & "الإجمالي: #VALY" & vbLf & "النسبة: #PERCENT"
+                .Label = "#PERCENT"
+                .LegendText = "#AXISLABEL"
+            End With
 
-                Dim legends1 As Legend = Me.Chart3.Legends.Add("Legends1")
-                'End If
+            Dim legends1 As Legend = Me.Chart3.Legends.Add("Legends1")
+            'End If
 
 
-            End If
+        End If
 
 
     End Sub
 
     Sub getPatInfo()
-        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, '0') AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID, ISNULL(INC_Patient_Code, 0) AS INC_Patient_Code, INC_COMPANY_DETIAL.DATE_START, INC_COMPANY_DETIAL.DATE_END FROM INC_PATIANT
+        Dim get_pet As New SqlCommand("SELECT CARD_NO, NAME_ARB, NAME_ENG, INC_PATIANT.C_ID, CONVERT(VARCHAR, BIRTHDATE, 23) AS BIRTHDATE, ISNULL(BAGE_NO, '0') AS BAGE_NO, isnull(PHONE_NO, 0) AS PHONE_NO, CONVERT(VARCHAR, EXP_DATE, 23) AS EXP_DATE, P_STATE, isnull(NAT_NUMBER, 0) AS NAT_NUMBER, IMAGE_CARD, C_NAME_ARB AS COMPANY_NAME, (CASE WHEN (CONST_ID) = 0 THEN 'المشترك'  WHEN (CONST_ID) = 1 THEN 'الأب'  WHEN (CONST_ID) = 2 THEN 'الأم'  WHEN (CONST_ID) = 3 THEN 'الزوجة'  WHEN (CONST_ID) = 4 THEN 'الأبن'  WHEN (CONST_ID) = 5 THEN 'الابنة'  WHEN (CONST_ID) = 6 THEN 'الأخ'  WHEN (CONST_ID) = 7 THEN 'الأخت'  WHEN (CONST_ID) = 8 THEN 'الزوج'  WHEN (CONST_ID) = 9 THEN 'زوجة الأب' END) AS CONST_ID, ISNULL(CONTRACT_NO, 0) AS CONTRACT_NO, Nationality_AR_Name AS NAT_NAME, City_AR_Name AS CITY_NAME, OLD_ID, ISNULL(INC_Patient_Code, 0) AS INC_Patient_Code, INC_COMPANY_DETIAL.DATE_START, INC_COMPANY_DETIAL.DATE_END FROM INC_PATIANT
 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID
-LEFT JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND INC_COMPANY_DETIAL.DATE_START <= GETDATE() AND INC_COMPANY_DETIAL.DATE_END >= GETDATE()
+LEFT JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND INC_COMPANY_DETIAL.DATE_END = (SELECT MAX(DATE_END) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID)
 LEFT JOIN Main_Nationality ON MAIN_NATIONALITY.Nationality_ID = INC_PATIANT.NAL_ID
 LEFT JOIN Main_City ON Main_City.City_ID = INC_PATIANT.CITY_ID
 WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
@@ -110,6 +111,11 @@ WHERE PINC_ID = " & Val(ViewState("p_no")), insurance_SQLcon)
             lbl_company_name.Text = dr_pat!COMPANY_NAME
             lbl_card_no.Text = dr_pat!CARD_NO
             lbl_exp_dt.Text = dr_pat!EXP_DATE
+            If dr_pat!EXP_DATE < Date.Now.Date Then
+                lbl_exp_dt.ForeColor = Color.Red
+            Else
+                lbl_exp_dt.ForeColor = Color.Green
+            End If
             lbl_bage_no.Text = dr_pat!BAGE_NO
             ViewState("bage_no") = dr_pat!BAGE_NO
             ViewState("contract_no") = dr_pat!CONTRACT_NO

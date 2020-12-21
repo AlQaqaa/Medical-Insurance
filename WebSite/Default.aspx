@@ -57,7 +57,7 @@
                             <div class="form-row align-items-center">
                                 <div class="col-sm-4 my-1">
                                     <div class="input-group">
-                                        <asp:TextBox ID="txt_pat_search" runat="server" CssClass="form-control" placeholder=""></asp:TextBox>
+                                        <asp:TextBox ID="txt_pat_search" runat="server" CssClass="form-control" placeholder="" AutoCompleteType="Disabled"></asp:TextBox>
                                         <div class="input-group-prepend">
                                             <asp:Button ID="btn_search" runat="server" CssClass="btn btn-info" Text="بحث" />
                                             <asp:Button ID="btn_clear" runat="server" CssClass="btn btn-dark" Text="إلغاء" Visible="False" />

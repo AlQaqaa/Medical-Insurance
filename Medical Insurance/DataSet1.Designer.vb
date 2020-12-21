@@ -7041,6 +7041,8 @@ Partial Public Class DataSet1
         
         Private columnPATIENT_NAME As Global.System.Data.DataColumn
         
+        Private columnProcesses_Paid As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -7149,6 +7151,14 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_PaidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Paid
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -7185,9 +7195,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddDataTable5Row(ByVal Req_Code As String, ByVal Processes_Reservation_Code As String, ByVal Processes_Date As String, ByVal Processes_Time As System.TimeSpan, ByVal Processes_Cilinc As Byte, ByVal SubService_AR_Name As String, ByVal Processes_Price As Double, ByVal CASH_PRS As Decimal, ByVal PATIENT_NAME As String) As DataTable5Row
+        Public Overloads Function AddDataTable5Row(ByVal Req_Code As String, ByVal Processes_Reservation_Code As String, ByVal Processes_Date As String, ByVal Processes_Time As System.TimeSpan, ByVal Processes_Cilinc As Byte, ByVal SubService_AR_Name As String, ByVal Processes_Price As Double, ByVal CASH_PRS As Decimal, ByVal PATIENT_NAME As String, ByVal Processes_Paid As Double) As DataTable5Row
             Dim rowDataTable5Row As DataTable5Row = CType(Me.NewRow,DataTable5Row)
-            Dim columnValuesArray() As Object = New Object() {Req_Code, Processes_Reservation_Code, Processes_Date, Processes_Time, Processes_Cilinc, SubService_AR_Name, Processes_Price, CASH_PRS, PATIENT_NAME}
+            Dim columnValuesArray() As Object = New Object() {Req_Code, Processes_Reservation_Code, Processes_Date, Processes_Time, Processes_Cilinc, SubService_AR_Name, Processes_Price, CASH_PRS, PATIENT_NAME, Processes_Paid}
             rowDataTable5Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowDataTable5Row)
             Return rowDataTable5Row
@@ -7219,6 +7229,7 @@ Partial Public Class DataSet1
             Me.columnProcesses_Price = MyBase.Columns("Processes_Price")
             Me.columnCASH_PRS = MyBase.Columns("CASH_PRS")
             Me.columnPATIENT_NAME = MyBase.Columns("PATIENT_NAME")
+            Me.columnProcesses_Paid = MyBase.Columns("Processes_Paid")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -7242,6 +7253,8 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnCASH_PRS)
             Me.columnPATIENT_NAME = New Global.System.Data.DataColumn("PATIENT_NAME", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPATIENT_NAME)
+            Me.columnProcesses_Paid = New Global.System.Data.DataColumn("Processes_Paid", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Paid)
             Me.columnReq_Code.MaxLength = 12
             Me.columnProcesses_Reservation_Code.AllowDBNull = false
             Me.columnProcesses_Reservation_Code.MaxLength = 12
@@ -7253,6 +7266,7 @@ Partial Public Class DataSet1
             Me.columnProcesses_Price.AllowDBNull = false
             Me.columnPATIENT_NAME.ReadOnly = true
             Me.columnPATIENT_NAME.MaxLength = 50
+            Me.columnProcesses_Paid.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11769,6 +11783,17 @@ Partial Public Class DataSet1
             End Get
             Set
                 Me(Me.tableDataTable5.PATIENT_NAMEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Processes_Paid() As Double
+            Get
+                Return CType(Me(Me.tableDataTable5.Processes_PaidColumn),Double)
+            End Get
+            Set
+                Me(Me.tableDataTable5.Processes_PaidColumn) = value
             End Set
         End Property
         
@@ -16600,6 +16625,7 @@ Namespace DataSet1TableAdapters
             tableMapping.ColumnMappings.Add("Processes_Price", "Processes_Price")
             tableMapping.ColumnMappings.Add("CASH_PRS", "CASH_PRS")
             tableMapping.ColumnMappings.Add("PATIENT_NAME", "PATIENT_NAME")
+            tableMapping.ColumnMappings.Add("Processes_Paid", "Processes_Paid")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -16618,14 +16644,14 @@ Namespace DataSet1TableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT HAG_Request.Req_Code, Processes_Reservation_Code, convert(varchar, Process"& _ 
                 "es_Date, 23) AS Processes_Date, Processes_Time, HAG_Processes.Processes_Cilinc, "& _ 
-                "SubService_AR_Name, Processes_Price, CASH_PRS,ISNULL(NAME_ARB, '') AS PATIENT_NA"& _ 
-                "ME FROM HAG_Processes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN HAG_Request ON HAG_Request.Req_PID = HAG_Proces"& _ 
-                "ses.Processes_ID "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID "& _ 
-                "= HAG_Processes.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_"& _ 
-                "Patient_Code = HAG_Processes.Processes_Reservation_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN INC_SERVICES_"& _ 
-                "PRICES ON INC_SERVICES_PRICES.SER_ID = HAG_Processes.Processes_SubServices AND I"& _ 
-                "NC_SERVICES_PRICES.PROFILE_PRICE_ID = 3024"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE HAG_Processes.Processes_State "& _ 
-                "= 2 AND HAG_Processes.Processes_Residual <> 0"
+                "SubService_AR_Name, Processes_Price,Processes_Paid, CASH_PRS,ISNULL(NAME_ARB, ''"& _ 
+                ") AS PATIENT_NAME FROM HAG_Processes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN HAG_Request ON HAG_Request.Req_P"& _ 
+                "ID = HAG_Processes.Processes_ID "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN Main_SubServices ON Main_SubServices"& _ 
+                ".SubService_ID = HAG_Processes.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN INC_PATIANT ON I"& _ 
+                "NC_PATIANT.INC_Patient_Code = HAG_Processes.Processes_Reservation_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOI"& _ 
+                "N INC_SERVICES_PRICES ON INC_SERVICES_PRICES.SER_ID = HAG_Processes.Processes_Su"& _ 
+                "bServices AND INC_SERVICES_PRICES.PROFILE_PRICE_ID = 3024"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE HAG_Processes.P"& _ 
+                "rocesses_State = 2 AND HAG_Processes.Processes_Residual <> 0"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

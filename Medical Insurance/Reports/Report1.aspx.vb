@@ -26,7 +26,7 @@ Public Class Report1
         Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
 
         Try
-            Dim sql_str As String = "SELECT HAG_Request.Req_Code, Processes_Reservation_Code, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, HAG_Processes.Processes_Cilinc, SubService_AR_Name, Processes_Price, CASH_PRS,ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM HAG_Processes
+            Dim sql_str As String = "SELECT HAG_Request.Req_Code, Processes_Reservation_Code, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, HAG_Processes.Processes_Cilinc, SubService_AR_Name, Processes_Price,Processes_Paid, CASH_PRS,ISNULL(NAME_ARB, '') AS PATIENT_NAME FROM HAG_Processes
 LEFT JOIN HAG_Request ON HAG_Request.Req_PID = HAG_Processes.Processes_ID 
 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = HAG_Processes.Processes_SubServices
 LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = HAG_Processes.Processes_Reservation_Code

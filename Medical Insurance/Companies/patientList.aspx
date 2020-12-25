@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="قائمة المنتفعين" Language="vb" AutoEventWireup="false" MasterPageFile="~/Companies/companies.Master" CodeBehind="patientList.aspx.vb" Inherits="Medical_Insurance.patientList" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script src="../Style/JS/jquery-3.4.1.min.js"></script>
     <style type="text/css">
@@ -33,21 +34,19 @@
 
     <script type="text/javascript">
         var getParams = function (url) {
-	var params = {};
-	var parser = document.createElement('a');
-	parser.href = url;
-	var query = parser.search.substring(1);
-	var vars = query.split('&');
-	for (var i = 0; i < vars.length; i++) {
-		var pair = vars[i].split('=');
-		params[pair[0]] = decodeURIComponent(pair[1]);
-	}
-	return params;
-};
+            var params = {};
+            var parser = document.createElement('a');
+            parser.href = url;
+            var query = parser.search.substring(1);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+                params[pair[0]] = decodeURIComponent(pair[1]);
+            }
+            return params;
+        };
 
         function loadtable() {
-            
-
             var url = window.location.href;
             if (url.indexOf('?cID=') != -1) {
                 var comNumber = getParams(window.location.href);
@@ -57,11 +56,16 @@
 
             var typeid = 0;
             if (comNumber == 0) {
-                typeid = $('#dplbankslist').val();
+                if ($('#dplbankslist').val() != null) {
+                    typeid = $('#dplbankslist').val();
+                } else {
+                    typeid = 1;
+                }
+                
             } else {
                 typeid = comNumber.cID;
                 $('#dplbankslist').hide();
-            }      
+            }
 
             var mytable = $("#mytable").DataTable({
                 destroy: true,
@@ -134,7 +138,7 @@
                 dataType: "json",
 
                 success: function (response) {
-                    $('#dplbankslist').append('<option value="0">---يرجى اختيار شركة---</option>');
+
                     for (var i = 0; i < response.d.length; i++) {
                         $('#dplbankslist').append('<option value="' + response.d[i].Shortcut_id + '">' + response.d[i].Shortcut_name + '</option>');
                     }
@@ -151,21 +155,21 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                
+
                 <!-- /.panel-heading -->
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col-sm-12 col-md-4">
                             <select
-                        id="dplbankslist"
-                        name="bankslist"
-                        class="form-control drop-down-list chosen-select"
-                        required="required">
-                    </select>
+                                id="dplbankslist"
+                                name="bankslist"
+                                class="form-control drop-down-list chosen-select"
+                                required="required">
+                            </select>
                         </div>
                     </div>
-                   <br />
+                    <br />
                     <div class="row">
                         <div class="col-sm-12">
 
@@ -190,7 +194,7 @@
 
                         </div>
                     </div>
-                  
+
                 </div>
 
             </div>

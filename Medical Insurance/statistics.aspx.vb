@@ -183,7 +183,7 @@ Public Class statistics
                 lbl_services_count.Text = dt_search_result.Rows.Count
                 GridView1.DataSource = dt_search_result
                 GridView1.DataBind()
-                lbl_total.Text = Format(Convert.ToInt32(dt_search_result.Compute("SUM(Processes_Residual)", String.Empty)), "0,0.000") & " د.ل"
+                lbl_total.Text = Format(Convert.ToDecimal(dt_search_result.Compute("SUM(Processes_Residual)", String.Empty)), "0,0.000") & " د.ل"
             Else
                 btn_export_excel.Enabled = False
                 Panel1.Visible = False

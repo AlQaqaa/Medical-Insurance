@@ -27,9 +27,7 @@ Public Class getcategories
         Dim cs As String = ConfigurationManager.ConnectionStrings("insurance_CS").ConnectionString
 
         Using con As SqlConnection = New SqlConnection(cs)
-            Dim ss As String = "  Select   0 As C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM "
-            ss += " INC_COMPANY_DATA UNION "
-            ss += " Select   C_ID, C_Name_Arb + (case when (C_Level <> 0) then (select ' - ' "
+            Dim ss As String = " Select C_ID, C_Name_Arb + (case when (C_Level <> 0) then (select ' - ' "
             ss += "  + C_Name_Arb from [INC_COMPANY_DATA] as tbl1 where tbl1.C_ID = tbl2.C_Level) "
             ss += "  else  '' end) "
             ss += "  as C_Name_Arb FROM [INC_COMPANY_DATA] as tbl2 WHERE ([C_STATE] =0)"
@@ -49,7 +47,6 @@ Public Class getcategories
                 Countries.Add(c)
             End While
         End Using
-
 
         Return Countries
     End Function

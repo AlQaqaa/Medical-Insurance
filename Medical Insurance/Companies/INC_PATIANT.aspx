@@ -35,7 +35,7 @@
                     <div class="form-row">
                         <div class="form-group col-sm-4">
                             <label for="txt_NAME_ARB">اسم المشترك بالعربي</label>
-                            <asp:TextBox ID="txt_NAME_ARB" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyAR(event)" AutoPostBack="True"></asp:TextBox>
+                            <asp:TextBox ID="txt_NAME_ARB" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyAR(event)" AutoPostBack="True" AutoCompleteType="Disabled"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_NAME_ARB" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group col-sm-4">
@@ -122,24 +122,24 @@
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="txt_NAT_NUMBER">الرقم الوطني</label>
-                            <asp:TextBox ID="txt_NAT_NUMBER" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
+                            <asp:TextBox ID="txt_NAT_NUMBER" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)" AutoCompleteType="Disabled"></asp:TextBox>
 
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="txt_KID_NO">رقم القيد</label>
-                            <asp:TextBox ID="txt_KID_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
+                            <asp:TextBox ID="txt_KID_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)" AutoCompleteType="Disabled"></asp:TextBox>
 
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-sm-3">
                             <label for="PHONE_NO">رقم الهاتف</label>
-                            <asp:TextBox ID="txt_PHONE_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)"></asp:TextBox>
+                            <asp:TextBox ID="txt_PHONE_NO" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEUIN(event)" AutoCompleteType="Disabled"></asp:TextBox>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_PHONE_NO" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                         </div>
                         <div class="form-group col-sm-6">
                             <label for="NOTES">ملاحظات</label>
-                            <asp:TextBox ID="txt_NOTES" CssClass="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txt_NOTES" CssClass="form-control" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
                         </div>
                         <div class="form-group col-sm-3">
                             <label for="FileUpload1">صورة البطاقة</label>

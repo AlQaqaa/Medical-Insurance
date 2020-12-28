@@ -57,29 +57,22 @@ Public Class INC_PATIANT
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
         Try
-
-            Dim sel_com As New SqlCommand("SELECT * FROM INC_PATIANT WHERE CARD_NO = @CARD_NO AND BAGE_NO = @BAGE_NO AND C_ID = @C_ID AND CONST_ID = 0", insurance_SQLcon)
-            sel_com.Parameters.AddWithValue("@CARD_NO", txt_CARD_NO.Text)
-            sel_com.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
-            sel_com.Parameters.AddWithValue("@C_ID", Val(Session("company_id")))
-            Dim dt_result As New DataTable
-            dt_result.Rows.Clear()
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            dt_result.Load(sel_com.ExecuteReader)
-            insurance_SQLcon.Close()
-            If dt_result.Rows.Count > 0 Then
-
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'خطا! هذا المشترك تمت إضافته مسبقاً',
-                showConfirmButton: false,
-                timer: 1500
-            });", True)
-                Exit Sub
+            If CONST_ID.SelectedValue = 0 Then
+                Dim sel_com As New SqlCommand("SELECT * FROM INC_PATIANT WHERE CARD_NO = @CARD_NO AND BAGE_NO = @BAGE_NO AND C_ID = @C_ID AND CONST_ID = 0", insurance_SQLcon)
+                sel_com.Parameters.AddWithValue("@CARD_NO", txt_CARD_NO.Text)
+                sel_com.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
+                sel_com.Parameters.AddWithValue("@C_ID", Val(Session("company_id")))
+                Dim dt_result As New DataTable
+                dt_result.Rows.Clear()
+                insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_result.Load(sel_com.ExecuteReader)
+                insurance_SQLcon.Close()
+                If dt_result.Rows.Count > 0 Then
+                    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('خطا! هذا المشترك تمت إضافته مسبقاً');", True)
+                    Exit Sub
+                End If
             End If
-
             Dim dbpath As String = "images/ImagePatiant/card.png"
 
             Dim ins_PAT As New SqlCommand

@@ -495,7 +495,7 @@ INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProce
         Dim end_dt As String = DateTime.ParseExact(ViewState("DATE_END"), "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
 
         If Val(ViewState("p_code")) <> 0 Then
-            Dim sel_com As New SqlCommand("SELECT SUM(Processes_Residual) AS Processes_Residual FROM HAG_Processes WHERE Processes_Reservation_Code = '" & ViewState("p_code") & "' AND Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'", insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT ISNULL(SUM(Processes_Residual), 0) AS Processes_Residual FROM HAG_Processes WHERE Processes_Reservation_Code = '" & ViewState("p_code") & "' AND Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'", insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             total_val = sel_com.ExecuteScalar

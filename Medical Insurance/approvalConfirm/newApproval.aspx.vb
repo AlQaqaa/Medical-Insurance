@@ -329,8 +329,8 @@ Public Class newApproval
             Dim fs As New FileStream(FolderLocation & "/confirmApproval" & Session("INC_User_Id") & ".pdf", FileMode.Create)
             fs.Write(bytes, 0, bytes.Length)
             fs.Close()
-            Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", True)
-
+            Response.Redirect("~/Reports/confirmApproval" & Session("INC_User_Id") & ".pdf", False)
+            Exit Sub
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

@@ -135,6 +135,21 @@ Public Class _Default1
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.success('تم إنهاء عقد الشركة بنجاح'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         End If
 
+        If (e.CommandName = "renew_cards") Then
+
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = dt_GridView.Rows(index)
+            Dim end_contract As New SqlCommand("UPDATE INC_PATIANT SET EXP_DATE=(SELECT TOP 1 DATE_END FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = " & (row.Cells(0).Text) & " ORDER BY N DESC) WHERE C_ID = " & (row.Cells(0).Text) & " AND EXP_DATE < GETDATE()", insurance_SQLcon)
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            end_contract.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            add_action(1, 2, 2, "تجديد بطاقات منتفي الشركة رقم: " & (row.Cells(0).Text), Session("INC_User_Id"), GetIPAddress())
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alert('تم تجديد صلاحية البطاقة للمنتفعين بنجاح');", True)
+
+        End If
+
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
@@ -205,9 +220,11 @@ Public Class _Default1
                 Dim btn_add_pat As LinkButton = cell.FindControl("btn_add_pat")
                 Dim btn_contract As LinkButton = cell.FindControl("btn_contract")
                 Dim btn_com_stop As LinkButton = cell.FindControl("btn_com_stop")
+                Dim btn_renew_cards As LinkButton = cell.FindControl("lb_renew_cards")
                 Dim btn_end_contract As LinkButton = cell.FindControl("btn_end_contract")
                 btn_edit_com.Visible = Session("User_per")("active_company")
                 btn_add_pat.Visible = Session("User_per")("active_card")
+                btn_renew_cards.Visible = Session("User_per")("active_card")
                 btn_contract.Visible = Session("User_per")("active_company")
                 btn_com_stop.Visible = Session("User_per")("active_company")
                 btn_end_contract.Visible = Session("User_per")("active_company")

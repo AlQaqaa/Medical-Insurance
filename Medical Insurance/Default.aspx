@@ -179,12 +179,20 @@
                                         ToolTip="إيقاف الشركة"
                                         ControlStyle-CssClass="btn btn-link text-danger btn-new"
                                         OnClientClick="return confirm('هل أنت متأكد من إيقاف هذه الشركة')"><i class='fas fa-ban'></i></asp:LinkButton>
+
                                     <asp:LinkButton ID="btn_end_contract" runat="server"
                                         CommandName="end_contract"
                                         CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
                                         ToolTip="إنهاء عقد الشركة"
                                         ControlStyle-CssClass="btn btn-link text-secondary btn-new"
                                         OnClientClick="return confirm('هل أنت متأكد من إنهاء عقد هذه الشركة')"><i class='fas fa-stop-circle'></i></asp:LinkButton>
+
+                                    <asp:LinkButton ID="lb_renew_cards" runat="server"
+                                        CommandName="renew_cards"
+                                        CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                        ToolTip="تجديد بطاقات المنتفعين"
+                                        ControlStyle-CssClass="btn btn-link text-success btn-new"
+                                        OnClientClick="return confirm('هل أنت متأكد من تجديد صلاحية بطاقات منتفعي هذه الشركة إلى تاريخ نهاية عقد الشركة؟')"><i class='fas fa-address-card'></i></asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

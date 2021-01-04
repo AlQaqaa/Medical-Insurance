@@ -91,7 +91,7 @@ where Processes_State < 3 and Processes_ID not in (select INC_MOTALBAT.Processes
             '       If a = 1 Then Response.Redirect("http://10.10.1.10:438/PrintIncMultiServiceRec.aspx?Prm=" + row.Cells(2).Text + "&id_code=" + row.Cells(2).Text, True)
             ' If a = 2 Then Response.Redirect("http://10.10.1.10:438/PrintIncMultiServiceRec.aspx?Prm=" + row.Cells(2).Text + "&id_code=" + row.Cells(2).Text, True)
             '    If a = 3 Then Response.Redirect("http://10.10.1.10:438/PrintMultiServiceIncForm.aspx?Prm=" + row.Cells(2).Text + "&id_code=" + row.Cells(2).Text, True)
-            Response.Redirect("http://10.10.1.10:438/PrintMultiServiceIncForm.aspx?Prm=" + row.Cells(2).Text + "&id_code=" + id_code, True)
+            Response.Redirect("http://10.10.1.10:438/PrintMultiServiceIncForm.aspx?Prm=" + row.Cells(6).Text + "&id_code=" + id_code, True)
 
         End If
     End Sub

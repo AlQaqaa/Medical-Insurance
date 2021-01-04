@@ -1,4 +1,4 @@
-﻿<%@ Page Title="قائمة فواتير تم إرسالها للشركات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Motalbat/motalbat.Master" CodeBehind="sentInvoices.aspx.vb" Inherits="Medical_Insurance.sentInvoices" %>
+﻿<%@ Page Title="قائمة فواتير تم إرسالها للشركات" Language="vb" AutoEventWireup="false" MasterPageFile="~/Motalbat/motalbat.Master" CodeBehind="sentInvoices.aspx.vb" Inherits="Medical_Insurance.sentInvoices" Culture="ar-LY" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 

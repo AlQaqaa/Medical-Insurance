@@ -81,7 +81,7 @@
                                                     <HeaderStyle CssClass="hide-colum" />
                                                     <ItemStyle CssClass="hide-colum" />
                                                 </asp:BoundField>
-                                                <asp:BoundField HeaderText="رقم المنتفع" DataField="INC_Patient_Code">
+                                                <asp:BoundField HeaderText="رقم المنتفع" DataField="Processes_Reservation_Code">
                                                     <ControlStyle CssClass="hide-colum" />
                                                     <FooterStyle CssClass="hide-colum" />
                                                     <HeaderStyle CssClass="hide-colum" />

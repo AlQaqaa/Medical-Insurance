@@ -25,7 +25,7 @@ Public Class missingForms
 
     Private Sub getData()
         Dim s As String
-        s = "select c_id,req_id_code_print,req_code , Req_No ,convert(varchar, Processes_Date, 111) as Processes_Date, (case when HAG_Processes.Processes_State = 0 then 'لم تتم التسوية' when HAG_Processes.Processes_State = 2 then 'تمت التسوية' else '' end) as Processes_State, INC_PATIANT.NAME_ARB, INC_PATIANT.CARD_NO, Main_Clinic.Clinic_AR_Name, Main_SubServices.SubService_AR_Name from HAG_Processes 
+        s = "select distinct c_id,req_id_code_print,req_code , Req_No ,convert(varchar, Processes_Date, 111) as Processes_Date, (case when HAG_Processes.Processes_State = 0 then 'لم تتم التسوية' when HAG_Processes.Processes_State = 2 then 'تمت التسوية' else '' end) as Processes_State, INC_PATIANT.NAME_ARB, INC_PATIANT.CARD_NO, Main_Clinic.Clinic_AR_Name, Main_SubServices.SubService_AR_Name from HAG_Processes 
 inner join HAG_Request on HAG_Processes.Processes_ID = Req_PID 
 inner join INC_PATIANT on INC_PATIANT.INC_Patient_Code = HAG_Processes.Processes_Reservation_Code
 inner join Main_Clinic on Main_Clinic.clinic_id = HAG_Processes.Processes_Cilinc

@@ -91,7 +91,7 @@ Public Class invoiceContent
                 Dim sel_com As New SqlCommand("SELECT INC_PATIANT.PINC_ID AS P_ID,Processes_Reservation_Code,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
             FROM INC_IVOICESPROCESSES 
             LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
-            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND INC_PATIANT.C_ID = " & ViewState("company_no") & " AND MOTALABA_STS = 1 GROUP BY INC_PATIANT.PINC_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,Processes_Reservation_Code ORDER BY NAME_ARB")
+            INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND MOTALABA_STS = 1 GROUP BY INC_PATIANT.PINC_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,Processes_Reservation_Code ORDER BY NAME_ARB")
                 Using sda As New SqlDataAdapter()
                     sel_com.Connection = insurance_SQLcon
                     sda.SelectCommand = sel_com

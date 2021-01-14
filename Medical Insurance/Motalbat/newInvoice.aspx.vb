@@ -173,13 +173,7 @@ Public Class newInvoice
                 sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
             End If
 
-            If ViewState("invoice_no") = 0 Then
-                If ddl_companies.SelectedValue <> 0 Then
-                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
-                End If
-            Else
-                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ViewState("company_no")
-            End If
+
 
             If ddl_invoice_type.SelectedValue = 1 Then
                 sql_str = sql_str & " AND Processes_ID NOT IN (SELECT ewa_process_id FROM EWA_Processes WHERE EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID)"
@@ -188,6 +182,14 @@ Public Class newInvoice
             End If
 
             If ddl_clinics.SelectedValue <> 0 Then
+                If ViewState("invoice_no") = 0 Then
+                    If ddl_companies.SelectedValue <> 0 Then
+                        sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                    End If
+                Else
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ViewState("company_no")
+                End If
+
                 sql_str = sql_str & " AND Processes_State = 2 AND Processes_Residual <> 0 AND Processes_Cilinc = " & ddl_clinics.SelectedValue
                 If Val(ddl_service.SelectedValue) <> 0 Then
                     sql_str = sql_str & " AND Processes_State = 2 AND Processes_Residual <> 0 AND Processes_Services = " & ddl_service.SelectedValue
@@ -208,17 +210,17 @@ Public Class newInvoice
 
                 If ddl_clinics.SelectedValue = 0 Then
                     Select Case dt_result.Rows(0)("Processes_State")
-                        Case 0
-                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'خطأ! هذه الخدمة لم تتم تسويتها',
-                            showConfirmButton: false,
-                            timer: 2500
-                        });playSound('../Style/error.mp3');", True)
-                            txt_search.Text = ""
-                            txt_search.Focus()
-                            Exit Sub
+                        'Case 0
+                        '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                        '    position: 'center',
+                        '    icon: 'error',
+                        '    title: 'خطأ! هذه الخدمة لم تتم تسويتها',
+                        '    showConfirmButton: false,
+                        '    timer: 2500
+                        '});playSound('../Style/error.mp3');", True)
+                        '    txt_search.Text = ""
+                        '    txt_search.Focus()
+                        '    Exit Sub
                         Case 3
                             Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
 inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID in (select top 1 HAG_Request.Req_PID  from HAG_Request  where req_code ='" & txt_search.Text & "')", insurance_SQLcon)

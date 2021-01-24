@@ -59,6 +59,24 @@ Partial Public Class invoicesList
     Protected WithEvents ddl_invoice_type As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''txt_Adjective control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_Adjective As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
     '''txt_mang_name control.
     '''</summary>
     '''<remarks>

@@ -226,6 +226,7 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         Dim rp5 As ReportParameter
         Dim rp6 As ReportParameter
         Dim rp7 As ReportParameter
+        Dim rp8 As ReportParameter
 
         rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
         rp2 = New ReportParameter("value_text", value_word)
@@ -234,8 +235,9 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
         rp5 = New ReportParameter("date_from", dateStart.Min)
         rp6 = New ReportParameter("date_to", dateEnd.Max)
         rp7 = New ReportParameter("index_no", index_number)
+        rp8 = New ReportParameter("Adjective", txt_Adjective.Text)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/invoicesList.rdlc"

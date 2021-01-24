@@ -17,12 +17,12 @@
                             <div class="card-header">قائمة الفواتير</div>
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-xs-12 col-sm-4">
+                                    <div class="form-group col-sm-12 col-md-3">
                                         <label for="ddl_companies">الشركة</label>
                                         <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" AutoPostBack="True"></asp:DropDownList>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'يرجى اختيار شركة' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-3">
+                                    <div class="form-group col-sm-12 col-md-3">
                                         <label for="ddl_companies">نوع الفاتورة</label>
                                         <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
                                             <asp:ListItem Value="-1">الكل</asp:ListItem>
@@ -31,8 +31,13 @@
                                             <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-3">
-                                        <label for="txt_mang_name">رئيس مجلس الإدارة</label>
+                                    <div class="form-group col-sm-12 col-md-3">
+                                        <label for="txt_mang_name">الصفة</label>
+                                        <asp:TextBox ID="txt_Adjective" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_Adjective" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="form-group col-sm-12 col-md-3">
+                                        <label for="txt_mang_name">الاسم</label>
                                         <asp:TextBox ID="txt_mang_name" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_mang_name" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
                                     </div>
@@ -40,15 +45,15 @@
                                 </div>
                                 <!-- /form-row -->
                                 <div class="form-row">
-                                    <div class="form-group col-xs-6 col-sm-3">
+                                    <div class="form-group col-sm-6 col-md-3">
                                         <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block" Text="طباعة قائمة الفواتير" ValidationGroup="save" Visible="False" />
                                     </div>
-                                    <div class="form-group col-xs-6 col-sm-3">
+                                    <div class="form-group col-sm-6 col-md-3">
                                         <asp:Button ID="btn_send" runat="server" CssClass="btn btn-outline-danger btn-block" Text="تمت إرسالها للشركة" Visible="False" OnClientClick="return confirm('هل أنت متأكد إجراء هذه الخطوة؟')"/>
                                     </div>
                                 </div><!-- /form-row -->
                                 <div class="form-row justify-content-center">
-                                    <div class="form-group col-xs-12 col-sm-6">
+                                    <div class="form-group col-sm-12 col-md-6">
                                         <asp:Label ID="lbl_msg" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>

@@ -15,12 +15,12 @@
                             <div class="card-header">قائمة الفواتير</div>
                             <div class="card-body">
                                 <div class="form-row">
-                                    <div class="form-group col-xs-12 col-sm-3">
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-3">
                                         <label for="ddl_companies">الشركة</label>
                                         <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID"></asp:DropDownList>
                                         <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT C_ID, C_Name_Arb FROM INC_COMPANY_DATA AS TBL1 WHERE C_Level = 0 AND EXISTS (SELECT * FROM INC_COMPANY_DATA AS TBL2 WHERE TBL2.C_Level = TBL1.C_ID)"></asp:SqlDataSource>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-3">
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-3">
                                         <label for="ddl_companies">نوع الفاتورة</label>
                                         <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server">
                                             <asp:ListItem Value="0">الخدمات الطبية / الإيواء والعمليات</asp:ListItem>
@@ -28,7 +28,7 @@
                                             <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-3">
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-3">
                                         <label for="txt_start_dt">الفترة من</label>
                                         <div class="input-group">
                                             <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
@@ -42,7 +42,7 @@
                                         <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب اختيار التاريخ" ValidationGroup="print" ForeColor="Red" ControlToValidate="txt_start_dt"></asp:RequiredFieldValidator>
                                     </div>
-                                    <div class="form-group col-xs-12 col-sm-3">
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-3">
                                         <label for="txt_start_dt">إلى</label>
                                         <div class="input-group">
                                             <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
@@ -56,27 +56,30 @@
                                         <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender2" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="يجب اختيار التاريخ" ValidationGroup="print" ForeColor="Red" ControlToValidate="txt_end_dt"></asp:RequiredFieldValidator>
                                     </div>
-                                    
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-3">
+                                        <label for="txt_mang_name">الصفة</label>
+                                        <asp:TextBox ID="txt_Adjective" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_Adjective" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                                    </div>
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-3">
+                                        <label for="txt_mang_name">الاسم</label>
+                                        <asp:TextBox ID="txt_mang_name" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_mang_name" ForeColor="Red" ValidationGroup="save"></asp:RequiredFieldValidator>
+                                    </div>
                                 </div>
                                 <!-- /form-row -->
                                 <div class="form-row">
-                                    <div class="form-group col-xs-12 col-sm-3">
-                                        <label for="txt_mang_name">رئيس مجلس الإدارة</label>
-                                        <asp:TextBox ID="txt_mang_name" runat="server" dir="rtl" CssClass="form-control"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="* مطلوب" ControlToValidate="txt_mang_name" ForeColor="Red" ValidationGroup="print"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group col-xs-6 col-sm-2">
-                                        <label> </label>
+                                    
+                                    <div class="form-group col-md-6 col-lg-2">
                                         <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block mt-2" Text="بحث" ValidationGroup="print" />
                                     </div>
-                                    <div class="form-group col-xs-6 col-sm-2">
-                                        <label> </label>
+                                    <div class="form-group col-md-6 col-lg-2">
                                         <asp:Button ID="btn_print" runat="server" CssClass="btn btn-outline-secondary btn-block mt-2" Text="طباعة" ValidationGroup="print" Visible="False" />
                                     </div>
                                 </div><!-- /form-row -->
                                 <!-- /form-row -->
                                <div class="form-row justify-content-center">
-                                    <div class="form-group col-xs-12 col-sm-6">
+                                    <div class="form-group col-md-12 col-lg-6">
                                         <asp:Label ID="lbl_msg" runat="server" Text=""></asp:Label>
                                     </div>
                                 </div>

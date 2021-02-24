@@ -5211,9 +5211,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.mainCompany._txt_mang_name">
+<member name="F:Medical_Insurance.mainCompany._txt_Adjective">
 <summary>
-txt_mang_name control.
+txt_Adjective control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -5223,6 +5223,24 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.mainCompany._RequiredFieldValidator1">
 <summary>
 RequiredFieldValidator1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.mainCompany._txt_mang_name">
+<summary>
+txt_mang_name control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.mainCompany._RequiredFieldValidator4">
+<summary>
+RequiredFieldValidator4 control.
 </summary>
 <remarks>
 Auto-generated field.

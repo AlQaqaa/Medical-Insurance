@@ -104,6 +104,7 @@ GROUP BY  INC_INVOICES.C_ID, INC_COMPANY_DATA.C_Name_Arb", insurance_SQLcon)
         Dim rp4 As ReportParameter
         Dim rp5 As ReportParameter
         Dim rp6 As ReportParameter
+        Dim rp7 As ReportParameter
 
         rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
         rp2 = New ReportParameter("value_text", value_word)
@@ -111,8 +112,9 @@ GROUP BY  INC_INVOICES.C_ID, INC_COMPANY_DATA.C_Name_Arb", insurance_SQLcon)
         rp4 = New ReportParameter("mang_name", txt_mang_name.Text)
         rp5 = New ReportParameter("date_from", txt_start_dt.Text)
         rp6 = New ReportParameter("date_to", txt_end_dt.Text)
+        rp7 = New ReportParameter("Adjective", txt_Adjective.Text)
 
-        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6})
+        viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7})
 
         Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         Dim r As String = "~/Reports/mainCompanyMotalba.rdlc"

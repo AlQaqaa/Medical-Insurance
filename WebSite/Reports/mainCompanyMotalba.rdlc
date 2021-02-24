@@ -759,40 +759,6 @@
                   <PaddingBottom>2pt</PaddingBottom>
                 </Style>
               </Textbox>
-              <Textbox Name="Textbox19">
-                <CanGrow>true</CanGrow>
-                <KeepTogether>true</KeepTogether>
-                <Paragraphs>
-                  <Paragraph>
-                    <TextRuns>
-                      <TextRun>
-                        <Value>رئيس مجلس الإدارة</Value>
-                        <Style>
-                          <FontSize>14pt</FontSize>
-                        </Style>
-                      </TextRun>
-                    </TextRuns>
-                    <Style>
-                      <TextAlign>Center</TextAlign>
-                    </Style>
-                  </Paragraph>
-                </Paragraphs>
-                <rd:DefaultName>Textbox12</rd:DefaultName>
-                <Top>21.95696cm</Top>
-                <Left>0.7112cm</Left>
-                <Height>0.86459cm</Height>
-                <Width>6.1616cm</Width>
-                <ZIndex>11</ZIndex>
-                <Style>
-                  <Border>
-                    <Style>None</Style>
-                  </Border>
-                  <PaddingLeft>2pt</PaddingLeft>
-                  <PaddingRight>2pt</PaddingRight>
-                  <PaddingTop>2pt</PaddingTop>
-                  <PaddingBottom>2pt</PaddingBottom>
-                </Style>
-              </Textbox>
               <Textbox Name="Textbox21">
                 <CanGrow>true</CanGrow>
                 <KeepTogether>true</KeepTogether>
@@ -816,7 +782,7 @@
                 <Left>0.7112cm</Left>
                 <Height>0.70584cm</Height>
                 <Width>6.1616cm</Width>
-                <ZIndex>12</ZIndex>
+                <ZIndex>11</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -870,7 +836,7 @@
                 <Left>13.21877cm</Left>
                 <Height>1.6848cm</Height>
                 <Width>5.71181cm</Width>
-                <ZIndex>13</ZIndex>
+                <ZIndex>12</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -902,7 +868,7 @@
                 <Left>15.65885cm</Left>
                 <Height>0.65293cm</Height>
                 <Width>3.27173cm</Width>
-                <ZIndex>14</ZIndex>
+                <ZIndex>13</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -936,7 +902,7 @@
                 <Left>11.69596cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>5.35513cm</Width>
-                <ZIndex>15</ZIndex>
+                <ZIndex>14</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -970,7 +936,7 @@
                 <Left>12.17222cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>4.87888cm</Width>
-                <ZIndex>16</ZIndex>
+                <ZIndex>15</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1005,7 +971,7 @@
                 <Left>8.65479cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>3.51743cm</Width>
-                <ZIndex>17</ZIndex>
+                <ZIndex>16</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1039,7 +1005,7 @@
                 <Left>7.73584cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>0.88367cm</Width>
-                <ZIndex>18</ZIndex>
+                <ZIndex>17</ZIndex>
                 <Style>
                   <Border>
                     <Style>None</Style>
@@ -1074,6 +1040,40 @@
                 <Left>4.43542cm</Left>
                 <Height>0.94396cm</Height>
                 <Width>3.22986cm</Width>
+                <ZIndex>18</ZIndex>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <PaddingLeft>2pt</PaddingLeft>
+                  <PaddingRight>2pt</PaddingRight>
+                  <PaddingTop>2pt</PaddingTop>
+                  <PaddingBottom>2pt</PaddingBottom>
+                </Style>
+              </Textbox>
+              <Textbox Name="Adjective">
+                <CanGrow>true</CanGrow>
+                <KeepTogether>true</KeepTogether>
+                <Paragraphs>
+                  <Paragraph>
+                    <TextRuns>
+                      <TextRun>
+                        <Value>=Parameters!Adjective.Value</Value>
+                        <Style>
+                          <FontSize>12pt</FontSize>
+                        </Style>
+                      </TextRun>
+                    </TextRuns>
+                    <Style>
+                      <TextAlign>Center</TextAlign>
+                    </Style>
+                  </Paragraph>
+                </Paragraphs>
+                <rd:DefaultName>Adjective</rd:DefaultName>
+                <Top>21.90405cm</Top>
+                <Left>0.64858cm</Left>
+                <Height>0.89104cm</Height>
+                <Width>6.22422cm</Width>
                 <ZIndex>19</ZIndex>
                 <Style>
                   <Border>
@@ -1657,6 +1657,12 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="Adjective">
+      <DataType>String</DataType>
+      <Nullable>true</Nullable>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1692,6 +1698,11 @@
           <ColumnIndex>1</ColumnIndex>
           <RowIndex>1</RowIndex>
           <ParameterName>value_text</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>2</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>Adjective</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

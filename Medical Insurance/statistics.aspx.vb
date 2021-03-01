@@ -215,7 +215,7 @@ Public Class statistics
             End If
 
             If txt_card_no.Text <> "" Then
-                sql_str = sql_str & " CARD_NO = '" & txt_card_no.Text & "'"
+                sql_str = sql_str & " AND CARD_NO = '" & txt_card_no.Text & "'"
             End If
 
             If txt_emp_no.Text <> "" Then

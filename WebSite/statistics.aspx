@@ -27,7 +27,7 @@
                         <div class="row mb-2">
                             <div class="col-xs-12 col-sm-4">
                                 <asp:DropDownList ID="ddl_companies" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="C_NAME_ARB" DataValueField="C_id" Width="100%"></asp:DropDownList>
-                                <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'جميع الشركات' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA] WHERE ([C_STATE] =0)"></asp:SqlDataSource>
+                                <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS C_ID, 'جميع الشركات' AS C_Name_Arb FROM INC_COMPANY_DATA UNION SELECT C_ID, C_Name_Arb FROM [INC_COMPANY_DATA]"></asp:SqlDataSource>
                             </div>
                             <div class="col-xs-12 col-sm-4">
                                 <asp:TextBox ID="txt_patient_name" CssClass="form-control" runat="server" AutoCompleteType="Disabled" placeholder="اسم المنتفع"></asp:TextBox>

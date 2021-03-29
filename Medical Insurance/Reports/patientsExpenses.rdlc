@@ -653,7 +653,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Globals!ExecutionTime</Value>
+                    <Value>=Parameters!end_dt.Value</Value>
                     <Style>
                       <FontFamily>Tajawal</FontFamily>
                       <FontSize>12pt</FontSize>
@@ -1155,6 +1155,11 @@
       <AllowBlank>true</AllowBlank>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
+    <ReportParameter Name="end_dt">
+      <DataType>DateTime</DataType>
+      <Nullable>true</Nullable>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
@@ -1180,6 +1185,11 @@
           <ColumnIndex>3</ColumnIndex>
           <RowIndex>0</RowIndex>
           <ParameterName>max_val</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>end_dt</ParameterName>
         </CellDefinition>
       </CellDefinitions>
     </GridLayoutDefinition>

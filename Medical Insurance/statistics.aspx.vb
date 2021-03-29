@@ -76,7 +76,20 @@ Public Class statistics
             End If
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+
+                Dim selComm As New SqlCommand("SELECT COUNT(C_LEVEL) FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
+                If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                Dim main_com_id As Int16 = selComm.ExecuteScalar
+                insurance_SQLcon.Close()
+
+                If main_com_id <> 0 Then
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                Else
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                End If
+
+
             End If
 
             If txt_patient_name.Text <> "" Then
@@ -207,7 +220,20 @@ Public Class statistics
             Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses WHERE Processes_State = 2"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+
+                Dim selComm As New SqlCommand("SELECT COUNT(C_LEVEL) FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
+                If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                Dim main_com_id As Int16 = selComm.ExecuteScalar
+                insurance_SQLcon.Close()
+
+                If main_com_id <> 0 Then
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                Else
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                End If
+
+
             End If
 
             If txt_patient_name.Text <> "" Then
@@ -328,7 +354,20 @@ Public Class statistics
             Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_State = 2"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+
+                Dim selComm As New SqlCommand("SELECT COUNT(C_LEVEL) FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
+                If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                Dim main_com_id As Int16 = selComm.ExecuteScalar
+                insurance_SQLcon.Close()
+
+                If main_com_id <> 0 Then
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                Else
+                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                End If
+
+
             End If
 
             If txt_patient_name.Text <> "" Then

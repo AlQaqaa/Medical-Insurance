@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="أرصدة ومصروفات المنتفعين" Language="vb" AutoEventWireup="false" MasterPageFile="~/main.Master" CodeBehind="patientsExpenses.aspx.vb" Inherits="Medical_Insurance.patientsExpenses" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -13,19 +16,49 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="row">
-                        <div class="form-group col-sm-12 col-md-4">
+                        <div class="col-md-12 col-lg-4 col-xl-3">
+                            <label for="txt_start_dt">الشركة</label>
                             <asp:DropDownList ID="ddl_companies" runat="server" CssClass="form-control drop-down-list chosen-select" DataSourceID="SqlDataSource1" DataTextField="C_Name_Arb" DataValueField="C_ID"></asp:DropDownList>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [C_ID], N'- يرجى اختيار شركة -' AS [C_Name_Arb] FROM [INC_COMPANY_DATA] UNION SELECT [C_ID], [C_Name_Arb] FROM [INC_COMPANY_DATA] WHERE C_State = 0"></asp:SqlDataSource>
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب اختيار شركة" ControlToValidate="ddl_companies" InitialValue="0" ValidationGroup="search"></asp:RequiredFieldValidator>
                         </div>
-                        <div class="form-group col-sm-12 col-md-3">
+                        <div class="col-md-12 col-lg-3 col-xl-2">
+                            <label for="txt_start_dt">قيمة المصروف</label>
                             <asp:TextBox ID="txt_value" runat="server" CssClass="form-control" placeholder="قيمة المصروفات" onblur="appendDollar(this.id);" onkeypress="return isNumberKey(event,this)"></asp:TextBox>
                         </div>
-                        <div class="form-group col-sm-12 col-md-2">
-                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block" runat="server" Text="بحث" ValidationGroup="search"/>
+                        <div class="col-md-12 col-lg-3 col-xl-2">
+                            <label for="txt_start_dt">الفترة من</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
+                                    </div>
+                                </div>
+                            </div>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال التاريخ" ControlToValidate="txt_start_dt" ForeColor="Red" ValidationGroup="search"></asp:RequiredFieldValidator>
+                            <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                            <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
                         </div>
-                        <div class="form-group col-sm-12 col-md-2">
-                            <asp:Button ID="btn_print" CssClass="btn btn-outline-secondary btn-block" runat="server" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" Enabled="False" />
+                        <div class="col-md-12 col-lg-3 col-xl-2">
+                            <label for="txt_start_dt">إلى</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
+                                    </div>
+                                </div>
+                            </div>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="يجب إدخال التاريخ" ControlToValidate="txt_end_dt" ForeColor="Red" ValidationGroup="search"></asp:RequiredFieldValidator>
+                            <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_end_dt" ID="CalendarExtender2" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
+                            <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender2" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                        </div>
+                        <div class="col-md-12 col-lg-2 col-xl-1">
+                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block mt-4" runat="server" Text="بحث" ValidationGroup="search"/>
+                        </div>
+                        <div class="col-md-12 col-lg-2 col-xl-1">
+                            <asp:Button ID="btn_print" CssClass="btn btn-outline-secondary btn-block mt-4" runat="server" Text="طباعة" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" Enabled="False" />
                         </div>
                         <div class="form-group col-sm-12 col-md-1">
                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">

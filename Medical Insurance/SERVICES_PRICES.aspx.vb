@@ -309,7 +309,8 @@ Public Class SERVICES_PRICES
 
     Private Sub btn_copy_Click(sender As Object, e As EventArgs) Handles btn_copy.Click
         Try
-            Dim ins_com As New SqlCommand("INSERT INTO INC_SERVICES_PRICES (SER_ID, CASH_PRS,INS_PRS,INVO_PRS,USER_ID,PROFILE_PRICE_ID,COST_PRICE,DOCTOR_ID)
+            Dim ins_com As New SqlCommand("DELETE FROM INC_SERVICES_PRICES WHERE PROFILE_PRICE_ID = " & Val(Session("profile_no")) & ";
+INSERT INTO INC_SERVICES_PRICES (SER_ID, CASH_PRS,INS_PRS,INVO_PRS,USER_ID,PROFILE_PRICE_ID,COST_PRICE,DOCTOR_ID)
             SELECT SER_ID,0,INS_PRS,0," & Session("INC_User_Id") & "," & Val(Session("profile_no")) & ",0,0
             FROM INC_SERVICES_PRICES
             WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue, insurance_SQLcon)

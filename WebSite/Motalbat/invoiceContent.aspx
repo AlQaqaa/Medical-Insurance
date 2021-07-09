@@ -100,6 +100,13 @@
                                                             ToolTip="طباعة حركة المنتفع"
                                                             ControlStyle-CssClass="btn btn-primary btn-small" />
 
+                                                        <asp:LinkButton ID="cardPrint" runat="server"
+                                                            CommandName="printCard"
+                                                            CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                            Text="طباعة البطاقة"
+                                                            ToolTip="طباعة بطاقة المنتفع"
+                                                            ControlStyle-CssClass="btn btn-secondary btn-small" />
+
                                                         <asp:LinkButton ID="btn_return_one" runat="server"
                                                             CommandName="returnProcess"
                                                             CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"

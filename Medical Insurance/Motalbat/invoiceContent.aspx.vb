@@ -179,6 +179,56 @@ Public Class invoiceContent
                 End If
 
             End If
+
+            If (e.CommandName = "printCard") Then
+                Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+                Dim row As GridViewRow = GridView1.Rows(index)
+
+                Dim selCom As New SqlCommand("SELECT IMAGE_CARD FROM [INC_PATIANT] WHERE [PINC_ID] = " & (row.Cells(1).Text), insurance_SQLcon)
+                Dim dt_result As New DataTable
+                If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                insurance_SQLcon.Open()
+                dt_result.Load(selCom.ExecuteReader)
+                insurance_SQLcon.Close()
+
+                Dim viewer As ReportViewer = New ReportViewer()
+
+                Dim datasource As New ReportDataSource("invoiceContentDS", main_ds.Tables("INC_IvoicesProcesses"))
+                viewer.LocalReport.DataSources.Clear()
+                viewer.ProcessingMode = ProcessingMode.Local
+                viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/card.rdlc")
+                viewer.LocalReport.DataSources.Add(datasource)
+                viewer.LocalReport.EnableExternalImages = True
+
+                Dim rp1 As ReportParameter
+
+                rp1 = New ReportParameter("card_image", "file:///" + Server.MapPath("~/" & dt_result.Rows(0)("IMAGE_CARD")).ToString)
+
+                viewer.LocalReport.SetParameters(New ReportParameter() {rp1})
+
+                Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+                Dim r As String = "~/Reports/card.rdlc"
+                ' Page.Controls.Add(rv)
+
+                Dim warnings As Warning() = Nothing
+                Dim streamids As String() = Nothing
+                Dim mimeType As String = Nothing
+                Dim encoding As String = Nothing
+                Dim extension As String = Nothing
+                Dim bytes As Byte()
+                Dim FolderLocation As String
+                FolderLocation = Server.MapPath("~/Reports")
+                Dim filepath As String = FolderLocation & "/card" & Session("INC_User_Id") & ".pdf"
+                If Directory.Exists(filepath) Then
+                    File.Delete(filepath)
+                End If
+                bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
+                    encoding, extension, streamids, warnings)
+                Dim fs As New FileStream(FolderLocation & "/card" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+                fs.Write(bytes, 0, bytes.Length)
+                fs.Close()
+                Response.Redirect("~/Reports/card" & Session("INC_User_Id") & ".pdf", False)
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

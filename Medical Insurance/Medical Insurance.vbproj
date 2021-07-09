@@ -641,6 +641,7 @@
     <Content Include="Reports\motalbaDetailes.rdlc" />
     <Content Include="Reports\mainCompanyMotalba.rdlc" />
     <Content Include="Reports\Report1.rdlc" />
+    <Content Include="Reports\card.rdlc" />
     <EmbeddedResource Include="Reports\servicesPricesKashf.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPricesKashf.vb</LastGenOutput>

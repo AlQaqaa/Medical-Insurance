@@ -313,7 +313,7 @@ Public Class SERVICES_PRICES
 INSERT INTO INC_SERVICES_PRICES (SER_ID, CASH_PRS,INS_PRS,INVO_PRS,USER_ID,PROFILE_PRICE_ID,COST_PRICE,DOCTOR_ID)
             SELECT SER_ID,0,INS_PRS,0," & Session("INC_User_Id") & "," & Val(Session("profile_no")) & ",0,0
             FROM INC_SERVICES_PRICES
-            WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue, insurance_SQLcon)
+            WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue & " AND DOCTOR_ID = 0", insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             ins_com.ExecuteNonQuery()

@@ -347,6 +347,15 @@ Partial Public Class motalbat
     Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''HyperLink13 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink13 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''HyperLink11 control.
     '''</summary>
     '''<remarks>

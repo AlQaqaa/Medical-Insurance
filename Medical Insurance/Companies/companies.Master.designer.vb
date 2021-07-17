@@ -338,6 +338,15 @@ Partial Public Class companies
     Protected WithEvents HyperLink12 As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''HyperLink19 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink19 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''HyperLink13 control.
     '''</summary>
     '''<remarks>

@@ -200,6 +200,8 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink12" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/companyData.aspx"><i class="fas fa-file"></i>&nbsp;بيانات الشركات</asp:HyperLink></li>
                                     <li>
+                                        <asp:HyperLink ID="HyperLink19" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/pateintCount.aspx"><i class="fas fa-file"></i>&nbsp;تقرير بعدد المنتفعين</asp:HyperLink></li>
+                                    <li>
                                         <asp:HyperLink ID="HyperLink13" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/stopPatients.aspx"><i class="fas fa-file"></i>&nbsp;تقرير المنتفعين</asp:HyperLink></li>
                                     <li>
                                         <asp:HyperLink ID="HyperLink17" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/patientsExpenses.aspx"><i class="fas fa-file"></i>&nbsp;أرصدة ومصروفات المنتفعين</asp:HyperLink></li>

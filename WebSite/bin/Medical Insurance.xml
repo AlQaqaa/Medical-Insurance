@@ -1423,6 +1423,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._HyperLink19">
+<summary>
+HyperLink19 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._HyperLink13">
 <summary>
 HyperLink13 control.
@@ -3822,6 +3831,11 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.PATEINT_COUNTDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3918,6 +3932,11 @@ Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.DataTable5Row">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1.PATEINT_COUNTRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -4022,6 +4041,11 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.PATEINT_COUNTRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRowChangeEvent">
 <summary>
 Row event argument class
@@ -4118,6 +4142,11 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.DataTable5TableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1TableAdapters.PATEINT_COUNTTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -5625,6 +5654,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.motalbat._HyperLink13">
+<summary>
+HyperLink13 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.motalbat._HyperLink11">
 <summary>
 HyperLink11 control.
@@ -6850,6 +6888,24 @@ To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
 <member name="F:Medical_Insurance.dailyProcesses._ReportViewer1">
+<summary>
+ReportViewer1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.pateintCount._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.pateintCount._ReportViewer1">
 <summary>
 ReportViewer1 control.
 </summary>
@@ -8148,6 +8204,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._HyperLink6">
 <summary>
 HyperLink6 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._HyperLink13">
+<summary>
+HyperLink13 control.
 </summary>
 <remarks>
 Auto-generated field.

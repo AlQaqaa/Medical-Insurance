@@ -6,9 +6,9 @@
 <head runat="server">
     <title></title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link href="~/Style/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Style/CSS/bootstrap-rtl.css" rel="stylesheet" />
@@ -18,7 +18,8 @@
     <link href="~/Style/CSS/all.min.css" rel="stylesheet" />
     <link href="~/Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
     <link href="~/Style/plugins/sweetalert/sweetalert2.min.css" rel="stylesheet" />
-     <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
+    <link href="~/Style/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -28,7 +29,7 @@
 
         <div class="container-fluid">
             <div class="top-navbar">
-                <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color:#f0f0f0">
+                <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #f0f0f0">
 
                     <span class="navbar-brand mb-0 h1">
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" />
@@ -62,7 +63,7 @@
                                 </div>
                             </div>
                         </div>
-                         <ul class="nav flex-column">
+                        <ul class="nav flex-column">
                             <li class="nav-item">
                                 <asp:HyperLink ID="HyperLink1" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Default.aspx"><i class="fas fa-home"></i> الرئيسية</asp:HyperLink>
                             </li>
@@ -81,7 +82,7 @@
                                 <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/patientList.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices"  data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices" data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="prices">
                                     <li>
                                         <asp:HyperLink ID="HyperLink7" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;ملفات الأسعار</asp:HyperLink></li>
@@ -122,16 +123,17 @@
                                         <asp:HyperLink ID="hl_approved_archive" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/approvalConfirm/approvalArchive.aspx"><i class="fas fa-archive"></i> أرشيف الطلبات</asp:HyperLink></li>
                                 </ul>
                             </li>
-                           <li class="nav-item">
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i>&nbsp;تسوية الأطباء
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_missing_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/missingForms.aspx"><i class="far fa-file"></i>&nbsp;النماذج المفقودة
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i> الاستفسارات والإحصائيات <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
+                                <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i>الاستفسارات والإحصائيات
+                                    <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_reports" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#reports" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-file-invoice"></i> التقارير</asp:HyperLink>
@@ -185,6 +187,8 @@
     <script src="../Style/JS/all.min.js"></script>
     <script src="../Style/plugins/alertify/alertify.min.js"></script>
     <script src="../Style/plugins/sweetalert/sweetalert2.all.min.js"></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/bootstrap-datepicker/bootstrap-datepicker.ar.min.js") %>'></script>
     <script src="../Style/JS/MyJs.js"></script>
 
 </body>

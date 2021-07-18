@@ -79,28 +79,10 @@
                         <!-- row -->
                         <div class="row mb-2">
                             <div class="form-group col-xs-12 col-sm-3">
-                                <div class="input-group">
-                                    <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" ToolTip="تاريخ تقديم الخدمة"></asp:TextBox>
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                                <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                                <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
-                                <div class="input-group">
-                                    <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <asp:ImageButton ID="ImageButton2" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_end_dt" ID="CalendarExtender2" Format="dd/MM/yyyy" PopupButtonID="ImageButton2" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                                <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_end_dt_MaskedEditExtender" TargetControlID="txt_end_dt" ID="MaskedEditExtender2" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                                <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
                             <div class="col-xs-12 col-sm-2">
                                 <asp:DropDownList ID="ddl_payment_type" CssClass="drop-down-list form-control" runat="server">
@@ -342,9 +324,17 @@
 
     <script>
         ScrollReveal().reveal('.headline');
-    </script>
 
-    <script>
+        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+            $('.datepicker1').datepicker({
+                format: "dd/mm/yyyy",
+                todayBtn: "linked",
+                language: "ar",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+
         function button_click(objTextBox, objBtnID) {
             if (window.event.keyCode == 13) {
                 document.getElementById('ContentPlaceHolder1_btn_search').focus();

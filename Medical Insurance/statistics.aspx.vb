@@ -77,14 +77,14 @@ Public Class statistics
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
-                Dim selComm As New SqlCommand("SELECT COUNT(C_LEVEL) FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
+                Dim selComm As New SqlCommand("SELECT C_LEVEL FROM INC_COMPANY_DATA WHERE C_ID = " & ddl_companies.SelectedValue, insurance_SQLcon)
                 If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
                 insurance_SQLcon.Open()
                 Dim main_com_id As Int16 = selComm.ExecuteScalar
                 insurance_SQLcon.Close()
 
-                If main_com_id <> 0 Then
-                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                If main_com_id = 0 Then
+                    sql_str = sql_str & " AND (INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue & ")"
                 Else
                     sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
                 End If
@@ -127,7 +127,7 @@ Public Class statistics
             If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
                 Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
                 Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
+                sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
             End If
 
             If ddl_payment_type.SelectedValue <> 0 Then
@@ -221,14 +221,14 @@ Public Class statistics
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
-                Dim selComm As New SqlCommand("SELECT COUNT(C_LEVEL) FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
+                Dim selComm As New SqlCommand("SELECT C_LEVEL FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
                 If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
                 insurance_SQLcon.Open()
                 Dim main_com_id As Int16 = selComm.ExecuteScalar
                 insurance_SQLcon.Close()
 
-                If main_com_id <> 0 Then
-                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                If main_com_id = 0 Then
+                    sql_str = sql_str & " AND (INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue & ")"
                 Else
                     sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
                 End If
@@ -271,7 +271,7 @@ Public Class statistics
             If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
                 Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
                 Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
+                sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text = "" Then
@@ -355,14 +355,14 @@ Public Class statistics
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
-                Dim selComm As New SqlCommand("SELECT COUNT(C_LEVEL) FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
+                Dim selComm As New SqlCommand("SELECT C_LEVEL FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue, insurance_SQLcon)
                 If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
                 insurance_SQLcon.Open()
                 Dim main_com_id As Int16 = selComm.ExecuteScalar
                 insurance_SQLcon.Close()
 
-                If main_com_id <> 0 Then
-                    sql_str = sql_str & " AND INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
+                If main_com_id = 0 Then
+                    sql_str = sql_str & " AND (INC_CompanyProcesses.C_ID IN (SELECT C_ID FROM INC_COMPANY_DATA WHERE C_LEVEL = " & ddl_companies.SelectedValue & ") OR INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue & ")"
                 Else
                     sql_str = sql_str & " AND INC_CompanyProcesses.C_ID = " & ddl_companies.SelectedValue
                 End If
@@ -405,7 +405,7 @@ Public Class statistics
             If txt_start_dt.Text <> "" And txt_end_dt.Text <> "" Then
                 Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
                 Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-                sql_str = sql_str & " And Processes_Date >= '" & start_dt & "' AND Processes_Date <= '" & end_dt & "'"
+                sql_str = sql_str & " And Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'"
             End If
 
             If txt_start_dt.Text <> "" And txt_end_dt.Text = "" Then

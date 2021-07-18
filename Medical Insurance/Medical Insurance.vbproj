@@ -216,6 +216,10 @@
     <Content Include="Style\CSS\animate.css" />
     <Content Include="Style\CSS\bootstrap-rtl.css" />
     <Content Include="Style\CSS\bootstrap.min.css" />
+    <Content Include="Style\plugins\bootstrap-datepicker\bootstrap-datepicker.ar-tn.min.js" />
+    <Content Include="Style\plugins\bootstrap-datepicker\bootstrap-datepicker.ar.min.js" />
+    <Content Include="Style\plugins\bootstrap-datepicker\bootstrap-datepicker.min.css" />
+    <Content Include="Style\plugins\bootstrap-datepicker\bootstrap-datepicker.min.js" />
     <Content Include="Style\plugins\dataTables\dataTables.bootstrap4.min.css" />
     <Content Include="Style\CSS\MyStyle.css" />
     <Content Include="Style\plugins\scrollreveal.js" />

@@ -68,42 +68,6 @@ Partial Public Class sentInvoices
     Protected WithEvents txt_start_dt As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''ImageButton1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ImageButton1 As Global.System.Web.UI.WebControls.ImageButton
-    
-    '''<summary>
-    '''RequiredFieldValidator1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''CalendarExtender3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CalendarExtender3 As Global.AjaxControlToolkit.CalendarExtender
-    
-    '''<summary>
-    '''MaskedEditExtender3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents MaskedEditExtender3 As Global.AjaxControlToolkit.MaskedEditExtender
-    
-    '''<summary>
     '''txt_end_dt control.
     '''</summary>
     '''<remarks>
@@ -111,42 +75,6 @@ Partial Public Class sentInvoices
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_end_dt As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''ImageButton2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ImageButton2 As Global.System.Web.UI.WebControls.ImageButton
-    
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''CalendarExtender2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents CalendarExtender2 As Global.AjaxControlToolkit.CalendarExtender
-    
-    '''<summary>
-    '''MaskedEditExtender2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents MaskedEditExtender2 As Global.AjaxControlToolkit.MaskedEditExtender
     
     '''<summary>
     '''btn_search control.

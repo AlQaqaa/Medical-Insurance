@@ -37,8 +37,8 @@ Public Class sentInvoices
     End Sub
 
     Sub getData()
-        Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-        Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
+        Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
+        Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy-MM-dd", CultureInfo.InvariantCulture)
 
         Dim sql_str As String = "SELECT INVOICE_NO, CONVERT(VARCHAR, INCOICE_CREATE_DT, 23) AS INCOICE_CREATE_DT,(SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO,isnull((select SUM(Processes_Residual) from INC_IvoicesProcesses where INC_IvoicesProcesses.INVOICE_NO in (INC_INVOICES.INVOICE_NO)), 0) as total_val FROM INC_INVOICES WHERE INCOICE_STS = 1 AND C_ID = " & ddl_companies.SelectedValue
 

@@ -203,15 +203,6 @@ Partial Public Class newInvoice
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''btn_clear control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents btn_clear As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>
@@ -228,6 +219,15 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_create As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btn_zclear control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_zclear As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''GridView1 control.

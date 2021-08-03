@@ -158,16 +158,16 @@
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-6">
                                         <label for="txt_search"></label>
-                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" AutoCompleteType="Disabled"  TabIndex="1"></asp:TextBox>
+                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" AutoCompleteType="Disabled" TabIndex="1"></asp:TextBox>
                                     </div>
 
-                                       <div class="form-group col-xs-12 col-sm-3">
+                                    <div class="form-group col-xs-12 col-sm-3">
                                         <label for="ddl_clinics">الترتيب</label>
-                                        <asp:DropDownList ID="DropDownList1" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True" >
+                                        <asp:DropDownList ID="DropDownList1" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
                                             <asp:ListItem Value="0">الادخال</asp:ListItem>
                                             <asp:ListItem Value="1">رقم المريض</asp:ListItem>
                                         </asp:DropDownList>
-                                        
+
                                     </div>
                                 </div>
                                 <!-- /form-row -->
@@ -176,16 +176,16 @@
                                     <div class="col-sm-12 col-md-3">
                                         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                                     </div>
+                                    
                                     <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_clear" runat="server" OnClientClick="return confirm('هل أنت متأكد من مسح هذه البيانات؟')" CssClass="btn btn-outline-danger btn-block" Text="مسح البيانات" TabIndex="999" />
-                                    </div>
-                                    <div class="form-group col-xs-6 col-sm-3">
-                                        <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" TabIndex="2" />
+                                        <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" TabIndex="2" />
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_create" runat="server" CssClass="" Text="إنشاء" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" ValidationGroup="create" />
                                     </div>
-                                    
+                                    <div class="form-group col-xs-6 col-sm-3">
+                                        <asp:Button ID="btn_zclear" runat="server" OnClientClick="return confirm('هل أنت متأكد من مسح هذه البيانات؟')" CssClass="btn btn-outline-danger btn-block" Text="مسح البيانات" TabIndex="999" />
+                                    </div>
                                 </div>
                                 <!-- /form-row -->
 
@@ -242,12 +242,22 @@
         </ContentTemplate>
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btn_create" EventName="Click" />
-            <asp:AsyncPostBackTrigger ControlID="btn_search" EventName="Click" />
-            
+
+
         </Triggers>
     </asp:UpdatePanel>
     <script>
-         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+
+        function button_click(objTextBox, objBtnID) {
+            if (window.event.keyCode == 13) {
+                //document.getElementById(objBtnID).focus();
+                document.getElementById(objBtnID).click();
+                <%--document.getElementById('<%=btn_search.ClientID %>').click();--%>
+            }
+        }
+
+
+        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
             $('.datepicker1').datepicker({
                 format: "dd/mm/yyyy",
                 todayBtn: "linked",
@@ -257,11 +267,7 @@
             });
         });
 
-        function button_click(objTextBox, objBtnID) {
-            if (window.event.keyCode == 13) {
-                document.getElementById('<%=btn_search.ClientID %>').click();
-            }
-        }
+
 
         function playSound(url) {
             const audio = new Audio(url);

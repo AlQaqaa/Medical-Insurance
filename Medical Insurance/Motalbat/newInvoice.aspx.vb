@@ -8,6 +8,7 @@ Public Class newInvoice
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
+
         Me.txt_search.Attributes.Add("onkeypress", "button_click(this,'" + Me.btn_search.ClientID + "')")
 
         If IsPostBack = False Then
@@ -36,7 +37,7 @@ Public Class newInvoice
                     TextBox1.Text = dr_inv!DATE_FROM
                     TextBox2.Text = dr_inv!DATE_TO
                 End If
-                btn_clear.Visible = False
+                btn_zclear.Visible = False
             Else
                 Panel1.Visible = True
                 Panel2.Visible = False
@@ -90,11 +91,12 @@ Public Class newInvoice
             ddl_companies.SelectedValue = dt_temp_result.Rows(0)("C_ID")
             GridView1.DataSource = dt_temp_result
             GridView1.DataBind()
-            btn_clear.Enabled = True
+            btn_zclear.Enabled = True
             btn_search.Enabled = True
             txt_search.Focus()
         Else
-            btn_clear.Enabled = False
+            btn_zclear.Enabled = False
+            btn_search.Enabled = True
         End If
     End Sub
 
@@ -210,17 +212,17 @@ Public Class newInvoice
 
                 If ddl_clinics.SelectedValue = 0 Then
                     Select Case dt_result.Rows(0)("Processes_State")
-                        'Case 0
-                        '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                        '    position: 'center',
-                        '    icon: 'error',
-                        '    title: 'خطأ! هذه الخدمة لم تتم تسويتها',
-                        '    showConfirmButton: false,
-                        '    timer: 2500
-                        '});playSound('../Style/error.mp3');", True)
-                        '    txt_search.Text = ""
-                        '    txt_search.Focus()
-                        '    Exit Sub
+                        Case 0
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                            position: 'center',
+                            icon: 'error',
+                            title: 'خطأ! هذه الخدمة لم تتم تسويتها',
+                            showConfirmButton: false,
+                            timer: 2500
+                        });playSound('../Style/error.mp3');", True)
+                            txt_search.Text = ""
+                            txt_search.Focus()
+                            Exit Sub
                         Case 3
                             Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
 inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID in (select top 1 HAG_Request.Req_PID  from HAG_Request  where req_code ='" & txt_search.Text & "')", insurance_SQLcon)
@@ -370,6 +372,8 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
         getData()
+
+        Me.txt_search.Attributes.Remove("onkeypress")
     End Sub
 
     Private Sub btn_create_Click(sender As Object, e As EventArgs) Handles btn_create.Click
@@ -450,12 +454,13 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                 Response.Redirect("invoiceContent.aspx?invID=" & ViewState("invoice_no"), False)
             End If
 
+            Me.txt_search.Attributes.Remove("onkeypress")
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
 
-    Private Sub btn_clear_Click(sender As Object, e As EventArgs) Handles btn_clear.Click
+    Private Sub btn_zclear_Click(sender As Object, e As EventArgs) Handles btn_zclear.Click
         Dim del_com As New SqlCommand("DELETE FROM INC_MOTALBA_TEMP WHERE User_Id = " & Session("INC_User_Id"), insurance_SQLcon)
         insurance_SQLcon.Close()
         insurance_SQLcon.Open()
@@ -465,7 +470,8 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         dt_clear.Rows.Clear()
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
-
+        Label1.Text = 0
+        Me.txt_search.Attributes.Remove("onkeypress")
     End Sub
 
     Private Sub ddl_companies_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_companies.SelectedIndexChanged
@@ -478,7 +484,7 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         dt_clear.Rows.Clear()
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
-
+        Me.txt_search.Attributes.Remove("onkeypress")
     End Sub
 
     Private Sub ddl_clinics_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_clinics.SelectedIndexChanged
@@ -494,6 +500,6 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
             ddl_service.DataTextField = "Service_AR_Name"
             ddl_service.DataBind()
         End If
-
+        Me.txt_search.Attributes.Remove("onkeypress")
     End Sub
 End Class

@@ -5825,15 +5825,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.newInvoice._btn_clear">
-<summary>
-btn_clear control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.newInvoice._btn_search">
 <summary>
 btn_search control.
@@ -5846,6 +5837,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.newInvoice._btn_create">
 <summary>
 btn_create control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.newInvoice._btn_zclear">
+<summary>
+btn_zclear control.
 </summary>
 <remarks>
 Auto-generated field.

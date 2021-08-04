@@ -37,7 +37,7 @@ Public Class newInvoice
                     TextBox1.Text = dr_inv!DATE_FROM
                     TextBox2.Text = dr_inv!DATE_TO
                 End If
-                btn_zclear.Visible = False
+
             Else
                 Panel1.Visible = True
                 Panel2.Visible = False
@@ -316,7 +316,7 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                     If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
                     insurance_SQLcon.Open()
                     Dim dt_tem As New DataTable
-                    dt_tem.Load(sel_com.ExecuteReader)
+                    dt_tem.Load(sel_tem.ExecuteReader)
                     insurance_SQLcon.Close()
 
                     If dt_tem.Rows.Count = 0 Then
@@ -480,7 +480,7 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         dt_clear.Rows.Clear()
         GridView1.DataSource = dt_clear
         GridView1.DataBind()
-        Label1.Text = 0
+        Label1.Text = ""
         Me.txt_search.Attributes.Remove("onkeypress")
     End Sub
 

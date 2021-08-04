@@ -311,13 +311,23 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                     End If
 
                     ' حفظ الحركة في جدول المطالبات المؤقت
-                    Dim ins_com As New SqlCommand("INSERT INTO INC_MOTALBA_TEMP (Req_Code,User_Id) VALUES (@Req_Code,@User_Id)", insurance_SQLcon)
-                    ins_com.Parameters.AddWithValue("Req_Code", SqlDbType.NVarChar).Value = txt_search.Text
-                    ins_com.Parameters.AddWithValue("User_Id", SqlDbType.NVarChar).Value = Session("INC_User_Id")
-                    insurance_SQLcon.Close()
+                    Dim sel_tem As New SqlCommand("select * from INC_MOTALBA_TEMP where Req_Code=@Req_Code", insurance_SQLcon)
+                    sel_tem.Parameters.AddWithValue("Req_Code", SqlDbType.NVarChar).Value = txt_search.Text
+                    If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
                     insurance_SQLcon.Open()
-                    ins_com.ExecuteNonQuery()
+                    Dim dt_tem As New DataTable
+                    dt_tem.Load(sel_com.ExecuteReader)
                     insurance_SQLcon.Close()
+
+                    If dt_tem.Rows.Count = 0 Then
+                        Dim ins_com As New SqlCommand("INSERT INTO INC_MOTALBA_TEMP (Req_Code,User_Id) VALUES (@Req_Code,@User_Id)", insurance_SQLcon)
+                        ins_com.Parameters.AddWithValue("Req_Code", SqlDbType.NVarChar).Value = txt_search.Text
+                        ins_com.Parameters.AddWithValue("User_Id", SqlDbType.NVarChar).Value = Session("INC_User_Id")
+                        insurance_SQLcon.Close()
+                        insurance_SQLcon.Open()
+                        ins_com.ExecuteNonQuery()
+                        insurance_SQLcon.Close()
+                    End If
 
                     getTempData()
                     Label1.Text = "الإجمالي: " & GridView1.Rows.Count

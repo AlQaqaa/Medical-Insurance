@@ -158,7 +158,7 @@ Public Class newInvoice
                 Next
             End If
 
-            Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
+            Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, Processes_Cilinc, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses.NAME_ARB, '') AS PATIENT_NAME,Processes_State FROM INC_CompanyProcesses
                 LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
@@ -211,48 +211,47 @@ Public Class newInvoice
             If dt_result.Rows.Count > 0 Then
 
                 If ddl_clinics.SelectedValue = 0 Then
-                    Select Case dt_result.Rows(0)("Processes_State")
-                        Case 0
-                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                    If dt_result.Rows(0)("Processes_State") = 0 And dt_result.Rows(0)("Processes_Cilinc") <> 1 Then
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
                             title: 'خطأ! هذه الخدمة لم تتم تسويتها',
                             showConfirmButton: false,
                             timer: 2500
                         });playSound('../Style/error.mp3');", True)
-                            txt_search.Text = ""
-                            txt_search.Focus()
-                            Exit Sub
-                        Case 3
-                            Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
+                        txt_search.Text = ""
+                        txt_search.Focus()
+                        Exit Sub
+                    ElseIf dt_result.Rows(0)("Processes_State") = 3 Then
+                        Dim sel_del As New SqlCommand("select Orginal_UserName  from HAG_Return as x  inner join HAG_Return_Process as y  on x.Return_ID =y.Process_Return_ID 
 inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID in (select top 1 HAG_Request.Req_PID  from HAG_Request  where req_code ='" & txt_search.Text & "')", insurance_SQLcon)
-                            Dim dt_user_name As New DataTable
-                            If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
-                            insurance_SQLcon.Open()
-                            dt_user_name.Load(sel_del.ExecuteReader)
-                            insurance_SQLcon.Close()
+                        Dim dt_user_name As New DataTable
+                        If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
+                        insurance_SQLcon.Open()
+                        dt_user_name.Load(sel_del.ExecuteReader)
+                        insurance_SQLcon.Close()
 
-                            If dt_user_name.Rows.Count > 0 Then
-                                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                        If dt_user_name.Rows.Count > 0 Then
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                                     position: 'center',
                                     icon: 'error',
                                     title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: " & dt_user_name.Rows(0)("Orginal_UserName") & "',
                                     showConfirmButton: false,
                                     timer: 2500
                                 });playSound('../Style/error.mp3');", True)
-                            Else
-                                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                        Else
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                                     position: 'center',
                                     icon: 'error',
                                     title: 'خطأ! هذه الخدمة تم إلغائها من قبل المستخدم: لا يمكن عرض اسم المستخدم',
                                     showConfirmButton: false,
                                     timer: 2500
                                 });playSound('../Style/error.mp3');", True)
-                            End If
-                            txt_search.Text = ""
-                            txt_search.Focus()
-                            Exit Sub
-                    End Select
+                        End If
+                        txt_search.Text = ""
+                        txt_search.Focus()
+                        Exit Sub
+                    End If
 
 
                     If dt_result.Rows(0)("Processes_Residual") = 0 Then

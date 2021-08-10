@@ -63,7 +63,7 @@ Public Class statistics
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_MOTALBAT ON INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1
-                WHERE Processes_State = 2"
+                WHERE 1=1"
 
             If txt_processes_code.Text <> "" Then
                 sql_str = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_PATIANT.PINC_ID, CARD_NO, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
@@ -72,7 +72,7 @@ Public Class statistics
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_MOTALBAT ON INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1 
-                WHERE pros_code = " & txt_processes_code.Text & " AND Processes_State = 2"
+                WHERE pros_code = " & txt_processes_code.Text
             End If
 
             If ddl_companies.SelectedItem.Value <> 0 Then
@@ -157,12 +157,11 @@ Public Class statistics
             End If
 
             If ddl_motalba.SelectedValue = 1 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_State = 2"
             ElseIf ddl_motalba.SelectedValue = 2 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43 AND Processes_State = 2"
             ElseIf (ddl_motalba.SelectedValue = 1 Or ddl_motalba.SelectedValue = 2) And txt_invoce_no.Text <> "" Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
-
             End If
 
             If ddl_search_field.SelectedValue = 1 Then
@@ -216,7 +215,7 @@ Public Class statistics
         Dim count_val As Integer = 0
 
         Try
-            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses WHERE Processes_State = 2"
+            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses where 1=1"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
@@ -307,13 +306,11 @@ Public Class statistics
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
-            If ddl_motalba.SelectedValue = 1 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
-            ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
-            End If
-
-            If txt_invoce_no.Text <> "" Then
+            If ddl_motalba.SelectedValue = 1 And txt_invoce_no.Text = "" Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_State = 2"
+            ElseIf ddl_motalba.SelectedValue = 2 And txt_invoce_no.Text = "" Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43 AND Processes_State = 2"
+            ElseIf (ddl_motalba.SelectedValue = 1 Or ddl_motalba.SelectedValue = 2) And txt_invoce_no.Text <> "" Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
             End If
 
@@ -350,7 +347,7 @@ Public Class statistics
 
     Sub bindChartsClinic()
         Try
-            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_State = 2"
+            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE 1 = 1"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
@@ -441,13 +438,11 @@ Public Class statistics
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_Reservation_Code IN (SELECT INC_Patient_Code FROM INC_PATIANT WHERE NAL_ID = " & ddl_NAL_ID.SelectedValue & ")"
             End If
 
-            If ddl_motalba.SelectedValue = 1 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
-            ElseIf ddl_motalba.SelectedValue = 2 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43"
-            End If
-
-            If txt_invoce_no.Text <> "" Then
+            If ddl_motalba.SelectedValue = 1 And txt_invoce_no.Text = "" Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_State = 2"
+            ElseIf ddl_motalba.SelectedValue = 2 And txt_invoce_no.Text = "" Then
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43 AND Processes_State = 2"
+            ElseIf (ddl_motalba.SelectedValue = 1 Or ddl_motalba.SelectedValue = 2) And txt_invoce_no.Text <> "" Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
             End If
 

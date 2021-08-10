@@ -323,6 +323,11 @@
     <script src="Style/plugins/scrollreveal.js"></script>
 
     <script>
+
+        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+        function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
+
+
         ScrollReveal().reveal('.headline');
 
         Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {

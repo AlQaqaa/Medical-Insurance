@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Globalization
 Imports System.IO
 Imports Microsoft.Reporting.WebForms
 
@@ -25,11 +24,8 @@ Public Class patientsExpenses
 
     Private Sub getData()
         Try
-            Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-
             Dim sql_str As String = "SELECT INC_Patient_Code, ISNULL(SUM(Processes_Price), 0) AS TOTAL_WITHDRAW, CARD_NO, NAME_ARB FROM INC_PATIANT
-            LEFT JOIN HAG_Processes ON Processes_Reservation_Code = INC_PATIANT.INC_Patient_Code AND Processes_State = 2 AND HAG_Processes.Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'
+            LEFT JOIN HAG_Processes ON Processes_Reservation_Code = INC_PATIANT.INC_Patient_Code AND Processes_State = 2 AND HAG_Processes.Processes_Date BETWEEN (SELECT MAX(DATE_START) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND DATE_END > GETDATE()) AND GETDATE()
             WHERE INC_Patient_Code IS NOT NULL AND INC_PATIANT.C_ID = " & ddl_companies.SelectedValue & " GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB"
 
             If txt_value.Text <> "" Then
@@ -126,11 +122,8 @@ Public Class patientsExpenses
 
     Private Sub btn_print_Click(sender As Object, e As EventArgs) Handles btn_print.Click
         Try
-            Dim start_dt As String = DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-            Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
-
             Dim sel_com As New SqlCommand("SELECT INC_Patient_Code, ISNULL(SUM(Processes_Price), 0) AS TOTAL_WITHDRAW, CARD_NO, NAME_ARB FROM INC_PATIANT
-            LEFT JOIN HAG_Processes ON Processes_Reservation_Code = INC_PATIANT.INC_Patient_Code AND HAG_Processes.Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "'
+            LEFT JOIN HAG_Processes ON Processes_Reservation_Code = INC_PATIANT.INC_Patient_Code AND HAG_Processes.Processes_Date BETWEEN (SELECT MAX(DATE_START) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_PATIANT.C_ID AND DATE_END > GETDATE()) AND GETDATE()
             WHERE INC_Patient_Code IS NOT NULL AND INC_PATIANT.C_ID = " & ddl_companies.SelectedValue & "
             GROUP BY PINC_ID, INC_Patient_Code, CARD_NO, NAME_ARB ORDER BY CARD_NO", insurance_SQLcon)
             insurance_SQLcon.Close()
@@ -149,15 +142,13 @@ Public Class patientsExpenses
             Dim rp2 As ReportParameter
             Dim rp3 As ReportParameter
             Dim rp4 As ReportParameter
-            Dim rp5 As ReportParameter
 
             rp1 = New ReportParameter("company_name", ddl_companies.SelectedItem.Text)
-            rp2 = New ReportParameter("start_dt", txt_start_dt.Text)
+            rp2 = New ReportParameter("start_dt", ViewState("start_dt").ToString)
             rp3 = New ReportParameter("user_name", Session("INC_User_name").ToString)
             rp4 = New ReportParameter("max_val", ViewState("MAX_PERSON").ToString)
-            rp5 = New ReportParameter("end_dt", txt_end_dt.Text)
 
-            viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5})
+            viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4})
 
             Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
             Dim r As String = "~/Reports/patientsExpenses.rdlc"

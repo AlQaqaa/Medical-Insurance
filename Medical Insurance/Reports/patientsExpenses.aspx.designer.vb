@@ -68,42 +68,6 @@ Partial Public Class patientsExpenses
     Protected WithEvents txt_value As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''txt_start_dt control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_start_dt As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RequiredFieldValidator2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
-    '''txt_end_dt control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents txt_end_dt As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''RequiredFieldValidator3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents RequiredFieldValidator3 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
-    '''<summary>
     '''btn_search control.
     '''</summary>
     '''<remarks>

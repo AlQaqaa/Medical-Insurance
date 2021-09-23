@@ -338,7 +338,7 @@ Public Class invoiceContent
     Private Sub btn_print_details_Click(sender As Object, e As EventArgs) Handles btn_print_details.Click
 
 
-        Response.Redirect("motalbaDetailes.aspx?invID=" & ViewState("invoice_no"), False)
+        Response.Redirect("motalbaDetailes.aspx?invID=" & ViewState("invoice_no") & "&order=" & DropDownList1.SelectedValue, False)
 
         'Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         'Dim r As String = "~/Reports/motalbaDetailes.rdlc"

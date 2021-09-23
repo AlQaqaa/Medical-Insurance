@@ -14,6 +14,7 @@ Public Class motalbaDetailes
 
         If Not Me.IsPostBack Then
             ViewState("invoice_no") = Val(Request.QueryString("invID"))
+            ViewState("oreder_by") = Val(Request.QueryString("order"))
 
             If ViewState("invoice_no") = 0 Then
                 Response.Redirect("Default.aspx", False)
@@ -46,7 +47,10 @@ Public Class motalbaDetailes
                 LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND ISNULL(HAG_Processes_Doctor.doc_type, 0) = 0
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
                 LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no")
-            ss += " order by CARD_NO,NAME_ARB"
+            ' ss += " order by CARD_NO,NAME_ARB"
+
+            If ViewState("oreder_by") = 0 Then ss += " ORDER BY INC_IvoicesProcesses.id DESC"
+            If ViewState("oreder_by") = 1 Then ss += " ORDER BY INC_Patient_Code DESC"
             Dim sel_com As New SqlCommand(ss)
             Using sda As New SqlDataAdapter()
                 sel_com.Connection = insurance_SQLcon

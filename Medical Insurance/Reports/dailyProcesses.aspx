@@ -25,21 +25,19 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
                     <div class="row">
-                        <div class="form-group col-xs-12 col-sm-3">
-                            <div class="input-group">
-                                <asp:TextBox ID="txt_start_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_start_dt);" placeholder="سنه/شهر/يوم" TabIndex="6"></asp:TextBox>
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" ImageUrl="~/Style/images/Calendar.png" Width="20px" TabIndex="100" />
-                                    </div>
-                                </div>
-                            </div>
-                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="مطلوب *" ControlToValidate="txt_start_dt" ForeColor="Red" ValidationGroup="search"></asp:RequiredFieldValidator>
-                            <ajaxToolkit:CalendarExtender runat="server" TargetControlID="txt_start_dt" ID="CalendarExtender3" Format="dd/MM/yyyy" PopupButtonID="ImageButton1" PopupPosition="TopLeft"></ajaxToolkit:CalendarExtender>
-                            <ajaxToolkit:MaskedEditExtender runat="server" CultureDatePlaceholder="" CultureTimePlaceholder="" CultureDecimalPlaceholder="" CultureThousandsPlaceholder="" CultureDateFormat="" CultureCurrencySymbolPlaceholder="" CultureAMPMPlaceholder="" Century="2000" BehaviorID="txt_start_dt_MaskedEditExtender" TargetControlID="txt_start_dt" ID="MaskedEditExtender3" Mask="99/99/9999" MaskType="Date"></ajaxToolkit:MaskedEditExtender>
+                        <div class="col-md-12 col-lg-3">
+                            <label>التاريخ من: </label>
+                            <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب إدخال التاريخ" ControlToValidate="txt_start_dt" ForeColor="red" ValidationGroup="search"></asp:RequiredFieldValidator>
                         </div>
-                        <div class="form-group col-xs-12 col-sm-2">
-                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block" runat="server" Text="بحث" ValidationGroup="search" OnClientClick="this.disabled = true;" UseSubmitBehavior="false" />
+                        <div class="col-md-12 col-lg-3">
+                            <label>إلى: </label>
+                            <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال التاريخ" ControlToValidate="txt_end_dt" ForeColor="red" ValidationGroup="search"></asp:RequiredFieldValidator>
+                        </div>
+                        <div class="col-md-12 col-lg-2">
+                            <label> </label>
+                            <asp:Button ID="btn_search" CssClass="btn btn-outline-info btn-block mt-2" runat="server" Text="بحث" ValidationGroup="search" />
                         </div>
                         <div class="form-group col-xs-12 col-sm-2">
                             <asp:UpdateProgress ID="UpdateProgress1" runat="server" AssociatedUpdatePanelID="UpdatePanel1" DisplayAfter="2">
@@ -69,4 +67,21 @@
             </asp:UpdatePanel>
         </div>
     </div>
+
+    <script>
+
+        Sys.WebForms.PageRequestManager.getInstance().add_beginRequest(BeginRequestHandler);
+        function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
+
+        Sys.WebForms.PageRequestManager.getInstance().add_pageLoaded(function (evt, args) {
+            $('.datepicker1').datepicker({
+                format: "dd/mm/yyyy",
+                todayBtn: "linked",
+                language: "ar",
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+        
+    </script>
 </asp:Content>

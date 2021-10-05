@@ -58,9 +58,9 @@ Public Class addNewCompany
             insToCompany.Parameters.AddWithValue("@c_level", company_level)
             insToCompany.Parameters.AddWithValue("@startDt", DateTime.Parse(txt_start_dt.Text))
             insToCompany.Parameters.AddWithValue("@endDt", DateTime.Parse(txt_end_dt.Text))
-            insToCompany.Parameters.AddWithValue("@maxVal", CDec(txt_max_company_value.Text))
-            insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
-            insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))
+            insToCompany.Parameters.AddWithValue("@maxVal", CDec(Val(txt_max_company_value.Text)))
+            insToCompany.Parameters.AddWithValue("@maxCard", CDec(Val(txt_max_card_value.Text)))
+            insToCompany.Parameters.AddWithValue("@maxPerson", CDec(Val(txt_max_person.Text)))
             insToCompany.Parameters.AddWithValue("@paymentType", ddl_payment_type.SelectedValue)
             insToCompany.Parameters.AddWithValue("@contractType", 1) ' 1 = New Contract
             insToCompany.Parameters.AddWithValue("@patiaintPer", ddl_PATIAINT_PER.SelectedValue)

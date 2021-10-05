@@ -71,11 +71,10 @@ Public Class newInvoice
 
         ss = "SELECT INC_CompanyProcesses.pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses.NAME_ARB, '') AS PATIENT_NAME FROM INC_MOTALBA_TEMP
-				LEFT JOIN INC_CompanyProcesses ON INC_CompanyProcesses.pros_code = INC_MOTALBA_TEMP.Req_Code
-                LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+				INNER JOIN INC_CompanyProcesses ON INC_CompanyProcesses.pros_code = INC_MOTALBA_TEMP.Req_Code
+                INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-                LEFT JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_CompanyProcesses.PINC_ID
                 WHERE INC_MOTALBA_TEMP.User_Id = " & Session("INC_User_Id")
 
         If DropDownList1.SelectedValue = 0 Then ss += " ORDER BY INC_MOTALBA_TEMP.Id DESC"
@@ -140,28 +139,28 @@ Public Class newInvoice
                 Exit Sub
             End If
 
-            If txt_search.Text <> "" Then
-                For Each dd As GridViewRow In GridView1.Rows
-                    If dd.Cells(3).Text = txt_search.Text Then
-                        txt_search.Text = ""
-                        txt_search.Focus()
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                                position: 'center',
-                                icon: 'error',
-                                title: 'خطأ! هذه الخدمة تمت إضافتها سابقاً',
-                                showConfirmButton: false,
-                                timer: 2500
-                            });
-                               playSound('../Style/error.mp3');", True)
-                        Exit Sub
-                    End If
-                Next
-            End If
+            'If txt_search.Text <> "" Then
+            '    For Each dd As GridViewRow In GridView1.Rows
+            '        If dd.Cells(3).Text = txt_search.Text Then
+            '            txt_search.Text = ""
+            '            txt_search.Focus()
+            '            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+            '                    position: 'center',
+            '                    icon: 'error',
+            '                    title: 'خطأ! هذه الخدمة تمت إضافتها سابقاً',
+            '                    showConfirmButton: false,
+            '                    timer: 2500
+            '                });
+            '                   playSound('../Style/error.mp3');", True)
+            '            Exit Sub
+            '        End If
+            '    Next
+            'End If
 
             Dim sql_str As String = "SELECT pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, Processes_Cilinc, 
                 ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses.NAME_ARB, '') AS PATIENT_NAME,Processes_State FROM INC_CompanyProcesses
-                LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+                INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
 
@@ -326,6 +325,16 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                         insurance_SQLcon.Open()
                         ins_com.ExecuteNonQuery()
                         insurance_SQLcon.Close()
+                    Else
+                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                                position: 'center',
+                                icon: 'error',
+                                title: 'خطأ! هذه الخدمة تمت إضافتها سابقاً',
+                                showConfirmButton: false,
+                                timer: 2500
+                            });
+                               playSound('../Style/error.mp3');", True)
+                        Exit Sub
                     End If
 
                     getTempData()

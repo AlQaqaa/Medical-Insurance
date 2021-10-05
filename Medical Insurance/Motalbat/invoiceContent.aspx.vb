@@ -337,36 +337,30 @@ Public Class invoiceContent
 
     Private Sub btn_print_details_Click(sender As Object, e As EventArgs) Handles btn_print_details.Click
 
-        getPatientProcessesInvoice()
 
-        Dim viewer As ReportViewer = New ReportViewer()
-        Dim datasource As New ReportDataSource("patientProcesses", main_ds.Tables("patientProcessesInvoice"))
-        viewer.LocalReport.DataSources.Clear()
-        viewer.ProcessingMode = ProcessingMode.Local
-        viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/motalbaDetailes.rdlc")
-        viewer.LocalReport.DataSources.Add(datasource)
+        Response.Redirect("motalbaDetailes.aspx?invID=" & ViewState("invoice_no") & "&order=" & DropDownList1.SelectedValue, False)
 
-        Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-        Dim r As String = "~/Reports/motalbaDetailes.rdlc"
-        ' Page.Controls.Add(rv)
+        'Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+        'Dim r As String = "~/Reports/motalbaDetailes.rdlc"
+        '' Page.Controls.Add(rv)
 
-        Dim warnings As Warning() = Nothing
-        Dim streamids As String() = Nothing
-        Dim mimeType As String = Nothing
-        Dim encoding As String = Nothing
-        Dim extension As String = Nothing
-        Dim bytes As Byte()
-        Dim FolderLocation As String
-        FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/motalbaDetailes" & Session("INC_User_Id") & ".pdf"
-        If Directory.Exists(filepath) Then
-            File.Delete(filepath)
-        End If
-        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
-            encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/motalbaDetailes" & Session("INC_User_Id") & ".pdf", FileMode.Create)
-        fs.Write(bytes, 0, bytes.Length)
-        fs.Close()
-        Response.Redirect("~/Reports/motalbaDetailes" & Session("INC_User_Id") & ".pdf")
+        'Dim warnings As Warning() = Nothing
+        'Dim streamids As String() = Nothing
+        'Dim mimeType As String = Nothing
+        'Dim encoding As String = Nothing
+        'Dim extension As String = Nothing
+        'Dim bytes As Byte()
+        'Dim FolderLocation As String
+        'FolderLocation = Server.MapPath("~/Reports")
+        'Dim filepath As String = FolderLocation & "/motalbaDetailes" & Session("INC_User_Id") & ".pdf"
+        'If Directory.Exists(filepath) Then
+        '    File.Delete(filepath)
+        'End If
+        'bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
+        '    encoding, extension, streamids, warnings)
+        'Dim fs As New FileStream(FolderLocation & "/motalbaDetailes" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+        'fs.Write(bytes, 0, bytes.Length)
+        'fs.Close()
+        'Response.Redirect("~/Reports/motalbaDetailes" & Session("INC_User_Id") & ".pdf")
     End Sub
 End Class

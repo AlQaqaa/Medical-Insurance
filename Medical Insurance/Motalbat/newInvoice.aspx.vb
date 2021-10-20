@@ -389,6 +389,23 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
+
+        Dim strt_dt As DateTime = Convert.ToDateTime(DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture))
+        Dim to_day As DateTime = Convert.ToDateTime(Date.Now.Date)
+        Dim tss As TimeSpan = strt_dt.Subtract(to_day)
+        If Convert.ToInt32(tss.Days) < 0 Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                position: 'center',
+                icon: 'error',
+                title: 'خطأ! يرجى التحقق من التاريخ',
+                showConfirmButton: false,
+                timer: 2500
+             });
+              playSound('../Style/error.mp3');", True)
+            Exit Sub
+        End If
+
+
         getData()
 
         Me.txt_search.Attributes.Remove("onkeypress")

@@ -173,6 +173,7 @@
     <Content Include="Motalbat\sentInvoices.aspx" />
     <Content Include="Reports\pateintCount.aspx" />
     <Content Include="Reports\Report1.aspx" />
+    <Content Include="Reports\subServicesPrice.aspx" />
     <Content Include="Style\error.mp3" />
     <Content Include="Motalbat\invoiceContent.aspx" />
     <Content Include="Motalbat\invoicesList.aspx" />
@@ -572,6 +573,13 @@
       <DependentUpon>stopPatients.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
+    <Compile Include="Reports\subServicesPrice.aspx.designer.vb">
+      <DependentUpon>subServicesPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\subServicesPrice.aspx.vb">
+      <DependentUpon>subServicesPrice.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
     <Compile Include="Reports\totalExpenses.aspx.designer.vb">
       <DependentUpon>totalExpenses.aspx</DependentUpon>
     </Compile>
@@ -673,6 +681,7 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>servicesPricesOprations.vb</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Reports\subServicesPrice.rdlc" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.Master" />

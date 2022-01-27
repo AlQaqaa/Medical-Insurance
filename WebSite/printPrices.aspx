@@ -22,7 +22,7 @@
                             <label for="ddl_show_type">التصنيف</label>
                             <asp:DropDownList ID="ddl_show_type" CssClass="form-control drop-down-list" runat="server" AutoPostBack="True" DataSourceID="SqlDataSource5" DataTextField="Group_ARname" DataValueField="Group_ID">
                             </asp:DropDownList>
-                            <asp:SqlDataSource runat="server" ID="SqlDataSource5" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [Group_ID], [Group_ARname] FROM [Main_GroupSubService] WHERE ([Group_State] = 0)"></asp:SqlDataSource>
+                            <asp:SqlDataSource runat="server" ID="SqlDataSource5" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT 0 AS [Group_ID], N'الكل' AS[Group_ARname] FROM [Main_GroupSubService] UNION SELECT [Group_ID], [Group_ARname] FROM [Main_GroupSubService] WHERE ([Group_State] = 0)"></asp:SqlDataSource>
                         </div>
                         <div class="form-group col-sm-12 col-md-3">
                             <label for="ddl_sub_gourp">المجموعة</label>

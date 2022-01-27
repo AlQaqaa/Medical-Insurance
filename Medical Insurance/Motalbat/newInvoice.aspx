@@ -104,7 +104,7 @@
                                         <div class="form-group col-xs-12 col-sm-2">
                                             <label for="ddl_companies">نوع الفاتورة</label>
                                             <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server">
-                                                <asp:ListItem Value="0">الكل</asp:ListItem>
+                                                <%--<asp:ListItem Value="0">الكل</asp:ListItem>--%>
                                                 <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
                                                 <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                             </asp:DropDownList>

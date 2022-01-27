@@ -137,7 +137,7 @@
                         <div class="form-group col-sm-12 col-md-2">
                             <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" ValidationGroup="save_data" />
                         </div>
-                        
+
                     </div>
 
                     <asp:Panel ID="Panel1" runat="server" Visible="false">
@@ -157,9 +157,9 @@
                             <div class="form-group col-xs-12 col-sm-2">
                                 <asp:TextBox ID="txt_cost_price_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="سعر التكلفة"></asp:TextBox>
                             </div>
-                            <%--<div class="form-group col-xs-12 col-sm-2">
-                        <asp:TextBox ID="txt_add_per" runat="server" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="نسبة زيادة سعر التأمين"></asp:TextBox>
-                    </div>--%>
+                            <div class="form-group col-xs-12 col-sm-2">
+                                <asp:TextBox ID="txt_add_per" runat="server" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isNumberKey(event,this)" placeholder="نسبة زيادة سعر التأمين"></asp:TextBox>
+                            </div>
                             <div class="form-group col-xs-12 col-sm-2">
                                 <asp:Button ID="btn_apply" CssClass="btn btn-success btn-block" runat="server" Text="تطبيق" />
                             </div>

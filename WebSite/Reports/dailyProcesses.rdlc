@@ -73,10 +73,14 @@
           <DataField>pros_code</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Processes_Id">
+          <DataField>Processes_Id</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSet1</rd:DataSetName>
-        <rd:SchemaPath>E:\Medical-Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\RD1\Desktop\AlQaqaa\Medical-Insurance\Medical Insurance\DataSet1.xsd</rd:SchemaPath>
         <rd:TableName>dailyProcesses</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

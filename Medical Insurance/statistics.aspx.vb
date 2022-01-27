@@ -58,18 +58,18 @@ Public Class statistics
 
         Try
             Dim sql_str As String = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, CARD_NO, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO FROM INC_CompanyProcesses 
-                LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
-                LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
+                INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_MOTALBAT ON INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1
-                WHERE 1=1"
+                WHERE Processes_State <> 3"
 
             If txt_processes_code.Text <> "" Then
-                sql_str = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_PATIANT.PINC_ID, CARD_NO, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
-                LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
-                LEFT JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
+                sql_str = "SELECT INC_CompanyProcesses.pros_code, Processes_Reservation_Code, ISNULL(C_Name_Arb, '') AS COMPANY_NAME, INC_CompanyProcesses.PINC_ID, CARD_NO, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (Clinic_AR_Name) AS Processes_Cilinc, (SubService_AR_Name) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, ISNULL(INVOICE_NO, 0) AS INVOICE_NO, pros_code FROM INC_CompanyProcesses 
+                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID
+                INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 LEFT JOIN INC_MOTALBAT ON INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID AND MOTALABA_STS = 1 
                 WHERE pros_code = " & txt_processes_code.Text
@@ -157,9 +157,9 @@ Public Class statistics
             End If
 
             If ddl_motalba.SelectedValue = 1 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_State = 2"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) "
             ElseIf ddl_motalba.SelectedValue = 2 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43 AND Processes_State = 2"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) "
             ElseIf (ddl_motalba.SelectedValue = 1 Or ddl_motalba.SelectedValue = 2) And txt_invoce_no.Text <> "" Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
             End If
@@ -173,7 +173,7 @@ Public Class statistics
             'If CheckBox2.Checked = True Then
             '    sql_str = sql_str & " AND Processes_State = 4"
             'Else
-            '    sql_str = sql_str & " AND Processes_State in (2,4)"
+            '    sql_str = sql_str & " AND Processes_State <> 3"
             'End If
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
@@ -215,7 +215,7 @@ Public Class statistics
         Dim count_val As Integer = 0
 
         Try
-            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses where 1=1"
+            Dim sql_str As String = "SELECT INC_CompanyProcesses.Processes_Reservation_Code FROM INC_CompanyProcesses where Processes_State <> 3"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
@@ -307,9 +307,9 @@ Public Class statistics
             End If
 
             If ddl_motalba.SelectedValue = 1 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_State = 2"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf ddl_motalba.SelectedValue = 2 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43 AND Processes_State = 2"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) "
             ElseIf (ddl_motalba.SelectedValue = 1 Or ddl_motalba.SelectedValue = 2) And txt_invoce_no.Text <> "" Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
             End If
@@ -323,7 +323,7 @@ Public Class statistics
             'If CheckBox2.Checked = True Then
             '    sql_str = sql_str & " AND Processes_State = 4"
             'Else
-            '    sql_str = sql_str & " AND Processes_State in (2,4)"
+            '    sql_str = sql_str & " AND Processes_State <> 3"
             'End If
 
             sql_str = sql_str & " GROUP BY INC_CompanyProcesses.Processes_Reservation_Code"
@@ -347,7 +347,7 @@ Public Class statistics
 
     Sub bindChartsClinic()
         Try
-            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE 1 = 1"
+            Dim sql_str As String = "SELECT (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.clinic_id = INC_CompanyProcesses.Processes_Cilinc) AS CLINIC_NAME, COUNT(*) AS CLINIC_COUNT FROM INC_CompanyProcesses WHERE Processes_State <> 3"
 
             If ddl_companies.SelectedItem.Value <> 0 Then
 
@@ -439,9 +439,9 @@ Public Class statistics
             End If
 
             If ddl_motalba.SelectedValue = 1 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_State = 2"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf ddl_motalba.SelectedValue = 2 And txt_invoce_no.Text = "" Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1) AND Processes_Cilinc <> 43 AND Processes_State = 2"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID NOT IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1)"
             ElseIf (ddl_motalba.SelectedValue = 1 Or ddl_motalba.SelectedValue = 2) And txt_invoce_no.Text <> "" Then
                 sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_ID FROM INC_MOTALBAT WHERE MOTALABA_STS = 1 AND INVOICE_NO = " & txt_invoce_no.Text & ")"
             End If
@@ -455,7 +455,7 @@ Public Class statistics
             'If CheckBox2.Checked = True Then
             '    sql_str = sql_str & " AND Processes_State = 4"
             'Else
-            '    sql_str = sql_str & " AND Processes_State in (2,4)"
+            '    sql_str = sql_str & " AND Processes_State <> 3"
             'End If
 
             sql_str = sql_str & " GROUP BY Processes_Cilinc"

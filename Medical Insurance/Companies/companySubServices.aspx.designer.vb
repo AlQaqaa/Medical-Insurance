@@ -167,6 +167,15 @@ Partial Public Class companySubServices
     Protected WithEvents txt_parent_per_all As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''txt_ewa_per_all control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_ewa_per_all As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
     '''txt_person_max_all control.
     '''</summary>
     '''<remarks>

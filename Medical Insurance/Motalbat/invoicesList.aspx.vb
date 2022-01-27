@@ -82,6 +82,7 @@ Public Class invoicesList
             Dim row As GridViewRow = GridView1.Rows(index)
 
             Response.Redirect("invoiceContent.aspx?invID=" & Val(row.Cells(0).Text), False)
+            Exit Sub
 
             Try
                 Dim dt_result As New DataTable

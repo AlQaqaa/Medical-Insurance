@@ -30,9 +30,9 @@ Public Class dailyProcesses
         Dim end_dt As String = DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture)
 
         Try
-            Dim sql_str As String = "SELECT pros_code, Processes_Reservation_Code, PINC_ID AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت التسوية' else 'لم تتم التسوية' end) AS Processes_State, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID) AS C_NAME FROM INC_CompanyProcesses
- WHERE Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "' AND Processes_State in (2,4) AND SUBSTRING([Processes_Reservation_Code],8 , 1) <> 0
-ORDER BY Processes_Date"
+            Dim sql_str As String = "SELECT Processes_Id, pros_code, Processes_Reservation_Code, PINC_ID AS PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, (SELECT Clinic_AR_Name FROM Main_Clinic WHERE Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc) AS Processes_Cilinc, (SELECT SubService_AR_Name FROM Main_SubServices WHERE Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices) AS Processes_SubServices, Processes_Price, Processes_Paid, Processes_Residual, ISNULL((SELECT MedicalStaff_AR_Name FROM Main_MedicalStaff WHERE Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id), '') AS MedicalStaff_AR_Name, ISNULL(NAME_ARB, '') AS PATIENT_NAME, (case when Processes_State = 4 then 'تمت التسوية' else 'لم تتم التسوية' end) AS Processes_State, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_CompanyProcesses.C_ID) AS C_NAME FROM INC_CompanyProcesses
+ WHERE Processes_Date BETWEEN '" & start_dt & "' AND '" & end_dt & "' AND Processes_State <> 3 AND SUBSTRING([Processes_Reservation_Code],8 , 1) <> 0
+ORDER BY Processes_Id"
 
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)

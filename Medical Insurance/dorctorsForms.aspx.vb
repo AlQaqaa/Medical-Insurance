@@ -660,7 +660,7 @@ inner join HAG_Processes on Processes_ID =Req_PID"
                 CD.ExecuteNonQuery()
 
 
-                CD = New SqlCommand("update HAG_Processes set Processes_State =2 where Processes_ID =@Processes_ID    ", insurance_SQLcon)
+                CD = New SqlCommand("update HAG_Processes set Processes_State <> 3 where Processes_ID =@Processes_ID    ", insurance_SQLcon)
                 CD.Parameters.AddWithValue("@Processes_ID", row.Cells(8).Text)
                 CD.ExecuteNonQuery()
 

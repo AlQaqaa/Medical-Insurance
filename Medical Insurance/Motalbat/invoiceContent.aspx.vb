@@ -28,7 +28,7 @@ Public Class invoiceContent
             If ViewState("invoice_no") <> 0 Then
 
                 txt_invoice_no.Text = ViewState("invoice_no")
-                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, INC_INVOICES.C_ID, TBL1.C_Name_Arb AS COMPANY_NAME, ISNULL(TBL2.C_Name_Arb, '') AS MAIN_COMPANY,CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO FROM INC_INVOICES
+                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, INC_INVOICES.C_ID, TBL1.C_Name_Arb AS COMPANY_NAME, ISNULL(TBL2.C_Name_Arb, '') AS MAIN_COMPANY,CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO, INVOICE_TYPE FROM INC_INVOICES
                     LEFT JOIN INC_COMPANY_DATA AS TBL1 ON TBL1.C_ID = INC_INVOICES.C_ID
                     LEFT JOIN INC_COMPANY_DATA AS TBL2 ON TBL2.C_ID = TBL1.C_Level WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
@@ -45,7 +45,7 @@ Public Class invoiceContent
                     ViewState("main_company") = dr_inv!MAIN_COMPANY
                     txt_start_dt.Text = dr_inv!DATE_FROM
                     txt_end_dt.Text = dr_inv!DATE_TO
-
+                    ViewState("invoice_type") = dr_inv!INVOICE_TYPE
                     getData()
 
                 End If
@@ -62,13 +62,27 @@ Public Class invoiceContent
         Using main_ds
 
             Dim ss As String
-            ss = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
-                LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
-                LEFT JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
-                LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
+
+            If ViewState("invoice_type") = 2 Then
+                ss = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
+                INNER JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
+                INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
+                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_IvoicesProcesses.Processes_ID
+                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = EWA_Processes.EWA_Record_Doctor
+                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID "
+            Else
+                ss = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
+                INNER JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
+                INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
                 LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND ISNULL(HAG_Processes_Doctor.doc_type, 0) = 0
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
-                LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no")
+                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID "
+
+            End If
+
+            ss += " WHERE INVOICE_NO = " & ViewState("invoice_no")
             If DropDownList1.SelectedValue = 0 Then ss += " ORDER BY INC_IvoicesProcesses.id DESC"
             If DropDownList1.SelectedValue = 1 Then ss += " ORDER BY INC_Patient_Code DESC"
             Dim sel_com As New SqlCommand(ss)
@@ -120,7 +134,7 @@ Public Class invoiceContent
             If (e.CommandName = "printProcess") Then
                 Dim index As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = GridView1.Rows(index)
-                Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text)
+                Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text) & "&invType=" & ViewState("invoice_type")
                 'Response.Write("<script type='text/javascript'>")
                 'Response.Write("window.open('" & p_link & "','_blank');")
                 'Response.Write("</script>")
@@ -338,7 +352,7 @@ Public Class invoiceContent
     Private Sub btn_print_details_Click(sender As Object, e As EventArgs) Handles btn_print_details.Click
 
 
-        Response.Redirect("motalbaDetailes.aspx?invID=" & ViewState("invoice_no") & "&order=" & DropDownList1.SelectedValue, False)
+        Response.Redirect("motalbaDetailes.aspx?invID=" & ViewState("invoice_no") & "&order=" & DropDownList1.SelectedValue & "&invType=" & ViewState("invoice_type"), False)
 
         'Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
         'Dim r As String = "~/Reports/motalbaDetailes.rdlc"

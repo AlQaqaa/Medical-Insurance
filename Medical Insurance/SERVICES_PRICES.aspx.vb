@@ -170,6 +170,11 @@ Public Class SERVICES_PRICES
 
     Private Sub btn_apply_Click(sender As Object, e As EventArgs) Handles btn_apply.Click
 
+        If txt_add_per.Text <> "" And txt_inc_price_all.Text <> "" Or txt_add_per.Text <> "" And txt_cost_price_all.Text <> "" Then
+            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('خطأ! يرجى تحديد سعر الخدمة أو نسبة الزيادة'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
+            Exit Sub
+        End If
+
         For Each dd As GridViewRow In GridView1.Rows
             Dim ch As CheckBox = dd.FindControl("CheckBox2")
             'Dim txt_private_price As TextBox = dd.FindControl("txt_private_price")
@@ -190,14 +195,18 @@ Public Class SERVICES_PRICES
                 If txt_cost_price_all.Text <> "" Then
                     txt_cost_price.Text = CDec(txt_cost_price_all.Text)
                 End If
-                'If txt_add_per.Text <> "" And txt_invoice_price_all.Text = "" And txt_private_all.Text <> "" Then
-                '    Dim add_val As Decimal = CDec(txt_private_price.Text) + (CDec(txt_private_price.Text) * CDec(txt_add_per.Text) / 100)
-                '    txt_inc_price.Text = CDec(add_val)
-                'End If
+                If txt_add_per.Text <> "" Then
+                    Dim add_val As Decimal
+                    If CDec(txt_inc_price.Text) = 0 Then add_val = CDec(txt_add_per.Text) Else add_val = CDec(txt_inc_price.Text) + (CDec(txt_inc_price.Text) * CDec(txt_add_per.Text) / 100)
+
+                    txt_inc_price.Text = Decimal.Round(add_val)
+                End If
             End If
 
         Next
-
+        txt_add_per.Text = ""
+        txt_cost_price_all.Text = ""
+        txt_inc_price_all.Text = ""
     End Sub
 
     Sub getSubServices()
@@ -262,7 +271,7 @@ Public Class SERVICES_PRICES
                 GridView1.DataBind()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            'MsgBox(ex.Message)
             ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "alertify.error('" & ex.Message & "'); alertify.set('notifier','delay', 3); alertify.set('notifier','position', 'top-right');", True)
         End Try
     End Sub
@@ -278,6 +287,7 @@ Public Class SERVICES_PRICES
         GridView1.DataSource = Nothing
         GridView1.DataBind()
         Panel1.Visible = False
+        btn_save.Visible = False
     End Sub
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
@@ -309,11 +319,21 @@ Public Class SERVICES_PRICES
 
     Private Sub btn_copy_Click(sender As Object, e As EventArgs) Handles btn_copy.Click
         Try
-            Dim ins_com As New SqlCommand("DELETE FROM INC_SERVICES_PRICES WHERE PROFILE_PRICE_ID = " & Val(Session("profile_no")) & ";
+            Dim query As String = ""
+            If DropDownList1.SelectedValue = 3024 Then
+                query = "DELETE FROM INC_SERVICES_PRICES WHERE PROFILE_PRICE_ID = " & Val(Session("profile_no")) & ";
+INSERT INTO INC_SERVICES_PRICES (SER_ID, CASH_PRS,INS_PRS,INVO_PRS,USER_ID,PROFILE_PRICE_ID,COST_PRICE,DOCTOR_ID)
+            SELECT SER_ID,0,CASH_PRS,0," & Session("INC_User_Id") & "," & Val(Session("profile_no")) & ",0,0
+            FROM INC_SERVICES_PRICES
+            WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue & " AND DOCTOR_ID = 0"
+            Else
+                query = "DELETE FROM INC_SERVICES_PRICES WHERE PROFILE_PRICE_ID = " & Val(Session("profile_no")) & ";
 INSERT INTO INC_SERVICES_PRICES (SER_ID, CASH_PRS,INS_PRS,INVO_PRS,USER_ID,PROFILE_PRICE_ID,COST_PRICE,DOCTOR_ID)
             SELECT SER_ID,0,INS_PRS,0," & Session("INC_User_Id") & "," & Val(Session("profile_no")) & ",0,0
             FROM INC_SERVICES_PRICES
-            WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue & " AND DOCTOR_ID = 0", insurance_SQLcon)
+            WHERE PROFILE_PRICE_ID = " & DropDownList1.SelectedValue & " AND DOCTOR_ID = 0"
+            End If
+            Dim ins_com As New SqlCommand(query, insurance_SQLcon)
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()
             ins_com.ExecuteNonQuery()

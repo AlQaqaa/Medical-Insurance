@@ -1351,15 +1351,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.companies._hl_doctors_forms">
-<summary>
-hl_doctors_forms control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.companies._hl_missing_forms">
 <summary>
 hl_missing_forms control.
@@ -2173,6 +2164,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companySubServices._txt_parent_per_all">
 <summary>
 txt_parent_per_all control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companySubServices._txt_ewa_per_all">
+<summary>
+txt_ewa_per_all control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3761,11 +3761,6 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:Medical_Insurance.DataSet1.dailyProcessesDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
 <member name="T:Medical_Insurance.DataSet1.servicesCashPricesDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3836,6 +3831,16 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.dailyProcessesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1.subServicesPriceDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3862,11 +3867,6 @@ Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.INC_CONFIRM_DETAILSRow">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:Medical_Insurance.DataSet1.dailyProcessesRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -3941,6 +3941,16 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.dailyProcessesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1.subServicesPriceRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRow">
 <summary>
 Represents strongly named DataRow class.
@@ -3967,11 +3977,6 @@ Row event argument class
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.INC_CONFIRM_DETAILSRowChangeEvent">
-<summary>
-Row event argument class
-</summary>
-</member>
-<member name="T:Medical_Insurance.DataSet1.dailyProcessesRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
@@ -4046,6 +4051,16 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.dailyProcessesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1.subServicesPriceRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRowChangeEvent">
 <summary>
 Row event argument class
@@ -4072,11 +4087,6 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.INC_CONFIRM_DETAILSTableAdapter">
-<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member>
-<member name="T:Medical_Insurance.DataSet1TableAdapters.dailyProcessesTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -4147,6 +4157,16 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.PATEINT_COUNTTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1TableAdapters.dailyProcessesTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1TableAdapters.subServicesPriceTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -5540,15 +5560,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.motalbat._hl_approved_archive">
 <summary>
 hl_approved_archive control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.motalbat._hl_doctors_forms">
-<summary>
-hl_doctors_forms control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -7049,6 +7060,105 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.subServicesPrice._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._ddl_prices_profile">
+<summary>
+ddl_prices_profile control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._SqlDataSource3">
+<summary>
+SqlDataSource3 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._ddl_clinics">
+<summary>
+ddl_clinics control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._SqlDataSource1">
+<summary>
+SqlDataSource1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._ddl_services">
+<summary>
+ddl_services control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._dll_doctors">
+<summary>
+dll_doctors control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._SqlDataSource4">
+<summary>
+SqlDataSource4 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._btn_print">
+<summary>
+btn_print control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.subServicesPrice._ReportViewer1">
+<summary>
+ReportViewer1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.totalExpenses._ScriptManager1">
 <summary>
 ScriptManager1 control.
@@ -7499,6 +7609,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.SERVICES_PRICES._txt_add_per">
+<summary>
+txt_add_per control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.SERVICES_PRICES._btn_apply">
 <summary>
 btn_apply control.
@@ -7862,15 +7981,6 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._hl_approved_archive">
 <summary>
 hl_approved_archive control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.main._hl_doctors_forms">
-<summary>
-hl_doctors_forms control.
 </summary>
 <remarks>
 Auto-generated field.

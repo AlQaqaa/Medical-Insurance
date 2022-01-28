@@ -235,7 +235,7 @@ Public Class SERVICES_PRICES
                 End If
             End If
 
-            sql_str = sql_str & " ORDER BY SubService_AR_Name"
+            sql_str = sql_str & " ORDER BY SubService_Code"
 
             Dim sel_com As New SqlCommand(sql_str, insurance_SQLcon)
             Dim dt_res As New DataTable

@@ -55,6 +55,8 @@ inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Cl
                 query += " and SubService_Service_ID = " & ddl_services.SelectedValue
             End If
 
+            query += " ORDER BY SubService_Code"
+
             Dim selComm As New SqlCommand(query, insurance_SQLcon)
             If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
             insurance_SQLcon.Open()

@@ -45,7 +45,7 @@ Public Class subServicesPrice
         Try
             Dim query As String = "select Main_SubServices.SubService_AR_Name, Main_SubServices.SubService_Code, Main_SubServices.SubService_EN_Name, Main_Clinic.Clinic_AR_Name, ISNULL(INC_SERVICES_PRICES.INS_PRS, 0) as service_price from INC_SERVICES_PRICES
 inner join Main_SubServices on Main_SubServices.SubService_ID = INC_SERVICES_PRICES.SER_ID
-inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic where PROFILE_PRICE_ID = " & ddl_prices_profile.SelectedValue & " AND DOCTOR_ID = " & dll_doctors.SelectedValue
+inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic where SubService_State <> 1 AND PROFILE_PRICE_ID = " & ddl_prices_profile.SelectedValue & " AND DOCTOR_ID = " & dll_doctors.SelectedValue
 
             If ddl_clinics.SelectedValue <> 0 Then
                 query += " and SubService_Clinic = " & ddl_clinics.SelectedValue

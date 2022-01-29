@@ -26,7 +26,7 @@
                                         <label for="ddl_companies">نوع الفاتورة</label>
                                         <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server" AutoPostBack="True">
                                             <asp:ListItem Value="-1">الكل</asp:ListItem>
-                                            <asp:ListItem Value="0">الخدمات الطبية / الإيواء والعمليات</asp:ListItem>
+                                           
                                             <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
                                             <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                         </asp:DropDownList>
@@ -87,6 +87,7 @@
                                                 <asp:BoundField DataField="INCOICE_CREATE_DT" HeaderText="تاريخ إنشاء الفاتورة"></asp:BoundField>
                                                 <asp:BoundField DataField="DATE_FROM" HeaderText="الفترة من"></asp:BoundField>
                                                 <asp:BoundField DataField="DATE_TO" HeaderText="إلى"></asp:BoundField>
+                                                <asp:BoundField DataField="INVOICE_TYPE" HeaderText="نوع الفاتورة"></asp:BoundField>
                                                 <asp:BoundField DataField="total_val" HeaderText="إجمالي قيمة الفاتورة" DataFormatString="{0:C3}"></asp:BoundField>
                                                 <asp:TemplateField>
                                                     <ItemTemplate>

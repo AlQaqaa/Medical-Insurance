@@ -25,7 +25,7 @@ Public Class invoicesList
     End Sub
 
     Sub getData()
-        Dim sql_str As String = "SELECT INVOICE_NO, CONVERT(VARCHAR, INCOICE_CREATE_DT, 23) AS INCOICE_CREATE_DT,(SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO,isnull((select SUM(Processes_Residual) from INC_IvoicesProcesses where INC_IvoicesProcesses.INVOICE_NO in (INC_INVOICES.INVOICE_NO)), 0) as total_val FROM INC_INVOICES WHERE INCOICE_STS = 0 AND C_ID = " & ddl_companies.SelectedValue
+        Dim sql_str As String = "SELECT INVOICE_NO, CONVERT(VARCHAR, INCOICE_CREATE_DT, 23) AS INCOICE_CREATE_DT,(CASE WHEN INVOICE_TYPE = 1 THEN 'خدمات طبية' WHEN INVOICE_TYPE = 2 THEN 'إيواء وعمليات' ELSE '' END) AS INVOICE_TYPE,(SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO,isnull((select SUM(Processes_Residual) from INC_IvoicesProcesses where INC_IvoicesProcesses.INVOICE_NO in (INC_INVOICES.INVOICE_NO)), 0) as total_val FROM INC_INVOICES WHERE INCOICE_STS = 0 AND C_ID = " & ddl_companies.SelectedValue
 
         If ddl_invoice_type.SelectedValue <> -1 Then
             sql_str = sql_str & " AND INVOICE_TYPE = " & ddl_invoice_type.SelectedValue

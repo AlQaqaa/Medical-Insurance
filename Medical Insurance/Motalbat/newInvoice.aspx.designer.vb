@@ -237,4 +237,67 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
+    '''lblHidden control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblHidden As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''mpePopUp control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents mpePopUp As Global.AjaxControlToolkit.ModalPopupExtender
+    
+    '''<summary>
+    '''txt_pros control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_pros As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''txt_pros_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents txt_pros_date As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''RequiredFieldValidator2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents RequiredFieldValidator2 As Global.System.Web.UI.WebControls.RequiredFieldValidator
+    
+    '''<summary>
+    '''btn_save_new_date control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btn_save_new_date As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''btnCancel control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnCancel As Global.System.Web.UI.WebControls.Button
 End Class

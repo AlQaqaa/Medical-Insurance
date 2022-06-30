@@ -79,10 +79,10 @@
                         <!-- row -->
                         <div class="row mb-2">
                             <div class="form-group col-xs-12 col-sm-3">
-                                <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                             </div>
                             <div class="form-group col-xs-12 col-sm-3">
-                                <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                             </div>
                             <div class="col-xs-12 col-sm-2">
                                 <asp:DropDownList ID="ddl_payment_type" CssClass="drop-down-list form-control" runat="server">

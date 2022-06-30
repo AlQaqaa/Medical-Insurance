@@ -109,7 +109,7 @@ Public Class statistics
             End If
 
             If ddl_doctors.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_Doctor_ID FROM HAG_Processes_Doctor WHERE Doctor_Processes_ID = " & ddl_doctors.SelectedValue & ")"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Doctor_Processes_ID FROM HAG_Processes_Doctor WHERE Processes_Doctor_ID = " & ddl_doctors.SelectedValue & ")"
             End If
 
             If ddl_clinics.SelectedValue <> 0 Then
@@ -251,7 +251,7 @@ Public Class statistics
             End If
 
             If ddl_doctors.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_Doctor_ID FROM HAG_Processes_Doctor WHERE Doctor_Processes_ID = " & ddl_doctors.SelectedValue & ")"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Doctor_Processes_ID FROM HAG_Processes_Doctor WHERE Processes_Doctor_ID = " & ddl_doctors.SelectedValue & ")"
             End If
 
             If ddl_clinics.SelectedValue <> 0 Then
@@ -383,7 +383,7 @@ Public Class statistics
             End If
 
             If ddl_doctors.SelectedValue <> 0 Then
-                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Processes_Doctor_ID FROM HAG_Processes_Doctor WHERE Doctor_Processes_ID = " & ddl_doctors.SelectedValue & ")"
+                sql_str = sql_str & " AND INC_CompanyProcesses.Processes_ID IN (SELECT Doctor_Processes_ID FROM HAG_Processes_Doctor WHERE Processes_Doctor_ID = " & ddl_doctors.SelectedValue & ")"
             End If
 
             If ddl_clinics.SelectedValue <> 0 Then

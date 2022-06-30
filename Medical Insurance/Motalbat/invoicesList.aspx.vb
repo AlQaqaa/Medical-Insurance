@@ -181,9 +181,9 @@ INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID
                 update_com.ExecuteNonQuery()
                 insurance_SQLcon.Close()
 
-                main_ds.Tables("invoicesList").Rows.Add(dd.Cells(0).Text, dd.Cells(4).Text, dd.Cells(6).Text, dd.Cells(7).Text, CDec(dd.Cells(8).Text))
+                main_ds.Tables("invoicesList").Rows.Add(dd.Cells(0).Text, dd.Cells(4).Text, dd.Cells(6).Text, dd.Cells(7).Text, CDec(dd.Cells(9).Text))
                 ch_counter = ch_counter + 1
-                total_val = total_val + CDec(dd.Cells(8).Text)
+                total_val = total_val + CDec(dd.Cells(9).Text)
                 dateStart.Add(dd.Cells(6).Text)
                 dateEnd.Add(dd.Cells(7).Text)
             End If

@@ -204,16 +204,19 @@ Public Class companySubServices
                     '    Exit Sub
                     'End If
 
-                    If CDec(txt_person_max.Text) > CDec(txt_family_max.Text) Then
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                position: 'top-end',
-                icon: 'error',
-                title: 'خطأ! سقف الفرد يجب أن يكون أقل من سقف العائلة',
-                showConfirmButton: false,
-                timer: 1500
-            });", True)
-                        Exit Sub
+                    If Val(txt_family_max.Text) <> 0 Then
+                        If CDec(txt_person_max.Text) > CDec(txt_family_max.Text) Then
+                            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                                position: 'top-end',
+                                icon: 'error',
+                                title: 'خطأ! سقف الفرد يجب أن يكون أقل من سقف العائلة',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });", True)
+                            Exit Sub
+                        End If
                     End If
+
 
                     Dim clinic_no As Integer = 0
                     If ddl_show_type.SelectedValue = 1 Then

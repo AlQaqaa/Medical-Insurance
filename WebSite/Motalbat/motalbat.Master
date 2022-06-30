@@ -132,6 +132,10 @@
                                 </asp:HyperLink>
                             </li>
                             <li class="nav-item">
+                                <asp:HyperLink ID="HyperLink14" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/EwaReturn.aspx"><i class="fas fa-undo-alt"></i>&nbsp;إرجاع فاتورة إيواء
+                                    </asp:HyperLink>
+                            </li>
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i>الاستفسارات والإحصائيات
                                     <asp:Label ID="Label1" runat="server" Text=""></asp:Label></asp:HyperLink>
                             </li>

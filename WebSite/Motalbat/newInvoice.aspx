@@ -111,11 +111,11 @@
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-3">
                                             <label for="txt_start_dt">الفترة من</label>
-                                            <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                            <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-3">
                                             <label for="txt_start_dt">إلى</label>
-                                            <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                            <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                                         </div>
 
                                     </div>
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-6">
                                         <label for="txt_search"></label>
-                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" AutoCompleteType="Disabled" TabIndex="1"></asp:TextBox>
+                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" autocomplete="off" TabIndex="1"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group col-xs-12 col-sm-3">
@@ -176,7 +176,7 @@
                                     <div class="col-sm-12 col-md-3">
                                         <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
                                     </div>
-                                    
+
                                     <div class="form-group col-xs-6 col-sm-3">
                                         <asp:Button ID="btn_search" runat="server" CssClass="btn btn-outline-info btn-block" Text="بحث" TabIndex="2" />
                                     </div>
@@ -224,6 +224,15 @@
                                                     <asp:BoundField DataField="Processes_Price" HeaderText="سعر الخدمة" DataFormatString="{0:C3}"></asp:BoundField>
                                                     <asp:BoundField DataField="Processes_Paid" HeaderText="قيمة المنتفع" DataFormatString="{0:C3}"></asp:BoundField>
                                                     <asp:BoundField DataField="Processes_Residual" HeaderText="قيمة الشركة" DataFormatString="{0:C3}"></asp:BoundField>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:Button ID="edit_btn" runat="server"
+                                                                CommandName="btn_edi"
+                                                                CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                                Text="تعديل التاريخ"
+                                                                ControlStyle-CssClass="btn btn-outline-primary btn-sm" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
                                         </div>
@@ -238,6 +247,32 @@
                     </div>
                 </div>
                 <!-- /row -->
+            </div>
+
+            <asp:Label ID="lblHidden" runat="server" Text=""></asp:Label>
+            <ajaxToolkit:ModalPopupExtender ID="mpePopUp" runat="server" TargetControlID="lblHidden" PopupControlID="divPopUp"></ajaxToolkit:ModalPopupExtender>
+            <div id="divPopUp" class="modal-dialog shadow" style="width: 450px">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">سنة مالية جديدة</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-row">
+                            <div class="col">
+                                <asp:TextBox ID="txt_pros" CssClass="form-control" ReadOnly="true" runat="server"></asp:TextBox>
+                            </div>
+                            <div class="col">
+                                <asp:TextBox ID="txt_pros_date" CssClass="form-control datepicker1" placeholder="dd/mm/yyyy" runat="server" autocomplete="off"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب إدخال التاريخ" ControlToValidate="txt_pros_date" ForeColor="Red" ValidationGroup="date"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="btn_save_new_date" runat="server" class="btn btn-outline-success" Text="حفظ" ValidationGroup="date" />
+                        <asp:Button ID="btnCancel" runat="server" class="btn btn-outline-secondary" Text="إغلاق" />
+                    </div>
+                </div>
             </div>
         </ContentTemplate>
         <Triggers>

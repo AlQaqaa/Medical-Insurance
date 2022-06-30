@@ -552,4 +552,36 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
         End If
         Me.txt_search.Attributes.Remove("onkeypress")
     End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        mpePopUp.Hide()
+    End Sub
+
+    Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
+        If (e.CommandName = "btn_edi") Then
+            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+            Dim row As GridViewRow = GridView1.Rows(index)
+            txt_pros.Text = row.Cells(3).Text
+            mpePopUp.Show()
+        End If
+    End Sub
+
+    Private Sub btn_save_new_date_Click(sender As Object, e As EventArgs) Handles btn_save_new_date.Click
+        Try
+            Dim updateComm As New SqlCommand("UPDATE HAG_Processes SET Processes_Date = @Processes_Date WHERE Processes_ID IN (SELECT Req_PID FROM [HAG_Request] WHERE Req_Code=@Req_Code)", insurance_SQLcon)
+            updateComm.Parameters.Add("Processes_Date", SqlDbType.Date).Value = DateTime.ParseExact(txt_pros_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)
+            updateComm.Parameters.Add("Req_Code", SqlDbType.BigInt).Value = txt_pros.Text
+            insurance_SQLcon.Close()
+            insurance_SQLcon.Open()
+            updateComm.ExecuteNonQuery()
+            insurance_SQLcon.Close()
+
+            txt_pros.Text = ""
+            txt_pros_date.Text = ""
+
+            getTempData()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 End Class

@@ -275,6 +275,15 @@ Partial Public Class motalbat
     Protected WithEvents hl_missing_forms As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
+    '''HyperLink14 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink14 As Global.System.Web.UI.WebControls.HyperLink
+    
+    '''<summary>
     '''hl_Statistics control.
     '''</summary>
     '''<remarks>

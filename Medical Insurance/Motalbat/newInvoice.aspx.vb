@@ -452,6 +452,7 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                 sqlComm.Parameters.AddWithValue("@invoiceType", ddl_invoice_type.SelectedValue)
                 sqlComm.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                 sqlComm.Parameters.AddWithValue("@user_ip", GetIPAddress())
+                sqlComm.Parameters.AddWithValue("@notes", txt_notes.Text)
                 sqlComm.Parameters.AddWithValue("@inv_id", SqlDbType.Int).Direction = ParameterDirection.Output
                 insurance_SQLcon.Open()
                 result = sqlComm.ExecuteNonQuery()

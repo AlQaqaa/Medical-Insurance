@@ -84,6 +84,7 @@
                                                 </asp:TemplateField>
                                                 <asp:ButtonField DataTextField="INVOICE_NO" HeaderText="<span data-toggle='tooltip' data-placement='top' title='يمكنك النقر على رقم الفاتورة لمعرفة تفاصيل أكثر عنها'>رقم الفاتورة <i class='fas fa-info-circle'></i></span>" CommandName="INVOICE_DETAILES"></asp:ButtonField>
                                                 <asp:BoundField DataField="COMPANY_NAME" HeaderText="الشركة"></asp:BoundField>
+                                                <asp:BoundField DataField="NOTES" HeaderText="ملاحظات"></asp:BoundField>
                                                 <asp:BoundField DataField="INCOICE_CREATE_DT" HeaderText="تاريخ إنشاء الفاتورة"></asp:BoundField>
                                                 <asp:BoundField DataField="DATE_FROM" HeaderText="الفترة من"></asp:BoundField>
                                                 <asp:BoundField DataField="DATE_TO" HeaderText="إلى"></asp:BoundField>

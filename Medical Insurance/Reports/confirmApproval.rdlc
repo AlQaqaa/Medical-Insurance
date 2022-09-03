@@ -1091,39 +1091,9 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>هواتف </Value>
+                          <Value>مكتب الإيواء 0911962827</Value>
                           <Style>
                             <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>9091582 </Value>
-                          <Style>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>- </Value>
-                          <Style>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>9091779 </Value>
-                          <Style>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>- </Value>
-                          <Style>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>9091608</Value>
-                          <Style>
-                            <FontWeight>Normal</FontWeight>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -1134,157 +1104,9 @@
                   </Paragraphs>
                   <rd:DefaultName>Textbox11</rd:DefaultName>
                   <Top>0.26209cm</Top>
-                  <Left>11.95834cm</Left>
+                  <Left>13.30333cm</Left>
                   <Height>0.65291cm</Height>
-                  <Width>6.31759cm</Width>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox23">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>فاكس </Value>
-                          <Style>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>9091381</Value>
-                          <Style>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Right</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox11</rd:DefaultName>
-                  <Top>0.26209cm</Top>
-                  <Left>7.84765cm</Left>
-                  <Height>0.65291cm</Height>
-                  <Width>2.53405cm</Width>
-                  <ZIndex>1</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox25">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>FAX:</Value>
-                          <Style>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Left</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox11</rd:DefaultName>
-                  <Top>0.26209cm</Top>
-                  <Left>6.6718cm</Left>
-                  <Height>0.65291cm</Height>
-                  <Width>0.99946cm</Width>
-                  <ZIndex>2</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox27">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>ص.ب : </Value>
-                          <Style>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                        <TextRun>
-                          <Value>2106</Value>
-                          <Style>
-                            <FontWeight>Normal</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Right</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox11</rd:DefaultName>
-                  <Top>0.26209cm</Top>
-                  <Left>2.31193cm</Left>
-                  <Height>0.65291cm</Height>
-                  <Width>2.11667cm</Width>
-                  <ZIndex>3</ZIndex>
-                  <Style>
-                    <Border>
-                      <Style>None</Style>
-                    </Border>
-                    <PaddingLeft>2pt</PaddingLeft>
-                    <PaddingRight>2pt</PaddingRight>
-                    <PaddingTop>2pt</PaddingTop>
-                    <PaddingBottom>2pt</PaddingBottom>
-                  </Style>
-                </Textbox>
-                <Textbox Name="Textbox28">
-                  <CanGrow>true</CanGrow>
-                  <KeepTogether>true</KeepTogether>
-                  <Paragraphs>
-                    <Paragraph>
-                      <TextRuns>
-                        <TextRun>
-                          <Value>P.O.BOX</Value>
-                          <Style>
-                            <FontWeight>Bold</FontWeight>
-                          </Style>
-                        </TextRun>
-                      </TextRuns>
-                      <Style>
-                        <TextAlign>Left</TextAlign>
-                      </Style>
-                    </Paragraph>
-                  </Paragraphs>
-                  <rd:DefaultName>Textbox11</rd:DefaultName>
-                  <Top>0.26209cm</Top>
-                  <Left>0.64219cm</Left>
-                  <Height>0.65291cm</Height>
-                  <Width>1.66974cm</Width>
-                  <ZIndex>4</ZIndex>
+                  <Width>3.7026cm</Width>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -1302,7 +1124,7 @@
                     <Paragraph>
                       <TextRuns>
                         <TextRun>
-                          <Value>Email: bensina@yahoo.com</Value>
+                          <Value>Email: beiruthospital21@gmail.com</Value>
                           <Style>
                             <FontWeight>Bold</FontWeight>
                           </Style>
@@ -1314,11 +1136,45 @@
                     </Paragraph>
                   </Paragraphs>
                   <rd:DefaultName>Textbox11</rd:DefaultName>
-                  <Top>1.21459cm</Top>
-                  <Left>7.34343cm</Left>
+                  <Top>0.26209cm</Top>
+                  <Left>1.24948cm</Left>
                   <Height>0.65291cm</Height>
-                  <Width>5.2575cm</Width>
-                  <ZIndex>5</ZIndex>
+                  <Width>7.2785cm</Width>
+                  <ZIndex>1</ZIndex>
+                  <Style>
+                    <Border>
+                      <Style>None</Style>
+                    </Border>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                    <PaddingBottom>2pt</PaddingBottom>
+                  </Style>
+                </Textbox>
+                <Textbox Name="Textbox23">
+                  <CanGrow>true</CanGrow>
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>الاستقبال 0919774444</Value>
+                          <Style>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Right</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <rd:DefaultName>Textbox11</rd:DefaultName>
+                  <Top>0.26209cm</Top>
+                  <Left>9.29527cm</Left>
+                  <Height>0.65291cm</Height>
+                  <Width>3.7026cm</Width>
+                  <ZIndex>2</ZIndex>
                   <Style>
                     <Border>
                       <Style>None</Style>
@@ -1331,9 +1187,9 @@
                 </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>3.46287cm</Top>
+              <Top>4.41537cm</Top>
               <Left>0.43995cm</Left>
-              <Height>2.02375cm</Height>
+              <Height>1.23cm</Height>
               <Width>18.63576cm</Width>
               <Style>
                 <Border>

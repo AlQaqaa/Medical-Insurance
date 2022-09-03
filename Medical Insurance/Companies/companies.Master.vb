@@ -107,7 +107,7 @@ Public Class companies
             changePricesProfile.Parameters.AddWithValue("@c_id", Val(Session("company_id")))
             changePricesProfile.Parameters.AddWithValue("@contract_no", ViewState("contract_no"))
             changePricesProfile.Parameters.AddWithValue("@profile_id", ddl_profiles_prices.SelectedValue)
-            changePricesProfile.Parameters.AddWithValue("@user_id", 1)
+            changePricesProfile.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
             changePricesProfile.Parameters.AddWithValue("@user_ip", GetIPAddress())
             insurance_SQLcon.Close()
             insurance_SQLcon.Open()

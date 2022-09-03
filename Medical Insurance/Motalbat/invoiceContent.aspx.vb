@@ -89,7 +89,7 @@ Public Class invoiceContent
             Using sda As New SqlDataAdapter()
                 sel_com.Connection = insurance_SQLcon
                 sda.SelectCommand = sel_com
-                sda.Fill(main_ds, "patientProcessesInvoice")
+                sda.Fill(main_ds, "DataTable6")
                 'sda.Fill(dt_result)
                 'Return main_ds
             End Using

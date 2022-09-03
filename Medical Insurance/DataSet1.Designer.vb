@@ -65,6 +65,8 @@ Partial Public Class DataSet1
     
     Private tablesubServicesPrice As subServicesPriceDataTable
     
+    Private tableDataTable6 As DataTable6DataTable
+    
     Private tableinvoicesList As invoicesListDataTable
     
     Private tableDataTable1 As DataTable1DataTable
@@ -157,6 +159,9 @@ Partial Public Class DataSet1
             End If
             If (Not (ds.Tables("subServicesPrice")) Is Nothing) Then
                 MyBase.Tables.Add(New subServicesPriceDataTable(ds.Tables("subServicesPrice")))
+            End If
+            If (Not (ds.Tables("DataTable6")) Is Nothing) Then
+                MyBase.Tables.Add(New DataTable6DataTable(ds.Tables("DataTable6")))
             End If
             If (Not (ds.Tables("invoicesList")) Is Nothing) Then
                 MyBase.Tables.Add(New invoicesListDataTable(ds.Tables("invoicesList")))
@@ -385,6 +390,16 @@ Partial Public Class DataSet1
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property DataTable6() As DataTable6DataTable
+        Get
+            Return Me.tableDataTable6
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
     Public ReadOnly Property invoicesList() As invoicesListDataTable
         Get
             Return Me.tableinvoicesList
@@ -527,6 +542,9 @@ Partial Public Class DataSet1
             End If
             If (Not (ds.Tables("subServicesPrice")) Is Nothing) Then
                 MyBase.Tables.Add(New subServicesPriceDataTable(ds.Tables("subServicesPrice")))
+            End If
+            If (Not (ds.Tables("DataTable6")) Is Nothing) Then
+                MyBase.Tables.Add(New DataTable6DataTable(ds.Tables("DataTable6")))
             End If
             If (Not (ds.Tables("invoicesList")) Is Nothing) Then
                 MyBase.Tables.Add(New invoicesListDataTable(ds.Tables("invoicesList")))
@@ -686,6 +704,12 @@ Partial Public Class DataSet1
                 Me.tablesubServicesPrice.InitVars
             End If
         End If
+        Me.tableDataTable6 = CType(MyBase.Tables("DataTable6"),DataTable6DataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableDataTable6) Is Nothing) Then
+                Me.tableDataTable6.InitVars
+            End If
+        End If
         Me.tableinvoicesList = CType(MyBase.Tables("invoicesList"),invoicesListDataTable)
         If (initTable = true) Then
             If (Not (Me.tableinvoicesList) Is Nothing) Then
@@ -748,6 +772,8 @@ Partial Public Class DataSet1
         MyBase.Tables.Add(Me.tabledailyProcesses)
         Me.tablesubServicesPrice = New subServicesPriceDataTable()
         MyBase.Tables.Add(Me.tablesubServicesPrice)
+        Me.tableDataTable6 = New DataTable6DataTable()
+        MyBase.Tables.Add(Me.tableDataTable6)
         Me.tableinvoicesList = New invoicesListDataTable()
         MyBase.Tables.Add(Me.tableinvoicesList)
         Me.tableDataTable1 = New DataTable1DataTable()
@@ -871,6 +897,12 @@ Partial Public Class DataSet1
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Private Function ShouldSerializesubServicesPrice() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Private Function ShouldSerializeDataTable6() As Boolean
         Return false
     End Function
     
@@ -1003,6 +1035,9 @@ Partial Public Class DataSet1
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub subServicesPriceRowChangeEventHandler(ByVal sender As Object, ByVal e As subServicesPriceRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Delegate Sub DataTable6RowChangeEventHandler(ByVal sender As Object, ByVal e As DataTable6RowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Delegate Sub invoicesListRowChangeEventHandler(ByVal sender As Object, ByVal e As invoicesListRowChangeEvent)
@@ -1348,15 +1383,11 @@ Partial Public Class DataSet1
         
         Private columnProcesses_Residual As Global.System.Data.DataColumn
         
-        Private columnINVOICE_NO As Global.System.Data.DataColumn
-        
         Private columnCARD_NO As Global.System.Data.DataColumn
         
         Private columnNAME_ARB As Global.System.Data.DataColumn
         
         Private columnBAGE_NO As Global.System.Data.DataColumn
-        
-        Private columnBIRTHDATE As Global.System.Data.DataColumn
         
         Private columnClinic_AR_Name As Global.System.Data.DataColumn
         
@@ -1367,6 +1398,16 @@ Partial Public Class DataSet1
         Private columnProcesses_Date As Global.System.Data.DataColumn
         
         Private columnC_Name_Arb As Global.System.Data.DataColumn
+        
+        Private columnProcesses_Price As Global.System.Data.DataColumn
+        
+        Private columnProcesses_Paid As Global.System.Data.DataColumn
+        
+        Private columnINVOICE_NO As Global.System.Data.DataColumn
+        
+        Private columnBIRTHDATE As Global.System.Data.DataColumn
+        
+        Private columnSubService_Code As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -1421,14 +1462,6 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property INVOICE_NOColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnINVOICE_NO
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public ReadOnly Property CARD_NOColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCARD_NO
@@ -1448,14 +1481,6 @@ Partial Public Class DataSet1
         Public ReadOnly Property BAGE_NOColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnBAGE_NO
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property BIRTHDATEColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBIRTHDATE
             End Get
         End Property
         
@@ -1500,6 +1525,46 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_PriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Price
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_PaidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Paid
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property INVOICE_NOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnINVOICE_NO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property BIRTHDATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBIRTHDATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_CodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_Code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1536,9 +1601,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddINC_IvoicesProcessesPatientRow(ByVal Processes_ID As Long, ByVal Processes_Residual As Double, ByVal INVOICE_NO As Integer, ByVal CARD_NO As String, ByVal NAME_ARB As String, ByVal BAGE_NO As String, ByVal BIRTHDATE As Date, ByVal Clinic_AR_Name As String, ByVal SubService_AR_Name As String, ByVal MedicalStaff_AR_Name As String, ByVal Processes_Date As Date, ByVal C_Name_Arb As String) As INC_IvoicesProcessesPatientRow
+        Public Overloads Function AddINC_IvoicesProcessesPatientRow(ByVal Processes_ID As Long, ByVal Processes_Residual As Double, ByVal CARD_NO As String, ByVal NAME_ARB As String, ByVal BAGE_NO As String, ByVal Clinic_AR_Name As String, ByVal SubService_AR_Name As String, ByVal MedicalStaff_AR_Name As String, ByVal Processes_Date As Date, ByVal C_Name_Arb As String, ByVal Processes_Price As Double, ByVal Processes_Paid As Double, ByVal INVOICE_NO As Decimal, ByVal BIRTHDATE As String, ByVal SubService_Code As String) As INC_IvoicesProcessesPatientRow
             Dim rowINC_IvoicesProcessesPatientRow As INC_IvoicesProcessesPatientRow = CType(Me.NewRow,INC_IvoicesProcessesPatientRow)
-            Dim columnValuesArray() As Object = New Object() {Processes_ID, Processes_Residual, INVOICE_NO, CARD_NO, NAME_ARB, BAGE_NO, BIRTHDATE, Clinic_AR_Name, SubService_AR_Name, MedicalStaff_AR_Name, Processes_Date, C_Name_Arb}
+            Dim columnValuesArray() As Object = New Object() {Processes_ID, Processes_Residual, CARD_NO, NAME_ARB, BAGE_NO, Clinic_AR_Name, SubService_AR_Name, MedicalStaff_AR_Name, Processes_Date, C_Name_Arb, Processes_Price, Processes_Paid, INVOICE_NO, BIRTHDATE, SubService_Code}
             rowINC_IvoicesProcessesPatientRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowINC_IvoicesProcessesPatientRow)
             Return rowINC_IvoicesProcessesPatientRow
@@ -1569,16 +1634,19 @@ Partial Public Class DataSet1
         Friend Sub InitVars()
             Me.columnProcesses_ID = MyBase.Columns("Processes_ID")
             Me.columnProcesses_Residual = MyBase.Columns("Processes_Residual")
-            Me.columnINVOICE_NO = MyBase.Columns("INVOICE_NO")
             Me.columnCARD_NO = MyBase.Columns("CARD_NO")
             Me.columnNAME_ARB = MyBase.Columns("NAME_ARB")
             Me.columnBAGE_NO = MyBase.Columns("BAGE_NO")
-            Me.columnBIRTHDATE = MyBase.Columns("BIRTHDATE")
             Me.columnClinic_AR_Name = MyBase.Columns("Clinic_AR_Name")
             Me.columnSubService_AR_Name = MyBase.Columns("SubService_AR_Name")
             Me.columnMedicalStaff_AR_Name = MyBase.Columns("MedicalStaff_AR_Name")
             Me.columnProcesses_Date = MyBase.Columns("Processes_Date")
             Me.columnC_Name_Arb = MyBase.Columns("C_Name_Arb")
+            Me.columnProcesses_Price = MyBase.Columns("Processes_Price")
+            Me.columnProcesses_Paid = MyBase.Columns("Processes_Paid")
+            Me.columnINVOICE_NO = MyBase.Columns("INVOICE_NO")
+            Me.columnBIRTHDATE = MyBase.Columns("BIRTHDATE")
+            Me.columnSubService_Code = MyBase.Columns("SubService_Code")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1588,16 +1656,12 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnProcesses_ID)
             Me.columnProcesses_Residual = New Global.System.Data.DataColumn("Processes_Residual", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnProcesses_Residual)
-            Me.columnINVOICE_NO = New Global.System.Data.DataColumn("INVOICE_NO", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnINVOICE_NO)
             Me.columnCARD_NO = New Global.System.Data.DataColumn("CARD_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCARD_NO)
             Me.columnNAME_ARB = New Global.System.Data.DataColumn("NAME_ARB", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNAME_ARB)
             Me.columnBAGE_NO = New Global.System.Data.DataColumn("BAGE_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnBAGE_NO)
-            Me.columnBIRTHDATE = New Global.System.Data.DataColumn("BIRTHDATE", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBIRTHDATE)
             Me.columnClinic_AR_Name = New Global.System.Data.DataColumn("Clinic_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnClinic_AR_Name)
             Me.columnSubService_AR_Name = New Global.System.Data.DataColumn("SubService_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -1608,6 +1672,16 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnProcesses_Date)
             Me.columnC_Name_Arb = New Global.System.Data.DataColumn("C_Name_Arb", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnC_Name_Arb)
+            Me.columnProcesses_Price = New Global.System.Data.DataColumn("Processes_Price", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Price)
+            Me.columnProcesses_Paid = New Global.System.Data.DataColumn("Processes_Paid", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Paid)
+            Me.columnINVOICE_NO = New Global.System.Data.DataColumn("INVOICE_NO", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnINVOICE_NO)
+            Me.columnBIRTHDATE = New Global.System.Data.DataColumn("BIRTHDATE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBIRTHDATE)
+            Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_Code)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnProcesses_ID}, true))
             Me.columnProcesses_ID.AllowDBNull = false
             Me.columnProcesses_ID.Unique = true
@@ -1618,7 +1692,6 @@ Partial Public Class DataSet1
             Me.columnNAME_ARB.MaxLength = 50
             Me.columnBAGE_NO.ReadOnly = true
             Me.columnBAGE_NO.MaxLength = 50
-            Me.columnBIRTHDATE.ReadOnly = true
             Me.columnClinic_AR_Name.ReadOnly = true
             Me.columnClinic_AR_Name.MaxLength = 50
             Me.columnSubService_AR_Name.ReadOnly = true
@@ -1627,6 +1700,11 @@ Partial Public Class DataSet1
             Me.columnMedicalStaff_AR_Name.MaxLength = 50
             Me.columnProcesses_Date.AllowDBNull = false
             Me.columnC_Name_Arb.MaxLength = 50
+            Me.columnProcesses_Price.AllowDBNull = false
+            Me.columnProcesses_Paid.AllowDBNull = false
+            Me.columnBIRTHDATE.ReadOnly = true
+            Me.columnBIRTHDATE.MaxLength = 30
+            Me.columnSubService_Code.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5863,12 +5941,6 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByProcesses_ID(ByVal Processes_ID As Long) As patientProcessesInvoiceRow
-            Return CType(Me.Rows.Find(New Object() {Processes_ID}),patientProcessesInvoiceRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As patientProcessesInvoiceDataTable = CType(MyBase.Clone,patientProcessesInvoiceDataTable)
             cln.InitVars
@@ -5934,9 +6006,7 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnC_Name_Arb)
             Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSubService_Code)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnProcesses_ID}, true))
             Me.columnProcesses_ID.AllowDBNull = false
-            Me.columnProcesses_ID.Unique = true
             Me.columnProcesses_Date.AllowDBNull = false
             Me.columnProcesses_Residual.AllowDBNull = false
             Me.columnProcesses_Price.AllowDBNull = false
@@ -8069,6 +8139,455 @@ Partial Public Class DataSet1
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class DataTable6DataTable
+        Inherits Global.System.Data.TypedTableBase(Of DataTable6Row)
+        
+        Private columnProcesses_ID As Global.System.Data.DataColumn
+        
+        Private columnProcesses_Date As Global.System.Data.DataColumn
+        
+        Private columnProcesses_Residual As Global.System.Data.DataColumn
+        
+        Private columnProcesses_Price As Global.System.Data.DataColumn
+        
+        Private columnProcesses_Paid As Global.System.Data.DataColumn
+        
+        Private columnINVOICE_NO As Global.System.Data.DataColumn
+        
+        Private columnCARD_NO As Global.System.Data.DataColumn
+        
+        Private columnNAME_ARB As Global.System.Data.DataColumn
+        
+        Private columnBAGE_NO As Global.System.Data.DataColumn
+        
+        Private columnBIRTHDATE As Global.System.Data.DataColumn
+        
+        Private columnClinic_AR_Name As Global.System.Data.DataColumn
+        
+        Private columnSubService_AR_Name As Global.System.Data.DataColumn
+        
+        Private columnMedicalStaff_AR_Name As Global.System.Data.DataColumn
+        
+        Private columnC_Name_Arb As Global.System.Data.DataColumn
+        
+        Private columnSubService_Code As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "DataTable6"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_ID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_DateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Date
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_ResidualColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Residual
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_PriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Price
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Processes_PaidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnProcesses_Paid
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property INVOICE_NOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnINVOICE_NO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property CARD_NOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCARD_NO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property NAME_ARBColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnNAME_ARB
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property BAGE_NOColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBAGE_NO
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property BIRTHDATEColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBIRTHDATE
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Clinic_AR_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnClinic_AR_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_AR_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_AR_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property MedicalStaff_AR_NameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnMedicalStaff_AR_Name
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property C_Name_ArbColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnC_Name_Arb
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property SubService_CodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSubService_Code
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As DataTable6Row
+            Get
+                Return CType(Me.Rows(index),DataTable6Row)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event DataTable6RowChanging As DataTable6RowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event DataTable6RowChanged As DataTable6RowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event DataTable6RowDeleting As DataTable6RowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Event DataTable6RowDeleted As DataTable6RowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Sub AddDataTable6Row(ByVal row As DataTable6Row)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overloads Function AddDataTable6Row(ByVal Processes_ID As Long, ByVal Processes_Date As Date, ByVal Processes_Residual As Double, ByVal Processes_Price As Double, ByVal Processes_Paid As Double, ByVal INVOICE_NO As Decimal, ByVal CARD_NO As String, ByVal NAME_ARB As String, ByVal BAGE_NO As String, ByVal BIRTHDATE As String, ByVal Clinic_AR_Name As String, ByVal SubService_AR_Name As String, ByVal MedicalStaff_AR_Name As String, ByVal C_Name_Arb As String, ByVal SubService_Code As String) As DataTable6Row
+            Dim rowDataTable6Row As DataTable6Row = CType(Me.NewRow,DataTable6Row)
+            Dim columnValuesArray() As Object = New Object() {Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO, CARD_NO, NAME_ARB, BAGE_NO, BIRTHDATE, Clinic_AR_Name, SubService_AR_Name, MedicalStaff_AR_Name, C_Name_Arb, SubService_Code}
+            rowDataTable6Row.ItemArray = columnValuesArray
+            Me.Rows.Add(rowDataTable6Row)
+            Return rowDataTable6Row
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As DataTable6DataTable = CType(MyBase.Clone,DataTable6DataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New DataTable6DataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnProcesses_ID = MyBase.Columns("Processes_ID")
+            Me.columnProcesses_Date = MyBase.Columns("Processes_Date")
+            Me.columnProcesses_Residual = MyBase.Columns("Processes_Residual")
+            Me.columnProcesses_Price = MyBase.Columns("Processes_Price")
+            Me.columnProcesses_Paid = MyBase.Columns("Processes_Paid")
+            Me.columnINVOICE_NO = MyBase.Columns("INVOICE_NO")
+            Me.columnCARD_NO = MyBase.Columns("CARD_NO")
+            Me.columnNAME_ARB = MyBase.Columns("NAME_ARB")
+            Me.columnBAGE_NO = MyBase.Columns("BAGE_NO")
+            Me.columnBIRTHDATE = MyBase.Columns("BIRTHDATE")
+            Me.columnClinic_AR_Name = MyBase.Columns("Clinic_AR_Name")
+            Me.columnSubService_AR_Name = MyBase.Columns("SubService_AR_Name")
+            Me.columnMedicalStaff_AR_Name = MyBase.Columns("MedicalStaff_AR_Name")
+            Me.columnC_Name_Arb = MyBase.Columns("C_Name_Arb")
+            Me.columnSubService_Code = MyBase.Columns("SubService_Code")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnProcesses_ID = New Global.System.Data.DataColumn("Processes_ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_ID)
+            Me.columnProcesses_Date = New Global.System.Data.DataColumn("Processes_Date", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Date)
+            Me.columnProcesses_Residual = New Global.System.Data.DataColumn("Processes_Residual", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Residual)
+            Me.columnProcesses_Price = New Global.System.Data.DataColumn("Processes_Price", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Price)
+            Me.columnProcesses_Paid = New Global.System.Data.DataColumn("Processes_Paid", GetType(Double), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProcesses_Paid)
+            Me.columnINVOICE_NO = New Global.System.Data.DataColumn("INVOICE_NO", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnINVOICE_NO)
+            Me.columnCARD_NO = New Global.System.Data.DataColumn("CARD_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCARD_NO)
+            Me.columnNAME_ARB = New Global.System.Data.DataColumn("NAME_ARB", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnNAME_ARB)
+            Me.columnBAGE_NO = New Global.System.Data.DataColumn("BAGE_NO", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBAGE_NO)
+            Me.columnBIRTHDATE = New Global.System.Data.DataColumn("BIRTHDATE", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBIRTHDATE)
+            Me.columnClinic_AR_Name = New Global.System.Data.DataColumn("Clinic_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnClinic_AR_Name)
+            Me.columnSubService_AR_Name = New Global.System.Data.DataColumn("SubService_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_AR_Name)
+            Me.columnMedicalStaff_AR_Name = New Global.System.Data.DataColumn("MedicalStaff_AR_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnMedicalStaff_AR_Name)
+            Me.columnC_Name_Arb = New Global.System.Data.DataColumn("C_Name_Arb", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnC_Name_Arb)
+            Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSubService_Code)
+            Me.columnProcesses_Date.AllowDBNull = false
+            Me.columnProcesses_Residual.AllowDBNull = false
+            Me.columnProcesses_Price.AllowDBNull = false
+            Me.columnProcesses_Paid.AllowDBNull = false
+            Me.columnCARD_NO.MaxLength = 50
+            Me.columnNAME_ARB.MaxLength = 50
+            Me.columnBAGE_NO.MaxLength = 50
+            Me.columnBIRTHDATE.ReadOnly = true
+            Me.columnBIRTHDATE.MaxLength = 30
+            Me.columnClinic_AR_Name.MaxLength = 50
+            Me.columnSubService_AR_Name.MaxLength = 2147483647
+            Me.columnMedicalStaff_AR_Name.ReadOnly = true
+            Me.columnMedicalStaff_AR_Name.MaxLength = 50
+            Me.columnC_Name_Arb.MaxLength = 50
+            Me.columnSubService_Code.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function NewDataTable6Row() As DataTable6Row
+            Return CType(Me.NewRow,DataTable6Row)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New DataTable6Row(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(DataTable6Row)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.DataTable6RowChangedEvent) Is Nothing) Then
+                RaiseEvent DataTable6RowChanged(Me, New DataTable6RowChangeEvent(CType(e.Row,DataTable6Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.DataTable6RowChangingEvent) Is Nothing) Then
+                RaiseEvent DataTable6RowChanging(Me, New DataTable6RowChangeEvent(CType(e.Row,DataTable6Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.DataTable6RowDeletedEvent) Is Nothing) Then
+                RaiseEvent DataTable6RowDeleted(Me, New DataTable6RowChangeEvent(CType(e.Row,DataTable6Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.DataTable6RowDeletingEvent) Is Nothing) Then
+                RaiseEvent DataTable6RowDeleting(Me, New DataTable6RowChangeEvent(CType(e.Row,DataTable6Row), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub RemoveDataTable6Row(ByVal row As DataTable6Row)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DataSet1 = New DataSet1()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "DataTable6DataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class invoicesListDataTable
         Inherits Global.System.Data.TypedTableBase(Of invoicesListRow)
         
@@ -8891,22 +9410,6 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property INVOICE_NO() As Integer
-            Get
-                Try 
-                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn),Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'INVOICE_NO' in table 'INC_IvoicesProcessesPatient' is DBNul"& _ 
-                            "l.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property CARD_NO() As String
             Get
                 Try 
@@ -8948,22 +9451,6 @@ Partial Public Class DataSet1
             End Get
             Set
                 Me(Me.tableINC_IvoicesProcessesPatient.BAGE_NOColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property BIRTHDATE() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'BIRTHDATE' in table 'INC_IvoicesProcessesPatient' is DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn) = value
             End Set
         End Property
         
@@ -9044,15 +9531,73 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsINVOICE_NONull() As Boolean
-            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn)
-        End Function
+        Public Property Processes_Price() As Double
+            Get
+                Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn),Double)
+            End Get
+            Set
+                Me(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetINVOICE_NONull()
-            Me(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn) = Global.System.Convert.DBNull
-        End Sub
+        Public Property Processes_Paid() As Double
+            Get
+                Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn),Double)
+            End Get
+            Set
+                Me(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property INVOICE_NO() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'INVOICE_NO' in table 'INC_IvoicesProcessesPatient' is DBNul"& _ 
+                            "l.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property BIRTHDATE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BIRTHDATE' in table 'INC_IvoicesProcessesPatient' is DBNull"& _ 
+                            ".", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_Code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.SubService_CodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Code' in table 'INC_IvoicesProcessesPatient' is "& _ 
+                            "DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableINC_IvoicesProcessesPatient.SubService_CodeColumn) = value
+            End Set
+        End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -9088,18 +9633,6 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetBAGE_NONull()
             Me(Me.tableINC_IvoicesProcessesPatient.BAGE_NOColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsBIRTHDATENull() As Boolean
-            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetBIRTHDATENull()
-            Me(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9148,6 +9681,42 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetC_Name_ArbNull()
             Me(Me.tableINC_IvoicesProcessesPatient.C_Name_ArbColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsINVOICE_NONull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetINVOICE_NONull()
+            Me(Me.tableINC_IvoicesProcessesPatient.INVOICE_NOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBIRTHDATENull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBIRTHDATENull()
+            Me(Me.tableINC_IvoicesProcessesPatient.BIRTHDATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_CodeNull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.SubService_CodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_CodeNull()
+            Me(Me.tableINC_IvoicesProcessesPatient.SubService_CodeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -12761,6 +13330,363 @@ Partial Public Class DataSet1
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
+    Partial Public Class DataTable6Row
+        Inherits Global.System.Data.DataRow
+        
+        Private tableDataTable6 As DataTable6DataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableDataTable6 = CType(Me.Table,DataTable6DataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Processes_ID() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.Processes_IDColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Processes_ID' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.Processes_IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Processes_Date() As Date
+            Get
+                Return CType(Me(Me.tableDataTable6.Processes_DateColumn),Date)
+            End Get
+            Set
+                Me(Me.tableDataTable6.Processes_DateColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Processes_Residual() As Double
+            Get
+                Return CType(Me(Me.tableDataTable6.Processes_ResidualColumn),Double)
+            End Get
+            Set
+                Me(Me.tableDataTable6.Processes_ResidualColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Processes_Price() As Double
+            Get
+                Return CType(Me(Me.tableDataTable6.Processes_PriceColumn),Double)
+            End Get
+            Set
+                Me(Me.tableDataTable6.Processes_PriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Processes_Paid() As Double
+            Get
+                Return CType(Me(Me.tableDataTable6.Processes_PaidColumn),Double)
+            End Get
+            Set
+                Me(Me.tableDataTable6.Processes_PaidColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property INVOICE_NO() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.INVOICE_NOColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'INVOICE_NO' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.INVOICE_NOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property CARD_NO() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.CARD_NOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'CARD_NO' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.CARD_NOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property NAME_ARB() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.NAME_ARBColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'NAME_ARB' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.NAME_ARBColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property BAGE_NO() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.BAGE_NOColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BAGE_NO' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.BAGE_NOColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property BIRTHDATE() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.BIRTHDATEColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BIRTHDATE' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.BIRTHDATEColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property Clinic_AR_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.Clinic_AR_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Clinic_AR_Name' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.Clinic_AR_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_AR_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.SubService_AR_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_AR_Name' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.SubService_AR_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property MedicalStaff_AR_Name() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.MedicalStaff_AR_NameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'MedicalStaff_AR_Name' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.MedicalStaff_AR_NameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property C_Name_Arb() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.C_Name_ArbColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'C_Name_Arb' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.C_Name_ArbColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property SubService_Code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableDataTable6.SubService_CodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'SubService_Code' in table 'DataTable6' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableDataTable6.SubService_CodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsProcesses_IDNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.Processes_IDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetProcesses_IDNull()
+            Me(Me.tableDataTable6.Processes_IDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsINVOICE_NONull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.INVOICE_NOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetINVOICE_NONull()
+            Me(Me.tableDataTable6.INVOICE_NOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsCARD_NONull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.CARD_NOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetCARD_NONull()
+            Me(Me.tableDataTable6.CARD_NOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsNAME_ARBNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.NAME_ARBColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetNAME_ARBNull()
+            Me(Me.tableDataTable6.NAME_ARBColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBAGE_NONull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.BAGE_NOColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBAGE_NONull()
+            Me(Me.tableDataTable6.BAGE_NOColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsBIRTHDATENull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.BIRTHDATEColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetBIRTHDATENull()
+            Me(Me.tableDataTable6.BIRTHDATEColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsClinic_AR_NameNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.Clinic_AR_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetClinic_AR_NameNull()
+            Me(Me.tableDataTable6.Clinic_AR_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_AR_NameNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.SubService_AR_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_AR_NameNull()
+            Me(Me.tableDataTable6.SubService_AR_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsMedicalStaff_AR_NameNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.MedicalStaff_AR_NameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetMedicalStaff_AR_NameNull()
+            Me(Me.tableDataTable6.MedicalStaff_AR_NameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsC_Name_ArbNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.C_Name_ArbColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetC_Name_ArbNull()
+            Me(Me.tableDataTable6.C_Name_ArbColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsSubService_CodeNull() As Boolean
+            Return Me.IsNull(Me.tableDataTable6.SubService_CodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetSubService_CodeNull()
+            Me(Me.tableDataTable6.SubService_CodeColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
     Partial Public Class invoicesListRow
         Inherits Global.System.Data.DataRow
         
@@ -13784,6 +14710,42 @@ Partial Public Class DataSet1
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+    Public Class DataTable6RowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As DataTable6Row
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New(ByVal row As DataTable6Row, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Row() As DataTable6Row
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
     Public Class invoicesListRowChangeEvent
         Inherits Global.System.EventArgs
         
@@ -14165,16 +15127,19 @@ Namespace DataSet1TableAdapters
             tableMapping.DataSetTable = "INC_IvoicesProcessesPatient"
             tableMapping.ColumnMappings.Add("Processes_ID", "Processes_ID")
             tableMapping.ColumnMappings.Add("Processes_Residual", "Processes_Residual")
-            tableMapping.ColumnMappings.Add("INVOICE_NO", "INVOICE_NO")
             tableMapping.ColumnMappings.Add("CARD_NO", "CARD_NO")
             tableMapping.ColumnMappings.Add("NAME_ARB", "NAME_ARB")
             tableMapping.ColumnMappings.Add("BAGE_NO", "BAGE_NO")
-            tableMapping.ColumnMappings.Add("BIRTHDATE", "BIRTHDATE")
             tableMapping.ColumnMappings.Add("Clinic_AR_Name", "Clinic_AR_Name")
             tableMapping.ColumnMappings.Add("SubService_AR_Name", "SubService_AR_Name")
             tableMapping.ColumnMappings.Add("MedicalStaff_AR_Name", "MedicalStaff_AR_Name")
             tableMapping.ColumnMappings.Add("Processes_Date", "Processes_Date")
             tableMapping.ColumnMappings.Add("C_Name_Arb", "C_Name_Arb")
+            tableMapping.ColumnMappings.Add("Processes_Price", "Processes_Price")
+            tableMapping.ColumnMappings.Add("Processes_Paid", "Processes_Paid")
+            tableMapping.ColumnMappings.Add("INVOICE_NO", "INVOICE_NO")
+            tableMapping.ColumnMappings.Add("BIRTHDATE", "BIRTHDATE")
+            tableMapping.ColumnMappings.Add("SubService_Code", "SubService_Code")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -14191,17 +15156,19 @@ Namespace DataSet1TableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT Processes_ID, Processes_Date, Processes_Residual, INVOICE_NO,CARD_NO,NAME_"& _ 
-                "ARB,BAGE_NO,BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR"& _ 
-                "_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb FROM INC_Ivoices"& _ 
-                "Processes"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IvoicesProcesses."& _ 
-                "P_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Pro"& _ 
-                "cesses_Cilinc"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = I"& _ 
-                "NC_IvoicesProcesses.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT JOIN HAG_Processes_Doctor ON HAG"& _ 
-                "_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"LEFT "& _ 
-                "JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doct"& _ 
-                "or.Processes_Doctor_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = I"& _ 
-                "NC_IvoicesProcesses.C_ID"
+            Me._commandCollection(0).CommandText = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Process"& _ 
+                "es_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS"& _ 
+                " BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') "& _ 
+                "AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_Iv"& _ 
+                "oicesProcesses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN INC_PATIANT ON INC_PATIANT.INC_Patien"& _ 
+                "t_Code = INC_IvoicesProcesses.Processes_Reservation_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER "& _ 
+                "JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilin"& _ 
+                "c"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID"& _ 
+                " = INC_IvoicesProcesses.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN EWA_Pr"& _ 
+                "ocesses ON EWA_Processes.ewa_process_id = INC_IvoicesProcesses.Processes_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "             LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = "& _ 
+                "EWA_Processes.EWA_Record_Doctor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN INC_COMPANY_DATA ON "& _ 
+                "INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -18007,6 +18974,205 @@ Namespace DataSet1TableAdapters
         Public Overloads Overridable Function GetData() As DataSet1.subServicesPriceDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As DataSet1.subServicesPriceDataTable = New DataSet1.subServicesPriceDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class DataTable6TableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "DataTable6"
+            tableMapping.ColumnMappings.Add("Processes_ID", "Processes_ID")
+            tableMapping.ColumnMappings.Add("Processes_Date", "Processes_Date")
+            tableMapping.ColumnMappings.Add("Processes_Residual", "Processes_Residual")
+            tableMapping.ColumnMappings.Add("Processes_Price", "Processes_Price")
+            tableMapping.ColumnMappings.Add("Processes_Paid", "Processes_Paid")
+            tableMapping.ColumnMappings.Add("INVOICE_NO", "INVOICE_NO")
+            tableMapping.ColumnMappings.Add("CARD_NO", "CARD_NO")
+            tableMapping.ColumnMappings.Add("NAME_ARB", "NAME_ARB")
+            tableMapping.ColumnMappings.Add("BAGE_NO", "BAGE_NO")
+            tableMapping.ColumnMappings.Add("BIRTHDATE", "BIRTHDATE")
+            tableMapping.ColumnMappings.Add("Clinic_AR_Name", "Clinic_AR_Name")
+            tableMapping.ColumnMappings.Add("SubService_AR_Name", "SubService_AR_Name")
+            tableMapping.ColumnMappings.Add("MedicalStaff_AR_Name", "MedicalStaff_AR_Name")
+            tableMapping.ColumnMappings.Add("C_Name_Arb", "C_Name_Arb")
+            tableMapping.ColumnMappings.Add("SubService_Code", "SubService_Code")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings("insurance_CS").ConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Process"& _ 
+                "es_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS"& _ 
+                " BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') "& _ 
+                "AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_Iv"& _ 
+                "oicesProcesses"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN INC_PATIANT ON INC_PATIANT.INC_Patien"& _ 
+                "t_Code = INC_IvoicesProcesses.Processes_Reservation_Code"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER "& _ 
+                "JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilin"& _ 
+                "c"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID"& _ 
+                " = INC_IvoicesProcesses.Processes_SubServices"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN EWA_Pr"& _ 
+                "ocesses ON EWA_Processes.ewa_process_id = INC_IvoicesProcesses.Processes_ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"   "& _ 
+                "             LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = "& _ 
+                "EWA_Processes.EWA_Record_Doctor"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                INNER JOIN INC_COMPANY_DATA ON "& _ 
+                "INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As DataSet1.DataTable6DataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetData() As DataSet1.DataTable6DataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As DataSet1.DataTable6DataTable = New DataSet1.DataTable6DataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function

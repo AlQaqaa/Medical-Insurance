@@ -73,6 +73,12 @@ Public Class printPatientProcesses
 
         ss += " WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND  INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id"))
 
+        If DropDownList1.SelectedValue = 0 Then
+            ss += " order by Processes_ID"
+        Else
+            ss += " order by SubService_Code,Processes_ID"
+        End If
+
         Using main_ds
             Dim cmd As New SqlCommand(ss)
             Using sda As New SqlDataAdapter()
@@ -87,48 +93,42 @@ Public Class printPatientProcesses
         Dim viewer As ReportViewer = New ReportViewer()
 
         Dim datasource As New ReportDataSource("patientMotalbaDataSet", main_ds.Tables("INC_IvoicesProcessesPatient"))
-        viewer.LocalReport.DataSources.Clear()
-        viewer.ProcessingMode = ProcessingMode.Local
-        viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/patientMotalbaDetailes.rdlc")
-        viewer.LocalReport.DataSources.Add(datasource)
+        ReportViewer1.LocalReport.DataSources.Clear()
+        ReportViewer1.ProcessingMode = ProcessingMode.Local
+        ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/patientMotalbaDetailes.rdlc")
+        ReportViewer1.LocalReport.DataSources.Add(datasource)
+        ReportViewer1.LocalReport.Refresh()
 
-        'Dim rp1 As ReportParameter
-        'Dim rp2 As ReportParameter
-        'Dim rp3 As ReportParameter
-        'Dim rp4 As ReportParameter
-        'Dim rp5 As ReportParameter
-        'Dim rp6 As ReportParameter
-        'Dim rp7 As ReportParameter
-        'Dim rp8 As ReportParameter
-        'Dim rp9 As ReportParameter
-        'Dim rp10 As ReportParameter
-        'Dim rp11 As ReportParameter
+        'Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+        'Dim r As String = "~/Reports/patientMotalbaDetailes.rdlc"
+        '' Page.Controls.Add(rv)
 
-        'viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8, rp9, rp10, rp11})
-
-        Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-        Dim r As String = "~/Reports/patientMotalbaDetailes.rdlc"
-        ' Page.Controls.Add(rv)
-
-        Dim warnings As Warning() = Nothing
-        Dim streamids As String() = Nothing
-        Dim mimeType As String = Nothing
-        Dim encoding As String = Nothing
-        Dim extension As String = Nothing
-        Dim bytes As Byte()
-        Dim FolderLocation As String
-        FolderLocation = Server.MapPath("~/Reports")
-        Dim filepath As String = FolderLocation & "/patientMotalbaDetailes" & Session("INC_User_Id") & ".pdf"
-        If Directory.Exists(filepath) Then
-            File.Delete(filepath)
-        End If
-        bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
-            encoding, extension, streamids, warnings)
-        Dim fs As New FileStream(FolderLocation & "/patientMotalbaDetailes" & Session("INC_User_Id") & ".pdf", FileMode.Create)
-        fs.Write(bytes, 0, bytes.Length)
-        fs.Close()
-        'Response.Redirect("~/Reports/patientMotalbaDetailes.pdf")
-        ltEmbed.Text = "<embed src='../Reports/patientMotalbaDetailes" & Session("INC_User_Id") & ".pdf' width='100%' height='600'>"
+        'Dim warnings As Warning() = Nothing
+        'Dim streamids As String() = Nothing
+        'Dim mimeType As String = Nothing
+        'Dim encoding As String = Nothing
+        'Dim extension As String = Nothing
+        'Dim bytes As Byte()
+        'Dim FolderLocation As String
+        'FolderLocation = Server.MapPath("~/Reports")
+        'Dim filepath As String = FolderLocation & "/patientMotalbaDetailes" & Session("INC_User_Id") & ".pdf"
+        'If Directory.Exists(filepath) Then
+        '    File.Delete(filepath)
+        'End If
+        'bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
+        '    encoding, extension, streamids, warnings)
+        'Dim fs As New FileStream(FolderLocation & "/patientMotalbaDetailes" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+        'fs.Write(bytes, 0, bytes.Length)
+        'fs.Close()
+        ''Response.Redirect("~/Reports/patientMotalbaDetailes.pdf")
+        'ltEmbed.Text = "<embed src='../Reports/patientMotalbaDetailes" & Session("INC_User_Id") & ".pdf' width='100%' height='600'>"
     End Sub
 
+    Private Sub DropDownList1_CallingDataMethods(sender As Object, e As CallingDataMethodsEventArgs) Handles DropDownList1.CallingDataMethods
+
+    End Sub
+
+    Private Sub DropDownList1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DropDownList1.SelectedIndexChanged
+        getPatientData()
+    End Sub
 End Class

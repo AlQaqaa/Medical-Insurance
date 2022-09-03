@@ -31,11 +31,11 @@
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <label for="txt_start_dt">الفترة من</label>
-                                        <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                        <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-3">
                                         <label for="txt_start_dt">إلى</label>
-                                        <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                        <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-sm-12 col-md-3 col-lg-2">
                                         <label for="ddl_companies"></label>

@@ -171,6 +171,12 @@
                                     </div>
                                 </div>
                                 <!-- /form-row -->
+                                <div class="row">
+                                    <div class="form-group col">
+                                        <label for="txt_notes">ملاحظات</label>
+                                        <asp:TextBox ID="txt_notes" CssClass="form-control mt-2" runat="server" autocomplete="off" TabIndex="1"></asp:TextBox>
+                                    </div>
+                                </div>
 
                                 <div class="form-row justify-content-end">
                                     <div class="col-sm-12 col-md-3">

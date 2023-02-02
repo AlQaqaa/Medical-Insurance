@@ -78,21 +78,25 @@ Public Class printPatientProcesses
         Else
             ss += " order by SubService_Code,Processes_ID"
         End If
+        Dim cmd As New SqlCommand(ss, insurance_SQLcon)
+        If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
+        dt_result.Load(cmd.ExecuteReader)
+        insurance_SQLcon.Close()
 
-        Using main_ds
-            Dim cmd As New SqlCommand(ss)
-            Using sda As New SqlDataAdapter()
-                cmd.Connection = insurance_SQLcon
-                sda.SelectCommand = cmd
-                sda.Fill(main_ds, "INC_IvoicesProcessesPatient")
-                sda.Fill(dt_result)
-                'Return main_ds
-            End Using
-        End Using
+        'Using main_ds
+        '    Dim cmd As New SqlCommand(ss)
+        '    Using sda As New SqlDataAdapter()
+        '        cmd.Connection = insurance_SQLcon
+        '        sda.SelectCommand = cmd
+        '        sda.Fill(main_ds, "INC_IvoicesProcessesPatient")
+        '        sda.Fill(dt_result)
+        '        'Return main_ds
+        '    End Using
+        'End Using
 
         Dim viewer As ReportViewer = New ReportViewer()
 
-        Dim datasource As New ReportDataSource("patientMotalbaDataSet", main_ds.Tables("INC_IvoicesProcessesPatient"))
+        Dim datasource As New ReportDataSource("patientMotalbaDataSet", dt_result)
         ReportViewer1.LocalReport.DataSources.Clear()
         ReportViewer1.ProcessingMode = ProcessingMode.Local
         ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reports/patientMotalbaDetailes.rdlc")

@@ -1611,12 +1611,6 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByProcesses_ID(ByVal Processes_ID As Long) As INC_IvoicesProcessesPatientRow
-            Return CType(Me.Rows.Find(New Object() {Processes_ID}),INC_IvoicesProcessesPatientRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
             Dim cln As INC_IvoicesProcessesPatientDataTable = CType(MyBase.Clone,INC_IvoicesProcessesPatientDataTable)
             cln.InitVars
@@ -1682,10 +1676,7 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnBIRTHDATE)
             Me.columnSubService_Code = New Global.System.Data.DataColumn("SubService_Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSubService_Code)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnProcesses_ID}, true))
             Me.columnProcesses_ID.AllowDBNull = false
-            Me.columnProcesses_ID.Unique = true
-            Me.columnProcesses_Residual.AllowDBNull = false
             Me.columnCARD_NO.ReadOnly = true
             Me.columnCARD_NO.MaxLength = 50
             Me.columnNAME_ARB.ReadOnly = true
@@ -1698,10 +1689,7 @@ Partial Public Class DataSet1
             Me.columnSubService_AR_Name.MaxLength = 50
             Me.columnMedicalStaff_AR_Name.ReadOnly = true
             Me.columnMedicalStaff_AR_Name.MaxLength = 50
-            Me.columnProcesses_Date.AllowDBNull = false
             Me.columnC_Name_Arb.MaxLength = 50
-            Me.columnProcesses_Price.AllowDBNull = false
-            Me.columnProcesses_Paid.AllowDBNull = false
             Me.columnBIRTHDATE.ReadOnly = true
             Me.columnBIRTHDATE.MaxLength = 30
             Me.columnSubService_Code.MaxLength = 50
@@ -9401,7 +9389,12 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Processes_Residual() As Double
             Get
-                Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_ResidualColumn),Double)
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_ResidualColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Processes_Residual' in table 'INC_IvoicesProcessesPatient' "& _ 
+                            "is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableINC_IvoicesProcessesPatient.Processes_ResidualColumn) = value
@@ -9506,7 +9499,12 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Processes_Date() As Date
             Get
-                Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_DateColumn),Date)
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_DateColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Processes_Date' in table 'INC_IvoicesProcessesPatient' is D"& _ 
+                            "BNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableINC_IvoicesProcessesPatient.Processes_DateColumn) = value
@@ -9533,7 +9531,12 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Processes_Price() As Double
             Get
-                Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn),Double)
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Processes_Price' in table 'INC_IvoicesProcessesPatient' is "& _ 
+                            "DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn) = value
@@ -9544,7 +9547,12 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Processes_Paid() As Double
             Get
-                Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn),Double)
+                Try 
+                    Return CType(Me(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn),Double)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Processes_Paid' in table 'INC_IvoicesProcessesPatient' is D"& _ 
+                            "BNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn) = value
@@ -9598,6 +9606,18 @@ Partial Public Class DataSet1
                 Me(Me.tableINC_IvoicesProcessesPatient.SubService_CodeColumn) = value
             End Set
         End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsProcesses_ResidualNull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.Processes_ResidualColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetProcesses_ResidualNull()
+            Me(Me.tableINC_IvoicesProcessesPatient.Processes_ResidualColumn) = Global.System.Convert.DBNull
+        End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
@@ -9673,6 +9693,18 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsProcesses_DateNull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.Processes_DateColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetProcesses_DateNull()
+            Me(Me.tableINC_IvoicesProcessesPatient.Processes_DateColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsC_Name_ArbNull() As Boolean
             Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.C_Name_ArbColumn)
         End Function
@@ -9681,6 +9713,30 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetC_Name_ArbNull()
             Me(Me.tableINC_IvoicesProcessesPatient.C_Name_ArbColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsProcesses_PriceNull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetProcesses_PriceNull()
+            Me(Me.tableINC_IvoicesProcessesPatient.Processes_PriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Function IsProcesses_PaidNull() As Boolean
+            Return Me.IsNull(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Sub SetProcesses_PaidNull()
+            Me(Me.tableINC_IvoicesProcessesPatient.Processes_PaidColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _

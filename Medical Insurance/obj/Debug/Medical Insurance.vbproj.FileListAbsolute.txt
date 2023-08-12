@@ -868,3 +868,117 @@ E:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insuran
 E:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.dll
 E:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.xml
 E:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.pdb
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\SqlServerTypes\x64\msvcr120.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\SqlServerTypes\x86\msvcr120.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Medical Insurance.dll.config
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Medical Insurance.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Medical Insurance.pdb
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Medical Insurance.xml
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ClosedXML.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\DocumentFormat.OpenXml.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ExcelNumberFormat.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.Common.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.DataVisualization.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.Design.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.WebDesign.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.WebForms.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.SqlServer.Types.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.Web.Infrastructure.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Newtonsoft.Json.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.WinForms.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\EnvDTE.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.Shell.Interop.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\stdole.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.OLE.Interop.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.TextManager.Interop.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Microsoft.MSXML.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ClosedXML.pdb
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ClosedXML.xml
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\DocumentFormat.OpenXml.xml
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ExcelNumberFormat.xml
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\Newtonsoft.Json.xml
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\de\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\es\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\it\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\de\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\es\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\it\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\de\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\es\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\fr\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\it\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ja\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ko\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.WebDesign.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\de\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\es\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\fr\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\it\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ja\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ko\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.WebForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbproj.AssemblyReference.cache
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical_Insurance.Resources.resources
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbproj.GenerateResource.cache
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbproj.CoreCompileInputs.cache
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.vbproj.CopyComplete
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.dll
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.xml
+D:\IbenSina Clinic\Medical-Insurance\Medical Insurance\obj\Debug\Medical Insurance.pdb

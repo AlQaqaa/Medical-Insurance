@@ -145,7 +145,7 @@ Public Class companySubServices
     Private Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
 
-        If ddl_clinics.SelectedValue = 0 Then
+        If ddl_clinics.SelectedValue = 0 And ddl_show_type.SelectedValue = 1 Then
             Dim sel_com As New SqlCommand("select SubService_ID, SubService_Clinic FROM Main_SubServices WHERE SubService_Clinic IN (SELECT CLINIC_ID FROM INC_CLINICAL_RESTRICTIONS WHERE C_ID = " & ViewState("company_no") & " AND CONTRACT_NO = " & ViewState("contract_no") & ")", insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
@@ -346,6 +346,12 @@ Public Class companySubServices
             End If
 
         Next
+
+        txt_parent_per_all.Text = ""
+        txt_family_per_all.Text = ""
+        txt_parent_per_all.Text = ""
+        txt_person_max_all.Text = ""
+        txt_family_max_all.Text = ""
     End Sub
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged

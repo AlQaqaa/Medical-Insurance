@@ -210,7 +210,7 @@ Public Class newInvoice
             If dt_result.Rows.Count > 0 Then
 
                 If ddl_clinics.SelectedValue = 0 Then
-                    If dt_result.Rows(0)("Processes_State") = 0 And dt_result.Rows(0)("Processes_Cilinc") <> 1 Then
+                    If dt_result.Rows(0)("Processes_State") = 0 And dt_result.Rows(0)("Processes_Cilinc") <> 1 AndAlso dt_result.Rows(0)("Processes_Cilinc") <> 18 Then
                         ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                             position: 'center',
                             icon: 'error',
@@ -389,12 +389,12 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
     End Sub
 
     Private Sub btn_search_Click(sender As Object, e As EventArgs) Handles btn_search.Click
-
-        Dim strt_dt As DateTime = Convert.ToDateTime(DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture))
-        Dim to_day As DateTime = Convert.ToDateTime(Date.Now.Date)
-        Dim tss As TimeSpan = strt_dt.Subtract(to_day)
-        If Convert.ToInt32(tss.Days) < 0 Then
-            ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+        If ViewState("invoice_no") = 0 Then
+            Dim strt_dt As DateTime = Convert.ToDateTime(DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("yyyy/MM/dd", CultureInfo.InvariantCulture))
+            Dim to_day As DateTime = Convert.ToDateTime(Date.Now.Date)
+            Dim tss As TimeSpan = strt_dt.Subtract(to_day)
+            If Convert.ToInt32(tss.Days) > 0 Then
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
                 position: 'center',
                 icon: 'error',
                 title: 'خطأ! يرجى التحقق من التاريخ',
@@ -402,9 +402,9 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                 timer: 2500
              });
               playSound('../Style/error.mp3');", True)
-            Exit Sub
+                Exit Sub
+            End If
         End If
-
 
         getData()
 

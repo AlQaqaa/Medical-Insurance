@@ -37,6 +37,22 @@ Medical Insurance
  Returns the Asp log object.
  </summary>
 </member>
+<member name="T:Medical_Insurance.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:Medical_Insurance.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:Medical_Insurance.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
 <member name="F:Medical_Insurance.approvalArchive._ddl_companies">
 <summary>
 ddl_companies control.

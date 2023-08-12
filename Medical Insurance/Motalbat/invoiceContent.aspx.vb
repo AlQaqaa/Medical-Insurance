@@ -128,6 +128,17 @@ Public Class invoiceContent
                 'Response.Redirect("printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text), False)
             End If
 
+            If (e.CommandName = "Details") Then
+                Dim index As Integer = Convert.ToInt32(e.CommandArgument)
+                Dim row As GridViewRow = GridView1.Rows(index)
+                Dim p_link As String = "DetailsPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text)
+                'Response.Write("<script type='text/javascript'>")
+                'Response.Write("window.open('" & p_link & "','_blank');")
+                'Response.Write("</script>")
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "window.open('" & p_link & "','_blank');", True)
+                'Response.Redirect("printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text), False)
+            End If
+
             If (e.CommandName = "returnProcess") Then
 
                 If ViewState("invoice_count") > 1 Then

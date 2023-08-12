@@ -168,6 +168,7 @@
     <Content Include="index.aspx" />
     <Content Include="missingForms.aspx" />
     <Content Include="Motalbat\Default.aspx" />
+    <Content Include="Motalbat\DetailsPatientProcesses.aspx" />
     <Content Include="Motalbat\mainCompany.aspx" />
     <Content Include="Motalbat\motalbaDetailes.aspx" />
     <Content Include="Motalbat\sentInvoices.aspx" />
@@ -439,6 +440,13 @@
     </Compile>
     <Compile Include="Motalbat\Default.aspx.vb">
       <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="Motalbat\DetailsPatientProcesses.aspx.designer.vb">
+      <DependentUpon>DetailsPatientProcesses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Motalbat\DetailsPatientProcesses.aspx.vb">
+      <DependentUpon>DetailsPatientProcesses.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="Motalbat\invoiceContent.aspx.designer.vb">

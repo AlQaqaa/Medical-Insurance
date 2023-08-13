@@ -114,6 +114,13 @@
                                                             ToolTip="إرجاع حركة المنتفع من المطالبة"
                                                             ControlStyle-CssClass="btn btn-danger btn-small"
                                                             OnClientClick="return confirm('هل أنت متأكد من الاستمرار في هذا الإجراء؟')" />
+
+                                                        <asp:LinkButton ID="LinkButton1" runat="server"
+                                                            CommandName="Details"
+                                                            CommandArgument="<%# CType(Container, GridViewRow).RowIndex %>"
+                                                            Text="تفاصيل"
+                                                            ToolTip="تفاصيل"
+                                                            ControlStyle-CssClass="btn btn-info btn-small" />
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 

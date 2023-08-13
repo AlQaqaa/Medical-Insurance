@@ -83,74 +83,74 @@ Public Class invoicesList
 
             Response.Redirect("invoiceContent.aspx?invID=" & Val(row.Cells(0).Text), False)
 
-            Try
-                Dim dt_result As New DataTable
-                dt_result.Rows.Clear()
+            '            Try
+            '                Dim dt_result As New DataTable
+            '                dt_result.Rows.Clear()
 
-                Using main_ds
-                    Dim sel_com As New SqlCommand("SELECT P_ID,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
-FROM INC_IVOICESPROCESSES 
-INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IVOICESPROCESSES.P_ID
-INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & Val(row.Cells(0).Text) & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,INC_PATIANT.INC_Patient_Code ORDER BY NAME_ARB")
-                    Using sda As New SqlDataAdapter()
-                        sel_com.Connection = insurance_SQLcon
-                        sda.SelectCommand = sel_com
-                        sda.Fill(main_ds, "INC_IvoicesProcesses")
-                    End Using
-                End Using
+            '                Using main_ds
+            '                    Dim sel_com As New SqlCommand("SELECT P_ID,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
+            'FROM INC_IVOICESPROCESSES 
+            'INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IVOICESPROCESSES.P_ID
+            'INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IVOICESPROCESSES.C_ID WHERE INVOICE_NO = " & Val(row.Cells(0).Text) & " AND MOTALABA_STS = 1 GROUP BY P_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,INC_PATIANT.INC_Patient_Code ORDER BY NAME_ARB")
+            '                    Using sda As New SqlDataAdapter()
+            '                        sel_com.Connection = insurance_SQLcon
+            '                        sda.SelectCommand = sel_com
+            '                        sda.Fill(main_ds, "INC_IvoicesProcesses")
+            '                    End Using
+            '                End Using
 
-                Dim viewer As ReportViewer = New ReportViewer()
+            '                Dim viewer As ReportViewer = New ReportViewer()
 
-                Dim datasource As New ReportDataSource("invoiceContentDS", main_ds.Tables("INC_IvoicesProcesses"))
-                viewer.LocalReport.DataSources.Clear()
-                viewer.ProcessingMode = ProcessingMode.Local
-                viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/invoiceContent.rdlc")
-                viewer.LocalReport.DataSources.Add(datasource)
+            '                Dim datasource As New ReportDataSource("invoiceContentDS", main_ds.Tables("INC_IvoicesProcesses"))
+            '                viewer.LocalReport.DataSources.Clear()
+            '                viewer.ProcessingMode = ProcessingMode.Local
+            '                viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/invoiceContent.rdlc")
+            '                viewer.LocalReport.DataSources.Add(datasource)
 
-                Dim rp1 As ReportParameter
-                Dim rp2 As ReportParameter
-                Dim rp3 As ReportParameter
-                'Dim rp4 As ReportParameter
-                'Dim rp5 As ReportParameter
-                'Dim rp6 As ReportParameter
-                'Dim rp7 As ReportParameter
-                'Dim rp8 As ReportParameter
-                'Dim rp9 As ReportParameter
-                'Dim rp10 As ReportParameter
-                'Dim rp11 As ReportParameter
+            '                Dim rp1 As ReportParameter
+            '                Dim rp2 As ReportParameter
+            '                Dim rp3 As ReportParameter
+            '                'Dim rp4 As ReportParameter
+            '                'Dim rp5 As ReportParameter
+            '                'Dim rp6 As ReportParameter
+            '                'Dim rp7 As ReportParameter
+            '                'Dim rp8 As ReportParameter
+            '                'Dim rp9 As ReportParameter
+            '                'Dim rp10 As ReportParameter
+            '                'Dim rp11 As ReportParameter
 
-                rp1 = New ReportParameter("from_dt", (row.Cells(6).Text).ToString)
-                rp2 = New ReportParameter("to_dt", (row.Cells(7).Text).ToString)
-                rp3 = New ReportParameter("INVOICE_NO", (row.Cells(0).Text).ToString)
+            '                rp1 = New ReportParameter("from_dt", (row.Cells(6).Text).ToString)
+            '                rp2 = New ReportParameter("to_dt", (row.Cells(7).Text).ToString)
+            '                rp3 = New ReportParameter("INVOICE_NO", (row.Cells(0).Text).ToString)
 
-                viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3})
+            '                viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3})
 
-                Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
-                Dim r As String = "~/Reports/invoiceContent.rdlc"
-                ' Page.Controls.Add(rv)
+            '                Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+            '                Dim r As String = "~/Reports/invoiceContent.rdlc"
+            '                ' Page.Controls.Add(rv)
 
-                Dim warnings As Warning() = Nothing
-                Dim streamids As String() = Nothing
-                Dim mimeType As String = Nothing
-                Dim encoding As String = Nothing
-                Dim extension As String = Nothing
-                Dim bytes As Byte()
-                Dim FolderLocation As String
-                FolderLocation = Server.MapPath("~/Reports")
-                Dim filepath As String = FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf"
-                If Directory.Exists(filepath) Then
-                    File.Delete(filepath)
-                End If
-                bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
-                    encoding, extension, streamids, warnings)
-                Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf", FileMode.Create)
-                fs.Write(bytes, 0, bytes.Length)
-                fs.Close()
-                Response.Redirect("~/Reports/invoiceContent" & Session("INC_User_Id") & ".pdf", False)
+            '                Dim warnings As Warning() = Nothing
+            '                Dim streamids As String() = Nothing
+            '                Dim mimeType As String = Nothing
+            '                Dim encoding As String = Nothing
+            '                Dim extension As String = Nothing
+            '                Dim bytes As Byte()
+            '                Dim FolderLocation As String
+            '                FolderLocation = Server.MapPath("~/Reports")
+            '                Dim filepath As String = FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf"
+            '                If Directory.Exists(filepath) Then
+            '                    File.Delete(filepath)
+            '                End If
+            '                bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType, _
+            '                    encoding, extension, streamids, warnings)
+            '                Dim fs As New FileStream(FolderLocation & "/invoiceContent" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+            '                fs.Write(bytes, 0, bytes.Length)
+            '                fs.Close()
+            '                Response.Redirect("~/Reports/invoiceContent" & Session("INC_User_Id") & ".pdf", False)
 
-            Catch ex As Exception
-                MsgBox(ex.Message)
-            End Try
+            '            Catch ex As Exception
+            '                MsgBox(ex.Message)
+            '            End Try
         End If
     End Sub
 

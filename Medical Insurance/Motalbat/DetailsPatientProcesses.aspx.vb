@@ -2,6 +2,8 @@
 Imports Microsoft.Reporting.WebForms
 Imports System.IO
 Imports System.Linq.Expressions
+Imports DocumentFormat.OpenXml.Spreadsheet
+Imports ClosedXML.Excel.XLPredefinedFormat
 
 Public Class DetailsPatientProcesses
     Inherits System.Web.UI.Page
@@ -78,12 +80,65 @@ LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes
             If (e.CommandName = "printProcess") Then
                 Dim index As Integer = Convert.ToInt32(e.CommandArgument)
                 Dim row As GridViewRow = GridView1.Rows(index)
-                Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text)
+                'Dim p_link As String = "printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text)
                 'Response.Write("<script type='text/javascript'>")
                 'Response.Write("window.open('" & p_link & "','_blank');")
                 'Response.Write("</script>")
-                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "window.open('" & p_link & "','_blank');", True)
+                'ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "window.open('" & p_link & "','_blank');", True)
                 'Response.Redirect("printPatientProcesses.aspx?invID=" & Val(txt_invoice_no.Text) & "&pID=" & (row.Cells(1).Text), False)
+
+                Dim viewer As ReportViewer = New ReportViewer()
+                viewer.LocalReport.DataSources.Clear()
+                viewer.ProcessingMode = ProcessingMode.Local
+                viewer.LocalReport.ReportPath = Server.MapPath("~/Reports/PrintReciept.rdlc")
+
+                Dim rp1 As ReportParameter
+                Dim rp2 As ReportParameter
+                Dim rp3 As ReportParameter
+                Dim rp4 As ReportParameter
+                Dim rp5 As ReportParameter
+                Dim rp6 As ReportParameter
+                Dim rp7 As ReportParameter
+                Dim rp8 As ReportParameter
+
+                rp1 = New ReportParameter("CompanyName", txt_company_name.Text)
+                rp2 = New ReportParameter("CardNo", txtCardNo.Text)
+                rp3 = New ReportParameter("RecieptDate", row.Cells(5).Text)
+                rp4 = New ReportParameter("PatName", txtName.Text)
+                rp5 = New ReportParameter("AmountWord", GetNumberToWord(row.Cells(8).Text))
+                rp6 = New ReportParameter("ServiceName", row.Cells(4).Text)
+                rp7 = New ReportParameter("Amount", row.Cells(8).Text)
+                rp8 = New ReportParameter("AmountDerham", CDec(row.Cells(8).Text) - Math.Truncate(CDec(row.Cells(8).Text)))
+
+                viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8})
+
+                Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
+                Dim r As String = "~/Reports/PrintReciept.rdlc"
+                ' Page.Controls.Add(rv)
+
+                Dim warnings As Warning() = Nothing
+                Dim streamids As String() = Nothing
+                Dim mimeType As String = Nothing
+                Dim encoding As String = Nothing
+                Dim extension As String = Nothing
+                Dim bytes As Byte()
+                Dim FolderLocation As String
+                FolderLocation = Server.MapPath("~/Reports")
+                Dim filepath As String = FolderLocation & "/PrintReciept" & Session("INC_User_Id") & ".pdf"
+                If Directory.Exists(filepath) Then
+                    File.Delete(filepath)
+                End If
+                bytes = viewer.LocalReport.Render("PDF", Nothing, mimeType,
+                encoding, extension, streamids, warnings)
+                Dim fs As New FileStream(FolderLocation & "/PrintReciept" & Session("INC_User_Id") & ".pdf", FileMode.Create)
+                fs.Write(bytes, 0, bytes.Length)
+                fs.Close()
+                'Response.Redirect("~/Reports/PrintReciept" & Session("INC_User_Id") & ".pdf", False)
+                Dim p_link As String = "../Reports/PrintReciept" & Session("INC_User_Id") & ".pdf"
+                ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "window.open('" & p_link & "','_blank');", True)
+                'Response.Write("<script type='text/javascript'>")
+                'Response.Write("window.open('" & p_link & "','_blank');")
+                'Response.Write("</script>")
             End If
 
             If (e.CommandName = "editPrice") Then
@@ -122,4 +177,5 @@ LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes
             If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
         End Try
     End Sub
+
 End Class

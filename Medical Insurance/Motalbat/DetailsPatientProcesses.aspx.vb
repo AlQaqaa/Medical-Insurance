@@ -51,12 +51,14 @@ Public Class DetailsPatientProcesses
         Dim dt_result As New DataTable
 
         Try
-            Dim cmd As New SqlCommand("SELECT Processes_ID, convert(varchar, Processes_Date, 103) as Processes_Date, Processes_Residual, INVOICE_NO,CARD_NO,NAME_ARB, Clinic_AR_Name,SubService_AR_Name, SubService_Code, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, Processes_Price, Processes_Paid FROM INC_IvoicesProcesses
+            Dim cmd As New SqlCommand("SELECT INC_IvoicesProcesses.Processes_ID, convert(varchar, Processes_Date, 103) as Processes_Date, ISNULL(INC_MOTALBA_PRICES.Processes_Residual, INC_IvoicesProcesses.Processes_Residual) AS Processes_Residual, INVOICE_NO,CARD_NO,NAME_ARB, Clinic_AR_Name,SubService_AR_Name, SubService_Code, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_MOTALBA_PRICES.Processes_Price, INC_IvoicesProcesses.Processes_Price) AS Processes_Price, ISNULL(INC_MOTALBA_PRICES.Processes_Paid, INC_IvoicesProcesses.Processes_Paid) AS Processes_Paid FROM INC_IvoicesProcesses
 LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
 INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
 INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
 LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND HAG_Processes_Doctor.doc_type = 0
-LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID 
+LEFT JOIN INC_MOTALBA_PRICES ON INC_MOTALBA_PRICES.Processes_ID = INC_IvoicesProcesses.Processes_ID
+WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
             If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
             dt_result.Load(cmd.ExecuteReader)
             insurance_SQLcon.Close()
@@ -149,6 +151,7 @@ LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes
                 TextBox1.Text = row.Cells(2).Text & " - " & row.Cells(3).Text
                 txtPatPrice.Text = row.Cells(8).Text
                 txtCompanyPrice.Text = row.Cells(7).Text
+                txtPrice.Text = row.Cells(6).Text
                 mpePopUp.Show()
             End If
 
@@ -163,11 +166,14 @@ LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
-            Dim cmd As New SqlCommand("UPDATE HAG_Processes SET Processes_Paid=@Processes_Paid, Processes_Residual=@Processes_Residual WHERE Processes_ID=@Processes_ID", insurance_SQLcon)
+            Dim delComm As New SqlCommand("DELETE FROM INC_MOTALBA_PRICES WHERE Processes_ID=" & ViewState("ProcessesId"), insurance_SQLcon)
+            Dim cmd As New SqlCommand("INSERT INC_MOTALBA_PRICES (Processes_ID,Processes_Price,Processes_Paid,Processes_Residual) VALUES (@Processes_ID,@Processes_Price, @Processes_Paid, @Processes_Residual)", insurance_SQLcon)
+            cmd.Parameters.AddWithValue("Processes_ID", ViewState("ProcessesId"))
+            cmd.Parameters.AddWithValue("Processes_Price", CDec(txtPrice.Text))
             cmd.Parameters.AddWithValue("Processes_Paid", CDec(txtPatPrice.Text))
             cmd.Parameters.AddWithValue("Processes_Residual", CDec(txtCompanyPrice.Text))
-            cmd.Parameters.AddWithValue("Processes_ID", ViewState("ProcessesId"))
             If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
+            delComm.ExecuteNonQuery()
             cmd.ExecuteNonQuery()
             insurance_SQLcon.Close()
             getPatientData()

@@ -105,6 +105,11 @@
                                                 <asp:TextBox ID="TextBox1" CssClass="form-control" runat="server" ReadOnly="true"></asp:TextBox>
                                             </div>
                                             <div class="col-12 form-group">
+                                                <label>سعر الخدمة</label>
+                                                <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server"></asp:TextBox>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="مطلوب" ControlToValidate="txtPrice" ForeColor="Red" ValidationGroup="editPrice" SetFocusOnError="true"></asp:RequiredFieldValidator>
+                                            </div>
+                                            <div class="col-12 form-group">
                                                 <label>قيمة الشركة</label>
                                                 <asp:TextBox ID="txtCompanyPrice" CssClass="form-control" runat="server"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="مطلوب" ControlToValidate="txtCompanyPrice" ForeColor="Red" ValidationGroup="editPrice" SetFocusOnError="true"></asp:RequiredFieldValidator>

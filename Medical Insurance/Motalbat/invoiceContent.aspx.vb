@@ -62,13 +62,14 @@ Public Class invoiceContent
         Using main_ds
 
             Dim ss As String
-            ss = "SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
+            ss = "SELECT INC_IvoicesProcesses.Processes_ID, Processes_Date, ISNULL(INC_MOTALBA_PRICES.Processes_Residual, INC_IvoicesProcesses.Processes_Residual) AS Processes_Residual, ISNULL(INC_MOTALBA_PRICES.Processes_Price, INC_IvoicesProcesses.Processes_Price) AS Processes_Price, ISNULL(INC_MOTALBA_PRICES.Processes_Paid, INC_IvoicesProcesses.Processes_Paid) AS Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
                 LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
                 LEFT JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
                 LEFT JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
                 LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND ISNULL(HAG_Processes_Doctor.doc_type, 0) = 0
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
-                LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no")
+                LEFT JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID
+                LEFT JOIN INC_MOTALBA_PRICES ON INC_MOTALBA_PRICES.Processes_ID = INC_IvoicesProcesses.Processes_ID WHERE INVOICE_NO = " & ViewState("invoice_no")
             If DropDownList1.SelectedValue = 0 Then ss += " ORDER BY INC_IvoicesProcesses.id DESC"
             If DropDownList1.SelectedValue = 1 Then ss += " ORDER BY INC_Patient_Code DESC"
             Dim sel_com As New SqlCommand(ss)
@@ -88,9 +89,10 @@ Public Class invoiceContent
             dt_result.Rows.Clear()
 
             Using main_ds
-                Dim sel_com As New SqlCommand("SELECT INC_PATIANT.PINC_ID AS P_ID,Processes_Reservation_Code,SUM(PROCESSES_RESIDUAL) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
+                Dim sel_com As New SqlCommand("SELECT INC_PATIANT.PINC_ID AS P_ID,Processes_Reservation_Code,SUM(ISNULL(INC_MOTALBA_PRICES.Processes_Price, INC_IvoicesProcesses.Processes_Price)) AS PROCESSES_RESIDUAL,CARD_NO,BAGE_NO,NAME_ARB, INC_COMPANY_DATA.C_Name_Arb
             FROM INC_IVOICESPROCESSES 
             LEFT JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
+            LEFT JOIN INC_MOTALBA_PRICES ON INC_MOTALBA_PRICES.Processes_ID = INC_IvoicesProcesses.Processes_ID
             INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID WHERE INVOICE_NO = " & ViewState("invoice_no") & " AND MOTALABA_STS = 1 GROUP BY INC_PATIANT.PINC_ID,CARD_NO, BAGE_NO,NAME_ARB,INC_COMPANY_DATA.C_Name_Arb,Processes_Reservation_Code ORDER BY NAME_ARB")
                 Using sda As New SqlDataAdapter()
                     sel_com.Connection = insurance_SQLcon

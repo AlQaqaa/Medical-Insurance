@@ -68,6 +68,12 @@
                                             <asp:BoundField DataField="Processes_Price" HeaderText="السعر"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Residual" HeaderText="نسبة الشركة"></asp:BoundField>
                                             <asp:BoundField DataField="Processes_Paid" HeaderText="نسبة المستفيد"></asp:BoundField>
+                                            <asp:BoundField DataField="PERSON_PER" HeaderText="النسبة">
+                                                <ControlStyle CssClass="hide-colum" />
+                                                <FooterStyle CssClass="hide-colum" />
+                                                <HeaderStyle CssClass="hide-colum" />
+                                                <ItemStyle CssClass="hide-colum" />
+                                            </asp:BoundField>
 
                                             <asp:TemplateField>
                                                 <ItemTemplate>

@@ -95,9 +95,9 @@
                                     </asp:GridView>
                                 </div>
                             </div>
-
-                            <asp:Label ID="lblHidden" runat="server" Text=""></asp:Label>                           
-                            <ajaxtoolkit:modalpopupextender id="mpePopUp" runat="server" targetcontrolid="lblHidden" popupcontrolid="divPopUp"></ajaxtoolkit:modalpopupextender>
+                            <asp:HiddenField ID="HiddenField1" runat="server" />
+                            <asp:Label ID="lblHidden" runat="server" Text=""></asp:Label>
+                            <ajaxToolkit:ModalPopupExtender ID="mpePopUp" runat="server" TargetControlID="lblHidden" PopupControlID="divPopUp"></ajaxToolkit:ModalPopupExtender>
 
                             <div id="divPopUp" class="modal-dialog shadow modal-dialog-scrollable" style="width: 450px">
                                 <div class="modal-content">
@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="col-12 form-group">
                                                 <label>سعر الخدمة</label>
-                                                <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server" onKeyUp="return bar()"></asp:TextBox>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="مطلوب" ControlToValidate="txtPrice" ForeColor="Red" ValidationGroup="editPrice" SetFocusOnError="true"></asp:RequiredFieldValidator>
                                             </div>
                                             <div class="col-12 form-group">
@@ -140,4 +140,15 @@
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
+    <script src="../Style/JS/jquery-3.4.1.min.js"></script>
+    <script>
+        function bar() {
+            var patAmount = $('#<%=txtPrice.ClientID %>').val() * $('#<%=HiddenField1.ClientID %>').val() / 100
+            var companyAmount = $('#<%=txtPrice.ClientID %>').val() * (100 - $('#<%=HiddenField1.ClientID %>').val()) / 100
+            $('#<%=txtPatPrice.ClientID %>').val(patAmount)
+            $('#<%=txtCompanyPrice.ClientID %>').val(companyAmount)
+        }
+
+
+    </script>
 </asp:Content>

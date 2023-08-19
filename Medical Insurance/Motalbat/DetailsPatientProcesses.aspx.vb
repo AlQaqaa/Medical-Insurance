@@ -154,9 +154,10 @@ WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO 
 
                 ViewState("ProcessesId") = row.Cells(1).Text
                 TextBox1.Text = row.Cells(2).Text & " - " & row.Cells(3).Text
-                txtPatPrice.Text = CDec(row.Cells(6).Text) * CDec(row.Cells(9).Text) / 100
-                txtCompanyPrice.Text = CDec(row.Cells(6).Text) * (100 - CDec(row.Cells(9).Text)) / 100
-                txtPrice.Text = row.Cells(6).Text
+                HiddenField1.Value = CDec(row.Cells(9).Text)
+                'txtPatPrice.Text = CDec(row.Cells(6).Text) * CDec(row.Cells(9).Text) / 100
+                'txtCompanyPrice.Text = CDec(row.Cells(6).Text) * (100 - CDec(row.Cells(9).Text)) / 100
+                'txtPrice.Text = row.Cells(6).Text
                 mpePopUp.Show()
             End If
 
@@ -189,4 +190,10 @@ WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO 
         End Try
     End Sub
 
+    'Private Sub txtPrice_TextChanged(sender As Object, e As EventArgs) Handles txtPrice.TextChanged
+    '    If txtPrice.Text <> "" Then
+    '        txtPatPrice.Text = CDec(txtPrice.Text) * CDec(ViewState("patPer")) / 100
+    '        txtCompanyPrice.Text = CDec(txtPrice.Text) * (100 - CDec(ViewState("patPer"))) / 100
+    '    End If
+    'End Sub
 End Class

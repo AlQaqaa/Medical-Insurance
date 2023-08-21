@@ -890,6 +890,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.addNewCompany._txtEmpMax">
+<summary>
+txtEmpMax control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.addNewCompany._ddl_profiles_prices">
 <summary>
 ddl_profiles_prices control.
@@ -2702,6 +2711,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.EDITCOMPANY._txt_max_person">
 <summary>
 txt_max_person control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.EDITCOMPANY._txtEmpMax">
+<summary>
+txtEmpMax control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -4908,6 +4926,15 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.DetailsPatientProcesses._txtName">
 <summary>
 txtName control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.DetailsPatientProcesses._ddlFilter">
+<summary>
+ddlFilter control.
 </summary>
 <remarks>
 Auto-generated field.

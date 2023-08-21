@@ -104,7 +104,15 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="form-group col-xs-12 col-sm-3">
+                            <label for="txt_max_person">السقف العام للمشترك</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txtEmpMax" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">د.ل</div>
+                                </div>
+                            </div>
+                        </div>
                         
                     </div>
                     <hr />

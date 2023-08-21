@@ -31,6 +31,7 @@
                                     <label for="txt_start_dt">إلى</label>
                                     <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>
                                 </div>
+                                
                             </div>
                             <!-- /form-row -->
                             <div class="form-row">
@@ -41,6 +42,13 @@
                                 <div class="form-group col-xs-12 col-md-5">
                                     <label for="ddl_companies">اسم المنتفع</label>
                                     <asp:TextBox ID="txtName" runat="server" dir="rtl" CssClass="form-control" ReadOnly="True"></asp:TextBox>
+                                </div>
+                                <div class="form-group col-xs-12 col-md-3">
+                                    <label for="ddl_companies">تصفية</label>
+                                    <asp:DropDownList ID="ddlFilter" CssClass="drop-down-list form-control" runat="server" AutoPostBack="true">
+                                        <asp:ListItem Value="0">الكل</asp:ListItem>
+                                        <asp:ListItem Value="1">المعمل فقط</asp:ListItem>
+                                    </asp:DropDownList>
                                 </div>
                             </div>
                             <!-- /form-row -->

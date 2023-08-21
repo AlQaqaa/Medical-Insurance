@@ -69,6 +69,7 @@ Public Class addNewCompany
             insToCompany.Parameters.AddWithValue("@userId", Session("INC_User_Id"))
             insToCompany.Parameters.AddWithValue("@userIp", GetIPAddress())
             insToCompany.Parameters.AddWithValue("@max_one_processes", CDec(txt_max_one_processes.Text))
+            insToCompany.Parameters.AddWithValue("@empMax", CDec(txtEmpMax.Text))
             insurance_SQLcon.Open()
             insToCompany.ExecuteNonQuery()
             insurance_SQLcon.Close()

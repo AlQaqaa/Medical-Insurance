@@ -4914,6 +4914,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.DetailsPatientProcesses._ddlFilter">
+<summary>
+ddlFilter control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.DetailsPatientProcesses._GridView1">
 <summary>
 GridView1 control.

@@ -118,6 +118,15 @@
                             </div>
                         </div>
                         <div class="form-group col-xs-12 col-sm-3">
+                            <label for="txt_max_person">السقف العام للمشترك</label>
+                            <div class="input-group">
+                                <asp:TextBox ID="txtEmpMax" CssClass="form-control" runat="server" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">د.ل</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-3">
                             <label for="ddl_profiles_prices">ملف الأسعار</label>
                             <asp:DropDownList ID="ddl_profiles_prices" CssClass="chosen-select drop-down-list form-control" runat="server" DataSourceID="SqlDataSource2" DataTextField="profile_name" DataValueField="profile_Id"></asp:DropDownList>
                             <asp:SqlDataSource runat="server" ID="SqlDataSource2" ConnectionString='<%$ ConnectionStrings:insurance_CS %>' SelectCommand="SELECT [profile_Id], [profile_name] FROM [INC_PRICES_PROFILES] WHERE PROFILE_STS = 0"></asp:SqlDataSource>

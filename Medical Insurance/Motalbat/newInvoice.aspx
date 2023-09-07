@@ -111,11 +111,11 @@
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-3">
                                             <label for="txt_start_dt">الفترة من</label>
-                                            <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                            <asp:TextBox ID="txt_start_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-xs-12 col-sm-3">
                                             <label for="txt_start_dt">إلى</label>
-                                            <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" AutoCompleteType="Disabled"></asp:TextBox>
+                                            <asp:TextBox ID="txt_end_dt" class="form-control datepicker1" runat="server" placeholder="yyyy/mm/dd" autocomplete="off"></asp:TextBox>
                                         </div>
 
                                     </div>
@@ -158,7 +158,7 @@
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-6">
                                         <label for="txt_search"></label>
-                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" AutoCompleteType="Disabled" TabIndex="1"></asp:TextBox>
+                                        <asp:TextBox ID="txt_search" CssClass="form-control mt-2" placeholder="يرجى إدخال كود الحركة" runat="server" autocomplete="off" TabIndex="1"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group col-xs-12 col-sm-3">

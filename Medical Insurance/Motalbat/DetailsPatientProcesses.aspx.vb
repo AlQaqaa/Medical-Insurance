@@ -128,6 +128,7 @@ WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO 
                 Dim rp6 As ReportParameter
                 Dim rp7 As ReportParameter
                 Dim rp8 As ReportParameter
+                Dim rp9 As ReportParameter
 
                 rp1 = New ReportParameter("CompanyName", txt_company_name.Text)
                 rp2 = New ReportParameter("CardNo", txtCardNo.Text)
@@ -137,8 +138,9 @@ WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO 
                 rp6 = New ReportParameter("ServiceName", row.Cells(4).Text)
                 rp7 = New ReportParameter("Amount", row.Cells(8).Text)
                 rp8 = New ReportParameter("AmountDerham", CDec(row.Cells(8).Text) - Math.Truncate(CDec(row.Cells(8).Text)))
+                rp9 = New ReportParameter("InvoiceNo", txt_invoice_no.Text)
 
-                viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8})
+                viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8, rp9})
 
                 Dim rv As New Microsoft.Reporting.WebForms.ReportViewer
                 Dim r As String = "~/Reports/PrintReciept.rdlc"

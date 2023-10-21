@@ -33,13 +33,13 @@
               <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
-                INNER JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
-                INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
-                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
-                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_IvoicesProcesses.Processes_ID
-                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = EWA_Processes.EWA_Record_Doctor
-                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID</CommandText>
+                    <CommandText>SELECT Processes_ID, Processes_Date, Processes_Residual, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb FROM INC_IvoicesProcesses
+INNER JOIN INC_PATIANT ON INC_PATIANT.PINC_ID = INC_IvoicesProcesses.P_ID
+INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
+INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
+LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID
+LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID
+INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_IvoicesProcesses.C_ID</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -48,19 +48,16 @@
             <Mappings>
               <Mapping SourceColumn="Processes_ID" DataSetColumn="Processes_ID" />
               <Mapping SourceColumn="Processes_Residual" DataSetColumn="Processes_Residual" />
+              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
               <Mapping SourceColumn="CARD_NO" DataSetColumn="CARD_NO" />
               <Mapping SourceColumn="NAME_ARB" DataSetColumn="NAME_ARB" />
               <Mapping SourceColumn="BAGE_NO" DataSetColumn="BAGE_NO" />
+              <Mapping SourceColumn="BIRTHDATE" DataSetColumn="BIRTHDATE" />
               <Mapping SourceColumn="Clinic_AR_Name" DataSetColumn="Clinic_AR_Name" />
               <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
               <Mapping SourceColumn="MedicalStaff_AR_Name" DataSetColumn="MedicalStaff_AR_Name" />
               <Mapping SourceColumn="Processes_Date" DataSetColumn="Processes_Date" />
               <Mapping SourceColumn="C_Name_Arb" DataSetColumn="C_Name_Arb" />
-              <Mapping SourceColumn="Processes_Price" DataSetColumn="Processes_Price" />
-              <Mapping SourceColumn="Processes_Paid" DataSetColumn="Processes_Paid" />
-              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
-              <Mapping SourceColumn="BIRTHDATE" DataSetColumn="BIRTHDATE" />
-              <Mapping SourceColumn="SubService_Code" DataSetColumn="SubService_Code" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -575,64 +572,6 @@ WHERE P_STATE = 0 GROUP BY INC_COMPANY_DATA.C_Name_Arb ORDER BY INC_COMPANY_DATA
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="subServicesPriceTableAdapter" GeneratorDataComponentClassName="subServicesPriceTableAdapter" Name="subServicesPrice" UserDataComponentName="subServicesPriceTableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select Main_SubServices.SubService_AR_Name, Main_SubServices.SubService_Code, Main_SubServices.SubService_EN_Name, Main_Clinic.Clinic_AR_Name, ISNULL(INC_SERVICES_PRICES.INS_PRS, 0) as service_price from INC_SERVICES_PRICES
-inner join Main_SubServices on Main_SubServices.SubService_ID = INC_SERVICES_PRICES.SER_ID
-inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Clinic</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
-              <Mapping SourceColumn="SubService_Code" DataSetColumn="SubService_Code" />
-              <Mapping SourceColumn="SubService_EN_Name" DataSetColumn="SubService_EN_Name" />
-              <Mapping SourceColumn="Clinic_AR_Name" DataSetColumn="Clinic_AR_Name" />
-              <Mapping SourceColumn="service_price" DataSetColumn="service_price" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DataTable6TableAdapter" GeneratorDataComponentClassName="DataTable6TableAdapter" Name="DataTable6" UserDataComponentName="DataTable6TableAdapter">
-            <MainSource>
-              <DbSource ConnectionRef="insurance_CS (Web.config)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
-                <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT Processes_ID, Processes_Date, Processes_Residual, Processes_Price, Processes_Paid, INVOICE_NO,CARD_NO,NAME_ARB,BAGE_NO,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE, Clinic_AR_Name,SubService_AR_Name, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, INC_COMPANY_DATA.C_Name_Arb,SubService_Code FROM INC_IvoicesProcesses
-                INNER JOIN INC_PATIANT ON INC_PATIANT.INC_Patient_Code = INC_IvoicesProcesses.Processes_Reservation_Code
-                INNER JOIN Main_Clinic ON Main_Clinic.clinic_id = INC_IvoicesProcesses.Processes_Cilinc
-                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProcesses.Processes_SubServices
-                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_IvoicesProcesses.Processes_ID
-                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = EWA_Processes.EWA_Record_Doctor
-                INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_PATIANT.C_ID</CommandText>
-                    <Parameters />
-                  </DbCommand>
-                </SelectCommand>
-              </DbSource>
-            </MainSource>
-            <Mappings>
-              <Mapping SourceColumn="Processes_ID" DataSetColumn="Processes_ID" />
-              <Mapping SourceColumn="Processes_Date" DataSetColumn="Processes_Date" />
-              <Mapping SourceColumn="Processes_Residual" DataSetColumn="Processes_Residual" />
-              <Mapping SourceColumn="Processes_Price" DataSetColumn="Processes_Price" />
-              <Mapping SourceColumn="Processes_Paid" DataSetColumn="Processes_Paid" />
-              <Mapping SourceColumn="INVOICE_NO" DataSetColumn="INVOICE_NO" />
-              <Mapping SourceColumn="CARD_NO" DataSetColumn="CARD_NO" />
-              <Mapping SourceColumn="NAME_ARB" DataSetColumn="NAME_ARB" />
-              <Mapping SourceColumn="BAGE_NO" DataSetColumn="BAGE_NO" />
-              <Mapping SourceColumn="BIRTHDATE" DataSetColumn="BIRTHDATE" />
-              <Mapping SourceColumn="Clinic_AR_Name" DataSetColumn="Clinic_AR_Name" />
-              <Mapping SourceColumn="SubService_AR_Name" DataSetColumn="SubService_AR_Name" />
-              <Mapping SourceColumn="MedicalStaff_AR_Name" DataSetColumn="MedicalStaff_AR_Name" />
-              <Mapping SourceColumn="C_Name_Arb" DataSetColumn="C_Name_Arb" />
-              <Mapping SourceColumn="SubService_Code" DataSetColumn="SubService_Code" />
-            </Mappings>
-            <Sources />
-          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -681,7 +620,8 @@ inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Cl
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Processes_ID" msprop:Generator_ColumnVarNameInTable="columnProcesses_ID" msprop:Generator_ColumnPropNameInRow="Processes_ID" msprop:Generator_ColumnPropNameInTable="Processes_IDColumn" msprop:Generator_UserColumnName="Processes_ID" type="xs:long" />
-              <xs:element name="Processes_Residual" msprop:Generator_ColumnVarNameInTable="columnProcesses_Residual" msprop:Generator_ColumnPropNameInRow="Processes_Residual" msprop:Generator_ColumnPropNameInTable="Processes_ResidualColumn" msprop:Generator_UserColumnName="Processes_Residual" type="xs:double" minOccurs="0" />
+              <xs:element name="Processes_Residual" msprop:Generator_ColumnVarNameInTable="columnProcesses_Residual" msprop:Generator_ColumnPropNameInRow="Processes_Residual" msprop:Generator_ColumnPropNameInTable="Processes_ResidualColumn" msprop:Generator_UserColumnName="Processes_Residual" type="xs:double" />
+              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" type="xs:int" minOccurs="0" />
               <xs:element name="CARD_NO" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCARD_NO" msprop:Generator_ColumnPropNameInRow="CARD_NO" msprop:Generator_ColumnPropNameInTable="CARD_NOColumn" msprop:Generator_UserColumnName="CARD_NO" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -703,6 +643,7 @@ inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Cl
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="BIRTHDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_UserColumnName="BIRTHDATE" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Clinic_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnClinic_AR_Name" msprop:Generator_ColumnPropNameInRow="Clinic_AR_Name" msprop:Generator_ColumnPropNameInTable="Clinic_AR_NameColumn" msprop:Generator_UserColumnName="Clinic_AR_Name" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -724,25 +665,8 @@ inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Cl
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Processes_Date" msprop:Generator_ColumnVarNameInTable="columnProcesses_Date" msprop:Generator_ColumnPropNameInRow="Processes_Date" msprop:Generator_ColumnPropNameInTable="Processes_DateColumn" msprop:Generator_UserColumnName="Processes_Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Processes_Date" msprop:Generator_ColumnVarNameInTable="columnProcesses_Date" msprop:Generator_ColumnPropNameInRow="Processes_Date" msprop:Generator_ColumnPropNameInTable="Processes_DateColumn" msprop:Generator_UserColumnName="Processes_Date" type="xs:dateTime" />
               <xs:element name="C_Name_Arb" msprop:Generator_ColumnVarNameInTable="columnC_Name_Arb" msprop:Generator_ColumnPropNameInRow="C_Name_Arb" msprop:Generator_ColumnPropNameInTable="C_Name_ArbColumn" msprop:Generator_UserColumnName="C_Name_Arb" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Processes_Price" msprop:Generator_ColumnVarNameInTable="columnProcesses_Price" msprop:Generator_ColumnPropNameInRow="Processes_Price" msprop:Generator_ColumnPropNameInTable="Processes_PriceColumn" msprop:Generator_UserColumnName="Processes_Price" type="xs:double" minOccurs="0" />
-              <xs:element name="Processes_Paid" msprop:Generator_ColumnVarNameInTable="columnProcesses_Paid" msprop:Generator_ColumnPropNameInRow="Processes_Paid" msprop:Generator_ColumnPropNameInTable="Processes_PaidColumn" msprop:Generator_UserColumnName="Processes_Paid" type="xs:double" minOccurs="0" />
-              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" type="xs:decimal" minOccurs="0" />
-              <xs:element name="BIRTHDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_UserColumnName="BIRTHDATE" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SubService_Code" msprop:Generator_ColumnVarNameInTable="columnSubService_Code" msprop:Generator_ColumnPropNameInRow="SubService_Code" msprop:Generator_ColumnPropNameInTable="SubService_CodeColumn" msprop:Generator_UserColumnName="SubService_Code" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -1483,119 +1407,13 @@ inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Cl
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="subServicesPrice" msprop:Generator_TableClassName="subServicesPriceDataTable" msprop:Generator_TableVarName="tablesubServicesPrice" msprop:Generator_RowChangedName="subServicesPriceRowChanged" msprop:Generator_TablePropName="subServicesPrice" msprop:Generator_RowDeletingName="subServicesPriceRowDeleting" msprop:Generator_RowChangingName="subServicesPriceRowChanging" msprop:Generator_RowEvHandlerName="subServicesPriceRowChangeEventHandler" msprop:Generator_RowDeletedName="subServicesPriceRowDeleted" msprop:Generator_RowClassName="subServicesPriceRow" msprop:Generator_UserTableName="subServicesPrice" msprop:Generator_RowEvArgName="subServicesPriceRowChangeEvent">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="SubService_AR_Name" msprop:Generator_ColumnVarNameInTable="columnSubService_AR_Name" msprop:Generator_ColumnPropNameInRow="SubService_AR_Name" msprop:Generator_ColumnPropNameInTable="SubService_AR_NameColumn" msprop:Generator_UserColumnName="SubService_AR_Name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SubService_Code" msprop:Generator_ColumnVarNameInTable="columnSubService_Code" msprop:Generator_ColumnPropNameInRow="SubService_Code" msprop:Generator_ColumnPropNameInTable="SubService_CodeColumn" msprop:Generator_UserColumnName="SubService_Code" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SubService_EN_Name" msprop:Generator_ColumnVarNameInTable="columnSubService_EN_Name" msprop:Generator_ColumnPropNameInRow="SubService_EN_Name" msprop:Generator_ColumnPropNameInTable="SubService_EN_NameColumn" msprop:Generator_UserColumnName="SubService_EN_Name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Clinic_AR_Name" msprop:Generator_ColumnVarNameInTable="columnClinic_AR_Name" msprop:Generator_ColumnPropNameInRow="Clinic_AR_Name" msprop:Generator_ColumnPropNameInTable="Clinic_AR_NameColumn" msprop:Generator_UserColumnName="Clinic_AR_Name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="service_price" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnservice_price" msprop:Generator_ColumnPropNameInRow="service_price" msprop:Generator_ColumnPropNameInTable="service_priceColumn" msprop:Generator_UserColumnName="service_price" type="xs:decimal" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="DataTable6" msprop:Generator_TableClassName="DataTable6DataTable" msprop:Generator_TableVarName="tableDataTable6" msprop:Generator_TablePropName="DataTable6" msprop:Generator_RowDeletingName="DataTable6RowDeleting" msprop:Generator_RowChangingName="DataTable6RowChanging" msprop:Generator_RowEvHandlerName="DataTable6RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable6RowDeleted" msprop:Generator_UserTableName="DataTable6" msprop:Generator_RowChangedName="DataTable6RowChanged" msprop:Generator_RowEvArgName="DataTable6RowChangeEvent" msprop:Generator_RowClassName="DataTable6Row">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="Processes_ID" msprop:Generator_ColumnVarNameInTable="columnProcesses_ID" msprop:Generator_ColumnPropNameInRow="Processes_ID" msprop:Generator_ColumnPropNameInTable="Processes_IDColumn" msprop:Generator_UserColumnName="Processes_ID" type="xs:long" minOccurs="0" />
-              <xs:element name="Processes_Date" msprop:Generator_ColumnVarNameInTable="columnProcesses_Date" msprop:Generator_ColumnPropNameInRow="Processes_Date" msprop:Generator_ColumnPropNameInTable="Processes_DateColumn" msprop:Generator_UserColumnName="Processes_Date" type="xs:dateTime" />
-              <xs:element name="Processes_Residual" msprop:Generator_ColumnVarNameInTable="columnProcesses_Residual" msprop:Generator_ColumnPropNameInRow="Processes_Residual" msprop:Generator_ColumnPropNameInTable="Processes_ResidualColumn" msprop:Generator_UserColumnName="Processes_Residual" type="xs:double" />
-              <xs:element name="Processes_Price" msprop:Generator_ColumnVarNameInTable="columnProcesses_Price" msprop:Generator_ColumnPropNameInRow="Processes_Price" msprop:Generator_ColumnPropNameInTable="Processes_PriceColumn" msprop:Generator_UserColumnName="Processes_Price" type="xs:double" />
-              <xs:element name="Processes_Paid" msprop:Generator_ColumnVarNameInTable="columnProcesses_Paid" msprop:Generator_ColumnPropNameInRow="Processes_Paid" msprop:Generator_ColumnPropNameInTable="Processes_PaidColumn" msprop:Generator_UserColumnName="Processes_Paid" type="xs:double" />
-              <xs:element name="INVOICE_NO" msprop:Generator_ColumnVarNameInTable="columnINVOICE_NO" msprop:Generator_ColumnPropNameInRow="INVOICE_NO" msprop:Generator_ColumnPropNameInTable="INVOICE_NOColumn" msprop:Generator_UserColumnName="INVOICE_NO" type="xs:decimal" minOccurs="0" />
-              <xs:element name="CARD_NO" msprop:Generator_ColumnVarNameInTable="columnCARD_NO" msprop:Generator_ColumnPropNameInRow="CARD_NO" msprop:Generator_ColumnPropNameInTable="CARD_NOColumn" msprop:Generator_UserColumnName="CARD_NO" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="NAME_ARB" msprop:Generator_ColumnVarNameInTable="columnNAME_ARB" msprop:Generator_ColumnPropNameInRow="NAME_ARB" msprop:Generator_ColumnPropNameInTable="NAME_ARBColumn" msprop:Generator_UserColumnName="NAME_ARB" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="BAGE_NO" msprop:Generator_ColumnVarNameInTable="columnBAGE_NO" msprop:Generator_ColumnPropNameInRow="BAGE_NO" msprop:Generator_ColumnPropNameInTable="BAGE_NOColumn" msprop:Generator_UserColumnName="BAGE_NO" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="BIRTHDATE" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnBIRTHDATE" msprop:Generator_ColumnPropNameInRow="BIRTHDATE" msprop:Generator_ColumnPropNameInTable="BIRTHDATEColumn" msprop:Generator_UserColumnName="BIRTHDATE" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="Clinic_AR_Name" msprop:Generator_ColumnVarNameInTable="columnClinic_AR_Name" msprop:Generator_ColumnPropNameInRow="Clinic_AR_Name" msprop:Generator_ColumnPropNameInTable="Clinic_AR_NameColumn" msprop:Generator_UserColumnName="Clinic_AR_Name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SubService_AR_Name" msprop:Generator_ColumnVarNameInTable="columnSubService_AR_Name" msprop:Generator_ColumnPropNameInRow="SubService_AR_Name" msprop:Generator_ColumnPropNameInTable="SubService_AR_NameColumn" msprop:Generator_UserColumnName="SubService_AR_Name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="2147483647" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="MedicalStaff_AR_Name" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMedicalStaff_AR_Name" msprop:Generator_ColumnPropNameInRow="MedicalStaff_AR_Name" msprop:Generator_ColumnPropNameInTable="MedicalStaff_AR_NameColumn" msprop:Generator_UserColumnName="MedicalStaff_AR_Name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="C_Name_Arb" msprop:Generator_ColumnVarNameInTable="columnC_Name_Arb" msprop:Generator_ColumnPropNameInRow="C_Name_Arb" msprop:Generator_ColumnPropNameInTable="C_Name_ArbColumn" msprop:Generator_UserColumnName="C_Name_Arb" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="SubService_Code" msprop:Generator_ColumnVarNameInTable="columnSubService_Code" msprop:Generator_ColumnPropNameInRow="SubService_Code" msprop:Generator_ColumnPropNameInTable="SubService_CodeColumn" msprop:Generator_UserColumnName="SubService_Code" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:INC_IvoicesProcessesPatient" />
+      <xs:field xpath="mstns:Processes_ID" />
+    </xs:unique>
+    <xs:unique name="INC_CONFIRM_DETAILS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:INC_CONFIRM_DETAILS" />
       <xs:field xpath="mstns:CD_ID" />
     </xs:unique>
@@ -1614,6 +1432,10 @@ inner join Main_Clinic on Main_Clinic.clinic_id = Main_SubServices.SubService_Cl
     <xs:unique name="printPrices_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:printPrices" />
       <xs:field xpath="mstns:SubService_ID" />
+    </xs:unique>
+    <xs:unique name="patientProcessesInvoice_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:patientProcessesInvoice" />
+      <xs:field xpath="mstns:Processes_ID" />
     </xs:unique>
     <xs:unique name="dailyProcesses_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:dailyProcesses" />

@@ -22,7 +22,7 @@ Public Class newInvoice
                 btn_create.CssClass = "btn btn-outline-success btn-block"
                 Label2.Text = "إضافة خدمات للمطالبة رقم: " & ViewState("invoice_no")
                 txt_invoice_no.Text = ViewState("invoice_no")
-                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 111) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 111) AS DATE_TO, INVOICE_TYPE FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+                Dim sel_com As New SqlCommand("SELECT INVOICE_NO, C_ID, (SELECT C_Name_Arb FROM INC_COMPANY_DATA WHERE INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID) AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 111) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 111) AS DATE_TO FROM INC_INVOICES WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -36,7 +36,6 @@ Public Class newInvoice
                     ViewState("company_no") = dr_inv!C_ID
                     TextBox1.Text = dr_inv!DATE_FROM
                     TextBox2.Text = dr_inv!DATE_TO
-                    ddl_invoice_type.SelectedValue = dr_inv!INVOICE_TYPE
                 End If
 
             Else
@@ -85,7 +84,7 @@ Public Class newInvoice
                 INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID
+                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_MOTALBA_TEMP.Processes_ID
                 INNER JOIN Ewa_Record ON Ewa_Record.EWA_Record_ID = EWA_Processes.ewa_patient_id
                 WHERE INC_MOTALBA_TEMP.User_Id = " & Session("INC_User_Id")
         End If
@@ -452,7 +451,6 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                 sqlComm.Parameters.AddWithValue("@invoiceType", ddl_invoice_type.SelectedValue)
                 sqlComm.Parameters.AddWithValue("@user_id", Session("INC_User_Id"))
                 sqlComm.Parameters.AddWithValue("@user_ip", GetIPAddress())
-                sqlComm.Parameters.AddWithValue("@notes", txt_notes.Text)
                 sqlComm.Parameters.AddWithValue("@inv_id", SqlDbType.Int).Direction = ParameterDirection.Output
                 insurance_SQLcon.Open()
                 result = sqlComm.ExecuteNonQuery()
@@ -552,37 +550,5 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
             ddl_service.DataBind()
         End If
         Me.txt_search.Attributes.Remove("onkeypress")
-    End Sub
-
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        mpePopUp.Hide()
-    End Sub
-
-    Private Sub GridView1_RowCommand(sender As Object, e As GridViewCommandEventArgs) Handles GridView1.RowCommand
-        If (e.CommandName = "btn_edi") Then
-            Dim index As Integer = Convert.ToInt32(e.CommandArgument)
-            Dim row As GridViewRow = GridView1.Rows(index)
-            txt_pros.Text = row.Cells(3).Text
-            mpePopUp.Show()
-        End If
-    End Sub
-
-    Private Sub btn_save_new_date_Click(sender As Object, e As EventArgs) Handles btn_save_new_date.Click
-        Try
-            Dim updateComm As New SqlCommand("UPDATE HAG_Processes SET Processes_Date = @Processes_Date WHERE Processes_ID IN (SELECT Req_PID FROM [HAG_Request] WHERE Req_Code=@Req_Code)", insurance_SQLcon)
-            updateComm.Parameters.Add("Processes_Date", SqlDbType.Date).Value = DateTime.ParseExact(txt_pros_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)
-            updateComm.Parameters.Add("Req_Code", SqlDbType.BigInt).Value = txt_pros.Text
-            insurance_SQLcon.Close()
-            insurance_SQLcon.Open()
-            updateComm.ExecuteNonQuery()
-            insurance_SQLcon.Close()
-
-            txt_pros.Text = ""
-            txt_pros_date.Text = ""
-
-            getTempData()
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
     End Sub
 End Class

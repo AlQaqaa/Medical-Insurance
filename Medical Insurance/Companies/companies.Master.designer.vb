@@ -266,24 +266,6 @@ Partial Public Class companies
     Protected WithEvents hl_approved_archive As Global.System.Web.UI.WebControls.HyperLink
     
     '''<summary>
-    '''hl_missing_forms control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents hl_missing_forms As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
-    '''HyperLink20 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents HyperLink20 As Global.System.Web.UI.WebControls.HyperLink
-    
-    '''<summary>
     '''hl_Statistics control.
     '''</summary>
     '''<remarks>

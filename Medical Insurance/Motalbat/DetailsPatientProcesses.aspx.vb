@@ -25,7 +25,7 @@ Public Class DetailsPatientProcesses
                 txt_invoice_no.Text = ViewState("invoice_no")
                 Dim sel_com As New SqlCommand("SELECT INVOICE_NO, INC_INVOICES.C_ID, C_Name_Arb AS COMPANY_NAME, CONVERT(VARCHAR, DATE_FROM, 23) AS DATE_FROM, CONVERT(VARCHAR, DATE_TO, 23) AS DATE_TO, INC_COMPANY_DETIAL.CONTRACT_NO FROM INC_INVOICES
 INNER JOIN INC_COMPANY_DATA ON INC_COMPANY_DATA.C_ID = INC_INVOICES.C_ID
-INNER JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID AND INC_COMPANY_DETIAL.DATE_START <= GETDATE() AND INC_COMPANY_DETIAL.DATE_END >= GETDATE() WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
+INNER JOIN INC_COMPANY_DETIAL ON INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID  WHERE INVOICE_NO = " & ViewState("invoice_no"), insurance_SQLcon)
                 Dim dt_result As New DataTable
                 dt_result.Rows.Clear()
                 insurance_SQLcon.Close()
@@ -95,7 +95,7 @@ WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO 
             dt_result.Load(cmd.ExecuteReader)
             insurance_SQLcon.Close()
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         Finally
             If insurance_SQLcon.State = ConnectionState.Open Then insurance_SQLcon.Close()
         End Try

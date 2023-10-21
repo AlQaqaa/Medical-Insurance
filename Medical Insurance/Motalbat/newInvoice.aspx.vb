@@ -79,13 +79,13 @@ Public Class newInvoice
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
                 WHERE INC_MOTALBA_TEMP.User_Id = " & Session("INC_User_Id")
         Else
-            ss = "SELECT INC_CompanyProcesses.pros_code, INC_CompanyProcesses.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
-                ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses.NAME_ARB, '') AS PATIENT_NAME FROM INC_MOTALBA_TEMP
-				INNER JOIN INC_CompanyProcesses ON INC_CompanyProcesses.pros_code = INC_MOTALBA_TEMP.Req_Code
-                INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
-                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
-                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_CompanyProcesses.Processes_ID
+            ss = "SELECT INC_CompanyProcesses_ewa.pros_code, INC_CompanyProcesses_ewa.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses_ewa.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, 
+                ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses_ewa.NAME_ARB, '') AS PATIENT_NAME FROM INC_MOTALBA_TEMP
+				INNER JOIN INC_CompanyProcesses_ewa ON INC_CompanyProcesses_ewa.pros_code = INC_MOTALBA_TEMP.Req_Code
+                INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses_ewa.Processes_Cilinc
+                INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses_ewa.Processes_SubServices
+                LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses_ewa.doctor_id
+                INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_CompanyProcesses_ewa.Processes_ID
                 INNER JOIN Ewa_Record ON Ewa_Record.EWA_Record_ID = EWA_Processes.ewa_patient_id
                 WHERE INC_MOTALBA_TEMP.User_Id = " & Session("INC_User_Id")
         End If
@@ -234,11 +234,11 @@ WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Proce
             insurance_SQLcon.Close()
 
             If dt_result.Rows.Count > 0 Then
-                If ddl_invoice_type.SelectedValue <> 1 Then
-                    GridView1.DataSource = dt_result
-                    GridView1.DataBind()
-                    Exit Sub
-                End If
+                'If ddl_invoice_type.SelectedValue <> 1 Then
+                '    GridView1.DataSource = dt_result
+                '    GridView1.DataBind()
+                '    Exit Sub
+                'End If
 
                 If ddl_clinics.SelectedValue = 0 Then
                     'If dt_result.Rows(0)("Processes_State") = 0 And dt_result.Rows(0)("Processes_Cilinc") <> 1 Then
@@ -285,18 +285,18 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
                     End If
 
 
-                    If dt_result.Rows(0)("Processes_Residual") = 0 Then
-                        ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
-                            position: 'center',
-                            icon: 'error',
-                            title: 'خطأ! سعر الشركة لهذه الخدمة صفر',
-                            showConfirmButton: false,
-                            timer: 2500
-                        });playSound('../Style/error.mp3');", True)
-                        txt_search.Text = ""
-                        txt_search.Focus()
-                        Exit Sub
-                    End If
+                    'If dt_result.Rows(0)("Processes_Residual") = 0 Then
+                    '    ScriptManager.RegisterClientScriptBlock(Me, Me.GetType(), "alertMessage", "Swal.fire({
+                    '        position: 'center',
+                    '        icon: 'error',
+                    '        title: 'خطأ! سعر الشركة لهذه الخدمة صفر',
+                    '        showConfirmButton: false,
+                    '        timer: 2500
+                    '    });playSound('../Style/error.mp3');", True)
+                    '    txt_search.Text = ""
+                    '    txt_search.Focus()
+                    '    Exit Sub
+                    'End If
 
                     'التحقق من أن الحركة تابعة للشركة المختارة
                     If ViewState("invoice_no") = 0 Then

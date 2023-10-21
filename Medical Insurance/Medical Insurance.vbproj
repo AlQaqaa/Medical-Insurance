@@ -307,6 +307,7 @@
     <Content Include="Motalbat\mainCompany.aspx" />
     <Content Include="Motalbat\motalbaDetailes.aspx" />
     <Content Include="Motalbat\sentInvoices.aspx" />
+    <Content Include="PrintCards.aspx" />
     <Content Include="Reports\pateintCount.aspx" />
     <Content Include="Reports\Report1.aspx" />
     <Content Include="Style\error.mp3" />
@@ -652,6 +653,13 @@
     </Compile>
     <Compile Include="notificationCenter.aspx.vb">
       <DependentUpon>notificationCenter.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="PrintCards.aspx.designer.vb">
+      <DependentUpon>PrintCards.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PrintCards.aspx.vb">
+      <DependentUpon>PrintCards.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="printPrices.aspx.designer.vb">

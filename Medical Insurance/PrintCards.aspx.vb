@@ -17,7 +17,8 @@ Public Class PrintCards
         Dim ss As String = "select  
 y.Orginal_UserName  ,  dbo.GetDateFromOADateNumber (DateAdded )  AS DD,
 PatientID  
-,(select NAME_ARB    from  INC_PATIANT  as x  where x.PINC_ID =PatientID) as  namep
+,(select NAME_ARB    from  INC_PATIANT  as x  where x.PINC_ID =PatientID) as  namep,
+(select C_Name_Arb from INC_COMPANY_DATA where C_ID = (select C_ID    from  INC_PATIANT  as x  where x.PINC_ID =PatientID)) as c_name
 , 'http://10.10.1.10:3630/'+LogFile   as  filename
   from Insurance_Patients_Forms_Validation as x 
 inner join  User_Table as  y  on x.AddedBy  =y.user_id 
@@ -40,6 +41,7 @@ WHERE CONVERT(date,dateadd(day, DateAdded, '1899/12/30'),103) = @DateAdded"
                     stringBuilder.Append("<td>" & dtResult.Rows(i)("Orginal_UserName") & "</td>")
                     stringBuilder.Append("<td>" & dtResult.Rows(i)("DD") & "</td>")
                     stringBuilder.Append("<td>" & dtResult.Rows(i)("namep") & "</td>")
+                    stringBuilder.Append("<td>" & dtResult.Rows(i)("c_name") & "</td>")
                     stringBuilder.Append("<td><a href='" & dtResult.Rows(i)("filename") & "' target='_blank'>اضغط هنا لعرض البطاقة</a></td>")
                     stringBuilder.Append("</tr>")
                 Next

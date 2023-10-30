@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class newInvoice
-    
+
     '''<summary>
     '''ScriptManager1 control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ScriptManager1 As Global.System.Web.UI.ScriptManager
-    
+
     '''<summary>
     '''UpdatePanel1 control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel1 As Global.System.Web.UI.UpdatePanel
-    
+
     '''<summary>
     '''Label2 control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Panel1 control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel1 As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''ddl_companies control.
     '''</summary>
@@ -57,7 +57,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_companies As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''SqlDataSource1 control.
     '''</summary>
@@ -66,7 +66,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource1 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''RequiredFieldValidator1 control.
     '''</summary>
@@ -75,7 +75,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RequiredFieldValidator1 As Global.System.Web.UI.WebControls.RequiredFieldValidator
-    
+
     '''<summary>
     '''ddl_invoice_type control.
     '''</summary>
@@ -84,7 +84,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_invoice_type As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''txt_start_dt control.
     '''</summary>
@@ -93,7 +93,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_start_dt As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txt_end_dt control.
     '''</summary>
@@ -102,7 +102,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_end_dt As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''Panel2 control.
     '''</summary>
@@ -111,7 +111,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Panel2 As Global.System.Web.UI.WebControls.Panel
-    
+
     '''<summary>
     '''txt_company_name control.
     '''</summary>
@@ -120,7 +120,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_company_name As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''txt_invoice_no control.
     '''</summary>
@@ -129,7 +129,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_invoice_no As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''TextBox1 control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox1 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''TextBox2 control.
     '''</summary>
@@ -147,7 +147,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TextBox2 As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''ddl_clinics control.
     '''</summary>
@@ -156,7 +156,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_clinics As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''SqlDataSource2 control.
     '''</summary>
@@ -165,7 +165,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents SqlDataSource2 As Global.System.Web.UI.WebControls.SqlDataSource
-    
+
     '''<summary>
     '''ddl_service control.
     '''</summary>
@@ -174,7 +174,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ddl_service As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''txt_search control.
     '''</summary>
@@ -183,7 +183,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents txt_search As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''DropDownList1 control.
     '''</summary>
@@ -192,7 +192,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents DropDownList1 As Global.System.Web.UI.WebControls.DropDownList
-    
+
     '''<summary>
     '''Label1 control.
     '''</summary>
@@ -201,7 +201,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btn_search control.
     '''</summary>
@@ -210,7 +210,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_search As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_create control.
     '''</summary>
@@ -219,7 +219,7 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_create As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''btn_zclear control.
     '''</summary>
@@ -228,7 +228,16 @@ Partial Public Class newInvoice
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btn_zclear As Global.System.Web.UI.WebControls.Button
-    
+
+    '''<summary>
+    '''Label3 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
+
     '''<summary>
     '''GridView1 control.
     '''</summary>

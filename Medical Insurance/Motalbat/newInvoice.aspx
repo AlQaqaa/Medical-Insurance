@@ -104,7 +104,6 @@
                                         <div class="form-group col-xs-12 col-sm-2">
                                             <label for="ddl_companies">نوع الفاتورة</label>
                                             <asp:DropDownList ID="ddl_invoice_type" CssClass="chosen-select drop-down-list form-control" runat="server">
-                                                <asp:ListItem Value="0">الكل</asp:ListItem>
                                                 <asp:ListItem Value="1">الخدمات الطبية</asp:ListItem>
                                                 <asp:ListItem Value="2">الإيواء والعمليات</asp:ListItem>
                                             </asp:DropDownList>
@@ -192,6 +191,12 @@
                                 <hr />
 
                                 <div class="row">
+                                    <div class="col">
+                                        <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3">
                                     <div class="col-sm-12">
                                         <div class="panel-scroll scrollable">
                                             <asp:GridView ID="GridView1" class="table table-striped table-bordered table-sm nowrap" runat="server" Width="100%" GridLines="None" AutoGenerateColumns="False">

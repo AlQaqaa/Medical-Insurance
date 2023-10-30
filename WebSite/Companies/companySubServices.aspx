@@ -94,6 +94,9 @@
                                         <asp:TextBox ID="txt_parent_per_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEU(event)" placeholder="نسبة الوالدين"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-2">
+                                        <asp:TextBox ID="txt_ewa_per_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEU(event)" placeholder="نسبة الإيواء"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-xs-12 col-sm-2">
                                         <asp:TextBox ID="txt_person_max_all" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" onkeypress="return isAlphabetKeyEU(event)" placeholder="سقف الفرد"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-xs-12 col-sm-2">
@@ -154,6 +157,11 @@
                                                 <asp:TemplateField HeaderText="نسبة العائلة">
                                                     <ItemTemplate>
                                                         <asp:TextBox ID="txt_family_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="نسبة الإيواء">
+                                                    <ItemTemplate>
+                                                        <asp:TextBox ID="txt_ewa_per" runat="server" onblur="appendDollar(this.id);" AutoCompleteType="Disabled" CssClass="form-control" Font-Size="9pt" onkeypress="return isAlphabetKeyEU(event)"></asp:TextBox>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="نسبة الوالدين">

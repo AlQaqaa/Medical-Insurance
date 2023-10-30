@@ -1295,14 +1295,8 @@ C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.Re
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.ReportViewer.WinForms.dll
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\EnvDTE.dll
-C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.Shell.Interop.dll
-C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.Shell.Interop.8.0.dll
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\stdole.dll
-C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.OLE.Interop.dll
-C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.TextManager.Interop.dll
-C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
-C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Microsoft.MSXML.dll
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Azure.Core.xml
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\Azure.Identity.xml
 C:\Users\RD1\Desktop\Medical-Insurance\Medical Insurance\bin\ClosedXML.pdb

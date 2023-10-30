@@ -296,6 +296,7 @@
     <Content Include="Companies\patientList.aspx" />
     <Content Include="createProfilePrices.aspx" />
     <Content Include="dorctorsForms.aspx" />
+    <Content Include="EwaReturn.aspx" />
     <Content Include="Images\002.jpg" />
     <Content Include="Images\ImageCompany\company-logo.jpg" />
     <Content Include="approvalConfirm\listApproval.aspx" />
@@ -551,6 +552,13 @@
     <Compile Include="approvalConfirm\listApprovedPendingRequests.aspx.vb">
       <DependentUpon>listApprovedPendingRequests.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="EwaReturn.aspx.designer.vb">
+      <DependentUpon>EwaReturn.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="EwaReturn.aspx.vb">
+      <DependentUpon>EwaReturn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="index.aspx.designer.vb">
       <DependentUpon>index.aspx</DependentUpon>

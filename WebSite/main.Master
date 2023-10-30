@@ -30,7 +30,7 @@
         <div class="container-fluid">
             <div class="top-navbar">
 
-                <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color:#f0f0f0">
+                <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="background-color: #f0f0f0">
 
                     <span class="navbar-brand mb-0 h1">
                         <asp:Image ID="Image1" runat="server" ImageUrl="~/Style/images/home.png" Width="26px" />
@@ -80,7 +80,7 @@
                                 <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/patientList.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices"  data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices" data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="prices">
                                     <li>
                                         <asp:HyperLink ID="HyperLink7" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;ملفات الأسعار</asp:HyperLink></li>
@@ -124,15 +124,15 @@
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i>&nbsp;تسوية الأطباء
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_missing_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/missingForms.aspx"><i class="far fa-file"></i>&nbsp;النماذج المفقودة
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx"><i class="fas fa-chart-pie"></i>&nbsp;الاستفسارات والإحصائيات
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_reports" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#reports" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-file-invoice"></i> التقارير</asp:HyperLink>
@@ -152,6 +152,10 @@
                                     <li>
                                         <asp:HyperLink ID="HyperLink12" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Reports/Report1.aspx"><i class="fas fa-file"></i>&nbsp;تسوية المالية - المشغلين</asp:HyperLink></li>
                                 </ul>
+                            </li>
+                            <li class="nav-item">
+                                <asp:HyperLink ID="HyperLink14" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/PrintCards.aspx"><i class="fas fa-address-card"></i>&nbsp;طباعة البطاقات
+                                </asp:HyperLink>
                             </li>
                         </ul>
                     </div>

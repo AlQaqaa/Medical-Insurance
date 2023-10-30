@@ -72,10 +72,10 @@ Public Class companySubServices
             search_by = " "
         End If
 
-        Dim sel_data As New SqlCommand("SELECT MAIN_SUBSERVICES.SUBSERVICE_ID, SUBSERVICE_CODE, SUBSERVICE_AR_NAME, SERVICE_STS, CLINIC_AR_NAME AS CLINIC_NAME, ISNULL(PERSON_PER, 1) AS PERSON_PER, ISNULL(FAMILY_PER, 1) AS FAMILY_PER, ISNULL(PARENT_PER, 1) AS PARENT_PER, ISNULL(MAX_PERSON_VAL, 1) AS MAX_PERSON_VAL, ISNULL(MAX_FAMILY_VAL,1) AS MAX_FAMILY_VAL, ISNULL(SER_STATE, 1) AS SER_STATE, ISNULL(INC_SUB_SERVICES_RESTRICTIONS.IS_APPROVAL, 1) AS IS_APPROVAL FROM MAIN_SUBSERVICES
-            LEFT JOIN MAIN_CLINIC ON MAIN_CLINIC.CLINIC_ID = MAIN_SUBSERVICES.SUBSERVICE_CLINIC
-            LEFT JOIN INC_SERVICES_RESTRICTIONS ON INC_SERVICES_RESTRICTIONS.SERVICE_ID = MAIN_SUBSERVICES.SUBSERVICE_SERVICE_ID AND CONTRACT_NO = " & ViewState("contract_no") & "
-            LEFT JOIN INC_SUB_SERVICES_RESTRICTIONS ON INC_SUB_SERVICES_RESTRICTIONS.SUBSERVICE_ID = MAIN_SUBSERVICES.SUBSERVICE_ID AND INC_SUB_SERVICES_RESTRICTIONS.C_ID = " & Session("company_id") & " AND INC_SUB_SERVICES_RESTRICTIONS.CONTRACT_NO = " & ViewState("contract_no") & "
+        Dim sel_data As New SqlCommand("SELECT MAIN_SUBSERVICES.SUBSERVICE_ID, SUBSERVICE_CODE, SUBSERVICE_AR_NAME, SERVICE_STS, CLINIC_AR_NAME AS CLINIC_NAME, ISNULL(PERSON_PER, 0) AS PERSON_PER, ISNULL(FAMILY_PER, 0) AS FAMILY_PER, ISNULL(PARENT_PER, 0) AS PARENT_PER, ISNULL(EWA_PER, 0) AS EWA_PER, ISNULL(MAX_PERSON_VAL, 0) AS MAX_PERSON_VAL, ISNULL(MAX_FAMILY_VAL,1) AS MAX_FAMILY_VAL, ISNULL(SER_STATE, 1) AS SER_STATE, ISNULL(INC_SUB_SERVICES_RESTRICTIONS.IS_APPROVAL, 1) AS IS_APPROVAL FROM MAIN_SUBSERVICES
+            INNER JOIN MAIN_CLINIC ON MAIN_CLINIC.CLINIC_ID = MAIN_SUBSERVICES.SUBSERVICE_CLINIC
+            INNER JOIN INC_SERVICES_RESTRICTIONS ON INC_SERVICES_RESTRICTIONS.SERVICE_ID = MAIN_SUBSERVICES.SUBSERVICE_SERVICE_ID AND CONTRACT_NO = " & ViewState("contract_no") & "
+            LEFT JOIN INC_SUB_SERVICES_RESTRICTIONS ON INC_SUB_SERVICES_RESTRICTIONS.SUBSERVICE_ID = MAIN_SUBSERVICES.SUBSERVICE_ID AND INC_SUB_SERVICES_RESTRICTIONS.C_ID = " & Session("company_id") & " AND INC_SUB_SERVICES_RESTRICTIONS.CONTRACT_NO = " & ViewState("contract_no") & " and INC_SUB_SERVICES_RESTRICTIONS.CLINIC_ID = MAIN_SUBSERVICES.SubService_Clinic
             WHERE INC_SERVICES_RESTRICTIONS.SERVICE_STS = 0 " & search_by, insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
@@ -98,6 +98,7 @@ Public Class companySubServices
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
                 Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
                 Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
+                Dim txt_ewa_per As TextBox = dd.FindControl("txt_ewa_per")
 
                 ch.Checked = If(dt_res.Rows(i)("SER_STATE") = 1, False, True)
                 ch_Is_Approval.Checked = If(dt_res.Rows(i)("IS_APPROVAL") = True, False, True)
@@ -107,6 +108,7 @@ Public Class companySubServices
                 txt_parent_per.Text = dt_res.Rows(i)("PARENT_PER")
                 txt_person_max.Text = dt_res.Rows(i)("MAX_PERSON_VAL")
                 txt_family_max.Text = dt_res.Rows(i)("MAX_FAMILY_VAL")
+                txt_ewa_per.Text = dt_res.Rows(i)("EWA_PER")
             Next
         Else
             Panel1.Visible = False
@@ -167,6 +169,7 @@ Public Class companySubServices
                     insClinic.Parameters.AddWithValue("@serPersonPer", 0)
                     insClinic.Parameters.AddWithValue("@serFamilyPer", 0)
                     insClinic.Parameters.AddWithValue("@serParentPer", 0)
+                    insClinic.Parameters.AddWithValue("@serEwaPer", 0)
                     insClinic.Parameters.AddWithValue("@serPersonMax", 0)
                     insClinic.Parameters.AddWithValue("@serFamilyMax", 0)
                     insClinic.Parameters.AddWithValue("@serState", 0)
@@ -189,6 +192,7 @@ Public Class companySubServices
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
                 Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
                 Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
+                Dim txt_ewa_per As TextBox = dd.FindControl("txt_ewa_per")
 
                 Dim ser_sts As Boolean = False
                 Dim Is_Approval As Boolean = False
@@ -239,6 +243,7 @@ Public Class companySubServices
                     insClinic.Parameters.AddWithValue("@serPersonPer", Val(txt_person_per.Text))
                     insClinic.Parameters.AddWithValue("@serFamilyPer", Val(txt_family_per.Text))
                     insClinic.Parameters.AddWithValue("@serParentPer", Val(txt_parent_per.Text))
+                    insClinic.Parameters.AddWithValue("@serEwaPer", Val(txt_ewa_per.Text))
                     insClinic.Parameters.AddWithValue("@serPersonMax", CDec(txt_person_max.Text))
                     insClinic.Parameters.AddWithValue("@serFamilyMax", CDec(txt_family_max.Text))
                     insClinic.Parameters.AddWithValue("@serState", ser_sts)
@@ -324,6 +329,7 @@ Public Class companySubServices
             Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
             Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
             Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
+            Dim txt_ewa_per As TextBox = dd.FindControl("txt_ewa_per")
 
             If ch.Checked = True Then
                 If txt_person_per_all.Text <> "" Then
@@ -341,7 +347,9 @@ Public Class companySubServices
                 If txt_family_max_all.Text <> "" Then
                     txt_family_max.Text = CDec(txt_family_max_all.Text)
                 End If
-
+                If txt_ewa_per_all.Text <> "" Then
+                    txt_ewa_per.Text = CDec(txt_ewa_per_all.Text)
+                End If
 
             End If
 
@@ -352,6 +360,7 @@ Public Class companySubServices
         txt_parent_per_all.Text = ""
         txt_person_max_all.Text = ""
         txt_family_max_all.Text = ""
+        txt_ewa_per_all.Text = ""
     End Sub
 
     Private Sub ddl_services_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ddl_services.SelectedIndexChanged
@@ -430,6 +439,7 @@ Public Class companySubServices
                 Dim txt_parent_per As TextBox = dd.FindControl("txt_parent_per")
                 Dim txt_person_max As TextBox = dd.FindControl("txt_person_max")
                 Dim txt_family_max As TextBox = dd.FindControl("txt_family_max")
+                Dim txt_ewa_per As TextBox = dd.FindControl("txt_ewa_per")
 
                 ch.Checked = If(dt_res.Rows(i)("SER_STATE") = 1, False, True)
                 ch_Is_Approval.Checked = If(dt_res.Rows(i)("IS_APPROVAL") = True, False, True)
@@ -439,6 +449,7 @@ Public Class companySubServices
                 txt_parent_per.Text = dt_res.Rows(i)("PARENT_PER")
                 txt_person_max.Text = dt_res.Rows(i)("MAX_PERSON_VAL")
                 txt_family_max.Text = dt_res.Rows(i)("MAX_FAMILY_VAL")
+                txt_ewa_per.Text = dt_res.Rows(i)("EWA_PER")
             Next
         Else
             Panel1.Visible = False

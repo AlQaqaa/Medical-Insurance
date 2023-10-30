@@ -449,6 +449,27 @@ inner join User_Table as z on z.user_id =x.Return_User  and y.Return_Process_ID 
             Exit Sub
         End If
 
+        For Each dd As GridViewRow In GridView1.Rows
+            Dim ch As CheckBox = dd.FindControl("CheckBox2")
+
+            If ch.Checked Then
+                Dim dt As New DataTable
+                Dim selcomm As New SqlCommand("select * from INC_MOTALBAT where Processes_ID=@Processes_ID", insurance_SQLcon)
+                selcomm.Parameters.AddWithValue("@Processes_ID", dd.Cells(1).Text)
+                If insurance_SQLcon.State = ConnectionState.Closed Then insurance_SQLcon.Open()
+                dt.Load(selcomm.ExecuteReader)
+                insurance_SQLcon.Close()
+
+                If dt.Rows.Count > 0 Then
+                    Label3.Text = "<p class='alert alert-danger'>خطأ! لا يمكن إنشاء المطالبة، هذه الخدمة " & dd.Cells(9).Text & " تم إدخالها مسبقاً في المطالبة رقم " & dt.Rows(0)("INVOICE_NO") & "</p>"
+
+                    Exit Sub
+                Else
+                    Label3.Text = ""
+                End If
+            End If
+        Next
+
         Try
             If ViewState("invoice_no") = 0 Then
 

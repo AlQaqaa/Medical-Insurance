@@ -119,11 +119,12 @@ Public Class companySubServices
     End Sub
 
     Private Sub getServicesAvailable()
-        Dim MAX_VALUE As String = "ISNULL((SELECT MAX_VALUE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_VALUE,"
-        Dim SER_STATE As String = "ISNULL((SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
+        'Dim MAX_VALUE As String = "ISNULL((SELECT MAX_VALUE FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS MAX_VALUE,"
+        'Dim SER_STATE As String = "ISNULL((SELECT SERVICE_STS FROM INC_SERVICES_RESTRICTIONS WHERE INC_SERVICES_RESTRICTIONS.Service_ID = Main_Services.Service_ID AND CONTRACT_NO = " & ViewState("contract_no") & "), 0) AS SER_STATE"
 
 
-        Dim sel_data As New SqlCommand("select 0 as Service_ID, 'الكل' as Service_AR_Name union select Service_ID, (select Service_AR_Name from Main_Services WHERE Main_Services.Service_ID = INC_SERVICES_RESTRICTIONS.Service_ID) as Service_AR_Name from INC_SERVICES_RESTRICTIONS where SERVICE_STS = 0 AND CONTRACT_NO = " & ViewState("contract_no") & " AND CLINIC_ID = " & ddl_clinics.SelectedValue, insurance_SQLcon)
+        Dim sel_data As New SqlCommand("select 0 as Service_ID, 'الكل' as Service_AR_Name union select INC_SERVICES_RESTRICTIONS.Service_ID,  Service_AR_Name from INC_SERVICES_RESTRICTIONS 
+inner join Main_Services on Main_Services.Service_ID = INC_SERVICES_RESTRICTIONS.Service_ID where SERVICE_STS = 0 AND CONTRACT_NO = " & ViewState("contract_no") & " AND Main_Services.Service_Clinic = " & ddl_clinics.SelectedValue & " order by Service_ID", insurance_SQLcon)
         Dim dt_res As New DataTable
         dt_res.Rows.Clear()
         insurance_SQLcon.Close()

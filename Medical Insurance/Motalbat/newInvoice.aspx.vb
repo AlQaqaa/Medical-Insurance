@@ -180,7 +180,7 @@ Public Class newInvoice
                 INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses.Processes_Cilinc
                 INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_CompanyProcesses.Processes_SubServices
                 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyProcesses.doctor_id
-                WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID)"
+                WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses.Processes_ID) and ewa_flg =0"
             Else
                 sql_str = "SELECT pros_code, EWA_Code, INC_CompanyProcesses_ewa.C_ID, Processes_ID, Processes_Reservation_Code, INC_CompanyProcesses_ewa.PINC_ID, convert(varchar, Processes_Date, 23) AS Processes_Date, Processes_Time, Clinic_AR_Name, SubService_AR_Name, Processes_Price, Processes_Paid, Processes_Residual, Processes_Cilinc, ISNULL(MedicalStaff_AR_Name, '') AS MedicalStaff_AR_Name, ISNULL(INC_CompanyProcesses_ewa.NAME_ARB, '') AS PATIENT_NAME,INC_CompanyProcesses_ewa.Processes_State FROM INC_CompanyProcesses_ewa
 INNER JOIN Main_Clinic ON Main_Clinic.CLINIC_ID = INC_CompanyProcesses_ewa.Processes_Cilinc
@@ -189,7 +189,14 @@ LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = INC_CompanyPr
 INNER JOIN EWA_Processes ON EWA_Processes.ewa_process_id = INC_CompanyProcesses_ewa.Processes_ID
 INNER JOIN Ewa_Record ON Ewa_Record.EWA_Record_ID = EWA_Processes.ewa_patient_id
 WHERE NOT EXISTS (SELECT Processes_ID FROM INC_MOTALBAT WHERE INC_MOTALBAT.Processes_ID = INC_CompanyProcesses_ewa.Processes_ID) AND EWA_Code =" & txt_search.Text & "
- and (EWA_Record_ID IN (SELECT Ewa_Exit_ID FROM dbo.Ewa_Exit where EWA_Code =" & txt_search.Text & ")) and INC_CompanyProcesses_ewa.Processes_State <> 3"
+ and (EWA_Record_ID IN (SELECT Ewa_Exit_ID FROM dbo.Ewa_Exit where EWA_Code =" & txt_search.Text & "))
+ and INC_CompanyProcesses_ewa.Processes_State <> 3 and
+(
+( INC_CompanyProcesses_ewa.ewa_flg =1 and  INC_CompanyProcesses_ewa.Processes_sys  <=2)
+or  
+INC_CompanyProcesses_ewa.Processes_sys  >2
+)
+ and INC_CompanyProcesses_ewa.ewa_free ='0'"
             End If
 
             If ViewState("invoice_no") = 0 Then

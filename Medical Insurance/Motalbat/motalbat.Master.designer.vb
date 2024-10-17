@@ -212,6 +212,33 @@ Partial Public Class motalbat
     Protected WithEvents hl_sent_invoices As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''HyperLink15 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink15 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink16 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink16 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink17 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink17 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''hr_confirm control.
     '''</summary>
     '''<remarks>

@@ -212,6 +212,33 @@ Partial Public Class companies
     Protected WithEvents hl_sent_invoices As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''HyperLink25 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink25 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink26 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink26 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink27 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink27 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''hr_confirm control.
     '''</summary>
     '''<remarks>
@@ -446,6 +473,15 @@ Partial Public Class companies
     Protected WithEvents HyperLink6 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
+    '''HyperLink21 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink21 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
     '''hl_company_processes control.
     '''</summary>
     '''<remarks>
@@ -462,6 +498,33 @@ Partial Public Class companies
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents HyperLink7 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink22 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink22 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink23 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink23 As Global.System.Web.UI.WebControls.HyperLink
+
+    '''<summary>
+    '''HyperLink24 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents HyperLink24 As Global.System.Web.UI.WebControls.HyperLink
 
     '''<summary>
     '''hl_com_Statistics control.

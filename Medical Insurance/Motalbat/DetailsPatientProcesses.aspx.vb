@@ -64,6 +64,7 @@ LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes
 LEFT JOIN INC_MOTALBA_PRICES ON INC_MOTALBA_PRICES.Processes_ID = INC_IvoicesProcesses.Processes_ID
 WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO = " & ViewState("invoice_no")
         Else
+
             str = "select count(Processes_ID) as Processes_ID, Processes_Date ,CARD_NO  ,INVOICE_NO  ,NAME_ARB, N'-' as SubService_Code, N'المعمل' as SubService_AR_Name,
 sum( Processes_Price  )  as Processes_Price ,
 sum( Processes_Paid  ) as Processes_Paid ,
@@ -85,7 +86,7 @@ INNER JOIN Main_SubServices ON Main_SubServices.SubService_ID = INC_IvoicesProce
 LEFT JOIN HAG_Processes_Doctor ON HAG_Processes_Doctor.Doctor_Processes_ID = INC_IvoicesProcesses.Processes_ID AND HAG_Processes_Doctor.doc_type = 0
 LEFT JOIN Main_MedicalStaff ON Main_MedicalStaff.MedicalStaff_ID = HAG_Processes_Doctor.Processes_Doctor_ID 
 LEFT JOIN INC_MOTALBA_PRICES ON INC_MOTALBA_PRICES.Processes_ID = INC_IvoicesProcesses.Processes_ID
-WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO = " & ViewState("invoice_no") & " and clinic_id =42) as ta group by  Processes_Date  ,CARD_NO  ,INVOICE_NO  ,NAME_ARB   ,Clinic_AR_Name"
+WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO = " & ViewState("invoice_no") & " and clinic_id =" & ddlFilter.SelectedValue & ") as ta group by  Processes_Date  ,CARD_NO  ,INVOICE_NO  ,NAME_ARB   ,Clinic_AR_Name"
         End If
         Try
             Dim cmd As New SqlCommand(str, insurance_SQLcon)
@@ -134,10 +135,10 @@ WHERE INC_PATIANT.PINC_ID = " & Val(ViewState("patiant_id")) & " AND INVOICE_NO 
                 rp2 = New ReportParameter("CardNo", txtCardNo.Text)
                 rp3 = New ReportParameter("RecieptDate", row.Cells(5).Text)
                 rp4 = New ReportParameter("PatName", txtName.Text)
-                rp5 = New ReportParameter("AmountWord", GetNumberToWord(row.Cells(8).Text))
+                rp5 = New ReportParameter("AmountWord", If(row.Cells(8).Text = 0, GetNumberToWord(row.Cells(10).Text), GetNumberToWord(row.Cells(8).Text)))
                 rp6 = New ReportParameter("ServiceName", row.Cells(4).Text)
-                rp7 = New ReportParameter("Amount", row.Cells(8).Text)
-                rp8 = New ReportParameter("AmountDerham", CDec(row.Cells(8).Text) - Math.Truncate(CDec(row.Cells(8).Text)))
+                rp7 = New ReportParameter("Amount", If(row.Cells(8).Text = 0, row.Cells(10).Text, row.Cells(8).Text))
+                rp8 = New ReportParameter("AmountDerham", If(row.Cells(8).Text = 0, CDec(row.Cells(10).Text) - Math.Truncate(CDec(row.Cells(10).Text)), CDec(row.Cells(8).Text) - Math.Truncate(CDec(row.Cells(8).Text))))
                 rp9 = New ReportParameter("InvoiceNo", txt_invoice_no.Text)
 
                 viewer.LocalReport.SetParameters(New ReportParameter() {rp1, rp2, rp3, rp4, rp5, rp6, rp7, rp8, rp9})

@@ -1,4 +1,6 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Globalization
+
 Public Class EDITCOMPANY
     Inherits System.Web.UI.Page
     Dim insurance_SQLcon As New SqlConnection(ConfigurationManager.ConnectionStrings("insurance_CS").ToString)
@@ -40,8 +42,8 @@ Public Class EDITCOMPANY
     End Sub
 
     Protected Sub getData()
-        Dim s1 As String = " (SELECT top 1 CONVERT(VARCHAR, DATE_START, 111) AS DATE_START FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_STARt"
-        Dim s2 As String = " (SELECT top 1 CONVERT(VARCHAR, DATE_END, 111) AS DATE_END FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END"
+        Dim s1 As String = " (SELECT top 1 CONVERT(VARCHAR, DATE_START, 103) AS DATE_START FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_STARt"
+        Dim s2 As String = " (SELECT top 1 CONVERT(VARCHAR, DATE_END, 103) AS DATE_END FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS DATE_END"
         Dim s3 As String = " (SELECT top 1 (MAX_VAL) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_VAL"
         Dim s4 As String = " (SELECT top 1 (MAX_CARD) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS MAX_CARD"
         Dim s5 As String = " (SELECT top 1 (PATIAINT_PER) FROM INC_COMPANY_DETIAL WHERE INC_COMPANY_DETIAL.C_ID = INC_COMPANY_DATA.C_ID order by n desc) AS PATIAINT_PER"
@@ -93,6 +95,7 @@ Public Class EDITCOMPANY
 
     Protected Sub btn_edit_Click(sender As Object, e As EventArgs) Handles btn_save.Click
 
+
         Try
             Dim insToCompany As New SqlCommand
             insToCompany.Connection = insurance_SQLcon
@@ -102,8 +105,8 @@ Public Class EDITCOMPANY
             insToCompany.Parameters.AddWithValue("@contractNo", Val(ViewState("contract_no")))
             insToCompany.Parameters.AddWithValue("@cNameAr", txt_company_name_ar.Text)
             insToCompany.Parameters.AddWithValue("@cNameEn", txt_company_name_en.Text)
-            insToCompany.Parameters.AddWithValue("@startDt", DateTime.Parse(txt_start_dt.Text))
-            insToCompany.Parameters.AddWithValue("@endDt", DateTime.Parse(txt_end_dt.Text))
+            insToCompany.Parameters.AddWithValue("@startDt", DateTime.ParseExact(txt_start_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture))
+            insToCompany.Parameters.AddWithValue("@endDt", DateTime.ParseExact(txt_end_dt.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture))
             insToCompany.Parameters.AddWithValue("@maxVal", CDec(txt_max_company_value.Text))
             insToCompany.Parameters.AddWithValue("@maxCard", CDec(txt_max_card_value.Text))
             insToCompany.Parameters.AddWithValue("@maxPerson", CDec(txt_max_person.Text))

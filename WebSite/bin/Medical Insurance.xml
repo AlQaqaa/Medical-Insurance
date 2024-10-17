@@ -1124,6 +1124,42 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.ClinicException._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ClinicException._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ClinicException._GridView1">
+<summary>
+GridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ClinicException._btn_save">
+<summary>
+btn_save control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._head">
 <summary>
 head control.
@@ -1316,6 +1352,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companies._hl_sent_invoices">
 <summary>
 hl_sent_invoices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink25">
+<summary>
+HyperLink25 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink26">
+<summary>
+HyperLink26 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink27">
+<summary>
+HyperLink27 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -1556,6 +1619,15 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
+<member name="F:Medical_Insurance.companies._HyperLink21">
+<summary>
+HyperLink21 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
 <member name="F:Medical_Insurance.companies._hl_company_processes">
 <summary>
 hl_company_processes control.
@@ -1568,6 +1640,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.companies._HyperLink7">
 <summary>
 HyperLink7 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink22">
+<summary>
+HyperLink22 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink23">
+<summary>
+HyperLink23 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.companies._HyperLink24">
+<summary>
+HyperLink24 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2627,63 +2726,9 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.EDITCOMPANY._ImageButton1">
-<summary>
-ImageButton1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.EDITCOMPANY._CalendarExtender3">
-<summary>
-CalendarExtender3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.EDITCOMPANY._MaskedEditExtender3">
-<summary>
-MaskedEditExtender3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.EDITCOMPANY._txt_end_dt">
 <summary>
 txt_end_dt control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.EDITCOMPANY._ImageButton2">
-<summary>
-ImageButton2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.EDITCOMPANY._CalendarExtender1">
-<summary>
-CalendarExtender1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.EDITCOMPANY._MaskedEditExtender1">
-<summary>
-MaskedEditExtender1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -2870,33 +2915,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.WebForm1._ImageButton1">
-<summary>
-ImageButton1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.WebForm1._CalendarExtender3">
-<summary>
-CalendarExtender3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.WebForm1._MaskedEditExtender3">
-<summary>
-MaskedEditExtender3 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.WebForm1._ddl_NAL_ID">
 <summary>
 ddl_NAL_ID control.
@@ -2969,33 +2987,6 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.WebForm1._ImageButton2">
-<summary>
-ImageButton2 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.WebForm1._CalendarExtender1">
-<summary>
-CalendarExtender1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
-<member name="F:Medical_Insurance.WebForm1._MaskedEditExtender1">
-<summary>
-MaskedEditExtender1 control.
-</summary>
-<remarks>
-Auto-generated field.
-To modify move field declaration from designer file to code-behind file.
-</remarks>
-</member>
 <member name="F:Medical_Insurance.WebForm1._txt_NAT_NUMBER">
 <summary>
 txt_NAT_NUMBER control.
@@ -3041,9 +3032,63 @@ Auto-generated field.
 To modify move field declaration from designer file to code-behind file.
 </remarks>
 </member>
-<member name="F:Medical_Insurance.WebForm1._btn_save">
+<member name="F:Medical_Insurance.WebForm1._btnSave">
 <summary>
-btn_save control.
+btnSave control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ExceptionCompanions._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ExceptionCompanions._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ExceptionCompanions._GridView1">
+<summary>
+GridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ExceptionCompanionsList._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ExceptionCompanionsList._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.ExceptionCompanionsList._GridView1">
+<summary>
+GridView1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3359,6 +3404,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.INC_PATIANT._btn_save">
 <summary>
 btn_save control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.PatientBalances._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.PatientBalances._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.PatientBalances._GridView1">
+<summary>
+GridView1 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -3803,11 +3875,6 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
-<member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesDataTable">
-<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member>
 <member name="T:Medical_Insurance.DataSet1.INC_CONFIRM_DETAILSDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3888,6 +3955,11 @@ Represents the strongly named DataTable class.
 Represents the strongly named DataTable class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesDataTable">
+<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListDataTable">
 <summary>
 Represents the strongly named DataTable class.
@@ -3904,11 +3976,6 @@ Represents strongly named DataRow class.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesPatientRow">
-<summary>
-Represents strongly named DataRow class.
-</summary>
-</member>
-<member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesRow">
 <summary>
 Represents strongly named DataRow class.
 </summary>
@@ -3993,6 +4060,11 @@ Represents strongly named DataRow class.
 Represents strongly named DataRow class.
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesRow">
+<summary>
+Represents strongly named DataRow class.
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRow">
 <summary>
 Represents strongly named DataRow class.
@@ -4009,11 +4081,6 @@ Row event argument class
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesPatientRowChangeEvent">
-<summary>
-Row event argument class
-</summary>
-</member>
-<member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesRowChangeEvent">
 <summary>
 Row event argument class
 </summary>
@@ -4098,6 +4165,11 @@ Row event argument class
 Row event argument class
 </summary>
 </member>
+<member name="T:Medical_Insurance.DataSet1.INC_IvoicesProcessesRowChangeEvent">
+<summary>
+Row event argument class
+</summary>
+</member>
 <member name="T:Medical_Insurance.DataSet1.invoicesListRowChangeEvent">
 <summary>
 Row event argument class
@@ -4114,11 +4186,6 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.INC_IvoicesProcessesPatientTableAdapter">
-<summary>
-Represents the connection and commands used to retrieve and save data.
-</summary>
-</member>
-<member name="T:Medical_Insurance.DataSet1TableAdapters.INC_IvoicesProcessesTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -4199,6 +4266,11 @@ Represents the connection and commands used to retrieve and save data.
 </summary>
 </member>
 <member name="T:Medical_Insurance.DataSet1TableAdapters.PATEINT_COUNTTableAdapter">
+<summary>
+Represents the connection and commands used to retrieve and save data.
+</summary>
+</member>
+<member name="T:Medical_Insurance.DataSet1TableAdapters.INC_IvoicesProcessesTableAdapter">
 <summary>
 Represents the connection and commands used to retrieve and save data.
 </summary>
@@ -4357,6 +4429,132 @@ Update Order Option
 <summary>
 Used to sort self-referenced table's rows
 </summary>
+</member>
+<member name="F:Medical_Insurance.Discount._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._hfewaId">
+<summary>
+hfewaId control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._hfpCodeId">
+<summary>
+hfpCodeId control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._lblHidden">
+<summary>
+lblHidden control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._mpePopUp">
+<summary>
+mpePopUp control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._txtAmount">
+<summary>
+txtAmount control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._txtDesc">
+<summary>
+txtDesc control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._btnSave">
+<summary>
+btnSave control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._btnCancel">
+<summary>
+btnCancel control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.Discount._GridView1">
+<summary>
+GridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.DiscountList._ScriptManager1">
+<summary>
+ScriptManager1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.DiscountList._UpdatePanel1">
+<summary>
+UpdatePanel1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.DiscountList._GridView1">
+<summary>
+GridView1 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
 </member>
 <member name="F:Medical_Insurance.dorctorsForms._ScriptManager1">
 <summary>
@@ -5772,6 +5970,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.motalbat._hl_sent_invoices">
 <summary>
 hl_sent_invoices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._HyperLink15">
+<summary>
+HyperLink15 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._HyperLink16">
+<summary>
+HyperLink16 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.motalbat._HyperLink17">
+<summary>
+HyperLink17 control.
 </summary>
 <remarks>
 Auto-generated field.
@@ -8085,6 +8310,33 @@ To modify move field declaration from designer file to code-behind file.
 <member name="F:Medical_Insurance.main._hl_sent_invoices">
 <summary>
 hl_sent_invoices control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._HyperLink15">
+<summary>
+HyperLink15 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._HyperLink16">
+<summary>
+HyperLink16 control.
+</summary>
+<remarks>
+Auto-generated field.
+To modify move field declaration from designer file to code-behind file.
+</remarks>
+</member>
+<member name="F:Medical_Insurance.main._HyperLink17">
+<summary>
+HyperLink17 control.
 </summary>
 <remarks>
 Auto-generated field.

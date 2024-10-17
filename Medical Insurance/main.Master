@@ -108,6 +108,16 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <asp:HyperLink ID="HyperLink15" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#discount" data-toggle="collapse" data-target="#discount" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-tag"></i> التخفيضات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="discount">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink16" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Discount.aspx"><i class="fas fa-tag"></i>&nbsp;تخفيض جديد</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink17" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/DiscountList.aspx"><i class="fas fa-tag"></i> قائمة التخفيضات</asp:HyperLink></li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hr_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#confirm" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-clipboard-check"></i> طلبات الموافقة</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="confirm">
                                     <li>

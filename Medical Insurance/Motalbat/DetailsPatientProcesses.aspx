@@ -31,7 +31,7 @@
                                     <label for="txt_start_dt">إلى</label>
                                     <asp:TextBox ID="txt_end_dt" runat="server" dir="rtl" CssClass="form-control" onkeyup="KeyDownHandler(txt_end_dt);" placeholder="سنه/شهر/يوم" TabIndex="6" ReadOnly="True"></asp:TextBox>
                                 </div>
-                                
+
                             </div>
                             <!-- /form-row -->
                             <div class="form-row">
@@ -47,7 +47,8 @@
                                     <label for="ddl_companies">تصفية</label>
                                     <asp:DropDownList ID="ddlFilter" CssClass="drop-down-list form-control" runat="server" AutoPostBack="true">
                                         <asp:ListItem Value="0">الكل</asp:ListItem>
-                                        <asp:ListItem Value="1">المعمل فقط</asp:ListItem>
+                                        <asp:ListItem Value="42">المعمل فقط</asp:ListItem>
+                                        <asp:ListItem Value="18">العلاج الطبيعي فقط</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -82,7 +83,12 @@
                                                 <HeaderStyle CssClass="hide-colum" />
                                                 <ItemStyle CssClass="hide-colum" />
                                             </asp:BoundField>
-
+                                            <asp:BoundField DataField="Processes_Price" HeaderText="النسبة">
+                                                <ControlStyle CssClass="hide-colum" />
+                                                <FooterStyle CssClass="hide-colum" />
+                                                <HeaderStyle CssClass="hide-colum" />
+                                                <ItemStyle CssClass="hide-colum" />
+                                            </asp:BoundField>
                                             <asp:TemplateField>
                                                 <ItemTemplate>
                                                     <asp:LinkButton ID="btn_print_one" runat="server"

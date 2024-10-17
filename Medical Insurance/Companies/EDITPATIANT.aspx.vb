@@ -16,7 +16,7 @@ Public Class WebForm1
                 Response.Redirect("patientList.aspx")
             End If
 
-            Dim sel_com As New SqlCommand("SELECT PINC_ID, C_ID,CARD_NO,NAME_ARB,NAME_ENG,CONVERT(VARCHAR, BIRTHDATE, 111) AS BIRTHDATE,BAGE_NO,C_ID,GENDER,NAL_ID,PHONE_NO,CONST_ID,CONVERT(VARCHAR, EXP_DATE, 111) AS EXP_DATE,ISNULL(NOTES, '') AS NOTES,P_STATE,ISNULL(NAT_NUMBER, 0) AS NAT_NUMBER,ISNULL(KID_NO, 0) AS KID_NO,CITY_ID FROM INC_PATIANT WHERE PINC_ID = " & ViewState("patiant_id"), insurance_SQLcon)
+            Dim sel_com As New SqlCommand("SELECT PINC_ID, C_ID,CARD_NO,NAME_ARB,NAME_ENG,CONVERT(VARCHAR, BIRTHDATE, 103) AS BIRTHDATE,BAGE_NO,C_ID,GENDER,NAL_ID,PHONE_NO,CONST_ID,CONVERT(VARCHAR, EXP_DATE, 103) AS EXP_DATE,ISNULL(NOTES, '') AS NOTES,P_STATE,ISNULL(NAT_NUMBER, 0) AS NAT_NUMBER,ISNULL(KID_NO, 0) AS KID_NO,CITY_ID FROM INC_PATIANT WHERE PINC_ID = " & ViewState("patiant_id"), insurance_SQLcon)
             Dim dt_result As New DataTable
             dt_result.Rows.Clear()
             insurance_SQLcon.Close()
@@ -29,7 +29,7 @@ Public Class WebForm1
                 txt_CARD_NO.Text = dr!card_no
                 txt_NAME_ARB.Text = dr!name_arb
                 txt_NAME_ENG.Text = dr!name_eng
-                txt_BIRTHDATE.Text = dr!birthdate
+                txt_BIRTHDATE.Text = dr!BIRTHDATE
                 txt_BAGE_NO.Text = dr!bage_no
                 ddl_GENDER.SelectedValue = dr!gender
                 ddl_NAL_ID.SelectedValue = dr!NAL_ID
@@ -46,22 +46,8 @@ Public Class WebForm1
         End If
 
     End Sub
-    Sub clrTxt()
-        txt_BAGE_NO.Text = ""
-        txt_BIRTHDATE.Text = ""
-        txt_CARD_NO.Text = ""
-        txt_exp_date.Text = ""
-        txt_KID_NO.Text = ""
-        txt_NAME_ARB.Text = ""
-        txt_NAME_ENG.Text = ""
-        txt_NAT_NUMBER.Text = ""
-        txt_NOTES.Text = ""
-        txt_PHONE_NO.Text = ""
-    End Sub
 
-
-    Protected Sub btn_save_Click(sender As Object, e As EventArgs) Handles btn_save.Click
-
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
             Dim ins_PAT As New SqlCommand
             ins_PAT.Connection = insurance_SQLcon
@@ -70,14 +56,14 @@ Public Class WebForm1
             ins_PAT.Parameters.AddWithValue("@CARD_NO", txt_CARD_NO.Text)
             ins_PAT.Parameters.AddWithValue("@NAME_ARB", txt_NAME_ARB.Text)
             ins_PAT.Parameters.AddWithValue("@NAME_ENG", txt_NAME_ENG.Text)
-            ins_PAT.Parameters.AddWithValue("@BIRTHDATE", DateTime.Parse(txt_BIRTHDATE.Text))
+            ins_PAT.Parameters.AddWithValue("@BIRTHDATE", DateTime.ParseExact(txt_BIRTHDATE.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture))
             ins_PAT.Parameters.AddWithValue("@BAGE_NO", txt_BAGE_NO.Text)
             ins_PAT.Parameters.AddWithValue("@C_ID", ddl_company.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@GENDER", ddl_GENDER.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@NAL_ID", ddl_NAL_ID.SelectedValue)
             ins_PAT.Parameters.AddWithValue("@PHONE_NO", txt_PHONE_NO.Text)
             ins_PAT.Parameters.AddWithValue("@CONST_ID", ddl_CONST_ID.SelectedValue)
-            ins_PAT.Parameters.AddWithValue("@EXP_DATE", DateTime.Parse(txt_exp_date.Text))
+            ins_PAT.Parameters.AddWithValue("@EXP_DATE", DateTime.ParseExact(txt_exp_date.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture).ToString("MM-dd-yyyy", CultureInfo.InvariantCulture))
             ins_PAT.Parameters.AddWithValue("@NOTES", txt_NOTES.Text)
             ins_PAT.Parameters.AddWithValue("@NAT_NUMBER", txt_NAT_NUMBER.Text)
             ins_PAT.Parameters.AddWithValue("@KID_NO", txt_KID_NO.Text)
@@ -103,5 +89,4 @@ Public Class WebForm1
         End Try
 
     End Sub
-
 End Class

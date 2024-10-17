@@ -5,9 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
     <link href="~/Style/CSS/bootstrap.min.css" rel="stylesheet" />
@@ -18,6 +18,7 @@
     <link href="~/Style/CSS/all.min.css" rel="stylesheet" />
     <link href="~/Style/plugins/alertify/alertify.rtl.css" rel="stylesheet" />
     <link href="~/Style/plugins/sweetalert/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Style/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
     <link href="~/Style/CSS/MyStyle.css" rel="stylesheet" />
 
     <style type="text/css">
@@ -132,7 +133,7 @@
                                 <asp:HyperLink ID="hl_listPatiant" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/Companies/patientList.aspx"><i class="fas fa-users"></i> المنتفعين</asp:HyperLink>
                             </li>
                             <li class="nav-item">
-                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices"  data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
+                                <asp:HyperLink ID="hl_services_prices" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#prices" data-toggle="collapse" data-target="#prices" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-wallet"></i>&nbsp;أسعار الخدمات</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="prices">
                                     <li>
                                         <asp:HyperLink ID="HyperLink14" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/createProfilePrices.aspx"><i class="fas fa-file-invoice-dollar"></i>&nbsp;ملفات الأسعار</asp:HyperLink></li>
@@ -162,6 +163,16 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
+                                <asp:HyperLink ID="HyperLink25" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#discount" data-toggle="collapse" data-target="#discount" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-tag"></i> التخفيضات</asp:HyperLink>
+                                <ul class="nav collapse sub-menu" id="discount">
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink26" runat="server" CssClass="nav-link hvr-back-pulse" NavigateUrl="~/Discount.aspx"><i class="fas fa-tag"></i>&nbsp;تخفيض جديد</asp:HyperLink></li>
+                                    <li>
+                                        <asp:HyperLink ID="HyperLink27" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/DiscountList.aspx"><i class="fas fa-tag"></i> قائمة التخفيضات</asp:HyperLink></li>
+
+                                </ul>
+                            </li>
+                            <li class="nav-item">
                                 <asp:HyperLink ID="hr_confirm" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="#confirm" data-toggle="collapse" data-target="#confirm" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fas fa-clipboard-check"></i> طلبات الموافقة</asp:HyperLink>
                                 <ul class="nav collapse sub-menu" id="confirm">
                                     <li>
@@ -178,11 +189,11 @@
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_doctors_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/dorctorsForms.aspx"><i class="fab fa-wpforms"></i>&nbsp;تسوية الأطباء
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_missing_forms" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/missingForms.aspx"><i class="far fa-file"></i>&nbsp;النماذج المفقودة
-                                    </asp:HyperLink>
+                                </asp:HyperLink>
                             </li>
                             <li class="nav-item">
                                 <asp:HyperLink ID="hl_Statistics" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/statistics.aspx">
@@ -210,9 +221,9 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-    <asp:HyperLink ID="HyperLink20" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/PrintCards.aspx"><i class="fas fa-address-card"></i>&nbsp;طباعة البطاقات
-    </asp:HyperLink>
-</li>
+                                <asp:HyperLink ID="HyperLink20" CssClass="nav-link hvr-back-pulse" runat="server" NavigateUrl="~/PrintCards.aspx"><i class="fas fa-address-card"></i>&nbsp;طباعة البطاقات
+                                </asp:HyperLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -247,7 +258,7 @@
                                                         <asp:HyperLink ID="HyperLink5" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyClinic.aspx"><i class="fas fa-notes-medical"></i> العيادات</asp:HyperLink>
                                                         <asp:HyperLink ID="HyperLink4" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companyServices.aspx"><i class="fas fa-h-square"></i> الأقسام</asp:HyperLink>
                                                         <asp:HyperLink ID="HyperLink6" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/companySubServices.aspx"><i class="fas fa-stethoscope"></i> الخدمات</asp:HyperLink>
-
+                                                        <asp:HyperLink ID="HyperLink21" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/ClinicException.aspx"><i class="fas fa-stethoscope"></i> استثناء عيادات</asp:HyperLink>
                                                     </div>
                                                 </li>
                                                 <li class="nav-item">
@@ -264,6 +275,17 @@
                                                         <button type="button" class="btn btn-link dropdown-item" data-toggle="modal" data-target="#price_profile">
                                                             <i class="fas fa-dollar-sign"></i>&nbsp;تغيير ملف الأسعار
                                                         </button>
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item dropdown">
+                                                    <a class="nav-link dropdown-toggle" href="#" id="p_services" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fas fa-tag"></i>&nbsp;خدمات المنتفعين
+                                                    </a>
+                                                    <div class="dropdown-menu" aria-labelledby="p_services">
+                                                        <asp:HyperLink ID="HyperLink22" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/ExceptionCompanions.aspx"><i class="fas fa-tag"></i> استثناء المرافقين</asp:HyperLink>
+                                                        <asp:HyperLink ID="HyperLink23" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/ExceptionCompanionsList.aspx"><i class="fas fa-tag"></i> قائمة الاستثناءات</asp:HyperLink>
+                                                        <div class="dropdown-divider"></div>
+                                                        <asp:HyperLink ID="HyperLink24" CssClass="dropdown-item" runat="server" NavigateUrl="~/Companies/PatientBalances.aspx"><i class="fas fa-tag"></i> أرصدة المنتفعين</asp:HyperLink>
                                                     </div>
                                                 </li>
                                                 <li class="nav-item">
@@ -290,7 +312,7 @@
                             </div>
                         </asp:Panel>
                         <!-- START LOADER HTML -->
-                       <%-- <div class="fullpage-loader">
+                        <%-- <div class="fullpage-loader">
                             <div class="fullpage-loader__logo">
                                 <asp:Image ID="Image2" runat="server" ImageUrl="~/Style/images/loading.gif" />
                             </div>
@@ -372,6 +394,8 @@
     <script src='<%= ResolveUrl("~/Style/JS/pdfobject.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Style/JS/all.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Style/plugins/sweetalert/sweetalert2.all.min.js") %>'></script>
+    <script src='<%= ResolveUrl("~/Style/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js") %>'></script>
+<script src='<%= ResolveUrl("~/Style/plugins/bootstrap-datepicker/bootstrap-datepicker.ar.min.js") %>'></script>
     <script src='<%= ResolveUrl("~/Style/JS/MyJs.js") %>'></script>
 
     <script>
